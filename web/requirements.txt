@@ -1,0 +1,6 @@
+Django==2.1.4
+uwsgi==2.0.17
+pymysql==0.8.0
+bootstrap4==0.1.0
+django-bootstrap4==1.0.1
+django-widget-tweaks==1.4.5

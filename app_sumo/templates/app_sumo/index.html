@@ -1,0 +1,398 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+<div class="mainmenu">
+        <div class="container-fluid row">
+            <div class="col-6 gyomu-menu caption_box">
+                    <h1 class="caption">業務メニュー</h1>
+                <div class="row">
+                    <div class="col-6 form-inline">
+                            <button class="btn menubutton btn-block" data-toggle="modal" data-target="#myModal1"><i class="fas fa-laptop fa-fw"></i>業務起動指示選択</button>
+                    </div>
+                    <div class="col-6 form-inline">
+                            <a href="SUMUNY01" class="btn menubutton2 btn-block" role="button"><i class="fas fa-pencil-alt fa-fw"></i>業務運用選択</a>
+                    </div>
+                </diV>
+                <p>　</p>
+                <div class="row justify-content-start">
+                        <div class="col-12 form-inline">
+                            <a href="update14" class="btn menubutton2 btn-block" role="button"><i class="fas fa-pencil-alt fa-fw"></i>入力画面</a>
+                        </div>
+                </div>
+                <div class="row justify-content-start">
+                    <div class="col-12 form-inline">
+                        <a href="update14" class="btn menubutton2 btn-block" role="button"><i class="fas fa-pencil-alt fa-fw"></i>懸賞金基礎計算額入力</a>
+                    </div>
+            </div>
+            </div>
+
+            
+
+            <div class="col-6">
+                <div class=" gyomu-menu caption_box">
+                        <h1 class="caption">FTPメニュー</h1>
+                        <div class="row">
+                            <div class="col-6 form-inline">
+                                    <button class="btn menubutton3 btn-block" data-toggle="modal" data-target="#myModal4"><i class="fas fa-bolt fa-fw"></i>FTP接続</button>
+                            </div>
+                            <div class="col-6 form-inline">
+                                    <button class="btn menubutton3 btn-block" data-toggle="modal" data-target="#myModal4"><i class="fas fa-reply fa-fw"></i> FTPデータ再受信</button>
+                            </div>
+                        </diV>
+                </div>
+
+                <p>　</p>
+                <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-4 form-inline">
+                                        <button class="btn menubutton4 btn-block" data-toggle="modal" data-target="#myModal3">場所・年度切替</button>
+                                        <button class="btn menubutton4 btn-block" data-toggle="modal" data-target="#myModal3">システム資料出力</button>
+                                </div>
+                                <div class="col-4 form-inline">
+                                        <button class="btn menubutton4 btn-block" data-toggle="modal" data-target="#myModal3">運用ログ表示</button>
+                                        <button class="btn menubutton4 btn-block" data-toggle="modal" data-target="#myModal3">プリンタ管理</button>
+                                </div>
+                                <div class="col-4 form-inline">
+                                </div>
+                            </diV>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <nav class="navbar fixed-bottom navbar-dark bg-dark">
+                <a href="../admin" class="btn menubutton5 btn-block" role="button" >管理画面</a>
+                <a href="upload" class="btn menubutton5 btn-block" role="button" >CSVテスト</a>
+        </nav>
+
+
+        <!-- 業務起動指示選択モーダル -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
+                <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModaldiv">業務起動指示選択</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-div="閉じる">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="caption_box">
+                                        <h2 class="caption">電文モード</h2>
+                                        <div class="btn-group--vertical btn-group-toggle" data-toggle="buttons">
+                                            <div>
+                                                <label class="btn btn-outline-primary btn-block active">
+                                                    <input type="radio" name="denbun" id="option1" autocomplete="off" checked>  本番（通常）
+                                                </label>
+                                                <label class="btn btn-outline-primary btn-block">
+                                                    <input type="radio" name="denbun" id="option2" autocomplete="off">  テスト
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="gyomu-chkbox">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">配信情報部</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                <label class="custom-control-label" for="customCheck2">内容情報部</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="caption_box">
+                                        <h2 class="caption">データ入力モード</h2>
+                                            <div class="btn-group--vertical btn-group-toggle" data-toggle="buttons">
+                                                <div>
+                                                    <label class="btn btn-outline-primary btn-block disabled">
+                                                        <input type="radio" name="options_data" id="options_data1" autocomplete="off" disabled>  オンライン
+                                                    </label>
+                                                    <label class="btn btn-outline-primary btn-block active">
+                                                        <input type="radio" name="options_data" id="options_data2" autocomplete="off" checked>  オフライン
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="caption_box">
+                                        <h2 class="caption">業務運用選択</h2>
+
+                                        <div class="btn-group--vertical btn-group-toggle" data-toggle="buttons">
+                                            <div >
+                                                    <label class="btn btn-outline-primary active radio_gyomu">
+                                                        <input type="radio" name="radio_gyomu" id="radio_gyomu1" autocomplete="off" checked>通常開始
+                                                    </label>
+                                                    <label class="btn btn-outline-primary radio_gyomu disabled">
+                                                        <input type="radio" name="radio_gyomu" id="radio_gyomu2" autocomplete="off" disabled>継続開始
+                                                    </label>
+                                                
+                                                    <label class="btn btn-outline-primary radio_gyomu">
+                                                        <input type="radio" name="radio_gyomu" id="radio_gyomu3" autocomplete="off" >休止開始
+                                                    </label>
+                                                    <label class="btn btn-outline-primary radio_gyomu disabled">
+                                                        <input type="radio" name="radio_gyomu" id="radio_gyomu4" autocomplete="off" disabled>休止解除
+                                                    </label>
+                                                    <p></p>
+                                                    <label class="btn btn-outline-primary btn-block">
+                                                        <input type="radio" name="radio_gyomu" id="radio_gyomu5" autocomplete="off" >終了
+                                                    </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    
+                                    <div class="caption_box">
+                                        <h2 class="caption">NewsML電文書式</h2>
+
+                                            <div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_denbun1">
+                                                    <label class="custom-control-label" for="newsml_denbun1">通常</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_denbun2">
+                                                    <label class="custom-control-label" for="newsml_denbun2">一時ファイル</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_denbun3">
+                                                    <label class="custom-control-label" for="newsml_denbun3">プリンタ</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_denbun4">
+                                                    <label class="custom-control-label" for="newsml_denbun4">出力不可</label>
+                                                </div>
+                                            </div>
+                                                                            
+                                            <div class="caption_box">
+                                                <h2 class="caption">通常時配信先指定</h2>
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                        <input type="checkbox" class="custom-control-input" id="newsml_haishin1">
+                                                        <label class="custom-control-label" for="newsml_haishin1">配信GW</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                        <input type="checkbox" class="custom-control-input" id="newsml_haishin2">
+                                                        <label class="custom-control-label" for="newsml_haishin2">記事検索</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                        <input type="checkbox" class="custom-control-input" id="newsml_haishin3">
+                                                        <label class="custom-control-label" for="newsml_haishin3">多メディア</label>
+                                                    </div>
+                                            </div>
+                                    </div>
+
+                                    
+                                    <div class="caption_box">
+                                        <h2 class="caption">NewsMLフルタグ書式</h2>
+
+                                            <div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_fulltag1">
+                                                    <label class="custom-control-label" for="newsml_fulltag1">通常</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_fulltag2">
+                                                    <label class="custom-control-label" for="newsml_fulltag2">一時ファイル</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_fulltag3">
+                                                    <label class="custom-control-label" for="newsml_fulltag3">プリンタ</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline">
+                                                    <input type="checkbox" class="custom-control-input" id="newsml_fulltag4">
+                                                    <label class="custom-control-label" for="newsml_fulltag4">出力不可</label>
+                                                </div>
+                                            </div>
+                                                                            
+                                            <div class="caption_box">
+                                                <h2 class="caption">通常時配信先指定</h2>
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                        <input type="checkbox" class="custom-control-input" id="newsml_fulltag_haishin1">
+                                                        <label class="custom-control-label" for="newsml_fulltag_haishin1">配信GW</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                        <input type="checkbox" class="custom-control-input" id="newsml_fulltag_haishin2">
+                                                        <label class="custom-control-label" for="newsml_fulltag_haishin2">記事検索</label>
+                                                    </div>
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                        <input type="checkbox" class="custom-control-input" id="newsml_fulltag_haishin3">
+                                                        <label class="custom-control-label" for="newsml_fulltag_haishin3">多メディア</label>
+                                                    </div>
+                                            </div>
+                                    </div>
+
+
+                                    <div class="caption_box">
+                                        <h2 class="caption">加盟社宛テキスト</h2>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="customRadio_ktext1">
+                                                <label class="custom-control-label" for="customRadio_ktext1">通常</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="customRadio_ktext2">
+                                                <label class="custom-control-label" for="customRadio_ktext2">一時ファイル</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="customRadio_ktext3">
+                                                <label class="custom-control-label" for="customRadio_ktext3">プリンタ</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="customRadio_ktext4">
+                                                <label class="custom-control-label" for="customRadio_ktext4">出力不可</label>
+                                            </div>
+                                    </div>
+
+                                    <div class="caption_box">
+                                        <h2 class="caption">速報テキスト</h2>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_stext1">
+                                            <label class="custom-control-label" for="customRadio_stext1">通常</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_stext2">
+                                            <label class="custom-control-label" for="customRadio_stext2">一時ファイル</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_stext3">
+                                            <label class="custom-control-label" for="customRadio_stext3">プリンタ</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_stext4">
+                                            <label class="custom-control-label" for="customRadio_stext4">出力不可</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="caption_box">
+                                        <h2 class="caption">画像テキスト</h2>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_gtext1">
+                                            <label class="custom-control-label" for="customRadio_gtext1">通常</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_gtext2">
+                                            <label class="custom-control-label" for="customRadio_gtext2">一時ファイル</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_gtext3">
+                                            <label class="custom-control-label" for="customRadio_gtext3">プリンタ</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="customRadio_gtext4">
+                                            <label class="custom-control-label" for="customRadio_gtext4">出力不可</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg">実行</button>
+                        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModaldiv">業務運用選択</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-div="閉じる">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <p>業務運用選択を実行する画面</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        </div><!-- /.modal-footer -->
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            
+            <!-- モーダルの設定 -->
+            <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModaldiv">各種設定画面</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-div="閉じる">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <p>各種設定ボタンを表示</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        </div><!-- /.modal-footer -->
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <!-- モーダルの設定 -->
+            <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModaldiv">FTP設定画面</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-div="閉じる">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <p>FTP</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        </div><!-- /.modal-footer -->
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+    </div>
+    <!-- こっからもとのソース -->
+    <!-- <p>　</p><p>　</p><p>　</p><p>　</p><p>　</p><p>　</p><p>　</p><p>　</p>
+
+    <div class="container">
+        <table class="table table-striped">
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>業務起動指示選択</button></td>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>FTP接続</button></td>
+                <td>
+                    <a href="update14"><button type="button" class="btn btn-primary btn-lg">入力画面</button></a>
+                </td>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>業務運用選択</button></td>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>FTPデータ再受信</button></td>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>運用ログ表示</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>場所・年度切替</button></td>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>システム資料出力</button></td>
+                <td><button type="button" class="btn btn-primary btn-lg" disabled>プリンタ管理</button></td>
+            </tr>
+            <tr>
+                <td><a href="../admin/app_sumo/player"><button type="button" class="btn btn-danger">選手マスタ</button></a></td>
+                <td><a href="../admin/app_sumo/waza"><button type="button" class="btn btn-danger">決まり手マスタ</button></a></td>
+                <td><a href="../admin/app_sumo/match"><button type="button" class="btn btn-danger">入力画面の元ネタ</button></a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="upload"><button type="button" class="btn btn-warning">CSVテスト</button></a></td>
+                <td><a href="../admin"><button type="button" class="btn btn-warning">管理画面</button></a>
+                <td></td>
+            </tr>
+        </table>
+    </div> -->
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<HTML>
+<meta http-equiv = "Content-Type" content = "text/html; charset = shift_jis">
+  <head>
+<style type="text/css">
+th{width:120;background:gainsboro;padding:5;}
+td{background-color:silver;font-weight:bold;color:black;font-size:10pt}
+.color1  {color:brown;} 
+.color2  {color:purple;font-weight:bold}
+.color3  {color:green;font-size:12pt} 
+.bgcolor1  {background-color:silver;font-weight:bold;color:black;font-size:10pt}
+.bgcolor2 {background-color:white}
+</style>
+  </head>
+
+  <body>
+  	<br>
+  	<p>
+<div id="myArea">
+	<xsl:apply-templates select="xmldocument" />
+</div>
+    </p>
+  </body>
+</html>

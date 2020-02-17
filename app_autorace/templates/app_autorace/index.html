@@ -1,0 +1,50 @@
+{% extends 'app_ckeiba/base.html' %}
+
+{% block content %}
+
+<script>
+    var statusflg1 = function (button) {
+        document.getElementById("statusbutton1").disabled = true;
+        document.getElementById("statusbutton2").disabled = false;
+    }
+    var statusflg2 = function (button) {
+        document.getElementById("statusbutton1").disabled = false;
+        document.getElementById("statusbutton2").disabled = true;
+    }
+
+    function defaultbutton() {
+        var a = {{ status.sys_status }};
+        if(a == 2 )
+            {
+                document.getElementById("statusbutton1").disabled = true;
+                document.getElementById("statusbutton2").disabled = false;
+             } else {
+                document.getElementById("statusbutton1").disabled = false;
+                document.getElementById("statusbutton2").disabled = true;
+            }
+    }
+</script>
+
+<div class="container">
+    <div id="output"></div>
+    <div class="container">
+        <div class="row-xs-12">
+            <h1><span class="label label-default">{{ status.sys_display }}</span></h1>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-3 col-lg-4"><button type="button" id="statusbutton1" class="btn btn-primary btn-lg"  onClick="statusflg1(this);">通常業務開始m●●</button></div>
+            <div class="col-xs-2 col-lg-4"><button type="button" id="statusbutton2" class="btn btn-primary btn-lg"  onClick="statusflg2(this.checked);">業務終了</button></div>
+        </div>
+        <hr>
+        <div class="row">
+                <div class="col-xs-6 col-lg-4"><a href="./upload1"><button type="button" class="btn btn-primary btn-lg">CSVテスト１</button></a></div>
+                <div class="col-xs-6 col-lg-4"><a href="./upload_schedule"><button type="button" class="btn btn-primary btn-lg">CSVスケジュール</button></a></div>
+            <div class="col-xs-6 col-lg-4"><a href="./unyou"><button type="button" class="btn btn-primary btn-lg">運用画面</button></a></div>
+       <!--     <div class="col-xs-6 col-lg-4"><a href="./master"><button type="button" class="btn btn-primary btn-lg">マスタ編集</button></a></div>  -->
+        </div>
+        <hr>
+    </div>
+</div>
+
+{% endblock %}

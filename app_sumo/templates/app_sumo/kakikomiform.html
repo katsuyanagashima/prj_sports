@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>書き込みフォーム</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <h1>掲示板 - 書き込みフォーム</h1>
+  <form action="" method="post">
+  {% csrf_token %}
+    <table>
+      {{form1.as_table}}
+      <tr><td colspan='2'><input type="submit" value="Submit"></td></tr>
+    </table>
+    <input type="submit" name="button_1" value="NewsML作成ボタン""> 
+    <input type="submit" name="button_2" value="ボタン2"> 
+  </form>
+  </body>
+  </html>

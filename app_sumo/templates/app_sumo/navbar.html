@@ -1,0 +1,60 @@
+    <nav class="navbar fixed-top">
+        <div class="container navtop">
+            <h1>
+                <div class="navimg">
+                    <!-- <img src="/static/app_sumo/162405.png" width="70" height="70" class="navimg"> -->
+                </div>
+
+                <div class="titlteimg">
+                    <!-- <img src="/static/app_sumo/top_f4eaff.png" height="80px"> -->
+                </div>
+            </h1>
+            <!-- ボタンなどのサンプルサイトに移動　-->
+            <a href="sample" class="btn menubutton5 btn-block" role="button" >サンプルサイト</a>
+            
+                <div class="dropdown dropdown_master">
+                    <button type="button" id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-database fa-fw" ></i>マスターメンテ
+                    </button>
+                    <div class="dropdown-menu" aria-divledby="dropdownMenuButton" style="z-index:9999">
+                    <a class="dropdown-item" href="../admin/app_sumo/player">選手マスタ</a>
+                    <a class="dropdown-item" href="../admin/app_sumo/waza">決まり手マスタ</a>
+                    <a class="dropdown-item" href="../admin/app_sumo/match">入力画面の元ネタ</a>
+                    </div>
+                </div>
+        </div>
+
+        
+        <div class="container">
+            <div class="container-fluid">
+                <div class="row justify-content-start">
+                    <div class="col-4 form-inline">
+                        <div class="labeltitle">入力モード</div>
+                        <input type="text" class="form-control text-center labeltext" placeholder="オンライン" readonly>
+                    </div>
+                    <div class="col-4 form-inline">
+                        <div class="labeltitle">場所</div>
+                        <input type="text" class="form-control text-center labeltext" placeholder="２０１９年　５月本場所" readonly>  
+                    </div>
+                </div>
+                <div class="row">
+                    <p></p>
+                </div>
+                <div class="row justify-content-start">
+                    <div class="col-4 form-inline">
+                        <div class="labeltitle">運用状態</div>
+                        <input type="text" class="form-control text-center labeltext" placeholder="通常業務開始中" readonly>  
+                    </div>
+                    <div class="col-4 form-inline">
+                        <div class="labeltitle">取組日目</div>
+                        <input type="text" class="form-control text-center labeltext" placeholder="初　日" readonly>  
+                    </div>
+                    <div class="col-4 form-inline">
+                        <div class="labeltitle">勝負日目</div>
+                        <input type="text" class="form-control text-center labeltext" placeholder="初　日" readonly>  
+                    </div>
+                </div>
+                <p></p>
+            </div>
+        </div>
+    </nav>

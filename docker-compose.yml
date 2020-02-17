@@ -1,0 +1,42 @@
+version: '3.4'
+
+volumes:
+  prj_sports.db.volume:
+    name: prj_sports.db.volume
+
+services:
+  nginx:
+    image: nginx:1.13
+    container_name: prj_sports.nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./static:/static
+      - ./nginx/log:/var/log/nginx
+    depends_on:
+      - web
+
+  db:
+    image: mysql:5.7
+    container_name: prj_sports.db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: kyodo1234
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - prj_sports.db.volume:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+
+  web:
+    build: ./web
+    container_name: prj_sports.web
+    command: uwsgi --socket :8001 --module prj_sports.wsgi --wsgi-file /code/prj_sports/wsgi.py --logto /code/prj_sports/uwsgi.log --py-autoreload 1
+    volumes:
+      - ./:/code
+    expose:
+      - "8001"
+    depends_on:
+      - db

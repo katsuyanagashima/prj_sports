@@ -1,0 +1,80 @@
+<html lang="ja">
+<head>
+<title>button</title>
+<style type="text/css">
+button{width:100pt}
+.border {border-style:solid;border-width:medium;border-color:black}
+</style>
+<script type="text/vbscript">
+<!--
+option explicit
+dim xmldoc,stylesheet,result
+dim styleSource,htmlSource,no
+dim xsldoc
+
+sub newStyle(no)
+	set xmldoc=createObject("Microsoft.XMLDom")
+	xmldoc.async=false
+        if filename.value="" then
+          msgbox("XMLファイルを指定して下さい")
+          exit sub
+        end if
+	xmldoc.load(filename.value)
+	set result=createObject("Microsoft.XMLDom")
+	result.async=false
+		select case no
+			case 1
+				styleSource="NewsEnvelope.xsl"
+			case 2
+				styleSource="Identification.xsl"
+		        case 3
+				styleSource="NewsManagement.xsl"
+		        case 4
+				styleSource="NewsComponent.xsl"
+			case 5
+				styleSource="NewsLines.xsl"
+		        case 6
+				styleSource="Administrative.xsl"
+			case 7
+				styleSource="Right.xsl"
+	                case 8
+				styleSource="Descriptive.xsl"
+			case 9
+				styleSource="Metadata.xsl"
+                        case 10
+				styleSource="ContentItem.xsl"
+			case 11
+				styleSource="InContent10_24.xsl"
+			case else
+				exit sub
+		end select
+			set stylesheet=createObject("Microsoft.XMLDom")
+			stylesheet.async=false
+			stylesheet.load(styleSource)
+			htmlSource=xmldoc.transformNodeToObject(stylesheet,result)
+	        	parent.results.myArea.innerHTML=result.xml  
+
+
+end sub
+
+
+-->
+</script>
+</head>
+<body>
+<DIV>表示するXMLファイルを指定してください</DIV>
+<DIV><INPUT TYPE="file" NAME="filename"></DIV><P></P>
+<DIV><button size="50" onclick='NewStyle(1)'>NewEnvelope</button></DIV>
+<DIV><button onclick='NewStyle(2)'>Identification</button></DIV>
+<DIV><button onclick='NewStyle(3)'>NewsManagement</button></DIV>
+<DIV><button onclick='NewStyle(4)'>NewsComponent</button></DIV>
+<DIV><button onclick='NewStyle(5)'>NewsLines</button></DIV>
+<DIV><button onclick='NewStyle(6)'>Administrative</button></DIV>
+<DIV><button onclick='NewStyle(7)'>RightsMetadata</button></DIV>
+<DIV><button onclick='NewStyle(8)'>Descriptive</button></DIV>
+<DIV><button onclick='NewStyle(9)'>Metadata</button></DIV>
+<DIV><button onclick='NewStyle(10)'>ContentItem</button></DIV>
+<DIV><button onclick='NewStyle(11)'>内容情報部</button></DIV>
+<P></P>
+</body>
+</html>
