@@ -1,0 +1,6 @@
+/app_autorace/__pycache__/
+/app_ckeiba/__pycache__/
+/app_sumo/__pycache__/
+/nginx/log/
+/prj_sports/__pycache__/
+/prj_sports/uwsgi.log
