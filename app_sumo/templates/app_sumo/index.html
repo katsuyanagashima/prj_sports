@@ -15,7 +15,7 @@
                         class="fas fa-laptop fa-fw"></i>業務運用選択</button>  -->
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->                    
-    <button class="btn menubuttonbase menubutton2 btn-block" data-toggle="modal" data-target="#myModal1_SUMUNYO01"><i class="fas fa-laptop fa-fw"></i>業務運用選択</button>
+    <button class="btn menubuttonbase menubutton2 btn-block" data-toggle="modal" data-target="#SUMUNYO01"><i class="fas fa-laptop fa-fw"></i>業務運用選択</button>
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->   
 
@@ -326,7 +326,7 @@
     <!-- =========================================================================================================== -->
 <!-- 業務運用メニューモーダル -->
 <!-- =========================================================================================================== -->
-<div class="modal fade" id="myModal1_SUMUNYO01" tabindex="-1" role="dialog" aria-divledby="myModaldiv_SUMUNYO01">
+<div class="modal fade" id="SUMUNYO01" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -339,6 +339,9 @@
                 <div class="row">
                     <div class="col-4">
                       <a href="SUMUDY01" type="button" class="btn btn-danger">運用日付設定</a>
+                    </div>
+                    <div class="col-4"> 
+                        <a href="SUMJKH01" type="button" class="btn btn-danger">状況表示</a>
                     </div>
                 </div>
                 <hr/>
@@ -353,39 +356,42 @@
                       <a href="SUMTOR01" type="button" class="btn btn-warning">取組入力処理</a>
                     </div>
                     <div class="col-3">   
-                      <a href="SUMUDY01" type="button" class="btn btn-warning">勝負入力処理</a>
+                      <a href="SUMSHO01" type="button" class="btn btn-warning">勝負入力処理</a>
                     </div>
                 </div>
                 <hr/>
                 <div class="row">
                     <div class="col-3">
-                      <a href="SUMYOS01" type="button" class="btn btn-success">優勝・三賞入力処理</a>
+                      <a href="SUMYUS01" type="button" class="btn btn-success">優勝・三賞入力処理</a>
                     </div>
                     <div class="col-3">   
-                      <a href="SUMUDY01" type="button" class="btn btn-success">コンテンツ作成・出力</a>
+                      <a href="SUMOUT01" type="button" class="btn btn-success">【新】コンテンツ編集指示</a>
                     </div>
-                    <div class="col-3"> 
-                      <a href="SUMYOS01" type="button" class="btn btn-success">状況表示</a>
-                    </div>
+                    <div class="col-3">   
+                        <a href="SUMOUT02" type="button" class="btn btn-success">電文／データ出力</a>
+                      </div>
+                      <div class="col-3">   
+                        <a href="SUMOUT03" type="button" class="btn btn-success">電文／データ強制出力</a>
+                      </div>
                 </div>
                 <hr/>
                 <div class="row">
                     <div class="col-3">
-                      <a href="SUMUDY01" type="button" class="btn btn-primary">階級上位力士</a>
+                      <a href="SUMJOR01" type="button" class="btn btn-primary">階級上位力士</a>
                     </div>
                     <div class="col-3"> 
-                      <a href="SUMYOS01" type="button" class="btn btn-primary">付出処理</a>
+                      <a href="SUMTKD01" type="button" class="btn btn-primary">付出処理</a>
                     </div>
                     <div class="col-3">   
-                      <a href="SUMUDY01" type="button" class="btn btn-primary">資料出力</a>
+                      <a href="SUMSHI01" type="button" class="btn btn-primary">資料出力</a>
                     </div>
                     <div class="col-3"> 
-                      <a href="SUMYOS01" type="button" class="btn btn-primary">NewsML修正</a>
+                      <a href="SUMNEW01" type="button" class="btn btn-primary">NewsML修正</a>
                     </div>
                   </div>
             </div>        
             <div class="modal-footer">
-            <button type="button" class="btn btn-danger btn-lg">実行</button>
+            <!-- <button type="button" class="btn btn-danger btn-lg">実行</button>  -->
             <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
             </div>
         </div>

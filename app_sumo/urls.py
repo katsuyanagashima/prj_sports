@@ -24,6 +24,19 @@ urlpatterns = [
     path('SUMTOR01/SUMTOR02', views.SUMTOR02, name='SUMTOR02'), #取組入力画面
     path('SUMTOR01/SUMTOR03', views.SUMTOR03, name='SUMTOR03'), #取組入力ＯＣＲ画面
     path('SUMTOR01/SUMTOR04', views.SUMTOR04, name='SUMTOR04'), #【新】取組ＯＣＲ取り込み画面
+    path('SUMSHO01/', views.SUMSHO01, name='SUMSHO01'), #勝負入力処理
+    path('SUMSHO01/SUMSHO02/', views.SUMSHO02, name='SUMSHO02'), #勝負入力処理
+    path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'), #勝負入力処理
+    path('SUMOUT01/', views.SUMOUT01, name='SUMOUT01'), #コンテンツ編集指示
+    path('SUMOUT02/', views.SUMOUT02, name='SUMOUT02'), #電文／データ出力
+    path('SUMOUT03/', views.SUMOUT03, name='SUMOUT03'), #電文／データ強制出力
+    path('SUMJKH01/', views.SUMJKH01, name='SUMJKH01'), #状況表示
+    path('SUMJKH01/SUMJKH02/', views.SUMJKH02, name='SUMJKH02'), #状況表示画面
+    path('SUMTKD01/', views.SUMTKD01, name='SUMTKD01'), #付け出し処理
+    path('SUMTKD01/SUMTKD02/', views.SUMTKD02, name='SUMTKD02'), #付け出し処理画面
+    path('SUMJOR01/', views.SUMJOR01, name='SUMJOR01'), #階級上位力士
+    path('SUMSHI01/', views.SUMSHI01, name='SUMSHI01'), #資料出力
+    path('SUMNEW01/', views.SUMNEW01, name='SUMNEW01'), #NewsML修正画面
 ]
 
 #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -141,3 +141,55 @@ def SUMTOR03(request):
 #取組ＣＯＲ取り込み画面
 def SUMTOR04(request):
     return render(request, 'app_sumo/SUMTOR04.html')
+
+#勝負入力処理
+def SUMSHO01(request):
+    return render(request, 'app_sumo/SUMSHO01.html')
+
+#勝負入力画面
+def SUMSHO02(request):
+    return render(request, 'app_sumo/SUMSHO02.html')
+
+#優勝・三賞入力画面
+def SUMYUS01(request):
+    return render(request, 'app_sumo/SUMYUS01.html')
+
+#コンテンツ編集指示
+def SUMOUT01(request):
+    return render(request, 'app_sumo/SUMOUT01.html')
+
+#電文／データ出力
+def SUMOUT02(request):
+    return render(request, 'app_sumo/SUMOUT02.html')
+    
+#電文／データ強制出力
+def SUMOUT03(request):
+    return render(request, 'app_sumo/SUMOUT03.html')
+
+#状況表示
+def SUMJKH01(request):
+    return render(request, 'app_sumo/SUMJKH01.html')
+
+#状況表示画面
+def SUMJKH02(request):
+    return render(request, 'app_sumo/SUMJKH02.html')
+
+#付け出し処理
+def SUMTKD01(request):
+    return render(request, 'app_sumo/SUMTKD01.html')
+
+#付け出し処理画面
+def SUMTKD02(request):
+    return render(request, 'app_sumo/SUMTKD02.html')
+
+#階級上位力士
+def SUMJOR01(request):
+    return render(request, 'app_sumo/SUMJOR01.html')
+
+#資料出力
+def SUMSHI01(request):
+    return render(request, 'app_sumo/SUMSHI01.html')
+
+#NewsML修正画面
+def SUMNEW01(request):
+    return render(request, 'app_sumo/SUMNEW01.html')        
