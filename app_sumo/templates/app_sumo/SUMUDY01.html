@@ -1,38 +1,46 @@
-{% extends 'app_sumo/base.html' %}
+    {% extends 'app_sumo/base.html' %}
 
-{% block content %}
-<h1 class="caption">運用日設定</h1>
-<!-- 取組日目 -->
-<div class="dropdown">
-    <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      取組日目
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-　      <a class="dropdown-item" href="#">リスト１</a>
-        <a class="dropdown-item" href="#">リスト２</a>
-    </div>
-</div>
-<!-- 勝負日目-->
-<div class="dropdown">
-        <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        勝負日目
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    　      <a class="dropdown-item" href="#">リスト１</a>
-            <a class="dropdown-item" href="#">リスト２</a>
+    {% block content %}
+    <h1 class="caption">運用日設定</h1>
+    <div class="container-fluid row">
+        <div class="row">
+        <!-- 取組日目 -->    
+        <div class="col-6">    
+        <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        取組日目
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    　          <a class="dropdown-item" href="#">リスト１</a>
+                <a class="dropdown-item" href="#">リスト２</a>
+            </div>
         </div>
+        </div>
+        <!-- 勝負日目-->
+        <div class="col-6">
+        <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            勝負日目
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">リスト１</a>
+                <a class="dropdown-item" href="#">リスト２</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>   
+    <!-- 力士年齢算出基準日-->
+    <div class="form-inline">
+        <input class="form-control" type="text">
+        <label class="control-label">年</label>
+        <input class="form-control" type="text">
+        <label class="control-label">月</label>
+        <input class="form-control" type="text">
+        <label class="control-label">日</label>
     </div>
-<!-- 力士年齢算出基準日-->
-<div class="form-inline">
-    <input class="form-control" type="text">
-    <label class="control-label">年</label>
-    <input class="form-control" type="text">
-    <label class="control-label">月</label>
-    <input class="form-control" type="text">
-    <label class="control-label">日</label>
-</div>
-<!-- 実行-->
-<a href="" type="button" class="btn btn-primary btn-lg btn-block">実行</a>
-<!-- 戻る-->
-<a href="../../SUMUNY01" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
-{% endblock %}
+    <!-- 実行-->
+    <a href="" type="button" class="btn btn-primary btn-lg btn-block">実行</a>
+    <!-- 戻る-->
+    <a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
+    {% endblock %}

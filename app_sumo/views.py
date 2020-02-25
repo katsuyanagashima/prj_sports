@@ -95,8 +95,8 @@ def upload(request):
         return render(request, 'app_sumo/upload.html')
 
 #業務運用メニュー
-def SUMUNY01(request):
-    return render(request, 'app_sumo/SUMUNY01.html')
+#def SUMUNY01(request):
+#    return render(request, 'app_sumo/SUMUNY01.html')
 
 #運用日設定画面
 def SUMUDY01(request):
@@ -114,3 +114,30 @@ def SUMYOS02(request):
 def SUMBAN01(request):
     return render(request, 'app_sumo/SUMBAN01.html')
 
+#番付入力画面
+def SUMBAN02(request):
+    return render(request, 'app_sumo/SUMBAN02.html')
+
+#番付入力ＯＣＲ画面
+def SUMBAN03(request):
+    return render(request, 'app_sumo/SUMBAN03.html')
+
+#番付ＣＯＲ取り込み画面
+def SUMBAN04(request):
+    return render(request, 'app_sumo/SUMBAN04.html')
+
+#取組処理画面（階級、入力方式、東西を選択）
+def SUMTOR01(request):
+    return render(request, 'app_sumo/SUMTOR01.html')
+
+#取組入力画面
+def SUMTOR02(request):
+    return render(request, 'app_sumo/SUMTOR02.html')
+
+#取組入力ＯＣＲ画面
+def SUMTOR03(request):
+    return render(request, 'app_sumo/SUMTOR03.html')
+
+#取組ＣＯＲ取り込み画面
+def SUMTOR04(request):
+    return render(request, 'app_sumo/SUMTOR04.html')

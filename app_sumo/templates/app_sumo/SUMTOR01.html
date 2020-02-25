@@ -1,7 +1,7 @@
 {% extends 'app_sumo/base.html' %}
 
 {% block content %}
-<h1 class="caption">番付処理</h1>
+<h1 class="caption">取組入力処理</h1>
 <div class="container-fluid row">
     <div class="col-6 gyomu-menu caption_box">
         <h1 class="caption">階級</h1>
@@ -42,14 +42,14 @@
       </div>
 </div>
 <div class="col-6 gyomu-menu caption_box">
-    <h1 class="caption">東西</h1>
+    <h1 class="caption">東西表示指定</h1>
     <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">東</label>
+        <label class="form-check-label" for="exampleRadios1">｢東｣を左に</label>
     </div>
     <div class="form-check">
         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-        <label class="form-check-label" for="exampleRadios2">西</label>
+        <label class="form-check-label" for="exampleRadios2">｢西｣を左に</label>
     </div>
   </div>
 </div>
@@ -59,13 +59,13 @@
 <div class="container">
     <div class="row">
         <div class="col-4">
-    　      <a href="SUMBAN02" type="button" class="btn btn-secondary ">番付入力画面へ</a>
+    　      <a href="SUMTOR02" type="button" class="btn btn-secondary ">取組入力画面へ</a>
         </div>
         <div class="col-4">  
-            <a href="SUMBAN03" type="button" class="btn btn-secondary ">ＯＣＲ入力画面へ</a>
+            <a href="SUMTOR03" type="button" class="btn btn-secondary ">ＯＣＲ入力画面へ</a>
         </div>
         <div class="col-4">   
-            <a href="SUMBAN04" type="button" class="btn btn-secondary ">【新】ＯＣＲ取り込み画面へ</a>
+            <a href="SUMTOR04" type="button" class="btn btn-secondary ">【新】ＯＣＲ取り込み画面へ</a>
         </div>
     </div>
 </div>    
