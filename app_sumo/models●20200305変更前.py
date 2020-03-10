@@ -1,6 +1,77 @@
 from django.db import models
 from django.utils import timezone
 
+class Eventinfo(models.Model):
+    taikai_text = models.CharField(max_length=200)
+#    taikai_date = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+    
+    def __str__(self):
+        return self.taikai_text
+
+class Player(models.Model):
+    player_name = models.CharField(max_length=200)
+    player_name_formal = models.CharField(max_length=200, blank=True)
+    player_name_formal3 = models.CharField(max_length=200, blank=True)
+    player_name_yomi = models.CharField(max_length=200, blank=True)
+    pub_date = models.DateTimeField('date published')
+ 
+    def __str__(self):
+        return self.player_name
+    
+class Waza(models.Model):
+    waza_name = models.CharField(max_length=200)
+    waza_name_formal = models.CharField(max_length=200, blank=True)
+    waza_name_formal7 = models.CharField(max_length=200, blank=True)
+    pub_date = models.DateTimeField('date published')
+ 
+    def __str__(self):
+        return self.waza_name
+
+class Outcome(models.Model):
+    mark = models.CharField(max_length=200)
+    winloss = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.mark
+
+class Match(models.Model):
+    player1 = models.ForeignKey('Player', related_name='rikishi_1', on_delete=models.CASCADE)
+ #   player1winloss = models.IntegerField(blank=True)
+    player1win = models.IntegerField(blank=True, default='0')
+    player1loss = models.IntegerField(blank=True, default='0')
+    player1tie = models.IntegerField(blank=True, default='0')
+    player1absence = models.IntegerField(blank=True, default='0')
+    outcome1 = models.ForeignKey('Outcome', related_name='rikishi_1', on_delete=models.CASCADE)
+    waza = models.ForeignKey(Waza, on_delete=models.CASCADE)
+    outcome2 = models.ForeignKey('Outcome', related_name='rikishi_2', on_delete=models.CASCADE)
+    player2 = models.ForeignKey('Player', related_name='rikishi_2', on_delete=models.CASCADE)
+ #   player2winloss = models.IntegerField(blank=True)
+    player2win = models.IntegerField(blank=True, default='0')
+    player2loss = models.IntegerField(blank=True, default='0')
+    player2absence = models.IntegerField(blank=True, default='0')
+    player2tie = models.IntegerField(blank=True, default='0')
+#    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return str('%s - %s' % (self.player1, self.player2))
+
+class Memo(models.Model):
+    title = models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
+
+
+# CSVの検証
+class PostCsv(models.Model):
+    player_name = models.CharField(max_length=200)
+    player_name_formal = models.CharField(max_length=200, blank=True)
+    player_name_formal3 = models.CharField(max_length=200, blank=True)
+    player_name_yomi = models.CharField(max_length=200, blank=True)
+
+
+# ---------------------------------------------------------------------------------------------------------
 #力士マスタ
 class Mst_Rikishi(models.Model):
     Rikishi_code = models.IntegerField(verbose_name="力士コード")
@@ -16,7 +87,7 @@ class Mst_Rikishi(models.Model):
     Heya_code = models.ForeignKey('Mst_Heya', on_delete=models.CASCADE) #部屋マスタ
     OCR_rikishi_name_Kanji = models.CharField(verbose_name="OCR用力士名漢字", max_length=10, blank=True)
     Real_name = models.CharField(verbose_name="本名", max_length=20, blank=True)
-    Date_of_birth = models.DateField(verbose_name="生年月日西暦", blank=True)
+    Date_of_birth = models.DateField(verbose_name="生年月日西暦", blank=True)   
     Hometown_code_1 = models.ForeignKey('Mst_Hometown', on_delete=models.CASCADE, related_name = 'hometown1', blank=True, null=True) #出身地名マスタ
     Hometown_details_1 = models.CharField(verbose_name="出身地詳細１", max_length=64, blank=True)
     Hometown_details_abbr1_2char = models.CharField(verbose_name="出身地詳細２文字略称１", max_length=4, blank=True)
@@ -43,7 +114,7 @@ class Mst_Rikishi(models.Model):
 
     class Meta:
         verbose_name_plural = '力士マスタ'
-
+    
     def __str__(self):
         return self.Rikishi_name_kanji_official
 
@@ -54,7 +125,7 @@ class Mst_Rikishistatus(models.Model):
 
     class Meta:
         verbose_name_plural = '力士状態マスタ'
-
+    
     def __str__(self):
         return self.Rikishistatus_name
 
@@ -70,7 +141,7 @@ class Mst_Basho(models.Model):
 
     class Meta:
         verbose_name_plural = '場所マスタ'
-
+    
     def __str__(self):
         return self.Basho_kanji
 
@@ -86,7 +157,7 @@ class Mst_Heya(models.Model):
 
     class Meta:
         verbose_name_plural = '部屋マスタ'
-
+    
     def __str__(self):
         return self.Heya_official_kanji
 
@@ -100,7 +171,7 @@ class Mst_Kimarite(models.Model):
 
     class Meta:
         verbose_name_plural = '決まり手マスタ'
-
+    
     def __str__(self):
         return self.Kimarite_name
 
@@ -118,7 +189,7 @@ class Mst_Class(models.Model):
 
     class Meta:
         verbose_name_plural = '階級マスタ'
-
+    
     def __str__(self):
         return self.Class_name_kanji
 
@@ -135,7 +206,7 @@ class Mst_Chii(models.Model):
 
     class Meta:
         verbose_name_plural = '地位マスタ'
-
+    
     def __str__(self):
         return self.Chii_kanji
 
@@ -150,7 +221,7 @@ class Mst_Award_category(models.Model):
 
     class Meta:
         verbose_name_plural = '受賞区分マスタ'
-
+    
     def __str__(self):
         return self.Award_category_kanji
 
@@ -165,7 +236,7 @@ class Mst_Hometown(models.Model):
 
     class Meta:
         verbose_name_plural = '出身地マスタ'
-
+    
     def __str__(self):
         return self.Country_prefecture_kanji
 
@@ -195,10 +266,10 @@ class Mst_Event(models.Model):
 class Mst_Nichime(models.Model):
     Nicime_code = models.IntegerField(verbose_name='日目コード')
     Nicime_name = models.CharField(verbose_name='日目名称', max_length=6)
-    Touzai_division = models.ForeignKey('Mst_Eastwest', on_delete=models.CASCADE, blank=True, null=True) #東西マスタ
+    Touzai_division = models.ForeignKey('Mst_Eastwest', on_delete=models.CASCADE, blank=True, null=True) #東西マスタ 
     Nicime_3char = models.CharField(verbose_name='３文字略称', max_length=10, blank=True)
     Nicime_4char = models.CharField(verbose_name='４文字略称', max_length=10, blank=True)
-
+ 
     class Meta:
         verbose_name_plural = '日目マスタ'
 
@@ -212,72 +283,8 @@ class Mst_Eastwest(models.Model):
 
     class Meta:
         verbose_name_plural = '東西マスタ'
-
+    
     def __str__(self):
         return self.Eastwest_name
 
-#生涯地位情報
-class Mst_Lifetime_statusinfo(models.Model):
-    Rikishi_code = models.IntegerField(verbose_name="力士コード")
-    Chii_code = models.IntegerField(verbose_name='地位コード')
 
-    class Meta:
-        verbose_name_plural = '生涯地位情報'
-
-    def __str__(self):
-        return str(self.Chii_code)
-
-#生涯成績マスタ
-class Mst_Lifetime_result(models.Model):
-    Rikishi_code = models.ForeignKey(Mst_Rikishi, on_delete=models.CASCADE) #力士マスタ
-    Class_code =  models.ForeignKey(Mst_Class, on_delete=models.CASCADE) #階級マスタ
-    Totalbasho = models.IntegerField(verbose_name='通算出場場所回数')
-    Totalwins = models.IntegerField(verbose_name='通算勝ち回数')
-    Totalloss = models.IntegerField(verbose_name='通算負け回数')
-    Totalkyuujou = models.IntegerField(verbose_name='通算休場回数')
-    Totalties = models.IntegerField(verbose_name='通算分け回数')
-    Totalgetkinboshi = models.IntegerField(verbose_name='通算与金星回数')
-    Totalgivekinboshi = models.IntegerField(verbose_name='通算奪金星回数')
-    Highestchii_code = models.ForeignKey(Mst_Chii, on_delete=models.CASCADE) #地位マスタ
-    Highestorder = models.IntegerField(verbose_name='最高順位')
-    Touzai_division = models.ForeignKey(Mst_Eastwest, on_delete=models.CASCADE) #東西マスタ
-    Maxsticking = models.IntegerField(verbose_name='最高張付')
-    Overallwinrate = models.IntegerField(verbose_name='通算勝率')
-    Overallwinrate_yasumimake = models.IntegerField(verbose_name='通算勝率（休を負）')
-    Maxcontinuousplayed = models.IntegerField(verbose_name='最高連続出場回数')
-    Currentcontinuosplayed = models.IntegerField(verbose_name='現連続出場回数')
-    Numberofreignedbasho = models.IntegerField(verbose_name='在位場所数')
-
-    class Meta:
-        verbose_name_plural = '生涯成績マスタ'
-
-
-#生涯受賞回数マスタ
-class Mst_Lifetime_award(models.Model):
-    Award_category_code = models.ForeignKey(Mst_Award_category, on_delete=models.CASCADE) #受賞区分マスタ
-    Award_category_kanji = models.CharField(verbose_name='受賞名漢字', max_length=10)
-    Award_category_kana = models.CharField(verbose_name='受賞名かな', max_length=20, blank=True)
-    Award_category_name1 = models.CharField(verbose_name='名称１', max_length=10, blank=True)
-    Award_category_name2 = models.CharField(verbose_name='名称２', max_length=10, blank=True)
-    Award_category_name3 = models.CharField(verbose_name='名称３', max_length=10, blank=True)
-
-    class Meta:
-        verbose_name_plural = '生涯受賞回数マスタ'
-
-#勝負情報
-class Mst_Gameinfo(models.Model):
-    Game_category = models.IntegerField(verbose_name='勝負区分')
-    Kimarite_code =  models.ForeignKey('Mst_Kimarite', on_delete=models.CASCADE) #決まり手マスタ
-    Game_mark = models.CharField(verbose_name='勝負マーク', max_length=2, blank=True)
-    Game_mark2 = models.CharField(verbose_name='勝負マーク２', max_length=2, blank=True)
-    Cumulative_class = models.IntegerField(verbose_name='累積区分', blank=True, null=True)
-    Participation_division = models.IntegerField(verbose_name='出場区分', blank=True, null=True)
-    Opponent_category = models.IntegerField(verbose_name='相手勝負区分', blank=True, null=True)
-    Screendisplay_category = models.IntegerField(verbose_name='画面表示区分', blank=True, null=True)
-    Screendisplay_string = models.CharField(verbose_name='画面表示文字列', max_length=40, blank=True)
-    Name1 = models.CharField(verbose_name='名称１', max_length=20, blank=True)
-    Name2 = models.CharField(verbose_name='名称２', max_length=20, blank=True)
-    Name3 = models.CharField(verbose_name='名称３', max_length=20, blank=True)
-
-    class Meta:
-        verbose_name_plural = '勝負情報'
