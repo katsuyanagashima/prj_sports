@@ -13,14 +13,6 @@ class Mst_ChiiAdmin(admin.ModelAdmin):
     list_display = ('Chii_code', 'Chii_kanji', 'Chii_kana', 'Chii_2char', 'Chii_3char')
 
 
-admin.site.register(Eventinfo)
-admin.site.register(Player)
-admin.site.register(Waza)
-admin.site.register(Outcome)
-admin.site.register(Match)
-admin.site.register(PostCsv)
-
-# ----------------------------------------------------------------------
 admin.site.register(Mst_Rikishi)
 admin.site.register(Mst_Rikishistatus)
 admin.site.register(Mst_Heya)
