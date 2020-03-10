@@ -5,7 +5,7 @@ class Eventinfo(models.Model):
     taikai_text = models.CharField(max_length=200)
 #    taikai_date = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-    
+
     def __str__(self):
         return self.taikai_text
 
@@ -15,16 +15,16 @@ class Player(models.Model):
     player_name_formal3 = models.CharField(max_length=200, blank=True)
     player_name_yomi = models.CharField(max_length=200, blank=True)
     pub_date = models.DateTimeField('date published')
- 
+
     def __str__(self):
         return self.player_name
-    
+
 class Waza(models.Model):
     waza_name = models.CharField(max_length=200)
     waza_name_formal = models.CharField(max_length=200, blank=True)
     waza_name_formal7 = models.CharField(max_length=200, blank=True)
     pub_date = models.DateTimeField('date published')
- 
+
     def __str__(self):
         return self.waza_name
 
@@ -87,7 +87,7 @@ class Mst_Rikishi(models.Model):
     Heya_code = models.ForeignKey('Mst_Heya', on_delete=models.CASCADE) #部屋マスタ
     OCR_rikishi_name_Kanji = models.CharField(verbose_name="OCR用力士名漢字", max_length=10, blank=True)
     Real_name = models.CharField(verbose_name="本名", max_length=20, blank=True)
-    Date_of_birth = models.DateField(verbose_name="生年月日西暦", blank=True)   
+    Date_of_birth = models.DateField(verbose_name="生年月日西暦", blank=True)
     Hometown_code_1 = models.ForeignKey('Mst_Hometown', on_delete=models.CASCADE, related_name = 'hometown1', blank=True, null=True) #出身地名マスタ
     Hometown_details_1 = models.CharField(verbose_name="出身地詳細１", max_length=64, blank=True)
     Hometown_details_abbr1_2char = models.CharField(verbose_name="出身地詳細２文字略称１", max_length=4, blank=True)
@@ -114,7 +114,7 @@ class Mst_Rikishi(models.Model):
 
     class Meta:
         verbose_name_plural = '力士マスタ'
-    
+
     def __str__(self):
         return self.Rikishi_name_kanji_official
 
@@ -125,7 +125,7 @@ class Mst_Rikishistatus(models.Model):
 
     class Meta:
         verbose_name_plural = '力士状態マスタ'
-    
+
     def __str__(self):
         return self.Rikishistatus_name
 
@@ -141,7 +141,7 @@ class Mst_Basho(models.Model):
 
     class Meta:
         verbose_name_plural = '場所マスタ'
-    
+
     def __str__(self):
         return self.Basho_kanji
 
@@ -157,7 +157,7 @@ class Mst_Heya(models.Model):
 
     class Meta:
         verbose_name_plural = '部屋マスタ'
-    
+
     def __str__(self):
         return self.Heya_official_kanji
 
@@ -171,7 +171,7 @@ class Mst_Kimarite(models.Model):
 
     class Meta:
         verbose_name_plural = '決まり手マスタ'
-    
+
     def __str__(self):
         return self.Kimarite_name
 
@@ -189,7 +189,7 @@ class Mst_Class(models.Model):
 
     class Meta:
         verbose_name_plural = '階級マスタ'
-    
+
     def __str__(self):
         return self.Class_name_kanji
 
@@ -206,7 +206,7 @@ class Mst_Chii(models.Model):
 
     class Meta:
         verbose_name_plural = '地位マスタ'
-    
+
     def __str__(self):
         return self.Chii_kanji
 
@@ -221,7 +221,7 @@ class Mst_Award_category(models.Model):
 
     class Meta:
         verbose_name_plural = '受賞区分マスタ'
-    
+
     def __str__(self):
         return self.Award_category_kanji
 
@@ -236,7 +236,7 @@ class Mst_Hometown(models.Model):
 
     class Meta:
         verbose_name_plural = '出身地マスタ'
-    
+
     def __str__(self):
         return self.Country_prefecture_kanji
 
@@ -266,10 +266,10 @@ class Mst_Event(models.Model):
 class Mst_Nichime(models.Model):
     Nicime_code = models.IntegerField(verbose_name='日目コード')
     Nicime_name = models.CharField(verbose_name='日目名称', max_length=6)
-    Touzai_division = models.ForeignKey('Mst_Eastwest', on_delete=models.CASCADE, blank=True, null=True) #東西マスタ 
+    Touzai_division = models.ForeignKey('Mst_Eastwest', on_delete=models.CASCADE, blank=True, null=True) #東西マスタ
     Nicime_3char = models.CharField(verbose_name='３文字略称', max_length=10, blank=True)
     Nicime_4char = models.CharField(verbose_name='４文字略称', max_length=10, blank=True)
- 
+
     class Meta:
         verbose_name_plural = '日目マスタ'
 
@@ -283,8 +283,17 @@ class Mst_Eastwest(models.Model):
 
     class Meta:
         verbose_name_plural = '東西マスタ'
-    
+
     def __str__(self):
         return self.Eastwest_name
 
+#生涯地位情報
+class Mst_Lifetime_statusinfo(models.Model):
+    Rikishi_code = models.IntegerField(verbose_name="力士コード")
+    Chii_code = models.IntegerField(verbose_name='地位コード')
 
+    class Meta:
+        verbose_name_plural = '生涯地位情報'
+
+    def __str__(self):
+        return str(self.Chii_code)
