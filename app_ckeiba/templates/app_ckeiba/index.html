@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- スクリプトは後日STATICに移動させる -->
 <script>
     function stdisp(stno){
         if(stno == 01){
@@ -17,13 +18,12 @@
           }
     }
 </script>    
-      
-
 <div class="container-fluid">
     <div class="page-header text-center">
         <h2>地方競馬メインメニュー</h2>
-    </div>
+    </div>    
     <div class="container">
+        <br/>
         <div class="caption_box">
             <h1 class="caption">起動メニュー</h1>
             <button type="button" id="status01" class="btn btn-primary btn-lg btn-block" onClick="stdisp(01);">通常業務開始</button>
@@ -32,6 +32,7 @@
             <button type="button" id="status04" class="btn btn-primary btn-lg btn-block" onClick="stdisp(04);">休止解除</button>
             <button type="button" id="status05" class="btn btn-dark btn-lg btn-block" onClick="stdisp(05);">業務終了</button>
         </div>
+        <br/>
         <div class="caption_box">
             <h1 class="caption">画面メニュー</h1>
             <button type="button" class="btn btn-primary btn-lg btn-block">受信画面</button>
