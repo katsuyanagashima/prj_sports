@@ -269,7 +269,7 @@ class Mst_Nichime(models.Model):
     Touzai_division = models.ForeignKey('Mst_Eastwest', on_delete=models.CASCADE, blank=True, null=True) #東西マスタ 
     Nicime_3char = models.CharField(verbose_name='３文字略称', max_length=10, blank=True)
     Nicime_4char = models.CharField(verbose_name='４文字略称', max_length=10, blank=True)
- 
+
     class Meta:
         verbose_name_plural = '日目マスタ'
 
@@ -283,8 +283,44 @@ class Mst_Eastwest(models.Model):
 
     class Meta:
         verbose_name_plural = '東西マスタ'
-    
+
     def __str__(self):
         return self.Eastwest_name
 
 
+#生涯成績マスタ
+class Mst_Lifetime_result(models.Model):
+    Rikishi_code = models.ForeignKey(Mst_Rikishi, on_delete=models.CASCADE) #力士マスタ
+    Class_code =  models.ForeignKey(Mst_Class, on_delete=models.CASCADE) #階級マスタ
+    Totalbasho = models.IntegerField(verbose_name='通算出場場所回数')
+    Totalwins = models.IntegerField(verbose_name='通算勝ち回数')
+    Totalloss = models.IntegerField(verbose_name='通算負け回数')
+    Totalkyuujou = models.IntegerField(verbose_name='通算休場回数')
+    Totalties = models.IntegerField(verbose_name='通算分け回数')
+    Totalgetkinboshi = models.IntegerField(verbose_name='通算与金星回数')
+    Totalgivekinboshi = models.IntegerField(verbose_name='通算奪金星回数')
+    Highestchii_code = models.ForeignKey(Mst_Chii, on_delete=models.CASCADE) #地位マスタ
+    Highestorder = models.IntegerField(verbose_name='最高順位')
+    Touzai_division = models.ForeignKey(Mst_Eastwest, on_delete=models.CASCADE) #東西マスタ
+    Maxsticking = models.IntegerField(verbose_name='最高張付')
+    Overallwinrate = models.IntegerField(verbose_name='通算勝率')
+    Overallwinrate_yasumimake = models.IntegerField(verbose_name='通算勝率（休を負）')
+    Maxcontinuousplayed = models.IntegerField(verbose_name='最高連続出場回数')
+    Currentcontinuosplayed = models.IntegerField(verbose_name='現連続出場回数')
+    Numberofreignedbasho = models.IntegerField(verbose_name='在位場所数')
+
+    class Meta:
+        verbose_name_plural = '生涯成績マスタ'
+
+
+#生涯受賞回数マスタ
+class Mst_Lifetime_award(models.Model):
+    Award_category_code = models.ForeignKey(Mst_Award_category, on_delete=models.CASCADE) #受賞区分マスタ
+    Award_category_kanji = models.CharField(verbose_name='受賞名漢字', max_length=10)
+    Award_category_kana = models.CharField(verbose_name='受賞名かな', max_length=20, blank=True)
+    Award_category_name1 = models.CharField(verbose_name='名称１', max_length=10, blank=True)
+    Award_category_name2 = models.CharField(verbose_name='名称２', max_length=10, blank=True)
+    Award_category_name3 = models.CharField(verbose_name='名称３', max_length=10, blank=True)
+
+    class Meta:
+        verbose_name_plural = '生涯受賞回数マスタ'
