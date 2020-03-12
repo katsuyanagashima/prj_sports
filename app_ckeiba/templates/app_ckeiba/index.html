@@ -1,46 +1,82 @@
 {% extends 'app_ckeiba/base.html' %}
 
 {% block content %}
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link menu-tab text-center font-weight-bold" id="nav-receive-tab" data-toggle="tab"
+            href="#nav-receive" role="tab" aria-controls="nav-receive" aria-selected="false">受信管理画面</a>
+        <a class="nav-item nav-link menu-tab text-center font-weight-bold" id="nav-edit-tab" data-toggle="tab"
+            href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="false">編集管理画面</a>
+        <a class="nav-item nav-link active menu-tab text-center font-weight-bold" id="nav-submit-tab" data-toggle="tab"
+            href="#nav-submit" role="tab" aria-controls="nav-submit" aria-selected="true">送信管理画面</a>
+    </div>
+</nav>
 
-<!-- スクリプトは後日STATICに移動させる -->
-<script>
-    function stdisp(stno){
-        if(stno == 01){
-            document.getElementById("status02").disabled = true;
-            document.getElementById("status03").disabled = false;
-            document.getElementById("status04").disabled = true;
-            document.getElementById("status05").disabled = false;
-            document.getElementById("status06").disabled = true;
-          } 
-          else {
-            document.getElementById("status03").disabled = false;
-            document.getElementById("status05").disabled = false;
-          }
-    }
-</script>    
-<div class="container-fluid">
-    <div class="page-header text-center">
-        <h2>地方競馬メインメニュー</h2>
-    </div>    
-    <div class="container">
-        <br/>
-        <div class="caption_box">
-            <h1 class="caption">起動メニュー</h1>
-            <button type="button" id="status01" class="btn btn-primary btn-lg btn-block" onClick="stdisp(01);">通常業務開始</button>
-            <button type="button" id="status02" class="btn btn-primary btn-lg btn-block" onClick="stdisp(02);">継続業務開始</button>
-            <button type="button" id="status03" class="btn btn-dark btn-lg btn-block" onClick="stdisp(03);">業務休止</button>
-            <button type="button" id="status04" class="btn btn-primary btn-lg btn-block" onClick="stdisp(04);">休止解除</button>
-            <button type="button" id="status05" class="btn btn-dark btn-lg btn-block" onClick="stdisp(05);">業務終了</button>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade" id="nav-receive" role="tabpanel" aria-labelledby="nav-receive-tab">
+        <div class="form-inline">
+            <span class="badge badge-light hanrei">空白：未受信　〇：受信済　-：受信予定なし</span>
+            <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
+                data-target="#submit_log">受信ログ</span>
         </div>
-        <br/>
-        <div class="caption_box">
-            <h1 class="caption">画面メニュー</h1>
-            <button type="button" class="btn btn-primary btn-lg btn-block">受信画面</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">編集画面</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block">送信画面</button>
-            <button type="button" id="status06" class="btn btn-primary btn-lg btn-block">マスタ画面</button>
+        {% block receive-container %}
+        {% include 'app_ckeiba/receive/receive.html' %}
+        {% endblock %}
+    </div>
+    <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
+        <div class="form-inline">
+            <span class="badge badge-light hanrei">空白：未作成　△：未完成　〇：作成済　◎：送信済　●：再編成　◉：再編成送信済　-：作成予定なし</span>
+            <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
+                data-target="#submit_log">処理ログ</span>
         </div>
+        {% block edit-container %}
+        {% include 'app_ckeiba/edit/edit.html' %}
+        {% endblock %}
+    </div>
+    <div class="tab-pane active" id="nav-submit" role="tabpanel" aria-labelledby="nav-submit-tab">
+        <div class="form-inline">
+            <span class="badge badge-light hanrei">空白：未作成　△：未完成　〇：作成済　◎：送信済　●：再編成　◉：再編成送信済　-：作成予定なし</span>
+            <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
+                data-target="#submit_log">送信ログ</span>
+        </div>
+        {% block submit-container %}
+        {% include 'app_ckeiba/submit/submit.html' %}
+        {% endblock %}
     </div>
 </div>
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <a href="../admin" class="btn footer-button" role="button">管理画面</a>
+    <a href="" class="btn footer-button btn-light master-button disabled " role="button">マスタ登録</a>
+    <a href="" class="btn footer-button" role="button">終了</a>
+</nav>
 
+
+<!-- ログ表示モーダルの設定 -->
+<div class="modal fade" id="submit_log" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ログ表示ダイアログ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="btn-group--vertical btn-group-toggle" data-toggle="buttons">
+                    2020/03/12 16:00:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ</br>
+                    2020/03/12 16:10:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ</br>
+                    2020/03/12 16:20:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ</br>
+                    2020/03/12 16:30:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ</br>
+                    2020/03/12 16:40:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ</br>
+                    2020/03/12 16:50:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ</br>
+                    2020/03/12 16:60:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ</br>
+                    2020/03/12 16:60:00 　　ログログログログログログログログログログログログ　ログログログログログログログログログログログログ
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
+            </div><!-- /.modal-footer -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 {% endblock %}

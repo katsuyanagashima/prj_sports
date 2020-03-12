@@ -15,43 +15,12 @@
 
 .titlteimg{margin-right: -0.4em;}
 
-.menubutton {height:150px; width:350px; background-color:#de4307;color:white;font:bold;font-size: 1.5em; border-right: solid 4px #be3702;border-bottom: solid 3px #be3702;}
-.menubutton2 {height:150px;  background-color:#f29c2b;color:white;font:bold;font-size: 1.5em;padding-top:2.3em; border-right: solid 4px #cc7d15;border-bottom: solid 3px #cc7d15;}
-.menubutton3 {height:150px; width:350px; background-color:#f6d04d;color:white;font:bold;font-size: 1.5em; border-right: solid 4px #f7a943;border-bottom: solid 3px #f7a943}
-.menubutton4 {height:70px; background-color:#8bc24c;color:white;font:bold;font-size: 1.2em; border-right: solid 4px #75a340;border-bottom: solid 3px #75a340}
-.menubutton5 {height:40px; width:150px; background-color:rgb(255, 221, 25);color:black;font-size: 1em;}
-
-.menubutton:hover {color:white ;opacity: 0.9;}
-.menubutton2:hover {color:white ;opacity: 0.9;}
-.menubutton3:hover {color:white ;opacity: 0.9;}
-.menubutton4:hover {color:white ;opacity: 0.9;}
-
-
 .nav-link {padding:0.1em;}
 .gyomu-menu {padding: 1em; background: none;}
 .labeltitle {width: 6em;text-align: center;}
 .labeltext {width:6em}
 
-.caption_box{
-position: relative;
 
-margin-top: 1em;
-padding: 1em 2em;
-border: 2px solid rgba(85, 82, 82, 0.473);
-border-radius: 10px;
-}
-
-.caption_box .caption{  
-position: absolute;
-top: 0;
-left: 0;
-
-font-size: 1.3em;
-padding: 0 1em;
-margin: 0;
-background-color: white;
-transform: translateY(-50%) translateX(1em);
-}
 
 .gyomu-chkbox{
     padding-left: 11em;
@@ -69,24 +38,416 @@ transform: translateY(-50%) translateX(1em);
     padding: 0.5rem 1rem;
 }
 
-/* ちょっとレスポンシブ */
-/* 通常（PC） */
-@media (min-width: 1200px) {
-    .mainmenu{padding-top: 220px;}
-}
-/* iPad横 */
-@media (max-width: 1200px) {
-    .mainmenu{padding-top: 260px;}
-    .labeltitle{text-align: left}
-}
-/* iPad縦 */
-@media (max-width: 992px) {
-    #dropdownMenuButton{font-size: 0.75em;}
-    .labeltitle{text-align: left}
-}
-/* それ以下(768px以下)は未対応（たぶんいらない） */
 
-body{
-    padding-left: 30px; padding-right: 30px; background-repeat: no-repeat; background-attachment: fixed;background-position: 100% 95%;background-size: 300px 300px;
+
+.footer-button {
+    background-color:rgb(255, 221, 25);
+    color:black;
+    font-size: 1em;
 }
 
+.h6 {
+    padding-top: 3px;
+}
+
+.nav-title{
+    padding-left: 4em;
+}
+
+.nav-title-img{
+    background: url('/static/app_ckeiba/pic/uma2.png');
+    background-size: 12%;
+    display: block;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+/* 本番/保守バッジ */
+.nav-badge{
+    margin-left: 2em;
+}
+
+/* 業務状態バッジ */
+.nav-badge-state{
+    cursor: pointer;
+}
+
+.nav-unyobi{
+    float: right;
+    cursor: pointer;
+}
+.maincontents{
+    padding-top: 100px;
+    padding-bottom: 45px;
+}
+
+.hanrei{
+    margin-left: 15px;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.log-button{
+    margin-right: 34px;
+    margin-left: auto;
+    margin-top: 5px;
+    font-size: 1em;
+}
+/* 各場別コンテナ */
+.caption_box{
+    position: relative;
+    margin-top: 0.5em;
+    padding: 1em 0.5em;
+    border: 2px solid rgba(85, 82, 82, 0.473);
+    border-radius: 10px;
+    background-color: white;
+    min-width: 391px;
+    }
+
+.caption_box_error{
+    border: 3px solid red;
+}
+.jou{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    font-family: inherit;
+    }
+
+.table{
+    font-size: 0.7em;
+    margin-bottom: 3px;
+    text-align: center;
+}
+.race-newsml{
+    font-weight: bold;
+    min-width: 375px;
+}
+
+.reset_padding{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.reset_margin{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.jou-title{
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.jou-newsml{
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.jou-newsml_table{
+    min-width: 78px;
+}
+
+.container-area{
+    padding-right: 0px;
+}
+
+.master-button{
+    margin-left: 10px;
+    margin-right: auto;
+}
+
+.receive-date{
+    font-size: 0.7em;
+    padding-left: 10px;
+}
+
+.receive-honjitsu-sikou-table{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* テーブルの項目異常時のスタイル */
+.misakusei{
+    background-color: red;
+    color: white;
+    border: solid 2px black;
+}
+.mikansei{
+    background-color: yellow;
+}
+
+/* 以下、メイン画面のタブ */
+.menu-tab{
+    margin-top: 10px;
+    padding: 5px;
+    width: 33.33%;
+    border: 0px;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+#nav-receive-tab{
+    background-color: #8bc24c;
+    border: 0px;
+    color: white;
+}
+
+#nav-edit-tab{
+    background-color: #f6d04d;
+    border: 0px;
+    color: white;
+}
+#nav-submit-tab{
+    background-color: #f29c2b;
+    border: 0px;
+    color: white;
+}
+
+#nav-receive{
+    background-color:  #8bc24c;
+    padding-bottom: 15px;
+}
+#nav-edit{
+    background-color: #f6d04d;
+    padding-bottom: 15px;
+}
+#nav-submit{
+    background-color: #f29c2b;
+    padding-bottom: 15px;
+}
+#nav-tab{
+    border-bottom: 0em;
+}
+.nav-tabs .nav-link {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+/* 以下、ちょっとレスポンシブ */
+@media screen and (min-width:992px) and ( max-width:1199px) {
+    /*　画面サイズが992pxから1199pxまではここを読み込む　*/
+    .jou{
+        font-size: 1.2rem;
+    }
+    .jou-newsml_table {
+        min-width: 61px;
+        font-size: 0.5em;
+    }
+    .race-newsml{
+        min-width: 308px;
+        font-size: 0.7em;
+    }
+    .caption_box{
+        min-width: 320px;
+    }
+}
+
+@media screen and (min-width:768px) and ( max-width:811px) {
+    /*　画面サイズが768pxから811pxまではここを読み込む　*/
+    .jou{
+        font-size: 1.2rem;
+    }
+    .jou-newsml_table {
+        min-width: 61px;
+        font-size: 0.5em;
+    }
+    .race-newsml{
+        min-width: 305px;
+        font-size: 0.7em;
+    }
+    .caption_box{
+        min-width: 320px;
+    }
+}
+
+
+@media screen and (min-width:420px) and ( max-width:767px) {
+    /*　画面サイズが420pxから767pxまではここを読み込む　*/
+    .maincontents{
+        padding-top: 80px;
+    }
+    .nav-title{
+        padding-left: 3em;
+    }
+    .hanrei{
+        display: none;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+    h3{
+        font-size: 130%;
+    }
+    h6{
+        font-size: 0em;
+    }
+    .menu-tab{
+        font-size: 1em;
+    }
+    .footer-button {
+        font-size: 0.7em;
+    }
+
+}
+
+@media screen and ( max-width:419px) {
+    /*　画面サイズが419px以下の場合はここを読み込む　*/
+    .maincontents{
+        padding-top: 75px;
+    }
+    .hanrei{
+        display: none;
+    }
+    .nav-title{
+        padding-left: 2.2em;
+    }
+    .jou{
+        font-size: 1.2rem;
+    }
+    .jou-newsml_table {
+        min-width: 61px;
+        font-size: 0.5em;
+    }
+    .race-newsml{
+        min-width: 308px;
+        font-size: 0.7em;
+    }
+    .caption_box{
+        min-width: 320px;
+    }
+    h2{
+        font-size: 1.25rem;
+    }
+    h3{
+        font-size: 110%;
+    }
+    h6{
+        font-size: 0em;
+    }
+    .menu-tab{
+        font-size: 1em;
+    }
+    .footer-button {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and ( max-width:349px) {
+    /*　画面サイズが349px以下の場合はさらにここを読み込む　*/
+    .maincontents{
+        padding-top: 67px;
+    }
+    h2{
+        font-size: 1.1rem;
+    }
+    h3 {
+        font-size: 95%;
+    }
+    .menu-tab{
+        font-size: 0.8em;
+    }
+    .container-area{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+
+/* レスポンシブ対応ここまで */
+
+/* 以下、各競馬場の表示設定 */
+.jouimg_banei{
+    background: url('/static/app_ckeiba/pic/banei.jpg');
+    background-size: 30%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_monbetsu{
+    background: url('/static/app_ckeiba/pic/monbetsu.png');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_iwate{
+    background: url('/static/app_ckeiba/pic/iwate.png');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.jouimg_funabashi{
+    background: url('/static/app_ckeiba/pic/funabashi.PNG');
+    background-size: 40%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.jouimg_kasamatsu{
+    background: url('/static/app_ckeiba/pic/kasamatsu.PNG');
+    background-size: 40%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kawasaki{
+    background: url('/static/app_ckeiba/pic/kawasaki.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kanazawa{
+    background: url('/static/app_ckeiba/pic/kawazawa.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kochi{
+    background: url('/static/app_ckeiba/pic/kochi.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.jouimg_nagoya{
+    background: url('/static/app_ckeiba/pic/nagoya.PNG');
+    background-size: 40%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.jouimg_saga{
+    background: url('/static/app_ckeiba/pic/saga.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_sonoda{
+    background: url('/static/app_ckeiba/pic/sonoda.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_tck{
+    background: url('/static/app_ckeiba/pic/tck.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_urawa{
+    background: url('/static/app_ckeiba/pic/urawa.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
