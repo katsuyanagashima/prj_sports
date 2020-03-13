@@ -1,59 +1,10 @@
-.page-header {
-    background-color:slateblue;
-    color: whitesmoke;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
+/* 以下、ナビゲーションバー */
+.navbar{
+    background-color: #f4eaff;
 }
-
-.content {
-    margin-left: 40px;
-    font-family:'Meiryo UI';
-}
-
-
-.navbar{background-color: #f4eaff;}
-
-.titlteimg{margin-right: -0.4em;}
-
-.nav-link {padding:0.1em;}
-.gyomu-menu {padding: 1em; background: none;}
-.labeltitle {width: 6em;text-align: center;}
-.labeltext {width:6em}
-
-
-
-.gyomu-chkbox{
-    padding-left: 11em;
-}
-
-.radio_gyomu{
-    width: 49%;
-}
-
-.modal-header{
-    padding: 0.5rem 1rem;
-}
-
-.modal-footer{
-    padding: 0.5rem 1rem;
-}
-
-
-
-.footer-button {
-    background-color:rgb(255, 221, 25);
-    color:black;
-    font-size: 1em;
-}
-
-.h6 {
-    padding-top: 3px;
-}
-
 .nav-title{
     padding-left: 4em;
 }
-
 .nav-title-img{
     background: url('/static/app_ckeiba/pic/uma2.png');
     background-size: 12%;
@@ -61,21 +12,48 @@
     background-position: left;
     background-repeat: no-repeat;
 }
-
-/* 本番/保守バッジ */
-.nav-badge{
-    margin-left: 2em;
+.h6 {
+    padding-top: 3px;
 }
 
+/* 保守バッジ */
+.nav-badge-hoshu{
+    margin-left: 2em;
+}
 /* 業務状態バッジ */
 .nav-badge-state{
     cursor: pointer;
 }
-
+/* 運用日バッジ */
 .nav-unyobi{
     float: right;
     cursor: pointer;
 }
+
+/* 以下、モーダル */
+.radio_gyomu{
+    width: 49%;
+}
+.modal-header{
+    padding: 0.5rem 1rem;
+}
+.modal-footer{
+    padding: 0.5rem 1rem;
+}
+
+/* 以下、フッター */
+.footer-button {
+    background-color:rgb(255, 221, 25);
+    color:black;
+    font-size: 1em;
+}
+/* マスタ登録ボタン */
+.master-button{
+    margin-left: 10px;
+    margin-right: auto;
+}
+
+/* 以下、メインのコンテンツ部分 */
 .maincontents{
     padding-top: 100px;
     padding-bottom: 45px;
@@ -93,6 +71,7 @@
     margin-top: 5px;
     font-size: 1em;
 }
+
 /* 各場別コンテナ */
 .caption_box{
     position: relative;
@@ -152,10 +131,6 @@
     padding-right: 0px;
 }
 
-.master-button{
-    margin-left: 10px;
-    margin-right: auto;
-}
 
 .receive-date{
     font-size: 0.7em;
@@ -177,7 +152,7 @@
     background-color: yellow;
 }
 
-/* 以下、メイン画面のタブ */
+/* 以下、メイン画面のタブ部分 */
 .menu-tab{
     margin-top: 10px;
     padding: 5px;
@@ -202,7 +177,6 @@
     border: 0px;
     color: white;
 }
-
 #nav-receive{
     background-color:  #8bc24c;
     padding-bottom: 15px;
@@ -223,7 +197,17 @@
     border-top-right-radius: 1rem;
 }
 
-/* 以下、ちょっとレスポンシブ */
+
+
+/* 以下、レスポンシブ対応 */
+
+@media screen and (min-width: 1200px){
+    /*　画面サイズが1200px以上の場合ここを読み込む　*/
+    .container {
+        max-width: 90%;
+    }
+}
+
 @media screen and (min-width:992px) and ( max-width:1199px) {
     /*　画面サイズが992pxから1199pxまではここを読み込む　*/
     .jou{
@@ -352,6 +336,8 @@
     }
 }
 
+/* ↑で、320px(iphoneSE/5の縦)まで対応。319px以下は非対応（レイアウト崩れる）。今日び大丈夫でしょ */
+
 
 /* レスポンシブ対応ここまで */
 
@@ -377,7 +363,6 @@
     background-position: right;
     background-repeat: no-repeat;
 }
-
 .jouimg_funabashi{
     background: url('/static/app_ckeiba/pic/funabashi.PNG');
     background-size: 40%;
@@ -385,7 +370,6 @@
     background-position: right;
     background-repeat: no-repeat;
 }
-
 .jouimg_kasamatsu{
     background: url('/static/app_ckeiba/pic/kasamatsu.PNG');
     background-size: 40%;
@@ -414,7 +398,6 @@
     background-position: right;
     background-repeat: no-repeat;
 }
-
 .jouimg_nagoya{
     background: url('/static/app_ckeiba/pic/nagoya.PNG');
     background-size: 40%;
@@ -422,7 +405,6 @@
     background-position: right;
     background-repeat: no-repeat;
 }
-
 .jouimg_saga{
     background: url('/static/app_ckeiba/pic/saga.PNG');
     background-size: 45%;
