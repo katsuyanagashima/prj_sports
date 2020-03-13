@@ -218,8 +218,8 @@ class Mst_Eastwest(models.Model):
 
 #生涯地位情報
 class Mst_Lifetime_statusinfo(models.Model):
-    Rikishi_code = models.IntegerField(verbose_name="力士コード")
-    Chii_code = models.IntegerField(verbose_name='地位コード')
+    Rikishi_code = models.ForeignKey(Mst_Rikishi, on_delete=models.CASCADE) #力士マスタ
+    Chii_code = models.ForeignKey(Mst_Chii, on_delete=models.CASCADE) #地位マスタ
 
     class Meta:
         verbose_name_plural = '生涯地位情報'
