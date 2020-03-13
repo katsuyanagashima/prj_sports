@@ -1,0 +1,300 @@
+<div class="container-fluid row container-area">
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_banei">
+                    帯広ばんえい
+                </div>
+                {% block submit-title1 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents1 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_monbetsu">
+                    門別競馬
+                </div>
+                {% block submit-title2 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents2 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_iwate">
+                    岩手競馬
+                </div>
+                {% block submit-title3 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents3 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_tck">
+                    大井競馬
+                </div>
+                {% block submit-title4 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents4 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_nagoya">
+                    名古屋競馬
+                </div>
+                {% block submit-title5 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            <!-- {% block submit-contents5 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %} -->
+
+            <!-- いろいろ表示用。後で↑に戻す。 -->
+            <div class="race-newsml">
+                <table class="table table-sm table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">1R</th>
+                            <th scope="col">2R</th>
+                            <th scope="col">3R</th>
+                            <th scope="col">4R</th>
+                            <th scope="col">5R</th>
+                            <th scope="col">6R</th>
+                            <th scope="col">7R</th>
+                            <th scope="col">8R</th>
+                            <th scope="col">9R</th>
+                            <th scope="col">10R</th>
+                            <th scope="col">11R</th>
+                            <th scope="col">12R</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>出走表</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                            <td>◎</td>
+                        </tr>
+                        <tr>
+                            <td>成績表C</td>
+                            <td>○</td>
+                            <td>●</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>◉</td>
+                            <td>○</td>
+                        </tr>
+                        <tr>
+                            <td>ラップ</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td class="misakusei"></td>
+                        </tr>
+                        <tr>
+                            <td>上がり</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td class="mikansei">△</td>
+                            <td>○</td>
+                            <td>○</td>
+                            <td>○</td>
+                        </tr>
+                        <tr>
+                            <td>通信文C</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- ここまで -->
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_kochi">
+                    高知競馬
+                </div>
+                {% block submit-title6 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents6 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_funabashi">
+                    船橋競馬
+                </div>
+                {% block submit-title7 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents7 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_kawasaki">
+                    川崎競馬
+                </div>
+                {% block submit-title8 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents8 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_sonoda">
+                    園田競馬
+                </div>
+                {% block submit-title9 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents9 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_kasamatsu">
+                    笠松競馬
+                </div>
+                {% block submit-title10 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents10 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_kanazawa">
+                    金沢競馬
+                </div>
+                {% block submit-title11 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents11 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_urawa">
+                    浦和競馬
+                </div>
+                {% block submit-title12 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents12 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding jouimg_saga">
+                    佐賀競馬
+                </div>
+                {% block submit-title13 %}
+                {% include 'app_ckeiba/submit/submit-title.html' %}
+                {% endblock %}
+            </div>
+            {% block submit-contents13 %}
+            {% include 'app_ckeiba/submit/submit-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
