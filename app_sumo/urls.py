@@ -28,6 +28,8 @@ urlpatterns = [
     path('SUMJOR01/', views.SUMJOR01, name='SUMJOR01'), #階級上位力士
     path('SUMSHI01/', views.SUMSHI01, name='SUMSHI01'), #資料出力
     path('SUMNEW01/', views.SUMNEW01, name='SUMNEW01'), #NewsML修正画面
+    path('SUMMSM01_heya_form/', views.SUMMSM01_heya_form, name='SUMMSM01_heya_form'), #マスタテーブル保守画面の部屋マスタ（formで表示するパターン）
+    path('SUMMSM01_heya_html/', views.SUMMSM01_heya_html, name='SUMMSM01_heya_html'), #マスタテーブル保守画面の部屋マスタ（formで表示するパターン）
 ]
 
 #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

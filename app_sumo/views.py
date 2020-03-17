@@ -4,6 +4,9 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
 
+from .models import Mst_Heya
+from .forms import Mst_HeyaForm
+
 def index(request):
      return render(request, 'app_sumo/index.html')
 
@@ -101,4 +104,34 @@ def SUMSHI01(request):
 
 #NewsML修正画面
 def SUMNEW01(request):
-    return render(request, 'app_sumo/SUMNEW01.html')        
+    return render(request, 'app_sumo/SUMNEW01.html')    
+
+
+#マスタテーブル保守画面の部屋マスタ（Formで表示するパターン）
+#def SUMMSM01_heya_form(request):
+#    form = Mst_HeyaForm(request.POST)
+#    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})    
+
+
+def SUMMSM01_heya_form(request):
+    if request.method == "POST":
+        form = Mst_HeyaForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.pub_date = timezone.now()
+            post.save()
+            return redirect('SUMMSM01_heya_form')
+    else:
+        form = Mst_HeyaForm()
+    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})
+
+
+
+#マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
+def SUMMSM01_heya_html(request):
+    d = {
+            'heyalist': Mst_Heya.objects.all(),
+        }
+
+    return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)  

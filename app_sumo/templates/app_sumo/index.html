@@ -45,8 +45,8 @@
                 <div class="row">
                     <div class="col-6">
                         <button class="btn menubuttonbase menubutton3 btn-block" data-toggle="modal"
-                            data-target="#myModal4"><i class="fas fa-bolt fa-fw"></i>マスターテーブル保守</button>
-                    </div>
+                            data-target="#SUMMSM01"><i class="fas fa-bolt fa-fw"></i>マスターテーブル保守</button>
+                    </div>                            
                     <div class="col-6">
                         <button class="btn menubuttonbase menubutton3 btn-block" data-toggle="modal"
                             data-target="#myModal4"><i class="fas fa-reply fa-fw"></i>場所・年度切替</button>
@@ -61,7 +61,7 @@
         <a href="" class="btn menubutton5 btn-block" role="button">終了</a>
     </nav>
 
-
+　　<!-- ============================================================================================================== -->
     <!-- 業務起動指示選択モーダル -->
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
@@ -302,7 +302,7 @@
             </div>
         </div>
     </div>
-
+    <!-- ================================================================================================================= -->
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -323,7 +323,7 @@
     </div><!-- /.modal -->
 
 
-    <!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
 <!-- 業務運用メニューモーダル -->
 <!-- =========================================================================================================== -->
 <div class="modal fade" id="SUMUNYO01" tabindex="-1" role="dialog">
@@ -396,7 +396,70 @@
             </div>
         </div>
     </div>
+</div> 
+
+
+<!-- =========================================================================================================== -->
+<!-- マスターテーブル保守用メニューモーダル -->
+<!-- =========================================================================================================== -->
+<div class="modal fade" id="SUMMSM01" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModaldiv">マスターテーブル保守（作業中）</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-div="閉じる">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-3">
+                      <a href="../admin/app_sumo/mst_rikishi/" type="button" class="btn btn-primary">力士マスタ</a>
+                    </div>
+                    <div class="col-3"> 
+                        <a href="../admin/app_sumo/mst_heya/" type="button" class="btn btn-success">部屋マスタ(admin画面）</a>
+                    </div>
+                    <div class="col-3"> 
+                        <a href="SUMMSM01_heya_form" type="button" class="btn btn-success">部屋マスタ（Form.py）</a>
+                    </div>
+                    <div class="col-3"> 
+                        <a href="SUMMSM01_heya_html" type="button" class="btn btn-success">部屋マスタ（html）</a>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-3">
+                      <a href="" type="button" class="btn btn-primary">●●●</a>
+                    </div>
+                    <div class="col-3"> 
+                      <a href="" type="button" class="btn btn-primary">●●●</a>
+                    </div>
+                    <div class="col-3">   
+                      <a href="" type="button" class="btn btn-primary">●●●</a>
+                    </div>
+                    <div class="col-3"> 
+                      <a href="" type="button" class="btn btn-primary">●●●</a>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-3">
+                      <a href="../admin" type="button" class="btn btn-primary">その他のマスタ（admin画面）</a>
+                    </div>
+                </div>
+            </div>        
+            <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-danger btn-lg">実行</button>  -->
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
 </div>   
+
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+
+
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -411,10 +474,6 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-<!-- =========================================================================================================== -->
-<!-- =========================================================================================================== -->
-
-
     <!-- モーダルの設定 -->
     <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
         <div class="modal-dialog" role="document">
