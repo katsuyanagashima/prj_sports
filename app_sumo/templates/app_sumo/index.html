@@ -63,8 +63,12 @@
 
 　　<!-- ============================================================================================================== -->
     <!-- 業務起動指示選択モーダル -->
+    <!-- 
     <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-divledby="myModaldiv">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">        
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModaldiv">業務起動指示選択</h5>
@@ -73,7 +77,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="row">
                         <div class="col-4">
                             <div class="caption_box">
@@ -101,23 +104,7 @@
                                 </div>
                             </div>
                             <div class="caption_box">
-                                <h2 class="caption">データ入力モード</h2>
-                                <div class="btn-group--vertical btn-group-toggle" data-toggle="buttons">
-                                    <div>
-                                        <label class="btn btn-outline-primary btn-block disabled">
-                                            <input type="radio" name="options_data" id="options_data1"
-                                                autocomplete="off" disabled> オンライン
-                                        </label>
-                                        <label class="btn btn-outline-primary btn-block active">
-                                            <input type="radio" name="options_data" id="options_data2"
-                                                autocomplete="off" checked> オフライン
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="caption_box">
                                 <h2 class="caption">業務運用選択</h2>
-
                                 <div class="btn-group--vertical btn-group-toggle" data-toggle="buttons">
                                     <div>
                                         <label class="btn btn-outline-primary active radio_gyomu">
@@ -146,158 +133,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-8">
-
+                        <div class="col-5">
                             <div class="caption_box">
-                                <h2 class="caption">NewsML電文書式</h2>
-
-                                <div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_denbun1">
-                                        <label class="custom-control-label" for="newsml_denbun1">通常</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_denbun2">
-                                        <label class="custom-control-label" for="newsml_denbun2">一時ファイル</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_denbun3">
-                                        <label class="custom-control-label" for="newsml_denbun3">プリンタ</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_denbun4">
-                                        <label class="custom-control-label" for="newsml_denbun4">出力不可</label>
-                                    </div>
-                                </div>
-
-                                <div class="caption_box">
-                                    <h2 class="caption">通常時配信先指定</h2>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_haishin1">
-                                        <label class="custom-control-label" for="newsml_haishin1">配信GW</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_haishin2">
-                                        <label class="custom-control-label" for="newsml_haishin2">記事検索</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_haishin3">
-                                        <label class="custom-control-label" for="newsml_haishin3">多メディア</label>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="caption_box">
-                                <h2 class="caption">NewsMLフルタグ書式</h2>
-
-                                <div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_fulltag1">
-                                        <label class="custom-control-label" for="newsml_fulltag1">通常</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_fulltag2">
-                                        <label class="custom-control-label" for="newsml_fulltag2">一時ファイル</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_fulltag3">
-                                        <label class="custom-control-label" for="newsml_fulltag3">プリンタ</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input" id="newsml_fulltag4">
-                                        <label class="custom-control-label" for="newsml_fulltag4">出力不可</label>
-                                    </div>
-                                </div>
-
-                                <div class="caption_box">
-                                    <h2 class="caption">通常時配信先指定</h2>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input"
-                                            id="newsml_fulltag_haishin1">
-                                        <label class="custom-control-label" for="newsml_fulltag_haishin1">配信GW</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input"
-                                            id="newsml_fulltag_haishin2">
-                                        <label class="custom-control-label" for="newsml_fulltag_haishin2">記事検索</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox custom-control-inline">
-                                        <input type="checkbox" class="custom-control-input"
-                                            id="newsml_fulltag_haishin3">
-                                        <label class="custom-control-label" for="newsml_fulltag_haishin3">多メディア</label>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="caption_box">
-                                <h2 class="caption">加盟社宛テキスト</h2>
+                                <h2 class="caption">ＭＱ送信先</h2>
                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_ktext1">
-                                    <label class="custom-control-label" for="customRadio_ktext1">通常</label>
+                                    <input type="checkbox" class="custom-control-input"
+                                        id="newsml_fulltag_haishin1">
+                                    <label class="custom-control-label" for="newsml_fulltag_haishin1">新聞配信</label>
                                 </div>
                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_ktext2">
-                                    <label class="custom-control-label" for="customRadio_ktext2">一時ファイル</label>
+                                    <input type="checkbox" class="custom-control-input"
+                                        id="newsml_fulltag_haishin2">
+                                    <label class="custom-control-label" for="newsml_fulltag_haishin2">ＣＭＳ</label>
                                 </div>
                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_ktext3">
-                                    <label class="custom-control-label" for="customRadio_ktext3">プリンタ</label>
-                                </div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_ktext4">
-                                    <label class="custom-control-label" for="customRadio_ktext4">出力不可</label>
-                                </div>
-                            </div>
-
-                            <div class="caption_box">
-                                <h2 class="caption">速報テキスト</h2>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_stext1">
-                                    <label class="custom-control-label" for="customRadio_stext1">通常</label>
-                                </div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_stext2">
-                                    <label class="custom-control-label" for="customRadio_stext2">一時ファイル</label>
-                                </div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_stext3">
-                                    <label class="custom-control-label" for="customRadio_stext3">プリンタ</label>
-                                </div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_stext4">
-                                    <label class="custom-control-label" for="customRadio_stext4">出力不可</label>
-                                </div>
-                            </div>
-
-                            <div class="caption_box">
-                                <h2 class="caption">画像テキスト</h2>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_gtext1">
-                                    <label class="custom-control-label" for="customRadio_gtext1">通常</label>
-                                </div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_gtext2">
-                                    <label class="custom-control-label" for="customRadio_gtext2">一時ファイル</label>
-                                </div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_gtext3">
-                                    <label class="custom-control-label" for="customRadio_gtext3">プリンタ</label>
-                                </div>
-                                <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customRadio_gtext4">
-                                    <label class="custom-control-label" for="customRadio_gtext4">出力不可</label>
+                                    <input type="checkbox" class="custom-control-input"
+                                        id="newsml_fulltag_haishin3">
+                                    <label class="custom-control-label" for="newsml_fulltag_haishin3">災対ＣＭＳ</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-lg">実行</button>
-                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-lg">実行</button>
+                        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
+                    </div>
                 </div>
             </div>
         </div>
