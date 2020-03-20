@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
 
-from .models import Mst_Heya
-from .forms import Mst_HeyaForm
+from .models import *
+from .forms import *
 
 def index(request):
      return render(request, 'app_sumo/index.html')
@@ -72,7 +72,10 @@ def SUMOUT01(request):
 
 #電文／データ出力
 def SUMOUT02(request):
-    return render(request, 'app_sumo/SUMOUT02.html')
+    d = {
+        'list': Mst_KindofNewsML.objects.all(),
+        }
+    return render(request, 'app_sumo/SUMOUT02.html', d)
     
 #電文／データ強制出力
 def SUMOUT03(request):
