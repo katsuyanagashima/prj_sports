@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Mst_Rikishi, Mst_Rikishistatus, Mst_Heya, Mst_Basho, Mst_Kimarite, Mst_Award_category, Mst_Hometown, Mst_Class, Mst_Chii, Mst_Event, Mst_Nichime, Mst_Eastwest, Mst_Lifetime_result, Mst_Lifetime_award, Mst_Lifetime_statusinfo, Mst_Gameinfo
+#from .models import Mst_Rikishi, Mst_Rikishistatus, Mst_Heya, Mst_Basho, Mst_Kimarite, Mst_Award_category, Mst_Hometown, Mst_Class, Mst_Chii, Mst_Event, Mst_Nichime, Mst_Eastwest, Mst_Lifetime_result, Mst_Lifetime_award, Mst_Lifetime_statusinfo, Mst_Gameinfo
+from .models import *
 
 class Mst_HeyaAdmin(admin.ModelAdmin):
     fieldssets = [
@@ -40,3 +41,6 @@ admin.site.register(Mst_Lifetime_statusinfo)
 admin.site.register(Mst_Lifetime_result)
 admin.site.register(Mst_Lifetime_award)
 admin.site.register(Mst_Gameinfo)
+admin.site.register(Mst_KindofNewsML)
+
+

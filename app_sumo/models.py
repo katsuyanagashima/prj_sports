@@ -132,6 +132,7 @@ class Mst_Chii(models.Model):
     Chii_name1 = models.CharField(verbose_name='名称１', max_length=20, blank=True)
     Chii_name2 = models.CharField(verbose_name='名称２', max_length=20, blank=True)
     Chii_name3 = models.CharField(verbose_name='名称３', max_length=20, blank=True)
+    Sort_code = models.IntegerField(verbose_name='ソートコード', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '地位マスタ'
@@ -281,3 +282,16 @@ class Mst_Gameinfo(models.Model):
 
     class Meta:
         verbose_name_plural = '勝負情報'
+
+#電文種別
+class Mst_KindofNewsML(models.Model):
+    Content_code =  models.IntegerField(verbose_name='電文種別コード', blank=True, null=True)
+    ContentName = models.CharField(verbose_name='電文種別名称', max_length=32, blank=True, null=True)
+    Group_code =  models.IntegerField(verbose_name='グループＩＤ', blank=True, null=True)
+    NewsMLNo = models.CharField(verbose_name='NewsML種別コード', max_length=2, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '電文種別'
+
+    def __str__(self):
+        return str(self.ContentName)
