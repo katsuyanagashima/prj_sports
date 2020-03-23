@@ -317,3 +317,64 @@ class Tran_Systemstatus(models.Model):
 
     class Meta:
         verbose_name_plural = '#システム状態'
+
+
+## 以下、モックアップ用　##
+
+class Eventinfo(models.Model):
+    taikai_text = models.CharField(max_length=200)
+#    taikai_date = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.taikai_text
+
+class Player(models.Model):
+    player_name = models.CharField(max_length=200)
+    player_name_formal = models.CharField(max_length=200, blank=True)
+    player_name_formal3 = models.CharField(max_length=200, blank=True)
+    player_name_yomi = models.CharField(max_length=200, blank=True)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.player_name
+
+class Waza(models.Model):
+    waza_name = models.CharField(max_length=200)
+    waza_name_formal = models.CharField(max_length=200, blank=True)
+    waza_name_formal7 = models.CharField(max_length=200, blank=True)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.waza_name
+
+class Outcome(models.Model):
+    mark = models.CharField(max_length=200)
+    winloss = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.mark
+
+class Match(models.Model):
+    player1 = models.ForeignKey('Player', related_name='rikishi_1', on_delete=models.CASCADE)
+ #   player1winloss = models.IntegerField(blank=True)
+    player1win = models.IntegerField(blank=True, default='0')
+    player1loss = models.IntegerField(blank=True, default='0')
+    player1tie = models.IntegerField(blank=True, default='0')
+    player1absence = models.IntegerField(blank=True, default='0')
+    outcome1 = models.ForeignKey('Outcome', related_name='rikishi_1', on_delete=models.CASCADE)
+    waza = models.ForeignKey(Waza, on_delete=models.CASCADE)
+    outcome2 = models.ForeignKey('Outcome', related_name='rikishi_2', on_delete=models.CASCADE)
+    player2 = models.ForeignKey('Player', related_name='rikishi_2', on_delete=models.CASCADE)
+ #   player2winloss = models.IntegerField(blank=True)
+    player2win = models.IntegerField(blank=True, default='0')
+    player2loss = models.IntegerField(blank=True, default='0')
+    player2absence = models.IntegerField(blank=True, default='0')
+    player2tie = models.IntegerField(blank=True, default='0')
+#    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField(default=timezone.now)
+
+    # def __str__(self):
+    #     return str('%s - %s' % (self.player1, self.player2))
+
