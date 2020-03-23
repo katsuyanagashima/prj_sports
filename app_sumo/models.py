@@ -295,3 +295,25 @@ class Mst_KindofNewsML(models.Model):
 
     def __str__(self):
         return str(self.ContentName)
+
+#運用管理
+class Mst_Operationmode(models.Model):
+    Operationmode_code =  models.IntegerField(verbose_name='運用モード', blank=True, null=True)
+    Operationmode_name = models.CharField(verbose_name='運用モード表記', max_length=10, blank=True, null=True)
+
+    class Meta:
+       verbose_name_plural = '運用管理'
+
+    def __str__(self):
+        return str(self.Operationmode_name)
+
+# --------------------------------------------------------------------------------------------------
+#システム状態
+class Tran_Systemstatus(models.Model):
+    CurrentBasho =  models.ForeignKey('Mst_Basho', on_delete=models.CASCADE)
+    SystemStatus =  models.ForeignKey('Mst_Operationmode', on_delete=models.CASCADE)
+    TorikumiDate =  models.ForeignKey('Mst_Nichime', on_delete=models.CASCADE, related_name = 'torikumi')
+    MatchDate =  models.ForeignKey('Mst_Nichime', on_delete=models.CASCADE, related_name = 'match')
+
+    class Meta:
+        verbose_name_plural = '#システム状態'
