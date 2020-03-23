@@ -377,3 +377,4 @@ class Match(models.Model):
 
     # def __str__(self):
     #     return str('%s - %s' % (self.player1, self.player2))
+
