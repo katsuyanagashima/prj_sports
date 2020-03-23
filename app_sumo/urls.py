@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import add_views
 from django.conf.urls import url, static
 
 urlpatterns = [
@@ -28,6 +29,9 @@ urlpatterns = [
     path('SUMJOR01/', views.SUMJOR01, name='SUMJOR01'), #階級上位力士
     path('SUMSHI01/', views.SUMSHI01, name='SUMSHI01'), #資料出力
     path('SUMNEW01/', views.SUMNEW01, name='SUMNEW01'), #NewsML修正画面
+
+    # path('output/', add_views.xmlout_14, name='xmlout_14'), #NewsML修正画面
+    
 ]
 
 #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
