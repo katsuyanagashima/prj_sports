@@ -4,8 +4,19 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
 
+from .models import *
+from .forms import *
+
 def index(request):
-     return render(request, 'app_sumo/index.html')
+    data = Tran_Systemstatus.objects.all()
+    params = {
+        'basho':data[0].CurrentBasho,
+        'systatus':data[0].SystemStatus,
+        'torikumiday':data[0].TorikumiDate,
+        'shoubuday':data[0].MatchDate
+    }
+    return render(request, 'app_sumo/index.html', params)
+
 
 #運用日設定画面
 def SUMUDY01(request):
@@ -69,7 +80,10 @@ def SUMOUT01(request):
 
 #電文／データ出力
 def SUMOUT02(request):
-    return render(request, 'app_sumo/SUMOUT02.html')
+    d = {
+        'list': Mst_KindofNewsML.objects.all(),
+        }
+    return render(request, 'app_sumo/SUMOUT02.html', d)
     
 #電文／データ強制出力
 def SUMOUT03(request):
@@ -101,4 +115,34 @@ def SUMSHI01(request):
 
 #NewsML修正画面
 def SUMNEW01(request):
-    return render(request, 'app_sumo/SUMNEW01.html')        
+    return render(request, 'app_sumo/SUMNEW01.html')    
+
+
+#マスタテーブル保守画面の部屋マスタ（Formで表示するパターン）
+#def SUMMSM01_heya_form(request):
+#    form = Mst_HeyaForm(request.POST)
+#    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})    
+
+
+def SUMMSM01_heya_form(request):
+    if request.method == "POST":
+        form = Mst_HeyaForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.pub_date = timezone.now()
+            post.save()
+            return redirect('SUMMSM01_heya_form')
+    else:
+        form = Mst_HeyaForm()
+    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})
+
+
+
+#マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
+def SUMMSM01_heya_html(request):
+    d = {
+            'heyalist': Mst_Heya.objects.all(),
+        }
+
+    return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)  

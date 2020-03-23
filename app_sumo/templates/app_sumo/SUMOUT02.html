@@ -2,5 +2,8 @@
 
 {% block content %}
 <h1 class="caption">電文／データ出力画面</h1>
+    {% for i in list %}
+        <div>{{ i.ContentName }}</div>
+        {% endfor %}
 <a href="../" type="button" class="btn btn-primary">戻る</a>
 {% endblock %}
