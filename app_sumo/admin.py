@@ -13,7 +13,6 @@ class Mst_HeyaAdmin(admin.ModelAdmin):
     ]
     list_display = ('Heya_code', 'Heya_official_kanji', 'Heya_official_kana', 'Heya_kanji_2char', 'Heya_kanji_3char')
 
-
 class Mst_ChiiAdmin(admin.ModelAdmin):
     fieldssets = [
         ('地位コード', {'fields':['Chii_code'] }),
@@ -24,6 +23,13 @@ class Mst_ChiiAdmin(admin.ModelAdmin):
     ]
     list_display = ('Chii_code', 'Chii_kanji', 'Chii_kana', 'Chii_2char', 'Chii_3char')
 
+class Mst_KindofNewsMLAdmin(admin.ModelAdmin):
+    fieldssets = [
+        ('グループID', {'fields':['Group_code'] }),
+        ('電文種別名称', {'fields':['ContentName'] }),
+	    ('NewsML種別コード', {'fields':['NewsMLNo'] }),
+    ]
+    list_display = ('Group_code', 'ContentName', 'NewsMLNo')
 
 admin.site.register(Mst_Rikishi)
 admin.site.register(Mst_Rikishistatus)
@@ -41,7 +47,7 @@ admin.site.register(Mst_Lifetime_statusinfo)
 admin.site.register(Mst_Lifetime_result)
 admin.site.register(Mst_Lifetime_award)
 admin.site.register(Mst_Gameinfo)
-admin.site.register(Mst_KindofNewsML)
+admin.site.register(Mst_KindofNewsML, Mst_KindofNewsMLAdmin)
 admin.site.register(Mst_Operationmode)
 # --------------------
 admin.site.register(Tran_Systemstatus)
