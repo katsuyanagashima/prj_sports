@@ -8,7 +8,15 @@ from .models import *
 from .forms import *
 
 def index(request):
-     return render(request, 'app_sumo/index.html')
+    data = Tran_Systemstatus.objects.all()
+    params = {
+        'basho':data[0].CurrentBasho,
+        'systatus':data[0].SystemStatus,
+        'torikumiday':data[0].TorikumiDate,
+        'shoubuday':data[0].MatchDate
+    }
+    return render(request, 'app_sumo/index.html', params)
+
 
 #運用日設定画面
 def SUMUDY01(request):

@@ -42,5 +42,7 @@ admin.site.register(Mst_Lifetime_result)
 admin.site.register(Mst_Lifetime_award)
 admin.site.register(Mst_Gameinfo)
 admin.site.register(Mst_KindofNewsML)
-
+admin.site.register(Mst_Operationmode)
+# --------------------
+admin.site.register(Tran_Systemstatus)
 
