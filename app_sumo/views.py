@@ -16,6 +16,7 @@ def index(request):
         'shoubuday':data[0].MatchDate
     }
     return render(request, 'app_sumo/index.html', params)
+    return render(request, 'app_sumo/index.html')
 
 
 #運用日設定画面

@@ -5,6 +5,22 @@ from django.utils import timezone
 from datetime import datetime
 from .models import *
 
+def xmlout_14(request):
+    latest_match_list = Match.objects.all().order_by('-pub_date')
+    taikai_list = Eventinfo.objects.all()
+    t = loader.get_template('app_sumo/os14.xml')
+    context = {
+        'latest_match_list': latest_match_list,
+        'taikai_list': taikai_list,
+    }
+
+    content = loader.render_to_string('app_sumo/os14.xml',context)
+    with open('app_sumo/output/hold/sample.xml','w') as static_file:
+        static_file.write(content)
+
+    return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
+
+
 # def xmlout_14(request):
 #     latest_match_list = Match.objects.all().order_by('-pub_date')
 #     taikai_list = Eventinfo.objects.all()   
@@ -15,22 +31,20 @@ from .models import *
 #     t = loader.get_template('app_sumo/os14.xml')
 #     return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
 
-def xmlout_14(request):
-    response = HttpResponse(content_type='text/xml; charset=utf-8')
-    response['Content-Disposition'] =  'attachment; filename=test.xml'
+# def xmlout_14(request):
+#     response = HttpResponse(content_type='text/xml; charset=utf-8')
+#     response['Content-Disposition'] =  'attachment; filename=test.xml'
 
-    latest_match_list = Match.objects.all().order_by('-pub_date')
-    taikai_list = Eventinfo.objects.all()
-    t = loader.get_template('app_sumo/os14.xml')
-    context = {
-        'latest_match_list': latest_match_list,
-        'taikai_list': taikai_list,
-    }
+#     latest_match_list = Match.objects.all().order_by('-pub_date')
+#     taikai_list = Eventinfo.objects.all()
+#     t = loader.get_template('app_sumo/os14.xml')
+#     context = {
+#         'latest_match_list': latest_match_list,
+#         'taikai_list': taikai_list,
+#     }
 
-    response.write(t.render(context))
-    return response
-
-
+#     response.write(t.render(context))
+#     return response
 
 # def input14(request):
 #     d = {
