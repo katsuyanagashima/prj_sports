@@ -46,3 +46,11 @@ admin.site.register(Mst_Operationmode)
 # --------------------
 admin.site.register(Tran_Systemstatus)
 
+# --------------------
+admin.site.register(Eventinfo)
+admin.site.register(Player)
+admin.site.register(Waza)
+admin.site.register(Outcome)
+admin.site.register(Match)
+
+
