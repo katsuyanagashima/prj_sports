@@ -319,15 +319,15 @@ class Tran_Systemstatus(models.Model):
         verbose_name_plural = '#システム状態'
 
 
-## 以下、モックアップ用　##
+#以下、モックアップ用
 
 class Eventinfo(models.Model):
     taikai_text = models.CharField(max_length=200)
 #    taikai_date = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 
-    def __str__(self):
-        return self.taikai_text
+    class Meta:
+        verbose_name_plural = 'イベント'
 
 class Player(models.Model):
     player_name = models.CharField(max_length=200)
@@ -336,8 +336,8 @@ class Player(models.Model):
     player_name_yomi = models.CharField(max_length=200, blank=True)
     pub_date = models.DateTimeField('date published')
 
-    def __str__(self):
-        return self.player_name
+    class Meta:
+        verbose_name_plural = '選手'
 
 class Waza(models.Model):
     waza_name = models.CharField(max_length=200)
@@ -345,6 +345,8 @@ class Waza(models.Model):
     waza_name_formal7 = models.CharField(max_length=200, blank=True)
     pub_date = models.DateTimeField('date published')
 
+    class Meta:
+        verbose_name_plural = '技'
     def __str__(self):
         return self.waza_name
 
@@ -353,6 +355,8 @@ class Outcome(models.Model):
     winloss = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 
+    class Meta:
+        verbose_name_plural = '勝負'
     def __str__(self):
         return self.mark
 
@@ -375,6 +379,8 @@ class Match(models.Model):
 #    pub_date = models.DateTimeField('date published')
     pub_date = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        verbose_name_plural = '試合'
     # def __str__(self):
     #     return str('%s - %s' % (self.player1, self.player2))
 
