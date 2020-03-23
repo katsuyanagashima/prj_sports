@@ -132,6 +132,7 @@ class Mst_Chii(models.Model):
     Chii_name1 = models.CharField(verbose_name='名称１', max_length=20, blank=True)
     Chii_name2 = models.CharField(verbose_name='名称２', max_length=20, blank=True)
     Chii_name3 = models.CharField(verbose_name='名称３', max_length=20, blank=True)
+    Sort_code = models.IntegerField(verbose_name='ソートコード', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '地位マスタ'
@@ -281,3 +282,98 @@ class Mst_Gameinfo(models.Model):
 
     class Meta:
         verbose_name_plural = '勝負情報'
+
+#電文種別
+class Mst_KindofNewsML(models.Model):
+    Content_code =  models.IntegerField(verbose_name='電文種別コード', blank=True, null=True)
+    ContentName = models.CharField(verbose_name='電文種別名称', max_length=32, blank=True, null=True)
+    Group_code =  models.IntegerField(verbose_name='グループＩＤ', blank=True, null=True)
+    NewsMLNo = models.CharField(verbose_name='NewsML種別コード', max_length=2, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '電文種別'
+
+    def __str__(self):
+        return str(self.ContentName)
+
+#運用管理
+class Mst_Operationmode(models.Model):
+    Operationmode_code =  models.IntegerField(verbose_name='運用モード', blank=True, null=True)
+    Operationmode_name = models.CharField(verbose_name='運用モード表記', max_length=10, blank=True, null=True)
+
+    class Meta:
+       verbose_name_plural = '運用管理'
+
+    def __str__(self):
+        return str(self.Operationmode_name)
+
+# --------------------------------------------------------------------------------------------------
+#システム状態
+class Tran_Systemstatus(models.Model):
+    CurrentBasho =  models.ForeignKey('Mst_Basho', on_delete=models.CASCADE)
+    SystemStatus =  models.ForeignKey('Mst_Operationmode', on_delete=models.CASCADE)
+    TorikumiDate =  models.ForeignKey('Mst_Nichime', on_delete=models.CASCADE, related_name = 'torikumi')
+    MatchDate =  models.ForeignKey('Mst_Nichime', on_delete=models.CASCADE, related_name = 'match')
+
+    class Meta:
+        verbose_name_plural = '#システム状態'
+
+
+## 以下、モックアップ用　##
+
+class Eventinfo(models.Model):
+    taikai_text = models.CharField(max_length=200)
+#    taikai_date = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.taikai_text
+
+class Player(models.Model):
+    player_name = models.CharField(max_length=200)
+    player_name_formal = models.CharField(max_length=200, blank=True)
+    player_name_formal3 = models.CharField(max_length=200, blank=True)
+    player_name_yomi = models.CharField(max_length=200, blank=True)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.player_name
+
+class Waza(models.Model):
+    waza_name = models.CharField(max_length=200)
+    waza_name_formal = models.CharField(max_length=200, blank=True)
+    waza_name_formal7 = models.CharField(max_length=200, blank=True)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.waza_name
+
+class Outcome(models.Model):
+    mark = models.CharField(max_length=200)
+    winloss = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.mark
+
+class Match(models.Model):
+    player1 = models.ForeignKey('Player', related_name='rikishi_1', on_delete=models.CASCADE)
+ #   player1winloss = models.IntegerField(blank=True)
+    player1win = models.IntegerField(blank=True, default='0')
+    player1loss = models.IntegerField(blank=True, default='0')
+    player1tie = models.IntegerField(blank=True, default='0')
+    player1absence = models.IntegerField(blank=True, default='0')
+    outcome1 = models.ForeignKey('Outcome', related_name='rikishi_1', on_delete=models.CASCADE)
+    waza = models.ForeignKey(Waza, on_delete=models.CASCADE)
+    outcome2 = models.ForeignKey('Outcome', related_name='rikishi_2', on_delete=models.CASCADE)
+    player2 = models.ForeignKey('Player', related_name='rikishi_2', on_delete=models.CASCADE)
+ #   player2winloss = models.IntegerField(blank=True)
+    player2win = models.IntegerField(blank=True, default='0')
+    player2loss = models.IntegerField(blank=True, default='0')
+    player2absence = models.IntegerField(blank=True, default='0')
+    player2tie = models.IntegerField(blank=True, default='0')
+#    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField(default=timezone.now)
+
+    # def __str__(self):
+    #     return str('%s - %s' % (self.player1, self.player2))
