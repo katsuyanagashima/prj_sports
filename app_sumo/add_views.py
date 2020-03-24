@@ -6,13 +6,14 @@ from datetime import datetime
 from .models import *
 
 def xmlout_14(request):
-    latest_match_list = Match.objects.all().order_by('-pub_date')
-    taikai_list = Eventinfo.objects.all()
+    # latest_match_list = Match.objects.all().order_by('-pub_date')
+    # taikai_list = Eventinfo.objects.all()
     t = loader.get_template('app_sumo/os14.xml')
-    context = {
-        'latest_match_list': latest_match_list,
-        'taikai_list': taikai_list,
-    }
+    # context = {
+    #     'latest_match_list': latest_match_list,
+    #     'taikai_list': taikai_list,
+    # }
+    context = {}
 
     content = loader.render_to_string('app_sumo/os14.xml',context)
     with open('app_sumo/output/hold/sample.xml','w') as static_file:

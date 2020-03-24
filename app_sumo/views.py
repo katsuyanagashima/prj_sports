@@ -8,14 +8,14 @@ from .models import *
 from .forms import *
 
 def index(request):
-    data = Tran_Systemstatus.objects.all()
-    params = {
-        'basho':data[0].CurrentBasho,
-        'systatus':data[0].SystemStatus,
-        'torikumiday':data[0].TorikumiDate,
-        'shoubuday':data[0].MatchDate
-    }
-    return render(request, 'app_sumo/index.html', params)
+    # data = Tran_Systemstatus.objects.all()
+    # params = {
+    #     'basho':data[0].CurrentBasho,
+    #     'systatus':data[0].SystemStatus,
+    #     'torikumiday':data[0].TorikumiDate,
+    #     'shoubuday':data[0].MatchDate
+    # }
+    # return render(request, 'app_sumo/index.html', params)
     return render(request, 'app_sumo/index.html')
 
 

@@ -319,68 +319,70 @@ class Tran_Systemstatus(Model):
         verbose_name_plural = '#システム状態'
 
 
+
+
 #以下、モックアップ用
 
-class Eventinfo(Model):
-    taikai_text = CharField(max_length=200)
-#    taikai_date = CharField(max_length=200)
-    pub_date = DateTimeField('date published')
+# class Eventinfo(Model):
+#     taikai_text = CharField(max_length=200)
+# #    taikai_date = CharField(max_length=200)
+#     pub_date = DateTimeField('date published')
 
-    class Meta:
-        verbose_name_plural = 'イベント'
+#     class Meta:
+#         verbose_name_plural = 'イベント'
 
-class Player(Model):
-    player_name = CharField(max_length=200)
-    player_name_formal = CharField(max_length=200, blank=True)
-    player_name_formal3 = CharField(max_length=200, blank=True)
-    player_name_yomi = CharField(max_length=200, blank=True)
-    pub_date = DateTimeField('date published')
+# class Player(Model):
+#     player_name = CharField(max_length=200)
+#     player_name_formal = CharField(max_length=200, blank=True)
+#     player_name_formal3 = CharField(max_length=200, blank=True)
+#     player_name_yomi = CharField(max_length=200, blank=True)
+#     pub_date = DateTimeField('date published')
 
-    class Meta:
-        verbose_name_plural = '選手'
+#     class Meta:
+#         verbose_name_plural = '選手'
 
-class Waza(Model):
-    waza_name = CharField(max_length=200)
-    waza_name_formal = CharField(max_length=200, blank=True)
-    waza_name_formal7 = CharField(max_length=200, blank=True)
-    pub_date = DateTimeField('date published')
+# class Waza(Model):
+#     waza_name = CharField(max_length=200)
+#     waza_name_formal = CharField(max_length=200, blank=True)
+#     waza_name_formal7 = CharField(max_length=200, blank=True)
+#     pub_date = DateTimeField('date published')
 
-    class Meta:
-        verbose_name_plural = '技'
-    def __str__(self):
-        return self.waza_name
+#     class Meta:
+#         verbose_name_plural = '技'
+#     def __str__(self):
+#         return self.waza_name
 
-class Outcome(Model):
-    mark = CharField(max_length=200)
-    winloss = CharField(max_length=200)
-    pub_date = DateTimeField('date published')
+# class Outcome(Model):
+#     mark = CharField(max_length=200)
+#     winloss = CharField(max_length=200)
+#     pub_date = DateTimeField('date published')
 
-    class Meta:
-        verbose_name_plural = '勝負'
-    def __str__(self):
-        return self.mark
+#     class Meta:
+#         verbose_name_plural = '勝負'
+#     def __str__(self):
+#         return self.mark
 
-class Match(Model):
-    player1 = ForeignKey('Player', related_name='rikishi_1', on_delete=CASCADE)
- #   player1winloss = IntegerField(blank=True)
-    player1win = IntegerField(blank=True, default='0')
-    player1loss = IntegerField(blank=True, default='0')
-    player1tie = IntegerField(blank=True, default='0')
-    player1absence = IntegerField(blank=True, default='0')
-    outcome1 = ForeignKey('Outcome', related_name='rikishi_1', on_delete=CASCADE)
-    waza = ForeignKey(Waza, on_delete=CASCADE)
-    outcome2 = ForeignKey('Outcome', related_name='rikishi_2', on_delete=CASCADE)
-    player2 = ForeignKey('Player', related_name='rikishi_2', on_delete=CASCADE)
- #   player2winloss = IntegerField(blank=True)
-    player2win = IntegerField(blank=True, default='0')
-    player2loss = IntegerField(blank=True, default='0')
-    player2absence = IntegerField(blank=True, default='0')
-    player2tie = IntegerField(blank=True, default='0')
-#    pub_date = DateTimeField('date published')
-    pub_date = DateTimeField(default=timezone.now)
+# class Match(Model):
+#     player1 = ForeignKey('Player', related_name='rikishi_1', on_delete=CASCADE)
+#  #   player1winloss = IntegerField(blank=True)
+#     player1win = IntegerField(blank=True, default='0')
+#     player1loss = IntegerField(blank=True, default='0')
+#     player1tie = IntegerField(blank=True, default='0')
+#     player1absence = IntegerField(blank=True, default='0')
+#     outcome1 = ForeignKey('Outcome', related_name='rikishi_1', on_delete=CASCADE)
+#     waza = ForeignKey(Waza, on_delete=CASCADE)
+#     outcome2 = ForeignKey('Outcome', related_name='rikishi_2', on_delete=CASCADE)
+#     player2 = ForeignKey('Player', related_name='rikishi_2', on_delete=CASCADE)
+#  #   player2winloss = IntegerField(blank=True)
+#     player2win = IntegerField(blank=True, default='0')
+#     player2loss = IntegerField(blank=True, default='0')
+#     player2absence = IntegerField(blank=True, default='0')
+#     player2tie = IntegerField(blank=True, default='0')
+# #    pub_date = DateTimeField('date published')
+#     pub_date = DateTimeField(default=timezone.now)
 
-    class Meta:
-        verbose_name_plural = '試合'
-    # def __str__(self):
-    #     return str('%s - %s' % (self.player1, self.player2))
+#     class Meta:
+#         verbose_name_plural = '試合'
+#     # def __str__(self):
+#     #     return str('%s - %s' % (self.player1, self.player2))
 
