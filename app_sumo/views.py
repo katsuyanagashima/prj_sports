@@ -74,7 +74,7 @@ def SUMSHO02(request):
 def SUMYUS01(request):
     return render(request, 'app_sumo/SUMYUS01.html')
 
-#コンテンツ編集指示
+#コンテンツ出力指示画面
 def SUMOUT01(request):
     return render(request, 'app_sumo/SUMOUT01.html')
 
@@ -115,7 +115,11 @@ def SUMSHI01(request):
 
 #NewsML修正画面
 def SUMNEW01(request):
-    return render(request, 'app_sumo/SUMNEW01.html')    
+    return render(request, 'app_sumo/SUMNEW01.html')
+
+#NewsML修正画面内容部
+def SUMNEW02(request):
+    return render(request, 'app_sumo/SUMNEW02.html')
 
 
 #マスタテーブル保守画面の部屋マスタ（Formで表示するパターン）
@@ -146,3 +150,16 @@ def SUMMSM01_heya_html(request):
         }
 
     return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)  
+
+
+#年度・場所切替画面
+def SUMINT01(request):
+    return render(request, 'app_sumo/SUMINT01.html')
+    
+#優勝決定戦階級選択画面
+def SUMUKS01(request):
+    return render(request, 'app_sumo/SUMUKS01.html')
+    
+#優勝決定戦入力画面
+def SUMUKS02(request):
+    return render(request, 'app_sumo/SUMUKS02.html')
