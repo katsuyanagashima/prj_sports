@@ -1,6 +1,38 @@
 {% extends 'app_sumo/base.html' %}
 
 {% block content %}
+
 <h1 class="caption">NewsML修正画面</h1>
+
+    <p>
+    <!-- 修正 -->
+    <div class="col-6">
+        <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            修正対象フォルダ
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">作成済フォルダ</a>
+                <a class="dropdown-item" href="#">エラーフォルダ</a>
+                <a class="dropdown-item" href="#">配信済フォルダ</a>
+             </div>
+        </div>
+     </div>
+     </p>
+     
+     
+     <p>
+         <select name="contents_list" size="10">
+             <option>０１新番付資料</option>
+             <option>０２新番付資料・補正</option>
+             <option>０３新番付</option>
+             <option>０４郷土力士新番付・北海道</option>
+             <option>１０郷土力士勝負・初日・幕下・北海道</option>
+         </select>
+     </p>
+
+
+<a href="../SUMNEW02" type="button" class="btn btn-primary">修正</a>
 <a href="../" type="button" class="btn btn-primary">戻る</a>
+
 {% endblock %}
