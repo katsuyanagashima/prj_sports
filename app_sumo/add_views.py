@@ -5,21 +5,56 @@ from django.utils import timezone
 from datetime import datetime
 from .models import *
 
-def xmlout_14(request):
-    # latest_match_list = Match.objects.all().order_by('-pub_date')
-    # taikai_list = Eventinfo.objects.all()
-    t = loader.get_template('app_sumo/os14.xml')
+
+temp = [
+    'YYYYMMDDOSF01__________01','YYYYMMDDOSF02__________01','YYYYMMDDOSF03__________01','YYYYMMDDOSF04____CC____01','YYYYMMDDOSF05__BB__D___01',
+    'YYYYMMDDOSF06AA__CC____01','YYYYMMDDOSF07AA________01','YYYYMMDDOSF08AA________01','YYYYMMDDOSF09AA________01',
+    'YYYYMMDDOSF10AABBCC____01','YYYYMMDDOSF11AA__CC____01','YYYYMMDDOSF12AABB______01','YYYYMMDDOSF13AA_____EEE01','YYYYMMDDOSF14AA________01','YYYYMMDDOSF15AA__CC____01',
+    'YYYYMMDDOSF16AA________01','YYYYMMDDOSF17AA________01','YYYYMMDDOSF18AABB______01',
+    '','YYYYMMDDOSF20AABB__D___01','YYYYMMDDOSF21AA________01','YYYYMMDDOSF22AA________01',
+    'YYYYMMDDOSF23AABB______01'
+]
+
+def nav_info(request):
+    data = Tran_Systemstatus.objects.all()
+    params = {
+        'nav':{
+            'basho':data[0].CurrentBasho,
+            'systatus':data[0].SystemStatus,
+            'torikumiday':data[0].TorikumiDate,
+            'shoubuday':data[0].MatchDate
+            } 
+        }
+    return params
+
+def output_NewsML(request):
+    if request.method == "POST":
+        if "telegram" not in request.POST:
+            return "Input error."
+        
+        temp_product_id = temp[int(request.POST["telegram"])-1]
+        file_name = '%s.xml' % temp_product_id
+        temp_file_name = 'NewsML_temp/%s' % file_name
+        t = loader.get_template(temp_file_name)
     # context = {
     #     'latest_match_list': latest_match_list,
     #     'taikai_list': taikai_list,
     # }
-    context = {}
+        context = {}
 
-    content = loader.render_to_string('app_sumo/os14.xml',context)
-    with open('app_sumo/output/hold/sample.xml','w') as static_file:
-        static_file.write(content)
+        if "Input_status" in request.POST:
+            st = request.POST["Input_status"]
+            if st in ["0","1"]:
+                content = loader.render_to_string(temp_file_name, context)
+                # file名は運用日付、パラメータに合わせて変更
+                with open('app_sumo/output/hold/%s' % file_name,'w') as static_file:
+                    static_file.write(content)
+        
+            elif st == "2":
+                return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
 
-    return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
+    # latest_match_list = Match.objects.all().order_by('-pub_date')
+    # taikai_list = Eventinfo.objects.all()
 
 
 # def xmlout_14(request):

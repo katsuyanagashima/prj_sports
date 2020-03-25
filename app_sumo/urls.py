@@ -30,7 +30,7 @@ urlpatterns = [
     path('SUMSHI01/', views.SUMSHI01, name='SUMSHI01'), #資料出力
     path('SUMNEW01/', views.SUMNEW01, name='SUMNEW01'), #NewsML修正画面
 
-    path('output/', add_views.xmlout_14, name='xmlout_14'), #NewsML修正画面
+    # path('output/', add_views.xmlout_14, name=''), #NewsML修正画面
     
 ]
 

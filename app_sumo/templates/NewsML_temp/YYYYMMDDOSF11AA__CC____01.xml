@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<!DOCTYPE ITalk SYSTEM "../DTD/ITalkv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
+	%InContent;
+	<!ENTITY % Kddata SYSTEM "../OSDTD/KdXBSContentv1.1.dtd">
+	%Kddata;
+]>
+				<?xml-stylesheet type="text/xsl"  href="../OSStylesheets/OSKdXBSContent11.xsl"?>
+
+<ITalk version="1.0">
+<IManage>
+<IhInfo>
+<IhSubSysInfo>
+<IhSendDate>２０１９０１１４</IhSendDate>
+<IhSendTime>１４５６０８</IhSendTime>
+<IhSendFrom>ＯＳ</IhSendFrom>
+<IhSendTo IhNs="3">
+<IhSendToSys>ＨＳ</IhSendToSys>
+<IhSendToSys>ＫＪ</IhSendToSys>
+<IhSendToSys>ＪＭ</IhSendToSys>
+</IhSendTo>
+</IhSubSysInfo>
+<IhSendMode>通常</IhSendMode>
+<IhSendDataKind>漢テレ</IhSendDataKind>
+<IhSendBase>
+<IhSendPriority>３</IhSendPriority>
+</IhSendBase>
+<IhAddrInfo>
+<IhMainHeader>
+<IhMainRank>角</IhMainRank>
+<IhNewsGenre>相撲</IhNewsGenre>
+</IhMainHeader>
+<IhSubHeader>
+<IhSendIndInfo IhNi="11">
+<IhSendInd>東奥</IhSendInd>
+<IhSendInd>デ東</IhSendInd>
+<IhSendInd>河北</IhSendInd>
+<IhSendInd>産経</IhSendInd>
+<IhSendInd>大産</IhSendInd>
+<IhSendInd>日海</IhSendInd>
+<IhSendInd>ＡＫ</IhSendInd>
+<IhSendInd>ＨＳ</IhSendInd>
+<IhSendInd>ＮＳ</IhSendInd>
+<IhSendInd>ＳＮ</IhSendInd>
+<IhSendInd>仙台</IhSendInd>
+</IhSendIndInfo>
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
+<IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
+</IhAddrInfo>
+<IhDataForm>フルタグ書式</IhDataForm>
+</IhInfo>
+</IManage>
+<NewsML>
+<Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
+<NewsEnvelope>
+<TransmissionId>20190114OSF003510</TransmissionId>
+<DateAndTime>20190114T145608+0900</DateAndTime>
+<NewsProduct FormalName="NskNewsML:1"/>
+</NewsEnvelope>
+<NewsItem Duid="NI_OS01" xml:lang="ja-JP">
+<Identification>
+<NewsIdentifier>
+<ProviderId>kyodonews.jp</ProviderId>
+<DateId>20190114</DateId>
+<NewsItemId>20190114OSF1102__02____</NewsItemId>
+<RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+<PublicIdentifier>urn:newsml:kyodonews.jp:20190114:20190114OSF1102__02____:1</PublicIdentifier>
+</NewsIdentifier>
+</Identification>
+<NewsManagement>
+<NewsItemType FormalName="News"/>
+<FirstCreated>20190114T145608+0900</FirstCreated>
+<ThisRevisionCreated>20190114T145608+0900</ThisRevisionCreated>
+<Status FormalName="Usable"/>
+</NewsManagement>
+<NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
+<NewsLines>
+<HeadLine>二日目星取</HeadLine>
+<SubHeadLine>青　森</SubHeadLine>
+<NewsLine>
+<NewsLineType FormalName="EndInfo"/>
+<NewsLineText>モンはモンゴル</NewsLineText>
+<NewsLineText>五所川は五所川原</NewsLineText>
+</NewsLine>
+</NewsLines>
+<AdministrativeMetadata>
+<Provider>
+<Party FormalName="KYODONEWS"/>
+</Provider>
+</AdministrativeMetadata>
+<DescriptiveMetadata>
+<Language FormalName="ja"/>
+<SubjectCode>
+<Subject FormalName="15000000"/>
+<SubjectMatter FormalName="15060000"/>
+</SubjectCode>
+</DescriptiveMetadata>
+<ContentItem>
+<MediaType FormalName="Text"/>
+<Format FormalName="KdXBSContentv1.1"/>
+<MimeType FormalName="text/xml"/>
+<DataContent>
+<InContent version="1.0">
+<InMetadata>
+<InAdminInfo>
+<InProductId>２０１９０１１４ＯＳＦ１１０２＿＿０２＿＿＿＿０１</InProductId>
+<InDateTime>２０１９年０１月１４日１４時５６分０８秒</InDateTime>
+<InFormat>
+<InFormatType>フルタグ書式</InFormatType>
+<InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>
+</InFormat>
+</InAdminInfo>
+<InCategoryInfo>
+<InClasses>
+<InClass>
+<InBClass>相撲</InBClass>
+<InMClass1>初場所二日目</InMClass1>
+<InMClass2>郷土力士勝負（まとめ）</InMClass2>
+<InSClass>青森</InSClass>
+</InClass>
+</InClasses>
+<InNewsCategory>
+<InNewsGenre>相撲</InNewsGenre>
+</InNewsCategory>
+<InNewsLine>
+<InHeadLine>二日目星取</InHeadLine>
+<InSubHeadLines>
+<InSubHeadLine>青　森</InSubHeadLine>
+</InSubHeadLines>
+</InNewsLine>
+</InCategoryInfo>
+<InNewsInfo>
+<InMainHeader>
+<InPriority>３</InPriority>
+</InMainHeader>
+<InSubHeader>
+<InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<InSendControl>
+<InSendIndInfo InNi="11">
+<InSendInd>東奥</InSendInd>
+<InSendInd>デ東</InSendInd>
+<InSendInd>河北</InSendInd>
+<InSendInd>産経</InSendInd>
+<InSendInd>大産</InSendInd>
+<InSendInd>日海</InSendInd>
+<InSendInd>ＡＫ</InSendInd>
+<InSendInd>ＨＳ</InSendInd>
+<InSendInd>ＮＳ</InSendInd>
+<InSendInd>ＳＮ</InSendInd>
+<InSendInd>仙台</InSendInd>
+</InSendIndInfo>
+</InSendControl>
+</InSubHeader>
+<InEndInfo>
+<InEndLines InNc="2">
+<InEndLine>モンはモンゴル</InEndLine>
+<InEndLine>五所川は五所川原</InEndLine>
+</InEndLines>
+</InEndInfo>
+</InNewsInfo>
+</InMetadata>
+<InData>
+<SportsData Version="1.1">
+<Head>
+<Meta>
+<Competition>
+<Formal>初場所</Formal>
+</Competition>
+<CompetitionDay>二日目</CompetitionDay>
+<Discipline>
+<Formal>相撲</Formal>
+</Discipline>
+</Meta>
+<Limited>
+<LocalInfo>青森</LocalInfo>
+</Limited>
+</Head>
+<Body BlockId="OS10JK____">
+<Meta>
+<FormatType>Ｍ－Ｐ－Ｄ</FormatType>
+<DataType>郷土力士勝負（まとめ）</DataType>
+<Title>◇青　森</Title>
+<Title>【序ノ口】</Title>
+<Class>序ノ口</Class>
+</Meta>
+<Match BlockId="M001">
+<Player PlayerId="021380">
+<PlayerName>
+<Writing>鳴　海　</Writing>
+<Formal>鳴海</Formal>
+<Formal Display="4字">鳴　海　</Formal>
+<Formal Display="3字">鳴　海</Formal>
+<Formal Display="よみがな">なるみ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序ノ口</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+<NativeCity>
+<Writing>弘　前</Writing>
+<Formal>弘前</Formal>
+<Formal Display="3字">弘　前</Formal>
+<Formal Display="2字">弘前</Formal>
+<Formal Display="市町村付">弘前市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="025800">
+<PlayerName>
+<Writing>浜　洲</Writing>
+<Formal>浜洲</Formal>
+<Formal Display="4字">浜　洲　</Formal>
+<Formal Display="3字">浜　洲</Formal>
+<Formal Display="よみがな">はます</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序ノ口</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>東京</Writing>
+<Formal>東京</Formal>
+<Formal Display="2字">東京</Formal>
+</NativeArea>
+<NativeCity>
+<Formal>大田</Formal>
+<Formal Display="3字">大　田</Formal>
+<Formal Display="2字">大田</Formal>
+<Formal Display="市町村付">大田区</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<MatchDetail>
+<MatchResult ParticipantId="021380">
+<Outcome>
+<Writing>○</Writing>
+<Formal>勝</Formal>
+</Outcome>
+</MatchResult>
+<MatchResult ParticipantId="025800">
+<Outcome>
+<Formal>負</Formal>
+</Outcome>
+</MatchResult>
+<WinningTrick>
+<Writing>おしだし　</Writing>
+<Formal>おしだし</Formal>
+<Formal Display="5字">おしだし　</Formal>
+</WinningTrick>
+</MatchDetail>
+</Match>
+</Body>
+<Body BlockId="OS10JN____">
+<Meta>
+<FormatType>Ｍ－Ｐ－Ｄ</FormatType>
+<DataType>郷土力士勝負（まとめ）</DataType>
+<Title>【序二段】</Title>
+<Class>序二段</Class>
+</Meta>
+<Match BlockId="M002">
+<Player PlayerId="024550">
+<PlayerName>
+<Writing>海　真　</Writing>
+<Formal>海真</Formal>
+<Formal Display="4字">海　真　</Formal>
+<Formal Display="3字">海　真</Formal>
+<Formal Display="よみがな">かいしん</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序二段</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+<NativeCity>
+<Writing>大　間</Writing>
+<Formal>大間</Formal>
+<Formal Display="3字">大　間</Formal>
+<Formal Display="2字">大間</Formal>
+<Formal Display="市町村付">大間町</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="025570">
+<PlayerName>
+<Writing>佐々木</Writing>
+<Formal>佐々木</Formal>
+<Formal Display="4字">佐々木　</Formal>
+<Formal Display="3字">佐々木</Formal>
+<Formal Display="よみがな">ささき</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序二段</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>北海</Writing>
+<Formal>北海道</Formal>
+<Formal Display="2字">北海</Formal>
+</NativeArea>
+<NativeCity>
+<Formal>苫小牧</Formal>
+<Formal Display="3字">苫小牧</Formal>
+<Formal Display="2字">苫小</Formal>
+<Formal Display="市町村付">苫小牧市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<MatchDetail>
+<MatchResult ParticipantId="024550">
+<Outcome>
+<Writing>●</Writing>
+<Formal>負</Formal>
+</Outcome>
+</MatchResult>
+<MatchResult ParticipantId="025570">
+<Outcome>
+<Formal>勝</Formal>
+</Outcome>
+</MatchResult>
+<WinningTrick>
+<Writing>よりたおし</Writing>
+<Formal>よりたおし</Formal>
+<Formal Display="5字">よりたおし</Formal>
+</WinningTrick>
+</MatchDetail>
+</Match>
+<Match BlockId="M003">
+<Player PlayerId="023610">
+<PlayerName>
+<Writing>青乃潮　</Writing>
+<Formal>青乃潮</Formal>
+<Formal Display="4字">青乃潮　</Formal>
+<Formal Display="3字">青乃潮</Formal>
+<Formal Display="よみがな">あおのうみ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序二段</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+<NativeCity>
+<Writing>青　森</Writing>
+<Formal>青森</Formal>
+<Formal Display="3字">青　森</Formal>
+<Formal Display="2字">青森</Formal>
+<Formal Display="市町村付">青森市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="023130">
+<PlayerName>
+<Writing>朝日錦</Writing>
+<Formal>朝日錦</Formal>
+<Formal Display="4字">朝日錦　</Formal>
+<Formal Display="3字">朝日錦</Formal>
+<Formal Display="よみがな">あさひにしき</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序二段</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>千葉</Writing>
+<Formal>千葉</Formal>
+<Formal Display="2字">千葉</Formal>
+</NativeArea>
+<NativeCity>
+<Formal>松戸</Formal>
+<Formal Display="3字">松　戸</Formal>
+<Formal Display="2字">松戸</Formal>
+<Formal Display="市町村付">松戸市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<MatchDetail>
+<MatchResult ParticipantId="023610">
+<Outcome>
+<Writing>●</Writing>
+<Formal>負</Formal>
+</Outcome>
+</MatchResult>
+<MatchResult ParticipantId="023130">
+<Outcome>
+<Formal>勝</Formal>
+</Outcome>
+</MatchResult>
+<WinningTrick>
+<Writing>すくいなげ</Writing>
+<Formal>すくいなげ</Formal>
+<Formal Display="5字">すくいなげ</Formal>
+</WinningTrick>
+</MatchDetail>
+</Match>
+<Match BlockId="M004">
+<Player PlayerId="005230">
+<PlayerName>
+<Writing>伊勢ノ花</Writing>
+<Formal>伊勢ノ花</Formal>
+<Formal Display="4字">伊勢ノ花</Formal>
+<Formal Display="3字">伊勢花</Formal>
+<Formal Display="よみがな">いせのはな</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序二段</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+<NativeCity>
+<Writing>鶴　田</Writing>
+<Formal>鶴田</Formal>
+<Formal Display="3字">鶴　田</Formal>
+<Formal Display="2字">鶴田</Formal>
+<Formal Display="市町村付">鶴田町</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="024480">
+<PlayerName>
+<Writing>若佐竹</Writing>
+<Formal>若佐竹</Formal>
+<Formal Display="4字">若佐竹　</Formal>
+<Formal Display="3字">若佐竹</Formal>
+<Formal Display="よみがな">わかさたけ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>序二段</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>大阪</Writing>
+<Formal>大阪</Formal>
+<Formal Display="2字">大阪</Formal>
+</NativeArea>
+<NativeCity>
+<Formal>大阪</Formal>
+<Formal Display="3字">大　阪</Formal>
+<Formal Display="2字">大阪</Formal>
+<Formal Display="市町村付">大阪市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<MatchDetail>
+<MatchResult ParticipantId="005230">
+<Outcome>
+<Writing>○</Writing>
+<Formal>勝</Formal>
+</Outcome>
+</MatchResult>
+<MatchResult ParticipantId="024480">
+<Outcome>
+<Formal>負</Formal>
+</Outcome>
+</MatchResult>
+<WinningTrick>
+<Writing>上手出投げ</Writing>
+<Formal>うわてだしなげ</Formal>
+<Formal Display="5字">上手出投げ</Formal>
+</WinningTrick>
+</MatchDetail>
+</Match>
+</Body>
+<Body BlockId="OS10SA____">
+<Meta>
+<FormatType>Ａ</FormatType>
+<DataType>郷土力士勝負（まとめ）</DataType>
+<Title>【三段目】</Title>
+<Class>三段目</Class>
+</Meta>
+<Article>
+<Paragraph>関係地向け取組なし</Paragraph>
+</Article>
+</Body>
+<Body BlockId="OS10MS____">
+<Meta>
+<FormatType>Ｍ－Ｐ－Ｄ</FormatType>
+<DataType>郷土力士勝負（まとめ）</DataType>
+<Title>【幕　下】</Title>
+<Class>幕下</Class>
+</Meta>
+<Match BlockId="M005">
+<Player PlayerId="010270">
+<PlayerName>
+<Writing>克乃富士</Writing>
+<Formal>克乃富士</Formal>
+<Formal Display="4字">克乃富士</Formal>
+<Formal Display="3字">克富士</Formal>
+<Formal Display="よみがな">かつのふじ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>幕下</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+<NativeCity>
+<Writing>つがる</Writing>
+<Formal>つがる</Formal>
+<Formal Display="3字">つがる</Formal>
+<Formal Display="2字">つが</Formal>
+<Formal Display="市町村付">つがる市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="017820">
+<PlayerName>
+<Writing>小城正</Writing>
+<Formal>小城ノ正</Formal>
+<Formal Display="4字">小城ノ正</Formal>
+<Formal Display="3字">小城正</Formal>
+<Formal Display="よみがな">おぎのしょう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>幕下</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>大阪</Writing>
+<Formal>大阪</Formal>
+<Formal Display="2字">大阪</Formal>
+</NativeArea>
+<NativeCity>
+<Formal>豊中</Formal>
+<Formal Display="3字">豊　中</Formal>
+<Formal Display="2字">豊中</Formal>
+<Formal Display="市町村付">豊中市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<MatchDetail>
+<MatchResult ParticipantId="010270">
+<Outcome>
+<Writing>●</Writing>
+<Formal>負</Formal>
+</Outcome>
+</MatchResult>
+<MatchResult ParticipantId="017820">
+<Outcome>
+<Formal>勝</Formal>
+</Outcome>
+</MatchResult>
+<WinningTrick>
+<Writing>おしだし　</Writing>
+<Formal>おしだし</Formal>
+<Formal Display="5字">おしだし　</Formal>
+</WinningTrick>
+</MatchDetail>
+</Match>
+<Match BlockId="M006">
+<Player PlayerId="017280">
+<PlayerName>
+<Writing>野　上　</Writing>
+<Formal>野上</Formal>
+<Formal Display="4字">野　上　</Formal>
+<Formal Display="3字">野　上</Formal>
+<Formal Display="よみがな">のがみ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>幕下</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+<NativeCity>
+<Writing>五所川</Writing>
+<Formal>五所川原</Formal>
+<Formal Display="3字">五所川</Formal>
+<Formal Display="2字">五所</Formal>
+<Formal Display="市町村付">五所川原市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="011250">
+<PlayerName>
+<Writing>鏡　桜</Writing>
+<Formal>鏡桜</Formal>
+<Formal Display="4字">鏡　桜　</Formal>
+<Formal Display="3字">鏡　桜</Formal>
+<Formal Display="よみがな">かがみおう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>幕下</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モン</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="2字">モン</Formal>
+</NativeCountry>
+<NativeCity>
+<Formal>オボルハンガイ</Formal>
+<Formal Display="3字">オボル</Formal>
+<Formal Display="2字">オボ</Formal>
+<Formal Display="市町村付">オボルハンガイ県</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<MatchDetail>
+<MatchResult ParticipantId="017280">
+<Outcome>
+<Writing>○</Writing>
+<Formal>勝</Formal>
+</Outcome>
+</MatchResult>
+<MatchResult ParticipantId="011250">
+<Outcome>
+<Formal>負</Formal>
+</Outcome>
+</MatchResult>
+<WinningTrick>
+<Writing>おしだし　</Writing>
+<Formal>おしだし</Formal>
+<Formal Display="5字">おしだし　</Formal>
+</WinningTrick>
+</MatchDetail>
+</Match>
+<Match BlockId="M007">
+<Player PlayerId="019390">
+<PlayerName>
+<Writing>大成道　</Writing>
+<Formal>大成道</Formal>
+<Formal Display="4字">大成道　</Formal>
+<Formal Display="3字">大成道</Formal>
+<Formal Display="よみがな">だいせいどう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<SumoRank>幕下</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+<NativeCity>
+<Writing>八　戸</Writing>
+<Formal>八戸</Formal>
+<Formal Display="3字">八　戸</Formal>
+<Formal Display="2字">八戸</Formal>
+<Formal Display="市町村付">八戸市</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022860">
+<PlayerName>
+<Writing>千代海</Writing>
+<Formal>千代の海</Formal>
+<Formal Display="4字">千代の海</Formal>
+<Formal Display="3字">千代海</Formal>
+<Formal Display="よみがな">ちよのうみ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>十　両</Writing>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>高知</Writing>
+<Formal>高知</Formal>
+<Formal Display="2字">高知</Formal>
+</NativeArea>
+<NativeCity>
+<Formal>黒潮</Formal>
+<Formal Display="3字">黒　潮</Formal>
+<Formal Display="2字">黒潮</Formal>
+<Formal Display="市町村付">黒潮町</Formal>
+</NativeCity>
+</PlayerForSumo>
+</Player>
+<MatchDetail>
+<MatchResult ParticipantId="019390">
+<Outcome>
+<Writing>●</Writing>
+<Formal>負</Formal>
+</Outcome>
+</MatchResult>
+<MatchResult ParticipantId="022860">
+<Outcome>
+<Formal>勝</Formal>
+</Outcome>
+</MatchResult>
+<WinningTrick>
+<Writing>ひきおとし</Writing>
+<Formal>ひきおとし</Formal>
+<Formal Display="5字">ひきおとし</Formal>
+</WinningTrick>
+</MatchDetail>
+</Match>
+</Body>
+</SportsData>
+</InData>
+</InContent>
+</DataContent>
+</ContentItem>
+</NewsComponent>
+</NewsItem>
+</NewsML>
+</ITalk>
