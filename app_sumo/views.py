@@ -6,18 +6,11 @@ from datetime import datetime
 
 from .models import *
 from .forms import *
+from .add_views import *
 
 def index(request):
-    # data = Tran_Systemstatus.objects.all()
-    # params = {
-    #     'basho':data[0].CurrentBasho,
-    #     'systatus':data[0].SystemStatus,
-    #     'torikumiday':data[0].TorikumiDate,
-    #     'shoubuday':data[0].MatchDate
-    # }
-    # return render(request, 'app_sumo/index.html', params)
-    return render(request, 'app_sumo/index.html')
-
+    params = nav_info(request)
+    return render(request, 'app_sumo/index.html', params)
 
 #運用日設定画面
 def SUMUDY01(request):
@@ -81,9 +74,27 @@ def SUMOUT01(request):
 
 #電文／データ出力
 def SUMOUT02(request):
+    # selectboxの要素変更はjs側で制御します(予定)
+    group_name = ["番付","取組","勝負","星取","成績","新規"]
+    telegram_group = []
+    t = Mst_KindofNewsML.objects.all()
+
+    if request.method == "POST":
+        res = output_NewsML(request)
+        if "Input_status" in request.POST and request.POST["Input_status"] in ["1","2"]:
+            return res        
+    else:
+        telegram = t.filter(Group_code=1) 
+    
+    code_list = t.values("Group_code").distinct()
+    for code in code_list:
+        telegram_group.append({ "Group_code": code["Group_code"], "Group_name": group_name[int(code["Group_code"])-1]})
+
     d = {
-        'list': Mst_KindofNewsML.objects.all(),
-        }
+        'telegram_group': telegram_group,
+        'telegram': telegram
+    }
+    d.update(nav_info(request))
     return render(request, 'app_sumo/SUMOUT02.html', d)
     
 #電文／データ強制出力
