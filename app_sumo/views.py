@@ -171,16 +171,6 @@ def SUMMST01(request):
 def SUMMST01_add(request, id):
     return HttpResponse("You're looking at question %s." % id)
 
-
-#マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
-def SUMMSM01_heya_html(request):
-    d = {
-            'heyalist': Mst_Heya.objects.all(),
-        }
-
-    return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)  
-
-
 #年度・場所切替画面
 def SUMINT01(request):
     return render(request, 'app_sumo/SUMINT01.html')
