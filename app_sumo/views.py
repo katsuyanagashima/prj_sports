@@ -133,7 +133,6 @@ def SUMNEW01(request):
 def SUMNEW02(request):
     return render(request, 'app_sumo/SUMNEW02.html')
 
-
 #マスタテーブル保守画面の部屋マスタ（Formで表示するパターン）
 #def SUMMSM01_heya_form(request):
 #    form = Mst_HeyaForm(request.POST)
@@ -153,6 +152,13 @@ def SUMMSM01_heya_form(request):
         form = Mst_HeyaForm()
     return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})
 
+
+#力士マスタメンテナンス画面
+def SUMMST01(request):
+    d = {
+            'rikishilist': Mst_Rikishi.objects.all(),
+        }
+    return render(request, 'app_sumo/SUMMST01.html', d)
 
 
 #マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
