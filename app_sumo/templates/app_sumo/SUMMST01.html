@@ -1,0 +1,23 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+<h3>力士マスタメンテナンス画面</h3>
+
+<table class="table">
+    <thead class="thead-dark">
+        <th>code</th>
+        <th>力士名</th>
+        <th>部屋</th>
+    </thead>
+    {% for i in rikishilist %}
+    <tr>
+        <td>{{ i.Rikishi_code }}</td>
+        <td>{{  i.Rikishi_name_kanji_official }}</td>
+        <td>{{  i.Heya_code }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
