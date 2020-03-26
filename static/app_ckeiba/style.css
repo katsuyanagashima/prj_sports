@@ -1,4 +1,20 @@
-/* 以下、ナビゲーションバー */
+/* 以下の順番で記述してます。
+１．ナビゲーションバー
+２．モーダル
+３．フッター
+４．メインのコンテンツ部分
+５．メイン画面の切替タブ部分
+６．レスポンシブ対応
+７．各競馬場の画像の表示設定 */
+
+
+/* ＜スタイルの追加・編集の場合の鉄則三カ条＞
+　その壱：基本的にclass指定で行うべし
+　その弐：htmlやbootstrapで事前に用意されているクラスは基本いじらず、編集したい場合は新たにclassを作って上書きするべし
+　その参：classを新規に作る場合、場所-詳細(nav-ttile とか)という名称規則に則り、どの部分を指しているかのわかりやすさを心がけるべし */
+
+
+/* １．ナビゲーションバー */
 .navbar{
     background-color: #f4eaff;
 }
@@ -12,25 +28,26 @@
     background-position: left;
     background-repeat: no-repeat;
 }
-.h6 {
+.nav-text {
     padding-top: 3px;
 }
 
 /* 保守バッジ */
-.nav-badge-hoshu{
-    margin-left: 2em;
-}
+    .nav-badge-hoshu{
+        margin-left: 2em;
+    }
 /* 業務状態バッジ */
-.nav-badge-state{
-    cursor: pointer;
-}
+    .nav-badge-state{
+        cursor: pointer;
+    }
 /* 運用日バッジ */
-.nav-unyobi{
-    float: right;
-    cursor: pointer;
-}
+    .nav-unyobi{
+        float: right;
+        cursor: pointer;
+    }
 
-/* 以下、モーダル */
+
+/* ２．モーダル */
 .radio_gyomu{
     width: 49%;
 }
@@ -41,19 +58,21 @@
     padding: 0.5rem 1rem;
 }
 
-/* 以下、フッター */
+
+/* ３．フッター */
 .footer-button {
     background-color:rgb(255, 221, 25);
     color:black;
     font-size: 1em;
 }
 /* マスタ登録ボタン */
-.master-button{
-    margin-left: 10px;
-    margin-right: auto;
-}
+    .master-button{
+        margin-left: 10px;
+        margin-right: auto;
+    }
 
-/* 以下、メインのコンテンツ部分 */
+
+/* ４．メインのコンテンツ部分 */
 .maincontents{
     padding-top: 100px;
     padding-bottom: 45px;
@@ -143,16 +162,17 @@
 }
 
 /* テーブルの項目異常時のスタイル */
-.misakusei{
-    background-color: red;
-    color: white;
-    border: solid 2px black;
-}
-.mikansei{
-    background-color: yellow;
-}
+    .misakusei{
+        background-color: red;
+        color: white;
+        border: solid 2px black;
+    }
+    .mikansei{
+        background-color: yellow;
+    }
 
-/* 以下、メイン画面のタブ部分 */
+
+/* ５．メイン画面の切替タブ部分 */
 .menu-tab{
     margin-top: 10px;
     padding: 5px;
@@ -199,7 +219,7 @@
 
 
 
-/* 以下、レスポンシブ対応 */
+/* ６．レスポンシブ対応 */
 
 @media screen and (min-width: 1200px){
     /*　画面サイズが1200px以上の場合ここを読み込む　*/
@@ -336,12 +356,10 @@
     }
 }
 
-/* ↑で、320px(iphoneSE/5の縦)まで対応。319px以下は非対応（レイアウト崩れる）。今日び大丈夫でしょ */
+/* ↑で、320px(iphoneSE/5の縦)まで対応。319px以下は非対応（レイアウト崩れる）。 */
 
 
-/* レスポンシブ対応ここまで */
-
-/* 以下、各競馬場の表示設定 */
+/* ７．各競馬場の画像の表示設定 */
 .jouimg_banei{
     background: url('/static/app_ckeiba/pic/banei.jpg');
     background-size: 30%;
