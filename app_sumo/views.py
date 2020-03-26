@@ -14,7 +14,39 @@ def index(request):
 
 #運用日設定画面
 def SUMUDY01(request):
-    return render(request, 'app_sumo/SUMUDY01.html')
+    params = nav_info(request, 1)
+    nav = params[0]
+    tran_system = params[1]
+
+    # # 最初のレコードだけ抽出
+    # tran_system = Tran_Systemstatus.objects.all().select_related('TorikumiDate', 'MatchDate').first()
+    ## init は初期値という意味で、更新をかけた後の状態維持に使用 ##
+    init = { 
+        "torikumi_nichime":tran_system.TorikumiDate.Nicime_code, 
+        "match_nichime":tran_system.MatchDate.Nicime_code 
+    }
+
+    nichime = Mst_Nichime.objects.all()
+
+    if request.method == "POST":
+        # Foreign key にカラムを指定しない場合は、selectでobjectを登録する必要があるため、
+        # models.pyの記述を見直す必要あり
+        t_obj = nichime.get(Nicime_code = int(request.POST["torikumi_nichime"]))
+        m_obj = nichime.get(Nicime_code = int(request.POST["match_nichime"]))
+        tran_system.TorikumiDate = t_obj
+        tran_system.MatchDate = m_obj
+        tran_system.save()
+
+        init["torikumi_nichime"] = tran_system.TorikumiDate.Nicime_code
+        init["match_nichime"] = tran_system.MatchDate.Nicime_code
+
+    d = {
+        'init': init,
+        'nichime': nichime
+    }
+    d.update(nav)
+    
+    return render(request, 'app_sumo/SUMUDY01.html', d)
 
 #予想番付処理画面（階級を選択して次画面へ）
 def SUMYOS01(request):
@@ -40,7 +72,7 @@ def SUMBAN03(request):
 def SUMBAN04(request):
     return render(request, 'app_sumo/SUMBAN04.html')
 
-#取組処理画面（階級、入力方式、東西を選択）
+#取組画面（階級、入力方式、東西を選択）
 def SUMTOR01(request):
     return render(request, 'app_sumo/SUMTOR01.html')
 
@@ -87,7 +119,6 @@ def SUMOUT02(request):
             return res
         # for key in init.keys():
         #     init[key] = int(request.POST[key])
-        # init = { "telegram_kind":request.POST[""], "Input_status":1, "telegram":1 }
 
     
     code_list = t.values("Group_code").distinct()
