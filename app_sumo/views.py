@@ -76,21 +76,28 @@ def SUMOUT01(request):
 def SUMOUT02(request):
     # selectboxの要素変更はjs側で制御します(予定)
     group_name = ["番付","取組","勝負","星取","成績","新規"]
+    
     telegram_group = []
+    init = { "telegram_kind":1, "Input_status":0, "telegram":1 }
     t = Mst_KindofNewsML.objects.all()
 
     if request.method == "POST":
         res = output_NewsML(request)
         if "Input_status" in request.POST and request.POST["Input_status"] in ["1","2"]:
-            return res        
-    else:
-        telegram = t.filter(Group_code=1) 
+            return res
+        # for key in init.keys():
+        #     init[key] = int(request.POST[key])
+        # init = { "telegram_kind":request.POST[""], "Input_status":1, "telegram":1 }
+
     
     code_list = t.values("Group_code").distinct()
     for code in code_list:
         telegram_group.append({ "Group_code": code["Group_code"], "Group_name": group_name[int(code["Group_code"])-1]})
 
+    telegram = t.filter(Group_code=init["telegram_kind"]) 
+
     d = {
+        'init': init,
         'telegram_group': telegram_group,
         'telegram': telegram
     }
