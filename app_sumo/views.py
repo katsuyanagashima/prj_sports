@@ -4,99 +4,13 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
 
-from .models import Match, Eventinfo
-from .forms import MatchForm
-
-from .models import PostCsv
-
-import csv
-from io import TextIOWrapper, StringIO
+from .models import *
+from .forms import *
+from .add_views import *
 
 def index(request):
-     return render(request, 'app_sumo/index.html')
-
-def sample(request):
-    return render(request, 'app_sumo/sample.html')
-
-def xmlout1(request):
-    p = {}
-    p['status'] = 1
-    p['msg'] = 'Success'
-    t = loader.get_template('app_sumo/os1.xml')
-    context = {'data':p}
-    return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
-
-def xmlout14(request):
-    p = {}
-    p['status'] = 1
-    p['msg'] = 'Success'
-    t = loader.get_template('app_sumo/os14.xml')
-    context = {'data':p}
-    return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
-
-def xmlout_14(request):
-    latest_match_list = Match.objects.all().order_by('-pub_date')
-    taikai_list = Eventinfo.objects.all()   
-    context = {
-        'latest_match_list': latest_match_list,
-        'taikai_list': taikai_list,
-    }
-    t = loader.get_template('app_sumo/os14.xml')
-    return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
-
-def input14(request):
-    d = {
-        'matchlist': Match.objects.all(),
-    }
-    return render(request, 'app_sumo/input14.html', d)
-
-def update14(request):
-    d = {
-        'matchlist': Match.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date'),
-    }
-    return render(request, 'app_sumo/update14.html', d)
-
-def update14_new(request):
-    if request.method == "POST":
-        form = MatchForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.pub_date = timezone.now()
-            post.save()
-            return redirect('update14')
-    else:
-        form = MatchForm()
-    return render(request, 'app_sumo/update14_edit.html', {'form': form})
-    
- #   if request.method == 'POST':
- #       if 'button_1' in request.POST:
- #           # ボタン1がクリックされた場合の処理
- #           xmlout_14()
- #       elif 'button_2' in request.POST:
- #           # ボタン2がクリックされた場合の処理
- #           input14(request)
-
-def upload(request):
-    if 'csv' in request.FILES:
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='utf-8')
-        csv_file = csv.reader(form_data)
-        for line in csv_file:
-            postcsv, created = PostCsv.objects.get_or_create(player_name=line[1])
-            postcsv.player_name = line[0]
-            postcsv.player_name_formal = line[1]
-            postcsv.player_name_formal3 = line[2]
-            postcsv.player_name_yomi = line[3]
-            postcsv.save()
-
-        return render(request, 'app_sumo/upload.html')
-
-    else:
-        return render(request, 'app_sumo/upload.html')
-
-#業務運用メニュー
-#def SUMUNY01(request):
-#    return render(request, 'app_sumo/SUMUNY01.html')
+    params = nav_info(request)
+    return render(request, 'app_sumo/index.html', params)
 
 #運用日設定画面
 def SUMUDY01(request):
@@ -154,13 +68,34 @@ def SUMSHO02(request):
 def SUMYUS01(request):
     return render(request, 'app_sumo/SUMYUS01.html')
 
-#コンテンツ編集指示
+#コンテンツ出力指示画面
 def SUMOUT01(request):
     return render(request, 'app_sumo/SUMOUT01.html')
 
 #電文／データ出力
 def SUMOUT02(request):
-    return render(request, 'app_sumo/SUMOUT02.html')
+    # selectboxの要素変更はjs側で制御します(予定)
+    group_name = ["番付","取組","勝負","星取","成績","新規"]
+    telegram_group = []
+    t = Mst_KindofNewsML.objects.all()
+
+    if request.method == "POST":
+        res = output_NewsML(request)
+        if "Input_status" in request.POST and request.POST["Input_status"] in ["1","2"]:
+            return res        
+    else:
+        telegram = t.filter(Group_code=1) 
+    
+    code_list = t.values("Group_code").distinct()
+    for code in code_list:
+        telegram_group.append({ "Group_code": code["Group_code"], "Group_name": group_name[int(code["Group_code"])-1]})
+
+    d = {
+        'telegram_group': telegram_group,
+        'telegram': telegram
+    }
+    d.update(nav_info(request))
+    return render(request, 'app_sumo/SUMOUT02.html', d)
     
 #電文／データ強制出力
 def SUMOUT03(request):
@@ -192,4 +127,51 @@ def SUMSHI01(request):
 
 #NewsML修正画面
 def SUMNEW01(request):
-    return render(request, 'app_sumo/SUMNEW01.html')        
+    return render(request, 'app_sumo/SUMNEW01.html')
+
+#NewsML修正画面内容部
+def SUMNEW02(request):
+    return render(request, 'app_sumo/SUMNEW02.html')
+
+
+#マスタテーブル保守画面の部屋マスタ（Formで表示するパターン）
+#def SUMMSM01_heya_form(request):
+#    form = Mst_HeyaForm(request.POST)
+#    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})    
+
+
+def SUMMSM01_heya_form(request):
+    if request.method == "POST":
+        form = Mst_HeyaForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.pub_date = timezone.now()
+            post.save()
+            return redirect('SUMMSM01_heya_form')
+    else:
+        form = Mst_HeyaForm()
+    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})
+
+
+
+#マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
+def SUMMSM01_heya_html(request):
+    d = {
+            'heyalist': Mst_Heya.objects.all(),
+        }
+
+    return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)  
+
+
+#年度・場所切替画面
+def SUMINT01(request):
+    return render(request, 'app_sumo/SUMINT01.html')
+    
+#優勝決定戦階級選択画面
+def SUMUKS01(request):
+    return render(request, 'app_sumo/SUMUKS01.html')
+    
+#優勝決定戦入力画面
+def SUMUKS02(request):
+    return render(request, 'app_sumo/SUMUKS02.html')

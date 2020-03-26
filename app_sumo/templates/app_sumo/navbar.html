@@ -24,26 +24,25 @@
             </div>
         </div> -->
     </div>
-
-
+    <div>本番環境</div>
     <div class="container">
         <div class="container-fluid">
             <div class="row justify-content-start">
                 <div class="col-3 form-inline">
-                    <div class="labeltitle">場所</div>
-                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="２０１９年　５月本場所">
+                    <div class="labeltitle">開催場所</div>
+                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="{{ nav.basho }}">
                 </div>
                 <div class="col-3 form-inline">
                     <div class="labeltitle">運用状態</div>
-                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="通常業務開始中">
+                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="{{ nav.systatus }}">
                 </div>
                 <div class="col-3 form-inline">
                     <div class="labeltitle">取組日目</div>
-                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="初　日">
+                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="{{ nav.torikumiday }}">
                 </div>
                 <div class="col-3 form-inline">
                     <div class="labeltitle">勝負日目</div>
-                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="初　日">
+                    <input type="text" class="form-control text-center labeltext font-weight-bold" placeholder="{{ nav.shoubuday }}">
                 </div>
             </div>
             <p></p>

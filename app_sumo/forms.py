@@ -1,9 +1,9 @@
 from django import forms
 
 from django.forms import ModelForm
-from .models import Match
+from .models import Mst_Heya
 
-class MatchForm(forms.ModelForm):
+class Mst_HeyaForm(forms.ModelForm):
     class Meta:
-        model = Match
-        fields = ('player1', 'outcome1', 'waza', 'outcome2', 'player2',)
+        model = Mst_Heya
+        fields = ('Heya_code', 'Heya_official_kanji', 'Heya_official_kana', 'Heya_kanji_2char', 'Heya_kanji_3char',)
