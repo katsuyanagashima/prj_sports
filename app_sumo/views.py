@@ -160,6 +160,10 @@ def SUMMST01(request):
         }
     return render(request, 'app_sumo/SUMMST01.html', d)
 
+#力士マスタメンテナンス画面（追加）
+def SUMMST01_add(request, id):
+    return HttpResponse("You're looking at question %s." % id)
+
 
 #マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
 def SUMMSM01_heya_html(request):
