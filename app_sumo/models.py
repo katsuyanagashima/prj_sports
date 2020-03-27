@@ -178,6 +178,7 @@ class Mst_Hometown(Model):
 #    Class_code = ForeignKey(Mst_Class, on_delete=CASCADE) #階級マスタ
 #    Award_count = IntegerField(verbose_name='受賞回数')
 
+
 #開催マスタ
 class Mst_Event(Model):
     Event_date = IntegerField(verbose_name='開催年月')
