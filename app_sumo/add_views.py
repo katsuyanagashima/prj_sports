@@ -33,10 +33,12 @@ def nav_info(request, get_type=0):
 
 def output_NewsML(request):
     if request.method == "POST":
-        if "telegram" not in request.POST:
+        if "NewsMLNo" not in request.POST:
             return "Input error."
-        
-        temp_product_id = temp[int(request.POST["telegram"])-1]
+        newsno = request.POST["NewsMLNo"]
+        if newsno.startswith("0"):
+            newsno.lstrip("0")
+        temp_product_id = temp[int(newsno)-1]
         file_name = '%s.xml' % temp_product_id
         temp_file_name = 'NewsML_temp/%s' % file_name
         t = loader.get_template(temp_file_name)
