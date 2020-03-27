@@ -20,7 +20,7 @@ urlpatterns = [
     path('SUMSHO01/SUMSHO02/', views.SUMSHO02, name='SUMSHO02'), #勝負入力処理
     path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'), #勝負入力処理
     path('SUMOUT01/', views.SUMOUT01, name='SUMOUT01'), #コンテンツ出力指示画面
-    path('SUMOUT02/', views.SUMOUT02, name='SUMOUT02'), #電文／データ出力
+    path('SUMOUT02/', views.SUMOUT02, name='SUMOUT02'), #配信・作成・プレビュー・印刷
     path('SUMOUT03/', views.SUMOUT03, name='SUMOUT03'), #電文／データ強制出力
     path('SUMJKH01/', views.SUMJKH01, name='SUMJKH01'), #状況表示
     path('SUMJKH01/SUMJKH02/', views.SUMJKH02, name='SUMJKH02'), #状況表示画面
@@ -33,7 +33,8 @@ urlpatterns = [
     path('SUMINT01/', views.SUMINT01, name='SUMINT01'), #画面・年度切替画面
     path('SUMUKS01/', views.SUMUKS01, name='SUMUKS01'), #優勝決定戦階級選択画面
     path('SUMUKS02/', views.SUMUKS02, name='SUMUKS02'), #優勝決定戦入力画面
-    
+    # path('SUMMST01/', views.SUMMST01, name='SUMMST01'), #力士マスタメンテ画面
+
 
     # path('output/', add_views.xmlout_14, name=''), #NewsML修正画面
     
