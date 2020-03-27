@@ -2,5 +2,82 @@
 
 {% block content %}
 <h1 class="caption">階級上位力士</h1>
-<a href="../" type="button" class="btn btn-primary">戻る</a>
+
+<div class="container-fluid row">
+
+
+  <div class="col-12 gyomu-menu caption_box">
+    <form class="form-inline">
+      <div class="form-group col-xs-1">
+        <label for="kaikyu">中入り　</label>
+        <input type="number" class="form-control" id="num_of_losses_nakairi" maxlength="2">
+        <label for="loss">敗</label>
+      </div>
+    </form>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="kaikyu">十両　　</label>
+        <input type="number" class="form-control" id="num_of_losses_juryo" size="2" maxlength="4">
+        <label for="loss">敗</label>
+      </div>
+    </form>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="kaikyu">幕下　　</label>
+        <input type="number" class="form-control" id="num_of_wins_makushita">
+        <label for="win">勝</label>
+        <input type="number" class="form-control" id="num_of_losses_makushita">
+        <label for="loss">敗</label>
+      </div>
+    </form>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="kaikyu">三段目　</label>
+        <input type="number" class="form-control" id="num_of_wins_makushita">
+        <label for="win">勝</label>
+        <input type="number" class="form-control" id="num_of_losses_makushita">
+        <label for="loss">敗</label>
+      </div>
+    </form>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="kaikyu">序二段　</label>
+        <input type="number" class="form-control" id="num_of_wins_makushita">
+        <label for="win">勝</label>
+        <input type="number" class="form-control" id="num_of_losses_makushita">
+        <label for="loss">敗</label>
+      </div>
+    </form>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="kaikyu">序の口　</label>
+        <input type="number" class="form-control" id="num_of_wins_makushita">
+        <label for="win">勝</label>
+        <input type="number" class="form-control" id="num_of_losses_makushita">
+        <label for="loss">敗</label>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<p>
+●●●以下は設計書からの転記（最後に削除すること●●●）</br>
+上位力士基準登録機能</br>
+　階級ごとに上位力士基準勝敗数をテーブルに登録する。</br>
+　各階級別成績上位力士電文を作成するときの、出力する基準となる勝数、敗数を設定するため。</br>
+　【要望】階級別上位力士で前日設定したものが翌日も残るようにする。</br>
+　　　　　勝数制御の場合は勝数のみの入力、敗数制御の場合は敗数のみの入力、</br>
+　　　　　勝数or敗数制御の場合は勝数・敗数を両方入力して制御できるようにする</br>
+　【設計書】</br>
+　①階級上位力士から、開催年月西暦、日目コードをキーとして、階級別に負け数を表示する。＜in:階級上位力士＞</br>
+　②階級別上位力士設定画面より、幕内、十両は、負け数を、幕下以下は、勝ち数と負け数の入力を行う。</br>
+　③入力されたデータを階級上位力士の負け数勝ち数にそれぞれ反映させる。＜out:階級上位力士＞</br>
+</br>
+</p>
+
+<!-- 実行-->
+<a href="" type="button" class="btn btn-primary btn-lg btn-block">実行</a>
+<!-- 戻る-->
+<a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
 {% endblock %}
