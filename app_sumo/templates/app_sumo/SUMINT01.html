@@ -3,17 +3,26 @@
     {% block content %}
     
     <h1 class="caption">年度場所切替</h1>
-        <!-- 年度-->
-        <div class="form-inline">
-            <h5>　年度　（西暦）</h5>
+
+        <form action="" method="post">
+            {%csrf_token%}
+            {{form.as_p}}
+        <input type="submit" value="実行">
+        </form>
+        <h3>懸案：テーブルを更新できるようになりましたが、対応するテーブルをそのまま表示することしかできません。</h3>
+        <h3>懸案：デフォルト値を非表示で登録したい「取組日目」「勝負日目」「年齢算出基準日」がうまく消せません。</h3>
+        <h3>懸案：外部キーの項目が日本語になりません。</h3>
+             <!-- 年度-->
+<!--         <div class="form-inline">
+           <h5>　年度　（西暦）</h5>
             <input class="form-control" type="text">
             <label class="control-label">年</label>
-        </div>
+        </div>-->
 
-        <div class="container-fluid row">
-            <div class="row">
+<!--        <div class="container-fluid row">
+            <div class="row">-->
                 <!-- 場所 -->    
-                <div class="col-6">    
+<!--                 <div class="col-6">    
                     <div class="dropdown">
                         <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         場所
@@ -31,10 +40,10 @@
         </div>
 
         <div class="container-fluid row">
-        </div>
+        </div>-->
         
         <!-- 初日年月日-->
-        <div class="form-inline">
+<!--         <div class="form-inline">
             <h5>　初日　　年月日</h5>
             <input class="form-control" type="text">
             <label class="control-label">年</label>
@@ -42,10 +51,10 @@
             <label class="control-label">月</label>
             <input class="form-control" type="text">
             <label class="control-label">日</label>
-        </div>
+        </div>-->
 
         <!-- 番付発表年月-->
-        <div class="form-inline">
+<!--         <div class="form-inline">
             <h5>番付発表　年月日</h5>
             <input class="form-control" type="text">
             <label class="control-label">年</label>
@@ -53,10 +62,10 @@
             <label class="control-label">月</label>
             <input class="form-control" type="text">
             <label class="control-label">日</label>
-        </div>
+        </div>-->
 
     <!-- 実行-->
-    <a href="../" type="button" class="btn btn-primary btn-lg btn-block">実行</a>
+<!--    <a href="../" type="button" class="btn btn-primary btn-lg btn-block">実行</a>-->
     <!-- 戻る-->
     <a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
 

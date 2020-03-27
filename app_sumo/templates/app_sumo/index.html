@@ -7,7 +7,7 @@
         <div class="col-6 gyomu-menu">
             <div class="row justify-content-start menu-block">
                 <button class="btn menubuttonbase menubutton btn-block" data-toggle="modal" data-target="#SUMGKD01"><i
-                        class="fas fa-laptop fa-fw"></i>業務起動指示選択</button>
+                        class="fas fa-laptop fa-fw"></i>業務起動指示選択（業務運用選択を廃止するので、このボタンは廃止。電文送信モード、MQ送信先はシステム関連をまとめた別の括りに移動させる予定）</button>
                 <button class="btn menubuttonbase menubutton2 btn-block" data-toggle="modal" data-target="#SUMUNYO01"><i
                         class="fas fa-laptop fa-fw"></i>業務運用選択</button>
             </div>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-6">
                         <button class="btn menubuttonbase menubutton3 btn-block" data-toggle="modal"
-                            data-target="#SUMTOT01"><i class="fas fa-reply fa-fw"></i>データ送信テスト<br/>（ここに必要？）</button>
+                            data-target="#SUMTOT01"><i class="fas fa-reply fa-fw"></i>データ送信テスト<br/>（これもシステム関連をまとめたメニューに移動予定）</button>
                     </div>
                 </diV>
                 <div class="row">
@@ -45,7 +45,7 @@
     </div>
     <nav class="navbar fixed-bottom navbar-dark bg-dark">
         <a href="../admin" class="btn menubutton5 btn-block" role="button">管理画面</a>
-        <a href="" class="btn menubutton5 btn-block" role="button">終了</a>
+        <a href="" class="btn menubutton5 btn-block" role="button">ログアウト</a>
     </nav>
 </div>
 <!-- ============================================================================================================== -->
@@ -161,6 +161,9 @@
                     <div class="col-3">
                         <a href="SUMJKH01" type="button" class="btn btn-outline-primary btn-lg">状況表示</a>
                     </div>
+                    <div class="col-4">
+                        <a href="SUMOUT02" type="button" class="btn btn-outline-primary btn-lg">配信・作成・プレビュー・印刷</a>
+                    </div>
                 </div>
                 <hr />
                 <div class="row">
@@ -184,9 +187,6 @@
                     </div>
                     <div class="col-3">
                         <a href="SUMOUT01" type="button" class="btn btn-outline-primary btn-lg">コンテンツ出力指示</a>
-                    </div>
-                    <div class="col-3">
-                        <a href="SUMOUT02" type="button" class="btn btn-outline-primary btn-lg">電文／データ出力</a>
                     </div>
                     <div class="col-3">
                         <a href="SUMUKS01" type="button" class="btn btn-outline-primary btn-lg">優勝決定戦入力</a>
@@ -288,13 +288,10 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-3">
-                        <a href="../admin/app_sumo/mst_rikishi/" type="button" class="btn btn-primary">力士マスタ</a>
+                        <a href="SUMMST01" type="button" class="btn btn-primary">力士マスタ</a>
                     </div>
                     <div class="col-3">
-                        <a href="../admin/app_sumo/mst_heya/" type="button" class="btn btn-success">部屋マスタ(admin画面）</a>
-                    </div>
-                    <div class="col-3">
-                        <a href="SUMMSM01_heya_html" type="button" class="btn btn-success">部屋マスタ（html）</a>
+                        <a href="../admin/app_sumo/mst_heya/" type="button" class="btn btn-primary">部屋マスタ</a>
                     </div>
                 </div>
                 <hr />
