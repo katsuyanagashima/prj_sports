@@ -35,7 +35,6 @@ urlpatterns = [
     path('SUMUKS02/', views.SUMUKS02, name='SUMUKS02'), #優勝決定戦入力画面
     # path('SUMMST01/', views.SUMMST01, name='SUMMST01'), #力士マスタメンテ画面
 
-
     # path('output/', add_views.xmlout_14, name=''), #NewsML修正画面
     
 ]
