@@ -12,12 +12,13 @@ from .forms import Csvtest1Form
 # from .import check_receiving_autorace
 
 def index(request):
-    template = loader.get_template('app_autorace/index.html')
-    context = {
-       'status':systemstatus.objects.last(),
-    #    'status':systemstatus.objects.latest(sys_updated.fields),
-    }
-    return HttpResponse(template.render(context, request))
+    # template = loader.get_template('app_autorace/index.html')
+    # context = {
+    #    'status':systemstatus.objects.last(),
+    # #    'status':systemstatus.objects.latest(sys_updated.fields),
+    # }
+    # return HttpResponse(template.render(context, request))
+    return render(request, 'app_autorace/index.html')
 
 def unyou(request):
     template = loader.get_template('app_autorace/unyou.html')

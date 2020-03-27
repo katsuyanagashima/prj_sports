@@ -9,7 +9,7 @@
 
 
 /* ＜スタイルの追加・編集の場合の鉄則三カ条＞
-　その壱：基本的にclass指定で行うべし
+　その壱：基本的に既存のスタイル設定を再利用するべし
 　その弐：htmlやbootstrapで事前に用意されているクラスは基本いじらず、編集したい場合は新たにclassを作って上書きするべし
 　その参：classを新規に作る場合、場所-詳細(nav-ttile とか)という名称規則に則り、どの部分を指しているかのわかりやすさを心がけるべし */
 
@@ -28,6 +28,20 @@
     background-position: left;
     background-repeat: no-repeat;
 }
+
+/* オートで追加 */
+.navbar-autorace{
+    background-color: #FFFF99;
+}
+.nav-title-img-autorace{
+    background: url('/static/app_autorace/pic/autorace_logo2.png');
+    background-size: 11%;
+    display: block;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+/* ここまで */
+
 .nav-text {
     padding-top: 3px;
 }
@@ -113,7 +127,7 @@
     }
 
 .table{
-    font-size: 0.7em;
+    /* font-size: 0.7em; */
     margin-bottom: 3px;
     text-align: center;
 }
@@ -291,7 +305,16 @@
     .footer-button {
         font-size: 0.7em;
     }
-
+    /* オートレース */
+    .log-button{
+        display: none;
+    }
+    .nav-badge-hoshu {
+        margin-left: 1em;
+    }
+    .table{
+        font-size: 0.7em;
+    }
 }
 
 @media screen and ( max-width:419px) {
@@ -334,6 +357,19 @@
     .footer-button {
         font-size: 0.7em;
     }
+    /* オートレース */
+    h2{
+        font-size: 1.1rem;
+    }
+    .nav-badge-hoshu {
+        margin-left: 1em;
+    }
+    .log-button{
+        display: none;
+    }
+    .table{
+        font-size: 0.7em;
+    }
 }
 
 @media screen and ( max-width:349px) {
@@ -353,6 +389,26 @@
     .container-area{
         padding-right: 0px;
         padding-left: 0px;
+    }
+    /* オートレース */
+    
+    h2{
+        font-size: 1rem;
+    }
+    .nav-badge-hoshu {
+        margin-left: 1em;
+    }
+    .log-button{
+        display: none;
+    }
+    .nav-title-img-autorace{
+        background-size: 14%;
+    }
+    .caption_box {
+        padding: 0.5em;
+    }
+    .table{
+        font-size: 0.7em;
     }
 }
 
@@ -451,3 +507,42 @@
     background-position: right;
     background-repeat: no-repeat;
 }
+
+/* オートで追加 */
+.jouimg_hamamatsu{
+    background: url('/static/app_autorace/pic/hamamatsu.png');
+    background-size: 35%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_iizuka{
+    background: url('/static/app_autorace/pic/iizuka.png');
+    background-size: 29%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_isezaki{
+    background: url('/static/app_autorace/pic/isezaki.png');
+    background-size: 20%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_sanyo{
+    background: url('/static/app_autorace/pic/sanyo.PNG');
+    background-size: 35%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kawaguchi{
+    background: url('/static/app_autorace/pic/kawaguchi.png');
+    background-size: 35%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+/* ここまで */
