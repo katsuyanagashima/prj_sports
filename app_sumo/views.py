@@ -15,7 +15,7 @@ def index(request):
 #運用日設定画面
 def SUMUDY01(request):
     params = nav_info(request, 1)
-    nav = params[0]
+    # nav = params[0]
     tran_system = params[1]
 
     # # 最初のレコードだけ抽出
@@ -40,6 +40,8 @@ def SUMUDY01(request):
         init["torikumi_nichime"] = tran_system.TorikumiDate.Nicime_code
         init["match_nichime"] = tran_system.MatchDate.Nicime_code
 
+    # DB登録前に画面が表示されてしまうので、改善しなければならない
+    nav = nav_info(request)
     d = {
         'init': init,
         'nichime': nichime
