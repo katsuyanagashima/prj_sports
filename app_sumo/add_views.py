@@ -15,17 +15,21 @@ temp = [
     'YYYYMMDDOSF23AABB______01'
 ]
 
-def nav_info(request):
-    data = Tran_Systemstatus.objects.all()
+def nav_info(request, get_type=0):
+    tran_system = Tran_Systemstatus.objects.all().first()
+
     params = {
-        'nav':{
-            'basho':data[0].CurrentBasho,
-            'systatus':data[0].SystemStatus,
-            'torikumiday':data[0].TorikumiDate,
-            'shoubuday':data[0].MatchDate
+            'nav':{
+            'basho':tran_system.CurrentBasho,
+            'systatus':tran_system.SystemStatus,
+            'torikumiday':tran_system.TorikumiDate.Nicime_name,
+            'shoubuday':tran_system.MatchDate.Nicime_name
             } 
         }
-    return params
+    if get_type:
+        return [params, tran_system]
+    else:
+        return params
 
 def output_NewsML(request):
     if request.method == "POST":

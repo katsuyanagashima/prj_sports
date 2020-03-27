@@ -1,46 +1,51 @@
-    {% extends 'app_sumo/base.html' %}
+{% extends 'app_sumo/base.html' %}
 
-    {% block content %}
-    <h1 class="caption">運用日設定</h1>
-    <div class="container-fluid row">
-        <div class="row">
-        <!-- 取組日目 -->    
-        <div class="col-6">    
-        <div class="dropdown">
-            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        取組日目
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    　          <a class="dropdown-item" href="#">リスト１</a>
-                <a class="dropdown-item" href="#">リスト２</a>
+{% block content %}
+<h1 class="caption">運用日設定</h1>
+<form method="post" id="tran_system" name="tran_system">
+{% csrf_token %}
+<div class="container-fluid row">
+    <div class="row">
+        <!-- 取組日目 -->
+        <div class="col-6">
+            <div class="form-group">
+                <label for="torikumi">取組日目:</label>
+                <select id="torikumi" name="torikumi_nichime" class="form-control">
+                    {% for i in nichime %}
+                    <option value="{{ i.Nicime_code }}" {% if init.torikumi_nichime == i.Nicime_code %} selected{% endif %}>
+                        {{ i.Nicime_name }}
+                    </option>
+                    {% endfor %}
+                </select>
             </div>
-        </div>
         </div>
         <!-- 勝負日目-->
         <div class="col-6">
-        <div class="dropdown">
-            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            勝負日目
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">リスト１</a>
-                <a class="dropdown-item" href="#">リスト２</a>
+            <div class="form-group">
+                <label for="shoubu">勝負日目:</label>
+                <select id="shoubu" name="match_nichime" class="form-control">
+                    {% for j in nichime %}
+                    <option value="{{ j.Nicime_code }}" {% if init.match_nichime == j.Nicime_code %} selected{% endif %}>
+                        {{ j.Nicime_name }}
+                    </option>
+                    {% endfor %}
+                </select>
             </div>
-            </div>
-        </div>
-        </div>
-    </div>   
-    <!-- 力士年齢算出基準日-->
-    <div class="form-inline">
-        <input class="form-control" type="text">
-        <label class="control-label">年</label>
-        <input class="form-control" type="text">
-        <label class="control-label">月</label>
-        <input class="form-control" type="text">
-        <label class="control-label">日</label>
+       </div>
     </div>
-    <!-- 実行-->
-    <a href="" type="button" class="btn btn-primary btn-lg btn-block">実行</a>
-    <!-- 戻る-->
-    <a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
-    {% endblock %}
+</div>
+<!-- 力士年齢算出基準日-->
+<div class="form-inline">
+    <input class="form-control" type="text">
+    <label class="control-label">年</label>
+    <input class="form-control" type="text">
+    <label class="control-label">月</label>
+    <input class="form-control" type="text">
+    <label class="control-label">日</label>
+</div>
+<!-- 実行-->
+<button type="submit" class="btn btn-primary">実行</button>
+</form>
+<!-- 戻る-->
+<a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
+{% endblock %}
