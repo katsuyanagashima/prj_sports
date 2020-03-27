@@ -1,0 +1,548 @@
+/* 以下の順番で記述してます。
+１．ナビゲーションバー
+２．モーダル
+３．フッター
+４．メインのコンテンツ部分
+５．メイン画面の切替タブ部分
+６．レスポンシブ対応
+７．各競馬場の画像の表示設定 */
+
+
+/* ＜スタイルの追加・編集の場合の鉄則三カ条＞
+　その壱：基本的に既存のスタイル設定を再利用するべし
+　その弐：htmlやbootstrapで事前に用意されているクラスは基本いじらず、編集したい場合は新たにclassを作って上書きするべし
+　その参：classを新規に作る場合、場所-詳細(nav-ttile とか)という名称規則に則り、どの部分を指しているかのわかりやすさを心がけるべし */
+
+
+/* １．ナビゲーションバー */
+.navbar{
+    background-color: #f4eaff;
+}
+.nav-title{
+    padding-left: 4em;
+}
+.nav-title-img{
+    background: url('/static/app_ckeiba/pic/uma2.png');
+    background-size: 12%;
+    display: block;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+/* オートで追加 */
+.navbar-autorace{
+    background-color: #FFFF99;
+}
+.nav-title-img-autorace{
+    background: url('/static/app_autorace/pic/autorace_logo2.png');
+    background-size: 11%;
+    display: block;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+/* ここまで */
+
+.nav-text {
+    padding-top: 3px;
+}
+
+/* 保守バッジ */
+    .nav-badge-hoshu{
+        margin-left: 2em;
+    }
+/* 業務状態バッジ */
+    .nav-badge-state{
+        cursor: pointer;
+    }
+/* 運用日バッジ */
+    .nav-unyobi{
+        float: right;
+        cursor: pointer;
+    }
+
+
+/* ２．モーダル */
+.radio_gyomu{
+    width: 49%;
+}
+.modal-header{
+    padding: 0.5rem 1rem;
+}
+.modal-footer{
+    padding: 0.5rem 1rem;
+}
+
+
+/* ３．フッター */
+.footer-button {
+    background-color:rgb(255, 221, 25);
+    color:black;
+    font-size: 1em;
+}
+/* マスタ登録ボタン */
+    .master-button{
+        margin-left: 10px;
+        margin-right: auto;
+    }
+
+
+/* ４．メインのコンテンツ部分 */
+.maincontents{
+    padding-top: 100px;
+    padding-bottom: 45px;
+}
+
+.hanrei{
+    margin-left: 15px;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.log-button{
+    margin-right: 34px;
+    margin-left: auto;
+    margin-top: 5px;
+    font-size: 1em;
+}
+
+/* 各場別コンテナ */
+.caption_box{
+    position: relative;
+    margin-top: 0.5em;
+    padding: 1em 0.5em;
+    border: 2px solid rgba(85, 82, 82, 0.473);
+    border-radius: 10px;
+    background-color: white;
+    min-width: 391px;
+    }
+
+.caption_box_error{
+    border: 3px solid red;
+}
+.jou{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    font-family: inherit;
+    }
+
+.table{
+    /* font-size: 0.7em; */
+    margin-bottom: 3px;
+    text-align: center;
+}
+.race-newsml{
+    font-weight: bold;
+    min-width: 375px;
+}
+
+.reset_padding{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.reset_margin{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.jou-title{
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.jou-newsml{
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.jou-newsml_table{
+    min-width: 78px;
+}
+
+.container-area{
+    padding-right: 0px;
+}
+
+
+.receive-date{
+    font-size: 0.7em;
+    padding-left: 10px;
+}
+
+.receive-honjitsu-sikou-table{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+/* テーブルの項目異常時のスタイル */
+    .misakusei{
+        background-color: red;
+        color: white;
+        border: solid 2px black;
+    }
+    .mikansei{
+        background-color: yellow;
+    }
+
+
+/* ５．メイン画面の切替タブ部分 */
+.menu-tab{
+    margin-top: 10px;
+    padding: 5px;
+    width: 33.33%;
+    border: 0px;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+#nav-receive-tab{
+    background-color: #8bc24c;
+    border: 0px;
+    color: white;
+}
+
+#nav-edit-tab{
+    background-color: #f6d04d;
+    border: 0px;
+    color: white;
+}
+#nav-submit-tab{
+    background-color: #f29c2b;
+    border: 0px;
+    color: white;
+}
+#nav-receive{
+    background-color:  #8bc24c;
+    padding-bottom: 15px;
+}
+#nav-edit{
+    background-color: #f6d04d;
+    padding-bottom: 15px;
+}
+#nav-submit{
+    background-color: #f29c2b;
+    padding-bottom: 15px;
+}
+#nav-tab{
+    border-bottom: 0em;
+}
+.nav-tabs .nav-link {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+
+
+/* ６．レスポンシブ対応 */
+
+@media screen and (min-width: 1200px){
+    /*　画面サイズが1200px以上の場合ここを読み込む　*/
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media screen and (min-width:992px) and ( max-width:1199px) {
+    /*　画面サイズが992pxから1199pxまではここを読み込む　*/
+    .jou{
+        font-size: 1.2rem;
+    }
+    .jou-newsml_table {
+        min-width: 61px;
+        font-size: 0.5em;
+    }
+    .race-newsml{
+        min-width: 308px;
+        font-size: 0.7em;
+    }
+    .caption_box{
+        min-width: 320px;
+    }
+}
+
+@media screen and (min-width:768px) and ( max-width:811px) {
+    /*　画面サイズが768pxから811pxまではここを読み込む　*/
+    .jou{
+        font-size: 1.2rem;
+    }
+    .jou-newsml_table {
+        min-width: 61px;
+        font-size: 0.5em;
+    }
+    .race-newsml{
+        min-width: 305px;
+        font-size: 0.7em;
+    }
+    .caption_box{
+        min-width: 320px;
+    }
+}
+
+
+@media screen and (min-width:420px) and ( max-width:767px) {
+    /*　画面サイズが420pxから767pxまではここを読み込む　*/
+    .maincontents{
+        padding-top: 80px;
+    }
+    .nav-title{
+        padding-left: 3em;
+    }
+    .hanrei{
+        display: none;
+    }
+    h2{
+        font-size: 1.5rem;
+    }
+    h3{
+        font-size: 130%;
+    }
+    h6{
+        font-size: 0em;
+    }
+    .menu-tab{
+        font-size: 1em;
+    }
+    .footer-button {
+        font-size: 0.7em;
+    }
+    /* オートレース */
+    .log-button{
+        display: none;
+    }
+    .nav-badge-hoshu {
+        margin-left: 1em;
+    }
+    .table{
+        font-size: 0.7em;
+    }
+}
+
+@media screen and ( max-width:419px) {
+    /*　画面サイズが419px以下の場合はここを読み込む　*/
+    .maincontents{
+        padding-top: 75px;
+    }
+    .hanrei{
+        display: none;
+    }
+    .nav-title{
+        padding-left: 2.2em;
+    }
+    .jou{
+        font-size: 1.2rem;
+    }
+    .jou-newsml_table {
+        min-width: 61px;
+        font-size: 0.5em;
+    }
+    .race-newsml{
+        min-width: 308px;
+        font-size: 0.7em;
+    }
+    .caption_box{
+        min-width: 320px;
+    }
+    h2{
+        font-size: 1.25rem;
+    }
+    h3{
+        font-size: 110%;
+    }
+    h6{
+        font-size: 0em;
+    }
+    .menu-tab{
+        font-size: 1em;
+    }
+    .footer-button {
+        font-size: 0.7em;
+    }
+    /* オートレース */
+    h2{
+        font-size: 1.1rem;
+    }
+    .nav-badge-hoshu {
+        margin-left: 1em;
+    }
+    .log-button{
+        display: none;
+    }
+    .table{
+        font-size: 0.7em;
+    }
+}
+
+@media screen and ( max-width:349px) {
+    /*　画面サイズが349px以下の場合はさらにここを読み込む　*/
+    .maincontents{
+        padding-top: 67px;
+    }
+    h2{
+        font-size: 1.1rem;
+    }
+    h3 {
+        font-size: 95%;
+    }
+    .menu-tab{
+        font-size: 0.8em;
+    }
+    .container-area{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    /* オートレース */
+    
+    h2{
+        font-size: 1rem;
+    }
+    .nav-badge-hoshu {
+        margin-left: 1em;
+    }
+    .log-button{
+        display: none;
+    }
+    .nav-title-img-autorace{
+        background-size: 14%;
+    }
+    .caption_box {
+        padding: 0.5em;
+    }
+    .table{
+        font-size: 0.7em;
+    }
+}
+
+/* ↑で、320px(iphoneSE/5の縦)まで対応。319px以下は非対応（レイアウト崩れる）。 */
+
+
+/* ７．各競馬場の画像の表示設定 */
+.jouimg_banei{
+    background: url('/static/app_ckeiba/pic/banei.jpg');
+    background-size: 30%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_monbetsu{
+    background: url('/static/app_ckeiba/pic/monbetsu.png');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_iwate{
+    background: url('/static/app_ckeiba/pic/iwate.png');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_funabashi{
+    background: url('/static/app_ckeiba/pic/funabashi.PNG');
+    background-size: 40%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kasamatsu{
+    background: url('/static/app_ckeiba/pic/kasamatsu.PNG');
+    background-size: 40%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kawasaki{
+    background: url('/static/app_ckeiba/pic/kawasaki.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kanazawa{
+    background: url('/static/app_ckeiba/pic/kawazawa.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kochi{
+    background: url('/static/app_ckeiba/pic/kochi.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_nagoya{
+    background: url('/static/app_ckeiba/pic/nagoya.PNG');
+    background-size: 40%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_saga{
+    background: url('/static/app_ckeiba/pic/saga.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_sonoda{
+    background: url('/static/app_ckeiba/pic/sonoda.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_tck{
+    background: url('/static/app_ckeiba/pic/tck.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_urawa{
+    background: url('/static/app_ckeiba/pic/urawa.PNG');
+    background-size: 45%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+/* オートで追加 */
+.jouimg_hamamatsu{
+    background: url('/static/app_autorace/pic/hamamatsu.png');
+    background-size: 35%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_iizuka{
+    background: url('/static/app_autorace/pic/iizuka.png');
+    background-size: 29%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_isezaki{
+    background: url('/static/app_autorace/pic/isezaki.png');
+    background-size: 20%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_sanyo{
+    background: url('/static/app_autorace/pic/sanyo.PNG');
+    background-size: 35%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+.jouimg_kawaguchi{
+    background: url('/static/app_autorace/pic/kawaguchi.png');
+    background-size: 35%;
+    display: block;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+/* ここまで */
