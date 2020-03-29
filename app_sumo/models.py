@@ -190,7 +190,7 @@ class Mst_Event(Model):
     Age_calcu_reference_date = DateField(verbose_name='年齢算出基準日')
 
     class Meta:
-        verbose_name_plural = '開催マスタ'
+        verbose_name_plural = '（システム状態に移行したので削除）開催マスタ'
 
 
 #日目マスタ
@@ -253,15 +253,14 @@ class Mst_Lifetime_result(Model):
     class Meta:
         verbose_name_plural = '生涯成績マスタ'
 
+    def __str__(self):
+        return str(self.Rikishi_code)
 
 #生涯受賞回数マスタ
 class Mst_Lifetime_award(Model):
     Award_category_code = ForeignKey(Mst_Award_category, on_delete=CASCADE) #受賞区分マスタ
-    Award_category_kanji = CharField(verbose_name='受賞名漢字', max_length=10)
-    Award_category_kana = CharField(verbose_name='受賞名かな', max_length=20, blank=True)
-    Award_category_name1 = CharField(verbose_name='名称１', max_length=10, blank=True)
-    Award_category_name2 = CharField(verbose_name='名称２', max_length=10, blank=True)
-    Award_category_name3 = CharField(verbose_name='名称３', max_length=10, blank=True)
+    Rikishi_code = ForeignKey(Mst_Rikishi, on_delete=CASCADE) #力士マスタ
+    Numberofaward = IntegerField(verbose_name='受賞回数')
 
     class Meta:
         verbose_name_plural = '生涯受賞回数マスタ'
@@ -311,16 +310,43 @@ class Mst_Operationmode(Model):
 # --------------------------------------------------------------------------------------------------
 #システム状態
 class Tran_Systemstatus(Model):
+    Event_date =  IntegerField(verbose_name='開催年月', blank=True, null=True)
     CurrentBasho =  ForeignKey('Mst_Basho', on_delete=CASCADE)
-    SystemStatus =  ForeignKey('Mst_Operationmode', on_delete=CASCADE)
+    SystemStatus =  ForeignKey('Mst_Operationmode', on_delete=CASCADE, blank=True, null=True) 
     TorikumiDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'torikumi')
     MatchDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'match')
+    Frist_date = DateField(verbose_name='初日年月日')
+    Banzuke_date = DateField(verbose_name='番付発表日')
+    Age_calcu_reference_date = DateField(verbose_name='年齢算出基準日')
 
     class Meta:
         verbose_name_plural = '#システム状態'
+    
+    def __str__(self):
+        return str(self.Event_date)
 
+# --------------------------------------------------------------------------------------------------
+#番付明細　NewsML作成（01:新番付資料）
+# 
+class Tran_Banzuke(Model):
+    Event_date =  ForeignKey('Tran_Systemstatus', on_delete=CASCADE) #システム状態の開催年月
+    RikishiId =  ForeignKey('Mst_Rikishi', on_delete=CASCADE) #力士マスタ
+    Join_code =  IntegerField(verbose_name='参加区分', blank=True, null=True)
+    Class_code =  ForeignKey('Mst_Class', on_delete=CASCADE) #階級マスタ
+    Eastwest_code =  ForeignKey('Mst_Eastwest', on_delete=CASCADE) #東西マスタ
+    Chii_code =  ForeignKey('Mst_Chii', on_delete=CASCADE) #地位マスタ
+    Banzuke_rank =  IntegerField(verbose_name='番付順位', blank=True, null=True)
+    Haridashi =  IntegerField(verbose_name='張付区分', blank=True, null=True)
+    Banzuke_no =  IntegerField(verbose_name='番付通番', blank=True, null=True)
+    Appear_code =  IntegerField(verbose_name='新再降区分', blank=True, null=True)
+ #   Appear_code =  IntegerField(verbose_name='新再降区分', blank=True, null=True)　
+    Demoted_rank =  IntegerField(verbose_name='昇降順位', blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = '*番付明細　NewsML作成（01:新番付資料）'
 
+    def __str__(self):
+        return str(self.RikishiId)	
 
 #以下、モックアップ用
 

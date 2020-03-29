@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-16"?>
 <!--
 <!DOCTYPE ITalk SYSTEM "../DTD/ITalkv1.0.dtd" [
 	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
@@ -161,7 +161,6 @@
 <InData>
 <SportsData Version="1.1">
 <Head>
-
 <Meta>
 <Title>◎大相撲初場所新番付資料（月日現在）</Title>
 <Competition>
@@ -176,36 +175,9 @@
 <Body BlockId="OS01MU____">
 <Meta>
 <FormatType>Ｓ－Ｐ－Ｒ</FormatType>
-<!-- ============================================================= -->
-<!-- システム状態から現在の場所を取得 -->
-<DataType>初場所</DataType>
+<DataType>新番付資料</DataType>
 </Meta>
-
-<!-- ============================================================= -->
 <Standing BlockId="S001">
-<!-- ============================================================= -->
-
-
-<Player PlayerId="009620">
-<PlayerName>
-<Writing>7920</Writing>
-</PlayerName>
-</Player>
-
-<Player PlayerId="009620">
-<PlayerName>
-<Writing>14470</Writing>
-</PlayerName>
-</Player>
-
-<Player PlayerId="009620">
-<PlayerName>
-<Writing>14480</Writing>
-</PlayerName>
-</Player>
-
-
-<!-- ============================================================= -->
 <Player PlayerId="009620">
 <PlayerName>
 <Writing>稀勢の里</Writing>

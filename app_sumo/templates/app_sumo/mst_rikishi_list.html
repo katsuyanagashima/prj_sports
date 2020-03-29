@@ -1,0 +1,40 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+<h3>力士マスタメンテナンス画面</h3>
+
+<div style="height:300px; overflow-y:scroll;">
+<table class="table table-hover table-sm">
+    <thead class="thead-dark">
+        <th>code</th>
+        <th>力士名</th>
+        <th>部屋</th>
+        <th>状態</th>
+    </thead>
+    {% for rikishi in object_list  %}
+    <tr>
+        <td>{{ rikishi.Rikishi_code }}</td>
+        <td>{{  rikishi.Rikishi_name_kanji_official }}</td>
+        <td>{{  rikishi.Heya_code }}</td>
+        <td>{{  rikishi.Rikishi_attrib_class }}</td>
+        <td><a href="app_sumo/SUMMST01_add %s">更新画面へ</a></td>
+        <td><button type="button" class="btn btn-danger">削除</button></td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+<form action="" method="get">
+    <input name="query" value="{{ request.GET.query }}" type="text">
+    <button type="submit">検索する</button>
+    <label class="checkbox-inline"><input type="checkbox" value="" checked>現役</label>
+    <label class="checkbox-inline"><input type="checkbox" value="">現役以外</label>
+</form>
+
+<!-- 戻る-->
+<div class="modal-footer">
+    <a href="../" type="button" class="btn btn-primary">戻る</a>
+</div>
+
+{% endblock %}

@@ -3,6 +3,7 @@ from django.template import loader
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
+from django.views.generic import ListView
 
 from .models import *
 from .forms import *
@@ -173,26 +174,30 @@ def SUMNEW01(request):
 def SUMNEW02(request):
     return render(request, 'app_sumo/SUMNEW02.html')
 
+#力士マスタ
+class Rikishilist(ListView):
+     def get_queryset(self):
+        q_word = self.request.GET.get('query')
+ 
+        if q_word:
+            rikishilist = Mst_Rikishi.objects.filter(
+                Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+        else:
+            rikishilist = Mst_Rikishi.objects.all()
+        return rikishilist
 
-#マスタテーブル保守画面の部屋マスタ（Formで表示するパターン）
 #def SUMMSM01_heya_form(request):
-#    form = Mst_HeyaForm(request.POST)
-#    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})    
-
-
-def SUMMSM01_heya_form(request):
-    if request.method == "POST":
-        form = Mst_HeyaForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.pub_date = timezone.now()
-            post.save()
-            return redirect('SUMMSM01_heya_form')
-    else:
-        form = Mst_HeyaForm()
-    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})
-
+#    if request.method == "POST":
+#        form = Mst_HeyaForm(request.POST)
+#        if form.is_valid():
+#            post = form.save(commit=False)
+#            post.author = request.user
+#            post.pub_date = timezone.now()
+#            post.save()
+#            return redirect('SUMMSM01_heya_form')
+#    else:
+#        form = Mst_HeyaForm()
+#    return render(request, 'app_sumo/SUMMSM01_heya_form.html', {'form': form})
 
 
 #マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
