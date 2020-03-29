@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-16"?>
 <!--
 <!DOCTYPE ITalk SYSTEM "../DTD/ITalkv1.0.dtd" [
 	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
@@ -161,7 +161,6 @@
 <InData>
 <SportsData Version="1.1">
 <Head>
-
 <Meta>
 <Title>◎大相撲初場所新番付資料（月日現在）</Title>
 <Competition>
@@ -176,93 +175,9 @@
 <Body BlockId="OS01MU____">
 <Meta>
 <FormatType>Ｓ－Ｐ－Ｒ</FormatType>
-<!-- ==== システム状態から現在の場所を取得 ==== -->
-<DataType>{{ meta.CurrentBasho }}</DataType>
+<DataType>新番付資料</DataType>
 </Meta>
-{% endfor %}
-<!-- ======================================= -->
 <Standing BlockId="S001">
-<!-- ==== tran番付から取得 ================== -->
-{% if Banzuke %}
-{% for player in Banzuke %}
-<Player PlayerId="009620">
-<PlayerName>
-<Writing>{{ player.RikishiId.Rikishi_name_Kanji_4char  }}</Writing>
-<Formal>{{ player.RikishiId.Rikishi_name_kanji_official  }}</Formal>
-<Formal Display="4字">{{ player.RikishiId.Rikishi_name_Kanji_4char  }}</Formal>
-<Formal Display="3字">{{ player.RikishiId.Rikishi_name_Kanji_3char  }}</Formal>
-<Formal Display="2字">{{ player.RikishiId.Rikishi_name_Kanji_2char  }}</Formal>
-<Formal Display="よみがな">{{ player.RikishiId.Rikishi_name_kanji_kana  }}</Formal>
-</PlayerName>
-<Belong>
-<Writing>{{ player.RikishiId.Heya_code.Heya_official_kanji  }}</Writing>
-<Formal>{{ player.RikishiId.Heya_code.Heya_official_kanji  }}</Formal>
-<Formal Display="3字">{{ player.RikishiId.Heya_code.Heya_kanji_3char  }}</Formal>
-<Formal Display="よみがな">{{ player.RikishiId.Heya_code.Heya_official_kana  }}</Formal>
-</Belong>
-<Age>●●</Age>
-<Height Unit="センチメートル">{{ player.RikishiId.Height  }}</Height>
-<Weight Unit="キログラム">{{ player.RikishiId.Weight  }}</Weight>
-<Result Period="幕内通算">
-<Record Kind="与金星" Unit="回">
-<Writing></Writing>
-<IntegerPart>１６</IntegerPart>
-</Record>
-<Record Kind="奪金星" Unit="回">
-<Writing>③</Writing>
-<IntegerPart>３</IntegerPart>
-</Record>
-<Award Kind="優勝">
-<Count>
-<Writing>２</Writing>
-<CountValue>２</CountValue>
-</Count>
-</Award>
-<Award Kind="殊勲賞">
-<Count>
-<Writing>５</Writing>
-<CountValue>５</CountValue>
-</Count>
-</Award>
-<Award Kind="敢闘賞">
-<Count>
-<Writing>３</Writing>
-<CountValue>３</CountValue>
-</Count>
-</Award>
-<Award Kind="技能賞">
-<Count>
-<Writing>１</Writing>
-<CountValue>１</CountValue>
-</Count>
-</Award>
-<ResultForSumo>
-<SumoOutcomeTotal>
-<BashoCount>８４</BashoCount>
-<WinCount>７１４</WinCount>
-<LossCount>４４９</LossCount>
-<DrawCount>０</DrawCount>
-<AbsenceCount>９７</AbsenceCount>
-</SumoOutcomeTotal>
-<WinningPercentage>．６１４</WinningPercentage>
-<WinningPercentage Kind="休みを負とした">．５６７</WinningPercentage>
-</ResultForSumo>
-</Result>
-<PlayerForSumo>
-<SumoGrade Kind="最高位">
-<Writing>横綱</Writing>
-<SumoRank>横綱</SumoRank>
-</SumoGrade>
-<NativeArea>
-<Writing>茨　城</Writing>
-<Formal>茨城</Formal>
-<Formal Display="3字">茨　城</Formal>
-</NativeArea>
-</PlayerForSumo>
-</Player>
-{% endfor %}
-{% endif %}
-<!-- ===== ここまで ================= -->
 <Player PlayerId="009620">
 <PlayerName>
 <Writing>稀勢の里</Writing>

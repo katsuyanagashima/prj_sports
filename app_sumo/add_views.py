@@ -46,7 +46,16 @@ def output_NewsML(request):
     #     'latest_match_list': latest_match_list,
     #     'taikai_list': taikai_list,
     # }
-        context = {}
+    # newsmlmetaから現在の場所と取得して、テンプレートに渡す
+    # 力士マスタ、生涯成績マスタから現在の値を取得して、テンプレートに渡す
+    # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
+    #生涯成績、
+        context = {
+            'newsmlmeta':Tran_Systemstatus.objects.all(),
+            'Banzuke': Tran_Banzuke.objects.all(),
+            'Liferesult': Mst_Lifetime_result.objects.all(),
+            'Lifeaward': Mst_Lifetime_award.objects.all(),
+        }
 
         if "Input_status" in request.POST:
             st = request.POST["Input_status"]
