@@ -8,6 +8,8 @@ from .models import *
 from .forms import *
 from .add_views import *
 
+import json
+
 def index(request):
     params = nav_info(request)
     return render(request, 'app_sumo/index.html', params)
@@ -112,27 +114,49 @@ def SUMOUT02(request):
     group_name = ["番付","取組","勝負","星取","成績","新規"]
     
     telegram_group = []
-    init = { "telegram_kind":1, "Input_status":0, "telegram":1 }
+    init = { "Group_code":1, "Input_status":0, "NewsMLNo":"01" }
     t = Mst_KindofNewsML.objects.all()
 
     if request.method == "POST":
         res = output_NewsML(request)
-        if "Input_status" in request.POST and request.POST["Input_status"] in ["1","2"]:
+        if "Input_status" in request.POST and request.POST["Input_status"] is "2":
             return res
-        # for key in init.keys():
-        #     init[key] = int(request.POST[key])
+        for key in init.keys():
+            init[key] = int(request.POST[key])
 
     
+    # NewsMLNo_list = t.values("Group_code", "NewsMLNo")
+    NewsMLNo_by_gcode = []
+    group = 1
+    for n in t:
+        dataset = {"NewsMLNo":n.NewsMLNo, "ContentName":n.ContentName}
+        ngcode = int(n.Group_code)
+        if ngcode is 1 or ngcode is not group:
+            if not ngcode is 1:
+                NewsMLNo_by_gcode.append(d)
+            d = [dataset]
+        else:
+            d.append(dataset)
+        group = ngcode
+    else:
+        NewsMLNo_by_gcode.append(d)     
+
     code_list = t.values("Group_code").distinct()
     for code in code_list:
-        telegram_group.append({ "Group_code": code["Group_code"], "Group_name": group_name[int(code["Group_code"])-1]})
+        ngcode = code["Group_code"]
+        telegram_group.append({ 
+            "Group_code": ngcode, 
+            "Group_name": group_name[int(ngcode)-1],
+            "group_data": json.dumps(NewsMLNo_by_gcode[int(ngcode)-1], ensure_ascii=False)
+        })
 
-    telegram = t.filter(Group_code=init["telegram_kind"]) 
+
+    telegram = t.filter(Group_code=int(init["Group_code"])) 
 
     d = {
         'init': init,
         'telegram_group': telegram_group,
-        'telegram': telegram
+        'NewsMLNo': telegram
     }
     d.update(nav_info(request))
     return render(request, 'app_sumo/SUMOUT02.html', d)

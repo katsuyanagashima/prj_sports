@@ -14,11 +14,11 @@
                     <!-- {% regroup Group_code by telegram as telegram_list %} -->
                     {% for telg in telegram_group %}
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="telegram_kind"
-                            id="{{ 'telegram_radio'|add:telg.Group_code }}" value="{{ telg.Group_code }}"
-                            {% if init.telegram_kind == telg.Group_code %} checked {% endif %}>
+                        <input class="form-check-input group_code" type="radio" name="Group_code"
+                            id="{{ 'telegram_radio'|add:telg.Group_code }}" value="{{ telg.Group_code }}" data="{{ telg.group_data }}"
+                            {% if init.Group_code == telg.Group_code %} checked {% endif %}>
                         <label class="form-check-label"
-                            for="{{ 'telegram_kind'|add:telg.Group_code }}">{{ telg.Group_name }}</label>
+                            for="{{ 'Group_code'|add:telg.Group_code }}">{{ telg.Group_name }}</label>
                     </div>
                     {% endfor %}
                 </div>
@@ -27,10 +27,10 @@
 
             <div class="cols col-md-7">
                 <div class="form-group">
-                    <label for="select1">電文種別:</label>
-                    <select id="select1" name="telegram" class="form-control">
-                        {% for i in telegram %}
-                        <option value="{{ i.NewsMLNo }}" {% if init.telegram == i.NewsMLNo %} selected{% endif %}>
+                    <label for="NewsMLNo">電文種別:</label>
+                    <select id="NewsMLNo" name="NewsMLNo" class="form-control">
+                        {% for i in NewsMLNo %}
+                        <option value="{{ i.NewsMLNo }}" {% if init.NewsMLNo == i.NewsMLNo %} selected{% endif %}>
                             {{ i.ContentName }}
                         </option>
                         {% endfor %}
@@ -38,8 +38,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="select2">指示:</label>
-                    <select id="select2" name="Input_status" class="form-control">
+                    <label for="Input_status">指示:</label>
+                    <select id="Input_status" name="Input_status" class="form-control">
                         <option value="0" {% if init.Input_status == 0 %} selected {% endif %}>編集</option>
                         <option value="1" {% if init.Input_status == 1 %} selected {% endif %}>配信</option>
                         <option value="2" {% if init.Input_status == 2 %} selected {% endif %}>プレビュー</option>
