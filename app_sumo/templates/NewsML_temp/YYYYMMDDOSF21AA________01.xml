@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-16"?>
-<!DOCTYPE ITalk SYSTEM "../DTD/ITalkv1.0.dtd" [
-	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
+{% load static %}
+<!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
+	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
 	%InContent;
-	<!ENTITY % Kddata SYSTEM "../OSDTD/KdXBSContentv1.1.dtd">
+	<!ENTITY % Kddata SYSTEM "{% static 'app_sumo/OSDTD/KdXBSContentv1.1.dtd' %}">
 	%Kddata;
 ]>
-				<?xml-stylesheet type="text/xsl"  href="../OSStylesheets/OSKdXBSContent21.xsl"?>
+				<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent21.xsl' %}"?>
 
 <ITalk version="1.0">
 <IManage>

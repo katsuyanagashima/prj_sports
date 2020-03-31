@@ -1,0 +1,17 @@
+.navimg{
+    height:42px;
+    width:46px;
+    background: url('/static/app_sumo/rikishi.gif');
+    background-size: cover;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+.titlteimg{
+    height:72px;
+    width:386px;
+    background: url('/static/app_sumo/rogo_nyuryoku.png');
+    background-size: cover;
+    display: inline-block;
+    margin-left: -15px;
+}

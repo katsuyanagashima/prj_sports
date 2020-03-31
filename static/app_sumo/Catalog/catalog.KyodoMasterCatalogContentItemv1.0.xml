@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--2003年10月7日作成画像ContentItem用-->
+<!--共同通信マスターカタログContentItem１．０版-->
+<!DOCTYPE NewsML PUBLIC "urn:newsml:iptc.org:20001006:NewsMLv1.0.dtd:1" "../DTD/NewsMLv1.0.dtd">
+<NewsML>
+	<Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
+	<NewsEnvelope>
+		<DateAndTime>20031007T230000+0900</DateAndTime>
+	</NewsEnvelope>
+	<NewsItem>
+		<Identification>
+			<NewsIdentifier>
+				<ProviderId>kyodonews.jp</ProviderId>
+				<DateId>20031007</DateId>
+				<NewsItemId>catalog.KyodoMasterCatalogContentItem</NewsItemId>
+				<RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+				<PublicIdentifier>urn:newsml:kyodonews.jp:20031007:catalog.KyodoMasterCatalogContentItem:1</PublicIdentifier>
+			</NewsIdentifier>
+		</Identification>
+		<NewsManagement>
+			<NewsItemType FormalName="Catalog"/>
+			<FirstCreated>20031007T230000+0900</FirstCreated>
+			<ThisRevisionCreated>20031007T230000+0900</ThisRevisionCreated>
+			<Status FormalName="Usable"/>
+		</NewsManagement>
+		<NewsComponent Duid="NC0001">
+			<ContentItem>
+				<DataContent>
+					<Catalog>
+						<Resource>
+							<Urn>urn:newsml:iptc.org:20011101:topicset.iptc-characteristicsproperty-ja:3</Urn>
+							<Url>../topicsets/topicset.iptc-characteristicsproperty-ja.xml</Url>
+							<DefaultVocabularyFor Scheme="CharacteristicsProperty" Context=".//Characteristics/Property/@FormalName"/>
+						</Resource>
+						<Resource>
+							<Urn>urn:newsml:iptc.org:20011101:topicset.iptc-colorspace:2</Urn>
+							<Url>../topicsets/topicset.iptc-colorspace-ja.xml</Url>
+							<DefaultVocabularyFor Context=".//Characteristics/Property[@FormalName='ColorSpace']/@Value"/>
+						</Resource>
+					</Catalog>
+				</DataContent>
+			</ContentItem>
+		</NewsComponent>
+	</NewsItem>
+</NewsML>
