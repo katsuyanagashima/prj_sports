@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
 from django.views.generic import ListView
-from db.models import Q
+# from db.models import Q
 
 from .models import *
 from .forms import *
