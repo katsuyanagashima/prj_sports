@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-16"?>
-<!DOCTYPE ITalk SYSTEM "../DTD/ITalkv1.0.dtd" [
+<!-- <!DOCTYPE ITalk SYSTEM "../DTD/ITalkv1.0.dtd" [
 	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
 	%InContent;
 	<!ENTITY % Kddata SYSTEM "../OSDTD/KdXBSContentv1.1.dtd">
 	%Kddata;
 ]>
-				<?xml-stylesheet type="text/xsl"  href="../OSStylesheets/OSKdXBSContent08.xsl"?>
+				<?xml-stylesheet type="text/xsl"  href="../OSStylesheets/OSKdXBSContent08.xsl"?> -->
 
 <ITalk version="1.0">
 <IManage>

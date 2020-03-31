@@ -15,7 +15,7 @@
                     {% for telg in telegram_group %}
                     <div class="form-check">
                         <input class="form-check-input group_code" type="radio" name="Group_code"
-                            id="{{ 'telegram_radio'|add:telg.Group_code }}" value="{{ telg.Group_code }}" data="{{ telg.group_data }}"
+                            id="{{ 'telegram_radio'|add:telg.Group_code }}" value="{{ telg.Group_code }}" data-group="{{ telg.group_data }}"
                             {% if init.Group_code == telg.Group_code %} checked {% endif %}>
                         <label class="form-check-label"
                             for="{{ 'Group_code'|add:telg.Group_code }}">{{ telg.Group_name }}</label>
