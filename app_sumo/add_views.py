@@ -5,6 +5,7 @@ from django.utils import timezone
 from datetime import datetime
 from .models import *
 
+from datetime import datetime
 
 temp = [
     'YYYYMMDDOSF01__________01','YYYYMMDDOSF02__________01','YYYYMMDDOSF03__________01','YYYYMMDDOSF04____CC____01','YYYYMMDDOSF05__BB__D___01',
@@ -32,16 +33,23 @@ def nav_info(request, get_type=0):
         return params
 
 def output_NewsML(request):
+    grade = 0 # 階級コード
+    now = datetime.now()
+    stnow = now.strftime("%Y%m%d")
+
     if request.method == "POST":
         if "NewsMLNo" not in request.POST:
             return "Input error."
-        newsno = request.POST["NewsMLNo"]
+        newsno = request.POST["NewsMLNo"] # NEWSML種別コードを受け取る
         if newsno.startswith("0"):
             newsno.lstrip("0")
-        temp_product_id = temp[int(newsno)-1]
-        file_name = '%s.xml' % temp_product_id
+        if not newsno.isdigit(): # 全ての文字が数値でない場合、末尾2文字を抽出・削除
+            grade = newsno[-2]
+            newsno = newsno[:-2]
+        temp_product_id = temp[int(newsno)-1] # NEWSML種別コードに対応するtemplateIDを取得
+        file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
         temp_file_name = 'NewsML_temp/%s' % file_name
-        t = loader.get_template(temp_file_name)
+        t = loader.get_template(temp_file_name) # Djangoのテンプレートとして取得
     # context = {
     #     'latest_match_list': latest_match_list,
     #     'taikai_list': taikai_list,
@@ -58,18 +66,18 @@ def output_NewsML(request):
         }
 
         if "Input_status" in request.POST:
-            st = request.POST["Input_status"]
-            if st in ["0","1"]:
+            st = request.POST["Input_status"] # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
+            if st in ["0","1"]: # 編集か配信であれば、NewsMLをファイルに出力
                 content = loader.render_to_string(temp_file_name, context)
                 # file名は運用日付、パラメータに合わせて変更
-                with open('app_sumo/output/hold/%s' % file_name,'w') as static_file:
+                newfile_name = file_name.replace("YYYYMMDD", stnow)
+                if grade:
+                    newfile_name.replace('BB', grade)
+                with open('app_sumo/output/hold/%s' % newfile_name,'w') as static_file:
                     static_file.write(content)
         
-            elif st == "2":
-                return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
-
-    # latest_match_list = Match.objects.all().order_by('-pub_date')
-    # taikai_list = Eventinfo.objects.all()
+            elif st == "2": # プレビューであれば、UTF-16に変換し表示
+                return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
 
 
 # def xmlout_14(request):

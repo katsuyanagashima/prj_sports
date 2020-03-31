@@ -288,7 +288,7 @@ class Mst_KindofNewsML(Model):
     Content_code =  IntegerField(verbose_name='電文種別コード', blank=True, null=True)
     ContentName = CharField(verbose_name='電文種別名称', max_length=32, blank=True, null=True)
     Group_code =  IntegerField(verbose_name='グループＩＤ', blank=True, null=True)
-    NewsMLNo = CharField(verbose_name='NewsML種別コード', max_length=2, blank=True, null=True)
+    NewsMLNo = CharField(verbose_name='NewsML種別コード', max_length=4, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '電文種別'
