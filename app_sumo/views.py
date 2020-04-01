@@ -23,7 +23,9 @@ def SUMUDY01(request):
     tran_system = params[1]
 
     # # 最初のレコードだけ抽出
-    # tran_system = Tran_Systemstatus.objects.all().select_related('TorikumiDate', 'MatchDate').first()
+    tran_system = Tran_Systemstatus.objects.first()
+    # tran_system = Tran_Systemstatus.objects.select_related('TorikumiDate', 'MatchDate').first()
+    # tran_system = Tran_Systemstatus.objects.prefetch_related("torikumi", "match")
     ## init は初期値という意味で、更新をかけた後の状態維持に使用 ##
     init = { 
         "torikumi_nichime":tran_system.TorikumiDate.Nichime_code, 
@@ -39,6 +41,8 @@ def SUMUDY01(request):
         m_obj = nichime.get(Nichime_code = int(request.POST["match_nichime"]))
         tran_system.TorikumiDate = t_obj
         tran_system.MatchDate = m_obj
+        # tran_system.TorikumiDate.Nichime_code = int(request.POST["torikumi_nichime"])
+        # tran_system.MatchDate.Nichime_code = int(request.POST["match_nichime"])
         tran_system.save()
 
         init["torikumi_nichime"] = tran_system.TorikumiDate.Nichime_code

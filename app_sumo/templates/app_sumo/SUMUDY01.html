@@ -12,8 +12,8 @@
                 <label for="torikumi">取組日目:</label>
                 <select id="torikumi" name="torikumi_nichime" class="form-control">
                     {% for i in nichime %}
-                    <option value="{{ i.Nicime_code }}" {% if init.torikumi_nichime == i.Nicime_code %} selected{% endif %}>
-                        {{ i.Nicime_name }}
+                    <option value="{{ i.Nichime_code }}" {% if init.torikumi_nichime == i.Nichime_code %} selected{% endif %}>
+                        {{ i.Nichime_name }}
                     </option>
                     {% endfor %}
                 </select>
@@ -25,8 +25,8 @@
                 <label for="shoubu">勝負日目:</label>
                 <select id="shoubu" name="match_nichime" class="form-control">
                     {% for j in nichime %}
-                    <option value="{{ j.Nicime_code }}" {% if init.match_nichime == j.Nicime_code %} selected{% endif %}>
-                        {{ j.Nicime_name }}
+                    <option value="{{ j.Nichime_code }}" {% if init.match_nichime == j.Nichime_code %} selected{% endif %}>
+                        {{ j.Nichime_name }}
                     </option>
                     {% endfor %}
                 </select>

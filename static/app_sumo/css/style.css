@@ -31,7 +31,7 @@ h1{margin: auto;}
 .navimg{
     height:70px;
     width:70px;
-    background: url('/static/app_sumo/162405.png');
+    background: url('/static/app_sumo/img/162405.png');
     background-size: cover;
     display: inline-block;
     margin-bottom: 4px;
@@ -40,7 +40,7 @@ h1{margin: auto;}
 .titlteimg{
     height:80px;
     width:400px;
-    background: url('/static/app_sumo/toptitle.png');
+    background: url('/static/app_sumo/img/toptitle.png');
     background-size: cover;
     display: inline-block;
     margin-left: -15px;
