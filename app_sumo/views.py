@@ -234,9 +234,23 @@ def SUMMSM01_heya_html(request):
 
 
 #年度・場所切替画面
+#def SUMINT01(request):
+#   return render(request, 'app_sumo/SUMINT01.html')
+#年度・場所切替画面
 def SUMINT01(request):
-    return render(request, 'app_sumo/SUMINT01.html')
-    
+    event = Mst_Event.objects.all()
+    if request.method == "POST":
+        event.delete()
+        initial_dict = {'Torikumi_nichime_code':'0', 'Shoubu_nichime_code':'0', 'Age_calcu_reference_date':'2000-01-01'}
+        form = Mst_Event_Form(request.POST, initial=initial_dict)
+        if form.is_valid():
+            form.save()
+            return redirect('SUMINT01')
+    else:
+        form = Mst_Event_Form()
+
+    return render(request, 'app_sumo/SUMINT01.html',{'form':form})
+
 #優勝決定戦階級選択画面
 def SUMUKS01(request):
     return render(request, 'app_sumo/SUMUKS01.html')
