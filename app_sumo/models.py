@@ -62,9 +62,9 @@ class Mst_Rikishistatus(Model):
 class Mst_Basho(Model):
     Basho_code = IntegerField(verbose_name='場所コード')
     Basho_kanji = CharField(verbose_name='場所名漢字', max_length=10)
-    Bashi_kana = CharField(verbose_name='場所名かな', max_length=20)
+    Basho_kana = CharField(verbose_name='場所名かな', max_length=20)
     Basho_month = IntegerField(verbose_name='月')
-    Bashi_1char = CharField(verbose_name='１文字略称', max_length=2, blank=True)
+    Basho_1char = CharField(verbose_name='１文字略称', max_length=2, blank=True)
     Basho_symbol = CharField(verbose_name='１文字記号', max_length=2, blank=True)
     Weight_measure_category = IntegerField(verbose_name='体重測定区分', blank=True, null=True)
 
@@ -195,17 +195,17 @@ class Mst_Event(Model):
 
 #日目マスタ
 class Mst_Nichime(Model):
-    Nicime_code = IntegerField(verbose_name='日目コード')
-    Nicime_name = CharField(verbose_name='日目名称', max_length=6)
+    Nichime_code = IntegerField(verbose_name='日目コード')
+    Nichime_name = CharField(verbose_name='日目名称', max_length=6)
     Touzai_division = ForeignKey('Mst_Eastwest', on_delete=CASCADE, blank=True, null=True) #東西マスタ
-    Nicime_3char = CharField(verbose_name='３文字略称', max_length=10, blank=True)
-    Nicime_4char = CharField(verbose_name='４文字略称', max_length=10, blank=True)
+    Nichime_3char = CharField(verbose_name='３文字略称', max_length=10, blank=True)
+    Nichime_4char = CharField(verbose_name='４文字略称', max_length=10, blank=True)
 
     class Meta:
         verbose_name_plural = '日目マスタ'
 
     def __str__(self):
-        return self.Nicime_name
+        return self.Nichime_name
 
 #東西マスタ
 class Mst_Eastwest(Model):
@@ -238,8 +238,8 @@ class Mst_Lifetime_result(Model):
     Totalloss = IntegerField(verbose_name='通算負け回数')
     Totalkyuujou = IntegerField(verbose_name='通算休場回数')
     Totalties = IntegerField(verbose_name='通算分け回数')
-    Totalgetkinboshi = IntegerField(verbose_name='通算与金星回数')
-    Totalgivekinboshi = IntegerField(verbose_name='通算奪金星回数')
+    Totalgivekinboshi = IntegerField(verbose_name='通算与金星回数')
+    Totalgetkinboshi = IntegerField(verbose_name='通算奪金星回数')
     Highestchii_code = ForeignKey(Mst_Chii, on_delete=CASCADE) #地位マスタ
     Highestorder = IntegerField(verbose_name='最高順位')
     Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE) #東西マスタ
@@ -315,7 +315,7 @@ class Tran_Systemstatus(Model):
     SystemStatus =  ForeignKey('Mst_Operationmode', on_delete=CASCADE, blank=True, null=True) 
     TorikumiDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'torikumi')
     MatchDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'match')
-    Frist_date = DateField(verbose_name='初日年月日')
+    First_date = DateField(verbose_name='初日年月日')
     Banzuke_date = DateField(verbose_name='番付発表日')
     Age_calcu_reference_date = DateField(verbose_name='年齢算出基準日')
 

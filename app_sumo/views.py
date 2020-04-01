@@ -26,8 +26,8 @@ def SUMUDY01(request):
     # tran_system = Tran_Systemstatus.objects.all().select_related('TorikumiDate', 'MatchDate').first()
     ## init は初期値という意味で、更新をかけた後の状態維持に使用 ##
     init = { 
-        "torikumi_nichime":tran_system.TorikumiDate.Nicime_code, 
-        "match_nichime":tran_system.MatchDate.Nicime_code 
+        "torikumi_nichime":tran_system.TorikumiDate.Nichime_code, 
+        "match_nichime":tran_system.MatchDate.Nichime_code 
     }
 
     nichime = Mst_Nichime.objects.all()
@@ -35,14 +35,14 @@ def SUMUDY01(request):
     if request.method == "POST":
         # Foreign key にカラムを指定しない場合は、selectでobjectを登録する必要があるため、
         # models.pyの記述を見直す必要あり
-        t_obj = nichime.get(Nicime_code = int(request.POST["torikumi_nichime"]))
-        m_obj = nichime.get(Nicime_code = int(request.POST["match_nichime"]))
+        t_obj = nichime.get(Nichime_code = int(request.POST["torikumi_nichime"]))
+        m_obj = nichime.get(Nichime_code = int(request.POST["match_nichime"]))
         tran_system.TorikumiDate = t_obj
         tran_system.MatchDate = m_obj
         tran_system.save()
 
-        init["torikumi_nichime"] = tran_system.TorikumiDate.Nicime_code
-        init["match_nichime"] = tran_system.MatchDate.Nicime_code
+        init["torikumi_nichime"] = tran_system.TorikumiDate.Nichime_code
+        init["match_nichime"] = tran_system.MatchDate.Nichime_code
 
     # DB登録前に画面が表示されてしまうので、改善しなければならない
     nav = nav_info(request)

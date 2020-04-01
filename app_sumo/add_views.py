@@ -23,8 +23,8 @@ def nav_info(request, get_type=0):
             'nav':{
             'basho':tran_system.CurrentBasho,
             'systatus':tran_system.SystemStatus,
-            'torikumiday':tran_system.TorikumiDate.Nicime_name,
-            'shoubuday':tran_system.MatchDate.Nicime_name
+            'torikumiday':tran_system.TorikumiDate.Nichime_name,
+            'shoubuday':tran_system.MatchDate.Nichime_name
             } 
         }
     if get_type:
