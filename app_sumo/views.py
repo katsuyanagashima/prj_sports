@@ -1,10 +1,11 @@
-from django.http import HttpResponse, Http404
-from django.template import loader
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils import timezone
 from datetime import datetime
-from django.views.generic import ListView
-# from db.models import Q
+from django.db.models import Q
+from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, render, redirect
+from django.template import loader
+from django.utils import timezone
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .models import *
 from .forms import *
@@ -200,15 +201,51 @@ def SUMNEW02(request):
 
 #力士マスタ
 class Rikishilist(ListView):
-     def get_queryset(self):
+
+    def get_queryset(self):
+        activeDuty = '1'
+        notActiveDuty = '2'
         q_word = self.request.GET.get('query')
+
+        checks_value = self.request.GET.getlist('checks[]')
  
         if q_word:
-            rikishilist = Mst_Rikishi.objects.filter(
-                Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+            if checks_value == [] or (activeDuty in checks_value and notActiveDuty in checks_value):
+                rikishilist = Mst_Rikishi.objects.filter(
+                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+            elif activeDuty in checks_value:
+                rikishilist = Mst_Rikishi.objects.filter(Q(Rikishi_attrib_class=activeDuty),(
+                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)))
+            else:
+                rikishilist = Mst_Rikishi.objects.filter(
+                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)).filter(Rikishi_attrib_class__gt=activeDuty)
+
         else:
-            rikishilist = Mst_Rikishi.objects.all()
+            if (activeDuty in checks_value and notActiveDuty in checks_value) or checks_value == []:
+                rikishilist = Mst_Rikishi.objects.all()
+            elif activeDuty in checks_value:
+                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class=activeDuty)
+            else:
+                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class__gt=activeDuty)
         return rikishilist
+
+#力士マスタ作成処理
+class RikishiCreateView(CreateView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')
+
+#力士マスタ編集処理
+class RikishiUpdateView(UpdateView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')
+
+#力士マスタ削除処理
+class RikishiDeleteView(DeleteView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')    
 
 #def SUMMSM01_heya_form(request):
 #    if request.method == "POST":
