@@ -1,3 +1,35 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+admin.site.register(Tran_Systemstatus)
+admin.site.register(Mst_Operationmode)
+admin.site.register(Mst_Grade)
+admin.site.register(Mst_Breed_age)
+admin.site.register(Mst_Jou)
+admin.site.register(Mst_Weather)
+admin.site.register(Mst_Margin)
+admin.site.register(Mst_Bigmargin)
+admin.site.register(Mst_Accident_type)
+admin.site.register(Mst_Accident_reason)
+admin.site.register(Mst_Sex)
+admin.site.register(Mst_Affiliation)
+admin.site.register(Mst_MixJRA)
+admin.site.register(Mst_Turf_dirt)
+admin.site.register(Mst_Course)
+admin.site.register(Mst_Rotation)
+admin.site.register(Mst_Night_race)
+admin.site.register(Mst_Handicap)
+admin.site.register(Mst_Baba)
+admin.site.register(Mst_Jockey_change)
+admin.site.register(Mst_Matter)
+admin.site.register(Mst_Target_person)
+admin.site.register(Mst_Race_type)
+
+admin.site.register(Mst_Company)
+admin.site.register(Mst_Haishin)
+admin.site.register(Mst_Haishin_gentei)
+admin.site.register(Mst_Printer)
+
+
+admin.site.register(Mst_Kaisai_Hiwari)
+admin.site.register(Mst_Honjitu_Shikou)

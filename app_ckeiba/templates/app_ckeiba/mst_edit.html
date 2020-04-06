@@ -1,0 +1,24 @@
+{% block content %}
+
+<h5>{{ title }}</h5>
+<div>
+    <table class="table table-hover master_edit-table">
+        <thead class="thead-dark">
+            {% for header in table_header_name  %}
+            <th>{{ header }}</th>
+            {% endfor %}
+            <th></th>
+            <th></th>
+        </thead>
+        {% for jou_value in table_value  %}
+        <tr>
+            {% for value in jou_value  %}
+            <td>{{ value }}</td>
+            {% endfor %}
+            <td><a href="../admin/app_ckeiba/">更新</a></td>
+            <td><button type="button" class="btn btn-danger">削除</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
