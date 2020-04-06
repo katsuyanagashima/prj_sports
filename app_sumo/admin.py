@@ -53,6 +53,19 @@ admin.site.register(Mst_Operationmode)
 admin.site.register(Tran_Systemstatus)
 # --------------------
 admin.site.register(Tran_Banzuke)
+# --------------------
+class Tran_TopClassRikishiAdmin(admin.ModelAdmin):
+    fieldssets =[
+        ('階級', {'fields':['Class_code']}),
+        ('開催年月西暦', {'fields':['Yearmonth']}),
+        ('日目', {'fields':['Nichime_code']}),
+        ('負け数', {'fields':['LossCount']}),
+        ('勝ち数', {'fields':['WinCount']}),
+    ]
+    list_display = ('Class_code', 'Yearmonth', 'Nichime_code', 'LossCount', 'WinCount')
+
+admin.site.register(Tran_TopClassRikishi, Tran_TopClassRikishiAdmin)
+# --------------------
 
 
 
