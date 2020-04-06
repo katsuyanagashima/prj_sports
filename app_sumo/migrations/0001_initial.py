@@ -367,6 +367,16 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_sumo.Mst_Rikishi'),
         ),
         migrations.AddField(
+            model_name='tran_banzuke',
+            name='Event_date',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_sumo.Tran_Systemstatus'),
+        ),
+        migrations.AddField(
+            model_name='tran_banzuke',
+            name='RikishiId',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_sumo.Mst_Rikishi'),
+        ),
+        migrations.AddField(
             model_name='mst_rikishi',
             name='Rikishi_attrib_class',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='app_sumo.Mst_Rikishistatus'),

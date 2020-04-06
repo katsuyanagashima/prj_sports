@@ -265,6 +265,7 @@ class Mst_Lifetime_award(Model):
     class Meta:
         verbose_name_plural = '生涯受賞回数マスタ'
 
+
 #勝負情報
 class Mst_Gameinfo(Model):
     Game_category = IntegerField(verbose_name='勝負区分')
