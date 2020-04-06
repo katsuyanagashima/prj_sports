@@ -1,0 +1,119 @@
+<div class="container-fluid row container-area">
+    {% for receive_data in data.receive %}
+
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding {{ receive_data.img }}">
+                    {{ receive_data.jou }}
+                </div>
+                <div class="col-5 reset_padding">
+                    <div class="container-fluid row reset_padding reset_margin">
+                        <div class="col-6 jou-newsml">
+                            <table class="table table-sm table-bordered jou-newsml_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-dark">開催日割</td>
+                                        <td>{{ receive_data.hiwari }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6 jou-newsml">
+                            <table class="table table-sm table-bordered jou-newsml_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-dark">入場人員</td>
+                                        <td>{{ receive_data.nyujo }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="receive-date ">
+                    最新受信日時：{{ receive_data.date }}
+                </div>
+                <div class="receive-honjitsu-sikou-table">
+                    <table class="table table-sm table-bordered jou-newsml_table">
+                        <tbody>
+                            <tr>
+                                <td class="table-dark">本日施行情報</td>
+                                <td>{{ receive_data.shiko }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="race-newsml">
+                <table class="table table-sm table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">1R</th>
+                            <th scope="col">2R</th>
+                            <th scope="col">3R</th>
+                            <th scope="col">4R</th>
+                            <th scope="col">5R</th>
+                            <th scope="col">6R</th>
+                            <th scope="col">7R</th>
+                            <th scope="col">8R</th>
+                            <th scope="col">9R</th>
+                            <th scope="col">10R</th>
+                            <th scope="col">11R</th>
+                            <th scope="col">12R</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>出走表</td>
+                            {% for shussou in receive_data.shussou %}
+                            <td>{{ shussou }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>成績表C</td>
+                            {% for seiseki in receive_data.seiseki %}
+                            <td>{{ seiseki }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>払戻</td>
+                            {% for haraimodoshi in receive_data.haraimodoshi %}
+                            <td>{{ haraimodoshi }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>コーナー</td>
+                            {% for corner in receive_data.corner %}
+                            <td>{{ corner }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>ハロンT</td>
+                            {% for furlongT in receive_data.furlongT %}
+                            <td>{{ furlongT }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>3ハロン</td>
+                            {% for 3F in receive_data.3F %}
+                            <td>{{ 3F }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>付加文書</td>
+                            {% for fukabunsho in receive_data.fukabunsho %}
+                            <td>{{ fukabunsho }}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
