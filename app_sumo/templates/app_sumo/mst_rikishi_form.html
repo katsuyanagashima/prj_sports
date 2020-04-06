@@ -7,207 +7,25 @@
 {% else %}
 <h1>力士マスタメンテナンス作成画面</h1>
 {% endif %}
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% load static %}
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script>
-    $(function () {
-        // 日付は、年-月-日 の形式でお願いする。
-        let dateFormat = 'yy-mm-dd';
-        $('#id_Date_of_birth').datepicker({
-            dateFormat: dateFormat
-        });
-    });
-</script>
+<script type="text/javascript" src='{% static 'app_sumo\js\main.js' %}'></script>
+
 
 <form method="post">
     {% csrf_token %}
-    <div class='form-group'>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_code.errors }}
-            <label for="{{ form.Rikishi_code.id_for_label }}" >力士コード:</label>
-            {{form.Rikishi_code}}
+    {# --フィールドの分だけループさせる -- #}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+        <div class="field">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+                <span class="helptext">{{ field.help_text }}</span>
+            {% endif %}
+            {{ field.errors }}
         </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_kanji_official.errors }}
-            <label for="{{ form.Rikishi_name_kanji_official.id_for_label }}" >正式力士名漢字:</label>
-            {{form.Rikishi_name_kanji_official}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_kanji_kana.errors }}
-            <label for="{{ form.Rikishi_name_kanji_kana.id_for_label }}" >正式力士名かな:</label>
-            {{form.Rikishi_name_kanji_kana}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.RikishiRikishi_name_Kanji_2char_code.errors }}
-            <label for="{{ form.Rikishi_name_Kanji_2char.id_for_label }}" >２文字力士名漢字:</label>
-            {{form.Rikishi_name_Kanji_2char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_Kanji_3char.errors }}
-            <label for="{{ form.Rikishi_name_Kanji_3char.id_for_label }}" >３文字力士名漢字:</label>
-            {{form.Rikishi_name_Kanji_3char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_Kanji_4char.errors }}
-            <label for="{{ form.Rikishi_name_Kanji_4char.id_for_label }}" >４文字力士名漢字:</label>
-            {{form.Rikishi_name_Kanji_4char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_jikai_code_official.errors }}
-            <label for="{{ form.Rikishi_name_jikai_code_official.id_for_label }}" >正式力士名字解コード配列:</label>
-            {{form.Rikishi_name_jikai_code_official}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_jikai_code_2char.errors }}
-            <label for="{{ form.Rikishi_name_jikai_code_2char.id_for_label }}" >２文字力士名字解コード配列:</label>
-            {{form.Rikishi_name_jikai_code_2char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_jikai_code_3char.errors }}
-            <label for="{{ form.Rikishi_name_jikai_code_3char.id_for_label }}" >３文字力士名字解コード配列:</label>
-            {{form.Rikishi_name_jikai_code_3char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_name_jikai_code_4char.errors }}
-            <label for="{{ form.Rikishi_name_jikai_code_4char.id_for_label }}" >４文字力士名字解コード配列:</label>
-            {{form.Rikishi_name_jikai_code_4char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Heya_code.errors }}
-            <label for="{{ form.Heya_code.id_for_label }}" >部屋マスタ:</label>
-            {{form.Heya_code}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.OCR_rikishi_name_Kanji.errors }}
-            <label for="{{ form.OCR_rikishi_name_Kanji.id_for_label }}" >OCR用力士名漢字:</label>
-            {{form.OCR_rikishi_name_Kanji}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Real_name.errors }}
-            <label for="{{ form.Real_name.id_for_label }}" >本名:</label>
-            {{form.Real_name}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Date_of_birth.errors }}
-            <label for="{{ form.Date_of_birth.id_for_label }}" >生年月日西暦:</label>
-            {{form.Date_of_birth}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_code_1.errors }}
-            <label for="{{ form.Hometown_code_1.id_for_label }}" >出身地名マスタ:</label>
-            {{form.Hometown_code_1}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_1.errors }}
-            <label for="{{ form.Hometown_details_1.id_for_label }}" >出身地詳細１:</label>
-            {{form.Hometown_details_1}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_abbr1_2char.errors }}
-            <label for="{{ form.Hometown_details_abbr1_2char.id_for_label }}" >出身地詳細２文字略称１:</label>
-            {{form.Hometown_details_abbr1_2char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_abbr1_3char.errors }}
-            <label for="{{ form.Hometown_details_abbr1_3char.id_for_label }}" >出身地詳細２文字略称１:</label>
-            {{form.Hometown_details_abbr1_3char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_code_2.errors }}
-            <label for="{{ form.Hometown_code_2.id_for_label }}" >出身地名マスタ:</label>
-            {{form.Hometown_code_2}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_2.errors }}
-            <label for="{{ form.Hometown_details_2.id_for_label }}" >出身地詳細２:</label>
-            {{form.Hometown_details_2}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_abbr2_2char.errors }}
-            <label for="{{ form.Hometown_details_abbr2_2char.id_for_label }}" >出身地詳細２文字略称２:</label>
-            {{form.Hometown_details_abbr2_2char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_abbr2_3char.errors }}
-            <label for="{{ form.Hometown_details_abbr2_3char.id_for_label }}" >出身地詳細３文字略称２:</label>
-            {{form.Hometown_details_abbr2_3char}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Alien_classification.errors }}
-            <label for="{{ form.Alien_classification.id_for_label }}" >外国人区分:</label>
-            {{form.Alien_classification}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Height.errors }}
-            <label for="{{ form.Height.id_for_label }}" >身長:</label>
-            {{form.Height}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Weight.errors }}
-            <label for="{{ form.Weight.id_for_label }}" >体重:</label>
-            {{form.Weight}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Last_weight.errors }}
-            <label for="{{ form.Last_weight.id_for_label }}" >前回体重:</label>
-            {{form.Last_weight}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hatsudohyou_year.errors }}
-            <label for="{{ form.Hatsudohyou_year.id_for_label }}" >初土俵年:</label>
-            {{form.Hatsudohyou_year}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hatsubasho_code.errors }}
-            <label for="{{ form.Hatsubasho_code.id_for_label }}" >場所マスタ:</label>
-            {{form.Hatsubasho_code}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Tukedashi_class_code.errors }}
-            <label for="{{ form.Tukedashi_class_code.id_for_label }}" >階級マスタ:</label>
-            {{form.Tukedashi_class_code}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Tukedashi_class.errors }}
-            <label for="{{ form.Tukedashi_class.id_for_label }}" >付出区分:</label>
-            {{form.Tukedashi_class}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Tukedashi_maime.errors }}
-            <label for="{{ form.Tukedashi_maime.id_for_label }}" >付出枚目:</label>
-            {{form.Tukedashi_maime}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Rikishi_attrib_class.errors }}
-            <label for="{{ form.Rikishi_attrib_class.id_for_label }}" >力士状態マスタ:</label>
-            {{form.Rikishi_attrib_class}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Retired_year_AD.errors }}
-            <label for="{{ form.Retired_year_AD.id_for_label }}" >引退年月西暦:</label>
-            {{form.Retired_year_AD}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Retirebasho_code.errors }}
-            <label for="{{ form.Retirebasho_code.id_for_label }}" >場所マスタ:</label>
-            {{form.Retirebasho_code}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Day_of_retirement.errors }}
-            <label for="{{ form.Day_of_retirement.id_for_label }}" >日目マスタ:</label>
-            {{form.Day_of_retirement}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_Municipality_1.errors }}
-            <label for="{{ form.Hometown_details_Municipality_1.id_for_label }}" >出身地詳細市町村１:</label>
-            {{form.Hometown_details_Municipality_1}}
-        </div>
-        <div class="fieldWrapper">
-            {{ form.Hometown_details_Municipality_2.errors }}
-            <label for="{{ form.Hometown_details_Municipality_2.id_for_label }}" >出身地詳細市町村２:</label>
-            {{form.Hometown_details_Municipality_2}}
-        </div>        
-    </div>
+    {% endfor %}
     <div>
         {% if object %}
         <button type="submit">更新</button>

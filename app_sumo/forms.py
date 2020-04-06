@@ -39,5 +39,14 @@ class Mst_RikishiForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(Mst_RikishiForm, self).__init__(*args, **kwargs)
+        self.fields['Heya_code'].label = '部屋マスタ'
         self.fields['Date_of_birth'].required = True
         self.fields['Date_of_birth'].widget.attrs = {'placeholder': 'yyyy-mm-dd'}
+        self.fields['Hometown_code_1'].label = '出身地名マスタ'
+        self.fields['Hometown_code_2'].label = '出身地名マスタ'
+        self.fields['Hatsubasho_code'].label = '場所マスタ'
+        self.fields['Tukedashi_class_code'].label = '階級マスタ'
+        self.fields['Rikishi_attrib_class'].label = '力士状態マスタ'
+        self.fields['Retirebasho_code'].label = '場所マスタ'
+        self.fields['Day_of_retirement'].label = '日目マスタ'
+        
