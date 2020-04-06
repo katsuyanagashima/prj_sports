@@ -185,7 +185,8 @@ def SUMTKD02(request):
 
 #階級上位力士
 def SUMJOR01(request):
-    return render(request, 'app_sumo/SUMJOR01.html')
+    params = nav_info(request)
+    return render(request, 'app_sumo/SUMJOR01.html', params)
 
 #資料出力
 def SUMSHI01(request):
