@@ -238,22 +238,23 @@ class Rikishilist(ListView):
         two = '2'
  
         if q_word:
-            if checks_value == [] or (activeDuty in checks_value and notActiveDuty in checks_value):
-                rikishilist = Mst_Rikishi.objects.filter(
-                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+            rikishilist = Mst_Rikishi.objects.filter(Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))                
+            if activeDuty in checks_value and notActiveDuty in checks_value:
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
             elif activeDuty in checks_value:
-                rikishilist = Mst_Rikishi.objects.filter(
-                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)).filter(Rikishi_attrib_class=one)
-                rikishilist = Mst_Rikishi.objects.filter(
-                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)).filter(Rikishi_attrib_class__gte=two)
+                rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
+            elif notActiveDuty in checks_value: 
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)
 
         else:
-            if (activeDuty in checks_value and notActiveDuty in checks_value) or checks_value == []:
-                rikishilist = Mst_Rikishi.objects.all()
+            rikishilist = Mst_Rikishi.objects.all()
+            if activeDuty in checks_value and notActiveDuty in checks_value:  
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
             elif activeDuty in checks_value:
-                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class=one)
-            else:
-                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class__gte=two)
+                rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
+            elif notActiveDuty in checks_value: 
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)
+
         return rikishilist
 
 #力士マスタ作成処理
