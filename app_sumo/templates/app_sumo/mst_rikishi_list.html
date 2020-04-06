@@ -27,11 +27,12 @@
 </table>
 </div>
 
-<form action="" method="get">
-    <input name="query" value="{{ request.GET.query }}" type="text">
+<form method="post">
+    {% csrf_token %}
+    <input name="query" value="{{ request.POST.query }}" type="text">
     <button type="submit">検索する</button>
-    <label class="checkbox-inline"><input type="checkbox" name ="checks[]" value="1" checked>現役</label>
-    <label class="checkbox-inline"><input type="checkbox" name ="checks[]" value="2">現役以外</label>
+    {{rikishilist_form.status_chk.0}}
+    {{rikishilist_form.status_chk.1}}
 </form>
 
 <nav class="navbar fixed-bottom navbar-dark bg-dark">

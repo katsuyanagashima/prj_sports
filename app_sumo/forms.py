@@ -6,6 +6,11 @@ from .models import Mst_Event
 from .models import Mst_Rikishi
 from django.contrib.admin.widgets import AdminDateWidget
 
+STATUS_CHOICES = (
+    ('activeDuty', '現役'),
+    ('notActiveDuty', '現役以外'),
+)
+
 class Mst_HeyaForm(forms.ModelForm):
     class Meta:
         model = Mst_Heya
@@ -16,6 +21,15 @@ class Mst_Event_Form(forms.ModelForm):
     class Meta:
         model = Mst_Event
         fields = ('Event_date', 'Torikumi_nichime_code', 'Shoubu_nichime_code', 'Basho_code', 'Frist_date', 'Banzuke_date', 'Age_calcu_reference_date')
+
+class SearchRikishilistForm(forms.Form):
+    status_chk = forms.ChoiceField(
+        label = 'ステータス',
+        widget=forms.CheckboxSelectMultiple(),
+        choices=STATUS_CHOICES,
+        required=False,
+    )
+
 
 class Mst_RikishiForm(forms.ModelForm):
     
