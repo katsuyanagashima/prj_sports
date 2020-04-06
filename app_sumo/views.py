@@ -1,10 +1,11 @@
-from django.http import HttpResponse, Http404
-from django.template import loader
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils import timezone
 from datetime import datetime
-from django.views.generic import ListView
-# from db.models import Q
+from django.db.models import Q
+from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, render, redirect
+from django.template import loader
+from django.utils import timezone
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .models import *
 from .forms import *
@@ -200,15 +201,78 @@ def SUMNEW02(request):
 
 #力士マスタ
 class Rikishilist(ListView):
-     def get_queryset(self):
-        q_word = self.request.GET.get('query')
+    # セッションに検索フォームの値を渡す。
+    def post(self, request, *args, **kwargs):
+        form_value = [
+            self.request.POST.getlist('status_chk'),
+        ]
+        request.session['form_value'] = form_value
+        # 検索時にページネーションに関連したエラーを防ぐ
+        self.request.GET = self.request.GET.copy()
+        self.request.GET.clear()
+        return self.get(request, *args, **kwargs)
+
+    # セッションから検索フォームの値を取得して、検索フォームの初期値としてセットする。
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # sessionに値がある場合、その値をセットする。（ページングしてもform値が変わらないように）
+        status_chk = []
+        if 'form_value' in self.request.session:
+            form_value = self.request.session['form_value']
+            # query = form_value[0]
+            status_chk = form_value[0]
+        default_data = {
+                        'status_chk': status_chk,  # ステータス
+                        }
+        rikishilist_form = SearchRikishilistForm(initial=default_data) # 検索フォーム
+        context['rikishilist_form'] = rikishilist_form
+        return context
+    
+    # セッションから取得した検索フォームの値に応じてクエリ発行を行う。
+    def get_queryset(self):
+        activeDuty = 'activeDuty'
+        notActiveDuty = 'notActiveDuty'
+        q_word = self.request.POST.get('query')
+        checks_value = self.request.POST.getlist('status_chk')
+        one = '1'
+        two = '2'
  
         if q_word:
-            rikishilist = Mst_Rikishi.objects.filter(
-                Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+            if checks_value == [] or (activeDuty in checks_value and notActiveDuty in checks_value):
+                rikishilist = Mst_Rikishi.objects.filter(
+                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+            elif activeDuty in checks_value:
+                rikishilist = Mst_Rikishi.objects.filter(
+                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)).filter(Rikishi_attrib_class=one)
+                rikishilist = Mst_Rikishi.objects.filter(
+                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)).filter(Rikishi_attrib_class__gte=two)
+
         else:
-            rikishilist = Mst_Rikishi.objects.all()
+            if (activeDuty in checks_value and notActiveDuty in checks_value) or checks_value == []:
+                rikishilist = Mst_Rikishi.objects.all()
+            elif activeDuty in checks_value:
+                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class=one)
+            else:
+                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class__gte=two)
         return rikishilist
+
+#力士マスタ作成処理
+class RikishiCreateView(CreateView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')
+
+#力士マスタ編集処理
+class RikishiUpdateView(UpdateView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')
+
+#力士マスタ削除処理
+class RikishiDeleteView(DeleteView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')    
 
 #def SUMMSM01_heya_form(request):
 #    if request.method == "POST":
