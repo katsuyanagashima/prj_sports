@@ -232,7 +232,7 @@ class Rikishilist(ListView):
     # セッションから取得した検索フォームの値に応じてクエリ発行を行う。
     def get_queryset(self):
         activeDuty = 'activeDuty'
-        notActiveDuty = 'notActiveDuty' 
+        notActiveDuty = 'notActiveDuty'
         q_word = self.request.POST.get('query')
         checks_value = self.request.POST.getlist('status_chk')
         one = '1'
@@ -240,7 +240,7 @@ class Rikishilist(ListView):
  
         def cheks_filter(rikishilist, checks_value):
 
-            if activeDuty in checks_value and notActiveDuty in checks_value:  
+            if activeDuty in checks_value and notActiveDuty in checks_value:
                 rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
             elif activeDuty in checks_value:
                 rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
@@ -257,9 +257,6 @@ class Rikishilist(ListView):
             rikishilist = cheks_filter(rikishilist, checks_value)
 
         return rikishilist
-
-
-
 
 #力士マスタ作成処理
 class RikishiCreateView(CreateView):
