@@ -232,31 +232,34 @@ class Rikishilist(ListView):
     # セッションから取得した検索フォームの値に応じてクエリ発行を行う。
     def get_queryset(self):
         activeDuty = 'activeDuty'
-        notActiveDuty = 'notActiveDuty'
+        notActiveDuty = 'notActiveDuty' 
         q_word = self.request.POST.get('query')
         checks_value = self.request.POST.getlist('status_chk')
         one = '1'
         two = '2'
  
-        if q_word:
-            rikishilist = Mst_Rikishi.objects.filter(Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))                
-            if activeDuty in checks_value and notActiveDuty in checks_value:
-                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
-            elif activeDuty in checks_value:
-                rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
-            elif notActiveDuty in checks_value: 
-                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)
+        def cheks_filter(rikishilist, checks_value):
 
-        else:
-            rikishilist = Mst_Rikishi.objects.all()
             if activeDuty in checks_value and notActiveDuty in checks_value:  
                 rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
             elif activeDuty in checks_value:
                 rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
             elif notActiveDuty in checks_value: 
-                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)           
+            return rikishilist
+
+        if q_word:
+            rikishilist = Mst_Rikishi.objects.filter(Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))                
+            rikishilist = cheks_filter(rikishilist, checks_value)
+
+        else:
+            rikishilist = Mst_Rikishi.objects.all()
+            rikishilist = cheks_filter(rikishilist, checks_value)
 
         return rikishilist
+
+
+
 
 #力士マスタ作成処理
 class RikishiCreateView(CreateView):
