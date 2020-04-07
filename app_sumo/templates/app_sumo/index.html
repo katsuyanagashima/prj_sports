@@ -36,8 +36,10 @@
                             data-target="#SUMMSM01"><i class="fas fa-bolt fa-fw"></i>マスターテーブル保守</button>
                     </div>
                     <div class="col-6">
-                        <button class="btn menubuttonbase menubutton3 btn-block" data-toggle="modal"
-                            data-target="#SUMINT01"><i class="fas fa-reply fa-fw"></i>場所・年度切替</button>
+                         <button onclick=location.href="SUMINT01" type="button"
+                                 class="btn menubuttonbase menubutton3 btn-block"　><i class="fas fa-reply fa-fw"></i>場所・年度切替</button>
+<!--                        <button class="btn menubuttonbase menubutton3 btn-block" data-toggle="modal"
+                            data-target="#SUMINT01"><i class="fas fa-reply fa-fw"></i>場所・年度切替</button> -->
                     </div>
                 </diV>
             </div>
@@ -326,7 +328,7 @@
 <!-- ============================================================================================================== -->
 <!-- 場所・年度切り替えモーダル -->
 <!-- ============================================================================================================== -->
-<div class="modal fade" id="SUMINT01" tabindex="-1" role="dialog">
+<!-- <div class="modal fade" id="SUMINT01" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -343,13 +345,13 @@
                 <div class="row">
                     <div>年度（西暦4桁）を入力<br>場所（場所マスタから選択）<br>初日の年月日を入力<br>番付発表の年月日を入力<br>●モーダルにしない方向でどうでしょう？●</div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer"> -->
 <!--                     <button type="button" class="btn btn-danger btn-lg">実行</button> -->
-                    <a href="SUMINT01" type="button" class="btn btn-danger btn-lg">実行</a>
+<!--                     <a href="SUMINT01" type="button" class="btn btn-danger btn-lg">実行</a>
                     <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 {% endblock %}
