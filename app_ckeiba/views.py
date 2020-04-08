@@ -109,3 +109,27 @@ def Edit_Mst(request, mst_num):
 # 更新ボタン押下時
 def editbutton(request, values):
      return render(request, '../admin/app_ckeiba/mst_haishin/edit_num/change/')
+
+
+
+
+# オプション送信画面
+def option_submit(request):
+     # json形式のダミーデータを取得
+     import os
+     import json
+     module_dir = os.path.dirname(__file__) # views.pyのあるディレクトリを取得
+     json_path = os.path.join(module_dir, 'dammydata.json')
+     f = open(json_path, 'r')
+     dammydata = json.load(f)
+
+     # システム状態を取得
+     tran_system = Tran_Systemstatus.objects.all().first() # ★ システム状態の1件目を見てるだけなので、ここは要検討
+     status = str(tran_system.SystemStatus)
+
+     # チェック項目を取得
+     chklist = request.POST.getlist('chk', '')
+
+     # パラメータに追加
+     params = {'status': status, 'data': dammydata, 'unyobi': tran_system.Unyou_date, 'chklist':chklist}
+     return render(request, 'app_ckeiba/option_submit.html', params)

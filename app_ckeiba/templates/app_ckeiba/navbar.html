@@ -17,9 +17,12 @@
                         {% elif status == '2' %}
                         <h3><span class="badge badge-warning badge-pill nav-badge-state" data-toggle="modal"
                                 data-target="#modal-select_gyomu">日時処理実施中</span></h3>
+                        {% elif status == '0' %}
+                        <h3><span class="badge badge-secondary badge-pill nav-badge-state" data-toggle="modal"
+                                data-target="#modal-select_gyomu">不明</span></h3>
                         {% else %}
                         <h3><span class="badge badge-warning badge-pill nav-badge-state" data-toggle="modal"
-                                data-target="#modal-select_gyomu">マスタ編集</span></h3>
+                                data-target="#modal-select_gyomu">マスタ編集中</span></h3>
                         {% endif %}
 
                     </div>
@@ -48,7 +51,7 @@
             </div>
             {% if status == '0' %}
             <div class="modal-body">
-                <h5>業務状態を<span class="badge badge-warning badge-pill">マスタ編集</span>に変更します。</h5>
+                <h5>業務状態を<span class="badge badge-warning badge-pill">マスタ編集中</span>に変更します。</h5>
                 <h5>よろしいですか？</h5>
                 <h5>（通常業務は休止されます）</h5>
             </div>

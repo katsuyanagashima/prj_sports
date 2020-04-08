@@ -1,0 +1,231 @@
+{% extends 'app_ckeiba/base.html' %}
+
+{% block content %}
+<div class="option_submit-contents">
+    <form method="post">
+        <div class="option_submit-nav">
+            <h3 class="font-weight-bold"><span class="badge badge-light option_submit-title">オプション送信画面</span>
+
+            </h3>
+
+            {% csrf_token %}
+
+            {% if chklist %}
+            <div class="sumit_confirm_box">
+                <h6>以下のファイルを送信します。送信種別を選んでください。</h6>
+                <div class="select_submit_type form-inline">
+                    <h6>送信種別：</h6>
+                    <select class="select">
+                        <option selected>選んでください ∇<i class="fas fa-caret-square-down"></i></option>
+                        <option value="1">通常送信</option>
+                        <option value="2">宛先指定</option>
+                        <option value="3">強制・テスト送信</option>
+                        <option value="3">先付送信</option>
+                    </select>
+
+                </div>
+                <div class="container-fluid">
+                    <div class="row justify-content-start">
+                        {% for chk in chklist %}
+                        <div class="col-2 send_name">{{ chk }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <button id="submit_confirm_button" class="submit_btn submit_confirm_btn">
+                        送信
+                    </button>
+                    <button id="clear_button" class="submit_btn clear_btn">
+                        クリア
+                    </button>
+                </div>
+            </div>
+            {% else %}
+            <h6>送信する電文を選択して、「選択」ボタンを押してください</h6>
+            <button type="submit" id="submit_button" class="submit_btn sentaku_btn">
+                選択
+            </button>
+            {% endif %}
+        </div>
+
+        <div class="container-fluid row container-area">
+            {% for submit_data in data.submit %}
+            <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+                <div class="caption_box jou-container">
+                    <div class="container-fluid row jou-title">
+                        <div class="jou col-7 reset_padding {{ submit_data.img }}">
+                            {{ submit_data.jou }}
+                        </div>
+                        <div class="col-5 reset_padding">
+                            <div class="container-fluid row reset_padding reset_margin">
+                                <div class="col-6 jou-newsml">
+                                    <table class="table table-sm table-bordered jou-newsml_table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="table-dark">成績表A</td>
+                                                <td>{% if submit_data.seisekiA == '○' or submit_data.seisekiA == '◎' or submit_data.seisekiA == '●' or submit_data.seisekiA == '◉' %}
+                                                    <span class="custom-control custom-checkbox custom_chkbox_span">
+                                                        <input type="checkbox" name="chk" class="custom-control-input"
+                                                            value="【{{ submit_data.jou }}】成績表A"
+                                                            id="chk_{{ submit_data.jou_code }}_seisekiA">
+                                                        <label class="custom-control-label"
+                                                            alt="{{ submit_data.seisekiA }}"
+                                                            for="chk_{{ submit_data.jou_code }}_seisekiA"></label>
+                                                    </span>
+                                                    {% else %}
+                                                    {{ submit_data.seisekiA }}
+                                                    {% endif%}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-6 jou-newsml">
+                                    <table class="table table-sm table-bordered jou-newsml_table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="table-dark">通信文A</td>
+                                                <td>{% if submit_data.tsusinA == '○' or submit_data.tsusinA == '◎' or submit_data.tsusinA == '●' or submit_data.tsusinA == '◉' %}
+                                                    <span class="custom-control custom-checkbox custom_chkbox_span">
+                                                        <input type="checkbox" name="chk" class="custom-control-input"
+                                                            value="【{{ submit_data.jou }}】 通信文A"
+                                                            id="chk_{{ submit_data.jou_code }}_tsusinA">
+                                                        <label class="custom-control-label"
+                                                            alt="{{ submit_data.tsusinA }}"
+                                                            for="chk_{{ submit_data.jou_code }}_tsusinA"></label>
+                                                    </span>
+                                                    {% else %}
+                                                    {{ submit_data.tsusinA }}
+                                                    {% endif%}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="race-newsml">
+                        <table class="table table-sm table-bordered table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">1R</th>
+                                    <th scope="col">2R</th>
+                                    <th scope="col">3R</th>
+                                    <th scope="col">4R</th>
+                                    <th scope="col">5R</th>
+                                    <th scope="col">6R</th>
+                                    <th scope="col">7R</th>
+                                    <th scope="col">8R</th>
+                                    <th scope="col">9R</th>
+                                    <th scope="col">10R</th>
+                                    <th scope="col">11R</th>
+                                    <th scope="col">12R</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>出走表</td>
+                                    {% for shussou in submit_data.shussou %}
+                                    <td
+                                        class="{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                        {% if shussou == '○' or shussou == '◎' or shussou == '●' or shussou == '◉' %}
+                                        <span class="custom-control custom-checkbox custom_chkbox_span">
+                                            <input type="checkbox" name="chk" class="custom-control-input"
+                                                value="【{{ submit_data.jou }}】{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %} 出走表"
+                                                id="chk_{{ submit_data.jou_code }}_shussou_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                            <label class="custom-control-label" alt="{{ shussou }}"
+                                                for="chk_{{ submit_data.jou_code }}_shussou_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}"></label>
+
+                                        </span>
+                                        {% else %}
+                                        {{ shussou }}
+                                        {% endif%}</td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <td>成績表C</td>
+                                    {% for seiseki in submit_data.seiseki %}
+                                    <td
+                                        class="{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                        {% if seiseki == '○' or seiseki == '◎' or seiseki == '●' or seiseki == '◉' %}
+                                        <span class="custom-control custom-checkbox custom_chkbox_span">
+                                            <input type="checkbox" name="chk" class="custom-control-input"
+                                                value="【{{ submit_data.jou }}】{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %} 成績表C"
+                                                id="chk_{{ submit_data.jou_code }}_seisekiC_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                            <label class="custom-control-label" alt="{{ seiseki }}"
+                                                for="chk_{{ submit_data.jou_code }}_seisekiC_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}"></label>
+                                        </span>
+                                        {% else %}
+                                        {{ seiseki }}
+                                        {% endif%}</td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <td>ラップ</td>
+                                    {% for rap in submit_data.rap %}
+                                    <td
+                                        class="{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                        {% if rap == '○' or rap == '◎' or rap == '●' or rap == '◉' %}
+                                        <span class="custom-control custom-checkbox custom_chkbox_span">
+                                            <input type="checkbox" name="chk" class="custom-control-input"
+                                                value="【{{ submit_data.jou }}】{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %} ラップ"
+                                                id="chk_{{ submit_data.jou_code }}_rap_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                            <label class="custom-control-label" alt="{{ rap }}"
+                                                for="chk_{{ submit_data.jou_code }}_rap_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}"></label>
+                                        </span>
+                                        {% else %}
+                                        {{ rap }}
+                                        {% endif%}</td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <td>上がり</td>
+                                    {% for agari in submit_data.agari %}
+                                    <td
+                                        class="{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                        {% if agari == '○' or agari == '◎' or agari == '●' or agari == '◉' %}
+                                        <span class="custom-control custom-checkbox custom_chkbox_span">
+                                            <input type="checkbox" name="chk" class="custom-control-input"
+                                                value="【{{ submit_data.jou }}】{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %} 上がり"
+                                                id="chk_{{ submit_data.jou_code }}_agari_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                            <label class="custom-control-label" alt="{{ agari }}"
+                                                for="chk_{{ submit_data.jou_code }}_agari_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}"></label>
+                                        </span>
+                                        {% else %}
+                                        {{ agari }}
+                                        {% endif%}</td>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <td>通信文C</td>
+                                    {% for tsusin in submit_data.tsusin %}
+                                    <td
+                                        class="{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                        {% if tsusin == '○' or tsusin == '◎' or tsusin == '●' or tsusin == '◉' %}
+                                        <span class="custom-control custom-checkbox custom_chkbox_span">
+                                            <input type="checkbox" name="chk" class="custom-control-input"
+                                                value="【{{ submit_data.jou }}】{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %} 通信文C"
+                                                id="chk_{{ submit_data.jou_code }}_tsusinC_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}">
+                                            <label class="custom-control-label" alt="{{ tsusin }}"
+                                                for="chk_{{ submit_data.jou_code }}_tsusinC_{% cycle '1R' '2R' '3R' '4R' '5R' '6R' '7R' '8R' '9R' '10R' '11R' '12R' %}"></label>
+                                        </span>
+                                        {% else %}
+                                        {{ tsusin }}
+                                        {% endif%}</td>
+                                    {% endfor %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <a href="./" class="btn footer-button" role="button">戻る</a>
+    <a href="" class="btn footer-button" role="button">終了</a>
+</nav>
+{% endblock %}
