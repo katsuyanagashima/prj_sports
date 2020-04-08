@@ -1,0 +1,91 @@
+<div class="container-fluid row container-area">
+
+    {% for submit_data in data.submit %}
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-7 reset_padding {{ submit_data.img }}">
+                    {{ submit_data.jou }}
+                </div>
+                <div class="col-5 reset_padding">
+                    <div class="container-fluid row reset_padding reset_margin">
+                        <div class="col-6 jou-newsml">
+                            <table class="table table-sm table-bordered jou-newsml_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-dark">成績表A</td>
+                                        <td>{{ submit_data.seisekiA }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6 jou-newsml">
+                            <table class="table table-sm table-bordered jou-newsml_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-dark">通信文A</td>
+                                        <td>{{ submit_data.tsusinA }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="race-newsml">
+                <table class="table table-sm table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">1R</th>
+                            <th scope="col">2R</th>
+                            <th scope="col">3R</th>
+                            <th scope="col">4R</th>
+                            <th scope="col">5R</th>
+                            <th scope="col">6R</th>
+                            <th scope="col">7R</th>
+                            <th scope="col">8R</th>
+                            <th scope="col">9R</th>
+                            <th scope="col">10R</th>
+                            <th scope="col">11R</th>
+                            <th scope="col">12R</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>出走表</td>
+                            {% for shussou in submit_data.shussou %}
+                            <td>{{ shussou }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>成績表C</td>
+                            {% for seiseki in submit_data.seiseki %}
+                            <td>{{ seiseki }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>ラップ</td>
+                            {% for rap in submit_data.rap %}
+                            <td>{{ rap }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>上がり</td>
+                            {% for agari in submit_data.agari %}
+                            <td>{{ agari }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td>通信文C</td>
+                            {% for tsusin in submit_data.tsusin %}
+                            <td>{{ tsusin }}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

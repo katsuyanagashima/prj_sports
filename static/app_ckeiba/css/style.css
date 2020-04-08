@@ -5,7 +5,8 @@
 ４．メインのコンテンツ部分
 ５．メイン画面の切替タブ部分
 ６．レスポンシブ対応
-７．各競馬場の画像の表示設定 */
+７．各競馬場の画像の表示設定
+８．マスタ編集画面の表示設定 */
 
 
 /* ＜スタイルの追加・編集の場合の鉄則三カ条＞
@@ -90,6 +91,7 @@
     margin-top: 5px;
     font-size: 1em;
 }
+
 
 /* 各場別コンテナ */
 .caption_box{
@@ -450,4 +452,25 @@
     display: block;
     background-position: right;
     background-repeat: no-repeat;
+}
+
+
+
+/* ８．マスタ編集画面の表示設定 */
+
+.master_edit-contents{
+    margin: 15px;
+}
+
+.master_edit-table{
+    font-size: 0.9em;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.master_select{
+    font-size: 1rem;
+}
+.list-group-item{
+    padding: 0.5rem 1.25rem;
 }

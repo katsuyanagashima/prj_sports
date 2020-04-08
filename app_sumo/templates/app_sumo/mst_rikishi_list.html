@@ -20,8 +20,8 @@
         <td>{{  rikishi.Rikishi_name_kanji_official }}</td>
         <td>{{  rikishi.Heya_code }}</td>
         <td>{{  rikishi.Rikishi_attrib_class }}</td>
-        <td><a href="{% url 'update' pk=rikishi.id %}">更新画面へ</a></td>
-        <td><a href="{% url 'delete' pk=rikishi.id %}"<button type="button" class="btn btn-danger">削除</button></a></td>
+        <td><a href="{% url 'rikishiUpdate' pk=rikishi.id %}">更新画面へ</a></td>
+        <td><a href="{% url 'rikishiDelete' pk=rikishi.id %}"<button type="button" class="btn btn-danger">削除</button></a></td>
     </tr>
     {% endfor %}
 </table>
@@ -36,7 +36,7 @@
 </form>
 
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
-    <a href="{% url 'create' %}" class="btn menubutton5 btn-block" role="button">新規登録</a>
+    <a href="{% url 'rikishiCreate' %}" class="btn menubutton5 btn-block" role="button">新規登録</a>
     <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
 </nav>
 

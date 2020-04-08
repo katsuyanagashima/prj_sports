@@ -185,7 +185,8 @@ def SUMTKD02(request):
 
 #階級上位力士
 def SUMJOR01(request):
-    return render(request, 'app_sumo/SUMJOR01.html')
+    params = nav_info(request)
+    return render(request, 'app_sumo/SUMJOR01.html', params)
 
 #資料出力
 def SUMSHI01(request):
@@ -237,23 +238,24 @@ class Rikishilist(ListView):
         one = '1'
         two = '2'
  
-        if q_word:
-            if checks_value == [] or (activeDuty in checks_value and notActiveDuty in checks_value):
-                rikishilist = Mst_Rikishi.objects.filter(
-                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+        def cheks_filter(rikishilist, checks_value):
+
+            if activeDuty in checks_value and notActiveDuty in checks_value:
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
             elif activeDuty in checks_value:
-                rikishilist = Mst_Rikishi.objects.filter(
-                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)).filter(Rikishi_attrib_class=one)
-                rikishilist = Mst_Rikishi.objects.filter(
-                    Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word)).filter(Rikishi_attrib_class__gte=two)
+                rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
+            elif notActiveDuty in checks_value: 
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)           
+            return rikishilist
+
+        if q_word:
+            rikishilist = Mst_Rikishi.objects.filter(Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))                
+            rikishilist = cheks_filter(rikishilist, checks_value)
 
         else:
-            if (activeDuty in checks_value and notActiveDuty in checks_value) or checks_value == []:
-                rikishilist = Mst_Rikishi.objects.all()
-            elif activeDuty in checks_value:
-                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class=one)
-            else:
-                rikishilist = Mst_Rikishi.objects.filter(Rikishi_attrib_class__gte=two)
+            rikishilist = Mst_Rikishi.objects.all()
+            rikishilist = cheks_filter(rikishilist, checks_value)
+
         return rikishilist
 
 #力士マスタ作成処理

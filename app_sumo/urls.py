@@ -34,9 +34,9 @@ urlpatterns = [
     path('SUMUKS01/', views.SUMUKS01, name='SUMUKS01'), #優勝決定戦階級選択画面
     path('SUMUKS02/', views.SUMUKS02, name='SUMUKS02'), #優勝決定戦入力画面
     path('SUMMST01/', views.Rikishilist.as_view(), name='rikishi'),#力士マスタメンテ画面
-    path('SUMMST01/create/', views.RikishiCreateView.as_view(), name='create'), #力士マスタメンテ作成画面
-    path('SUMMST01/update/<int:pk>/', views.RikishiUpdateView.as_view(), name='update'), #力士マスタメンテ更新画面
-    path('SUMMST01/delete/<int:pk>/', views.RikishiDeleteView.as_view(), name='delete'), #力士マスタメンテ削除画面    
+    path('SUMMST01/create/', views.RikishiCreateView.as_view(), name='rikishiCreate'), #力士マスタメンテ作成画面
+    path('SUMMST01/update/<int:pk>/', views.RikishiUpdateView.as_view(), name='rikishiUpdate'), #力士マスタメンテ更新画面
+    path('SUMMST01/delete/<int:pk>/', views.RikishiDeleteView.as_view(), name='rikishiDelete'), #力士マスタメンテ削除画面    
     # path('output/', add_views.xmlout_14, name=''), #NewsML修正画面
     
 ]
