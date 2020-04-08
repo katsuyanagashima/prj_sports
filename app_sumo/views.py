@@ -304,16 +304,17 @@ def SUMMSM01_heya_html(request):
 #   return render(request, 'app_sumo/SUMINT01.html')
 #年度・場所切替画面
 def SUMINT01(request):
-    event = Mst_Event.objects.all()
+    systemstatus = Tran_Systemstatus.objects.all()
     if request.method == "POST":
-        event.delete()
-        initial_dict = {'Torikumi_nichime_code':'0', 'Shoubu_nichime_code':'0', 'Age_calcu_reference_date':'2000-01-01'}
-        form = Mst_Event_Form(request.POST, initial=initial_dict)
+        systemstatus.delete()
+#        initial_dict = {'Torikumi_nichime_code':'0', 'Shoubu_nichime_code':'0', 'Age_calcu_reference_date':'2000-01-01'}
+#        form = Mst_Event_Form(request.POST, initial=initial_dict)
+        form = Tran_SystemstatusForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('SUMINT01')
     else:
-        form = Mst_Event_Form()
+        form = Tran_SystemstatusForm()
 
     return render(request, 'app_sumo/SUMINT01.html',{'form':form})
 
