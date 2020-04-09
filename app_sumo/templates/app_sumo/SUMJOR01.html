@@ -3,10 +3,42 @@
 {% block content %}
 <h1 class="caption">階級上位力士</h1>
 
+<table>
+{% for i in top_class_rikishi %}
+<tr>
+  <td>{{i.Class_code}}</td>
+  <td>{{i.WinCount}} 勝</td>
+  <td>{{i.LossCount}} 敗</td>
+  <td>{{i.Yearmonth}}</td>
+  <td>{{i.Nichime_code}}</td>
+</form>
+</tr>
+{% endfor %}
+</table>
+<!--Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE) #階級コード
+Yearmonth = DateField(verbose_name='開催年月西暦')
+Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE, blank=True, null=True) #日目コード
+LossCount = PositiveIntegerField(verbose_name='負け数', blank=True, null=True, default=0)
+WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True, default=0)-->
+
+
 <div class="container-fluid row">
 
-
   <div class="col-12 gyomu-menu caption_box">
+  <table class="table table-hover table-sm">
+    {% for i in top_class_rikishi %}
+    <tr>
+      <td>{{i.Class_code}}</td>
+      <td>{{i.WinCount}} 勝</td>
+      <td>{{i.LossCount}} 敗</td>
+      <td>{{i.Yearmonth}}</td>
+      <td>{{i.Nichime_code}}</td>
+      </form>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <!--<div class="col-12 gyomu-menu caption_box">-->
     <form class="form-inline">
       <div class="form-group col-xs-1">
         <label for="kaikyu">中入り　</label>
@@ -67,6 +99,7 @@
 　階級ごとに上位力士基準勝敗数をテーブルに登録する。</br>
 　各階級別成績上位力士電文を作成するときの、出力する基準となる勝数、敗数を設定するため。</br>
 　【要望】階級別上位力士で前日設定したものが翌日も残るようにする。</br>
+  　　→　現行システムは、勝負日目ごとに入力値を記憶しており、運用日を翌日にしても前日の値はセットされない模様（とりあえず現行動作を再現してから、要望を再確認）</br>
 　　　　　勝数制御の場合は勝数のみの入力、敗数制御の場合は敗数のみの入力、</br>
 　　　　　勝数or敗数制御の場合は勝数・敗数を両方入力して制御できるようにする</br>
 　【設計書】</br>

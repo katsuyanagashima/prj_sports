@@ -186,7 +186,20 @@ def SUMTKD02(request):
 #階級上位力士
 def SUMJOR01(request):
     params = nav_info(request)
+    #top_class_rikishi = Tran_TopClassRikishi.objects.all()
+    top_class_rikishi = Tran_TopClassRikishi.objects.order_by('Class_code', 'Yearmonth')
+    dict = {
+        #'item1': 'Ahaha',
+        #'item2': 'Ihihi',
+        'top_class_rikishi': top_class_rikishi
+    }
+    params.update(dict)
     return render(request, 'app_sumo/SUMJOR01.html', params)
+"""from django.views.generic import TemplateView
+class SUMJOR01(TemplateView):
+    ###template_name = 'SUMJOR01.html'
+    template_name = 'app_sumo/SUMJOR01.html'
+    """
 
 #資料出力
 def SUMSHI01(request):
