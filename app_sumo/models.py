@@ -313,6 +313,7 @@ class Mst_Operationmode(Model):
 class Tran_Systemstatus(Model):
     Event_date =  IntegerField(verbose_name='開催年月', blank=True, null=True)
     CurrentBasho =  ForeignKey('Mst_Basho', on_delete=CASCADE)
+    SystemStatus =   CharField(verbose_name='運用モード表記', max_length=10, blank=True, null=True) 
     SystemStatus =  ForeignKey('Mst_Operationmode', on_delete=CASCADE, blank=True, null=True) 
     TorikumiDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'torikumi')
     MatchDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'match')

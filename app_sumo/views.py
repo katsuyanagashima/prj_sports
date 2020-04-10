@@ -30,7 +30,7 @@ def SUMUDY01(request):
     ## init は初期値という意味で、更新をかけた後の状態維持に使用 ##
     init = { 
         "torikumi_nichime":tran_system.TorikumiDate.Nichime_code, 
-        "match_nichime":tran_system.MatchDate.Nichime_code 
+        "match_nichime":tran_system.MatchDate.Nichime_code, 
     }
 
     nichime = Mst_Nichime.objects.all()
@@ -53,7 +53,7 @@ def SUMUDY01(request):
     nav = nav_info(request)
     d = {
         'init': init,
-        'nichime': nichime
+        'nichime': nichime,
     }
     d.update(nav)
     

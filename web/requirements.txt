@@ -4,3 +4,5 @@ pymysql==0.8.0
 bootstrap4==0.1.0
 django-bootstrap4==1.0.1
 django-widget-tweaks==1.4.5
+watchdog==0.10.2
+pathtools==0.1.1
