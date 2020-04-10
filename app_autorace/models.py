@@ -165,7 +165,7 @@ class Mst_Outside_track(models.Model):
 class Trn_Schedule(models.Model):
     Cllasification = models.CharField('区分', blank=True, null=True, max_length=1)
     Data_type = models.CharField('データ種別', blank=True, null=True ,max_length=1)
-    Send_date = models.CharField('送信日', blank=True, null=True, max_length=1)
+    Send_date = models.CharField('送信日', blank=True, null=True, max_length=8)
     Race_date_1 = models.CharField('競争年月日１', blank=True, null=True, max_length=8)
     Outside_1 = models.CharField('場外売場情報１', blank=True, null=True, max_length=1)
     Track_code1_1 = models.ForeignKey('Mst_Race_track', on_delete=models.CASCADE, related_name = 'TRack1_1', blank=True, null=True, max_length=1)
