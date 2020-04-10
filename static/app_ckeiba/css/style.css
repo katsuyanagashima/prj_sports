@@ -177,6 +177,11 @@ h6 {
     margin-right: 10px;
 }
 
+.th_10R-12R{
+    padding-right: 0.1rem !important; 
+    padding-left: 0.1rem !important;
+}
+
 /* テーブルの項目異常時のスタイル */
     .misakusei{
         background-color: red;
@@ -567,16 +572,20 @@ h6 {
     font-size: 0.9em;
 }
 
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+.custom-checkbox_red .custom-control-input:checked ~ .custom-control-label::before {
     background-color:red;
     border-color: transparent;
     content: "";
 }
+.custom-control-label::before {
+    border-radius: 3px;
+}
+
 .custom-control-label::after{
     cursor: pointer;
 }
 
-.sumit_confirm_box{
+.submit_confirm_box{
     position: relative;
     margin-top: 1em;
     margin-right: 2em;
@@ -590,26 +599,110 @@ h6 {
     font-size: 0.9em;
 }
 
-.select_submit_type{
+.submit_edit{
     margin-left: 15px;
     margin-bottom: 10px;
 }
 
-.select{
-    width: 160px;
-}
-select::-ms-expand {
-	display: none;
-}
-select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	margin-bottom: 5px;
-	padding: 7px 10px 7px 10px;
-	line-height: 1.1em;
-	border-radius: 5px;
-	border: solid 1px rgba(85, 82, 82, 0.473);;
-	background-color: #fff;
+.radio_submittype{
+    margin-left: 20px;
 }
 
+
+
+.haishin-box{
+    border: solid 0.5px #cacaca;
+    padding-right: 0px;
+    margin-bottom: auto;
+    font-size: 0.8em;
+    padding-left: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/* SVG画像 */
+.maru-img{
+    background: url('/static/app_ckeiba/pic/svg/panorama_fish_eye-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+    display: block;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.hourglass-img{
+    background: url('/static/app_ckeiba/pic/svg/hourglass_empty-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.star-img{
+    background: url('/static/app_ckeiba/pic/svg/star_border-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.starblack-img{
+    background: url('/static/app_ckeiba/pic/svg/star-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.bike-img{
+    background: url('/static/app_ckeiba/pic/svg/two_wheeler-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.maru2-img{
+    background: url('/static/app_ckeiba/pic/svg/radio_button_checked-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+
+.check-img{
+    background: url('/static/app_ckeiba/pic/svg/done-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.check_circle-img{
+    background: url('/static/app_ckeiba/pic/svg/check_circle_outline-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.change_history-black-img{
+    background: url('/static/app_ckeiba/pic/svg/change_history-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.brightness-img{
+    background: url('/static/app_ckeiba/pic/svg/brightness_1-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.arrow_drop_down-img{
+    background: url('/static/app_ckeiba/pic/svg/arrow_drop_down-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+
+.double-circle-img{
+    background: url('/static/app_ckeiba/pic/svg/double-circle.svg');
+    background-size: 100%;
+    width:12px; 
+    height:12px;
+}
