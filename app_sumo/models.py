@@ -298,7 +298,6 @@ class Mst_KindofNewsML(Model):
         return str(self.ContentName)
 
 #運用管理
-"""
 class Mst_Operationmode(Model):
     Operationmode_code =  IntegerField(verbose_name='運用モード', blank=True, null=True)
     Operationmode_name = CharField(verbose_name='運用モード表記', max_length=10, blank=True, null=True)
@@ -308,14 +307,14 @@ class Mst_Operationmode(Model):
 
     def __str__(self):
         return str(self.Operationmode_name)
-"""
+
 # --------------------------------------------------------------------------------------------------
 #システム状態
 class Tran_Systemstatus(Model):
     Event_date =  IntegerField(verbose_name='開催年月', blank=True, null=True)
     CurrentBasho =  ForeignKey('Mst_Basho', on_delete=CASCADE)
     SystemStatus =   CharField(verbose_name='運用モード表記', max_length=10, blank=True, null=True) 
- #   SystemStatus =  ForeignKey('Mst_Operationmode', on_delete=CASCADE, blank=True, null=True) 
+    SystemStatus =  ForeignKey('Mst_Operationmode', on_delete=CASCADE, blank=True, null=True) 
     TorikumiDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'torikumi')
     MatchDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'match')
     First_date = DateField(verbose_name='初日年月日')
