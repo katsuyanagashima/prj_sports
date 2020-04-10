@@ -7,11 +7,13 @@ import time
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Max
 from app_autorace.models import *
 from logging import getLogger
 
 #!/usr/bin/env 
 logger = getLogger(__name__)
+logger.info('Hello World!')
 
 # 監視対象ディレクトリを指定する
 base = os.path.dirname(os.path.abspath(__file__))
@@ -45,46 +47,46 @@ class FileChangeHandler(PatternMatchingEventHandler):
             race_date_1	 = str()
             outside_1	 = str()
             track_code_1_1	 = str()
-            races_1_1	 = int()
+            races_1_1 = int()
             track_code_1_2	 = str()
-            races_1_2	 = int()
+            races_1_2 = int()
             track_code_1_3	 = str()
-            races_1_3	 = int()
+            races_1_3 = int() 
             track_code_1_4	 = str()
-            races_1_4	 = int()
+            races_1_4 = int() 
             track_code_1_5	 = str()
-            races_1_5	 = int()
+            races_1_5 = int() 
             track_code_1_6	 = str()
-            races_1_6	 = int()
+            races_1_6 = int() 
             race_date_2	 = str()
             outside_2	 = str()
             track_code_2_1	 = str()
-            races_2_1	 = int()
+            races_2_1 = int()	 
             track_code_2_2	 = str()
-            races_2_2	 = int()
+            races_2_2 = int()	 
             track_code_2_3	 = str()
-            races_2_3	 = int()
+            races_2_3 = int()	 
             track_code_2_4	 = str()
-            races_2_4	 = int()
+            races_2_4 = int() 
             track_code_2_5	 = str()
-            races_2_5	 = int()
+            races_2_5 = int() 
             track_code_2_6	 = str()
-            races_2_6	 = int()
+            races_2_6 = int()	 
             race_date_3	 = str()
             outside_3	 = str()
             track_code_3_1	 = str()
-            races_3_1	 = int()
+            races_3_1 = int()	 
             track_code_3_2	 = str()
-            races_3_2	 = int()
+            races_3_2 = int()	 
             track_code_3_3	 = str()
-            races_3_3	 = int()
+            races_3_3 = int()	 
             track_code_3_4	 = str()
-            races_3_4	 = int()
+            races_3_4 = int()	 
             track_code_3_5	 = str()
-            races_3_5	 = int()
+            races_3_5 = int()	 
             track_code_3_6	 = str()
-            races_3_6	 = int()
-            top_30_prizes	 = str()
+            races_3_6 = int()	 
+            top_30_prizes	 = str()            
             schedule = 3
 
             file = open(name,'r')
@@ -92,12 +94,13 @@ class FileChangeHandler(PatternMatchingEventHandler):
                 classification = line[0:1]
                 data_type = line[1:2]
                 send_date = line[2:10]
-                top_30_prizes = line[-1]                
-                scheduleLine = line[10:-1]
+                              
+                scheduleLine = line[10:]
 
                 def chkBlank(scheduleLineStr):
-                    if (not re.sub('\s', '', scheduleLineStr)):                
+                    if (not re.sub('\s', '', scheduleLineStr)):       
                         return False
+                    print(scheduleLineStr)         
                     return True
 
                 # スケジュール 繰り返し ×3
@@ -196,110 +199,182 @@ class FileChangeHandler(PatternMatchingEventHandler):
                             track_code_3_6	 = scheduleLine[78:79]
                         if chkBlank(scheduleLine[79:81]):    
                             races_3_6	 = scheduleLine[79:81]
+                        if chkBlank(scheduleLine[-1]):
+                            top_30_prizes = scheduleLine[-1]  
                     break            
             file.close()
 
             # DB　ファイル登録
             # 必須項目のみ
             #INSERTが実行される
-            trn_S =Trn_Schedule(Cllasification=classification, Data_type=data_type, Send_date=send_date)
-            trn_S.save()
-            
-            # 空白チェックして実体があるカラムは登録
-            if not race_date_1:
-                trn_S.Race_date_1=race_date_1
-            if not outside_1:
-                trn_S.Outside_1=outside_1
-            if not races_1_1:
-                trn_S.races_1_1=races_1_1
-            if not races_1_2:
-                trn_S.races_1_2=races_1_2
-            if not races_1_3:
-                trn_S.races_1_3=races_1_3
-            if not races_1_4:
-                trn_S.races_1_4=races_1_4
-            if not races_1_5:
-                trn_S.races_1_5=races_1_5
-            if not races_1_6:
-                trn_S.races_1_6=races_1_6
+            trn_Insert =Trn_Schedule(Cllasification=classification, Data_type=data_type, Send_date=send_date)
+            trn_Insert.save()
+            print('Trn_Schedule')
 
-            if not race_date_2:
-                trn_S.race_date_2=race_date_2
-            if not outside_2:
-                trn_S.Outside_2=outside_2
-            if not races_2_1:
-                trn_S.races_2_1=races_2_1
-            if not races_2_2:
-                trn_S.races_2_2=races_2_2
-            if not races_2_3:
-                trn_S.races_2_3=races_2_3
-            if not races_2_4:
-                trn_S.races_2_4=races_2_4
-            if not races_2_5:
-                trn_S.races_2_5=races_2_5
-            if not races_2_6:
-                trn_S.races_2_6=races_2_6
+            max = Trn_Schedule.objects.all().aggregate(Max('id')).get('id__max')
 
-            if not race_date_3:
-                trn_S.race_date_3=race_date_3
-            if not outside_3:
-                trn_S.Outside_3=outside_3
-            if not races_3_1:
-                trn_S.races_3_1=races_3_1
-            if not races_3_2:
-                trn_S.races_3_2=races_3_2
-            if not races_3_3:
-                trn_S.races_3_3=races_3_3
-            if not races_3_4:
-                trn_S.races_3_4=races_3_4
-            if not races_3_5:
-                trn_S.races_3_5=races_3_5
-            if not races_3_6:
-                trn_S.races_3_6=races_3_6
+            trn_Update = Trn_Schedule.objects.get(id=max)
 
-            if not top_30_prizes:
-                trn_S.Top_30_prizes = top_30_prizes
+            # 空白チェックして実体があるカラムは更新
+            if race_date_1:
+                trn_Update.Race_date_1=race_date_1
+                trn_Update.save()
+            if outside_1:
+                trn_Update.Outside_1=outside_1
+                trn_Update.save()
+            if races_1_1:
+                trn_Update.races_1_1= races_1_1
+                trn_Update.save()
+            if races_1_2:
+                trn_Update.races_1_2= races_1_2
+                trn_Update.save()
+            if races_1_3:
+                trn_Update.races_1_3= races_1_3
+                trn_Update.save()
+            if races_1_4:
+                trn_Update.races_1_4= races_1_4
+                trn_Update.save()
+            if races_1_5:
+                trn_Update.races_1_5= races_1_5
+                trn_Update.save()
+            if races_1_6:
+                trn_Update.races_1_6= races_1_6
+                trn_Update.save()
 
-            trn_S.save()
-            if not track_code_1_1:
-                trn_S.Track_code1_1=Mst_Race_track(Track_code=track_code_1_1)
-            if not track_code_1_2:
-                trn_S.Track_code1_2=Mst_Race_track(Track_code=track_code_1_2)
-            if not track_code_1_3:
-                trn_S.Track_code1_3=Mst_Race_track(Track_code=track_code_1_3)
-            if not track_code_1_4:
-                trn_S.Track_code1_4=Mst_Race_track(Track_code=track_code_1_4)
-            if not track_code_1_5:
-                trn_S.Track_code1_5=Mst_Race_track(Track_code=track_code_1_5)                
-            if not track_code_1_6:
-                trn_S.Track_code1_6=Mst_Race_track(Track_code=track_code_1_6)
-            if not track_code_2_1:
-                trn_S.Track_code2_1=Mst_Race_track(Track_code=track_code_2_1)
-            if not track_code_2_2:
-                trn_S.Track_code2_2=Mst_Race_track(Track_code=track_code_2_2)
-            if not track_code_2_3:
-                trn_S.Track_code2_3=Mst_Race_track(Track_code=track_code_2_3)
-            if not track_code_2_4:
-                trn_S.Track_code2_4=Mst_Race_track(Track_code=track_code_2_4)
-            if not track_code_2_5:
-                trn_S.Track_code2_5=Mst_Race_track(Track_code=track_code_2_5)                
-            if not track_code_2_6:
-                trn_S.Track_code2_6=Mst_Race_track(Track_code=track_code_2_6)
-            if not track_code_3_1:
-                trn_S.Track_code3_1=Mst_Race_track(Track_code=track_code_3_1)
-            if not track_code_3_2:
-                trn_S.Track_code3_2=Mst_Race_track(Track_code=track_code_3_2)
-            if not track_code_3_3:
-                trn_S.Track_code3_3=Mst_Race_track(Track_code=track_code_3_3)
-            if not track_code_3_4:
-                trn_S.Track_code3_4=Mst_Race_track(Track_code=track_code_3_4)
-            if not track_code_3_5:
-                trn_S.Track_code3_5=Mst_Race_track(Track_code=track_code_3_5)                
-            if not track_code_3_6:
-                trn_S.Track_code3_6=Mst_Race_track(Track_code=track_code_3_6)
+            if race_date_2:
+                trn_Update.race_date_2=race_date_2
+                trn_Update.save()
+            if outside_2:
+                trn_Update.Outside_2=outside_2
+                trn_Update.save()
+            if races_2_1:
+                trn_Update.races_2_1= races_2_1
+                trn_Update.save()
+            if races_2_2:
+                trn_Update.races_2_2= races_2_2
+                trn_Update.save()
+            if races_2_3:
+                trn_Update.races_2_3= races_2_3
+                trn_Update.save()
+            if races_2_4:
+                trn_Update.races_2_4= races_2_4
+                trn_Update.save()
+            if races_2_5:
+                trn_Update.races_2_5= races_2_5
+                trn_Update.save()
+            if races_2_6:
+                trn_Update.races_2_6= races_2_6
+                trn_Update.save()
 
+            if race_date_3:
+                trn_Update.race_date_3=race_date_3
+                trn_Update.save()
+            if outside_3:
+                trn_Update.Outside_3=outside_3
+                trn_Update.save()
+            if races_3_1:
+                trn_Update.races_3_1= races_3_1
+                trn_Update.save()
+            if races_3_2:
+                trn_Update.races_3_2= races_3_2
+                trn_Update.save()
+            if races_3_3:
+                trn_Update.races_3_3= races_3_3
+                trn_Update.save()
+            if races_3_4:
+                trn_Update.races_3_4= races_3_4
+                trn_Update.save()
+            if races_3_5:
+                trn_Update.races_3_5= races_3_5
+                trn_Update.save()
+            if races_3_6:
+                trn_Update.races_3_6= races_3_6
+                trn_Update.save()
+
+            if top_30_prizes:
+                trn_Update.Top_30_prizes = top_30_prizes
+                trn_Update.save()
+
+            if track_code_1_1:
+                #マスターに確認 エラー
+                trn_Update.Track_code1_1_id=Mst_Race_track.objects.get(Track_code=track_code_1_1)
+                trn_Update.save()
+            if track_code_1_2:
+                trn_Update.Track_code1_2_id=Mst_Race_track.objects.get(Track_code=track_code_1_2)
+                trn_Update.save()
+
+            if track_code_1_3:
+                trn_Update.Track_code1_3_id=Mst_Race_track.objects.get(Track_code=track_code_1_3)
+                trn_Update.save()
+                
+            if track_code_1_4:
+                trn_Update.Track_code1_4_id=Mst_Race_track.objects.get(Track_code=track_code_1_4)
+                trn_Update.save()
+                
+            if track_code_1_5:
+                trn_Update.Track_code1_5_id=Mst_Race_track.objects.get(Track_code=track_code_1_5)
+                trn_Update.save()            
+                 
+            if track_code_1_6:
+                trn_Update.Track_code1_6_id=Mst_Race_track.objects.get(Track_code=track_code_1_6)
+                trn_Update.save()
+                
+            if track_code_2_1:
+                trn_Update.Track_code2_1_id=Mst_Race_track.objects.get(Track_code=track_code_1_1)
+                trn_Update.save()
+                
+            if track_code_2_2:
+                trn_Update.Track_code2_2_id=Mst_Race_track.objects.get(Track_code=track_code_2_2)
+                trn_Update.save()
+                
+            if track_code_2_3:
+                trn_Update.Track_code2_3_id=Mst_Race_track.objects.get(Track_code=track_code_2_3)
+                trn_Update.save()
+                
+            if track_code_2_4:
+                trn_Update.Track_code2_4_id=Mst_Race_track.objects.get(Track_code=track_code_2_4)
+                trn_Update.save()
+                
+            if track_code_2_5:
+                trn_Update.Track_code2_5_id=Mst_Race_track.objects.get(Track_code=track_code_2_5)
+                trn_Update.save()   
+                           
+            if track_code_2_6:
+                trn_Update.Track_code2_6_id=Mst_Race_track.objects.get(Track_code=track_code_2_6)
+                trn_Update.save()
+                
+            if track_code_3_1:
+                trn_Update.Track_code3_1_id=Mst_Race_track.objects.get(Track_code=track_code_3_1)
+                trn_Update.save()
+                
+            if track_code_3_2:
+                trn_Update.Track_code3_2_id=Mst_Race_track.objects.get(Track_code=track_code_3_2)
+                trn_Update.save()
+                
+            if track_code_3_3:
+                trn_Update.Track_code3_3_id=Mst_Race_track.objects.get(Track_code=track_code_3_3)
+                trn_Update.save()
+                
+            if track_code_3_4:
+                trn_Update.Track_code3_4_id=Mst_Race_track.objects.get(Track_code=track_code_3_4)
+                trn_Update.save()
+                
+            if track_code_3_5:
+                trn_Update.Track_code3_5_id=Mst_Race_track.objects.get(Track_code=track_code_3_5)
+                trn_Update.save()    
+                         
+            if track_code_3_6:
+                trn_Update.Track_code3_6_id=Mst_Race_track.objects.get(Track_code=track_code_3_6)
+                trn_Update.save()
+                
 
         except FileNotFoundError as e:
+            print(e)
+        except UnboundLocalError as e:
+            print(e)
+        except ValueError as e:
+            print(e)
+        except Exception as e:
             print(e)
 
     # ファイル変更時のイベント
