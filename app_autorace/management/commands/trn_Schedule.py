@@ -13,7 +13,6 @@ from logging import getLogger
 
 #!/usr/bin/env 
 logger = getLogger(__name__)
-logger.info('Hello World!')
 
 # 監視対象ディレクトリを指定する
 base = os.path.dirname(os.path.abspath(__file__))
@@ -99,8 +98,7 @@ class FileChangeHandler(PatternMatchingEventHandler):
 
                 def chkBlank(scheduleLineStr):
                     if (not re.sub('\s', '', scheduleLineStr)):       
-                        return False
-                    print(scheduleLineStr)         
+                        return False    
                     return True
 
                 # スケジュール 繰り返し ×3
@@ -209,7 +207,6 @@ class FileChangeHandler(PatternMatchingEventHandler):
             #INSERTが実行される
             trn_Insert =Trn_Schedule(Cllasification=classification, Data_type=data_type, Send_date=send_date)
             trn_Insert.save()
-            print('Trn_Schedule')
 
             max = Trn_Schedule.objects.all().aggregate(Max('id')).get('id__max')
 
