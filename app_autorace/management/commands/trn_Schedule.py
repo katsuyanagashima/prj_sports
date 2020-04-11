@@ -11,15 +11,15 @@ from django.db import transaction
 from django.db.models import Max
 from app_autorace.models import *
 from logging import getLogger
+from pathlib import Path
 
 #!/usr/bin/env 
 logger = getLogger(__name__)
 
-# 監視対象ディレクトリを指定する
-base = os.path.dirname(os.path.abspath(__file__))
-target_dir = os.path.expanduser(base)
 # 監視対象ファイルのパターンマッチを指定する
 # スケジュールレコード（mmddhhmmss00000000.dat）
+scheduleID = 1
+scheduleData = "scheduleData"
 target_file_schedule_record = '*00000000.dat'
 
 # PatternMatchingEventHandler の継承クラスを作成
@@ -27,6 +27,7 @@ class FileChangeHandler(PatternMatchingEventHandler):
     # クラス初期化
     def __init__(self, patterns):
         super(FileChangeHandler, self).__init__(patterns=patterns)
+        self.watch_path = str()
         
         self.classification	 = str()                # ファイル名をキーとして区分を記憶する辞書
         self.data_type	 = str()                    # ファイル名をキーとしてデータ種別を記憶する
@@ -355,15 +356,10 @@ class FileChangeHandler(PatternMatchingEventHandler):
             # 必須項目のみ
             #INSERTが実行される
             with transaction.atomic():
-                trn_Insert =Trn_Schedule(Cllasification=self.classification, Data_type=self.data_type, Send_date=self.send_date)
-                trn_Insert.save()
-
-                max = Trn_Schedule.objects.all().aggregate(Max('id')).get('id__max')
-
-                trn_Update = Trn_Schedule.objects.get(id=max)
+                Trn_Schedule(Cllasification=self.classification, Data_type=self.data_type, Send_date=self.send_date).save()
 
                 # 空白チェックして実体があるカラムは更新
-                self.update_Trn_Schedule(trn_Update)
+                self.update_Trn_Schedule(Trn_Schedule.objects.get(id=Trn_Schedule.objects.all().aggregate(Max('id')).get('id__max')))
 
         except FileNotFoundError as e:
             print(e)
@@ -378,8 +374,12 @@ class FileChangeHandler(PatternMatchingEventHandler):
     def on_created(self, event):
         filepath = event.src_path
         filename_schedule_record = os.path.basename(filepath)
+
         base = os.path.dirname(os.path.abspath(__file__))
-        name = os.path.normpath(os.path.join(base, filepath))
+        name = os.path.normpath(os.path.join(base,scheduleData ,filename_schedule_record))
+
+        # 監視元のフォルダパスを生成
+
         print('%s created Start' % filename_schedule_record)
         # ファイル読み込み
         #!/usr/bin/python
@@ -404,8 +404,9 @@ class FileChangeHandler(PatternMatchingEventHandler):
     def on_moved(self, event):
         filepath = event.src_path
         filename_schedule_record = os.path.basename(filepath)
+
         base = os.path.dirname(os.path.abspath(__file__))
-        name = os.path.normpath(os.path.join(base, filepath))        
+        name = os.path.normpath(os.path.join(base,scheduleData ,filename_schedule_record))    
         print('%s moved Start' % filename_schedule_record)
         # ファイル読み込み
         #!/usr/bin/python
@@ -418,19 +419,31 @@ class FileChangeHandler(PatternMatchingEventHandler):
 class Command(BaseCommand):
 
     # python manage.py help XXXXXで表示されるメッセージ
-    help = 'スケジュールレコードのファイルを監視してDBに登録する。'
+    help = 'ファイルを監視してDBに登録する。'
 
     '''与えられた引数を受け取る'''
-    # def add_arguments(self, parser):
+    def add_arguments(self, parser):
+        # 今回はscheduleという名前で取得する。（引数は最低でも1個, int型）
+        parser.add_argument('command_id', nargs='+', type=int)
+
 
     """受け取った引数を登録する"""
     def handle(self, *args, **options):
         # ファイル監視の開始
-        # スケジュールレコード（mmddhhmmss00000000.dat）
-        event_handler = FileChangeHandler([target_file_schedule_record])
-        observer = Observer()
-        observer.schedule(event_handler, target_dir, recursive=True)
-        observer.start()
+        # スケジュールレコード（mmddhhmmss00000000.dat） 1: スケジュール
+        # 監視対象ディレクトリを指定する
+        if scheduleID in options['command_id']:
+            base_trn_Schedule = os.path.dirname(os.path.abspath(__file__))
+            base = os.path.normpath(os.path.join(base_trn_Schedule,scheduleData))
+            target_dir = os.path.expanduser(base)
+
+            event_handler = FileChangeHandler([target_file_schedule_record])
+            observer = Observer()
+            observer.schedule(event_handler, target_dir, recursive=False)# recursive再帰的
+            observer.start()
+        else:
+            raise ValueError("command_id エラー")
+
         # 処理が終了しないようスリープを挟んで無限ループ
         try:
             while True:
