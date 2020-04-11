@@ -3,7 +3,7 @@
 {% block content %}
 <h1 class="caption">階級上位力士</h1>
 
-<table>
+<!--<table>
     {% for i in top_class_rikishi %}
     <tr>
         <td>{{i.Class_code}}</td>
@@ -14,7 +14,7 @@
         </form>
     </tr>
     {% endfor %}
-</table>
+</table>-->
 <!--Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE) #階級コード
 Yearmonth = DateField(verbose_name='開催年月西暦')
 Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE, blank=True, null=True) #日目コード
@@ -26,6 +26,13 @@ WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True,
 
     <div class="col-12 gyomu-menu caption_box">
         <table class="table table-hover table-sm">
+            <thead class="thead-dark">
+            <th>階級</th>
+            <th>○勝以上</th>
+            <th>○敗以下</th>
+            <th></th>
+            <th>日目</th>
+            </thead>
             {% for i in top_class_rikishi %}
             <tr>
                 <td>{{i.Class_code}}</td>
@@ -53,7 +60,8 @@ WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True,
                     </select>
                 </td>
                 <td>{{i.Yearmonth}}</td>
-                <td>
+                <td>{{i.Nichime_code}}</td>
+                <!--<td>
                     <select id="win_count_id" name="top_class_rikishi" class="form-control">
                         {% for j in nichime %}
                         <option value="{{ j }}"
@@ -62,7 +70,7 @@ WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True,
                         </option>
                         {% endfor %}
                     </select>
-                </td>
+                </td>-->
                 </form>
             </tr>
             {% endfor %}
