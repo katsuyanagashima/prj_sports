@@ -109,3 +109,91 @@ def Edit_Mst(request, mst_num):
 # 更新ボタン押下時
 def editbutton(request, values):
      return render(request, '../admin/app_ckeiba/mst_haishin/edit_num/change/')
+
+
+
+
+# オプション送信画面
+def option_submit(request):
+     # json形式のダミーデータを取得
+     import os
+     import json
+     module_dir = os.path.dirname(__file__) # views.pyのあるディレクトリを取得
+     json_path = os.path.join(module_dir, 'dammydata.json')
+     f = open(json_path, 'r')
+     dammydata = json.load(f)
+
+     # システム状態を取得
+     tran_system = Tran_Systemstatus.objects.all().first()
+     status = str(tran_system.SystemStatus)
+
+
+     selected_haishinsha = []
+     mst_haishin = []
+     joubetsu_filelists = {}
+     filelists = []
+     submittype = ""
+
+     if request.method == 'POST':
+          if 'sentaku' in request.POST:
+               # 選択ボタンがクリックされた場合の処理
+
+               # チェック項目を取得
+               chklist = []
+               chklist = request.POST.getlist('chk', '')
+
+               # チェック項目を整形する
+               for filename in chklist:
+                    filedetails = {}
+                    filenames = filename.split(",")
+                    filedetails['jou'] = filenames[0]
+                    filedetails['joucode'] = filenames[1]
+                    filedetails['race'] = filenames[2]
+                    filedetails['fname'] = filenames[3]
+                    filedetails['fnamecode'] = filenames[4]
+                    filedetails['val'] = filenames[5]
+
+                    filelists.append(filedetails) #いらないかも
+                    jouname = filedetails['jou']
+
+                    if joubetsu_filelists.get(jouname):
+                         joubetsu_filelists[jouname].append(filedetails)
+                    else:
+                         joubetsu_filelists[jouname] = []
+                         joubetsu_filelists[jouname].append(filedetails)
+               
+               # 場別選択ファイルリストをセッションに登録
+               request.session['filelists'] = filelists
+
+               # 配信社一覧を取得
+               mst_haishin = Mst_Company.objects.all()
+
+          elif 'soushin' in request.POST:
+               # 送信ボタンがクリックされた場合の処理
+
+               # 選択された送信種別と配信社を取得
+               submittype = request.POST.get('submittype', '')
+               selected_haishinsha = request.POST.getlist('haishinsha', '')
+
+               # セッションに登録しておいた場別選択ファイルリストを読み込む
+               joubetsu_filelists = request.session['filelists'] 
+               filelists = request.session['filelists']
+               
+
+
+
+
+     # パラメータに追加
+     params = {
+          'status': status,
+          'data': dammydata,
+          'unyobi': tran_system.Unyou_date,
+
+          'joubetsu': joubetsu_filelists,
+          'filelists' : filelists,
+          'mst_haishin': mst_haishin,
+          
+          'submittype': submittype,
+          'selected_haishinsha':selected_haishinsha
+     }
+     return render(request, 'app_ckeiba/option_submit.html', params)

@@ -14,7 +14,13 @@
                                 <tbody>
                                     <tr>
                                         <td class="table-dark">成績表A</td>
-                                        <td>{{ submit_data.seisekiA }}</td>
+                                        <td>
+                                            <!-- <svg width="16" height="16">
+                                                <circle cx="8" cy="8" r="5" stroke="black" stroke-width="1"
+                                                    fill="white" />
+                                            </svg> -->
+                                            {{ submit_data.seisekiA }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -46,9 +52,9 @@
                             <th scope="col">7R</th>
                             <th scope="col">8R</th>
                             <th scope="col">9R</th>
-                            <th scope="col">10R</th>
-                            <th scope="col">11R</th>
-                            <th scope="col">12R</th>
+                            <th scope="col" class="th_10R-12R">10R</th>
+                            <th scope="col" class="th_10R-12R">11R</th>
+                            <th scope="col" class="th_10R-12R">12R</th>
                         </tr>
                     </thead>
                     <tbody>

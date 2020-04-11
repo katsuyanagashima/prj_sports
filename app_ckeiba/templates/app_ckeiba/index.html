@@ -37,8 +37,9 @@
     <div class="tab-pane active" id="nav-submit" role="tabpanel" aria-labelledby="nav-submit-tab">
         <div class="form-inline">
             <span class="badge badge-light hanrei">空白：未作成　△：未完成　〇：作成済　◎：送信済　●：再編成　◉：再編成送信済　-：作成予定なし</span>
-            <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
-                data-target="#submit_log">送信ログ</span>
+            <div><a href="./option_submit" class="badge badge-success opt_submit_button">オプション送信</a>
+                <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
+                    data-target="#submit_log">送信ログ</span></div>
         </div>
         {% block submit-container %}
         {% include 'app_ckeiba/submit.html' %}
