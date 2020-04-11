@@ -186,156 +186,143 @@ class FileChangeHandler(PatternMatchingEventHandler):
                     self.top_30_prizes = scheduleLine[-1]  
     
     def update_Trn_Schedule(self, trn_Update):
+        updateFields = list()
         if self.race_date_1:
             trn_Update.Race_date_1=self.race_date_1
-            trn_Update.save()
+            updateFields.append('Race_date_1')
         if self.outside_1:
             trn_Update.Outside_1=self.outside_1
-            trn_Update.save()
+            updateFields.append('Outside_1')
         if self.races_1_1:
             trn_Update.races_1_1= self.races_1_1
-            trn_Update.save()
+            updateFields.append('races_1_1')
         if self.races_1_2:
             trn_Update.races_1_2= self.races_1_2
-            trn_Update.save()
+            updateFields.append('races_1_2')
         if self.races_1_3:
             trn_Update.races_1_3= self.races_1_3
-            trn_Update.save()
+            updateFields.append('races_1_3')
         if self.races_1_4:
             trn_Update.races_1_4= self.races_1_4
-            trn_Update.save()
+            updateFields.append('races_1_4')
         if self.races_1_5:
             trn_Update.races_1_5= self.races_1_5
-            trn_Update.save()
+            updateFields.append('races_1_5')
         if self.races_1_6:
             trn_Update.races_1_6= self.races_1_6
-            trn_Update.save()
+            updateFields.append('races_1_6')
 
         if self.race_date_2:
-            trn_Update.race_date_2=self.race_date_2
-            trn_Update.save()
+            trn_Update.Race_date_2=self.race_date_2
+            updateFields.append('Race_date_2')
         if self.outside_2:
             trn_Update.Outside_2=self.outside_2
-            trn_Update.save()
+            updateFields.append('Outside_2')
         if self.races_2_1:
             trn_Update.races_2_1= self.races_2_1
-            trn_Update.save()
+            updateFields.append('races_2_1')
         if self.races_2_2:
             trn_Update.races_2_2= self.races_2_2
-            trn_Update.save()
+            updateFields.append('races_2_2')
         if self.races_2_3:
             trn_Update.races_2_3= self.races_2_3
-            trn_Update.save()
+            updateFields.append('races_2_3')
         if self.races_2_4:
             trn_Update.races_2_4= self.races_2_4
-            trn_Update.save()
+            updateFields.append('races_2_4')
         if self.races_2_5:
             trn_Update.races_2_5= self.races_2_5
-            trn_Update.save()
+            updateFields.append('races_2_5')
         if self.races_2_6:
             trn_Update.races_2_6= self.races_2_6
-            trn_Update.save()
+            updateFields.append('races_2_6')
 
         if self.race_date_3:
-            trn_Update.race_date_3=self.race_date_3
-            trn_Update.save()
+            trn_Update.Race_date_3=self.race_date_3
+            updateFields.append('Race_date_3')
         if self.outside_3:
             trn_Update.Outside_3=self.outside_3
-            trn_Update.save()
+            updateFields.append('Outside_3')
         if self.races_3_1:
             trn_Update.races_3_1= self.races_3_1
-            trn_Update.save()
+            updateFields.append('races_3_1')
         if self.races_3_2:
             trn_Update.races_3_2= self.races_3_2
-            trn_Update.save()
+            updateFields.append('races_3_2')
         if self.races_3_3:
             trn_Update.races_3_3= self.races_3_3
-            trn_Update.save()
+            updateFields.append('races_3_3')
         if self.races_3_4:
             trn_Update.races_3_4= self.races_3_4
-            trn_Update.save()
+            updateFields.append('races_3_4')
         if self.races_3_5:
             trn_Update.races_3_5= self.races_3_5
-            trn_Update.save()
+            updateFields.append('races_3_5')
         if self.races_3_6:
             trn_Update.races_3_6= self.races_3_6
-            trn_Update.save()
+            updateFields.append('races_3_6')
 
         if self.top_30_prizes:
             trn_Update.Top_30_prizes = self.top_30_prizes
-            trn_Update.save()
+            updateFields.append('Top_30_prizes')
 
         if self.track_code_1_1:
             #マスターに確認 エラー
             trn_Update.Track_code1_1_id=Mst_Race_track.objects.get(Track_code=self.track_code_1_1)
-            trn_Update.save()
+            updateFields.append('Track_code1_1_id')
         if self.track_code_1_2:
             trn_Update.Track_code1_2_id=Mst_Race_track.objects.get(Track_code=self.track_code_1_2)
-            trn_Update.save()
-
+            updateFields.append('Track_code1_2_id')
         if self.track_code_1_3:
             trn_Update.Track_code1_3_id=Mst_Race_track.objects.get(Track_code=self.track_code_1_3)
-            trn_Update.save()
-            
+            updateFields.append('Track_code1_3_id')
         if self.track_code_1_4:
             trn_Update.Track_code1_4_id=Mst_Race_track.objects.get(Track_code=self.track_code_1_4)
-            trn_Update.save()
-            
+            updateFields.append('Track_code1_4_id')
         if self.track_code_1_5:
             trn_Update.Track_code1_5_id=Mst_Race_track.objects.get(Track_code=self.track_code_1_5)
-            trn_Update.save()            
-                
+            updateFields.append('Track_code1_5_id')
         if self.track_code_1_6:
             trn_Update.Track_code1_6_id=Mst_Race_track.objects.get(Track_code=self.track_code_1_6)
-            trn_Update.save()
-            
+            updateFields.append('Track_code1_6_id')
         if self.track_code_2_1:
             trn_Update.Track_code2_1_id=Mst_Race_track.objects.get(Track_code=self.track_code_1_1)
-            trn_Update.save()
-            
+            updateFields.append('Track_code2_1_id')
         if self.track_code_2_2:
             trn_Update.Track_code2_2_id=Mst_Race_track.objects.get(Track_code=self.track_code_2_2)
-            trn_Update.save()
-            
+            updateFields.append('Track_code2_2_id')
         if self.track_code_2_3:
             trn_Update.Track_code2_3_id=Mst_Race_track.objects.get(Track_code=self.track_code_2_3)
-            trn_Update.save()
-            
+            updateFields.append('Track_code2_3_id')
         if self.track_code_2_4:
             trn_Update.Track_code2_4_id=Mst_Race_track.objects.get(Track_code=self.track_code_2_4)
-            trn_Update.save()
-            
+            updateFields.append('Track_code2_4_id')
         if self.track_code_2_5:
             trn_Update.Track_code2_5_id=Mst_Race_track.objects.get(Track_code=self.track_code_2_5)
-            trn_Update.save()   
-                        
+            updateFields.append('Track_code2_5_id')
         if self.track_code_2_6:
             trn_Update.Track_code2_6_id=Mst_Race_track.objects.get(Track_code=self.track_code_2_6)
-            trn_Update.save()
-            
+            updateFields.append('Track_code2_6_id')
         if self.track_code_3_1:
             trn_Update.Track_code3_1_id=Mst_Race_track.objects.get(Track_code=self.track_code_3_1)
-            trn_Update.save()
-            
+            updateFields.append('Track_code3_1_id')
         if self.track_code_3_2:
             trn_Update.Track_code3_2_id=Mst_Race_track.objects.get(Track_code=self.track_code_3_2)
-            trn_Update.save()
-            
+            updateFields.append('Track_code3_2_id')
         if self.track_code_3_3:
             trn_Update.Track_code3_3_id=Mst_Race_track.objects.get(Track_code=self.track_code_3_3)
-            trn_Update.save()
-            
+            updateFields.append('Track_code3_3_id')
         if self.track_code_3_4:
             trn_Update.Track_code3_4_id=Mst_Race_track.objects.get(Track_code=self.track_code_3_4)
-            trn_Update.save()
-            
+            updateFields.append('Track_code3_4_id')
         if self.track_code_3_5:
             trn_Update.Track_code3_5_id=Mst_Race_track.objects.get(Track_code=self.track_code_3_5)
-            trn_Update.save()    
-                        
+            updateFields.append('Track_code3_5_id')
         if self.track_code_3_6:
             trn_Update.Track_code3_6_id=Mst_Race_track.objects.get(Track_code=self.track_code_3_6)
-            trn_Update.save()
+            updateFields.append('Track_code3_6_id')
+        # 実体のあるカラム更新
+        trn_Update.save(update_fields=updateFields)            
 
 
     def insert_or_update_Trn_Schedule(self, name):
