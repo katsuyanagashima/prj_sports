@@ -188,10 +188,13 @@ def SUMJOR01(request):
     params = nav_info(request)
     #top_class_rikishi = Tran_TopClassRikishi.objects.all()
     top_class_rikishi = Tran_TopClassRikishi.objects.order_by('Class_code', 'Yearmonth')
+    nichime = Mst_Nichime.objects.order_by('Nichime_code')
     dict = {
         #'item1': 'Ahaha',
         #'item2': 'Ihihi',
-        'top_class_rikishi': top_class_rikishi
+        'top_class_rikishi': top_class_rikishi,
+        'nichime': nichime,
+        'wins_and_losses': ['',0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     }
     params.update(dict)
     return render(request, 'app_sumo/SUMJOR01.html', params)
