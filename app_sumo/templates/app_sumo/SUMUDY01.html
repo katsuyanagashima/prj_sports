@@ -39,7 +39,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="shoubu">勝負日目:</label>
-                    <select id="shoubu" name="match_nichime" class="form-control">
+                    <select id="shoubu" name="match_nichime" class="form-control" data-banduke-date="{{ init.banzuke_date }}" data-first-date="{{ init.first_date }}">
                         {% for j in nichime %}
                         <option value="{{ j.Nichime_code }}" {% if init.match_nichime == j.Nichime_code %}
                             selected{% endif %}>
@@ -49,22 +49,19 @@
                     </select>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="age_calcu_reference_date">力士年算出基準日:</label>
+                    <input id="age_calcu_reference_date" type="text" name="age_calcu_reference_date" class="form-control" value="{{ init.age_calcu_reference_date }}">
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-inline">
-        <label>力士年算出基準日</label>
-        <input class="form-control" type="text">
-        <label class="control-label">年</label>
-        <input class="form-control" type="text">
-        <label class="control-label">月</label>
-        <input class="form-control" type="text">
-        <label class="control-label">日</label>
-    </div>
     <hr>
-    <h4>●勝負日目と力士年齢算出基準日を連動させる（取組日目は連動しない）</h4>
+    <!-- <h4>●勝負日目と力士年齢算出基準日を連動させる（取組日目は連動しない）</h4>
     <h4>●場所前は場所・年度切り替えで設定した番付発表日を表示する</h4>
     <h4>●初日は場所・年度切り替えで設定した初日を表示する</h4>
-    <h4>●初日を使って、選択した取組日を加算した日付を設定する</h4>
+    <h4>●初日を使って、選択した取組日を加算した日付を設定する</h4> -->
     <nav class="navbar fixed-bottom navbar-dark bg-dark">
         <button type="submit" class="btn btn-primary">実行</button>
         <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
