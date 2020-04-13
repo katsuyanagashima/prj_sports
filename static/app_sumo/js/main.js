@@ -180,7 +180,7 @@ window.addEventListener("load", function () {
  $('select#shoubu').on('change', function(){
   let data = $(this).data();
   let val = parseInt($(this).val());
-  let banzuke_date = data["bandukeDate"];
+  let banzuke_date = data["banzukeDate"];
   let first_date = data["firstDate"];
 
   let change_date = "";
@@ -191,7 +191,7 @@ window.addEventListener("load", function () {
     let date_obj = new Date(arr[0],arr[1]-1, arr[2]);
 
     // DATEオブジェクトに日数を加算
-    let dt = date_obj.setDate(date_obj.getDate() + val);
+    let dt = date_obj.setDate(date_obj.getDate() + (val-1));
     dt = new Date(dt)
 
     // DATEオブジェクトからYYYY-MM-DD形式の文字列に戻す
