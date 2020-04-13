@@ -1,6 +1,7 @@
 {% extends 'app_sumo/base.html' %}
 
 {% block content %}
+
 <h1 class="caption">運用日設定</h1>
 <form method="post" id="tran_system" name="tran_system">
     {% csrf_token %}
@@ -23,7 +24,7 @@
 
     <div class="container-fluid row">
         <div class="row">
-            <div class="col-6">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="torikumi">取組日目:</label>
                     <select id="torikumi" name="torikumi_nichime" class="form-control">
@@ -36,10 +37,10 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="shoubu">勝負日目:</label>
-                    <select id="shoubu" name="match_nichime" class="form-control" data-banduke-date="{{ init.banzuke_date }}" data-first-date="{{ init.first_date }}">
+                    <select id="shoubu" name="match_nichime" class="form-control" data-banzuke-date="{{ init.banzuke_date }}" data-first-date="{{ init.first_date }}">
                         {% for j in nichime %}
                         <option value="{{ j.Nichime_code }}" {% if init.match_nichime == j.Nichime_code %}
                             selected{% endif %}>
@@ -49,7 +50,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <div class="form-group">
                     <label for="age_calcu_reference_date">力士年算出基準日:</label>
                     <input id="age_calcu_reference_date" type="text" name="age_calcu_reference_date" class="form-control" value="{{ init.age_calcu_reference_date }}">
@@ -57,7 +58,7 @@
             </div>
         </div>
     </div>
-    <hr>
+    <!-- <hr> -->
     <!-- <h4>●勝負日目と力士年齢算出基準日を連動させる（取組日目は連動しない）</h4>
     <h4>●場所前は場所・年度切り替えで設定した番付発表日を表示する</h4>
     <h4>●初日は場所・年度切り替えで設定した初日を表示する</h4>
@@ -69,4 +70,5 @@
 
 
 </form>
+
 {% endblock %}
