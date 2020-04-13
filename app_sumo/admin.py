@@ -33,6 +33,7 @@ class Mst_KindofNewsMLAdmin(admin.ModelAdmin):
 
 admin.site.register(Mst_Rikishi)
 admin.site.register(Mst_Rikishistatus)
+admin.site.register(Mst_Rename_history)
 admin.site.register(Mst_Heya, Mst_HeyaAdmin)
 admin.site.register(Mst_Basho)
 admin.site.register(Mst_Kimarite)
@@ -48,7 +49,7 @@ admin.site.register(Mst_Lifetime_result)
 admin.site.register(Mst_Lifetime_award)
 admin.site.register(Mst_Gameinfo)
 admin.site.register(Mst_KindofNewsML, Mst_KindofNewsMLAdmin)
-admin.site.register(Mst_Operationmode)
+#admin.site.register(Mst_Operationmode)
 # --------------------
 admin.site.register(Tran_Systemstatus)
 # --------------------

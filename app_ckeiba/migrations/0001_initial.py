@@ -108,6 +108,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+
             name='Mst_Environment',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -119,6 +120,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+
             name='Mst_Grade',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

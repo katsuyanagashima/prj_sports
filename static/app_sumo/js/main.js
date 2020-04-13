@@ -6,6 +6,10 @@ $(function () {
   $('#id_Date_of_birth').datepicker({
       dateFormat: dateFormat
   });
+
+  $('#age_calcu_reference_date').datepicker({
+    dateFormat: dateFormat
+  });  
 });
 
 // 対戦結果新規入力画面
@@ -160,7 +164,7 @@ window.addEventListener("load", function () {
 
 });
 
- // 画面SUMOUT02の種別チェックボックスをクリック時に電文種別のセレクトボックスを変更する
+ // 画面 SUMOUT02の種別チェックボックスをクリック時に電文種別のセレクトボックスを変更する
  $('input.group_code').on('click', function(){
   let json_data = $(this).data();
   let d = json_data["group"];
@@ -170,4 +174,34 @@ window.addEventListener("load", function () {
     let opt = $('<option>').val(dt["NewsMLNo"]).text(dt["ContentName"]);
     slct.append(opt);
   }
+ })
+
+ // 画面 SUMUDY01(運用日設定)の勝負日目を変更したタイミングで発火
+ $('select#shoubu').on('change', function(){
+  let data = $(this).data();
+  let val = parseInt($(this).val());
+  let banzuke_date = data["banzukeDate"];
+  let first_date = data["firstDate"];
+
+  let change_date = "";
+  if(!val) change_date = banzuke_date;
+  else{
+    //　YYYY-MM-DD形式の文字列をDATEオブジェクトに変換
+    let arr = first_date.split('-');
+    let date_obj = new Date(arr[0],arr[1]-1, arr[2]);
+
+    // DATEオブジェクトに日数を加算
+    let dt = date_obj.setDate(date_obj.getDate() + (val-1));
+    dt = new Date(dt)
+
+    // DATEオブジェクトからYYYY-MM-DD形式の文字列に戻す
+    let y = dt.getFullYear();
+    let m = ("00" + (dt.getMonth()+1)).slice(-2);
+    let d = ("00" + dt.getDate()).slice(-2);
+    first_date = y + "-" + m + "-" + d;
+    change_date = first_date;
+  }
+
+  $("input#age_calcu_reference_date").val(change_date);
+
  })
