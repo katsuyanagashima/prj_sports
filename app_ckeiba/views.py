@@ -22,34 +22,34 @@ def index(request):
 
      # システム状態を取得
      tran_system = Tran_Systemstatus.objects.all().first() # ★ システム状態の1件目を見てるだけなので、ここは要検討
-     status = str(tran_system.SystemStatus)
+     status = str(tran_system.Operationmode)
 
      # パラメータに追加
      params = {'status': status, 'data': dammydata, 'unyobi': tran_system.Unyou_date}
 
-     # statusが0（通常業務モード）ではないとき、マスタ編集画面を表示。ステータスと各データと運用日に加えて、マスタのテーブル情報をparamにつめる
-     if status != '0':
+     # statusがオンラインではないとき、マスタ編集画面を表示。ステータスと各データと運用日に加えて、マスタのテーブル情報をparamにつめる
+     if status != 'オンライン':
           joulist = Mst_Jou.objects.all() # マスタ初期画面
-          if status == '10': # 通常配信先マスタ編集画面
-               joulist = Mst_Haishin.objects.all()
-          elif status == '11': # 期間限定配信先マスタ編集画面
-               joulist = Mst_Haishin_gentei.objects.all()
-          elif status == '12': # 配信社マスタ編集画面
-               joulist = Mst_Company.objects.all()
-          elif status == '13': # プリンタ出力先マスタ編集画面
-               joulist = Mst_Printer.objects.all()
-          elif status == '20': # 開催日割編集画面
-               joulist = Mst_Kaisai_Hiwari.objects.all()
-          elif status == '21': # 本日施行情報編集画面
-               joulist = Mst_Honjitu_Shikou.objects.all()
-          elif status == '30': # 競馬場マスタ編集画面
-               joulist = Mst_Jou.objects.all()
-          elif status == '31': # グレードマスタ編集画面
-               joulist = Mst_Grade.objects.all()
-          elif status == '32': # 品種年齢区分マスタ編集画面
-               joulist = Mst_Breed_age.objects.all()
-          elif status == '33': # 天候マスタ編集画面
-               joulist = Mst_Weather.objects.all()
+          # if status == '10': # 通常配信先マスタ編集画面
+          #      joulist = Mst_Haishin.objects.all()
+          # elif status == '11': # 期間限定配信先マスタ編集画面
+          #      joulist = Mst_Haishin_gentei.objects.all()
+          # elif status == '12': # 配信社マスタ編集画面
+          #      joulist = Mst_Company.objects.all()
+          # elif status == '13': # プリンタ出力先マスタ編集画面
+          #      joulist = Mst_Printer.objects.all()
+          # elif status == '20': # 開催日割編集画面
+          #      joulist = Mst_Kaisai_Hiwari.objects.all()
+          # elif status == '21': # 本日施行情報編集画面
+          #      joulist = Mst_Honjitu_Shikou.objects.all()
+          # elif status == '30': # 競馬場マスタ編集画面
+          #      joulist = Mst_Jou.objects.all()
+          # elif status == '31': # グレードマスタ編集画面
+          #      joulist = Mst_Grade.objects.all()
+          # elif status == '32': # 品種年齢区分マスタ編集画面
+          #      joulist = Mst_Breed_age.objects.all()
+          # elif status == '33': # 天候マスタ編集画面
+          #      joulist = Mst_Weather.objects.all()
 
           # マスタ名を取得
           title = joulist.model._meta.verbose_name_plural.title() # メタ情報から取り出す
@@ -81,7 +81,7 @@ def index(request):
 #マスタ編集画面にリダイレクト
 def Change_To_Master_Edit_Mode(request):
      tran_system2 = Tran_Systemstatus.objects.all().first() # ★ 
-     opemode = Mst_Operationmode.objects.filter(Operationmode_code = '1')[0] #SystemStatus:1 （マスタ編集モード）
+     opemode = Mst_Operationmode.objects.filter(Operationmode_code = '3')[0] #SystemStatus:3 （マスタ編集モード）
      
      # ここでステータスをマスタ編集中に変更
      Tran_Systemstatus.setState(tran_system2, opemode)
@@ -99,8 +99,11 @@ def Change_To_Nomal_Mode(request):
      
 # マスタ編集画面にリダイレクト
 def Edit_Mst(request, mst_num):
-     tran_system2 = Tran_Systemstatus.objects.all().first() # ★ 
-     opemode = Mst_Operationmode.objects.filter(Operationmode_code=mst_num)[0]
+     tran_system2 = Tran_Systemstatus.objects.all().first()  # ★ 
+     
+     # opemode = Mst_Operationmode.objects.filter(Operationmode_code=mst_num)[0]
+     # ステータスを作っておく必要があるので、空だとエラー画面になる。よっていったん↓にしとく。（何を選んでも競馬場マスタになる）後で↑に戻す
+     opemode = Mst_Operationmode.objects.filter(Operationmode_code = '3')[0] #SystemStatus:3 （マスタ編集モード）
      
      # ステータスを各マスタの編集中に変更
      Tran_Systemstatus.setState(tran_system2, opemode)
@@ -125,7 +128,7 @@ def option_submit(request):
 
      # システム状態を取得
      tran_system = Tran_Systemstatus.objects.all().first()
-     status = str(tran_system.SystemStatus)
+     status = str(tran_system.Operationmode)
 
 
      selected_haishinsha = []
@@ -166,7 +169,7 @@ def option_submit(request):
                request.session['filelists'] = filelists
 
                # 配信社一覧を取得
-               mst_haishin = Mst_Company.objects.all()
+               mst_haishin = Mst_Haishinsha.objects.all()
 
           elif 'soushin' in request.POST:
                # 送信ボタンがクリックされた場合の処理
@@ -179,7 +182,9 @@ def option_submit(request):
                joubetsu_filelists = request.session['filelists'] 
                filelists = request.session['filelists']
                
-
+               # 一応ここでセッションの内容をクリアする（ 送信処理をつくったら、送信処理が完了したらクリアにする）
+               # 今のままだと送信したあと戻ると落ちる
+               request.session.clear()
 
 
 
@@ -192,7 +197,7 @@ def option_submit(request):
           'joubetsu': joubetsu_filelists,
           'filelists' : filelists,
           'mst_haishin': mst_haishin,
-          
+
           'submittype': submittype,
           'selected_haishinsha':selected_haishinsha
      }
