@@ -21,7 +21,8 @@ class Tran_SystemstatusForm(forms.ModelForm):
 
     class Meta:
         model = Tran_Systemstatus
-        fields = ('Event_date', 'CurrentBasho', 'SystemStatus', 'TorikumiDate', 'MatchDate', 'First_date', 'Banzuke_date','Age_calcu_reference_date')
+        fields = ('Event_date', 'CurrentBasho', 'TorikumiDate', 'MatchDate', 'First_date', 'Banzuke_date','Age_calcu_reference_date')
+   #     fields = ('Event_date', 'CurrentBasho', 'SystemStatus', 'TorikumiDate', 'MatchDate', 'First_date', 'Banzuke_date','Age_calcu_reference_date')##
 
 class SearchRikishilistForm(forms.Form):
     status_chk = forms.ChoiceField(
