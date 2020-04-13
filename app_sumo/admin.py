@@ -33,6 +33,7 @@ class Mst_KindofNewsMLAdmin(admin.ModelAdmin):
 
 admin.site.register(Mst_Rikishi)
 admin.site.register(Mst_Rikishistatus)
+admin.site.register(Mst_Rename_history)
 admin.site.register(Mst_Heya, Mst_HeyaAdmin)
 admin.site.register(Mst_Basho)
 admin.site.register(Mst_Kimarite)

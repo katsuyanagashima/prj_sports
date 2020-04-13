@@ -21,11 +21,9 @@ class Mst_Rikishi(Model):
     Rikishi_code = IntegerField(verbose_name="力士コード")
     Rikishi_name_kanji_official = CharField(verbose_name="正式力士名漢字", max_length=10, blank=True)
     Rikishi_name_kanji_kana = CharField(verbose_name="正式力士名かな", max_length=20, blank=True)
-    # Rikishi_name_Kanji_2char = CharField(verbose_name="２文字力士名漢字", max_length=4, blank=True)
     Rikishi_name_Kanji_2char = NonStrippingCharField("２文字力士名漢字", 4)
-    # Rikishi_name_Kanji_3char = CharField(verbose_name="３文字力士名漢字", max_length=6, blank=True)
     Rikishi_name_Kanji_3char = NonStrippingCharField("３文字力士名漢字", 6)
-    Rikishi_name_Kanji_4char = CharField(verbose_name="４文字力士名漢字", max_length=8, blank=True)
+    Rikishi_name_Kanji_4char = NonStrippingCharField("４文字力士名漢字", 8)
     Rikishi_name_jikai_code_official = CharField(verbose_name="正式力士名字解コード配列", max_length=20, blank=True)
     Rikishi_name_jikai_code_2char = CharField(verbose_name="２文字力士名字解コード配列", max_length=8, blank=True)
     Rikishi_name_jikai_code_3char = CharField(verbose_name="３文字力士名字解コード配列", max_length=12, blank=True)
@@ -81,6 +79,26 @@ class Mst_Rikishistatus(Model):
 
     def __str__(self):
         return self.Rikishistatus_name
+
+#改名履歴マスタ
+class Mst_Rename_history(Model):
+    Yearmonth = IntegerField(verbose_name='年月西暦', blank=True, null=True)
+    Rikishi_code = ForeignKey('Mst_Rikishi', on_delete=CASCADE, blank=True, null=True)
+    Rikishi_name_kanji = CharField(verbose_name='改名前力士名漢字', max_length=10, blank=True, null=True)
+    Rikishi_name_kana =  CharField(verbose_name='力士名かな', max_length=20, blank=True, null=True)
+    Rikishi_name_2char = NonStrippingCharField("２文字力士名漢字", 4)
+    Rikishi_name_3char = NonStrippingCharField("３文字力士名漢字", 6)
+    Rikishi_name_4char = NonStrippingCharField("４文字力士名漢字", 8)
+    Rikishi_name_jikai_code_official = CharField(verbose_name="正式力士名字解コード配列", max_length=20, blank=True, null=True)
+    Rikishi_name_jikai_code_2char = CharField(verbose_name="２文字力士名字解コード配列", max_length=8, blank=True, null=True)
+    Rikishi_name_jikai_code_3char = CharField(verbose_name="３文字力士名字解コード配列", max_length=12, blank=True, null=True)
+    Rikishi_name_jikai_code_4char = CharField(verbose_name="４文字力士名字解コード配列", max_length=16, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '改名履歴マスタ'
+
+    def __str__(self):
+        return self.Rikishi_name_kanji
 
 #場所マスタ
 class Mst_Basho(Model):
