@@ -1,0 +1,32 @@
+{% block content %}
+
+<h5>{{ title }}</h5>
+<div>
+    <table class="table table-hover master_edit-table">
+        <thead class="thead-dark">
+            {% for header in table_header_name  %}
+            <th>{{ header }}</th>
+            {% endfor %}
+            <th></th>
+            <th>
+                <a href="../admin/app_ckeiba/" class="btn btn-success rounded-pill btn-sm add_btn" role="button"><i
+                        class="fas fa-plus"></i>
+                    追加</a>
+            </th>
+        </thead>
+        {% for jou_value in table_value  %}
+        <tr>
+            {% for value in jou_value  %}
+            <td>{{ value }}</td>
+            {% endfor %}
+            <td> <a href="../admin/app_ckeiba/" class="btn btn-info btn-sm" role="button"><i
+                        class="fas fa-pencil-alt"></i>
+                    更新</a></td>
+            <td><a href="../admin/app_ckeiba/" class="btn btn-danger btn-sm" role="button"><i
+                        class="fas fa-trash-alt"></i>
+                    削除</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

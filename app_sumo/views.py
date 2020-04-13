@@ -1,10 +1,11 @@
-from django.http import HttpResponse, Http404
-from django.template import loader
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils import timezone
 from datetime import datetime
-from django.views.generic import ListView
-# from db.models import Q
+from django.db.models import Q
+from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, render, redirect
+from django.template import loader
+from django.utils import timezone
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .models import *
 from .forms import *
@@ -29,7 +30,7 @@ def SUMUDY01(request):
     ## init は初期値という意味で、更新をかけた後の状態維持に使用 ##
     init = { 
         "torikumi_nichime":tran_system.TorikumiDate.Nichime_code, 
-        "match_nichime":tran_system.MatchDate.Nichime_code 
+        "match_nichime":tran_system.MatchDate.Nichime_code, 
     }
 
     nichime = Mst_Nichime.objects.all()
@@ -52,7 +53,7 @@ def SUMUDY01(request):
     nav = nav_info(request)
     d = {
         'init': init,
-        'nichime': nichime
+        'nichime': nichime,
     }
     d.update(nav)
     
@@ -184,7 +185,8 @@ def SUMTKD02(request):
 
 #階級上位力士
 def SUMJOR01(request):
-    return render(request, 'app_sumo/SUMJOR01.html')
+    params = nav_info(request)
+    return render(request, 'app_sumo/SUMJOR01.html', params)
 
 #資料出力
 def SUMSHI01(request):
@@ -200,15 +202,79 @@ def SUMNEW02(request):
 
 #力士マスタ
 class Rikishilist(ListView):
-     def get_queryset(self):
-        q_word = self.request.GET.get('query')
+    # セッションに検索フォームの値を渡す。
+    def post(self, request, *args, **kwargs):
+        form_value = [
+            self.request.POST.getlist('status_chk'),
+        ]
+        request.session['form_value'] = form_value
+        # 検索時にページネーションに関連したエラーを防ぐ
+        self.request.GET = self.request.GET.copy()
+        self.request.GET.clear()
+        return self.get(request, *args, **kwargs)
+
+    # セッションから検索フォームの値を取得して、検索フォームの初期値としてセットする。
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # sessionに値がある場合、その値をセットする。（ページングしてもform値が変わらないように）
+        status_chk = []
+        if 'form_value' in self.request.session:
+            form_value = self.request.session['form_value']
+            # query = form_value[0]
+            status_chk = form_value[0]
+        default_data = {
+                        'status_chk': status_chk,  # ステータス
+                        }
+        rikishilist_form = SearchRikishilistForm(initial=default_data) # 検索フォーム
+        context['rikishilist_form'] = rikishilist_form
+        return context
+    
+    # セッションから取得した検索フォームの値に応じてクエリ発行を行う。
+    def get_queryset(self):
+        activeDuty = 'activeDuty'
+        notActiveDuty = 'notActiveDuty'
+        q_word = self.request.POST.get('query')
+        checks_value = self.request.POST.getlist('status_chk')
+        one = '1'
+        two = '2'
  
+        def cheks_filter(rikishilist, checks_value):
+
+            if activeDuty in checks_value and notActiveDuty in checks_value:
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
+            elif activeDuty in checks_value:
+                rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
+            elif notActiveDuty in checks_value: 
+                rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)           
+            return rikishilist
+
         if q_word:
-            rikishilist = Mst_Rikishi.objects.filter(
-                Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
+            rikishilist = Mst_Rikishi.objects.filter(Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))                
+            rikishilist = cheks_filter(rikishilist, checks_value)
+
         else:
             rikishilist = Mst_Rikishi.objects.all()
+            rikishilist = cheks_filter(rikishilist, checks_value)
+
         return rikishilist
+
+#力士マスタ作成処理
+class RikishiCreateView(CreateView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')
+
+#力士マスタ編集処理
+class RikishiUpdateView(UpdateView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')
+
+#力士マスタ削除処理
+class RikishiDeleteView(DeleteView):
+    model = Mst_Rikishi
+    form_class = Mst_RikishiForm
+    success_url = reverse_lazy('rikishi')    
 
 #def SUMMSM01_heya_form(request):
 #    if request.method == "POST":
@@ -238,16 +304,17 @@ def SUMMSM01_heya_html(request):
 #   return render(request, 'app_sumo/SUMINT01.html')
 #年度・場所切替画面
 def SUMINT01(request):
-    event = Mst_Event.objects.all()
+    systemstatus = Tran_Systemstatus.objects.all()
     if request.method == "POST":
-        event.delete()
-        initial_dict = {'Torikumi_nichime_code':'0', 'Shoubu_nichime_code':'0', 'Age_calcu_reference_date':'2000-01-01'}
-        form = Mst_Event_Form(request.POST, initial=initial_dict)
+        systemstatus.delete()
+#        initial_dict = {'Torikumi_nichime_code':'0', 'Shoubu_nichime_code':'0', 'Age_calcu_reference_date':'2000-01-01'}
+#        form = Mst_Event_Form(request.POST, initial=initial_dict)
+        form = Tran_SystemstatusForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('SUMINT01')
     else:
-        form = Mst_Event_Form()
+        form = Tran_SystemstatusForm()
 
     return render(request, 'app_sumo/SUMINT01.html',{'form':form})
 

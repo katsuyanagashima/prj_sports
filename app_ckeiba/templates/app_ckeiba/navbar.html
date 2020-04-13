@@ -2,7 +2,8 @@
     <div class="container">
         <div class="text-center nav-title nav-title-img">
             <h2>地方競馬システム
-                <span class="badge badge-warning nav-badge-hoshu">保守系</span></h2>
+                <span class="badge badge-warning nav-badge-hoshu">保守系</span>
+            </h2>
         </div>
 
         <div class="container-fluid">
@@ -10,14 +11,39 @@
                 <div class="col-6">
                     <div class="form-inline">
                         <h6 class="nav-text">業務状況 :　</h6>
+                        {% if status == '0' %}
                         <h3><span class="badge badge-primary badge-pill nav-badge-state" data-toggle="modal"
                                 data-target="#modal-select_gyomu">通常業務開始中</span></h3>
+                        {% elif status == '2' %}
+                        <h3><span class="badge badge-warning badge-pill nav-badge-state" data-toggle="modal"
+                                data-target="#modal-select_gyomu">日時処理実施中</span></h3>
+                        {% elif status == '0' %}
+                        <h3><span class="badge badge-secondary badge-pill nav-badge-state" data-toggle="modal"
+                                data-target="#modal-select_gyomu">不明</span></h3>
+                        {% else %}
+                        <h3><span class="badge badge-warning badge-pill nav-badge-state" data-toggle="modal"
+                                data-target="#modal-select_gyomu">マスタ編集中</span></h3>
+                        {% endif %}
+
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-inline nav-unyobi" data-toggle="modal" data-target="#modal-unyobi">
+                        <!-- <div class="hourglass-img"></div>
+                        <div class="star-img"></div>
+                        <div class="starblack-img"></div>
+                        <div class="maru2-img"></div>
+                        <div class="maru-img"></div>
+                        <div class="bike-img"></div>
+                        <div class="check-img"></div>
+                        <div class="check_circle-img"></div>
+                        <div class="change_history-black-img"></div>
+                        <div class="brightness-img"></div>
+                        <div class="arrow_drop_down-img"></div>
+                        <div class="double-circle-img"></div> -->
+
                         <h6 class="nav-text">運用日 :　</h6>
-                        <h3><span class="badge badge-dark">２０２０/１２/３１</span></h3>
+                        <h3><span class="badge badge-dark">{{ unyobi }}</span></h3>
                     </div>
                 </div>
             </div>
@@ -36,33 +62,30 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            {% if status == '0' %}
             <div class="modal-body">
-                <div class="btn-group--vertical btn-group-toggle" data-toggle="buttons">
-                    <div>
-                        <label class="btn btn-outline-primary radio_gyomu disabled">
-                            <input type="radio" name="radio_gyomu" id="radio_gyomu1" autocomplete="off" disabled>通常業務開始
-                        </label>
-                        <label class="btn btn-outline-primary radio_gyomu disabled">
-                            <input type="radio" name="radio_gyomu" id="radio_gyomu2" autocomplete="off" disabled>継続業務開始
-                        </label>
-
-                        <label class="btn btn-outline-primary radio_gyomu">
-                            <input type="radio" name="radio_gyomu" id="radio_gyomu3" autocomplete="off">業務休止
-                        </label>
-                        <label class="btn btn-outline-primary radio_gyomu disabled">
-                            <input type="radio" name="radio_gyomu" id="radio_gyomu4" autocomplete="off" disabled>休止解除
-                        </label>
-                        <p></p>
-                        <label class="btn btn-outline-primary btn-block">
-                            <input type="radio" name="radio_gyomu" id="radio_gyomu5" autocomplete="off">終了
-                        </label>
-                    </div>
-                </div>
+                <h5>業務状態を<span class="badge badge-warning badge-pill">マスタ編集中</span>に変更します。</h5>
+                <h5>よろしいですか？</h5>
+                <h5>（通常業務は休止されます）</h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-lg">実行</button>
+                <!-- URLでシステム状態を0→1にDBを直接操作してから、リダイレクトする。 -->
+                <a href="Change_To_Master_Edit_Mode" type="button" class="btn btn-danger btn-lg">実行</a>
+                <!-- ここまで -->
                 <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
             </div><!-- /.modal-footer -->
+            {% else %}
+            <div class="modal-body">
+                <h5>業務状態を<span class="badge badge-primary badge-pill">通常業務開始中</span>に変更します。</h5>
+                <h5>よろしいですか？</h5>
+            </div>
+            <div class="modal-footer">
+                <!-- URLでシステム状態を1→0にDBを直接操作してから、リダイレクトする。 -->
+                <a href="Change_To_Nomal_Mode" type="button" class="btn btn-danger btn-lg">実行</a>
+                <!-- ここまで -->
+                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">閉じる</button>
+            </div><!-- /.modal-footer -->
+            {% endif %}
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

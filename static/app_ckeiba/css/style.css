@@ -5,7 +5,8 @@
 ４．メインのコンテンツ部分
 ５．メイン画面の切替タブ部分
 ６．レスポンシブ対応
-７．各競馬場の画像の表示設定 */
+７．各競馬場の画像の表示設定
+８．マスタ編集画面の表示設定 */
 
 
 /* ＜スタイルの追加・編集の場合の鉄則三カ条＞
@@ -15,12 +16,20 @@
 
 
 /* １．ナビゲーションバー */
+/* 上書き */
 .navbar{
     background-color: #f4eaff;
 }
+/* 上書き */
+h6 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
 .nav-title{
     padding-left: 4em;
 }
+
 .nav-title-img{
     background: url('/static/app_ckeiba/pic/uma2.png');
     background-size: 12%;
@@ -64,6 +73,7 @@
     background-color:rgb(255, 221, 25);
     color:black;
     font-size: 1em;
+    font-weight: 600;
 }
 /* マスタ登録ボタン */
     .master-button{
@@ -89,6 +99,12 @@
     margin-left: auto;
     margin-top: 5px;
     font-size: 1em;
+}
+
+.opt_submit_button{
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 1.1em;
 }
 
 /* 各場別コンテナ */
@@ -159,6 +175,11 @@
 .receive-honjitsu-sikou-table{
     margin-left: auto;
     margin-right: 10px;
+}
+
+.th_10R-12R{
+    padding-right: 0.1rem !important; 
+    padding-left: 0.1rem !important;
 }
 
 /* テーブルの項目異常時のスタイル */
@@ -450,4 +471,238 @@
     display: block;
     background-position: right;
     background-repeat: no-repeat;
+}
+
+
+
+/* ８．マスタ編集画面の表示設定 */
+
+.master_edit-contents{
+    margin: 15px;
+}
+
+.master_edit-table{
+    font-size: 0.9em;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.master_select{
+    font-size: 1rem;
+}
+.list-group-item{
+    padding: 0.5rem 1.25rem;
+}
+
+.add_btn{
+    margin-top: -6px;
+    margin-bottom: -6px;
+}
+
+
+/* ９．オプション送信画面の表示設定 */
+
+.option_submit-contents{
+    background-color: #fcfa81;
+    padding-top: 15px;
+}
+
+.option_submit-nav{
+    padding-left: 15px;
+}
+
+.option_submit-title{
+    font-size: 90%;
+    background-color: #fff;
+}
+
+.submit_btn{
+    float: right;
+
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+
+    padding: .25em .9em;
+    font-size: 0.9em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: .25rem;
+}
+
+.sentaku_btn{
+    margin-top: -40px;
+    margin-right: 70px;
+    color: #fff;
+    background-color: #6c757d;
+    font-size: 1.6em;
+}
+
+.submit_confirm_btn{
+    color: #fff;
+    background-color: #dc3545;
+    font-size: 1.7em;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: -5px;
+}
+
+.clear_btn{
+    color: #fff;
+    background-color: #b4c6d6;
+    font-size: 1.2em;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: -15px;
+}
+
+.custom_chkbox_span{
+    margin: -4px -10px -4px -4px;
+}
+
+.custom-control-label::before{
+    content: attr(alt);
+    color: lightgray;
+    font-size: 0.9em;
+}
+
+.custom-checkbox_red .custom-control-input:checked ~ .custom-control-label::before {
+    background-color:red;
+    border-color: transparent;
+    content: "";
+}
+.custom-control-label::before {
+    border-radius: 3px;
+}
+
+.custom-control-label::after{
+    cursor: pointer;
+}
+
+.submit_confirm_box{
+    position: relative;
+    margin-top: 1em;
+    margin-right: 2em;
+    padding: 1em 0.5em;
+    border: 3px solid rgb(255, 0, 0);
+    border-radius: 10px;
+    background-color: white;
+    }
+
+.send_name{
+    font-size: 0.9em;
+}
+
+.submit_edit{
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+.radio_submittype{
+    margin-left: 20px;
+}
+
+
+
+.haishin-box{
+    border: solid 0.5px #cacaca;
+    padding-right: 0px;
+    margin-bottom: auto;
+    font-size: 0.8em;
+    padding-left: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/* SVG画像 */
+.maru-img{
+    background: url('/static/app_ckeiba/pic/svg/panorama_fish_eye-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+    display: block;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.hourglass-img{
+    background: url('/static/app_ckeiba/pic/svg/hourglass_empty-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.star-img{
+    background: url('/static/app_ckeiba/pic/svg/star_border-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.starblack-img{
+    background: url('/static/app_ckeiba/pic/svg/star-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.bike-img{
+    background: url('/static/app_ckeiba/pic/svg/two_wheeler-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.maru2-img{
+    background: url('/static/app_ckeiba/pic/svg/radio_button_checked-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+
+.check-img{
+    background: url('/static/app_ckeiba/pic/svg/done-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+.check_circle-img{
+    background: url('/static/app_ckeiba/pic/svg/check_circle_outline-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.change_history-black-img{
+    background: url('/static/app_ckeiba/pic/svg/change_history-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.brightness-img{
+    background: url('/static/app_ckeiba/pic/svg/brightness_1-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+.arrow_drop_down-img{
+    background: url('/static/app_ckeiba/pic/svg/arrow_drop_down-black-18dp.svg');
+    background-size: 100%;
+    width:15px; 
+    height:15px;
+}
+
+
+.double-circle-img{
+    background: url('/static/app_ckeiba/pic/svg/double-circle.svg');
+    background-size: 100%;
+    width:12px; 
+    height:12px;
 }

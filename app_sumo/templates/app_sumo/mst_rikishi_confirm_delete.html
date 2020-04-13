@@ -1,0 +1,17 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+<h3>力士マスタメンテナンス削除確認画面</h3>
+
+<h1>削除します。よろしいですか？</h1>
+
+<form method="post">
+    <div>
+        {% csrf_token %}
+        <input type="submit"value="削除" />
+        <a href="{% url 'rikishi' %}">戻る</a>    
+    </div>
+</form>
+
+{% endblock %}

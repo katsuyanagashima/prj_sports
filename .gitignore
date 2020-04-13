@@ -4,6 +4,8 @@
 /nginx/log/
 /prj_sports/__pycache__/
 /prj_sports/uwsgi.log
-/app_autorace/migrations/__pycache__/
-/app_ckeiba/migrations/__pycache__/
-/app_sumo/migrations/__pycache__/
+/app_autorace/migrations/
+/app_ckeiba/migrations/
+/app_sumo/migrations/
+dump.json
+

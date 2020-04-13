@@ -1,4 +1,13 @@
 
+// 力士マスタメンテナンス作成と更新画面
+// 日付は、年-月-日 の形式でお願いする。
+$(function () {
+  let dateFormat = 'yy-mm-dd';
+  $('#id_Date_of_birth').datepicker({
+      dateFormat: dateFormat
+  });
+});
+
 // 対戦結果新規入力画面
 
 

@@ -1,6 +1,7 @@
 {% extends 'app_ckeiba/base.html' %}
 
 {% block content %}
+{% if status == '0' %}
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link menu-tab text-center font-weight-bold" id="nav-receive-tab" data-toggle="tab"
@@ -20,7 +21,7 @@
                 data-target="#submit_log">受信ログ</span>
         </div>
         {% block receive-container %}
-        {% include 'app_ckeiba/receive/receive.html' %}
+        {% include 'app_ckeiba/receive.html' %}
         {% endblock %}
     </div>
     <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
@@ -30,26 +31,21 @@
                 data-target="#submit_log">処理ログ</span>
         </div>
         {% block edit-container %}
-        {% include 'app_ckeiba/edit/edit.html' %}
+        {% include 'app_ckeiba/edit.html' %}
         {% endblock %}
     </div>
     <div class="tab-pane active" id="nav-submit" role="tabpanel" aria-labelledby="nav-submit-tab">
         <div class="form-inline">
             <span class="badge badge-light hanrei">空白：未作成　△：未完成　〇：作成済　◎：送信済　●：再編成　◉：再編成送信済　-：作成予定なし</span>
-            <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
-                data-target="#submit_log">送信ログ</span>
+            <div><a href="./option_submit" class="badge badge-success opt_submit_button">オプション送信</a>
+                <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
+                    data-target="#submit_log">送信ログ</span></div>
         </div>
         {% block submit-container %}
-        {% include 'app_ckeiba/submit/submit.html' %}
+        {% include 'app_ckeiba/submit.html' %}
         {% endblock %}
     </div>
 </div>
-<nav class="navbar fixed-bottom navbar-dark bg-dark">
-    <a href="../admin" class="btn footer-button" role="button">管理画面</a>
-    <a href="" class="btn footer-button btn-light master-button disabled " role="button">マスタ登録</a>
-    <a href="" class="btn footer-button" role="button">終了</a>
-</nav>
-
 
 <!-- ログ表示モーダルの設定 -->
 <div class="modal fade" id="submit_log" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -79,4 +75,96 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+{% elif status == '2' %}
+<!-- 日時処理中の時 -->
+<div class="master_edit-contents">
+    <h3>日時処理中</h3>
+</div>
+
+{% else %}
+<!-- マスタ編集状態のとき -->
+<div class="master_edit-contents">
+    <div class="row justify-content-start">
+        <div class="col-2">
+            <h3>マスタ編集</h3>
+            <div class="card">
+                <div class="card-header" role="tab" id="collapseListGroupHeading1">
+                    <h6 class="mb-0">
+                        <a href="#collapseListGroup1" class="collapsed text-body d-block p-3 m-n3 master_select"
+                            role="button" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="collapseListGroup1"> 配信系マスタ　<i class="fas fa-caret-down"></i>
+                        </a>
+                    </h6>
+                </div><!-- /.card-header -->
+                <div class="collapse" role="tabpanel" id="collapseListGroup1"
+                    aria-labelledby="collapseListGroupHeading1" aria-expanded="false">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="10">通常配信先マスタ</a></li>
+                        <li class="list-group-item"><a href="11">期間限定配信先マスタ</a></li>
+                        <li class="list-group-item"><a href="12">配信社マスタ</a></li>
+                        <li class="list-group-item"><a href="13">プリンタ出力先マスタ</a></li>
+                    </ul>
+                </div><!-- /.collapse -->
+            </div><!-- /.card -->
+
+            <div class="card">
+                <div class="card-header" role="tab" id="collapseListGroupHeading2">
+                    <h6 class="mb-0">
+                        <a href="#collapseListGroup2" class="collapsed text-body d-block p-3 m-n3 master_select"
+                            role="button" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="collapseListGroup1">
+                            スケジュール系設定　<i class="fas fa-caret-down"></i>
+                        </a>
+                    </h6>
+                </div><!-- /.card-header -->
+                <div class="collapse" role="tabpanel" id="collapseListGroup2"
+                    aria-labelledby="collapseListGroupHeading2" aria-expanded="false">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="20">開催日割</a></li>
+                        <li class="list-group-item"><a href="21">本日施行情報</a></li>
+                    </ul>
+                </div><!-- /.collapse -->
+            </div><!-- /.card -->
+
+            <div class="card">
+                <div class="card-header" role="tab" id="collapseListGroupHeading3">
+                    <h6 class="mb-0">
+                        <a href="#collapseListGroup3" class="collapsed text-body d-block p-3 m-n3 master_select"
+                            role="button" data-toggle="collapse" aria-expanded="false"
+                            aria-controls="collapseListGroup1"> データ系マスタ　<i class="fas fa-caret-down"></i>
+                        </a>
+                    </h6>
+                </div><!-- /.card-header -->
+                <div class="collapse" role="tabpanel" id="collapseListGroup3"
+                    aria-labelledby="collapseListGroupHeading3" aria-expanded="false">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="30">競馬場マスタ</a></li>
+                        <li class="list-group-item"><a href="31">グレードマスタ</a></li>
+                        <li class="list-group-item"><a href="32">品種年齢区分マスタ</a></li>
+                        <li class="list-group-item"><a href="33">天候マスタ</a></li>
+                        <li class="list-group-item"><a href="">着差マスタ</a></li>
+                        <li class="list-group-item"><a href="">差マスタ</a></li>
+                        <li class="list-group-item"><a href="">まだまだ</a></li>
+                        <li class="list-group-item"><a href="">いろいろ…</a></li>
+                        <li class="list-group-item"><a href="">たくさん…</a></li>
+                        <li class="list-group-item"><a href="">ある</a></li>
+                    </ul>
+                </div><!-- /.collapse -->
+            </div><!-- /.card -->
+        </div>
+        <div class="col-10">
+            {% block mst_edit %}
+            {% include 'app_ckeiba/mst_edit.html' %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <a href="../admin" class="btn footer-button" role="button">管理画面</a>
+    <a href="" class="btn footer-button" role="button">終了</a>
+</nav>
+
 {% endblock %}

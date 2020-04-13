@@ -265,6 +265,7 @@ class Mst_Lifetime_award(Model):
     class Meta:
         verbose_name_plural = '生涯受賞回数マスタ'
 
+
 #勝負情報
 class Mst_Gameinfo(Model):
     Game_category = IntegerField(verbose_name='勝負区分')
@@ -312,6 +313,7 @@ class Mst_Operationmode(Model):
 class Tran_Systemstatus(Model):
     Event_date =  IntegerField(verbose_name='開催年月', blank=True, null=True)
     CurrentBasho =  ForeignKey('Mst_Basho', on_delete=CASCADE)
+    SystemStatus =   CharField(verbose_name='運用モード表記', max_length=10, blank=True, null=True) 
     SystemStatus =  ForeignKey('Mst_Operationmode', on_delete=CASCADE, blank=True, null=True) 
     TorikumiDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'torikumi')
     MatchDate =  ForeignKey('Mst_Nichime', on_delete=CASCADE, related_name = 'match')
@@ -348,4 +350,19 @@ class Tran_Banzuke(Model):
     def __str__(self):
         return str(self.RikishiId)	
 
+# --------------------------------------------------------------------------------------------------
+#階級上位力士
+#
+class Tran_TopClassRikishi(Model):
+    Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE) #階級コード
+    Yearmonth = DateField(verbose_name='開催年月西暦')
+    Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE, blank=True, null=True) #日目コード
+    LossCount = PositiveIntegerField(verbose_name='負け数', blank=True, null=True, default=0)
+    WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True, default=0)
+
+    class Meta:
+        verbose_name_plural = '*階級上位力士'
+
+    def __str__(self):
+        return str(self.Class_code)
 
