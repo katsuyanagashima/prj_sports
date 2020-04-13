@@ -11,15 +11,15 @@
                 <div class="col-6">
                     <div class="form-inline">
                         <h6 class="nav-text">業務状況 :　</h6>
-                        {% if status == '0' %}
+                        {% if status == 'オンライン' %}
                         <h3><span class="badge badge-primary badge-pill nav-badge-state" data-toggle="modal"
-                                data-target="#modal-select_gyomu">通常業務開始中</span></h3>
-                        {% elif status == '2' %}
+                                data-target="#modal-select_gyomu">オンライン</span></h3>
+                        {% elif status == '日時処理中' %}
                         <h3><span class="badge badge-warning badge-pill nav-badge-state" data-toggle="modal"
-                                data-target="#modal-select_gyomu">日時処理実施中</span></h3>
-                        {% elif status == '0' %}
+                                data-target="#modal-select_gyomu">日時処理中</span></h3>
+                        {% elif status == 'オフライン' %}
                         <h3><span class="badge badge-secondary badge-pill nav-badge-state" data-toggle="modal"
-                                data-target="#modal-select_gyomu">不明</span></h3>
+                                data-target="#modal-select_gyomu">オフライン</span></h3>
                         {% else %}
                         <h3><span class="badge badge-warning badge-pill nav-badge-state" data-toggle="modal"
                                 data-target="#modal-select_gyomu">マスタ編集中</span></h3>
@@ -62,7 +62,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {% if status == '0' %}
+            {% if status == 'オンライン' %}
             <div class="modal-body">
                 <h5>業務状態を<span class="badge badge-warning badge-pill">マスタ編集中</span>に変更します。</h5>
                 <h5>よろしいですか？</h5>
@@ -76,7 +76,7 @@
             </div><!-- /.modal-footer -->
             {% else %}
             <div class="modal-body">
-                <h5>業務状態を<span class="badge badge-primary badge-pill">通常業務開始中</span>に変更します。</h5>
+                <h5>業務状態を<span class="badge badge-primary badge-pill">オンライン</span>に変更します。</h5>
                 <h5>よろしいですか？</h5>
             </div>
             <div class="modal-footer">

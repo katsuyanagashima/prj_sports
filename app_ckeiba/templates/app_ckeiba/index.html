@@ -1,7 +1,7 @@
 {% extends 'app_ckeiba/base.html' %}
 
 {% block content %}
-{% if status == '0' %}
+{% if status == 'オンライン' %}
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link menu-tab text-center font-weight-bold" id="nav-receive-tab" data-toggle="tab"
@@ -76,14 +76,14 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-{% elif status == '2' %}
+{% elif status == '日時処理中' %}
 <!-- 日時処理中の時 -->
 <div class="master_edit-contents">
     <h3>日時処理中</h3>
 </div>
 
 {% else %}
-<!-- マスタ編集状態のとき -->
+<!-- オフラインまたは、マスタ編集状態のとき -->
 <div class="master_edit-contents">
     <div class="row justify-content-start">
         <div class="col-2">
