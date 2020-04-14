@@ -16,7 +16,12 @@
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade" id="nav-receive" role="tabpanel" aria-labelledby="nav-receive-tab">
         <div class="form-inline">
-            <span class="badge badge-light hanrei">空白：未受信　〇：受信済　-：受信予定なし</span>
+            <span class="badge badge-light hanrei">
+                <div class="form-inline">空白：未作成　
+                    <div class="maru-img hanrei_value"></div>：受信済　
+                    <div class="uma-img hanrei_value"></div>：作成予定なし
+                </div>
+            </span>
             <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
                 data-target="#submit_log">受信ログ</span>
         </div>
@@ -26,7 +31,16 @@
     </div>
     <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
         <div class="form-inline">
-            <span class="badge badge-light hanrei">空白：未作成　△：未完成　〇：作成済　◎：送信済　●：再編成　◉：再編成送信済　-：作成予定なし</span>
+            <span class="badge badge-light hanrei">
+                <div class="form-inline">空白：未作成　
+                    <div class="sankaku-img hanrei_value"></div>：未完成　
+                    <div class="maru-img hanrei_value"></div>：作成済　
+                    <div class="niju-maru-img hanrei_value"></div>：送信済　
+                    <div class="kuromaru-img hanrei_value"></div>：再編成　
+                    <div class="nakaguro-maru-img hanrei_value"></div>：再編成送信済　
+                    <div class="uma-img hanrei_value"></div>：作成予定なし
+                </div>
+            </span>
             <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
                 data-target="#submit_log">処理ログ</span>
         </div>
@@ -36,7 +50,16 @@
     </div>
     <div class="tab-pane active" id="nav-submit" role="tabpanel" aria-labelledby="nav-submit-tab">
         <div class="form-inline">
-            <span class="badge badge-light hanrei">空白：未作成　△：未完成　〇：作成済　◎：送信済　●：再編成　◉：再編成送信済　-：作成予定なし</span>
+            <span class="badge badge-light hanrei">
+                <div class="form-inline">空白：未作成　
+                    <div class="sankaku-img hanrei_value"></div>：未完成　
+                    <div class="maru-img hanrei_value"></div>：作成済　
+                    <div class="niju-maru-img hanrei_value"></div>：送信済　
+                    <div class="kuromaru-img hanrei_value"></div>：再編成　
+                    <div class="nakaguro-maru-img hanrei_value"></div>：再編成送信済　
+                    <div class="uma-img hanrei_value"></div>：作成予定なし
+                </div>
+            </span>
             <div><a href="./option_submit" class="badge badge-success opt_submit_button">オプション送信</a>
                 <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
                     data-target="#submit_log">送信ログ</span></div>

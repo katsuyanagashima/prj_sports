@@ -14,13 +14,23 @@
                                 <tbody>
                                     <tr>
                                         <td class="table-dark">成績表A</td>
-                                        <td>
-                                            <!-- <svg width="16" height="16">
-                                                <circle cx="8" cy="8" r="5" stroke="black" stroke-width="1"
-                                                    fill="white" />
-                                            </svg> -->
-                                            {{ submit_data.seisekiA }}
-                                        </td>
+
+                                        {% if submit_data.seisekiA == '○' %}
+                                        <td class="maru-img td_value"></td>
+                                        {% elif submit_data.seisekiA == '△' %}
+                                        <td class="sankaku-img td_value"></td>
+                                        {% elif submit_data.seisekiA == '◎' %}
+                                        <td class="niju-maru-img td_value"></td>
+                                        {% elif submit_data.seisekiA == '●' %}
+                                        <td class="kuromaru-img td_value"></td>
+                                        {% elif submit_data.seisekiA == '◉' %}
+                                        <td class="nakaguro-maru-img td_value"></td>
+                                        {% elif submit_data.seisekiA == '-' %}
+                                        <td class="uma-img td_value"></td>
+                                        {% else %}
+                                        <td>{{ submit_data.seisekiA }}</td>
+                                        {% endif %}
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -30,7 +40,23 @@
                                 <tbody>
                                     <tr>
                                         <td class="table-dark">通信文A</td>
-                                        <td>{{ submit_data.tsusinA }}</td>
+
+                                        {% if submit_data.tsusinA == '○' %}
+                                        <td class="maru-img td_value"></td>
+                                        {% elif submit_data.tsusinA == '△' %}
+                                        <td class="sankaku-img td_value"></td>
+                                        {% elif submit_data.tsusinA == '◎' %}
+                                        <td class="niju-maru-img td_value"></td>
+                                        {% elif submit_data.tsusinA == '●' %}
+                                        <td class="kuromaru-img td_value"></td>
+                                        {% elif submit_data.tsusinA == '◉' %}
+                                        <td class="nakaguro-maru-img td_value"></td>
+                                        {% elif submit_data.tsusinA == '-' %}
+                                        <td class="uma-img td_value"></td>
+                                        {% else %}
+                                        {{ submit_data.tsusinA }}
+                                        <td>{% endif %}</td>
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -61,31 +87,109 @@
                         <tr>
                             <td>出走表</td>
                             {% for shussou in submit_data.shussou %}
+
+                            {% if shussou == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif shussou == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif shussou == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif shussou == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif shussou == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif shussou == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ shussou }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>成績表C</td>
                             {% for seiseki in submit_data.seiseki %}
+
+                            {% if seiseki == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif seiseki == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif seiseki == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif seiseki == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif seiseki == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif seiseki == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ seiseki }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>ラップ</td>
                             {% for rap in submit_data.rap %}
+
+                            {% if rap == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif rap == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif rap == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif rap == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif rap == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif rap == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ rap }}</td>
+                            {% endif %}
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>上がり</td>
                             {% for agari in submit_data.agari %}
+
+                            {% if agari == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif agari == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif agari == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif agari == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif agari == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif agari == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ agari }}</td>
+                            {% endif %}
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>通信文C</td>
                             {% for tsusin in submit_data.tsusin %}
+
+                            {% if tsusin == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif tsusin == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif tsusin == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif tsusin == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif tsusin == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif tsusin == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ tsusin }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                     </tbody>

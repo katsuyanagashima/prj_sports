@@ -148,7 +148,8 @@
                                         <tbody>
                                             <tr>
                                                 <td class="table-dark">成績表A</td>
-                                                <td>{% if submit_data.seisekiA == '○' or submit_data.seisekiA == '◎' or submit_data.seisekiA == '●' or submit_data.seisekiA == '◉' %}
+                                                <td>
+                                                    {% if submit_data.seisekiA == '○' or submit_data.seisekiA == '◎' or submit_data.seisekiA == '●' or submit_data.seisekiA == '◉' %}
                                                     <span class="custom-control custom_chkbox_span">
                                                         <input type="checkbox" name="chk" class="custom-control-input"
                                                             value="{{ submit_data.jou }},{{ submit_data.jou_code }},,成績表A,seisekiA,{{ submit_data.seisekiA }}"
@@ -159,7 +160,9 @@
                                                     </span>
                                                     {% else %}
                                                     {{ submit_data.seisekiA }}
-                                                    {% endif%}</td>
+                                                    {% endif%}
+                                                </td>
+
                                             </tr>
                                         </tbody>
                                     </table>

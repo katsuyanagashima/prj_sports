@@ -13,8 +13,24 @@
                             <table class="table table-sm table-bordered jou-newsml_table">
                                 <tbody>
                                     <tr>
-                                        <td class="table-dark">入場人員</td>
+                                        <td class="table-dark nyujo-jinin">入場人員</td>
+
+                                        {% if edit_data.nyujo == '○' %}
+                                        <td class="maru-img td_value"></td>
+                                        {% elif edit_data.nyujo == '△' %}
+                                        <td class="sankaku-img td_value"></td>
+                                        {% elif edit_data.nyujo == '◎' %}
+                                        <td class="niju-maru-img td_value"></td>
+                                        {% elif edit_data.nyujo == '●' %}
+                                        <td class="kuromaru-img td_value"></td>
+                                        {% elif edit_data.nyujo == '◉' %}
+                                        <td class="nakaguro-maru-img td_value"></td>
+                                        {% elif edit_data.nyujo == '-' %}
+                                        <td class="uma-img td_value"></td>
+                                        {% else %}
                                         <td>{{ edit_data.nyujo }}</td>
+                                        {% endif %}
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -24,7 +40,21 @@
                                 <tbody>
                                     <tr>
                                         <td class="table-dark">売上金</td>
+                                        {% if edit_data.nyujo == '○' %}
+                                        <td class="maru-img td_value"></td>
+                                        {% elif edit_data.uriage == '△' %}
+                                        <td class="sankaku-img td_value"></td>
+                                        {% elif edit_data.uriage == '◎' %}
+                                        <td class="niju-maru-img td_value"></td>
+                                        {% elif edit_data.uriage == '●' %}
+                                        <td class="kuromaru-img td_value"></td>
+                                        {% elif edit_data.uriage == '◉' %}
+                                        <td class="nakaguro-maru-img td_value"></td>
+                                        {% elif edit_data.uriage == '-' %}
+                                        <td class="uma-img td_value"></td>
+                                        {% else %}
                                         <td>{{ edit_data.uriage }}</td>
+                                        {% endif %}
                                     </tr>
                                 </tbody>
                             </table>
@@ -46,40 +76,123 @@
                             <th scope="col">7R</th>
                             <th scope="col">8R</th>
                             <th scope="col">9R</th>
-                            <th scope="col">10R</th>
-                            <th scope="col">11R</th>
-                            <th scope="col">12R</th>
+                            <th scope="col" class="th_10R-12R">10R</th>
+                            <th scope="col" class="th_10R-12R">11R</th>
+                            <th scope="col" class="th_10R-12R">12R</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>出走表</td>
+
                             {% for shussou in edit_data.shussou %}
+
+                            {% if shussou == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif shussou == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif shussou == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif shussou == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif shussou == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif shussou == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ shussou }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>成績</td>
+
                             {% for seiseki in edit_data.seiseki %}
+
+                            {% if seiseki == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif seiseki == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif seiseki == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif seiseki == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif seiseki == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif seiseki == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ seiseki }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>コーナー</td>
                             {% for corner in edit_data.corner %}
+
+                            {% if corner == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif corner == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif corner == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif corner == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif corner == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif corner == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ corner }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>上がり</td>
                             {% for agari in edit_data.agari %}
+
+                            {% if agari == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif agari == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif agari == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif agari == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif agari == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif agari == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ agari }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>通信文</td>
+
                             {% for tsusin in edit_data.tsusin %}
+
+                            {% if tsusin == '○' %}
+                            <td class="maru-img td_value"></td>
+                            {% elif tsusin == '△' %}
+                            <td class="sankaku-img td_value"></td>
+                            {% elif tsusin == '◎' %}
+                            <td class="niju-maru-img td_value"></td>
+                            {% elif tsusin == '●' %}
+                            <td class="kuromaru-img td_value"></td>
+                            {% elif tsusin == '◉' %}
+                            <td class="nakaguro-maru-img td_value"></td>
+                            {% elif tsusin == '-' %}
+                            <td class="uma-img td_value"></td>
+                            {% else %}
                             <td>{{ tsusin }}</td>
+                            {% endif %}
+
                             {% endfor %}
                         </tr>
                     </tbody>
