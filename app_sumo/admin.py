@@ -3,6 +3,17 @@ from django.contrib import admin
 #from .models import Mst_Rikishi, Mst_Rikishistatus, Mst_Heya, Mst_Basho, Mst_Kimarite, Mst_Award_category, Mst_Hometown, Mst_Class, Mst_Chii, Mst_Event, Mst_Nichime, Mst_Eastwest, Mst_Lifetime_result, Mst_Lifetime_award, Mst_Lifetime_statusinfo, Mst_Gameinfo
 from .models import *
 
+class Mst_Rename_historyAdmin(admin.ModelAdmin):
+    fieldssets = [
+        ('年月西暦', {'fields':['Yearmonth'] }),
+        ('現力士名', {'fields':['Rikishi_code'] }),
+	    ('改名前力士名漢字', {'fields':['Rikishi_name_kanji'] }),
+        ('２文字力士名漢字', {'fields':['Rikishi_name_2char'] }),
+	    ('３文字力士名漢字', {'fields':['Rikishi_name_3char'] }),
+    ]
+    list_display = ('Yearmonth', 'Rikishi_code', 'Rikishi_name_kanji', 'Rikishi_name_2char', 'Rikishi_name_3char')
+
+
 class Mst_HeyaAdmin(admin.ModelAdmin):
     fieldssets = [
         ('部屋コード', {'fields':['Heya_code'] }),
@@ -33,7 +44,7 @@ class Mst_KindofNewsMLAdmin(admin.ModelAdmin):
 
 admin.site.register(Mst_Rikishi)
 admin.site.register(Mst_Rikishistatus)
-admin.site.register(Mst_Rename_history)
+admin.site.register(Mst_Rename_history, Mst_Rename_historyAdmin)
 admin.site.register(Mst_Heya, Mst_HeyaAdmin)
 admin.site.register(Mst_Basho)
 admin.site.register(Mst_Kimarite)
