@@ -19,6 +19,8 @@
         <th>２字略</th>
         <th> 身長</th>
         <th> 体重</th>
+        <th> </th>
+        <th> </th>
     </thead>
     {% for rikishi in object_list  %}
     <tr>
@@ -31,6 +33,8 @@
         <td>{{  rikishi.Hometown_code_1 }}</td>
         <td>{{  rikishi.Hometown_details_1 }}</td>
         <td>{{  rikishi.Hometown_details_abbr1_2char }}</td>
+        <td>{{  rikishi.Height }}</td>
+        <td>{{  rikishi.Weight }}</td>
         <td><a href="{% url 'rikishiUpdate' pk=rikishi.id %}">更新画面へ</a></td>
         <td><a href="{% url 'rikishiDelete' pk=rikishi.id %}"<button type="button" class="btn btn-danger">削除</button></a></td>
     </tr>
