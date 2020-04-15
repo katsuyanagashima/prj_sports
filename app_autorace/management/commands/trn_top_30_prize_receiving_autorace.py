@@ -34,16 +34,16 @@ class FileChangeHandler(PatternMatchingEventHandler):
         self.send_date	 = str()                    # ファイル名をキーとして送信日を記憶する
         self.Totaling_date	 = str()
         self.Ranking	 = str()
-        self.Rider_code	 = str()
-        self.Rider_full_name = int()
+        self.Rider_code	 = int()
+        self.Rider_full_name = str()
         self.Rider_shortened_3_name	 = str()
-        self.Rider_shortened_4_name = int()
-        self.LG_name	 = str()
-        self.LG_code = int()
-        self.Rider_class_code	 = str()
-        self.By_period = int()
+        self.Rider_shortened_4_name = str()
+        self.LG_code	 = int()
+        self.LG_name = str()
+        self.Rider_class_code	 = int()
+        self.By_period = str()
         self.Rider_birthplace	 = str()
-        self.Rider_Age = int()
+        self.Rider_Age = str()
         self.Prize	 = str()
 
     # 正規表現で半角ブランク削除
@@ -58,32 +58,30 @@ class FileChangeHandler(PatternMatchingEventHandler):
         # 選手取得賞金上位３０位
         for s in range(self.top30prize):
             if s==0:
-                if self.chkBlank(top30prizeLine[0:8]):
-                    self.Totaling_date = top30prizeLine[0:8]
-                if self.chkBlank(top30prizeLine[8:10]):
-                    self.Ranking = top30prizeLine[8:10]
-                if self.chkBlank(top30prizeLine[10:14]):
-                    self.Rider_code	 = top30prizeLine[10:14]
-                if self.chkBlank(top30prizeLine[14:30]):
-                    self.Rider_full_name	 = top30prizeLine[14:30]
-                if self.chkBlank(top30prizeLine[30:36]):
-                    self.Rider_shortened_3_name	 = top30prizeLine[30:36]
-                if self.chkBlank(top30prizeLine[36:44]):
-                    self.Rider_shortened_4_name	 = top30prizeLine[36:44]
-                if self.chkBlank(top30prizeLine[44:45]):
-                    self.LG_name	 = top30prizeLine[44:45]
-                if self.chkBlank(top30prizeLine[45:51]):
-                    self.LG_code	 = top30prizeLine[45:51]
-                if self.chkBlank(top30prizeLine[51:52]):
-                    self.Rider_class_code	 = top30prizeLine[51:52]
+                if self.chkBlank(top30prizeLine[0:2]):
+                    self.Ranking = top30prizeLine[0:2]
+                if self.chkBlank(top30prizeLine[2:6]):
+                    self.Rider_code	 = top30prizeLine[2:6]
+                if self.chkBlank(top30prizeLine[6:22]):
+                    self.Rider_full_name	 = top30prizeLine[6:22]
+                if self.chkBlank(top30prizeLine[22:28]):
+                    self.Rider_shortened_3_name	 = top30prizeLine[22:28]
+                if self.chkBlank(top30prizeLine[28:36]):
+                    self.Rider_shortened_4_name	 = top30prizeLine[28:36]
+                if self.chkBlank(top30prizeLine[36:37]):
+                    self.LG_code	 = top30prizeLine[36:37]
+                if self.chkBlank(top30prizeLine[37:43]):
+                    self.LG_name	 = top30prizeLine[37:43]
+                if self.chkBlank(top30prizeLine[43:44]):
+                    self.Rider_class_code	 = top30prizeLine[43:44]
+                if self.chkBlank(top30prizeLine[44:46]):
+                    self.By_period	 = top30prizeLine[44:46]
+                if self.chkBlank(top30prizeLine[46:52]):
+                    self.Rider_birthplace	 = top30prizeLine[46:52]
                 if self.chkBlank(top30prizeLine[52:54]):
-                    self.By_period	 = top30prizeLine[52:54]
-                if self.chkBlank(top30prizeLine[54:60]):
-                    self.Rider_birthplace	 = top30prizeLine[54:60]
-                if self.chkBlank(top30prizeLine[60:62]):
-                    self.Rider_Age	 = top30prizeLine[60:62]
-                if self.chkBlank(top30prizeLine[62:74]):
-                    self.Prize	 = top30prizeLine[62:74]
+                    self.Rider_Age	 = top30prizeLine[52:54]
+                if self.chkBlank(top30prizeLine[54:66]):
+                    self.Prize	 = top30prizeLine[54:66]
 
     def update_Trn_Top_30_Prize(self, trn_Update):
         updateFields = list()
@@ -137,8 +135,9 @@ class FileChangeHandler(PatternMatchingEventHandler):
                 self.classification = line[0:1]
                 self.data_type = line[1:2]
                 self.send_date = line[2:10]
+                self.totaling_date = line[10:18]
 
-                top30prizeLine = line[10:]
+                top30prizeLine = line[18:]
 
                 self.setDatData(top30prizeLine)
                 break
@@ -148,7 +147,7 @@ class FileChangeHandler(PatternMatchingEventHandler):
             # 必須項目のみ
             #INSERTが実行される
             with transaction.atomic():
-                Trn_Top_30_Prize(Cllasification=self.classification, Data_type=self.data_type, Send_date=self.send_date).save()
+                Trn_Top_30_Prize(Cllasification=self.classification, Data_type=self.data_type, Send_date=self.send_date, Totaling_date=self.totaling_date).save()
 
                 # 空白チェックして実体があるカラムは更新
                 self.update_Trn_Top_30_Prize(Trn_Top_30_Prize.objects.get(id=Trn_Top_30_Prize.objects.all().aggregate(Max('id')).get('id__max')))
@@ -165,47 +164,47 @@ class FileChangeHandler(PatternMatchingEventHandler):
     # ファイル作成時のイベント
     def on_created(self, event):
         filepath = event.src_path
-        filename_schedule_record = os.path.basename(filepath)
+        filename_top30prize_record = os.path.basename(filepath)
 
         base = os.path.dirname(os.path.abspath(__file__))
-        name = os.path.normpath(os.path.join(base,scheduleData ,filename_schedule_record))
+        name = os.path.normpath(os.path.join(base,top30prizeData ,filename_top30prize_record))
 
         # 監視元のフォルダパスを生成
 
-        print('%s created Start' % filename_schedule_record)
+        print('%s created Start' % filename_top30prize_record)
         # ファイル読み込み
         #!/usr/bin/python
         # -*- coding: utf-8 -*-
-        self.insert_or_update_Trn_Schedule(name)
+        self.insert_or_update_Trn_Top_30_Prize(name)
 
-        print('%s created End' % filename_schedule_record)
+        print('%s created End' % filename_top30prize_record)
 
     # ファイル変更時のイベント
     def on_modified(self, event):
         filepath = event.src_path
-        filename_schedule_record = os.path.basename(filepath)
-        print('%s changed' % filename_schedule_record)
+        filename_top30prize_record = os.path.basename(filepath)
+        print('%s changed' % filename_top30prize_record)
 
     # ファイル削除時のイベント
     def on_deleted(self, event):
         filepath = event.src_path
-        filename_schedule_record = os.path.basename(filepath)
-        print('%s deleted' % filename_schedule_record)
+        filename_top30prize_record = os.path.basename(filepath)
+        print('%s deleted' % filename_top30prize_record)
 
     # ファイル移動時のイベント
     def on_moved(self, event):
         filepath = event.src_path
-        filename_schedule_record = os.path.basename(filepath)
+        filename_top30prize_record = os.path.basename(filepath)
 
         base = os.path.dirname(os.path.abspath(__file__))
-        name = os.path.normpath(os.path.join(base,scheduleData ,filename_schedule_record))
-        print('%s moved Start' % filename_schedule_record)
+        name = os.path.normpath(os.path.join(base,top30prizeData ,filename_top30prize_record))
+        print('%s moved Start' % filename_top30prize_record)
         # ファイル読み込み
         #!/usr/bin/python
         # -*- coding: utf-8 -*-
-        self.insert_or_update_Trn_Schedule(name)
+        self.insert_or_update_Trn_Top_30_Prize(name)
 
-        print('%s moved End' % filename_schedule_record)
+        print('%s moved End' % filename_top30prize_record)
 
 # コマンド実行の確認
 class Command(BaseCommand):
@@ -222,14 +221,14 @@ class Command(BaseCommand):
     """受け取った引数を登録する"""
     def handle(self, *args, **options):
         # ファイル監視の開始
-        # スケジュールレコード（mmddhhmmss00000000.dat） 1: スケジュール
+        # 選手取得賞金上位３０位レコード（mmddhhmmss00000003.dat） 1: 選手取得賞金上位３０位
         # 監視対象ディレクトリを指定する
         if scheduleID in options['command_id']:
-            base_trn_Schedule = os.path.dirname(os.path.abspath(__file__))
-            base = os.path.normpath(os.path.join(base_trn_Schedule,scheduleData))
+            base_trn_Top_30_Prize = os.path.dirname(os.path.abspath(__file__))
+            base = os.path.normpath(os.path.join(base_trn_Top_30_Prize,top30prizeData))
             target_dir = os.path.expanduser(base)
 
-            event_handler = FileChangeHandler([target_file_schedule_record])
+            event_handler = FileChangeHandler([target_file_top30prize_record])
             observer = Observer()
             observer.schedule(event_handler, target_dir, recursive=False)# recursive再帰的
             observer.start()
