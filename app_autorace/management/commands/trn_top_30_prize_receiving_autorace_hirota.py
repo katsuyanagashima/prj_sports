@@ -6,6 +6,7 @@ import time
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
+from watchdog.observers.polling import PollingObserver
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django.db.models import Max
@@ -22,7 +23,7 @@ scheduleID = 4
 top30prizeData = "top30prizeData"
 target_file_top30prize_record = '*00000003.dat'
 top30prize = 50 # 取得賞金テーブル　繰り返しの数
-top30prizeNum = 66
+top30prizeNum = 45
 
 # PatternMatchingEventHandler の継承クラスを作成
 class FileChangeHandler(PatternMatchingEventHandler):
@@ -74,26 +75,26 @@ class FileChangeHandler(PatternMatchingEventHandler):
                     self.ranking = top30prizeLine[0:2]
                 if self.chkBlank(top30prizeLine[2:6]):
                     self.rider_code	 = top30prizeLine[2:6]
-                if self.chkBlank(top30prizeLine[6:22]):
-                    self.rider_full_name	 = top30prizeLine[6:22]
-                if self.chkBlank(top30prizeLine[22:28]):
-                    self.rider_shortened_3_name	 = top30prizeLine[22:28]
-                if self.chkBlank(top30prizeLine[28:36]):
-                    self.rider_shortened_4_name	 = top30prizeLine[28:36]
-                if self.chkBlank(top30prizeLine[36:37]):
-                    self.lg_code	 = top30prizeLine[36:37]
-                if self.chkBlank(top30prizeLine[37:43]):
-                    self.lg_name	 = top30prizeLine[37:43]
-                if self.chkBlank(top30prizeLine[43:44]):
-                    self.rider_class_code	 = top30prizeLine[43:44]
-                if self.chkBlank(top30prizeLine[44:46]):
-                    self.by_period	 = top30prizeLine[44:46]
-                if self.chkBlank(top30prizeLine[46:52]):
-                    self.rider_birthplace	 = top30prizeLine[46:52]
-                if self.chkBlank(top30prizeLine[52:54]):
-                    self.rider_age	 = top30prizeLine[52:54]
-                if self.chkBlank(top30prizeLine[54:66]):
-                    self.prize	 = top30prizeLine[54:66]
+                if self.chkBlank(top30prizeLine[6:14]):
+                    self.rider_full_name	 = top30prizeLine[6:14]
+                if self.chkBlank(top30prizeLine[14:17]):
+                    self.rider_shortened_3_name	 = top30prizeLine[14:17]
+                if self.chkBlank(top30prizeLine[17:21]):
+                    self.rider_shortened_4_name	 = top30prizeLine[17:21]
+                if self.chkBlank(top30prizeLine[21:22]):
+                    self.lg_code	 = top30prizeLine[21:22]
+                if self.chkBlank(top30prizeLine[22:25]):
+                    self.lg_name	 = top30prizeLine[22:25]
+                if self.chkBlank(top30prizeLine[25:26]):
+                    self.rider_class_code	 = top30prizeLine[25:26]
+                if self.chkBlank(top30prizeLine[26:28]):
+                    self.by_period	 = top30prizeLine[26:28]
+                if self.chkBlank(top30prizeLine[28:31]):
+                    self.rider_birthplace	 = top30prizeLine[28:31]
+                if self.chkBlank(top30prizeLine[31:33]):
+                    self.rider_age	 = top30prizeLine[31:33]
+                if self.chkBlank(top30prizeLine[33:45]):
+                    self.prize	 = top30prizeLine[33:45]
 
                 # 空白チェックして実体があるカラムは更新
                 self.update_Trn_Top_30_Prize(Trn_Top_30_Prize.objects.get(id=Trn_Top_30_Prize.objects.all().aggregate(Max('id')).get('id__max')))
@@ -231,7 +232,7 @@ class Command(BaseCommand):
             target_dir = os.path.expanduser(base)
 
             event_handler = FileChangeHandler([target_file_top30prize_record])
-            observer = Observer()
+            observer = PollingObserver()
             observer.schedule(event_handler, target_dir, recursive=False)# recursive再帰的
             observer.start()
         else:
