@@ -36,3 +36,16 @@ admin.site.register(Mst_Kaisai_Hiwari)
 admin.site.register(Mst_Honjitu_Shikou)
 
 admin.site.register(Mst_Fix_annotation)
+
+
+# 中間DB
+admin.site.register(Md_Shussouhyou)
+admin.site.register(Md_Shussouba)
+admin.site.register(Md_Shussouba_kako)
+admin.site.register(Md_Nyujo)
+admin.site.register(Md_Uriagekin)
+admin.site.register(Md_Seiseki_Haraimodoshi)
+admin.site.register(Md_Seiseki_Haraimodoshi_seiseki)
+admin.site.register(Md_Corner_Rap)
+admin.site.register(Md_Agari)
+admin.site.register(Md_Tshuushinbun)
