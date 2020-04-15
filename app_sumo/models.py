@@ -1,14 +1,29 @@
 from django.db.models import *
 from django.utils import timezone
 
+# 前と後ろの空白除去の設定を変更し、空白が来ても登録される自作CharField
+class NonStrippingCharField(CharField):
+    """A TextField that does not strip whitespace at the beginning/end of
+    it's value.  Might be important for markup/code."""
+    def __init__(self, verbose_name, max_length, blank=True, *args, **kwargs):
+        kwargs['verbose_name'] = verbose_name
+        kwargs['max_length'] = max_length
+        kwargs['blank'] = blank
+        super().__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        kwargs['strip'] = False
+        return super(NonStrippingCharField, self).formfield(**kwargs)
+
+
 #力士マスタ
 class Mst_Rikishi(Model):
     Rikishi_code = IntegerField(verbose_name="力士コード")
     Rikishi_name_kanji_official = CharField(verbose_name="正式力士名漢字", max_length=10, blank=True)
     Rikishi_name_kanji_kana = CharField(verbose_name="正式力士名かな", max_length=20, blank=True)
-    Rikishi_name_Kanji_2char = CharField(verbose_name="２文字力士名漢字", max_length=4, blank=True)
-    Rikishi_name_Kanji_3char = CharField(verbose_name="３文字力士名漢字", max_length=6, blank=True)
-    Rikishi_name_Kanji_4char = CharField(verbose_name="４文字力士名漢字", max_length=8, blank=True)
+    Rikishi_name_Kanji_2char = NonStrippingCharField("２文字力士名漢字", 4)
+    Rikishi_name_Kanji_3char = NonStrippingCharField("３文字力士名漢字", 6)
+    Rikishi_name_Kanji_4char = NonStrippingCharField("４文字力士名漢字", 8)
     Rikishi_name_jikai_code_official = CharField(verbose_name="正式力士名字解コード配列", max_length=20, blank=True)
     Rikishi_name_jikai_code_2char = CharField(verbose_name="２文字力士名字解コード配列", max_length=8, blank=True)
     Rikishi_name_jikai_code_3char = CharField(verbose_name="３文字力士名字解コード配列", max_length=12, blank=True)
@@ -44,8 +59,15 @@ class Mst_Rikishi(Model):
     class Meta:
         verbose_name_plural = '力士マスタ'
 
+    # def clean(self, value):
+    #      if value is not None:
+    #          value = value.strip()
+    #      return super(Mst_Rikishi, self).clean(value)
+        
     def __str__(self):
         return self.Rikishi_name_kanji_official
+    
+
 
 #力士状態マスタ
 class Mst_Rikishistatus(Model):
@@ -57,6 +79,26 @@ class Mst_Rikishistatus(Model):
 
     def __str__(self):
         return self.Rikishistatus_name
+
+#改名履歴マスタ
+class Mst_Rename_history(Model):
+    Yearmonth = IntegerField(verbose_name='年月西暦', blank=True, null=True)
+    Rikishi_code = ForeignKey('Mst_Rikishi', on_delete=CASCADE, blank=True, null=True)
+    Rikishi_name_kanji = CharField(verbose_name='改名前力士名漢字', max_length=10, blank=True, null=True)
+    Rikishi_name_kana =  CharField(verbose_name='力士名かな', max_length=20, blank=True, null=True)
+    Rikishi_name_2char = NonStrippingCharField("２文字力士名漢字", 4)
+    Rikishi_name_3char = NonStrippingCharField("３文字力士名漢字", 6)
+    Rikishi_name_4char = NonStrippingCharField("４文字力士名漢字", 8)
+    Rikishi_name_jikai_code_official = CharField(verbose_name="正式力士名字解コード配列", max_length=20, blank=True, null=True)
+    Rikishi_name_jikai_code_2char = CharField(verbose_name="２文字力士名字解コード配列", max_length=8, blank=True, null=True)
+    Rikishi_name_jikai_code_3char = CharField(verbose_name="３文字力士名字解コード配列", max_length=12, blank=True, null=True)
+    Rikishi_name_jikai_code_4char = CharField(verbose_name="４文字力士名字解コード配列", max_length=16, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '改名履歴マスタ'
+
+    def __str__(self):
+        return self.Rikishi_name_kanji
 
 #場所マスタ
 class Mst_Basho(Model):

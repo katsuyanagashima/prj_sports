@@ -7,5 +7,7 @@
 /app_autorace/migrations/
 /app_ckeiba/migrations/
 /app_sumo/migrations/
+/app_autorace/__pycache__/
+/app_autorace/commands/__pycache__/
 dump.json
 

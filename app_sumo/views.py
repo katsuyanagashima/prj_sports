@@ -26,37 +26,34 @@ def index(request):
 
 #運用日設定画面
 def SUMUDY01(request):
-    params = nav_info(request, 1)
-    # nav = params[0]
-    tran_system = params[1]
-
     # # 最初のレコードだけ抽出
     tran_system = Tran_Systemstatus.objects.first()
-    # tran_system = Tran_Systemstatus.objects.select_related('TorikumiDate', 'MatchDate').first()
-    # tran_system = Tran_Systemstatus.objects.prefetch_related("torikumi", "match")
     ## init は初期値という意味で、更新をかけた後の状態維持に使用 ##
     init = { 
         "torikumi_nichime":tran_system.TorikumiDate.Nichime_code, 
         "match_nichime":tran_system.MatchDate.Nichime_code, 
+        "age_calcu_reference_date":tran_system.Age_calcu_reference_date.strftime("%Y-%m-%d"),
+        "banzuke_date":tran_system.Banzuke_date.strftime("%Y-%m-%d"),
+        "first_date":tran_system.First_date.strftime("%Y-%m-%d")
     }
 
     nichime = Mst_Nichime.objects.all()
 
+    # formからのデータが送信された場合、request.method内にPOSTが存在する
     if request.method == "POST":
-        # Foreign key にカラムを指定しない場合は、selectでobjectを登録する必要があるため、
-        # models.pyの記述を見直す必要あり
         t_obj = nichime.get(Nichime_code = int(request.POST["torikumi_nichime"]))
         m_obj = nichime.get(Nichime_code = int(request.POST["match_nichime"]))
+        tran_system.Age_calcu_reference_date = request.POST["age_calcu_reference_date"]
         tran_system.TorikumiDate = t_obj
         tran_system.MatchDate = m_obj
-        # tran_system.TorikumiDate.Nichime_code = int(request.POST["torikumi_nichime"])
-        # tran_system.MatchDate.Nichime_code = int(request.POST["match_nichime"])
         tran_system.save()
 
+        # 初期値を再設定
         init["torikumi_nichime"] = tran_system.TorikumiDate.Nichime_code
         init["match_nichime"] = tran_system.MatchDate.Nichime_code
+        init["age_calcu_reference_date"] = tran_system.Age_calcu_reference_date
 
-    # DB登録前に画面が表示されてしまうので、改善しなければならない
+    # ヘッダーの開催場所、取組日目、勝負日目の情報を取得し、mergeする
     nav = nav_info(request)
     d = {
         'init': init,
