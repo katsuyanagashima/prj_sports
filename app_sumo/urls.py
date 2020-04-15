@@ -28,6 +28,7 @@ urlpatterns = [
     path('SUMTKD01/', views.SUMTKD01, name='SUMTKD01'), #付け出し処理
     path('SUMTKD01/SUMTKD02/', views.SUMTKD02, name='SUMTKD02'), #付け出し処理画面
     path('SUMJOR01/', views.SUMJOR01, name='SUMJOR01'), #階級上位力士
+    ###path('SUMJOR01/', views.SUMJOR01.as_view(), name='SUMJOR01'), #階級上位力士
     path('SUMSHI01/', views.SUMSHI01, name='SUMSHI01'), #資料出力
     path('SUMNEW01/', views.SUMNEW01, name='SUMNEW01'), #NewsML修正画面
     path('SUMNEW02/', views.SUMNEW02, name='SUMNEW02'), #NewsML修正画面内容部
