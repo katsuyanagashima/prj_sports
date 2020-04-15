@@ -3,6 +3,7 @@ from . import views
 from . import add_views
 from django.conf.urls import url, static
 
+app_name ='app_sumo'
 urlpatterns = [
     path('', views.index, name='index'),
     path('SUMUDY01/', views.SUMUDY01, name='SUMUDY01'), #運用日設定画
