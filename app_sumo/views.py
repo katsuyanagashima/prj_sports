@@ -12,6 +12,13 @@ from .forms import *
 from .add_views import *
 
 import json
+###----- デバッグ用にログ出力を仮設定
+import logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s %(levelname)-8s %(module)-18s %(funcName)-10s %(lineno)4s: %(message)s'
+)
+###------------------------------
 
 def index(request):
     params = nav_info(request)
@@ -185,18 +192,82 @@ def SUMTKD02(request):
 
 #階級上位力士
 def SUMJOR01(request):
+    #日目マスタ　0(場所前)〜15(千秋楽)
+    #tran_ systemstatusの勝負日目　1(場所前)〜16(千秋楽)　
+    #
     params = nav_info(request)
     #top_class_rikishi = Tran_TopClassRikishi.objects.all()
-    top_class_rikishi = Tran_TopClassRikishi.objects.order_by('Class_code', 'Yearmonth')
-    nichime = Mst_Nichime.objects.order_by('Nichime_code')
+    ###nichime = Mst_Nichime.objects.order_by('Nichime_code')
+    tran_system = Tran_Systemstatus.objects.first()
+    ###match_nichime_id = tran_system.MatchDate.Nichime_code #１日ずれる原因！！！！
+    match_nichime_id = tran_system.MatchDate
+    ###tbl_top_class_rikishi = Tran_TopClassRikishi.objects.order_by('Class_code', 'Yearmonth')
+    tbl_top_class_rikishi = Tran_TopClassRikishi.objects.filter(Nichime_code=match_nichime_id)
+    tbl_top_class_rikishi = tbl_top_class_rikishi.order_by('Class_code', 'Yearmonth')
+    logging.info('#####')
+    logging.info(tbl_top_class_rikishi)
+    logging.info('+++++')
+    logging.info(tbl_top_class_rikishi)
+    # 該当する勝負日目のデータのみを表示する
+    # 場所前と初日でデータが未登録の場合は、勝数と敗数をNULLで表示する
+    # 勝数と敗数のどちらも入力されていない階級はとりあえず０で表示する（NULLの方がよいかも）
+    # 勝数と敗数のどちらも入力されていない階級はとりあえずNULLで表示する（NULLの方がよいかも）
+
+    tbl_class = Mst_Class.objects.all()
+    for i in tbl_class:
+        logging.info(i.Class_code)
+        logging.info(match_nichime_id)
+        logging.info('=====')
+        rows = tbl_top_class_rikishi.filter(Class_code=i.Class_code, Nichime_code=match_nichime_id)
+        for k in rows:
+           #logging.info(k.Class_code_id)
+           #１日ずれないように合わせる！！！！！！！！！！
+           logging.info(k.Nichime_code)
+           logging.info(k.Nichime_code_id)
+           #logging.info(k.WinCount)
+           #logging.info(k.LossCount)
+           logging.info('-----')
+
+
     dict = {
-        #'item1': 'Ahaha',
-        #'item2': 'Ihihi',
-        'top_class_rikishi': top_class_rikishi,
-        'nichime': nichime,
-        'wins_and_losses': ['',0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        'tbl_top_class_rikishi': tbl_top_class_rikishi,
+        ###'nichime': nichime,
+        ###'range_of_wins_or_losses': ['',0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        'range_of_wins_or_losses': range(16)
     }
     params.update(dict)
+
+    if request.method == "POST":
+        logging.info('ログに書き込みたい文字列')
+        logging.info(match_nichime_id)
+        logging.info(request.POST.getlist('class_code_id'))
+        logging.info(request.POST.getlist('win_count'))
+        logging.info(request.POST.getlist('loss_count'))
+
+        ### 更新
+        row = tbl_top_class_rikishi.get(Class_code_id=2, Nichime_code_id=16)
+        row.WinCount=8
+        row.LossCount=7
+        row.save()
+        logging.info(row.WinCount)
+        logging.info(row.LossCount)
+
+        # Foreign key にカラムを指定しない場合は、selectでobjectを登録する必要があるため、
+        # models.pyの記述を見直す必要あり
+        """
+        t_obj = nichime.get(Nichime_code = int(request.POST["torikumi_nichime"]))
+        m_obj = nichime.get(Nichime_code = int(request.POST["match_nichime"]))
+        tran_system.TorikumiDate = t_obj
+        tran_system.MatchDate = m_obj
+        # tran_system.TorikumiDate.Nichime_code = int(request.POST["torikumi_nichime"])
+        # tran_system.MatchDate.Nichime_code = int(request.POST["match_nichime"])
+        tran_system.save()
+
+        init["torikumi_nichime"] = tran_system.TorikumiDate.Nichime_code
+        init["match_nichime"] = tran_system.MatchDate.Nichime_code 
+        """
+
+
     return render(request, 'app_sumo/SUMJOR01.html', params)
 """from django.views.generic import TemplateView
 class SUMJOR01(TemplateView):
