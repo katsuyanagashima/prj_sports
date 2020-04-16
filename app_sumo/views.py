@@ -229,9 +229,8 @@ def SUMJOR01(request):
         if len(rows) == 0:
             #   ●●●●●勝数と敗数をNULLとしたが、前日データがある場合はコピーするという要望があったはず。要検討●●●●●
             #   ●●●●●開催年月はとりあえずダミーの値にしたが、年度場所切替から計算できるはず。要検討●●●●●
-            Tran_TopClassRikishi.objects.create(Class_code_id=i.Class_code, Nichime_code=match_nichime_id,
-                                                Yearmonth='2999-01-01')
-            # tbl_top_class_rikishi.create(Class_code_id=i.Class_code, Nichime_code=match_nichime_id, Yearmonth='2999-01-01')
+            tbl_top_class_rikishi.create(Class_code_id=i.Class_code, Nichime_code=match_nichime_id,
+                                         Yearmonth='9999-01-01')
         # デバッグ用。階級と日目の組み合わせで一意となるため、jの値は２以上にならないが、あえてループ処理としている
         for j in rows:
             logging.info('  %s', j.Class_code)
@@ -255,11 +254,11 @@ def SUMJOR01(request):
 
         ### 更新
         row = tbl_top_class_rikishi.get(Class_code_id=2, Nichime_code_id=16)
-        row.WinCount = 8
-        row.LossCount = 7
+        #row.WinCount = 8
+        #row.LossCount = 7
         row.save()
-        logging.info(row.WinCount)
-        logging.info(row.LossCount)
+        #logging.info(row.WinCount)
+        #logging.info(row.LossCount)
 
     return render(request, 'app_sumo/SUMJOR01.html', params)
 
