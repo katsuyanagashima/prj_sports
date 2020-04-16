@@ -343,21 +343,21 @@ class Rikishilist(ListView):
 class RikishiCreateView(CreateView):
     model = Mst_Rikishi
     form_class = Mst_RikishiForm
-    success_url = reverse_lazy('rikishi')
+    success_url = reverse_lazy('app_sumo:rikishi')
 
 
 # 力士マスタ編集処理
 class RikishiUpdateView(UpdateView):
     model = Mst_Rikishi
     form_class = Mst_RikishiForm
-    success_url = reverse_lazy('rikishi')
+    success_url = reverse_lazy('app_sumo:rikishi')
 
 
 # 力士マスタ削除処理
 class RikishiDeleteView(DeleteView):
     model = Mst_Rikishi
     form_class = Mst_RikishiForm
-    success_url = reverse_lazy('rikishi')
+    success_url = reverse_lazy('app_sumo:rikishi')
 
 
 # def SUMMSM01_heya_form(request):
