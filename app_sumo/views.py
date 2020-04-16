@@ -285,6 +285,8 @@ class Rikishilist(ListView):
     def post(self, request, *args, **kwargs):
         form_value = [
             self.request.POST.getlist('status_chk'),
+            self.request.POST.get('heya_code'),
+            self.request.POST.get('hometown_code'),
         ]
         request.session['form_value'] = form_value
         # 検索時にページネーションに関連したエラーを防ぐ
@@ -297,12 +299,20 @@ class Rikishilist(ListView):
         context = super().get_context_data(**kwargs)
         # sessionに値がある場合、その値をセットする。（ページングしてもform値が変わらないように）
         status_chk = []
+        heya_code = ""
+        hometown_code = ""
         if 'form_value' in self.request.session:
             form_value = self.request.session['form_value']
             # query = form_value[0]
             status_chk = form_value[0]
+            if form_value[1]:
+                heya_code = form_value[1]
+            if form_value[2]:
+                hometown_code = form_value[2]
         default_data = {
             'status_chk': status_chk,  # ステータス
+            'heya_code': heya_code,  # heya_code
+            'hometown_code': hometown_code,  # 出身地名マスタ
         }
         rikishilist_form = SearchRikishilistForm(initial=default_data)  # 検索フォーム
         context['rikishilist_form'] = rikishilist_form
@@ -316,8 +326,10 @@ class Rikishilist(ListView):
         checks_value = self.request.POST.getlist('status_chk')
         one = '1'
         two = '2'
+        q_heya_code = self.request.POST.get('heya_code')
+        q_hometown_code = self.request.POST.get('hometown_code')
 
-        def cheks_filter(rikishilist, checks_value):
+        def cheks_filter(rikishilist, checks_value, q_heya_code, q_hometown_code):
 
             if activeDuty in checks_value and notActiveDuty in checks_value:
                 rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
@@ -325,16 +337,23 @@ class Rikishilist(ListView):
                 rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
             elif notActiveDuty in checks_value:
                 rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)
+
+            if q_heya_code:
+                rikishilist = rikishilist.filter(Heya_code=q_heya_code)
+            
+            if q_hometown_code:
+                rikishilist = rikishilist.filter(Hometown_code_1=q_hometown_code)
+
             return rikishilist
 
         if q_word:
             rikishilist = Mst_Rikishi.objects.filter(
                 Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
-            rikishilist = cheks_filter(rikishilist, checks_value)
+            rikishilist = cheks_filter(rikishilist, checks_value, q_heya_code, q_hometown_code)
 
         else:
             rikishilist = Mst_Rikishi.objects.all()
-            rikishilist = cheks_filter(rikishilist, checks_value)
+            rikishilist = cheks_filter(rikishilist, checks_value, q_heya_code, q_hometown_code)
 
         return rikishilist
 
