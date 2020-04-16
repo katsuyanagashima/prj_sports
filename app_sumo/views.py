@@ -240,23 +240,52 @@ def SUMJOR01(request):
     dict = {
         'tbl_top_class_rikishi': tbl_top_class_rikishi,
         ### ●●●●●NULLと0を区別する必要があれば、こちらがよいかも●●●●●
-        ###'range_of_wins_or_losses': ['',0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-        'range_of_wins_or_losses': range(16)
+        'range_of_wins_or_losses': ['',0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+        ###'range_of_wins_or_losses': range(16)
     }
     params.update(dict)
 
-    ### ●●●●●データ更新は未実装。以下は更新テスト●●●●●
+    ### 以下、Formのテスト。未完成
+    '''### ●●●●●データ更新は未実装。以下は更新テスト●●●●●
+    if request.method == "POST":
+        form = Tran_TopClassRikishiForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_sumo:SUMJOR01')
+    else:
+        form = Tran_TopClassRikishiForm()
+        
+    ###return render(request, 'app_sumo/SUMJOR01.html', {'form': form})
+    return render(request, 'app_sumo/SUMJOR01.html', {'form': form})
+    '''
+
     if request.method == "POST":
         logging.info(match_nichime_id)
         logging.info(request.POST.getlist('class_code_id'))
         logging.info(request.POST.getlist('win_count'))
         logging.info(request.POST.getlist('loss_count'))
+        cc = request.POST.getlist('class_code_id')
+        wc = request.POST.getlist('win_count')
+        lc = request.POST.getlist('loss_count')
+        for i in range(len(cc)):
+            logging.info("[%s]%s: %s-%s", i, cc[i], wc[i], lc[i] )
+            row = tbl_top_class_rikishi.get(Class_code_id=cc[i])
+            #logging.info(wc[i].isdigit())
+            row.WinCount = int(wc[i], 16)
+            row.LossCount = int(lc[i], 16)
+            row.save()
 
         ### 更新
-        row = tbl_top_class_rikishi.get(Class_code_id=2, Nichime_code_id=16)
+        #row = tbl_top_class_rikishi.get(Class_code_id=2, Nichime_code_id=16)
+        #row = tbl_top_class_rikishi.get(Class_code_id=1)
+        #logging.info(row.WinCount)
+        #logging.info(row.LossCount)
+        #row = tbl_top_class_rikishi.get(Class_code_id=2)
+        #logging.info(row.WinCount)
+        #logging.info(row.LossCount)
         #row.WinCount = 8
         #row.LossCount = 7
-        row.save()
+        #row.save()
         #logging.info(row.WinCount)
         #logging.info(row.LossCount)
 
