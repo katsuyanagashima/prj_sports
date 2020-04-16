@@ -394,16 +394,18 @@ class Tran_Banzuke(Model):
 
 # --------------------------------------------------------------------------------------------------
 #階級上位力士
+# 場所切り替え時に（初日の前に）全レコードを削除する
 #
 class Tran_TopClassRikishi(Model):
     Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE) #階級コード
     Yearmonth = DateField(verbose_name='開催年月西暦')
-    Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE, blank=True, null=True) #日目コード
-    LossCount = PositiveIntegerField(verbose_name='負け数', blank=True, null=True, default=0)
-    WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True, default=0)
+    Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE) #日目コード
+    LossCount = PositiveIntegerField(verbose_name='負け数', blank=True, null=True)
+    WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '*階級上位力士'
+        unique_together = ('Class_code', 'Nichime_code')
 
     def __str__(self):
         return str(self.Class_code)

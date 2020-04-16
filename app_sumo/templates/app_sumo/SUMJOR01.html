@@ -1,83 +1,163 @@
 {% extends 'app_sumo/base.html' %}
 
+<!--Tran_TopClassRikishi-->
 {% block content %}
-<h1 class="caption">階級上位力士</h1>
+    <h1 class="caption">階級上位力士</h1>
+    <form method="post" id="tran_top_class_rikishi" name="tran_top_class_rikishi">
+        {% csrf_token %}
+        <!--<table>
+    {% for i in top_class_rikishi %}
+    <tr>
+        <td>{{i.Class_code}}</td>
+        <td>{{i.WinCount}} 勝</td>
+        <td>{{i.LossCount}} 敗</td>
+        <td>{{i.Yearmonth}}</td>
+        <td>{{i.Nichime_code}}</td>
+        </form>
+    </tr>
+    {% endfor %}
+</table>-->
+        <!--Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE) #階級コード
+        Yearmonth = DateField(verbose_name='開催年月西暦')
+        Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE, blank=True, null=True) #日目コード
+        LossCount = PositiveIntegerField(verbose_name='負け数', blank=True, null=True, default=0)
+        WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True, default=0)-->
 
-<div class="container-fluid row">
+        <div class="container-fluid row">
+            <div class="col-12 gyomu-menu caption_box">
+                <table class="table table-hover table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>階級</th>
+                        <th>○勝以上</th>
+                        <th>○敗以下</th>
+                        <th></th>
+                        <th>日目</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i_top_class_rikishi in tbl_top_class_rikishi %}
+                        <tr>
+                            <td>{{ i_top_class_rikishi.Class_code }}
+                                <input type="hidden" id="class_code_id" name="class_code_id"
+                                       value="{{ i_top_class_rikishi.Class_code_id }}">
+                            </td>
+                            <td>
+                                <div class="_____form-group">
+                                    <select id="win_count" name="win_count" class="form-control">
+                                        {% for j in range_of_wins_or_losses %}
+                                            <option value="{{ j }}" {% if j == i_top_class_rikishi.WinCount %}
+                                                    selected {% endif %}> {{ j }} </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <select id="loss_count" name="loss_count" class="form-control">
+                                    {% for j in range_of_wins_or_losses %}
+                                        <option value="{{ j }}" {% if j == i_top_class_rikishi.LossCount %}
+                                                selected {% endif %}> {{ j }} </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>{{ i_top_class_rikishi.Yearmonth }}</td>
+                            <td>{{ i_top_class_rikishi.Nichime_code }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--<div class="col-3">
+          <div class="form-group">
+            <select id="torikumi" name="top_class_rikishi" class="form-control">
+              {% for i in top_class_rikishi %}
+              <option value="{{ i.Class_code }}" {% if init.torikumi_nichime == i.Nichime_code %} selected{% endif %}>
+                {{ i.Class_code }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>-->
+
+        <!--<div class="col-12 gyomu-menu caption_box">-->
+        <!--
+        <form class="form-inline">
+            <div class="form-group col-xs-1">
+                <label for="kaikyu">中入り　</label>
+                <input type="number" class="form-control" id="num_of_losses_nakairi" maxlength="2">
+                <label for="loss">敗</label>
+            </div>
+        </form>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="kaikyu">十両　　</label>
+                <input type="number" class="form-control" id="num_of_losses_juryo" size="2" maxlength="4">
+                <label for="loss">敗</label>
+            </div>
+        </form>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="kaikyu">幕下　　</label>
+                <input type="number" class="form-control" id="num_of_wins_makushita">
+                <label for="win">勝</label>
+                <input type="number" class="form-control" id="num_of_losses_makushita">
+                <label for="loss">敗</label>
+            </div>
+        </form>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="kaikyu">三段目　</label>
+                <input type="number" class="form-control" id="num_of_wins_makushita">
+                <label for="win">勝</label>
+                <input type="number" class="form-control" id="num_of_losses_makushita">
+                <label for="loss">敗</label>
+            </div>
+        </form>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="kaikyu">序二段　</label>
+                <input type="number" class="form-control" id="num_of_wins_makushita">
+                <label for="win">勝</label>
+                <input type="number" class="form-control" id="num_of_losses_makushita">
+                <label for="loss">敗</label>
+            </div>
+        </form>
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="kaikyu">序の口　</label>
+                <input type="number" class="form-control" id="num_of_wins_makushita">
+                <label for="win">勝</label>
+                <input type="number" class="form-control" id="num_of_losses_makushita">
+                <label for="loss">敗</label>
+            </div>
+        </form>
+        -->
 
 
-  <div class="col-12 gyomu-menu caption_box">
-    <form class="form-inline">
-      <div class="form-group col-xs-1">
-        <label for="kaikyu">中入り　</label>
-        <input type="number" class="form-control" id="num_of_losses_nakairi" maxlength="2">
-        <label for="loss">敗</label>
-      </div>
-    </form>
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="kaikyu">十両　　</label>
-        <input type="number" class="form-control" id="num_of_losses_juryo" size="2" maxlength="4">
-        <label for="loss">敗</label>
-      </div>
-    </form>
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="kaikyu">幕下　　</label>
-        <input type="number" class="form-control" id="num_of_wins_makushita">
-        <label for="win">勝</label>
-        <input type="number" class="form-control" id="num_of_losses_makushita">
-        <label for="loss">敗</label>
-      </div>
-    </form>
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="kaikyu">三段目　</label>
-        <input type="number" class="form-control" id="num_of_wins_makushita">
-        <label for="win">勝</label>
-        <input type="number" class="form-control" id="num_of_losses_makushita">
-        <label for="loss">敗</label>
-      </div>
-    </form>
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="kaikyu">序二段　</label>
-        <input type="number" class="form-control" id="num_of_wins_makushita">
-        <label for="win">勝</label>
-        <input type="number" class="form-control" id="num_of_losses_makushita">
-        <label for="loss">敗</label>
-      </div>
-    </form>
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="kaikyu">序の口　</label>
-        <input type="number" class="form-control" id="num_of_wins_makushita">
-        <label for="win">勝</label>
-        <input type="number" class="form-control" id="num_of_losses_makushita">
-        <label for="loss">敗</label>
-      </div>
-    </form>
-  </div>
-</div>
+        <p>
+            ●●●以下は設計書からの転記（最後に削除すること●●●）</br>
+            上位力士基準登録機能</br>
+            　階級ごとに上位力士基準勝敗数をテーブルに登録する。</br>
+            　各階級別成績上位力士電文を作成するときの、出力する基準となる勝数、敗数を設定するため。</br>
+            　【要望】階級別上位力士で前日設定したものが翌日も残るようにする。</br>
+            　　→　現行システムは、勝負日目ごとに入力値を記憶しており、運用日を翌日にしても前日の値はセットされない模様（とりあえず現行動作を再現してから、要望を再確認）</br>
+            　　　　　勝数制御の場合は勝数のみの入力、敗数制御の場合は敗数のみの入力、</br>
+            　　　　　勝数or敗数制御の場合は勝数・敗数を両方入力して制御できるようにする</br>
+            　【設計書】</br>
+            　①階級上位力士から、開催年月西暦、日目コードをキーとして、階級別に負け数を表示する。＜in:階級上位力士＞</br>
+            　②階級別上位力士設定画面より、幕内、十両は、負け数を、幕下以下は、勝ち数と負け数の入力を行う。</br>
+            　③入力されたデータを階級上位力士の負け数勝ち数にそれぞれ反映させる。＜out:階級上位力士＞</br>
+            </br>
+        </p>
+        <nav class="navbar fixed-bottom navbar-dark bg-dark">
+            <button type="submit" class="btn btn-primary">実行</button>
+            <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
+        </nav>
 
-
-<p>
-●●●以下は設計書からの転記（最後に削除すること●●●）</br>
-上位力士基準登録機能</br>
-　階級ごとに上位力士基準勝敗数をテーブルに登録する。</br>
-　各階級別成績上位力士電文を作成するときの、出力する基準となる勝数、敗数を設定するため。</br>
-　【要望】階級別上位力士で前日設定したものが翌日も残るようにする。</br>
-　　　　　勝数制御の場合は勝数のみの入力、敗数制御の場合は敗数のみの入力、</br>
-　　　　　勝数or敗数制御の場合は勝数・敗数を両方入力して制御できるようにする</br>
-　【設計書】</br>
-　①階級上位力士から、開催年月西暦、日目コードをキーとして、階級別に負け数を表示する。＜in:階級上位力士＞</br>
-　②階級別上位力士設定画面より、幕内、十両は、負け数を、幕下以下は、勝ち数と負け数の入力を行う。</br>
-　③入力されたデータを階級上位力士の負け数勝ち数にそれぞれ反映させる。＜out:階級上位力士＞</br>
-</br>
-</p>
-
-<!-- 実行-->
-<a href="" type="button" class="btn btn-primary btn-lg btn-block">実行</a>
-<!-- 戻る-->
-<a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
+        <!-- 実行-->
+        <!--<a href="" type="button" class="btn btn-primary btn-lg btn-block">実行</a>-->
+        <!-- 戻る-->
+        <!--<a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>-->
+    </form>
 {% endblock %}
