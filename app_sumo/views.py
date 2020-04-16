@@ -309,7 +309,7 @@ def SUMINT01(request):
         form = Tran_SystemstatusForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('SUMINT01')
+            return redirect('app_sumo:SUMINT01')
     else:
         form = Tran_SystemstatusForm()
 
