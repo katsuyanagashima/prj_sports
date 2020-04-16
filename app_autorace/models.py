@@ -211,7 +211,7 @@ class Trn_Schedule(models.Model):
     Top_30_prizes = models.CharField('賞金上位３０傑', blank=True, null=True, max_length=1)
 
     class Meta:
-        verbose_name_plural = 'スケジュール'
+        verbose_name_plural = '【固定長】スケジュール'
 
 #番組編成データレコード
 class Trn_Program(models.Model):
@@ -239,7 +239,7 @@ class Trn_Program(models.Model):
     Totaling_date = models.CharField('通算成績集計日', blank=True, null=True, max_length=8)
 
     class Meta:
-        verbose_name_plural = '番組編成データレコード'
+        verbose_name_plural = '【固定長】番組編成データレコード'
 
 #出走選手テーブル
 class Trn_Running_list(models.Model):
@@ -372,7 +372,7 @@ class Trn_Running_list(models.Model):
     Total_other = models.CharField('着外回数', blank=True, null=True, max_length=5)
 
     class Meta:
-        verbose_name_plural = '出走選手テーブル'
+        verbose_name_plural = '【固定長】番組編成・出走選手テーブル'
 
 #レース結果データレコード
 class Trn_Result(models.Model):
@@ -482,7 +482,7 @@ class Trn_Result(models.Model):
     Reserve = models.CharField('予備', blank=True, null=True, max_length=793)
 
     class Meta:
-        verbose_name_plural = 'レース結果データレコード'
+        verbose_name_plural = '【固定長】レース結果データレコード'
 
 #選手成績テーブル
 class Trn_Rider_results(models.Model):
@@ -513,7 +513,7 @@ class Trn_Rider_results(models.Model):
     Start_timing = models.CharField('スタートタイミング', blank=True, null=True, max_length=2)
 
     class Meta:
-        verbose_name_plural = '選手成績テーブル'
+        verbose_name_plural = '【固定長】レース結果・選手成績テーブル'
 
 #場外売場情報
 class Trn_Outside_track(models.Model):
@@ -548,7 +548,7 @@ class Trn_Outside_track(models.Model):
     race_12 = models.CharField('レース１２', blank=True, null=True, max_length=1)
 
     class Meta:
-        verbose_name_plural = '場外売場情報'
+        verbose_name_plural = '【固定長】場外売場情報'
 
 #選手取得賞金上位３０位レコード
 class Trn_Top_30_Prize(models.Model):
@@ -570,4 +570,4 @@ class Trn_Top_30_Prize(models.Model):
     Prize = models.CharField('取得賞金', blank=True, null=True, max_length=12)
 
     class Meta:
-        verbose_name_plural = '選手取得賞金上位３０位レコード'
+        verbose_name_plural = '【固定長】選手取得賞金上位３０位レコード'
