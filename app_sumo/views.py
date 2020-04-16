@@ -285,8 +285,6 @@ class Rikishilist(ListView):
     def post(self, request, *args, **kwargs):
         form_value = [
             self.request.POST.getlist('status_chk'),
-            self.request.POST.get('heya_code'),
-            self.request.POST.get('hometown_code'),
         ]
         request.session['form_value'] = form_value
         # 検索時にページネーションに関連したエラーを防ぐ
@@ -299,20 +297,12 @@ class Rikishilist(ListView):
         context = super().get_context_data(**kwargs)
         # sessionに値がある場合、その値をセットする。（ページングしてもform値が変わらないように）
         status_chk = []
-        heya_code = ""
-        hometown_code = ""
         if 'form_value' in self.request.session:
             form_value = self.request.session['form_value']
             # query = form_value[0]
             status_chk = form_value[0]
-            if form_value[1]:
-                heya_code = form_value[1]
-            if form_value[2]:
-                hometown_code = form_value[2]
         default_data = {
             'status_chk': status_chk,  # ステータス
-            'heya_code': heya_code,  # heya_code
-            'hometown_code': hometown_code,  # 出身地名マスタ
         }
         rikishilist_form = SearchRikishilistForm(initial=default_data)  # 検索フォーム
         context['rikishilist_form'] = rikishilist_form
@@ -326,10 +316,8 @@ class Rikishilist(ListView):
         checks_value = self.request.POST.getlist('status_chk')
         one = '1'
         two = '2'
-        q_heya_code = self.request.POST.get('heya_code')
-        q_hometown_code = self.request.POST.get('hometown_code')
 
-        def cheks_filter(rikishilist, checks_value, q_heya_code, q_hometown_code):
+        def cheks_filter(rikishilist, checks_value):
 
             if activeDuty in checks_value and notActiveDuty in checks_value:
                 rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=one)
@@ -337,23 +325,16 @@ class Rikishilist(ListView):
                 rikishilist = rikishilist.filter(Rikishi_attrib_class=one)
             elif notActiveDuty in checks_value:
                 rikishilist = rikishilist.filter(Rikishi_attrib_class__gte=two)
-
-            if q_heya_code:
-                rikishilist = rikishilist.filter(Heya_code=q_heya_code)
-            
-            if q_hometown_code:
-                rikishilist = rikishilist.filter(Hometown_code_1=q_hometown_code)
-
             return rikishilist
 
         if q_word:
             rikishilist = Mst_Rikishi.objects.filter(
                 Q(Rikishi_name_kanji_official__icontains=q_word) | Q(Rikishi_name_kanji_official__icontains=q_word))
-            rikishilist = cheks_filter(rikishilist, checks_value, q_heya_code, q_hometown_code)
+            rikishilist = cheks_filter(rikishilist, checks_value)
 
         else:
             rikishilist = Mst_Rikishi.objects.all()
-            rikishilist = cheks_filter(rikishilist, checks_value, q_heya_code, q_hometown_code)
+            rikishilist = cheks_filter(rikishilist, checks_value)
 
         return rikishilist
 
@@ -403,21 +384,15 @@ def SUMMSM01_heya_html(request):
 
 
 # 年度・場所切替画面
-# def SUMINT01(request):
-#   return render(request, 'app_sumo/SUMINT01.html')
-# 年度・場所切替画面
 def SUMINT01(request):
-    systemstatus = Tran_Systemstatus.objects.all()
+    systemstatus = Tran_Systemstatus.objects.get(id=1)
     if request.method == "POST":
-        systemstatus.delete()
-        # initial_dict = {'Torikumi_nichime_code':'0', 'Shoubu_nichime_code':'0', 'Age_calcu_reference_date':'2000-01-01'}
-        # form = Mst_Event_Form(request.POST, initial=initial_dict)
-        form = Tran_SystemstatusForm(request.POST)
+        form = Tran_SystemstatusForm(request.POST, instance=systemstatus)
         if form.is_valid():
             form.save()
             return redirect('app_sumo:SUMINT01')
     else:
-        form = Tran_SystemstatusForm()
+        form = Tran_SystemstatusForm(instance=systemstatus)
 
     return render(request, 'app_sumo/SUMINT01.html', {'form': form})
 

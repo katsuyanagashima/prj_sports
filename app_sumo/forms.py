@@ -5,7 +5,6 @@ from .models import Mst_Heya
 from .models import Mst_Event
 from .models import Mst_Rikishi
 from .models import Tran_Systemstatus
-from .models import Mst_Hometown
 from django.contrib.admin.widgets import AdminDateWidget
 
 STATUS_CHOICES = (
@@ -18,12 +17,12 @@ class Mst_HeyaForm(forms.ModelForm):
         model = Mst_Heya
         fields = ('Heya_code', 'Heya_official_kanji', 'Heya_official_kana', 'Heya_kanji_2char', 'Heya_kanji_3char',)
 
-class Tran_SystemstatusForm(forms.ModelForm):
 
+class Tran_SystemstatusForm(forms.ModelForm):
     class Meta:
         model = Tran_Systemstatus
-        fields = ('Event_date', 'CurrentBasho', 'TorikumiDate', 'MatchDate', 'First_date', 'Banzuke_date','Age_calcu_reference_date')
-   #     fields = ('Event_date', 'CurrentBasho', 'SystemStatus', 'TorikumiDate', 'MatchDate', 'First_date', 'Banzuke_date','Age_calcu_reference_date')##
+        fields = ('Event_date', 'CurrentBasho', 'First_date', 'Banzuke_date')
+
 
 class SearchRikishilistForm(forms.Form):
     status_chk = forms.ChoiceField(
@@ -32,18 +31,7 @@ class SearchRikishilistForm(forms.Form):
         choices=STATUS_CHOICES,
         required=False,
     )
-    
-    heya_code = forms.ModelChoiceField(
-        label='部屋',
-        queryset=Mst_Heya.objects.all(),
-        required=False,
-        )
 
-    hometown_code = forms.ModelChoiceField(
-        label='出身地',
-        queryset=Mst_Hometown.objects.all(),
-        required=False,
-        )        
 
 class Mst_RikishiForm(forms.ModelForm):
     
