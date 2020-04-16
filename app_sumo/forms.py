@@ -5,6 +5,7 @@ from .models import Mst_Heya
 from .models import Mst_Event
 from .models import Mst_Rikishi
 from .models import Tran_Systemstatus
+from .models import Mst_Hometown
 from django.contrib.admin.widgets import AdminDateWidget
 
 STATUS_CHOICES = (
@@ -31,7 +32,18 @@ class SearchRikishilistForm(forms.Form):
         choices=STATUS_CHOICES,
         required=False,
     )
+    
+    heya_code = forms.ModelChoiceField(
+        label='部屋',
+        queryset=Mst_Heya.objects.all(),
+        required=False,
+        )
 
+    hometown_code = forms.ModelChoiceField(
+        label='出身地',
+        queryset=Mst_Hometown.objects.all(),
+        required=False,
+        )        
 
 class Mst_RikishiForm(forms.ModelForm):
     
