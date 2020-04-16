@@ -161,7 +161,7 @@
         {% else %}
         <button type="submit">作成</button>
         {% endif %}
-        <a href="{% url 'rikishi' %}">戻る</a>
+        <a href="{% url 'app_sumo:rikishi' %}">戻る</a>
     </div>
 
     <nav class="navbar fixed-bottom navbar-dark bg-dark">
@@ -170,7 +170,7 @@
         {% else %}
         <button type="submit" class="btn btn-primary">作成</button>
         {% endif %}
-        <a href="{% url 'rikishi' %}" class="btn menubutton5 btn-block" role="button">戻る</a>
+        <a href="{% url 'app_sumo:rikishi' %}" class="btn menubutton5 btn-block" role="button">戻る</a>
     </nav>
 
 </form>

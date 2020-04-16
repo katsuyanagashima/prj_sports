@@ -35,8 +35,8 @@
         <td>{{  rikishi.Hometown_details_abbr1_2char }}</td>
         <td>{{  rikishi.Height }}</td>
         <td>{{  rikishi.Weight }}</td>
-        <td><a href="{% url 'rikishiUpdate' pk=rikishi.id %}">更新画面へ</a></td>
-        <td><a href="{% url 'rikishiDelete' pk=rikishi.id %}"<button type="button" class="btn btn-danger">削除</button></a></td>
+        <td><a href="{% url 'app_sumo:rikishiUpdate' pk=rikishi.id %}">更新画面へ</a></td>
+        <td><a href="{% url 'app_sumo:rikishiDelete' pk=rikishi.id %}"<button type="button" class="btn btn-danger">削除</button></a></td>
     </tr>
     {% endfor %}
 </table>
@@ -49,7 +49,7 @@
         {{rikishilist_form.status_chk.0}}
         {{rikishilist_form.status_chk.1}}
     </form>
-    <a href="{% url 'rikishiCreate' %}" class="btn btn-primary" role="button">新規登録</a>
+    <a href="{% url 'app_sumo:rikishiCreate' %}" class="btn btn-primary" role="button">新規登録</a>
     <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
 </nav>
 
