@@ -48,7 +48,7 @@ class Mst_Environment(Model):
 
 #競馬場マスタ
 class Mst_Jou(Model):
-    Jou_code = IntegerField(verbose_name='競馬場コード')
+    Jou_code = IntegerField(verbose_name='競馬場コード', unique=True)
     Jou_name = CharField(verbose_name='正式名', max_length=20) #大井競馬場
     Jou_seisekiA = CharField(verbose_name='成績Ａ用', max_length=1) #大
     Jou_3char = CharField(verbose_name='３字略称', max_length=3) #大井△
@@ -218,7 +218,7 @@ class Mst_Clockwise_class(Model):
 
 #ナイター区分マスタ
 class Mst_Night_race_class(Model):
-    Night_race_code = IntegerField(verbose_name='ナイター区分コード') #0：実施しない　1：実施
+    Night_race_code = IntegerField(verbose_name='ナイター区分コード', unique=True) #0：実施しない　1：実施
     Night_race_name = CharField(verbose_name='ナイター区分名称', max_length=5, blank=True, null=True)  
     class Meta:
         verbose_name_plural = 'ナイター区分マスタ'
@@ -926,3 +926,77 @@ class Md_Tshuushinbun(Model):
 
     def __str__(self):
         return str(self.ck_kyounichi) + str(self.joumei) + str(self.rebangou) + 'R'
+
+
+
+# ここかCSV取り込み
+
+# -------------------------------------------
+#開催日割_BA7
+class Schedule_BA7(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ID", max_length=3, null=True)
+    held_year = models.CharField(verbose_name="開催年度", max_length=4, null=True)
+    Organizer_times = models.CharField(verbose_name="主催者回次", max_length=2, null=True)
+    Track_times = models.CharField(verbose_name="競馬場回次", max_length=2, null=True)
+    Organizer_code = models.CharField(verbose_name="主催者コード", max_length=2, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Schedule_BA7_Jou_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_code = models.CharField(verbose_name="開催区分", max_length=1, null=True)
+    Night_game_code = models.ForeignKey("Mst_Night_race_class", to_field="Night_race_code", related_name="Schedule_BA7_Night_game_code", on_delete=models.DO_NOTHING, verbose_name="ナイター開催区分", max_length=1, null=True)
+    Dates = models.CharField(verbose_name="開催日数", max_length=1, null=True)
+    Date_1 = models.CharField(verbose_name="開催年月日１", max_length=8, null=True)
+    Day_code_1 = models.CharField(verbose_name="曜日コード１", max_length=2, null=True)
+    Races_1 = models.CharField(verbose_name="レース数１", max_length=2, null=True)
+    Postpone_date_1_1 = models.CharField(verbose_name="代替競走年月日１＿１", max_length=8, null=True)
+    Postpone_day_code_1_1 = models.CharField(verbose_name="代替曜日コード１＿１", max_length=2, null=True)
+    Postpone_start_1_1 = models.CharField(verbose_name="代替レース開始番号１＿１", max_length=2, null=True)
+    Postpone_date_1_2 = models.CharField(verbose_name="代替競走年月日１＿２", max_length=8, null=True)
+    Postpone_day_code_1_2 = models.CharField(verbose_name="代替曜日コード１＿２", max_length=2, null=True)
+    Postpone_start_1_2 = models.CharField(verbose_name="代替レース開始番号１＿２", max_length=2, null=True)
+    Date_2 = models.CharField(verbose_name="開催年月日２", max_length=8, null=True)
+    Day_code_2 = models.CharField(verbose_name="曜日コード２", max_length=2, null=True)
+    Races_2 = models.CharField(verbose_name="レース数２", max_length=2, null=True)
+    Postpone_date_2_1 = models.CharField(verbose_name="代替競走年月日２＿１", max_length=8, null=True)
+    Postpone_day_code_2_1 = models.CharField(verbose_name="代替曜日コード２＿１", max_length=2, null=True)
+    Postpone_start_2_1 = models.CharField(verbose_name="代替レース開始番号２＿１", max_length=2, null=True)
+    Postpone_date_2_2 = models.CharField(verbose_name="代替競走年月日２＿２", max_length=8, null=True)
+    Postpone_day_code_2_2 = models.CharField(verbose_name="代替曜日コード２＿２", max_length=2, null=True)
+    Postpone_start_2_2 = models.CharField(verbose_name="代替レース開始番号２＿２", max_length=2, null=True)
+    Date_3 = models.CharField(verbose_name="開催年月日３", max_length=8, null=True)
+    Day_code_3 = models.CharField(verbose_name="曜日コード３", max_length=2, null=True)
+    Races_3 = models.CharField(verbose_name="レース数３", max_length=2, null=True)
+    Postpone_date_3_1 = models.CharField(verbose_name="代替競走年月日３＿１", max_length=8, null=True)
+    Postpone_day_code_3_1 = models.CharField(verbose_name="代替曜日コード３＿１", max_length=2, null=True)
+    Postpone_start_3_1 = models.CharField(verbose_name="代替レース開始番号３＿１", max_length=2, null=True)
+    Postpone_date_3_2 = models.CharField(verbose_name="代替競走年月日３＿２", max_length=8, null=True)
+    Postpone_day_code_3_2 = models.CharField(verbose_name="代替曜日コード３＿２", max_length=2, null=True)
+    Postpone_start_3_2 = models.CharField(verbose_name="代替レース開始番号３＿２", max_length=2, null=True)
+    Date_4 = models.CharField(verbose_name="開催年月日４", max_length=8, null=True)
+    Day_code_4 = models.CharField(verbose_name="曜日コード４", max_length=2, null=True)
+    Races_4 = models.CharField(verbose_name="レース数４", max_length=2, null=True)
+    Postpone_date_4_1 = models.CharField(verbose_name="代替競走年月日４＿１", max_length=8, null=True)
+    Postpone_day_code_4_1 = models.CharField(verbose_name="代替曜日コード４＿１", max_length=2, null=True)
+    Postpone_start_4_1 = models.CharField(verbose_name="代替レース開始番号４＿１", max_length=2, null=True)
+    Postpone_date_4_2 = models.CharField(verbose_name="代替競走年月日４＿２", max_length=8, null=True)
+    Postpone_day_code_4_2 = models.CharField(verbose_name="代替曜日コード４＿２", max_length=2, null=True)
+    Postpone_start_4_2 = models.CharField(verbose_name="代替レース開始番号４＿２", max_length=2, null=True)
+    Date_5 = models.CharField(verbose_name="開催年月日５", max_length=8, null=True)
+    Day_code_5 = models.CharField(verbose_name="曜日コード５", max_length=2, null=True)
+    Races_5 = models.CharField(verbose_name="レース数５", max_length=2, null=True)
+    Postpone_date_5_1 = models.CharField(verbose_name="代替競走年月日５＿１", max_length=8, null=True)
+    Postpone_day_code_5_1 = models.CharField(verbose_name="代替曜日コード５＿１", max_length=2, null=True)
+    Postpone_start_5_1 = models.CharField(verbose_name="代替レース開始番号５＿１", max_length=2, null=True)
+    Postpone_date_5_2 = models.CharField(verbose_name="代替競走年月日５＿２", max_length=8, null=True)
+    Postpone_day_code_5_2 = models.CharField(verbose_name="代替曜日コード５＿２", max_length=2, null=True)
+    Postpone_start_5_2 = models.CharField(verbose_name="代替レース開始番号５＿２", max_length=2, null=True)
+    Date_6 = models.CharField(verbose_name="開催年月日６", max_length=8, null=True)
+    Day_code_6 = models.CharField(verbose_name="曜日コード６", max_length=2, null=True)
+    Races_6 = models.CharField(verbose_name="レース数６", max_length=2, null=True)
+    Postpone_date_6_1 = models.CharField(verbose_name="代替競走年月日６＿１", max_length=8, null=True)
+    Postpone_day_code_6_1 = models.CharField(verbose_name="代替曜日コード６＿１", max_length=2, null=True)
+    Postpone_start_6_1 = models.CharField(verbose_name="代替レース開始番号６＿１", max_length=2, null=True)
+    Postpone_date_6_2 = models.CharField(verbose_name="代替競走年月日６＿２", max_length=8, null=True)
+    Postpone_day_code_6_2 = models.CharField(verbose_name="代替曜日コード６＿２", max_length=2, null=True)
+    Postpone_start_6_2 = models.CharField(verbose_name="代替レース開始番号６＿２", max_length=2, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】開催日割_BA7'
