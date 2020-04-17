@@ -1,0 +1,10 @@
+[INFO]	2020-04-17 18:29:08,816	module:trn_receiving_autorace	command.handle:67	scheduleData: スケジュール監視　Start
+[INFO]	2020-04-17 18:29:08,817	module:trn_receiving_autorace	command.handle:70	scheduleData: スケジュール監視　End
+[INFO]	2020-04-17 18:29:08,822	module:trn_receiving_autorace	command.handle:81	resultData: レース結果監視　Start
+[INFO]	2020-04-17 18:29:08,822	module:trn_receiving_autorace	command.handle:84	resultData: レース結果監視　End
+[INFO]	2020-04-17 18:29:22,969	module:watchdoc	command.on_created:53	created Start:dabdcd0001-080134-092808013400000000.dat
+[INFO]	2020-04-17 18:29:22,970	module:watchdoc	command.on_created:56	created End:
+[INFO]	2020-04-17 18:29:22,999	module:trn_Schedule	command.insert_or_update_Trn_Schedule:195	内容:insert_Trn_Schedule Start:詳細:ファイルデータ:2020190926
+[INFO]	2020-04-17 18:29:23,003	module:trn_Schedule	command.insert_or_update_Trn_Schedule:197	内容:insert_Trn_Schedule End
+[INFO]	2020-04-17 18:29:23,003	module:trn_Schedule	command.insert_or_update_Trn_Schedule:199	内容:update_Trn_Schedule Start:詳細:ファイルデータ:20190926 412               201909281412                                           
+[INFO]	2020-04-17 18:29:23,042	module:trn_Schedule	command.insert_or_update_Trn_Schedule:201	内容:update_Trn_Schedule End
