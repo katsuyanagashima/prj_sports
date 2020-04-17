@@ -68,7 +68,7 @@ class Mst_Jou(Model):
 
 #グレードマスタ
 class Mst_Grade(Model):
-    Grade_code = CharField(verbose_name='グレード区分', max_length=2)
+    Grade_code = CharField(verbose_name='グレード区分', max_length=2, unique=True)
     Grade_name = CharField(verbose_name='グレード名称', max_length=4)
     Send_class = CharField(verbose_name='配信区分', max_length=4, blank=True, null=True)
 
@@ -80,7 +80,7 @@ class Mst_Grade(Model):
         
 #品種年齢区分マスタ
 class Mst_Breed_age(Model):
-    Breed_age_code = IntegerField(verbose_name='品種年齢区分')
+    Breed_age_code = IntegerField(verbose_name='品種年齢区分', unique=True)
     Name_for_race_type = CharField(verbose_name='競走種別用名称', max_length=10, blank=True, null=True) #混合３・４歳
     Name_for_horse_age_condition = CharField(verbose_name='馬齢条件用名称', max_length=10, blank=True, null=True) #３・４歳
     Breed_age_name = CharField(verbose_name='品種年齢名称', max_length=10, blank=True, null=True) #混合
@@ -93,7 +93,7 @@ class Mst_Breed_age(Model):
 
 #天候マスタ
 class Mst_Weather(Model):
-    Weather_code = IntegerField(verbose_name='天候コード')
+    Weather_code = IntegerField(verbose_name='天候コード', unique=True)
     Weather_name = CharField(verbose_name='天候名称', max_length=5, blank=True, null=True) #晴
     
     class Meta:
@@ -104,7 +104,7 @@ class Mst_Weather(Model):
 
 #着差マスタ
 class Mst_Margin(Model):
-    Margin_code = IntegerField(verbose_name='着差コード')
+    Margin_code = IntegerField(verbose_name='着差コード', unique=True)
     Margin_name = CharField(verbose_name='着差名称(通常）', max_length=10, blank=True, null=True) #１△
     Margin_convert = CharField(verbose_name='着差名称(変換)', max_length=10, blank=True, null=True) 
     
@@ -128,7 +128,7 @@ class Mst_Difference(Model):
                 
 #事故種類マスタ
 class Mst_Accident_type(Model):
-    Accident_type_code = IntegerField(verbose_name='事故種類コード')
+    Accident_type_code = IntegerField(verbose_name='事故種類コード', unique=True)
     Accident_type_name = CharField(verbose_name='事故種類名称', max_length=15, blank=True, null=True)  #競走不成立
     Fulltag_all = CharField(verbose_name='フルタグＡＬＬ', max_length=15, blank=True, null=True)
     Priority = IntegerField(verbose_name='優先順位', blank=True, null=True) #0
@@ -143,7 +143,7 @@ class Mst_Accident_type(Model):
                         
 #事故理由マスタ
 class Mst_Accident_reason(Model):
-    Accident_reason_code = IntegerField(verbose_name='事故理由コード')
+    Accident_reason_code = IntegerField(verbose_name='事故理由コード', unique=True)
     Accident_reason_name = CharField(verbose_name='事故理由名称', max_length=15, blank=True, null=True)  #進路妨害
     Accident_class = IntegerField(verbose_name='異常区分設定フラグ', blank=True, null=True) 
 
@@ -155,7 +155,7 @@ class Mst_Accident_reason(Model):
 
 #性別マスタ
 class Mst_Gender(Model):
-    Horse_gender_code = IntegerField(verbose_name='性別コード')
+    Horse_gender_code = IntegerField(verbose_name='性別コード', unique=True)
     Horse_gender = CharField(verbose_name='性別名称', max_length=2, blank=True, null=True)  #牡
     Remarks = CharField(verbose_name='備考', max_length=5, blank=True, null=True)  #雄馬
     class Meta:
@@ -166,7 +166,7 @@ class Mst_Gender(Model):
 
 #所属場マスタ
 class Mst_Belonging(Model):
-    Belonging_code = IntegerField(verbose_name='所属場コード')
+    Belonging_code = IntegerField(verbose_name='所属場コード', unique=True)
     Belonging = CharField(verbose_name='所属場名称（正式名）', max_length=10, blank=True, null=True)  #北海道
     Belonging_1char = CharField(verbose_name='所属場名称（1字）', max_length=1, blank=True, null=True)  #北
     class Meta:
@@ -177,7 +177,7 @@ class Mst_Belonging(Model):
 
 #中央交流区分マスタ
 class Mst_JRA_exchanges(Model):
-    JRA_exchanges_code = IntegerField(verbose_name='中央交流区コード')
+    JRA_exchanges_code = IntegerField(verbose_name='中央交流区コード', unique=True)
     JRA_exchanges = CharField(verbose_name='交流区分名称', max_length=10, blank=True, null=True)  #指定交流
     Send_classification = IntegerField(verbose_name='配信区分コード', blank=True, null=True)  #2
     class Meta:
@@ -188,7 +188,7 @@ class Mst_JRA_exchanges(Model):
 
 #芝・ダート区分マスタ
 class Mst_Turf_dirt_class(Model):
-    Turf_dirt_code = IntegerField(verbose_name='芝・ダート区分コード')
+    Turf_dirt_code = IntegerField(verbose_name='芝・ダート区分コード', unique=True)
     Turf_dirt_name = CharField(verbose_name='芝区分名称', max_length=5, blank=True, null=True)  #ダート
     class Meta:
         verbose_name_plural = '芝・ダート区分マスタ'
@@ -198,7 +198,7 @@ class Mst_Turf_dirt_class(Model):
 
 #コース区分マスタ
 class Mst_Course_class(Model):
-    Course_class_code = IntegerField(verbose_name='コース区分コード')
+    Course_class_code = IntegerField(verbose_name='コース区分コード', unique=True)
     Course_class_name = CharField(verbose_name='コース区分名称', max_length=5, blank=True, null=True)  #外コース
     class Meta:
         verbose_name_plural = 'コース区分マスタ'
@@ -208,7 +208,7 @@ class Mst_Course_class(Model):
 
 #回り区分マスタ
 class Mst_Clockwise_class(Model):
-    CW_or_CCW_code = IntegerField(verbose_name='回り区分コード')
+    CW_or_CCW_code = IntegerField(verbose_name='回り区分コード', unique=True)
     CW_or_CCW = CharField(verbose_name='回り区分名称', max_length=5, blank=True, null=True)  #右
     class Meta:
         verbose_name_plural = '回り区分マスタ'
@@ -228,7 +228,7 @@ class Mst_Night_race_class(Model):
         
 #負担重量区分マスタ
 class Mst_Handicap(Model):
-    Handicap_code = IntegerField(verbose_name='負担重量区分コード') 
+    Handicap_code = IntegerField(verbose_name='負担重量区分コード', unique=True) 
     Handicap_name = CharField(verbose_name='負担重量区分名称', max_length=5, blank=True, null=True)  #ハンデ
     Weight_shortend = CharField(verbose_name='設定値', max_length=5, blank=True, null=True) 
     class Meta:
@@ -239,7 +239,7 @@ class Mst_Handicap(Model):
 
 #馬場状態マスタ
 class Mst_Track_condition(Model):
-    Track_condition_code = IntegerField(verbose_name='馬場状態コード') 
+    Track_condition_code = IntegerField(verbose_name='馬場状態コード', unique=True) 
     Track_condition_name = CharField(verbose_name='馬場状態名称', max_length=5, blank=True, null=True)  #良
     class Meta:
         verbose_name_plural = '馬場状態マスタ'
@@ -249,7 +249,7 @@ class Mst_Track_condition(Model):
 
 #騎手変更理由マスタ
 class Mst_Jockey_changed_reason(Model):
-    Jockey_changed_reason_code = IntegerField(verbose_name='騎手変更理由コード') 
+    Jockey_changed_reason_code = IntegerField(verbose_name='騎手変更理由コード', unique=True) 
     Jockey_changed_reason_name = CharField(verbose_name='騎手変更理由名称', max_length=10, blank=True, null=True)  #公正保持
     class Meta:
         verbose_name_plural = '騎手変更理由マスタ'
@@ -259,7 +259,7 @@ class Mst_Jockey_changed_reason(Model):
 
 #事象マスタ
 class Mst_Matter(Model):
-    Matter_code = IntegerField(verbose_name='事象コード') 
+    Matter_code = IntegerField(verbose_name='事象コード', unique=True) 
     Matter_name = CharField(verbose_name='事象名称', max_length=10, blank=True, null=True)  #事故
     class Meta:
         verbose_name_plural = '事象マスタ'
@@ -269,7 +269,7 @@ class Mst_Matter(Model):
 
 #対象者マスタ
 class Mst_Target_person(Model):
-    Target_person_code = IntegerField(verbose_name='対象者コード') 
+    Target_person_code = IntegerField(verbose_name='対象者コード', unique=True) 
     Target_person_name = CharField(verbose_name='対象者名称', max_length=10, blank=True, null=True)  #馬主
     class Meta:
         verbose_name_plural = '対象者マスタ'
@@ -279,7 +279,7 @@ class Mst_Target_person(Model):
         
 #競走種類マスタ
 class Mst_Race_type(Model):
-    Race_type_code = IntegerField(verbose_name='競走種類コード') 
+    Race_type_code = IntegerField(verbose_name='競走種類コード', unique=True) 
     Race_type_name = CharField(verbose_name='競走種類名称', max_length=10, blank=True, null=True)  #重賞
     Race_type_deliverytype = IntegerField(verbose_name='配信区分')  #3
     class Meta:
@@ -1000,3 +1000,795 @@ class Schedule_BA7(models.Model):
 
     class Meta:
         verbose_name_plural = '【CSV】開催日割_BA7'
+
+    #本日施行情報ファイル_INI
+class Trn_Enforcement_information_today_INI(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Enforcement_information_today_INI_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_day = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Track_times = models.CharField(verbose_name="競馬場回次", max_length=2, null=True)
+    Races = models.CharField(verbose_name="施行レース数", max_length=2, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】本日施行情報_INI'
+
+#出馬表Ａ_SUA
+class Trn_Running_list_A_SUA(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Organizer_times = models.CharField(verbose_name="主催者回次", max_length=2, null=True)
+    Track_times = models.CharField(verbose_name="競馬場回次", max_length=2, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Running_list_A_SUA_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Track_name = models.CharField(verbose_name="競馬場名称", max_length=4, null=True)
+    Track_name_shortened = models.CharField(verbose_name="競馬場略称", max_length=2, null=True)
+    Organizer_code = models.CharField(verbose_name="主催者コード", max_length=2, null=True)
+    Organizer_name = models.CharField(verbose_name="主催者名称", max_length=10, null=True)
+    Held_day = models.CharField(verbose_name="開催曜日", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Win_sale = models.CharField(verbose_name="単勝実施区分名", max_length=4, null=True)
+    Place_sale = models.CharField(verbose_name="複勝実施区分名", max_length=4, null=True)
+    Bracketquinella_sale = models.CharField(verbose_name="枠連複実施区分名", max_length=5, null=True)
+    bracketexacta_sale = models.CharField(verbose_name="枠連単実施区分名", max_length=5, null=True)
+    Quinella_sale = models.CharField(verbose_name="馬連複実施区分名", max_length=5, null=True)
+    Exacta_sale = models.CharField(verbose_name="馬連単実施区分名", max_length=5, null=True)
+    Race_type_code = models.ForeignKey("Mst_Race_type", to_field="Race_type_code", related_name="Trn_Running_list_A_SUA_Race_type_code", on_delete=models.DO_NOTHING, verbose_name="競走種類コード", max_length=1, null=True)
+    Race_type_name = models.CharField(verbose_name="競走種類名称", max_length=3, null=True)
+    Breed_age_code = models.ForeignKey("Mst_Breed_age", to_field="Breed_age_code", related_name="Trn_Running_list_A_SUA_Breed_age_code", on_delete=models.DO_NOTHING, verbose_name="品種年齢区分", max_length=2, null=True)
+    Breed_age_name = models.CharField(verbose_name="品種年齢区分名称", max_length=7, null=True)
+    Weight_code = models.ForeignKey("Mst_Handicap", to_field="Handicap_code", related_name="Trn_Running_list_A_SUA_Weight_code", on_delete=models.DO_NOTHING, verbose_name="負担重量区分", max_length=2, null=True)
+    Weight_name = models.CharField(verbose_name="負担重量区分名称", max_length=3, null=True)
+    Male_weight = models.CharField(verbose_name="雄負担重量", max_length=3, null=True)
+    Female_weight = models.CharField(verbose_name="雌負担重量", max_length=3, null=True)
+    Race_times = models.CharField(verbose_name="レース回次", max_length=2, null=True)
+    Race_name = models.CharField(verbose_name="レース名称", max_length=40, null=True)
+    Additional_name = models.CharField(verbose_name="付加名称", max_length=40, null=True)
+    JRA_exchanges_code = models.ForeignKey("Mst_JRA_exchanges", to_field="JRA_exchanges_code", related_name="Trn_Running_list_A_SUA_JRA_exchanges_code", on_delete=models.DO_NOTHING, verbose_name="中央交流区分", max_length=1, null=True)
+    Race_code = models.CharField(verbose_name="レースコード", max_length=4, null=True)
+    Certified_race_code = models.CharField(verbose_name="認定競走区分", max_length=1, null=True)
+    Grade_code = models.ForeignKey("Mst_Grade", to_field="Grade_code", related_name="Trn_Running_list_A_SUA_Grade_code", on_delete=models.DO_NOTHING, verbose_name="グレード区分", max_length=2, null=True)
+    Grade_name = models.CharField(verbose_name="グレード区分名称", max_length=3, null=True)
+    Night_race_code = models.ForeignKey("Mst_Night_race_class", to_field="Night_race_code", related_name="Trn_Running_list_A_SUA_Night_race_code", on_delete=models.DO_NOTHING, verbose_name="ナイターレース区分", max_length=1, null=True)
+    Prize_money_1 = models.CharField(verbose_name="本賞金１", max_length=9, null=True)
+    Prize_money_2 = models.CharField(verbose_name="本賞金２", max_length=9, null=True)
+    Prize_money_3 = models.CharField(verbose_name="本賞金３", max_length=9, null=True)
+    Prize_money_4 = models.CharField(verbose_name="本賞金４", max_length=9, null=True)
+    Main_prize_5 = models.CharField(verbose_name="本賞金５", max_length=9, null=True)
+    Additional_prize_1 = models.CharField(verbose_name="付加賞金１", max_length=9, null=True)
+    Additional_prize_2 = models.CharField(verbose_name="付加賞金２", max_length=9, null=True)
+    Additional_prize_3 = models.CharField(verbose_name="付加賞金３", max_length=9, null=True)
+    Additional_prize_4 = models.CharField(verbose_name="付加賞金４", max_length=9, null=True)
+    Additional_prize_5 = models.CharField(verbose_name="付加賞金５", max_length=9, null=True)
+    Supplementary_prize_1 = models.CharField(verbose_name="副賞名１", max_length=20, null=True)
+    Supplementary_prize_2 = models.CharField(verbose_name="副賞名２", max_length=20, null=True)
+    Supplementary_prize_3 = models.CharField(verbose_name="副賞名３", max_length=20, null=True)
+    Supplementary_prize_4 = models.CharField(verbose_name="副賞名４", max_length=20, null=True)
+    Supplementary_prize_5 = models.CharField(verbose_name="副賞名５", max_length=20, null=True)
+    Supplementary_prize_6 = models.CharField(verbose_name="副賞名６", max_length=20, null=True)
+    Supplementary_prize_7 = models.CharField(verbose_name="副賞名７", max_length=20, null=True)
+    Supplementary_prize_8 = models.CharField(verbose_name="副賞名８", max_length=20, null=True)
+    Supplementary_prize_9 = models.CharField(verbose_name="副賞名９", max_length=20, null=True)
+    Supplementary_prize_10 = models.CharField(verbose_name="副賞名１０", max_length=20, null=True)
+    Supplementary_prize_11 = models.CharField(verbose_name="副賞名１１", max_length=20, null=True)
+    Supplementary_prize_12 = models.CharField(verbose_name="副賞名１２", max_length=20, null=True)
+    Supplementary_Award_13 = models.CharField(verbose_name="副賞名１３", max_length=20, null=True)
+    Supplementary_prize_14 = models.CharField(verbose_name="副賞名１４", max_length=20, null=True)
+    Supplementary_prize_15 = models.CharField(verbose_name="副賞名１５", max_length=20, null=True)
+    Organizer_total_races = models.CharField(verbose_name="主催者通算競走番号", max_length=4, null=True)
+    Scheduled_participation = models.CharField(verbose_name="出走予定頭数", max_length=2, null=True)
+    Race_qualification_1 = models.CharField(verbose_name="競走資格条件１", max_length=4, null=True)
+    Race_qualification_2 = models.CharField(verbose_name="競走資格条件２", max_length=8, null=True)
+    Race_qualification_3 = models.CharField(verbose_name="競走資格条件３", max_length=8, null=True)
+    Race_rank_1 = models.CharField(verbose_name="レース格１", max_length=2, null=True)
+    Race_rank_2 = models.CharField(verbose_name="レース格２", max_length=4, null=True)
+    Race_group_1 = models.CharField(verbose_name="レース組１", max_length=2, null=True)
+    Race_group_2 = models.CharField(verbose_name="レース組２", max_length=4, null=True)
+    Prize_amount_1 = models.CharField(verbose_name="賞金額１", max_length=9, null=True)
+    Under_1 = models.CharField(verbose_name="文字１", max_length=2, null=True)
+    Prize_amount_2 = models.CharField(verbose_name="賞金額２", max_length=9, null=True)
+    Under_2 = models.CharField(verbose_name="文字２", max_length=2, null=True)
+    Saddling_enclosure_time = models.CharField(verbose_name="装鞍所引付時刻", max_length=4, null=True)
+    Start_time = models.CharField(verbose_name="発走時刻", max_length=4, null=True)
+    Race_Distance = models.CharField(verbose_name="距離", max_length=4, null=True)
+    Turf_dirt_code = models.ForeignKey("Mst_Turf_dirt_class", to_field="Turf_dirt_code", related_name="Trn_Running_list_A_SUA_Turf_dirt_code", on_delete=models.DO_NOTHING, verbose_name="芝ダート区分", max_length=1, null=True)
+    Turf_Dart_name = models.CharField(verbose_name="芝ダート区分名称", max_length=3, null=True)
+    Inner_outer_code = models.ForeignKey("Mst_Course_class", to_field="Course_class_code", related_name="Trn_Running_list_A_SUA_Inner_outer_code", on_delete=models.DO_NOTHING, verbose_name="内外コース区分", max_length=1, null=True)
+    Inner_outer_name = models.CharField(verbose_name="内外コース区分名称", max_length=4, null=True)
+    CW_or_CCW_code = models.ForeignKey("Mst_Clockwise_class", to_field="CW_or_CCW_code", related_name="Trn_Running_list_A_SUA_CW_or_CCW_code", on_delete=models.DO_NOTHING, verbose_name="回り区分", max_length=1, null=True)
+    Weather_code = models.ForeignKey("Mst_Weather", to_field="Weather_code", related_name="Trn_Running_list_A_SUA_Weather_code", on_delete=models.DO_NOTHING, verbose_name="天候コード", max_length=1, null=True)
+    Weather_name = models.CharField(verbose_name="天候名称", max_length=2, null=True)
+    Track_condition_code = models.ForeignKey("Mst_Track_condition", to_field="Track_condition_code", related_name="Trn_Running_list_A_SUA_Track_condition_code", on_delete=models.DO_NOTHING, verbose_name="馬場状態コード", max_length=1, null=True)
+    Track_condition_name = models.CharField(verbose_name="馬場状態名称", max_length=2, null=True)
+    Track_moisture = models.CharField(verbose_name="馬場水分", max_length=3, null=True)
+    Night_lighting = models.CharField(verbose_name="ナイタ照明点灯開始レース", max_length=2, null=True)
+    Record_time = models.CharField(verbose_name="レコードタイム", max_length=4, null=True)
+    Record_era = models.CharField(verbose_name="レコード年号", max_length=1, null=True)
+    Record_race_date_JP = models.CharField(verbose_name="レコード競走年月日和暦", max_length=6, null=True)
+    Horse_name = models.CharField(verbose_name="馬名", max_length=9, null=True)
+    Weight = models.CharField(verbose_name="負担重量", max_length=3, null=True)
+    Jockey_name = models.CharField(verbose_name="騎手氏名", max_length=15, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】出馬表Ａ_SUA'
+
+#出馬表Ｂ_SUB
+class Trn_Running_list_B_SUB(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Running_list_B_SUB_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Bracket_No = models.CharField(verbose_name="枠番", max_length=2, null=True)
+    Hat_color = models.CharField(verbose_name="帽色", max_length=1, null=True)
+    Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Horse_registration_No = models.CharField(verbose_name="馬登録番号", max_length=10, null=True)
+    Horse_invitation_code = models.CharField(verbose_name="馬招待区分", max_length=1, null=True)
+    Horse_classification = models.CharField(verbose_name="馬区分", max_length=1, null=True)
+    Horse_name = models.CharField(verbose_name="馬名", max_length=9, null=True)
+    Horse_gender_code = models.ForeignKey("Mst_Gender", to_field="Horse_gender_code", related_name="Trn_Running_list_B_SUB_Horse_gender_code", on_delete=models.DO_NOTHING, verbose_name="馬性別コード", max_length=2, null=True)
+    Horse_birth_date = models.CharField(verbose_name="馬生年月日", max_length=8, null=True)
+    Horse_age = models.CharField(verbose_name="馬齢", max_length=2, null=True)
+    Coat_color = models.CharField(verbose_name="毛色", max_length=3, null=True)
+    Horse_name_change = models.CharField(verbose_name="馬名変更種類名", max_length=1, null=True)
+    Old_horse_name = models.CharField(verbose_name="旧馬名", max_length=9, null=True)
+    Horce_belonging_code = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Running_list_B_SUB_Horce_belonging_code", on_delete=models.DO_NOTHING, verbose_name="所属場コード", max_length=2, null=True)
+    Location_code = models.CharField(verbose_name="所在地コード", max_length=2, null=True)
+    Birth_pref = models.CharField(verbose_name="産地県名", max_length=4, null=True)
+    Birth_town = models.CharField(verbose_name="産地町名", max_length=12, null=True)
+    Breeder_name = models.CharField(verbose_name="生産者氏名", max_length=20, null=True)
+    Arab_blood_volume = models.CharField(verbose_name="アラブ血量", max_length=5, null=True)
+    Breed_name = models.CharField(verbose_name="品種名", max_length=3, null=True)
+    Sire_breed_name = models.CharField(verbose_name="父品種名", max_length=3, null=True)
+    Sire_name = models.CharField(verbose_name="父馬名", max_length=30, null=True)
+    Mare_breed_name = models.CharField(verbose_name="母品種名", max_length=3, null=True)
+    Mare_horse = models.CharField(verbose_name="母馬名", max_length=30, null=True)
+    BroodMareSire_breed_name = models.CharField(verbose_name="母父品種名", max_length=3, null=True)
+    BroodMareSire_name = models.CharField(verbose_name="母父馬名", max_length=30, null=True)
+    Previous_horse_weight = models.CharField(verbose_name="前走馬体重", max_length=4, null=True)
+    Case = models.CharField(verbose_name="格", max_length=2, null=True)
+    Program_prize_money = models.CharField(verbose_name="番組賞金", max_length=11, null=True)
+    Last_race_date = models.CharField(verbose_name="最終出走年月日", max_length=8, null=True)
+    Weight = models.CharField(verbose_name="負担重量", max_length=3, null=True)
+    Carry_weight = models.CharField(verbose_name="積載重量", max_length=5, null=True)
+    Owner_Registration_No = models.CharField(verbose_name="馬主登録番号", max_length=10, null=True)
+    Horse_owner_name = models.CharField(verbose_name="馬主氏名", max_length=30, null=True)
+    Trainer_license_No = models.CharField(verbose_name="調教師免許番号", max_length=6, null=True)
+    Trainer_name = models.CharField(verbose_name="調教師氏名", max_length=10, null=True)
+    Trainer_shortened = models.CharField(verbose_name="調教師略名", max_length=3, null=True)
+    Jockey_license_No = models.CharField(verbose_name="騎手免許番号", max_length=6, null=True)
+    Jockey_name = models.CharField(verbose_name="騎手氏名", max_length=10, null=True)
+    Jockey_shortened = models.CharField(verbose_name="騎手略名", max_length=3, null=True)
+    Weight_handicap = models.CharField(verbose_name="減量重量", max_length=3, null=True)
+    Weight_handicap_symbol = models.CharField(verbose_name="減量重量記号", max_length=1, null=True)
+    Jockey_belong_stable = models.CharField(verbose_name="騎手所属厩舎名", max_length=3, null=True)
+    Jockey_invitation_code = models.CharField(verbose_name="騎手招待区分", max_length=1, null=True)
+    Jockey_invitation_name = models.CharField(verbose_name="騎手招待区分名称", max_length=1, null=True)
+    Jockey_belonging_code = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Running_list_B_SUB_Jockey_belonging_code", on_delete=models.DO_NOTHING, verbose_name="騎手所属場コード", max_length=2, null=True)
+    Jockey_location_code = models.CharField(verbose_name="騎手所在地コード", max_length=2, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】出馬表Ｂ_SUB'
+
+#出馬表Ｃ_SUC
+class Trn_Running_list_C_SUC(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Running_list_C_SUC_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Horse_name = models.CharField(verbose_name="馬名", max_length=18, null=True)
+    Run_history_classification = models.CharField(verbose_name="出走履歴区分", max_length=1, null=True)
+    JRA_exchanges_code = models.ForeignKey("Mst_JRA_exchanges", to_field="JRA_exchanges_code", related_name="Trn_Running_list_C_SUC_JRA_exchanges_code", on_delete=models.DO_NOTHING, verbose_name="中央交流区分", max_length=1, null=True)
+    Track_code = models.CharField(verbose_name="競馬場名称", max_length=4, null=True)
+    Track_name_shortened = models.CharField(verbose_name="競馬場略名", max_length=3, null=True)
+    Track_times = models.CharField(verbose_name="競馬場回次", max_length=2, null=True)
+    Race_type_code = models.ForeignKey("Mst_Race_type", to_field="Race_type_code", related_name="Trn_Running_list_C_SUC_Race_type_code", on_delete=models.DO_NOTHING, verbose_name="競走種類コード", max_length=1, null=True)
+    Race_Distance = models.CharField(verbose_name="距離", max_length=4, null=True)
+    Night_race_code = models.ForeignKey("Mst_Night_race_class", to_field="Night_race_code", related_name="Trn_Running_list_C_SUC_Night_race_code", on_delete=models.DO_NOTHING, verbose_name="ナイターレース区分", max_length=1, null=True)
+    Breed_age_code = models.ForeignKey("Mst_Breed_age", to_field="Breed_age_code", related_name="Trn_Running_list_C_SUC_Breed_age_code", on_delete=models.DO_NOTHING, verbose_name="品種年齢区分", max_length=2, null=True)
+    Race_times = models.CharField(verbose_name="レース回次", max_length=3, null=True)
+    Race_name = models.CharField(verbose_name="レース名称", max_length=40, null=True)
+    Grade_code = models.ForeignKey("Mst_Grade", to_field="Grade_code", related_name="Trn_Running_list_C_SUC_Grade_code", on_delete=models.DO_NOTHING, verbose_name="グレード区分", max_length=2, null=True)
+    Race_qualification_1 = models.CharField(verbose_name="競走資格条件１", max_length=4, null=True)
+    Race_qualification_2 = models.CharField(verbose_name="競走資格条件２", max_length=4, null=True)
+    Race_qualification_3 = models.CharField(verbose_name="競走資格条件３", max_length=4, null=True)
+    Race_rank_1 = models.CharField(verbose_name="レース格１", max_length=2, null=True)
+    Race_rank_2 = models.CharField(verbose_name="レース格２", max_length=2, null=True)
+    Race_group_1 = models.CharField(verbose_name="レース組１", max_length=2, null=True)
+    Race_group_2 = models.CharField(verbose_name="レース組２", max_length=2, null=True)
+    Prize_amount_1 = models.CharField(verbose_name="賞金額１", max_length=9, null=True)
+    Under_1 = models.CharField(verbose_name="文字１", max_length=2, null=True)
+    Prize_amount_2 = models.CharField(verbose_name="賞金額２", max_length=9, null=True)
+    Under_2 = models.CharField(verbose_name="文字２", max_length=2, null=True)
+    Weather_code = models.ForeignKey("Mst_Weather", to_field="Weather_code", related_name="Trn_Running_list_C_SUC_Weather_code", on_delete=models.DO_NOTHING, verbose_name="天候コード", max_length=1, null=True)
+    Weather_name = models.CharField(verbose_name="天候名称", max_length=2, null=True)
+    Track_condition_code = models.ForeignKey("Mst_Track_condition", to_field="Track_condition_code", related_name="Trn_Running_list_C_SUC_Track_condition_code", on_delete=models.DO_NOTHING, verbose_name="馬場状態コード", max_length=1, null=True)
+    Track_condition_name = models.CharField(verbose_name="馬場状態名称", max_length=2, null=True)
+    Track_moisture = models.CharField(verbose_name="馬場水分", max_length=3, null=True)
+    Turf_dirt_code = models.CharField(verbose_name="芝ダート区分", max_length=1, null=True)
+    Turf_Dart_name = models.CharField(verbose_name="芝ダート区分名称", max_length=3, null=True)
+    Inner_outer_code = models.ForeignKey("Mst_Course_class", to_field="Course_class_code", related_name="Trn_Running_list_C_SUC_Inner_outer_code", on_delete=models.DO_NOTHING, verbose_name="内外コース区分", max_length=1, null=True)
+    Inner_outer_name = models.CharField(verbose_name="内外コース区分名称", max_length=4, null=True)
+    CW_or_CCW_code = models.ForeignKey("Mst_Clockwise_class", to_field="CW_or_CCW_code", related_name="Trn_Running_list_C_SUC_CW_or_CCW_code", on_delete=models.DO_NOTHING, verbose_name="回り区分", max_length=1, null=True)
+    Participation = models.CharField(verbose_name="出走頭数", max_length=2, null=True)
+    Horse_gender_code = models.ForeignKey("Mst_Gender", to_field="Horse_gender_code", related_name="Trn_Running_list_C_SUC_Horse_gender_code", on_delete=models.DO_NOTHING, verbose_name="性別コード", max_length=1, null=True)
+    Bracket_No = models.CharField(verbose_name="枠番", max_length=2, null=True)
+    Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Horse_weight = models.CharField(verbose_name="馬体重", max_length=4, null=True)
+    Weight = models.CharField(verbose_name="負担重量", max_length=3, null=True)
+    Carry_weight = models.CharField(verbose_name="積載重量", max_length=5, null=True)
+    Trainer_license_No = models.CharField(verbose_name="調教師免許番号", max_length=6, null=True)
+    Trainer_shortened = models.CharField(verbose_name="調教師略名", max_length=3, null=True)
+    Jockey_license_No = models.CharField(verbose_name="騎手免許番号", max_length=6, null=True)
+    Jockey_shortened = models.CharField(verbose_name="騎手略名", max_length=3, null=True)
+    Weight_handicap = models.CharField(verbose_name="減量後重量", max_length=3, null=True)
+    Weight_handicap_symbol = models.CharField(verbose_name="減量重量記号", max_length=1, null=True)
+    Result = models.CharField(verbose_name="着", max_length=2, null=True)
+    Margin_code_1 = models.ForeignKey("Mst_Margin", to_field="Margin_code", related_name="Trn_Running_list_C_SUC_Margin_code_1", on_delete=models.DO_NOTHING, verbose_name="着差コード１", max_length=2, null=True)
+    Margin_1 = models.CharField(verbose_name="着差１", max_length=4, null=True)
+    Margin_code_2 = models.ForeignKey("Mst_Margin", to_field="Margin_code", related_name="Trn_Running_list_C_SUC_Margin_code_2", on_delete=models.DO_NOTHING, verbose_name="着差コード２", max_length=2, null=True)
+    Margin_2 = models.CharField(verbose_name="着差２", max_length=4, null=True)
+    Margin_code_3 = models.ForeignKey("Mst_Margin", to_field="Margin_code", related_name="Trn_Running_list_C_SUC_Margin_code_3", on_delete=models.DO_NOTHING, verbose_name="着差コード３", max_length=2, null=True)
+    Margin_3 = models.CharField(verbose_name="着差３", max_length=4, null=True)
+    Deadheat_code = models.CharField(verbose_name="同着区分", max_length=1, null=True)
+    Finish_time = models.CharField(verbose_name="タイム", max_length=4, null=True)
+    Finish_line_result = models.CharField(verbose_name="入線着", max_length=2, null=True)
+    Accident_code = models.ForeignKey("Mst_Accident_type", to_field="Accident_type_code", related_name="Trn_Running_list_C_SUC_Accident_code", on_delete=models.DO_NOTHING, verbose_name="事故種類コード", max_length=2, null=True)
+    Accident_name = models.CharField(verbose_name="事故種類名称", max_length=5, null=True)
+    Accident_reason_code = models.ForeignKey("Mst_Accident_reason", to_field="Accident_reason_code", related_name="Trn_Running_list_C_SUC_Accident_reason_code", on_delete=models.DO_NOTHING, verbose_name="事故理由コード", max_length=2, null=True)
+    Accident_reason_name = models.CharField(verbose_name="事故理由名称", max_length=7, null=True)
+    Prize_money = models.CharField(verbose_name="本賞金", max_length=9, null=True)
+    Additional_prize = models.CharField(verbose_name="付加賞金", max_length=9, null=True)
+    Corner_passing_rank_1 = models.CharField(verbose_name="コーナー通過順位１", max_length=2, null=True)
+    Corner_passing_rank_2 = models.CharField(verbose_name="コーナー通過順位２", max_length=2, null=True)
+    Corner_passing_rank_3 = models.CharField(verbose_name="コーナー通過順位３", max_length=2, null=True)
+    Corner_passing_rank_4 = models.CharField(verbose_name="コーナー通過順位４", max_length=2, null=True)
+    Corner_passing_rank_5 = models.CharField(verbose_name="コーナー通過順位５", max_length=2, null=True)
+    Corner_passing_rank_6 = models.CharField(verbose_name="コーナー通過順位６", max_length=2, null=True)
+    Corner_passing_rank_7 = models.CharField(verbose_name="コーナー通過順位７", max_length=2, null=True)
+    Corner_passing_rank_8 = models.CharField(verbose_name="コーナー通過順位８", max_length=2, null=True)
+    Last_3furlong = models.CharField(verbose_name="上がり３ハロン", max_length=3, null=True)
+    Win_Pic = models.CharField(verbose_name="人気度", max_length=2, null=True)
+    Winner_finish_time = models.CharField(verbose_name="相手馬タイム", max_length=4, null=True)
+    Winner = models.CharField(verbose_name="相手馬名", max_length=18, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】出馬表Ｃ_SUC'
+
+#出馬表Ｄ_SUD
+class Trn_Running_list_D_SUD(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Horse_name = models.CharField(verbose_name="馬名", max_length=9, null=True)
+    Jockey_shortened = models.CharField(verbose_name="騎手略名", max_length=3, null=True)
+    Stats_win = models.CharField(verbose_name="着別成績（全成績１着）", max_length=3, null=True)
+    Stats_2nd = models.CharField(verbose_name="着別成績（全成績２着）", max_length=3, null=True)
+    Stats_3rd = models.CharField(verbose_name="着別成績（全成績３着）", max_length=3, null=True)
+    Stats_other = models.CharField(verbose_name="着別成績（全成績着外）", max_length=3, null=True)
+    Stats_CCW_dirt_win = models.CharField(verbose_name="着別成績（左回りダート１着）", max_length=3, null=True)
+    Stats_CCW_dirt_2nd = models.CharField(verbose_name="着別成績（左回りダート２着）", max_length=3, null=True)
+    Stats_CCW_dirt_3rd = models.CharField(verbose_name="着別成績（左回りダート３着）", max_length=3, null=True)
+    Stats_CCW_dirt_other = models.CharField(verbose_name="着別成績（左回りダート着外）", max_length=3, null=True)
+    Stats_CW_dirt_win = models.CharField(verbose_name="着別成績（右回りダート１着）", max_length=3, null=True)
+    Stats_CW_dirt_2nd = models.CharField(verbose_name="着別成績（右回りダート２着）", max_length=3, null=True)
+    Stats_CW_dirt_3rd = models.CharField(verbose_name="着別成績（右回りダート３着）", max_length=3, null=True)
+    Stats_CW_dirt_other = models.CharField(verbose_name="着別成績（右回りダート着外）", max_length=3, null=True)
+    Stats_track_win = models.CharField(verbose_name="該当競馬場芝ｏｒダート成績１着", max_length=3, null=True)
+    Stats_track_2nd = models.CharField(verbose_name="該当競馬場芝ｏｒダート成績２着", max_length=3, null=True)
+    Stats_track_3rd = models.CharField(verbose_name="該当競馬場芝ｏｒダート成績３着", max_length=3, null=True)
+    Stats_track_other = models.CharField(verbose_name="該当競馬場芝ｏｒダート成績着外", max_length=3, null=True)
+    Stats_short_distance_win = models.CharField(verbose_name="短距離成績１着", max_length=3, null=True)
+    Stats_short_distance_2nd = models.CharField(verbose_name="短距離成績２着", max_length=3, null=True)
+    Stats_short_distance_3rd = models.CharField(verbose_name="短距離成績３着", max_length=3, null=True)
+    Stats_short_distance_other = models.CharField(verbose_name="短距離成績着外", max_length=3, null=True)
+    Stats_middle_distance_win = models.CharField(verbose_name="中距離成績１着", max_length=3, null=True)
+    Stats_middle_distance_2nd = models.CharField(verbose_name="中距離成績２着", max_length=3, null=True)
+    Stats_middle_distance_3rd = models.CharField(verbose_name="中距離成績３着", max_length=3, null=True)
+    Stats_middle_distance_other = models.CharField(verbose_name="中距離成績着外", max_length=3, null=True)
+    Stats_long_distance_win = models.CharField(verbose_name="長距離成績１着", max_length=3, null=True)
+    Stats_long_distance_2nd = models.CharField(verbose_name="長距離成績２着", max_length=3, null=True)
+    Stats_long_distance_3rd = models.CharField(verbose_name="長距離成績３着", max_length=3, null=True)
+    Stats_long_distance_other = models.CharField(verbose_name="長距離成績着外", max_length=3, null=True)
+    Stats_jockey_win = models.CharField(verbose_name="騎乗騎手成績１着", max_length=3, null=True)
+    Stats_jockey_2nd = models.CharField(verbose_name="騎乗騎手成績２着", max_length=3, null=True)
+    Stats_jockey_3rd = models.CharField(verbose_name="騎乗騎手成績３着", max_length=3, null=True)
+    Stats_jockey_other = models.CharField(verbose_name="騎乗騎手成績着外", max_length=3, null=True)
+    
+    class Meta:
+        verbose_name_plural = '【CSV】出馬表Ｄ_SUD'
+
+#出馬表Ｅ_SUE
+class Trn_Running_list_E_SUE(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ID", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Track_code = models.CharField(verbose_name="馬名", max_length=9, null=True)
+    Held_times = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Running_list_E_SUE_Held_times", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Race_No = models.CharField(verbose_name="距離", max_length=4, null=True)
+    Turf_dirt_code = models.ForeignKey("Mst_Turf_dirt_class", to_field="Turf_dirt_code", related_name="Trn_Running_list_E_SUE_Turf_dirt_code", on_delete=models.DO_NOTHING, verbose_name="芝ダート区分", max_length=1, null=True)
+    Track_condition_code = models.ForeignKey("Mst_Track_condition", to_field="Track_condition_code", related_name="Trn_Running_list_E_SUE_Track_condition_code", on_delete=models.DO_NOTHING, verbose_name="馬場状態コード", max_length=1, null=True)
+    Stats_track_win = models.CharField(verbose_name="１着回数", max_length=3, null=True)
+    Stats_track_2nd = models.CharField(verbose_name="２着回数", max_length=3, null=True)
+    Stats_track_3rd = models.CharField(verbose_name="３着回数", max_length=3, null=True)
+    Stats_track_other = models.CharField(verbose_name="着外回数", max_length=3, null=True)
+    Earned_prize_money = models.CharField(verbose_name="収得賞金", max_length=10, null=True)
+    Best_time = models.CharField(verbose_name="最高タイム", max_length=4, null=True)
+        
+    class Meta:
+        verbose_name_plural = '【CSV】出馬表Ｅ_SUE'
+
+#取消除外_SU1
+class Trn_Cancellation_exclusion_SU1(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Cancellation_exclusion_SU1_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Horse_name = models.CharField(verbose_name="馬名", max_length=9, null=True)
+    Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Trainer_license_No = models.CharField(verbose_name="調教師免許番号", max_length=6, null=True)
+    Trainer_name = models.CharField(verbose_name="調教師氏名", max_length=10, null=True)
+    Accident_code = models.ForeignKey("Mst_Accident_type", to_field="Accident_type_code", related_name="Trn_Cancellation_exclusion_SU1_Accident_code", on_delete=models.DO_NOTHING, verbose_name="事故種類コード", max_length=2, null=True)
+    Accident_name = models.CharField(verbose_name="事故種類名称", max_length=5, null=True)
+    Accident_reason_code = models.ForeignKey("Mst_Accident_reason", to_field="Accident_reason_code", related_name="Trn_Cancellation_exclusion_SU1_Accident_reason_code", on_delete=models.DO_NOTHING, verbose_name="事故理由コード", max_length=2, null=True)
+    Accident_reason_name = models.CharField(verbose_name="事故理由名称", max_length=7, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】取消除外_SU1'
+
+#騎乗変更_SU3
+class Trn_Change_riding_SU3(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Change_riding_SU3_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Horse_name = models.CharField(verbose_name="馬名", max_length=9, null=True)
+    Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Weight = models.CharField(verbose_name="負担重量", max_length=3, null=True)
+    Carry_weight = models.CharField(verbose_name="積載重量", max_length=5, null=True)
+    Jockey_license_No = models.CharField(verbose_name="騎手免許番号", max_length=6, null=True)
+    Jockey_name = models.CharField(verbose_name="騎手氏名", max_length=10, null=True)
+    Jockey_shortened = models.CharField(verbose_name="騎手略名", max_length=3, null=True)
+    Weight_handicap = models.CharField(verbose_name="減量重量", max_length=2, null=True)
+    Weight_handicap_symbol = models.CharField(verbose_name="減量重量記号", max_length=1, null=True)
+    Jockey_belong_stable = models.CharField(verbose_name="騎手所属厩舎名", max_length=3, null=True)
+    Jockey_invitation_code = models.CharField(verbose_name="騎手招待区分", max_length=1, null=True)
+    Jockey_belonging_code = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Change_riding_SU3_Jockey_belonging_code", on_delete=models.DO_NOTHING, verbose_name="騎手所属場コード", max_length=2, null=True)
+    Jockey_location_code = models.CharField(verbose_name="騎手所在地コード", max_length=2, null=True)
+    Jockey_license_No_1 = models.CharField(verbose_name="変更騎手免許番号１", max_length=6, null=True)
+    Jockey_name_1 = models.CharField(verbose_name="変更騎手氏名１", max_length=10, null=True)
+    Jockey_shortened_1 = models.CharField(verbose_name="変更騎手略名１", max_length=3, null=True)
+    Weight_handicap_1 = models.CharField(verbose_name="変更減量重量１", max_length=2, null=True)
+    Weight_handicap_symbol_1 = models.CharField(verbose_name="変更減量重量記号１", max_length=1, null=True)
+    Jockey_changed_reason_code_1 = models.ForeignKey("Mst_Jockey_changed_reason", to_field="Jockey_changed_reason_code", related_name="Trn_Change_riding_SU3_Jockey_changed_reason_code_1", on_delete=models.DO_NOTHING, verbose_name="騎手変更理由コード１", max_length=2, null=True)
+    Jockey_changed_reason_name_1 = models.CharField(verbose_name="騎手変更理由名称１", max_length=4, null=True)
+    Jockey_belong_stable_1 = models.CharField(verbose_name="変更騎手所属厩舎名１", max_length=3, null=True)
+    Jockey_invitation_code_1 = models.CharField(verbose_name="変更騎手招待区分１", max_length=1, null=True)
+    Jockey_belonging_code_1 = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Change_riding_SU3_Jockey_belonging_code_1", on_delete=models.DO_NOTHING, verbose_name="変更騎手所属場コード１", max_length=2, null=True)
+    Jockey_location_code_1 = models.CharField(verbose_name="変更騎手所在地コード１", max_length=2, null=True)
+    Jockey_license_No_2 = models.CharField(verbose_name="変更騎手免許番号２", max_length=6, null=True)
+    Jockey_name_2 = models.CharField(verbose_name="変更騎手氏名２", max_length=10, null=True)
+    Jockey_shortened_2 = models.CharField(verbose_name="変更騎手略名２", max_length=3, null=True)
+    Weight_handicap_2 = models.CharField(verbose_name="変更減量重量２", max_length=2, null=True)
+    Weight_handicap_symbol_2 = models.CharField(verbose_name="変更減量重量記号２", max_length=1, null=True)
+    Jockey_changed_reason_code_2 = models.ForeignKey("Mst_Jockey_changed_reason", to_field="Jockey_changed_reason_code", related_name="Trn_Change_riding_SU3_Jockey_changed_reason_code_2", on_delete=models.DO_NOTHING, verbose_name="騎手変更理由コード２", max_length=2, null=True)
+    Jockey_changed_reason_name_2 = models.CharField(verbose_name="騎手変更理由名称２", max_length=4, null=True)
+    Jockey_belong_stable_2 = models.CharField(verbose_name="変更騎手所属厩舎名２", max_length=3, null=True)
+    Jockey_invitation_code_2 = models.CharField(verbose_name="変更騎手招待区分２", max_length=1, null=True)
+    Jockey_belonging_code_2 = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Change_riding_SU3_Jockey_belonging_code_2", on_delete=models.DO_NOTHING, verbose_name="変更騎手所属場コード２", max_length=2, null=True)
+    Jockey_location_code_2 = models.CharField(verbose_name="変更騎手所在地コード２", max_length=2, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】騎乗変更_SU3'
+
+#コーナ通過順_BA2
+class Trn_Corner_passing_order_BA2(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Corner_passing_order_BA2_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Track_name = models.CharField(verbose_name="競馬場名称", max_length=4, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Corner_name_1 = models.CharField(verbose_name="コーナ名称１", max_length=8, null=True)
+    Corner_passing_rank_1 = models.CharField(verbose_name="コーナ通過順１", max_length=55, null=True)
+    Corner_name_2 = models.CharField(verbose_name="コーナ名称２", max_length=8, null=True)
+    Corner_passing_rank_2 = models.CharField(verbose_name="コーナ通過順２", max_length=55, null=True)
+    Corner_name_3 = models.CharField(verbose_name="コーナ名称３", max_length=8, null=True)
+    Corner_passing_rank_3 = models.CharField(verbose_name="コーナ通過順３", max_length=55, null=True)
+    Corner_name_4 = models.CharField(verbose_name="コーナ名称４", max_length=8, null=True)
+    Corner_passing_rank_4 = models.CharField(verbose_name="コーナ通過順４", max_length=55, null=True)
+    Corner_name_5 = models.CharField(verbose_name="コーナ名称５", max_length=8, null=True)
+    Corner_passing_rank_5 = models.CharField(verbose_name="コーナ通過順５", max_length=55, null=True)
+    Corner_name_6 = models.CharField(verbose_name="コーナ名称６", max_length=8, null=True)
+    Corner_passing_rank_6 = models.CharField(verbose_name="コーナ通過順６", max_length=55, null=True)
+    Corner_name_7 = models.CharField(verbose_name="コーナ名称７", max_length=8, null=True)
+    Corner_passing_rank_7 = models.CharField(verbose_name="コーナ通過順７", max_length=55, null=True)
+    Corner_name_8 = models.CharField(verbose_name="コーナ名称８", max_length=8, null=True)
+    Corner_passing_rank_8 = models.CharField(verbose_name="コーナ通過順８", max_length=55, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】コーナ通過順_BA2'
+
+#ハロンタイム_BA3
+class Trn_Fallon_time_BA3(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Fallon_time_BA3_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Track_name = models.CharField(verbose_name="競馬場名称", max_length=4, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Furlong_time_1 = models.CharField(verbose_name="ハロンタイム１", max_length=3, null=True)
+    Furlong_time_2 = models.CharField(verbose_name="ハロンタイム２", max_length=3, null=True)
+    Furlong_time_3 = models.CharField(verbose_name="ハロンタイム３", max_length=3, null=True)
+    Furlong_time_4 = models.CharField(verbose_name="ハロンタイム４", max_length=3, null=True)
+    Furlong_time_5 = models.CharField(verbose_name="ハロンタイム５", max_length=3, null=True)
+    Furlong_time_6 = models.CharField(verbose_name="ハロンタイム６", max_length=3, null=True)
+    Furlong_time_7 = models.CharField(verbose_name="ハロンタイム７", max_length=3, null=True)
+    Furlong_time_8 = models.CharField(verbose_name="ハロンタイム８", max_length=3, null=True)
+    Furlong_time_9 = models.CharField(verbose_name="ハロンタイム９", max_length=3, null=True)
+    Furlong_time_10 = models.CharField(verbose_name="ハロンタイム１０", max_length=3, null=True)
+    Furlong_time_11 = models.CharField(verbose_name="ハロンタイム１１", max_length=3, null=True)
+    Furlong_time_12 = models.CharField(verbose_name="ハロンタイム１２", max_length=3, null=True)
+    Furlong_time_13 = models.CharField(verbose_name="ハロンタイム１３", max_length=3, null=True)
+    Furlong_time_14 = models.CharField(verbose_name="ハロンタイム１４", max_length=3, null=True)
+    Furlong_time_15 = models.CharField(verbose_name="ハロンタイム１５", max_length=3, null=True)
+    Last_3furlong = models.CharField(verbose_name="上がり３ハロン", max_length=3, null=True)
+    Last_4furlong = models.CharField(verbose_name="上がり４ハロン", max_length=3, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】ハロンタイム_BA3'
+
+#上がり３ハロン_BA4
+class Last_3_Fallon_BA4(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Last_3_Fallon_BA4_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Track_name = models.CharField(verbose_name="競馬場名称", max_length=4, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Last_3furlong_1 = models.CharField(verbose_name="上がり３ハロン１", max_length=3, null=True)
+    Last_3furlong_2 = models.CharField(verbose_name="上がり３ハロン２", max_length=3, null=True)
+    Last_3furlong_3 = models.CharField(verbose_name="上がり３ハロン３", max_length=3, null=True)
+    Last_3furlong_4 = models.CharField(verbose_name="上がり３ハロン４", max_length=3, null=True)
+    Last_3furlong_5 = models.CharField(verbose_name="上がり３ハロン５", max_length=3, null=True)
+    Last_3furlong_6 = models.CharField(verbose_name="上がり３ハロン６", max_length=3, null=True)
+    Last_3furlong_7 = models.CharField(verbose_name="上がり３ハロン７", max_length=3, null=True)
+    Last_3furlong_8 = models.CharField(verbose_name="上がり３ハロン８", max_length=3, null=True)
+    Last_3furlong_9 = models.CharField(verbose_name="上がり３ハロン９", max_length=3, null=True)
+    Last_3furlong_10 = models.CharField(verbose_name="上がり３ハロン１０", max_length=3, null=True)
+    Last_3furlong_11 = models.CharField(verbose_name="上がり３ハロン１１", max_length=3, null=True)
+    Last_3furlong_12 = models.CharField(verbose_name="上がり３ハロン１２", max_length=3, null=True)
+    Last_3furlong_13 = models.CharField(verbose_name="上がり３ハロン１３", max_length=3, null=True)
+    Last_3furlong_14 = models.CharField(verbose_name="上がり３ハロン１４", max_length=3, null=True)
+    Last_3furlong_15 = models.CharField(verbose_name="上がり３ハロン１５", max_length=3, null=True)
+    Last_3furlong_16 = models.CharField(verbose_name="上がり３ハロン１６", max_length=3, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】上がり３ハロン_BA4'
+
+#入場人員_BA5
+class Trn_Visitors_BA5(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Visitors_BA5_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Paid_visitors = models.CharField(verbose_name="有料入場人員", max_length=6, null=True)
+    Free_visitors = models.CharField(verbose_name="無料入場人員", max_length=6, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】入場人員_BA5'
+
+#付加文書_BU1
+class Trn_Attached_document_BU1(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Attached_document_BU1_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Output_order = models.CharField(verbose_name="出力順", max_length=2, null=True)
+    Event_code = models.ForeignKey("Mst_Matter", to_field="Matter_code", related_name="Trn_Attached_document_BU1_Event_code", on_delete=models.DO_NOTHING, verbose_name="事象", max_length=1, null=True)
+    Accident_type_order = models.CharField(verbose_name="事故種類入力順", max_length=2, null=True)
+    Target_person = models.ForeignKey("Mst_Target_person", to_field="Target_person_code", related_name="Trn_Attached_document_BU1_Target_person", on_delete=models.DO_NOTHING, verbose_name="対象者", max_length=2, null=True)
+    Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Event_name = models.CharField(verbose_name="事象名", max_length=7, null=True)
+    Attached_document_1 = models.CharField(verbose_name="レース付加文書１", max_length=30, null=True)
+    Attached_document_2 = models.CharField(verbose_name="レース付加文書２", max_length=30, null=True)
+    Attached_document_3 = models.CharField(verbose_name="レース付加文書３", max_length=30, null=True)
+    Attached_document_4 = models.CharField(verbose_name="レース付加文書４", max_length=30, null=True)
+    Attached_document_5 = models.CharField(verbose_name="レース付加文書５", max_length=30, null=True)
+    Attached_document_6 = models.CharField(verbose_name="レース付加文書６", max_length=30, null=True)
+    Attached_document_7 = models.CharField(verbose_name="レース付加文書７", max_length=30, null=True)
+    Attached_document_8 = models.CharField(verbose_name="レース付加文書８", max_length=30, null=True)
+    Attached_document_9 = models.CharField(verbose_name="レース付加文書９", max_length=30, null=True)
+    Attached_document_10 = models.CharField(verbose_name="レース付加文書１０", max_length=30, null=True)
+    Attached_document_11 = models.CharField(verbose_name="レース付加文書１１", max_length=30, null=True)
+    Attached_document_12 = models.CharField(verbose_name="レース付加文書１２", max_length=30, null=True)
+    Attached_document_13 = models.CharField(verbose_name="レース付加文書１３", max_length=30, null=True)
+    Attached_document_14 = models.CharField(verbose_name="レース付加文書１４", max_length=30, null=True)
+    Attached_document_15 = models.CharField(verbose_name="レース付加文書１５", max_length=30, null=True)
+    Attached_document_16 = models.CharField(verbose_name="レース付加文書１６", max_length=30, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】付加文書_BU1'
+
+#着タイムデータ_SU6
+class Trn_Result_SU6(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Result_SU6_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Horse_name = models.CharField(verbose_name="馬名", max_length=9, null=True)
+    Horse_gender_code = models.ForeignKey("Mst_Gender", to_field="Horse_gender_code", related_name="Trn_Result_SU6_Horse_gender_code", on_delete=models.DO_NOTHING, verbose_name="馬性別コード", max_length=2, null=True)
+    Horse_birth_date = models.CharField(verbose_name="馬生年月日", max_length=8, null=True)
+    Horse_age = models.CharField(verbose_name="年齢", max_length=2, null=True)
+    Bracket_No = models.CharField(verbose_name="枠番", max_length=2, null=True)
+    Hat_color = models.CharField(verbose_name="帽色", max_length=1, null=True)
+    Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
+    Horse_weight = models.CharField(verbose_name="馬体重", max_length=4, null=True)
+    Previous_Horse_weight = models.CharField(verbose_name="前走馬体重", max_length=4, null=True)
+    Weight = models.CharField(verbose_name="負担重量", max_length=3, null=True)
+    Carry_weight = models.CharField(verbose_name="積載重量", max_length=5, null=True)
+    Owner_Registration_No = models.CharField(verbose_name="馬主登録番号", max_length=10, null=True)
+    Horse_owner_name = models.CharField(verbose_name="馬主氏名", max_length=30, null=True)
+    Trainer_license_No = models.CharField(verbose_name="調教師免許番号", max_length=6, null=True)
+    Trainer_name = models.CharField(verbose_name="調教師氏名", max_length=10, null=True)
+    Trainer_shortened = models.CharField(verbose_name="調教師略名", max_length=3, null=True)
+    Jockey_license_No = models.CharField(verbose_name="騎手免許番号", max_length=6, null=True)
+    Jockey_name = models.CharField(verbose_name="騎手氏名", max_length=10, null=True)
+    Jockey_shortened = models.CharField(verbose_name="騎手略名", max_length=3, null=True)
+    Weight_handicap = models.CharField(verbose_name="減量重量", max_length=2, null=True)
+    Weight_handicap_symbol = models.CharField(verbose_name="減量重量記号", max_length=1, null=True)
+    Jockey_belong_stable = models.CharField(verbose_name="騎手所属厩舎名", max_length=3, null=True)
+    Jockey_invitation_code = models.CharField(verbose_name="騎手招待区分", max_length=1, null=True)
+    Jockey_belonging_code = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Result_SU6_Jockey_belonging_code", on_delete=models.DO_NOTHING, verbose_name="騎手所属場コード", max_length=2, null=True)
+    Jockey_location_code = models.CharField(verbose_name="騎手所在地コード", max_length=2, null=True)
+    Jockey_license_No_1 = models.CharField(verbose_name="変更騎手免許番号１", max_length=6, null=True)
+    Jockey_name_1 = models.CharField(verbose_name="変更騎手氏名１", max_length=10, null=True)
+    Jockey_shortened_1 = models.CharField(verbose_name="変更騎手略名１", max_length=3, null=True)
+    Weight_handicap_1 = models.CharField(verbose_name="変更減量重量１", max_length=2, null=True)
+    Weight_handicap_symbol_1 = models.CharField(verbose_name="変更減量重量記号１", max_length=1, null=True)
+    Jockey_changed_reason_code_1 = models.ForeignKey("Mst_Jockey_changed_reason", to_field="Jockey_changed_reason_code", related_name="Trn_Result_SU6_Jockey_changed_reason_code_1", on_delete=models.DO_NOTHING, verbose_name="騎手変更理由コード１", max_length=2, null=True)
+    Jockey_changed_reason_name_1 = models.CharField(verbose_name="騎手変更理由名称１", max_length=4, null=True)
+    Jockey_belong_stable_1 = models.CharField(verbose_name="変更騎手所属厩舎名１", max_length=3, null=True)
+    Jockey_invitation_code_1 = models.CharField(verbose_name="変更騎手招待区分１", max_length=1, null=True)
+    Jockey_belonging_code_1 = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Result_SU6_Jockey_belonging_code_1", on_delete=models.DO_NOTHING, verbose_name="変更騎手所属場コード１", max_length=2, null=True)
+    Jockey_location_code_1 = models.CharField(verbose_name="変更騎手所在地コード１", max_length=2, null=True)
+    Jockey_license_No_2 = models.CharField(verbose_name="変更騎手免許番号２", max_length=6, null=True)
+    Jockey_name_2 = models.CharField(verbose_name="変更騎手氏名２", max_length=10, null=True)
+    Jockey_shortened_2 = models.CharField(verbose_name="変更騎手略名２", max_length=3, null=True)
+    Weight_handicap_2 = models.CharField(verbose_name="変更減量重量２", max_length=2, null=True)
+    Weight_handicap_symbol_2 = models.CharField(verbose_name="変更減量重量記号２", max_length=1, null=True)
+    Jockey_changed_reason_code_2 = models.ForeignKey("Mst_Jockey_changed_reason", to_field="Jockey_changed_reason_code", related_name="Trn_Result_SU6_Jockey_changed_reason_code_2", on_delete=models.DO_NOTHING, verbose_name="騎手変更理由コード２", max_length=2, null=True)
+    Jockey_changed_reason_name_2 = models.CharField(verbose_name="騎手変更理由名称２", max_length=4, null=True)
+    Jockey_belong_stable_2 = models.CharField(verbose_name="変更騎手所属厩舎名２", max_length=3, null=True)
+    Jockey_invitation_code_2 = models.CharField(verbose_name="変更騎手招待区分２", max_length=1, null=True)
+    Jockey_belonging_code_2 = models.ForeignKey("Mst_Belonging", to_field="Belonging_code", related_name="Trn_Result_SU6_Jockey_belonging_code_2", on_delete=models.DO_NOTHING, verbose_name="変更騎手所属場コード２", max_length=2, null=True)
+    Jockey_location_code_2 = models.CharField(verbose_name="変更騎手所在地コード２", max_length=2, null=True)
+    Result = models.CharField(verbose_name="着", max_length=2, null=True)
+    Result_input_order = models.CharField(verbose_name="成績入力順", max_length=2, null=True)
+    Margin_code_1 = models.ForeignKey("Mst_Margin", to_field="Margin_code", related_name="Trn_Result_SU6_Margin_code_1", on_delete=models.DO_NOTHING, verbose_name="着差コード１", max_length=2, null=True)
+    Margin_1 = models.CharField(verbose_name="着差名称１", max_length=4, null=True)
+    Margin_code_2 = models.ForeignKey("Mst_Margin", to_field="Margin_code", related_name="Trn_Result_SU6_Margin_code_2", on_delete=models.DO_NOTHING, verbose_name="着差コード２", max_length=2, null=True)
+    Margin_2 = models.CharField(verbose_name="着差名称２", max_length=4, null=True)
+    Margin_code_3 = models.ForeignKey("Mst_Margin", to_field="Margin_code", related_name="Trn_Result_SU6_Margin_code_3", on_delete=models.DO_NOTHING, verbose_name="着差コード３", max_length=2, null=True)
+    Margin_3 = models.CharField(verbose_name="着差名称３", max_length=4, null=True)
+    Deadheat_code = models.CharField(verbose_name="同着区分", max_length=1, null=True)
+    Finish_time = models.CharField(verbose_name="タイム", max_length=4, null=True)
+    Finish_line_result = models.CharField(verbose_name="入線着", max_length=2, null=True)
+    Accident_code = models.ForeignKey("Mst_Accident_type", to_field="Accident_type_code", related_name="Trn_Result_SU6_Accident_code", on_delete=models.DO_NOTHING, verbose_name="事故種類コード", max_length=2, null=True)
+    Accident_name = models.CharField(verbose_name="事故種類名称", max_length=5, null=True)
+    Accident_reason_code = models.ForeignKey("Mst_Accident_reason", to_field="Accident_reason_code", related_name="Trn_Result_SU6_Accident_reason_code", on_delete=models.DO_NOTHING, verbose_name="事故理由コード", max_length=2, null=True)
+    Accident_reason_name = models.CharField(verbose_name="事故理由名称", max_length=7, null=True)
+    Prize_money_1 = models.CharField(verbose_name="本賞金", max_length=9, null=True)
+    Program_prize_1 = models.CharField(verbose_name="番組賞金加算額", max_length=9, null=True)
+    Additional_prize_1 = models.CharField(verbose_name="付加賞金", max_length=9, null=True)
+    Last_3furlong = models.CharField(verbose_name="上がり３ハロン", max_length=3, null=True)
+    Win_Pic = models.CharField(verbose_name="人気度", max_length=2, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】着タイムデータ_SU6'
+
+#単勝複勝払戻データ_WI2
+class Trn_Win_place_dividend_WI2(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Win_place_dividend_WI2_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Win_No_1 = models.CharField(verbose_name="単勝払戻馬番１", max_length=2, null=True)
+    Win_1 = models.CharField(verbose_name="単勝払戻金額１", max_length=7, null=True)
+    Win_pick_1 = models.CharField(verbose_name="単勝払戻人気順１", max_length=2, null=True)
+    Win_No_2 = models.CharField(verbose_name="単勝払戻馬番２", max_length=2, null=True)
+    Win_2 = models.CharField(verbose_name="単勝払戻金額２", max_length=7, null=True)
+    Win_pick_2 = models.CharField(verbose_name="単勝払戻人気順２", max_length=2, null=True)
+    Win_No_3 = models.CharField(verbose_name="単勝払戻馬番３", max_length=2, null=True)
+    Win_3 = models.CharField(verbose_name="単勝払戻金額３", max_length=7, null=True)
+    Win_pick_3 = models.CharField(verbose_name="単勝払戻人気順３", max_length=2, null=True)
+    Win_total = models.CharField(verbose_name="単勝目別総数", max_length=2, null=True)
+    Place_Resutl_1 = models.CharField(verbose_name="複勝着順１", max_length=1, null=True)
+    Place_No_1 = models.CharField(verbose_name="複勝払戻馬番１", max_length=2, null=True)
+    Place_1 = models.CharField(verbose_name="複勝払戻金額１", max_length=7, null=True)
+    Place_pick_1 = models.CharField(verbose_name="複勝払戻人気順１", max_length=2, null=True)
+    Place_Resutl_2 = models.CharField(verbose_name="複勝着順２", max_length=1, null=True)
+    Place_No_2 = models.CharField(verbose_name="複勝払戻馬番２", max_length=2, null=True)
+    Place_2 = models.CharField(verbose_name="複勝払戻金額２", max_length=7, null=True)
+    Place_pick_2 = models.CharField(verbose_name="複勝払戻人気順２", max_length=2, null=True)
+    Place_Resutl_3 = models.CharField(verbose_name="複勝着順３", max_length=2, null=True)
+    Place_No_3 = models.CharField(verbose_name="複勝払戻馬番３", max_length=2, null=True)
+    Place_3 = models.CharField(verbose_name="複勝払戻金額３", max_length=7, null=True)
+    Place_pick_3 = models.CharField(verbose_name="複勝払戻人気順３", max_length=2, null=True)
+    Place_Resutl_4 = models.CharField(verbose_name="複勝着順４", max_length=1, null=True)
+    Place_No_4 = models.CharField(verbose_name="複勝払戻馬番４", max_length=2, null=True)
+    Place_4 = models.CharField(verbose_name="複勝払戻金額４", max_length=7, null=True)
+    Place_pick_4 = models.CharField(verbose_name="複勝払戻人気順４", max_length=2, null=True)
+    Place_Resutl_5 = models.CharField(verbose_name="複勝着順５", max_length=1, null=True)
+    Place_No_5 = models.CharField(verbose_name="複勝払戻馬番５", max_length=2, null=True)
+    Place_5 = models.CharField(verbose_name="複勝払戻金額５", max_length=7, null=True)
+    Place_pick_5 = models.CharField(verbose_name="複勝払戻人気順５", max_length=2, null=True)
+    Place_Resutl_6 = models.CharField(verbose_name="複勝着順６", max_length=1, null=True)
+    Place_No_6 = models.CharField(verbose_name="複勝払戻馬番６", max_length=2, null=True)
+    Place_6 = models.CharField(verbose_name="複勝払戻金額６", max_length=7, null=True)
+    Place_pick_6 = models.CharField(verbose_name="複勝払戻人気順６", max_length=2, null=True)
+    Place_total = models.CharField(verbose_name="複勝目別総数", max_length=2, null=True)
+    Win_sales = models.CharField(verbose_name="単勝売得金額", max_length=11, null=True)
+    Place_sales = models.CharField(verbose_name="複勝売得金額", max_length=11, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】単勝複勝払戻データ_WI2'
+
+#枠複枠単払戻データ_BL2
+class Trn_Bracket_quinella_exacta_dividend_BL2(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Bracket_quinella_exacta_dividend_BL2_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Data_Classification = models.CharField(verbose_name="レコード区分", max_length=1, null=True)
+    Bracket_No_1_1 = models.CharField(verbose_name="枠連枠番１１", max_length=2, null=True)
+    Bracket_No_1_2 = models.CharField(verbose_name="枠連枠番１２", max_length=2, null=True)
+    Bracket_quinella_exacta_1 = models.CharField(verbose_name="枠連払戻金額１", max_length=7, null=True)
+    Bracket_quinella_exacta_pic_1 = models.CharField(verbose_name="枠連払戻人気順１", max_length=2, null=True)
+    Bracket_No_2_1 = models.CharField(verbose_name="枠連枠番２１", max_length=2, null=True)
+    Bracket_No_2_2 = models.CharField(verbose_name="枠連枠番２２", max_length=2, null=True)
+    Bracket_quinella_exacta_2 = models.CharField(verbose_name="枠連払戻金額２", max_length=7, null=True)
+    Bracket_quinella_exacta_pic_2 = models.CharField(verbose_name="枠連払戻人気順２", max_length=2, null=True)
+    Bracket_No_3_1 = models.CharField(verbose_name="枠連枠番３１", max_length=2, null=True)
+    Bracket_No_3_2 = models.CharField(verbose_name="枠連枠番３２", max_length=2, null=True)
+    Bracket_quinella_exacta_3 = models.CharField(verbose_name="枠連払戻金額３", max_length=7, null=True)
+    Bracket_quinella_exacta_pic_3 = models.CharField(verbose_name="枠連払戻人気順３", max_length=2, null=True)
+    Bracket_No_4_1 = models.CharField(verbose_name="枠連枠番４１", max_length=2, null=True)
+    Bracket_No_4_2 = models.CharField(verbose_name="枠連枠番４２", max_length=2, null=True)
+    Bracket_quinella_exacta_4 = models.CharField(verbose_name="枠連払戻金額４", max_length=7, null=True)
+    Bracket_quinella_exacta_pic_4 = models.CharField(verbose_name="枠連払戻人気順４", max_length=2, null=True)
+    Bracket_No_5_1 = models.CharField(verbose_name="枠連枠番５１", max_length=2, null=True)
+    Bracket_No_5_2 = models.CharField(verbose_name="枠連枠番５２", max_length=2, null=True)
+    Bracket_quinella_exacta_5 = models.CharField(verbose_name="枠連払戻金額５", max_length=7, null=True)
+    Bracket_quinella_exacta_pic_5 = models.CharField(verbose_name="枠連払戻人気順５", max_length=2, null=True)
+    Bracket_No_6_1 = models.CharField(verbose_name="枠連枠番６１", max_length=2, null=True)
+    Bracket_No_6_2 = models.CharField(verbose_name="枠連枠番６２", max_length=2, null=True)
+    Bracket_quinella_exacta_6 = models.CharField(verbose_name="枠連払戻金額６", max_length=7, null=True)
+    Bracket_quinella_exacta_pic_6 = models.CharField(verbose_name="枠連払戻人気順６", max_length=2, null=True)
+    Bracket_quinella_exacta_total = models.CharField(verbose_name="枠連目別総数", max_length=2, null=True)
+    Bracket_quinella_exacta_sales = models.CharField(verbose_name="枠連売得金額", max_length=11, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】枠複枠単払戻データ_BL2'
+
+#馬連馬単ワイド払戻データ_QU2
+class Trn_Quinella_exacta_wide_dividend_QU2(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Quinella_exacta_wide_dividend_QU2_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Data_Classification = models.CharField(verbose_name="レコード区分", max_length=1, null=True)
+    Horce_No_1_1 = models.CharField(verbose_name="馬連馬番１１", max_length=2, null=True)
+    Horce_No_1_2 = models.CharField(verbose_name="馬連馬番１２", max_length=2, null=True)
+    Quinella_exacta_wide_1 = models.CharField(verbose_name="馬連払戻金額１", max_length=7, null=True)
+    Quinella_exacta_wide_pic_1 = models.CharField(verbose_name="馬連払戻人気順１", max_length=3, null=True)
+    Horce_No_2_1 = models.CharField(verbose_name="馬連馬番２１", max_length=2, null=True)
+    Horce_No_2_2 = models.CharField(verbose_name="馬連馬番２２", max_length=2, null=True)
+    Quinella_exacta_wide_2 = models.CharField(verbose_name="馬連払戻金額２", max_length=7, null=True)
+    Quinella_exacta_wide_pic_2 = models.CharField(verbose_name="馬連払戻人気順２", max_length=3, null=True)
+    Horce_No_3_1 = models.CharField(verbose_name="馬連馬番３１", max_length=2, null=True)
+    Horce_No_3_2 = models.CharField(verbose_name="馬連馬番３２", max_length=2, null=True)
+    Quinella_exacta_wide_3 = models.CharField(verbose_name="馬連払戻金額３", max_length=7, null=True)
+    Quinella_exacta_wide_pic_3 = models.CharField(verbose_name="馬連払戻人気順３", max_length=3, null=True)
+    Horce_No_4_1 = models.CharField(verbose_name="馬連馬番４１", max_length=2, null=True)
+    Horce_No_4_2 = models.CharField(verbose_name="馬連馬番４２", max_length=2, null=True)
+    Quinella_exacta_wide_4 = models.CharField(verbose_name="馬連払戻金額４", max_length=7, null=True)
+    Quinella_exacta_wide_pic_4 = models.CharField(verbose_name="馬連払戻人気順４", max_length=3, null=True)
+    Horce_No_5_1 = models.CharField(verbose_name="馬連馬番５１", max_length=2, null=True)
+    Horce_No_5_2 = models.CharField(verbose_name="馬連馬番５２", max_length=2, null=True)
+    Quinella_exacta_wide_5 = models.CharField(verbose_name="馬連払戻金額５", max_length=7, null=True)
+    Quinella_exacta_wide_pic_5 = models.CharField(verbose_name="馬連払戻人気順５", max_length=3, null=True)
+    Horce_No_6_1 = models.CharField(verbose_name="馬連馬番６１", max_length=2, null=True)
+    Horce_No_6_2 = models.CharField(verbose_name="馬連馬番６２", max_length=2, null=True)
+    Quinella_exacta_wide_6 = models.CharField(verbose_name="馬連払戻金額６", max_length=7, null=True)
+    Quinella_exacta_wide_pic_6 = models.CharField(verbose_name="馬連払戻人気順６", max_length=3, null=True)
+    Horce_No_7_1 = models.CharField(verbose_name="馬連馬番７１", max_length=2, null=True)
+    Horce_No_7_2 = models.CharField(verbose_name="馬連馬番７２", max_length=2, null=True)
+    Quinella_exacta_wide_7 = models.CharField(verbose_name="馬連払戻金額７", max_length=7, null=True)
+    Quinella_exacta_wide_pic_7 = models.CharField(verbose_name="馬連払戻人気順７", max_length=3, null=True)
+    Quinella_exacta_wide_total = models.CharField(verbose_name="馬連目別総数", max_length=3, null=True)
+    Quinella_exacta_wide_sales = models.CharField(verbose_name="馬連売得金額", max_length=11, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】馬連馬単ワイド払戻データ_QU2'
+
+#三連複払戻データ_TB3
+class Trn_Trio_dividend_TB3(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Trio_dividend_TB3_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Horce_No_1_1 = models.CharField(verbose_name="三連複馬番１１", max_length=2, null=True)
+    Horce_No_1_2 = models.CharField(verbose_name="三連複馬番１２", max_length=2, null=True)
+    Horce_No_1_3 = models.CharField(verbose_name="三連複馬番１３", max_length=2, null=True)
+    Trio_1 = models.CharField(verbose_name="三連複払戻金額１", max_length=9, null=True)
+    Trio_pic_1 = models.CharField(verbose_name="三連複払戻人気順１", max_length=3, null=True)
+    Horce_No_2_1 = models.CharField(verbose_name="三連複馬番１１", max_length=2, null=True)
+    Horce_No_2_2 = models.CharField(verbose_name="三連複馬番１２", max_length=2, null=True)
+    Horce_No_2_3 = models.CharField(verbose_name="三連複馬番１３", max_length=7, null=True)
+    Trio_2 = models.CharField(verbose_name="三連複払戻金額１", max_length=9, null=True)
+    Trio_pic_2 = models.CharField(verbose_name="三連複払戻人気順１", max_length=3, null=True)
+    Horce_No_3_1 = models.CharField(verbose_name="三連複馬番１１", max_length=2, null=True)
+    Horce_No_3_2 = models.CharField(verbose_name="三連複馬番１２", max_length=2, null=True)
+    Horce_No_3_3 = models.CharField(verbose_name="三連複馬番１３", max_length=2, null=True)
+    Trio_3 = models.CharField(verbose_name="三連複払戻金額１", max_length=9, null=True)
+    Trio_pic_3 = models.CharField(verbose_name="三連複払戻人気順１", max_length=3, null=True)
+    Trio_total = models.CharField(verbose_name="三連複目別総数", max_length=3, null=True)
+    Trio_sales = models.CharField(verbose_name="三連複売得金額", max_length=11, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】三連複払戻データ_TB3'
+
+#三連単払戻データ_TB4
+class Trn_Trifecta_dividend_TB4(models.Model):
+    Data_ID = models.CharField(verbose_name="電文ＩＤ", max_length=3, null=True)
+    Race_date = models.CharField(verbose_name="競走年月日", max_length=8, null=True)
+    Track_code = models.ForeignKey("Mst_Jou", to_field="Jou_code", related_name="Trn_Trifecta_dividend_TB4_Track_code", on_delete=models.DO_NOTHING, verbose_name="競馬場コード", max_length=2, null=True)
+    Held_times = models.CharField(verbose_name="開催日次", max_length=1, null=True)
+    Race_No = models.CharField(verbose_name="レース番号", max_length=2, null=True)
+    Horce_No_1_1 = models.CharField(verbose_name="三連単馬番１１", max_length=2, null=True)
+    Horce_No_1_2 = models.CharField(verbose_name="三連単馬番１２", max_length=2, null=True)
+    Horce_No_1_3 = models.CharField(verbose_name="三連単馬番１３", max_length=2, null=True)
+    Trifecta_1 = models.CharField(verbose_name="三連単払戻金額１", max_length=9, null=True)
+    Trifecta_pic_1 = models.CharField(verbose_name="三連単払戻人気順１", max_length=4, null=True)
+    Horce_No_2_1 = models.CharField(verbose_name="三連単馬番２１", max_length=2, null=True)
+    Horce_No_2_2 = models.CharField(verbose_name="三連単馬番２２", max_length=2, null=True)
+    Horce_No_2_3 = models.CharField(verbose_name="三連単馬番２３", max_length=2, null=True)
+    Trifecta_2 = models.CharField(verbose_name="三連単払戻金額２", max_length=9, null=True)
+    Trifecta_pic_2 = models.CharField(verbose_name="三連単払戻人気順２", max_length=4, null=True)
+    Horce_No_3_1 = models.CharField(verbose_name="三連単馬番３１", max_length=2, null=True)
+    Horce_No_3_2 = models.CharField(verbose_name="三連単馬番３２", max_length=2, null=True)
+    Horce_No_3_3 = models.CharField(verbose_name="三連単馬番３３", max_length=2, null=True)
+    Trifecta_3 = models.CharField(verbose_name="三連単払戻金額３", max_length=9, null=True)
+    Trifecta_pic_3 = models.CharField(verbose_name="三連単払戻人気順３", max_length=4, null=True)
+    Horce_No_4_1 = models.CharField(verbose_name="三連単馬番４１", max_length=2, null=True)
+    Horce_No_4_2 = models.CharField(verbose_name="三連単馬番４２", max_length=2, null=True)
+    Horce_No_4_3 = models.CharField(verbose_name="三連単馬番４３", max_length=2, null=True)
+    Trifecta_4 = models.CharField(verbose_name="三連単払戻金額４", max_length=9, null=True)
+    Trifecta_pic_4 = models.CharField(verbose_name="三連単払戻人気順４", max_length=4, null=True)
+    Horce_No_5_1 = models.CharField(verbose_name="三連単馬番５１", max_length=2, null=True)
+    Horce_No_5_2 = models.CharField(verbose_name="三連単馬番５２", max_length=2, null=True)
+    Horce_No_5_3 = models.CharField(verbose_name="三連単馬番５３", max_length=2, null=True)
+    Trifecta_5 = models.CharField(verbose_name="三連単払戻金額５", max_length=9, null=True)
+    Trifecta_pic_5 = models.CharField(verbose_name="三連単払戻人気順５", max_length=4, null=True)
+    Horce_No_5_1 = models.CharField(verbose_name="三連単馬番６１", max_length=2, null=True)
+    Horce_No_5_2 = models.CharField(verbose_name="三連単馬番６２", max_length=2, null=True)
+    Horce_No_5_3 = models.CharField(verbose_name="三連単馬番６３", max_length=2, null=True)
+    Trifecta_6 = models.CharField(verbose_name="三連単払戻金額６", max_length=9, null=True)
+    Trifecta_pic_6 = models.CharField(verbose_name="三連単払戻人気順６", max_length=4, null=True)
+    Trifecta_total = models.CharField(verbose_name="三連単目別総数", max_length=4, null=True)
+    Trifecta_sales = models.CharField(verbose_name="三連単売得金額", max_length=11, null=True)
+
+    class Meta:
+        verbose_name_plural = '【CSV】三連単払戻データ_TB4'
