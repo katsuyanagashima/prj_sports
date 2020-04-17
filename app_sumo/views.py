@@ -12,16 +12,14 @@ from .forms import *
 from .add_views import *
 
 import json
-###●●●●●デバッグ用にログ出力を仮設定●●●●●
+###●●●●●デバッグ用にログ出力を仮設定（正式なログ出力方法の判明後に削除すること）●●●●●
 import logging
 
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s %(levelname)-8s %(module)-18s %(funcName)-10s %(lineno)4s: %(message)s'
-)
+)  ###------------------------------
 
-
-###------------------------------
 
 def index(request):
     params = nav_info(request)
@@ -215,51 +213,38 @@ def SUMTKD02(request):
 def SUMJOR01(request):
     params = nav_info(request)
     match_nichime_id = Tran_Systemstatus.objects.first().MatchDate  # tran_system.MatchDate.Nichime_codeを使用すると１日ずれる！
-    # 現在の勝負日目のみを抽出
-    tbl_top_class_rikishi = Tran_TopClassRikishi.objects \
-        .filter(Nichime_code=match_nichime_id)
-    ###.filter(Nichime_code=match_nichime_id).order_by('Class_code', 'Yearmonth')
-    # 現在の勝負日目の階級別データを画面表示する
-    tbl_class = Mst_Class.objects.all()
-    for i in tbl_class:
-        # logging.info('階級: %s', i.Class_code)
-        # rows = tbl_top_class_rikishi.filter(Class_code=i.Class_code, Nichime_code=match_nichime_id)
+    yearmonth = Tran_Systemstatus.objects.first().Event_date  # 開催年月YYYYMM
+    tbl_top_class_rikishi = Tran_TopClassRikishi.objects.filter(Nichime_code=match_nichime_id)  # 現在の勝負日目のみを抽出
+    for i in Mst_Class.objects.all():
+        # 階級別にデータの有無をチェック
         rows = tbl_top_class_rikishi.filter(Class_code=i.Class_code)
-        # 未登録の場合は新規作成
         if len(rows) == 0:
-            #   ●●●●●勝数と敗数をNULLとしたが、前日データがある場合はコピーするという要望があったはず。要検討●●●●●
-            #   ●●●●●開催年月はとりあえずダミーの値にしたが、年度場所切替から計算できるはず。要検討●●●●●
-            Tran_TopClassRikishi.objects.create(Class_code_id=i.Class_code, Nichime_code=match_nichime_id,
-                                                Yearmonth='2999-01-01')
-            # tbl_top_class_rikishi.create(Class_code_id=i.Class_code, Nichime_code=match_nichime_id, Yearmonth='2999-01-01')
+            # データが未登録の場合に新規作成
+            # ●●●●●勝数と敗数をNULLとしたが、前日データがある場合はコピーするという要望があったはず。要検討●●●●●
+            tbl_top_class_rikishi.create(Class_code_id=i.Class_code, Nichime_code=match_nichime_id, Yearmonth=yearmonth)
         # デバッグ用。階級と日目の組み合わせで一意となるため、jの値は２以上にならないが、あえてループ処理としている
-        for j in rows:
-            logging.info('  %s', j.Class_code)
-            logging.info("  Nichime_code=%s, Nichime_code_id=%s", j.Nichime_code, j.Nichime_code_id)
+        # for j in rows:
+        #    logging.info('  %s', j.Class_code)
+        #    logging.info("  Nichime_code=%s, Nichime_code_id=%s", j.Nichime_code, j.Nichime_code_id)
 
-    tbl_top_class_rikishi = tbl_top_class_rikishi.order_by('Class_code')  # 画面で階級順に表示させるため
+    # 現在の勝負日目の階級別データを画面表示する
     dict = {
-        'tbl_top_class_rikishi': tbl_top_class_rikishi,
-        ### ●●●●●NULLと0を区別する必要があれば、こちらがよいかも●●●●●
-        ###'range_of_wins_or_losses': ['',0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-        'range_of_wins_or_losses': range(16)
+        'tbl_top_class_rikishi': tbl_top_class_rikishi.order_by('Class_code'),  # 階級順に表示させるためソート
+        'range_of_wins_or_losses': ['', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]  # プルダウンメニュー用
     }
     params.update(dict)
 
-    ### ●●●●●データ更新は未実装。以下は更新テスト●●●●●
+    # 画面で選択された値を保存
     if request.method == "POST":
-        logging.info(match_nichime_id)
-        logging.info(request.POST.getlist('class_code_id'))
-        logging.info(request.POST.getlist('win_count'))
-        logging.info(request.POST.getlist('loss_count'))
-
-        ### 更新
-        row = tbl_top_class_rikishi.get(Class_code_id=2, Nichime_code_id=16)
-        row.WinCount = 8
-        row.LossCount = 7
-        row.save()
-        logging.info(row.WinCount)
-        logging.info(row.LossCount)
+        reqlist_ccid = request.POST.getlist('class_code_id')
+        reqlist_wins = request.POST.getlist('win_count')
+        reqlist_looses = request.POST.getlist('loss_count')
+        # 階級別に勝数と敗数を保存
+        for i in range(len(reqlist_ccid)):
+            row = tbl_top_class_rikishi.get(Class_code_id=reqlist_ccid[i])
+            row.WinCount = reqlist_wins[i] if reqlist_wins[i].isdigit() == True else None
+            row.LossCount = reqlist_looses[i] if reqlist_looses[i].isdigit() == True else None
+            row.save()
 
     return render(request, 'app_sumo/SUMJOR01.html', params)
 

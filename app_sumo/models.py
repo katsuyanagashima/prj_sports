@@ -398,7 +398,7 @@ class Tran_Banzuke(Model):
 #
 class Tran_TopClassRikishi(Model):
     Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE) #階級コード
-    Yearmonth = DateField(verbose_name='開催年月西暦')
+    Yearmonth = IntegerField(verbose_name='開催年月西暦') #６桁数字
     Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE) #日目コード
     LossCount = PositiveIntegerField(verbose_name='負け数', blank=True, null=True)
     WinCount = PositiveIntegerField(verbose_name='勝ち数', blank=True, null=True)

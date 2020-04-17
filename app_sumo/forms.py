@@ -51,4 +51,4 @@ class Mst_RikishiForm(forms.ModelForm):
         self.fields['Rikishi_attrib_class'].label = '力士状態マスタ'
         self.fields['Retirebasho_code'].label = '場所マスタ'
         self.fields['Day_of_retirement'].label = '日目マスタ'
-        
+
