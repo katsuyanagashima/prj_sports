@@ -5,7 +5,6 @@ from .models import Mst_Heya
 from .models import Mst_Event
 from .models import Mst_Rikishi
 from .models import Tran_Systemstatus
-from .models import Tran_TopClassRikishi    ### 今のところ未使用
 from django.contrib.admin.widgets import AdminDateWidget
 
 STATUS_CHOICES = (
@@ -53,10 +52,3 @@ class Mst_RikishiForm(forms.ModelForm):
         self.fields['Retirebasho_code'].label = '場所マスタ'
         self.fields['Day_of_retirement'].label = '日目マスタ'
 
-### 今のところ未使用
-class Tran_TopClassRikishiForm(forms.ModelForm):
-
-    class Meta:
-        model = Tran_TopClassRikishi
-        fields = ('Class_code', 'Yearmonth', 'Nichime_code', 'LossCount', 'WinCount')
-###
