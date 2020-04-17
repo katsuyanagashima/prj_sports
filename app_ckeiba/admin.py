@@ -52,3 +52,5 @@ admin.site.register(Md_Tshuushinbun)
 
 # CSV取り込み
 admin.site.register(Schedule_BA7)
+admin.site.register(Trn_Enforcement_information_today_INI)
+admin.site.register(Trn_Running_list_A_SUA)
