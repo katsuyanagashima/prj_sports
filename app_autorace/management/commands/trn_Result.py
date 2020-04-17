@@ -20,12 +20,8 @@ logger = getLogger(__name__)
 
 # 監視対象ファイルのパターンマッチを指定する
 # レース結果データレコード（mmddhhmmss0000JRR2.dat）
-resultID = 3
-resultData = "resultData"
-go_recursively = False
-# target_file_result_record = '*0000[1-6]0[1-9]|1[0-2]2.dat'
-target_file_result_record = ['*0000[1-6]0[1-9]2.dat','*0000[1-6]1[0-2]2.dat']
-trn_rider_result_list = 8
+# resultID = 3
+
 
 # RegexMatchingEventHandler の継承クラスを作成
 class FileChangeHandler(PatternMatchingEventHandler):
