@@ -296,7 +296,7 @@ class Mst_Race_type(Model):
 class Mst_Haishinsha(Model):
     Haishinsha_code = IntegerField(verbose_name='配信社コード') 
     Haishinsha_name = CharField(verbose_name='配信社名称', max_length=10)  #北海道新聞
-    Haishinsha_2char_name = CharField(verbose_name='配信社名称', max_length=2, blank=True, null=True)  #道新
+    Haishinsha_2char_name = CharField(verbose_name='配信社名称2文字', max_length=2, blank=True, null=True)  #道新
     Haishinsha_block = IntegerField(verbose_name='ブロック指定フラグ', blank=True, null=True)  
     Haishinsha_yobi = CharField(verbose_name='予備', max_length=30, blank=True, null=True)
     class Meta:
