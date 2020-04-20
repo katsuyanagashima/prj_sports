@@ -320,7 +320,7 @@ class Command(BaseCommand):
         # 監視対象ディレクトリを指定する
         if scheduleID in options['command_id']:
             base_Trn_Outside_track = os.path.dirname(os.path.abspath(__file__))
-            base = os.path.normpath(os.path.join(base_trn_Outside_track,outsidetrackData))
+            base = os.path.normpath(os.path.join(base_Trn_Outside_track, outsidetrackData))
             target_dir = os.path.expanduser(base)
 
             event_handler = FileChangeHandler([target_file_outsidetrack_record])
