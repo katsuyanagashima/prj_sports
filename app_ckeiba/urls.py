@@ -10,4 +10,7 @@ urlpatterns = [
     path('Change_To_Nomal_Mode/', views.Change_To_Nomal_Mode, name='Change_To_Nomal_Mode'),
     path('<int:mst_num>/', views.Edit_Mst, name='Edit_Mst'),
     path('editbutton/<int:values>', views.editbutton, name='editbutton'),
+    #CSV検証用
+    path('upload/', views.upload, name='upload'),
+    path('upload2/', views.upload2, name='upload2'),
 ]
