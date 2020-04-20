@@ -6,16 +6,33 @@
 
 <form action="" method="post">
 　　　　{%csrf_token%}
-<!--　　　　{{form.as_p}} -->
 
     <div>開催年</div>
-    <div>{{form.Event_date}}　年</div>
+    <div>
+        <input name="event_date" input type="number"　maxlength="4" value="{{ init.event_date }}">　年
+    </div>
+    <br>
     <div>場所</div>
-    <div>{{form.CurrentBasho}}</div>
+    <div>
+         <select name="currentbasho">
+            {% for i in basho %}
+            <option value="{{ i.Basho_code }}" {% if init.currentbasho == i.Basho_code %} selected{% endif %}>
+                {{ i.Basho_kanji }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
     <div>初日　年月日</div>
-    <div>{{form.First_date}}</div>
+    <div>
+        <input name="first_date" input type="date" required pattern="\d{4}-\d{2}-\d{2}" value="{{ init.first_date }}">
+    </div>
+    <br>
     <div>番付発表　年月日</div>
-    <div>{{form.Banzuke_date}}</div>
+    <div>
+        <input name="banzuke_date" input type="date" required pattern="\d{4}-\d{2}-\d{2}" value="{{ init.banzuke_date }}">
+    </div>
+    <br>
     <br>
     <div>
         <button type="submit" class="btn btn-primary">実行</button>
@@ -23,8 +40,5 @@
     </div>
 
 </form>
-
-<h3>懸案：開催年と場所（場所マスタの月数値）を結合してシステム状態テーブルの開催年月に登録したい</h3>
-<h3>懸案：カレンダー</h3>
 
 {% endblock %}

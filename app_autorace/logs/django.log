@@ -930,3 +930,5 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.7/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
     raise errorclass(errno, errval)
 django.db.utils.DataError: (1406, "Data too long for column 'Data_ID' at row 1")
+[WARNING]	2020-04-20 16:39:02,944	module:log	django.request.log_response:228	Not Found: /favicon.ico
+[WARNING]	2020-04-20 16:45:07,284	module:log	django.request.log_response:228	Not Found: /favicon.ico
