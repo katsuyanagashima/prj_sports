@@ -8,3 +8,250 @@
 [INFO]	2020-04-17 18:29:23,003	module:trn_Schedule	command.insert_or_update_Trn_Schedule:197	内容:insert_Trn_Schedule End
 [INFO]	2020-04-17 18:29:23,003	module:trn_Schedule	command.insert_or_update_Trn_Schedule:199	内容:update_Trn_Schedule Start:詳細:ファイルデータ:20190926 412               201909281412                                           
 [INFO]	2020-04-17 18:29:23,042	module:trn_Schedule	command.insert_or_update_Trn_Schedule:201	内容:update_Trn_Schedule End
+[WARNING]	2020-04-20 09:24:34,640	module:log	django.request.log_response:228	Not Found: /favicon.ico
+[ERROR]	2020-04-20 09:24:57,683	module:log	django.request.log_response:228	Internal Server Error: /app_ckeiba/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/mysql/base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 165, in execute
+    result = self._query(query)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 860, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1061, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1349, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1018, in _read_packet
+    packet.check_error()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 384, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.InternalError: (1054, "Unknown column 'app_ckeiba_tran_systemstatus.Environment_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./app_ckeiba/views.py", line 24, in index
+    tran_system = Tran_Systemstatus.objects.all().first() # ★ システム状態の1件目を見てるだけなので、ここは要検討
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/query.py", line 605, in first
+    for obj in (self if self.ordered else self.order_by('pk'))[:1]:
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/query.py", line 268, in __iter__
+    self._fetch_all()
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/query.py", line 1186, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/query.py", line 54, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/sql/compiler.py", line 1065, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/mysql/base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 165, in execute
+    result = self._query(query)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 860, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1061, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1349, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1018, in _read_packet
+    packet.check_error()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 384, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.InternalError: (1054, "Unknown column 'app_ckeiba_tran_systemstatus.Environment_id' in 'field list'")
+[ERROR]	2020-04-20 09:25:12,260	module:log	django.request.log_response:228	Internal Server Error: /admin/app_ckeiba/tran_systemstatus/add/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/mysql/base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 165, in execute
+    result = self._query(query)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 860, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1061, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1349, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1018, in _read_packet
+    packet.check_error()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 384, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'prj_sports.app_ckeiba_mst_environment' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 156, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 154, in _get_response
+    response = response.render()
+  File "/usr/local/lib/python3.7/site-packages/django/template/response.py", line 106, in render
+    self.content = self.rendered_content
+  File "/usr/local/lib/python3.7/site-packages/django/template/response.py", line 83, in rendered_content
+    content = template.render(context, self._request)
+  File "/usr/local/lib/python3.7/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/loader_tags.py", line 188, in render
+    return template.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/defaulttags.py", line 209, in render
+    nodelist.append(node.render_annotated(context))
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/defaulttags.py", line 309, in render
+    return nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/defaulttags.py", line 309, in render
+    return nodelist.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 937, in render
+    bit = node.render_annotated(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 904, in render_annotated
+    return self.render(context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 993, in render
+    return render_value_in_context(output, context)
+  File "/usr/local/lib/python3.7/site-packages/django/template/base.py", line 972, in render_value_in_context
+    value = str(value)
+  File "/usr/local/lib/python3.7/site-packages/django/utils/html.py", line 397, in <lambda>
+    klass.__str__ = lambda self: mark_safe(klass_str(self))
+  File "/usr/local/lib/python3.7/site-packages/django/forms/boundfield.py", line 33, in __str__
+    return self.as_widget()
+  File "/usr/local/lib/python3.7/site-packages/django/forms/boundfield.py", line 93, in as_widget
+    renderer=self.form.renderer,
+  File "/usr/local/lib/python3.7/site-packages/django/forms/widgets.py", line 229, in render
+    context = self.get_context(name, value, attrs)
+  File "/usr/local/lib/python3.7/site-packages/django/contrib/admin/widgets.py", line 293, in get_context
+    'rendered_widget': self.widget.render(name, value, attrs),
+  File "/usr/local/lib/python3.7/site-packages/django/forms/widgets.py", line 229, in render
+    context = self.get_context(name, value, attrs)
+  File "/usr/local/lib/python3.7/site-packages/django/forms/widgets.py", line 668, in get_context
+    context = super().get_context(name, value, attrs)
+  File "/usr/local/lib/python3.7/site-packages/django/forms/widgets.py", line 629, in get_context
+    context['widget']['optgroups'] = self.optgroups(name, context['widget']['value'], attrs)
+  File "/usr/local/lib/python3.7/site-packages/django/forms/widgets.py", line 577, in optgroups
+    for index, (option_value, option_label) in enumerate(self.choices):
+  File "/usr/local/lib/python3.7/site-packages/django/forms/models.py", line 1139, in __iter__
+    for obj in queryset:
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/query.py", line 332, in _iterator
+    yield from self._iterable_class(self, chunked_fetch=use_chunked_fetch, chunk_size=chunk_size)
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/query.py", line 54, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "/usr/local/lib/python3.7/site-packages/django/db/models/sql/compiler.py", line 1065, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/utils.py", line 85, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.7/site-packages/django/db/backends/mysql/base.py", line 71, in execute
+    return self.cursor.execute(query, args)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 165, in execute
+    result = self._query(query)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 321, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 860, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1061, in _read_query_result
+    result.read()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1349, in read
+    first_packet = self.connection._read_packet()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 1018, in _read_packet
+    packet.check_error()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 384, in check_error
+    err.raise_mysql_exception(self._data)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.ProgrammingError: (1146, "Table 'prj_sports.app_ckeiba_mst_environment' doesn't exist")
