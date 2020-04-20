@@ -57,13 +57,21 @@ def output_NewsML(request):
     # newsmlmetaから現在の場所と取得して、テンプレートに渡す
     # 力士マスタ、生涯成績マスタから現在の値を取得して、テンプレートに渡す
     # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
-    #生涯成績、
-        context = {
-            'newsmlmeta':Tran_Systemstatus.objects.all(),
-            'Banzuke': Tran_Banzuke.objects.all(),
-            'Liferesult': Mst_Lifetime_result.objects.all(),
-            'Lifeaward': Mst_Lifetime_award.objects.all(),
-        }
+    #生涯成績
+        if newsno == "01":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+            }
+        elif newsno == "02":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+            }
 
         if "Input_status" in request.POST:
             st = request.POST["Input_status"] # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷

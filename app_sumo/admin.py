@@ -64,6 +64,7 @@ admin.site.register(Mst_KindofNewsML, Mst_KindofNewsMLAdmin)
 # --------------------
 admin.site.register(Tran_Systemstatus)
 # --------------------
+admin.site.register(Tran_Banzuke_forecast)
 admin.site.register(Tran_Banzuke)
 # --------------------
 class Tran_TopClassRikishiAdmin(admin.ModelAdmin):
