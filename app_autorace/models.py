@@ -237,7 +237,7 @@ class Trn_Program(models.Model):
     Voting_code = models.CharField('投票場コード', blank=True, null=True, max_length=2)
     Win_Ave_Totaling_Date = models.CharField('勝率集計日', blank=True, null=True, max_length=8)
     Totaling_date = models.CharField('通算成績集計日', blank=True, null=True, max_length=8)
-
+    Reserve = models.CharField('予備', blank=True, null=True, max_length=124)
     class Meta:
         verbose_name_plural = '【固定長】番組編成データレコード'
 

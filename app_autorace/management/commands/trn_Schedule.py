@@ -17,14 +17,10 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django.db.models import Max
 
-#!/usr/bin/env 
 logger = getLogger('command')
 
 # 監視対象ファイルのパターンマッチを指定する
 # スケジュールレコード（mmddhhmmss00000000.dat）
-scheduleID = 1
-scheduleData = "scheduleData"
-target_file_schedule_record = '*00000000.dat'
 
 class Schedule():
     # datファイル設定する
@@ -199,7 +195,7 @@ class Schedule():
                     logger.info( "内容:update_Trn_Schedule Start:" + "詳細:ファイルデータ:" + line[10:])
                     self.update_Trn_Schedule(line[10:])
                     logger.info( "内容:update_Trn_Schedule End")
-                break            
+                          
             file.close()
 
         except FileNotFoundError as e:
