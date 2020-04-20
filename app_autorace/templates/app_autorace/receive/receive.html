@@ -1,0 +1,107 @@
+<div class="container-fluid row container-area">
+    <div class="col-12">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-12 col-md-12 col-lg-6 col-xl-6 reset_padding">
+                    開催日別ファイル
+                </div>
+                <div class="col-12 col-md-12 col-lg-6 col-xl-6 reset_padding">
+                    <div class="container-fluid row reset_padding reset_margin">
+                        <div class="col-4 jou-newsml">
+                            <table class="table table-sm table-bordered jou-newsml_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-dark">スケジュール</td>
+                                        <td>○</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-4 jou-newsml">
+                            <table class="table table-sm table-bordered jou-newsml_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-dark">場外発売</td>
+                                        <td>○</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-4 jou-newsml">
+                            <table class="table table-sm table-bordered jou-newsml_table">
+                                <tbody>
+                                    <tr>
+                                        <td class="table-dark">ベスト30</td>
+                                        <td>○</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou col-11 reset_padding jouimg_hamamatsu">
+                    浜松オート
+                </div>
+            </div>
+            {% block receive-contents1 %}
+            {% include 'app_autorace/receive/receive-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou  col-11 reset_padding jouimg_iizuka">
+                    飯塚オート
+                </div>
+            </div>
+            {% block receive-contents2 %}
+            {% include 'app_autorace/receive/receive-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou  col-11 reset_padding jouimg_isezaki">
+                    伊勢崎オート
+                </div>
+            </div>
+            {% block receive-contents3 %}
+            {% include 'app_autorace/receive/receive-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou  col-11 reset_padding jouimg_sanyo">
+                    山陽オート
+                </div>
+            </div>
+            {% block receive-contents4 %}
+            {% include 'app_autorace/receive/receive-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+        <div class="caption_box jou-container">
+            <div class="container-fluid row jou-title">
+                <div class="jou  col-11 reset_padding jouimg_kawaguchi">
+                    川口オート
+                </div>
+            </div>
+            {% block receive-contents5 %}
+            {% include 'app_autorace/receive/receive-contents.html' %}
+            {% endblock %}
+        </div>
+    </div>
+</div>

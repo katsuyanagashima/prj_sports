@@ -1,0 +1,178 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+{% if object %}
+<h1>力士マスタ更新画面</h1>
+{% else %}
+<h1>力士マスタ登録画面</h1>
+{% endif %}
+{% load static %}
+<!--
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script type="text/javascript" src='{% static 'app_sumo\js\main.js' %}'></script>
+-->
+
+<form method="post">
+    {% csrf_token %}
+    {# --フィールドの分だけループさせる -- #}
+    {{ form.non_field_errors }}
+    <div class="row">
+        <div class="col-4">力士コード(※入力不可。新規は力士コードの最大値+1?)</div>
+        <div class="col-4">※旧名を表示（直近の旧名を表示？）</div>
+    </div>
+    <div class="row">
+        <div class="col-4">{{ form.Rikishi_code }}</div>
+        <div class="col-4"></div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-2">力士名漢字</div>
+        <div class="col-2">かな</div>
+        <div class="col-2">２文字</div>
+        <div class="col-2">３文字</div>
+        <div class="col-2">４文字</div>
+    </div>
+    <div class="row">
+        <div class="col-2">{{ form.Rikishi_name_kanji_official }}</div>
+        <div class="col-2">{{ form.Rikishi_name_kanji_kana }}</div>
+        <div class="col-2">{{ form.Rikishi_name_Kanji_2char }}</div>
+        <div class="col-2">{{ form.Rikishi_name_Kanji_3char }}</div>
+        <div class="col-2">{{ form.Rikishi_name_Kanji_4char }}</div>
+    </div>
+    <div class="row">
+        <div>※漢字を入力したタイミングで２字、３字、４字、ＯＣＲにコピー。逆はなし。</div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-2">部屋名</div>
+        <div class="col-2">ORC力士名</div>
+        <div class="col-2">本名</div>
+        <div class="col-2">誕生日</div>
+    </div>
+    <div class="row">
+        <div class="col-2">{{ form.Heya_code }}</div>
+        <div class="col-2">{{ form.OCR_rikishi_name_Kanji }}</div>
+        <div class="col-2">{{ form.Real_name }}</div>
+        <div class="col-2">{{ form.Date_of_birth }}</div>
+    </div>
+    <!--
+    <hr />
+    <div class="row">
+        <div class="col-2">字解</div>
+        <div class="col-2">字解２字</div>
+        <div class="col-2">字解３字</div>
+        <div class="col-2">字解４字</div>
+    </div>
+    <div class="row">
+        <div class="col-2">{{ form.Rikishi_name_jikai_code_official }}</div>
+        <div class="col-2">{{ form.Rikishi_name_jikai_code_2char }}</div>
+        <div class="col-2">{{ form.Rikishi_name_jikai_code_3char }}</div>
+        <div class="col-2">{{ form.Rikishi_name_jikai_code_4char }}</div>
+    </div>
+-->
+    <hr />
+    <div class="row">
+        <div class="col-2">出身地1/出身地2</div>
+        <div class="col-2">詳細</div>
+        <div class="col-2">詳細２字</div>
+        <div class="col-2">詳細３字</div>
+        <div class="col-2">出身地詳細市町村</div>
+    </div>
+    <div class="row">
+        <div class="col-2">{{ form.Hometown_code_1 }}</div>
+        <div class="col-2">{{ form.Hometown_details_1 }}</div>
+        <div class="col-2">{{ form.Hometown_details_abbr1_2char }}</div>
+        <div class="col-2">{{ form.Hometown_details_abbr1_3char }}</div>
+        <div class="col-2">{{ form.Hometown_details_Municipality_1 }}</div>
+    </div>
+    <div class="row">
+        <div class="col-2">{{ form.Hometown_code_2 }}</div>
+        <div class="col-2">{{ form.Hometown_details_2 }}</div>
+        <div class="col-2">{{ form.Hometown_details_abbr2_2char }}</div>
+        <div class="col-2">{{ form.Hometown_details_abbr2_3char }}</div>
+        <div class="col-2">{{ form.Hometown_details_Municipality_2 }}</div>
+    </div>
+    <div class="row">
+        <div>※コピー機能の仕様を確認。第２出身地は完全に削除して良いかなどを確認。</div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-2">身長</div>
+        <div class="col-2">体重</div>
+        <div class="col-2">前回体重</div>
+    </div>
+    <div class="row">
+        <div class="col-1">外国人区分</div>
+        <div class="col-1">{{ form.Alien_classification }}</div>
+        <div class="col-2">{{ form.Height }}</div>
+        <div class="col-2">{{ form.Weight }}</div>
+        <div class="col-2">{{ form.Last_weight }}</div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-2">初土俵年</div>
+        <div class="col-2">初土俵場所</div>
+        <div class="col-2">付出区分</div>
+        <div class="col-2">付出階級</div>
+        <div class="col-2">付出枚目</div>
+    </div>
+    <div class="row">
+        <div class="col-2">{{ form.Hatsudohyou_year }}</div>
+        <div class="col-2">{{ form.Hatsubasho_code }}</div>
+        <div class="col-2">{{ form.Tukedashi_class_code }}</div>
+        <div class="col-2">{{ form.Tukedashi_class }}</div>
+        <div class="col-2">{{ form.Tukedashi_maime }}</div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-2">力士属性</div>
+        <div class="col-2">引退年</div>
+        <div class="col-2">引退場所</div>
+        <div class="col-2">引退日目</div>
+    </div>
+    <div class="row">
+        <div class="col-2">{{ form.Rikishi_attrib_class }}</div>
+        <div class="col-2">{{ form.Retired_year_AD }}</div>
+        <div class="col-2">{{ form.Retirebasho_code }}</div>
+        <div class="col-2">{{ form.Day_of_retirement }}</div>
+    </div>
+    <div class="row">
+        <div>※廃業日が本当に必要かを確認。</div>
+    </div>
+    <!-- =============================================================================== -->
+    <!--
+    {% for field in form %}
+    <div class="field">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}
+        <span class="helptext">{{ field.help_text }}</span>
+        {% endif %}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+-->
+    <hr/>
+    <div>
+        {% if object %}
+        <button type="submit" class="btn btn-primary">更新</button>
+        {% else %}
+        <button type="submit">作成</button>
+        {% endif %}
+        <a href="{% url 'app_sumo:rikishi' %}">戻る</a>
+    </div>
+
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        {% if object %}
+        <button type="submit" class="btn btn-primary">更新</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary">作成</button>
+        {% endif %}
+        <a href="{% url 'app_sumo:rikishi' %}" class="btn menubutton5 btn-block" role="button">戻る</a>
+    </nav>
+
+</form>
+
+{% endblock %}

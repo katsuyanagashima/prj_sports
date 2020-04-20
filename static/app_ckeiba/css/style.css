@@ -197,6 +197,15 @@ h6 {
         background-color: yellow;
     }
 
+/* 編集可能ボタン */
+.edit_push{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 70%;
+    border: outset 1px #6c757d;
+    border-radius: 3px;
+}
 
 /* ５．メイン画面の切替タブ部分 */
 .menu-tab{

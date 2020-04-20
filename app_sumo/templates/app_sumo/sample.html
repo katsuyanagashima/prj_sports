@@ -1,0 +1,42 @@
+    {% extends 'app_ckeiba/base.html' %}
+
+    {% block content %}
+
+    <div class="container">
+        <div class="page-header text-center">
+            <h2>サンプルサイト</h2>
+        </div>
+        <div class="container">
+            <div class="text-center h3">ボタン、入力欄などの見本</div>
+            <div class="text-center h3">app_sumo/template/app_sumo/sample.htmlを参考にして使ってください。</div>
+            <hr>
+            <!-- ボタン -->
+            <div class="caption_box">
+                <h1 class="caption">ボタン</h1>
+                <a href="" class="btn menubutton1 btn-secondary" role="button" >ボタン１</a>
+                <a href="" class="btn menubutton2 btn-secondary" role="button" >ボタン２</a>
+                <a href="" class="btn menubutton3 btn-secondary" role="button" >ボタン３</a>
+                <button type="button" id="" class="btn btn-primary btn-lg btn-block">ボタン４</button>
+            </div>
+            <!-- 入力ボックス-->
+            <div class="caption_box">
+                <input type="text" class="form-control text-center labeltext" placeholder="入力１">
+                <input type="text" class="form-control text-center labeltext" placeholder="入力２" readonly>
+            </div>
+            <!-- ドロップダウンメニュー-->
+            <div class="caption_box">
+                <div class="dropdown dropdown_master">
+                    <button type="button" id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                　　    <i class="fas fa-database fa-fw" ></i>ドロップダウン
+                    </button>
+                    <div class="dropdown-menu" aria-divledby="dropdownMenuButton" style="z-index:9999">
+                        <a class="dropdown-item" href="">リスト１</a>
+                        <a class="dropdown-item" href="">リスト２</a>
+                        <a class="dropdown-item" href="">リスト３</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

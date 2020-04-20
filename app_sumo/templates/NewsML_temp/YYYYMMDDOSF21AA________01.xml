@@ -1,0 +1,1208 @@
+<?xml version="1.0" encoding="UTF-16"?>
+{% load static %}
+<!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
+	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
+	%InContent;
+	<!ENTITY % Kddata SYSTEM "{% static 'app_sumo/OSDTD/KdXBSContentv1.1.dtd' %}">
+	%Kddata;
+]>
+				<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent21.xsl' %}"?>
+
+<ITalk version="1.0">
+<IManage>
+<IhInfo>
+<IhSubSysInfo>
+<IhSendDate>２０１９０１１０</IhSendDate>
+<IhSendTime>１０２７０７</IhSendTime>
+<IhSendFrom>ＯＳ</IhSendFrom>
+<IhSendTo IhNs="3">
+<IhSendToSys>ＨＳ</IhSendToSys>
+<IhSendToSys>ＫＪ</IhSendToSys>
+<IhSendToSys>ＪＭ</IhSendToSys>
+</IhSendTo>
+</IhSubSysInfo>
+<IhSendMode>通常</IhSendMode>
+<IhSendDataKind>漢テレ</IhSendDataKind>
+<IhSendBase>
+<IhSendPriority>３</IhSendPriority>
+</IhSendBase>
+<IhAddrInfo>
+<IhMainHeader>
+<IhMainRank>角</IhMainRank>
+<IhNewsGenre>相撲</IhNewsGenre>
+</IhMainHeader>
+<IhSubHeader>
+<IhSendBlkInfo IhNb="1">
+<IhSendBlk>フル星取</IhSendBlk>
+</IhSendBlkInfo>
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
+<IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
+</IhAddrInfo>
+<IhDataForm>フルタグ書式</IhDataForm>
+</IhInfo>
+</IManage>
+<NewsML>
+<Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
+<NewsEnvelope>
+<TransmissionId>20190110OSF000001</TransmissionId>
+<DateAndTime>20190110T102707+0900</DateAndTime>
+<NewsProduct FormalName="NskNewsML:1"/>
+</NewsEnvelope>
+<NewsItem Duid="NI_OS01" xml:lang="ja-JP">
+<Identification>
+<NewsIdentifier>
+<ProviderId>kyodonews.jp</ProviderId>
+<DateId>20190110</DateId>
+<NewsItemId>20190110OSF21__________</NewsItemId>
+<RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+<PublicIdentifier>urn:newsml:kyodonews.jp:20190110:20190110OSF21__________:1</PublicIdentifier>
+</NewsIdentifier>
+</Identification>
+<NewsManagement>
+<NewsItemType FormalName="News"/>
+<FirstCreated>20190110T102707+0900</FirstCreated>
+<ThisRevisionCreated>20190110T102707+0900</ThisRevisionCreated>
+<Status FormalName="Usable"/>
+</NewsManagement>
+<NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
+<NewsLines>
+<HeadLine>十両星取表</HeadLine>
+</NewsLines>
+<AdministrativeMetadata>
+<Provider>
+<Party FormalName="KYODONEWS"/>
+</Provider>
+</AdministrativeMetadata>
+<DescriptiveMetadata>
+<Language FormalName="ja"/>
+<SubjectCode>
+<Subject FormalName="15000000"/>
+<SubjectMatter FormalName="15060000"/>
+</SubjectCode>
+</DescriptiveMetadata>
+<ContentItem>
+<MediaType FormalName="Text"/>
+<Format FormalName="KdXBSContentv1.1"/>
+<MimeType FormalName="text/xml"/>
+<DataContent>
+<InContent version="1.0">
+<InMetadata>
+<InAdminInfo>
+<InProductId>２０１９０１１０ＯＳＦ２１＿＿＿＿＿＿＿＿＿＿０１</InProductId>
+<InDateTime>２０１９年０１月１０日１０時２７分０７秒</InDateTime>
+<InFormat>
+<InFormatType>フルタグ書式</InFormatType>
+<InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>
+</InFormat>
+</InAdminInfo>
+<InCategoryInfo>
+<InClasses>
+<InClass>
+<InBClass>相撲</InBClass>
+<InMClass1>初場所場所前</InMClass1>
+<InMClass2>十両星取表</InMClass2>
+<InSClass>全県</InSClass>
+</InClass>
+</InClasses>
+<InNewsCategory>
+<InNewsGenre>相撲</InNewsGenre>
+</InNewsCategory>
+<InNewsLine>
+<InHeadLine>十両星取表</InHeadLine>
+</InNewsLine>
+</InCategoryInfo>
+<InNewsInfo>
+<InMainHeader>
+<InPriority>３</InPriority>
+</InMainHeader>
+<InSubHeader>
+<InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<InSendControl>
+<InSendBlkInfo InNb="1">
+<InSendBlk>星取</InSendBlk>
+</InSendBlkInfo>
+</InSendControl>
+</InSubHeader>
+</InNewsInfo>
+</InMetadata>
+<InData>
+<SportsData Version="1.1">
+<Head>
+<Meta>
+<Title>十両</Title>
+<Competition>
+<Formal>初場所</Formal>
+</Competition>
+<CompetitionDay>場所前</CompetitionDay>
+<Discipline>
+<Formal>相撲</Formal>
+</Discipline>
+</Meta>
+</Head>
+<Body BlockId="OS21JREA__">
+<Meta>
+<FormatType>Ｓ－Ｐ－Ｒ－Ｒ</FormatType>
+<DataType>十両星取表</DataType>
+<Title>【東】</Title>
+</Meta>
+<Standing BlockId="S001">
+<Player PlayerId="018500">
+<PlayerName>
+<Writing>照　強</Writing>
+<Formal>照強</Formal>
+<Formal Display="3字">照　強</Formal>
+<Formal Display="よみがな">てるつよし</Formal>
+</PlayerName>
+<Belong>
+<Writing>伊浜</Writing>
+<Formal>伊勢ケ浜</Formal>
+<Formal Display="2字">伊浜</Formal>
+<Formal Display="よみがな">いせがはま</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１</Writing>
+<Direction>東</Direction>
+<SumoRank>十両１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>兵庫</Writing>
+<Formal>兵庫</Formal>
+<Formal Display="2字">兵庫</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020900">
+<PlayerName>
+<Writing>貴源治</Writing>
+<Formal>貴源治</Formal>
+<Formal Display="3字">貴源治</Formal>
+<Formal Display="よみがな">たかげんじ</Formal>
+</PlayerName>
+<Belong>
+<Writing>千賀</Writing>
+<Formal>千賀ノ浦</Formal>
+<Formal Display="2字">千賀</Formal>
+<Formal Display="よみがな">ちがのうら</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>２</Writing>
+<Direction>東</Direction>
+<SumoRank>十両２枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>栃木</Writing>
+<Formal>栃木</Formal>
+<Formal Display="2字">栃木</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="002041">
+<PlayerName>
+<Writing>安美錦</Writing>
+<Formal>安美錦</Formal>
+<Formal Display="3字">安美錦</Formal>
+<Formal Display="よみがな">あみにしき</Formal>
+</PlayerName>
+<Belong>
+<Writing>伊浜</Writing>
+<Formal>伊勢ケ浜</Formal>
+<Formal Display="2字">伊浜</Formal>
+<Formal Display="よみがな">いせがはま</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>３</Writing>
+<Direction>東</Direction>
+<SumoRank>十両３枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>青森</Writing>
+<Formal>青森</Formal>
+<Formal Display="2字">青森</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="024830">
+<PlayerName>
+<Writing>友　風</Writing>
+<Formal>友風</Formal>
+<Formal Display="3字">友　風</Formal>
+<Formal Display="よみがな">ともかぜ</Formal>
+</PlayerName>
+<Belong>
+<Writing>尾車</Writing>
+<Formal>尾車</Formal>
+<Formal Display="2字">尾車</Formal>
+<Formal Display="よみがな">おぐるま</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>４</Writing>
+<Direction>東</Direction>
+<SumoRank>十両４枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>神奈</Writing>
+<Formal>神奈川</Formal>
+<Formal Display="2字">神奈</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="024260">
+<PlayerName>
+<Writing>若隆景</Writing>
+<Formal>若隆景</Formal>
+<Formal Display="3字">若隆景</Formal>
+<Formal Display="よみがな">わかたかかげ</Formal>
+</PlayerName>
+<Belong>
+<Writing>荒汐</Writing>
+<Formal>荒汐</Formal>
+<Formal Display="2字">荒汐</Formal>
+<Formal Display="よみがな">あらしお</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>５</Writing>
+<Direction>東</Direction>
+<SumoRank>十両５枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>福島</Writing>
+<Formal>福島</Formal>
+<Formal Display="2字">福島</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="019510">
+<PlayerName>
+<Writing>白鷹山</Writing>
+<Formal>白鷹山</Formal>
+<Formal Display="3字">白鷹山</Formal>
+<Formal Display="よみがな">はくようざん</Formal>
+</PlayerName>
+<Belong>
+<Writing>高田</Writing>
+<Formal>高田川</Formal>
+<Formal Display="2字">高田</Formal>
+<Formal Display="よみがな">たかだがわ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>６</Writing>
+<Direction>東</Direction>
+<SumoRank>十両６枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>山形</Writing>
+<Formal>山形</Formal>
+<Formal Display="2字">山形</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="017450">
+<PlayerName>
+<Writing>東　龍</Writing>
+<Formal>東龍</Formal>
+<Formal Display="3字">東　龍</Formal>
+<Formal Display="よみがな">あずまりゅう</Formal>
+</PlayerName>
+<Belong>
+<Writing>玉井</Writing>
+<Formal>玉ノ井</Formal>
+<Formal Display="2字">玉井</Formal>
+<Formal Display="よみがな">たまのい</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>７</Writing>
+<Direction>東</Direction>
+<SumoRank>十両７枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モン</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="2字">モン</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="024380">
+<PlayerName>
+<Writing>炎　鵬</Writing>
+<Formal>炎鵬</Formal>
+<Formal Display="3字">炎　鵬</Formal>
+<Formal Display="よみがな">えんほう</Formal>
+</PlayerName>
+<Belong>
+<Writing>宮城</Writing>
+<Formal>宮城野</Formal>
+<Formal Display="2字">宮城</Formal>
+<Formal Display="よみがな">みやぎの</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>８</Writing>
+<Direction>東</Direction>
+<SumoRank>十両８枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>石川</Writing>
+<Formal>石川</Formal>
+<Formal Display="2字">石川</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="016330">
+<PlayerName>
+<Writing>旭大星</Writing>
+<Formal>旭大星</Formal>
+<Formal Display="3字">旭大星</Formal>
+<Formal Display="よみがな">きょくたいせい</Formal>
+</PlayerName>
+<Belong>
+<Writing>友綱</Writing>
+<Formal>友綱</Formal>
+<Formal Display="2字">友綱</Formal>
+<Formal Display="よみがな">ともづな</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>９</Writing>
+<Direction>東</Direction>
+<SumoRank>十両９枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>北海</Writing>
+<Formal>北海道</Formal>
+<Formal Display="2字">北海</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="010170">
+<PlayerName>
+<Writing>荒　鷲</Writing>
+<Formal>荒鷲</Formal>
+<Formal Display="3字">荒　鷲</Formal>
+<Formal Display="よみがな">あらわし</Formal>
+</PlayerName>
+<Belong>
+<Writing>峰崎</Writing>
+<Formal>峰崎</Formal>
+<Formal Display="2字">峰崎</Formal>
+<Formal Display="よみがな">みねざき</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１０</Writing>
+<Direction>東</Direction>
+<SumoRank>十両１０枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モン</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="2字">モン</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020340">
+<PlayerName>
+<Writing>志摩海</Writing>
+<Formal>志摩ノ海</Formal>
+<Formal Display="3字">志摩海</Formal>
+<Formal Display="よみがな">しまのうみ</Formal>
+</PlayerName>
+<Belong>
+<Writing>木瀬</Writing>
+<Formal>木瀬</Formal>
+<Formal Display="2字">木瀬</Formal>
+<Formal Display="よみがな">きせ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１１</Writing>
+<Direction>東</Direction>
+<SumoRank>十両１１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>三重</Writing>
+<Formal>三重</Formal>
+<Formal Display="2字">三重</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="009780">
+<PlayerName>
+<Writing>豪　風</Writing>
+<Formal>豪風</Formal>
+<Formal Display="3字">豪　風</Formal>
+<Formal Display="よみがな">たけかぜ</Formal>
+</PlayerName>
+<Belong>
+<Writing>尾車</Writing>
+<Formal>尾車</Formal>
+<Formal Display="2字">尾車</Formal>
+<Formal Display="よみがな">おぐるま</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１２</Writing>
+<Direction>東</Direction>
+<SumoRank>十両１２枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>秋田</Writing>
+<Formal>秋田</Formal>
+<Formal Display="2字">秋田</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="016070">
+<PlayerName>
+<Writing>旭秀鵬</Writing>
+<Formal>旭秀鵬</Formal>
+<Formal Display="3字">旭秀鵬</Formal>
+<Formal Display="よみがな">きょくしゅうほう</Formal>
+</PlayerName>
+<Belong>
+<Writing>友綱</Writing>
+<Formal>友綱</Formal>
+<Formal Display="2字">友綱</Formal>
+<Formal Display="よみがな">ともづな</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１３</Writing>
+<Direction>東</Direction>
+<SumoRank>十両１３枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モン</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="2字">モン</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="014160">
+<PlayerName>
+<Writing>臥牙丸</Writing>
+<Formal>臥牙丸</Formal>
+<Formal Display="3字">臥牙丸</Formal>
+<Formal Display="よみがな">ががまる</Formal>
+</PlayerName>
+<Belong>
+<Writing>木瀬</Writing>
+<Formal>木瀬</Formal>
+<Formal Display="2字">木瀬</Formal>
+<Formal Display="よみがな">きせ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１４</Writing>
+<Direction>東</Direction>
+<SumoRank>十両１４枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>ジョ</Writing>
+<Formal>ジョージア</Formal>
+<Formal Display="2字">ジョ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+</Standing>
+</Body>
+<Body BlockId="OS21JRWE__">
+<Meta>
+<FormatType>Ｓ－Ｐ－Ｒ－Ｒ</FormatType>
+<DataType>十両星取表</DataType>
+<Title>【西】</Title>
+</Meta>
+<Standing BlockId="S002">
+<Player PlayerId="020720">
+<PlayerName>
+<Writing>大翔鵬</Writing>
+<Formal>大翔鵬</Formal>
+<Formal Display="3字">大翔鵬</Formal>
+<Formal Display="よみがな">だいしょうほう</Formal>
+</PlayerName>
+<Belong>
+<Writing>追手</Writing>
+<Formal>追手風</Formal>
+<Formal Display="2字">追手</Formal>
+<Formal Display="よみがな">おいてかぜ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１</Writing>
+<Direction>西</Direction>
+<SumoRank>十両１枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モン</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="2字">モン</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="018550">
+<PlayerName>
+<Writing>隆の勝</Writing>
+<Formal>隆の勝</Formal>
+<Formal Display="3字">隆の勝</Formal>
+<Formal Display="よみがな">たかのしょう</Formal>
+</PlayerName>
+<Belong>
+<Writing>千賀</Writing>
+<Formal>千賀ノ浦</Formal>
+<Formal Display="2字">千賀</Formal>
+<Formal Display="よみがな">ちがのうら</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>２</Writing>
+<Direction>西</Direction>
+<SumoRank>十両２枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>千葉</Writing>
+<Formal>千葉</Formal>
+<Formal Display="2字">千葉</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020660">
+<PlayerName>
+<Writing>石　浦</Writing>
+<Formal>石浦</Formal>
+<Formal Display="3字">石　浦</Formal>
+<Formal Display="よみがな">いしうら</Formal>
+</PlayerName>
+<Belong>
+<Writing>宮城</Writing>
+<Formal>宮城野</Formal>
+<Formal Display="2字">宮城</Formal>
+<Formal Display="よみがな">みやぎの</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>３</Writing>
+<Direction>西</Direction>
+<SumoRank>十両３枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>鳥取</Writing>
+<Formal>鳥取</Formal>
+<Formal Display="2字">鳥取</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="017290">
+<PlayerName>
+<Writing>徳勝龍</Writing>
+<Formal>徳勝龍</Formal>
+<Formal Display="3字">徳勝龍</Formal>
+<Formal Display="よみがな">とくしょうりゅう</Formal>
+</PlayerName>
+<Belong>
+<Writing>木瀬</Writing>
+<Formal>木瀬</Formal>
+<Formal Display="2字">木瀬</Formal>
+<Formal Display="よみがな">きせ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>４</Writing>
+<Direction>西</Direction>
+<SumoRank>十両４枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>奈良</Writing>
+<Formal>奈良</Formal>
+<Formal Display="2字">奈良</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="009260">
+<PlayerName>
+<Writing>豊ノ島</Writing>
+<Formal>豊ノ島</Formal>
+<Formal Display="3字">豊ノ島</Formal>
+<Formal Display="よみがな">とよのしま</Formal>
+</PlayerName>
+<Belong>
+<Writing>時津</Writing>
+<Formal>時津風</Formal>
+<Formal Display="2字">時津</Formal>
+<Formal Display="よみがな">ときつかぜ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>５</Writing>
+<Direction>西</Direction>
+<SumoRank>十両５枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>高知</Writing>
+<Formal>高知</Formal>
+<Formal Display="2字">高知</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="016080">
+<PlayerName>
+<Writing>千代丸</Writing>
+<Formal>千代丸</Formal>
+<Formal Display="3字">千代丸</Formal>
+<Formal Display="よみがな">ちよまる</Formal>
+</PlayerName>
+<Belong>
+<Writing>九重</Writing>
+<Formal>九重</Formal>
+<Formal Display="2字">九重</Formal>
+<Formal Display="よみがな">ここのえ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>６</Writing>
+<Direction>西</Direction>
+<SumoRank>十両６枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>鹿児</Writing>
+<Formal>鹿児島</Formal>
+<Formal Display="2字">鹿児</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="016280">
+<PlayerName>
+<Writing>明瀬山</Writing>
+<Formal>明瀬山</Formal>
+<Formal Display="3字">明瀬山</Formal>
+<Formal Display="よみがな">あきせやま</Formal>
+</PlayerName>
+<Belong>
+<Writing>木瀬</Writing>
+<Formal>木瀬</Formal>
+<Formal Display="2字">木瀬</Formal>
+<Formal Display="よみがな">きせ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>７</Writing>
+<Direction>西</Direction>
+<SumoRank>十両７枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>愛知</Writing>
+<Formal>愛知</Formal>
+<Formal Display="2字">愛知</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020350">
+<PlayerName>
+<Writing>英乃海</Writing>
+<Formal>英乃海</Formal>
+<Formal Display="3字">英乃海</Formal>
+<Formal Display="よみがな">ひでのうみ</Formal>
+</PlayerName>
+<Belong>
+<Writing>木瀬</Writing>
+<Formal>木瀬</Formal>
+<Formal Display="2字">木瀬</Formal>
+<Formal Display="よみがな">きせ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>８</Writing>
+<Direction>西</Direction>
+<SumoRank>十両８枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>東京</Writing>
+<Formal>東京</Formal>
+<Formal Display="2字">東京</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="024790">
+<PlayerName>
+<Writing>水戸龍</Writing>
+<Formal>水戸龍</Formal>
+<Formal Display="3字">水戸龍</Formal>
+<Formal Display="よみがな">みとりゅう</Formal>
+</PlayerName>
+<Belong>
+<Writing>錦戸</Writing>
+<Formal>錦戸</Formal>
+<Formal Display="2字">錦戸</Formal>
+<Formal Display="よみがな">にしきど</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>９</Writing>
+<Direction>西</Direction>
+<SumoRank>十両９枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モン</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="2字">モン</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022320">
+<PlayerName>
+<Writing>翔　猿</Writing>
+<Formal>翔猿</Formal>
+<Formal Display="3字">翔　猿</Formal>
+<Formal Display="よみがな">とびざる</Formal>
+</PlayerName>
+<Belong>
+<Writing>追手</Writing>
+<Formal>追手風</Formal>
+<Formal Display="2字">追手</Formal>
+<Formal Display="よみがな">おいてかぜ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１０</Writing>
+<Direction>西</Direction>
+<SumoRank>十両１０枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>東京</Writing>
+<Formal>東京</Formal>
+<Formal Display="2字">東京</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="021320">
+<PlayerName>
+<Writing>剣　翔</Writing>
+<Formal>剣翔</Formal>
+<Formal Display="3字">剣　翔</Formal>
+<Formal Display="よみがな">つるぎしょう</Formal>
+</PlayerName>
+<Belong>
+<Writing>追手</Writing>
+<Formal>追手風</Formal>
+<Formal Display="2字">追手</Formal>
+<Formal Display="よみがな">おいてかぜ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１１</Writing>
+<Direction>西</Direction>
+<SumoRank>十両１１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>東京</Writing>
+<Formal>東京</Formal>
+<Formal Display="2字">東京</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="011310">
+<PlayerName>
+<Writing>蒼国来</Writing>
+<Formal>蒼国来</Formal>
+<Formal Display="3字">蒼国来</Formal>
+<Formal Display="よみがな">そうこくらい</Formal>
+</PlayerName>
+<Belong>
+<Writing>荒汐</Writing>
+<Formal>荒汐</Formal>
+<Formal Display="2字">荒汐</Formal>
+<Formal Display="よみがな">あらしお</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１２</Writing>
+<Direction>西</Direction>
+<SumoRank>十両１２枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>中国</Writing>
+<Formal>中国</Formal>
+<Formal Display="2字">中国</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="019370">
+<PlayerName>
+<Writing>常幸龍</Writing>
+<Formal>常幸龍</Formal>
+<Formal Display="3字">常幸龍</Formal>
+<Formal Display="よみがな">じょうこうりゅう</Formal>
+</PlayerName>
+<Belong>
+<Writing>木瀬</Writing>
+<Formal>木瀬</Formal>
+<Formal Display="2字">木瀬</Formal>
+<Formal Display="よみがな">きせ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１３</Writing>
+<Direction>西</Direction>
+<SumoRank>十両１３枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>東京</Writing>
+<Formal>東京</Formal>
+<Formal Display="2字">東京</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022860">
+<PlayerName>
+<Writing>千代海</Writing>
+<Formal>千代の海</Formal>
+<Formal Display="3字">千代海</Formal>
+<Formal Display="よみがな">ちよのうみ</Formal>
+</PlayerName>
+<Belong>
+<Writing>九重</Writing>
+<Formal>九重</Formal>
+<Formal Display="2字">九重</Formal>
+<Formal Display="よみがな">ここのえ</Formal>
+</Belong>
+<Result>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０―０</Writing>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade>
+<Writing>１４</Writing>
+<Direction>西</Direction>
+<SumoRank>十両１４枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>高知</Writing>
+<Formal>高知</Formal>
+<Formal Display="2字">高知</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+</Standing>
+</Body>
+<TextNote>▼は引退　△は引分　◇は痛分　◆は廃業</TextNote>
+</SportsData>
+</InData>
+</InContent>
+</DataContent>
+</ContentItem>
+</NewsComponent>
+</NewsItem>
+</NewsML>
+</ITalk>

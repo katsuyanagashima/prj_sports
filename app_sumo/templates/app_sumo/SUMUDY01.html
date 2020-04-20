@@ -1,0 +1,72 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+<h1 class="caption">運用日設定</h1>
+<form method="post" id="tran_system" name="tran_system">
+    {% csrf_token %}
+    <!-- <div class="container-fluid row">
+        <div class="row">
+            <div class="col-6">
+                {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                        <span class="helptext">{{ field.help_text }}</span>
+                    {% endif %}
+                    {{ field.errors }}
+                </div>
+                {% endfor %}               
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container-fluid row">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="torikumi">取組日目:</label>
+                    <select id="torikumi" name="torikumi_nichime" class="form-control">
+                        {% for i in nichime %}
+                        <option value="{{ i.Nichime_code }}" {% if init.torikumi_nichime == i.Nichime_code %}
+                            selected{% endif %}>
+                            {{ i.Nichime_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="shoubu">勝負日目:</label>
+                    <select id="shoubu" name="match_nichime" class="form-control" data-banzuke-date="{{ init.banzuke_date }}" data-first-date="{{ init.first_date }}">
+                        {% for j in nichime %}
+                        <option value="{{ j.Nichime_code }}" {% if init.match_nichime == j.Nichime_code %}
+                            selected{% endif %}>
+                            {{ j.Nichime_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="age_calcu_reference_date">年齢算出基準日:</label>
+                    <input id="age_calcu_reference_date" type="text" name="age_calcu_reference_date" class="form-control" value="{{ init.age_calcu_reference_date }}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <p>【参考】年齢算出基準日は以下のルールで勝負日目と連動する<br/>【場所前】場所切替画面に設定した番付発表日、【初日】場所切替画面に設定した初日、【２日目～千秋楽】初日から加算</p>
+    <h3>●この画面で年齢算出基準日を変更可能で良いかを要確認●</h3>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        <button type="submit" class="btn btn-primary">実行</button>
+        <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
+    </nav>
+
+
+</form>
+
+{% endblock %}

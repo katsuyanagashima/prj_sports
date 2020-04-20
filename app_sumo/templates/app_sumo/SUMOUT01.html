@@ -1,0 +1,70 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+<h1 class="caption">コンテンツ出力指示画面</h1>
+
+    <p>
+    <!-- 出力 -->
+    <div class="col-6">
+        <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            出力対象フォルダ選択
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">作成済フォルダ</a>
+                <a class="dropdown-item" href="#">エラーフォルダ</a>
+                <a class="dropdown-item" href="#">配信済フォルダ</a>
+             </div>
+        </div>
+     </div>
+     </p>
+     
+    <h5>コンテンツ一覧</h5>
+    <div class="row">
+        <p>
+            <div class="col-6">
+                <select name="contents_list" size="10">
+                    <option>０１新番付資料</option>
+                    <option>０２新番付資料・補正</option>
+                    <option>０３新番付</option>
+                    <option>０４郷土力士新番付・北海道</option>
+                    <option>１０郷土力士勝負・初日・幕下・北海道</option>
+                </select>
+            </div>
+        </p>
+    </div>
+    
+    <a href="../" type="button" class="btn btn-primary">印刷</a>
+    <a href="../" type="button" class="btn btn-primary">プレビュー</a>
+    
+    <div class="row">
+    <div class="col-5">
+        <div class="caption_box">
+            <h2 class="caption">出力先</h2>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="newsml_fulltag_haishin1">
+                    <label class="custom-control-label" for="newsml_fulltag_haishin1">新聞配信</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="newsml_fulltag_haishin2">
+                    <label class="custom-control-label" for="newsml_fulltag_haishin2">統合検索</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="newsml_fulltag_haishin3">
+                    <label class="custom-control-label" for="newsml_fulltag_haishin3">災害検索</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="newsml_fulltag_haishin3">
+                    <label class="custom-control-label" for="newsml_fulltag_haishin3">記録媒体</label>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</div>
+
+<a href="../" type="button" class="btn btn-primary">強制出力</a>
+<a href="../" type="button" class="btn btn-primary">出力</a>
+<a href="../" type="button" class="btn btn-primary">戻る</a>
+{% endblock %}

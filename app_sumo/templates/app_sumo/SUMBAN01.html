@@ -1,0 +1,78 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+<h1 class="caption">番付処理</h1>
+<div class="container-fluid row">
+    <div class="col-6 gyomu-menu caption_box">
+        <h1 class="caption">階級</h1>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">中入り</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">十両</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">幕下</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">三段目</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">序二段</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">序ノ口</label>
+        </div>
+  </div>
+  <div class="col-6 gyomu-menu caption_box">
+      <h1 class="caption">入力方式</h1>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">画面入力</label>
+      </div>
+      <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">ＯＣＲデータ</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+        <label class="form-check-label" for="exampleRadios2">ＯＣＲ取り込み</label>
+    </div>
+</div>
+<div class="col-6 gyomu-menu caption_box">
+    <h1 class="caption">東西表示指定</h1>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+        <label class="form-check-label" for="exampleRadios1">東</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+        <label class="form-check-label" for="exampleRadios2">西</label>
+    </div>
+  </div>
+</div>
+
+<!-- 実行-->
+<a href="" type="button" class="btn btn-primary btn-lg btn-block">実行（本来、上で選択した画面に遷移すべきものだが、暫定的に各ボタンを配置）</a>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+    　      <a href="SUMBAN02" type="button" class="btn btn-secondary ">番付入力画面へ</a>
+        </div>
+        <div class="col-4">  
+            <a href="SUMBAN03" type="button" class="btn btn-secondary ">ＯＣＲ入力画面へ</a>
+        </div>
+        <div class="col-4">   
+            <a href="SUMBAN04" type="button" class="btn btn-secondary ">【新】ＯＣＲ取り込み画面へ</a>
+        </div>
+    </div>
+</div>    
+<!-- 戻る-->
+<a href="../" type="button" class="btn btn-primary btn-lg btn-block">戻る</a>
+{% endblock %}

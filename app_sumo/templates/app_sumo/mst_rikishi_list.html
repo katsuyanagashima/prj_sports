@@ -1,0 +1,58 @@
+{% extends 'app_sumo/base.html' %}
+
+{% block content %}
+
+<h3>力士マスタメンテナンス画面</h3>
+<h4>※ナビの値が取得できていない。櫻内さんからのメールは現行システムを見ながら仕様を確認予定</h4>
+
+<div style="height:400px; overflow-y:scroll;">
+<table class="table table-hover table-sm">
+    <thead class="thead-dark">
+        <th>code</th>
+        <th>力士名</th>
+        <th>３字</th>
+        <th>２字</th>
+        <th>部屋</th>
+        <th>状態</th>
+        <th>出身地</th>
+        <th>詳細</th>
+        <th>２字略</th>
+        <th> 身長</th>
+        <th> 体重</th>
+        <th> </th>
+        <th> </th>
+    </thead>
+    {% for rikishi in object_list  %}
+    <tr>
+        <td>{{ rikishi.Rikishi_code }}</td>
+        <td>{{  rikishi.Rikishi_name_kanji_official }}</td>
+        <td>{{  rikishi.Rikishi_name_Kanji_3char }}</td>
+        <td>{{  rikishi.Rikishi_name_Kanji_2char }}</td>
+        <td>{{  rikishi.Heya_code }}</td>
+        <td>{{  rikishi.Rikishi_attrib_class }}</td>
+        <td>{{  rikishi.Hometown_code_1 }}</td>
+        <td>{{  rikishi.Hometown_details_1 }}</td>
+        <td>{{  rikishi.Hometown_details_abbr1_2char }}</td>
+        <td>{{  rikishi.Height }}</td>
+        <td>{{  rikishi.Weight }}</td>
+        <td><a href="{% url 'app_sumo:rikishiUpdate' pk=rikishi.id %}">更新画面へ</a></td>
+        <td><a href="{% url 'app_sumo:rikishiDelete' pk=rikishi.id %}"<button type="button" class="btn btn-danger">削除</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+<nav class="navbar fixed-bottom navbar-dark">
+    <form method="post">
+        {% csrf_token %}
+        <input name="query" value="{{ request.POST.query }}" type="text">
+        <button type="submit" class="btn btn-secondary">検索する</button>
+        {{rikishilist_form.status_chk.0}}
+        {{rikishilist_form.status_chk.1}}
+        {{rikishilist_form.heya_code}}{{rikishilist_form.heya_code.label}}
+        {{rikishilist_form.hometown_code}}{{rikishilist_form.hometown_code.label}}
+    </form>
+    <a href="{% url 'app_sumo:rikishiCreate' %}" class="btn btn-primary" role="button">新規登録</a>
+    <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
+</nav>
+
+{% endblock %}
