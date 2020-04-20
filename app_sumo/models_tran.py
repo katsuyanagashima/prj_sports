@@ -21,11 +21,10 @@ class Tran_Systemstatus(Model):
         return str(self.Event_date)
 
 # --------------------------------------------------------------------------------------------------
-#番付明細　（01:新番付資料）
-# 
+#01:新番付資料
 class Tran_Banzuke_forecast(Model):
-    Event_date =  ForeignKey('Tran_Systemstatus', on_delete=CASCADE) #システム状態の開催年月
-    RikishiId =  ForeignKey('Mst_Rikishi', on_delete=CASCADE) #力士マスタ
+    Sys_status =  ForeignKey('Tran_Systemstatus', on_delete=CASCADE) #システム状態の開催年月
+    Rikishi =  ForeignKey('Mst_Rikishi', on_delete=CASCADE) #力士マスタ
     #Join_code =  IntegerField(verbose_name='参加区分', blank=True, null=True)
     Class_code =  ForeignKey('Mst_Class', on_delete=CASCADE) #階級マスタ
     #Eastwest_code =  ForeignKey('Mst_Eastwest', on_delete=CASCADE) #東西マスタ
@@ -37,16 +36,15 @@ class Tran_Banzuke_forecast(Model):
     #Demoted_rank =  IntegerField(verbose_name='昇降順位', blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = '*【NewsML】01予想番付'
+        verbose_name_plural = '*【NewsML】01新番付資料'
 
     def __str__(self):
         return str(self.RikishiId)	
 
-#番付明細　（02-05:新番付資料）
-# 
+#02-05:番付
 class Tran_Banzuke(Model):
-    Event_date =  ForeignKey('Tran_Systemstatus', on_delete=CASCADE) #システム状態の開催年月
-    RikishiId =  ForeignKey('Mst_Rikishi', on_delete=CASCADE) #力士マスタ
+    Sys_status =  ForeignKey('Tran_Systemstatus', on_delete=CASCADE) #システム状態の開催年月
+    Rikishi =  ForeignKey('Mst_Rikishi', on_delete=CASCADE) #力士マスタ
     Join_code =  IntegerField(verbose_name='参加区分', blank=True, null=True)
     Class_code =  ForeignKey('Mst_Class', on_delete=CASCADE) #階級マスタ
     Eastwest_code =  ForeignKey('Mst_Eastwest', on_delete=CASCADE) #東西マスタ
@@ -59,7 +57,7 @@ class Tran_Banzuke(Model):
     Demoted_rank =  IntegerField(verbose_name='昇降順位', blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = '*【NewsML】02-05 番付明細'
+        verbose_name_plural = '*【NewsML】02-05番付'
 
     def __str__(self):
         return str(self.RikishiId)	

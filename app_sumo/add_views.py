@@ -60,18 +60,25 @@ def output_NewsML(request):
     #生涯成績
         if newsno == "01":
             context = {
-                'newsmlmeta':Tran_Systemstatus.objects.all(),
-                'Banzuke': Tran_Banzuke.objects.all(),
-                'Liferesult': Mst_Lifetime_result.objects.all(),
-                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'newsmlmeta':Tran_Systemstatus.objects.all(),               #システム状態マスタ
+                'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),    #予想番付マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),            #生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),              #生涯受賞マスタ
             }
         elif newsno == "02":
             context = {
-                'newsmlmeta':Tran_Systemstatus.objects.all(),
-                'Banzuke': Tran_Banzuke.objects.all(),
-                'Liferesult': Mst_Lifetime_result.objects.all(),
-                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
+                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
             }
+        elif newsno == "03":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
+                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
+            }    
 
         if "Input_status" in request.POST:
             st = request.POST["Input_status"] # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
