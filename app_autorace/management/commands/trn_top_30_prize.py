@@ -14,22 +14,12 @@ from app_autorace.models import *
 from logging import getLogger
 from pathlib import Path
 
-#!/usr/bin/env
-logger = getLogger(__name__)
+logger = getLogger('command')
 
-# 監視対象ファイルのパターンマッチを指定する
-# 選手取得賞金上位３０位レコード（mmddhhmmss00000003.dat）
-scheduleID = 4
-top30prizeData = "top30prizeData"
-target_file_top30prize_record = '*00000003.dat'
 top30prize = 50 # 取得賞金テーブル　繰り返しの数
 top30prizeNum = 45
 
-# PatternMatchingEventHandler の継承クラスを作成
-class FileChangeHandler(PatternMatchingEventHandler):
-    # クラス初期化
-    def __init__(self, patterns):
-        super(FileChangeHandler, self).__init__(patterns=patterns)
+class Top_30_prize():
         
 
     def init_trn_top_30_prize(self):
@@ -163,85 +153,4 @@ class FileChangeHandler(PatternMatchingEventHandler):
         except Exception as e:
             print(e)
 
-    # ファイル作成時のイベント
-    def on_created(self, event):
-        filepath = event.src_path
-        filename_top30prize_record = os.path.basename(filepath)
 
-        base = os.path.dirname(os.path.abspath(__file__))
-        name = os.path.normpath(os.path.join(base,top30prizeData ,filename_top30prize_record))
-
-        # 監視元のフォルダパスを生成
-
-        print('%s created Start' % filename_top30prize_record)
-        # ファイル読み込み
-        #!/usr/bin/python
-        # -*- coding: utf-8 -*-
-        
-        self.insert_or_update_Trn_Top_30_Prize(name)
-
-        print('%s created End' % filename_top30prize_record)
-
-    # ファイル変更時のイベント
-    def on_modified(self, event):
-        filepath = event.src_path
-        filename_top30prize_record = os.path.basename(filepath)
-        print('%s changed' % filename_top30prize_record)
-
-    # ファイル削除時のイベント
-    def on_deleted(self, event):
-        filepath = event.src_path
-        filename_top30prize_record = os.path.basename(filepath)
-        print('%s deleted' % filename_top30prize_record)
-
-    # ファイル移動時のイベント
-    def on_moved(self, event):
-        filepath = event.src_path
-        filename_top30prize_record = os.path.basename(filepath)
-
-        base = os.path.dirname(os.path.abspath(__file__))
-        name = os.path.normpath(os.path.join(base,top30prizeData ,filename_top30prize_record))
-        print('%s moved Start' % filename_top30prize_record)
-        # ファイル読み込み
-        #!/usr/bin/python
-        # -*- coding: utf-8 -*-
-        self.insert_or_update_Trn_Top_30_Prize(name)
-
-        print('%s moved End' % filename_top30prize_record)
-
-# コマンド実行の確認
-class Command(BaseCommand):
-
-    # python manage.py help XXXXXで表示されるメッセージ
-    help = 'ファイルを監視してDBに登録する。'
-
-    '''与えられた引数を受け取る'''
-    def add_arguments(self, parser):
-        # 今回はscheduleという名前で取得する。（引数は最低でも1個, int型）
-        parser.add_argument('command_id', nargs='+', type=int)
-
-
-    """受け取った引数を登録する"""
-    def handle(self, *args, **options):
-        # ファイル監視の開始
-        # 選手取得賞金上位３０位レコード（mmddhhmmss00000003.dat） 4: 選手取得賞金上位３０位
-        # 監視対象ディレクトリを指定する
-        if scheduleID in options['command_id']:
-            base_trn_Top_30_Prize = os.path.dirname(os.path.abspath(__file__))
-            base = os.path.normpath(os.path.join(base_trn_Top_30_Prize,top30prizeData))
-            target_dir = os.path.expanduser(base)
-
-            event_handler = FileChangeHandler([target_file_top30prize_record])
-            observer = PollingObserver()
-            observer.schedule(event_handler, target_dir, recursive=False)# recursive再帰的
-            observer.start()
-        else:
-            raise ValueError("command_id エラー")
-
-        # 処理が終了しないようスリープを挟んで無限ループ
-        try:
-            while True:
-                time.sleep(0.1)
-        except KeyboardInterrupt:
-            observer.stop()
-        observer.join()

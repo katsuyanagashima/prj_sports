@@ -369,17 +369,46 @@ def SUMMSM01_heya_html(request):
 
 
 # 年度・場所切替画面
+#def SUMINT01(request):
+#    systemstatus = Tran_Systemstatus.objects.get(id=1)
+#    if request.method == "POST":
+#        form = Tran_SystemstatusForm(request.POST, instance=systemstatus)
+#        if form.is_valid():
+#            form.save()
+#            return redirect('app_sumo:SUMINT01')
+#    else:
+#        form = Tran_SystemstatusForm(instance=systemstatus)
+#
+#    return render(request, 'app_sumo/SUMINT01.html', {'form': form})
 def SUMINT01(request):
     systemstatus = Tran_Systemstatus.objects.get(id=1)
-    if request.method == "POST":
-        form = Tran_SystemstatusForm(request.POST, instance=systemstatus)
-        if form.is_valid():
-            form.save()
-            return redirect('app_sumo:SUMINT01')
-    else:
-        form = Tran_SystemstatusForm(instance=systemstatus)
+    init = {
+            'event_date': str(systemstatus.Event_date)[:4],
+            'currentbasho': systemstatus.CurrentBasho.Basho_code,
+            'first_date': systemstatus.First_date.strftime("%Y-%m-%d"),
+            'banzuke_date': systemstatus.Banzuke_date.strftime("%Y-%m-%d"),
+            }
+    basho = Mst_Basho.objects.all()
 
-    return render(request, 'app_sumo/SUMINT01.html', {'form': form})
+    if request.method == "POST":
+        year = str(request.POST.get('event_date'))
+        basho_record = basho.get(Basho_code=int(request.POST["currentbasho"]))
+        basho_month = str(basho_record.Basho_month).zfill(2)
+
+        systemstatus.Event_date = year + basho_month
+        systemstatus.CurrentBasho = basho.get(Basho_code=int(request.POST["currentbasho"]))
+        systemstatus.First_date = request.POST.get('first_date')
+        systemstatus.Banzuke_date = request.POST.get('banzuke_date')
+        systemstatus.save()
+
+        init["event_date"] = str(systemstatus.Event_date)[:4]
+        init["currentbasho"] = systemstatus.CurrentBasho.Basho_code
+        init["first_date"] = systemstatus.First_date
+        init["banzuke_date"] = systemstatus.Banzuke_date
+
+    c = {'basho': basho, 'init': init}
+    c.update(nav_info(request))
+    return render(request, 'app_sumo/SUMINT01.html', c)
 
 
 # 優勝決定戦階級選択画面
