@@ -13,6 +13,9 @@ from .models import Tran_Systemstatus
 import re
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+#CSV取り込み用に追加したviewをインポート
+from .views_csv import *
+
 
 # メイン画面
 def index(request):

@@ -1,0 +1,16 @@
+{% extends "app_ckeiba/base.html" %}
+{% load static %}
+{% block extrahead %}
+{% endblock %}
+
+{% block content %}
+<hr/>
+<h3>ファイルを選択してください</h3>
+<form action="{% url 'app_ckeiba:upload' %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" data-default-file="ファイルを選択してください" name="csv">
+  <br/> 
+  <button type="submit" class="btn btn-secondary btn-sm" name="button">アップロード</button>
+</form>
+
+{% endblock content %}

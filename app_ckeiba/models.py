@@ -1,6 +1,9 @@
 from django.db import models
 from django.db.models import * 
 
+#CSV取り込み用に分離したテーブルをインポート
+from .models_csv import *
+
 # 各種マスタ
 
 #システム状態
@@ -48,7 +51,7 @@ class Mst_Environment(Model):
 
 #競馬場マスタ
 class Mst_Jou(Model):
-    Jou_code = IntegerField(verbose_name='競馬場コード')
+    Jou_code = IntegerField(verbose_name='競馬場コード', unique=True)
     Jou_name = CharField(verbose_name='正式名', max_length=20) #大井競馬場
     Jou_seisekiA = CharField(verbose_name='成績Ａ用', max_length=1) #大
     Jou_3char = CharField(verbose_name='３字略称', max_length=3) #大井△
@@ -68,7 +71,7 @@ class Mst_Jou(Model):
 
 #グレードマスタ
 class Mst_Grade(Model):
-    Grade_code = CharField(verbose_name='グレード区分', max_length=2)
+    Grade_code = CharField(verbose_name='グレード区分', max_length=2, unique=True)
     Grade_name = CharField(verbose_name='グレード名称', max_length=4)
     Send_class = CharField(verbose_name='配信区分', max_length=4, blank=True, null=True)
 
@@ -80,7 +83,7 @@ class Mst_Grade(Model):
         
 #品種年齢区分マスタ
 class Mst_Breed_age(Model):
-    Breed_age_code = IntegerField(verbose_name='品種年齢区分')
+    Breed_age_code = IntegerField(verbose_name='品種年齢区分', unique=True)
     Name_for_race_type = CharField(verbose_name='競走種別用名称', max_length=10, blank=True, null=True) #混合３・４歳
     Name_for_horse_age_condition = CharField(verbose_name='馬齢条件用名称', max_length=10, blank=True, null=True) #３・４歳
     Breed_age_name = CharField(verbose_name='品種年齢名称', max_length=10, blank=True, null=True) #混合
@@ -93,7 +96,7 @@ class Mst_Breed_age(Model):
 
 #天候マスタ
 class Mst_Weather(Model):
-    Weather_code = IntegerField(verbose_name='天候コード')
+    Weather_code = IntegerField(verbose_name='天候コード', unique=True)
     Weather_name = CharField(verbose_name='天候名称', max_length=5, blank=True, null=True) #晴
     
     class Meta:
@@ -104,7 +107,7 @@ class Mst_Weather(Model):
 
 #着差マスタ
 class Mst_Margin(Model):
-    Margin_code = IntegerField(verbose_name='着差コード')
+    Margin_code = IntegerField(verbose_name='着差コード', unique=True)
     Margin_name = CharField(verbose_name='着差名称(通常）', max_length=10, blank=True, null=True) #１△
     Margin_convert = CharField(verbose_name='着差名称(変換)', max_length=10, blank=True, null=True) 
     
@@ -128,7 +131,7 @@ class Mst_Difference(Model):
                 
 #事故種類マスタ
 class Mst_Accident_type(Model):
-    Accident_type_code = IntegerField(verbose_name='事故種類コード')
+    Accident_type_code = IntegerField(verbose_name='事故種類コード', unique=True)
     Accident_type_name = CharField(verbose_name='事故種類名称', max_length=15, blank=True, null=True)  #競走不成立
     Fulltag_all = CharField(verbose_name='フルタグＡＬＬ', max_length=15, blank=True, null=True)
     Priority = IntegerField(verbose_name='優先順位', blank=True, null=True) #0
@@ -143,7 +146,7 @@ class Mst_Accident_type(Model):
                         
 #事故理由マスタ
 class Mst_Accident_reason(Model):
-    Accident_reason_code = IntegerField(verbose_name='事故理由コード')
+    Accident_reason_code = IntegerField(verbose_name='事故理由コード', unique=True)
     Accident_reason_name = CharField(verbose_name='事故理由名称', max_length=15, blank=True, null=True)  #進路妨害
     Accident_class = IntegerField(verbose_name='異常区分設定フラグ', blank=True, null=True) 
 
@@ -155,7 +158,7 @@ class Mst_Accident_reason(Model):
 
 #性別マスタ
 class Mst_Gender(Model):
-    Horse_gender_code = IntegerField(verbose_name='性別コード')
+    Horse_gender_code = IntegerField(verbose_name='性別コード', unique=True)
     Horse_gender = CharField(verbose_name='性別名称', max_length=2, blank=True, null=True)  #牡
     Remarks = CharField(verbose_name='備考', max_length=5, blank=True, null=True)  #雄馬
     class Meta:
@@ -166,7 +169,7 @@ class Mst_Gender(Model):
 
 #所属場マスタ
 class Mst_Belonging(Model):
-    Belonging_code = IntegerField(verbose_name='所属場コード')
+    Belonging_code = IntegerField(verbose_name='所属場コード', unique=True)
     Belonging = CharField(verbose_name='所属場名称（正式名）', max_length=10, blank=True, null=True)  #北海道
     Belonging_1char = CharField(verbose_name='所属場名称（1字）', max_length=1, blank=True, null=True)  #北
     class Meta:
@@ -177,7 +180,7 @@ class Mst_Belonging(Model):
 
 #中央交流区分マスタ
 class Mst_JRA_exchanges(Model):
-    JRA_exchanges_code = IntegerField(verbose_name='中央交流区コード')
+    JRA_exchanges_code = IntegerField(verbose_name='中央交流区コード', unique=True)
     JRA_exchanges = CharField(verbose_name='交流区分名称', max_length=10, blank=True, null=True)  #指定交流
     Send_classification = IntegerField(verbose_name='配信区分コード', blank=True, null=True)  #2
     class Meta:
@@ -188,7 +191,7 @@ class Mst_JRA_exchanges(Model):
 
 #芝・ダート区分マスタ
 class Mst_Turf_dirt_class(Model):
-    Turf_dirt_code = IntegerField(verbose_name='芝・ダート区分コード')
+    Turf_dirt_code = IntegerField(verbose_name='芝・ダート区分コード', unique=True)
     Turf_dirt_name = CharField(verbose_name='芝区分名称', max_length=5, blank=True, null=True)  #ダート
     class Meta:
         verbose_name_plural = '芝・ダート区分マスタ'
@@ -198,7 +201,7 @@ class Mst_Turf_dirt_class(Model):
 
 #コース区分マスタ
 class Mst_Course_class(Model):
-    Course_class_code = IntegerField(verbose_name='コース区分コード')
+    Course_class_code = IntegerField(verbose_name='コース区分コード', unique=True)
     Course_class_name = CharField(verbose_name='コース区分名称', max_length=5, blank=True, null=True)  #外コース
     class Meta:
         verbose_name_plural = 'コース区分マスタ'
@@ -208,7 +211,7 @@ class Mst_Course_class(Model):
 
 #回り区分マスタ
 class Mst_Clockwise_class(Model):
-    CW_or_CCW_code = IntegerField(verbose_name='回り区分コード')
+    CW_or_CCW_code = IntegerField(verbose_name='回り区分コード', unique=True)
     CW_or_CCW = CharField(verbose_name='回り区分名称', max_length=5, blank=True, null=True)  #右
     class Meta:
         verbose_name_plural = '回り区分マスタ'
@@ -218,7 +221,7 @@ class Mst_Clockwise_class(Model):
 
 #ナイター区分マスタ
 class Mst_Night_race_class(Model):
-    Night_race_code = IntegerField(verbose_name='ナイター区分コード') #0：実施しない　1：実施
+    Night_race_code = IntegerField(verbose_name='ナイター区分コード', unique=True) #0：実施しない　1：実施
     Night_race_name = CharField(verbose_name='ナイター区分名称', max_length=5, blank=True, null=True)  
     class Meta:
         verbose_name_plural = 'ナイター区分マスタ'
@@ -228,7 +231,7 @@ class Mst_Night_race_class(Model):
         
 #負担重量区分マスタ
 class Mst_Handicap(Model):
-    Handicap_code = IntegerField(verbose_name='負担重量区分コード') 
+    Handicap_code = IntegerField(verbose_name='負担重量区分コード', unique=True) 
     Handicap_name = CharField(verbose_name='負担重量区分名称', max_length=5, blank=True, null=True)  #ハンデ
     Weight_shortend = CharField(verbose_name='設定値', max_length=5, blank=True, null=True) 
     class Meta:
@@ -239,7 +242,7 @@ class Mst_Handicap(Model):
 
 #馬場状態マスタ
 class Mst_Track_condition(Model):
-    Track_condition_code = IntegerField(verbose_name='馬場状態コード') 
+    Track_condition_code = IntegerField(verbose_name='馬場状態コード', unique=True) 
     Track_condition_name = CharField(verbose_name='馬場状態名称', max_length=5, blank=True, null=True)  #良
     class Meta:
         verbose_name_plural = '馬場状態マスタ'
@@ -249,7 +252,7 @@ class Mst_Track_condition(Model):
 
 #騎手変更理由マスタ
 class Mst_Jockey_changed_reason(Model):
-    Jockey_changed_reason_code = IntegerField(verbose_name='騎手変更理由コード') 
+    Jockey_changed_reason_code = IntegerField(verbose_name='騎手変更理由コード', unique=True) 
     Jockey_changed_reason_name = CharField(verbose_name='騎手変更理由名称', max_length=10, blank=True, null=True)  #公正保持
     class Meta:
         verbose_name_plural = '騎手変更理由マスタ'
@@ -259,7 +262,7 @@ class Mst_Jockey_changed_reason(Model):
 
 #事象マスタ
 class Mst_Matter(Model):
-    Matter_code = IntegerField(verbose_name='事象コード') 
+    Matter_code = IntegerField(verbose_name='事象コード', unique=True) 
     Matter_name = CharField(verbose_name='事象名称', max_length=10, blank=True, null=True)  #事故
     class Meta:
         verbose_name_plural = '事象マスタ'
@@ -269,7 +272,7 @@ class Mst_Matter(Model):
 
 #対象者マスタ
 class Mst_Target_person(Model):
-    Target_person_code = IntegerField(verbose_name='対象者コード') 
+    Target_person_code = IntegerField(verbose_name='対象者コード', unique=True) 
     Target_person_name = CharField(verbose_name='対象者名称', max_length=10, blank=True, null=True)  #馬主
     class Meta:
         verbose_name_plural = '対象者マスタ'
@@ -279,7 +282,7 @@ class Mst_Target_person(Model):
         
 #競走種類マスタ
 class Mst_Race_type(Model):
-    Race_type_code = IntegerField(verbose_name='競走種類コード') 
+    Race_type_code = IntegerField(verbose_name='競走種類コード', unique=True) 
     Race_type_name = CharField(verbose_name='競走種類名称', max_length=10, blank=True, null=True)  #重賞
     Race_type_deliverytype = IntegerField(verbose_name='配信区分')  #3
     class Meta:

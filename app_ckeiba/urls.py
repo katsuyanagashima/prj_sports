@@ -25,4 +25,8 @@ urlpatterns = [
     path('nyujo/<int:year>/<int:month>/<int:day>/<int:joucode>/', views.md_update_forms, name='nyujo'),  #中間DB_入場人員編集画面
     path('uriage/<int:year>/<int:month>/<int:day>/<int:joucode>/', views.md_update_forms, name='uriage'),  #中間DB_売上金編集画面
 
+    path('editbutton/<int:values>', views.editbutton, name='editbutton'),
+    #CSV検証用
+    path('upload/', views.upload, name='upload'),
+    path('upload2/', views.upload2, name='upload2'),
 ]

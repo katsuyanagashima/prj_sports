@@ -9,5 +9,7 @@
 /app_sumo/migrations/
 /app_autorace/__pycache__/
 /app_autorace/commands/__pycache__/
+/app_autorace/management/__pycache__/
+/app_autorace/logs/
 dump.json
 

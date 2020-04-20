@@ -422,12 +422,18 @@ textarea {
     vertical-align: top;
 }
 
+@font-face {
+    font-family: 'MyFont';
+    src: url('../fonts/U-PRESS.ttf');
+}
+
 input[type=text], input[type=password], input[type=email], input[type=url],
 input[type=number], input[type=tel], textarea, select, .vTextField {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px 6px;
     margin-top: 0;
+    font-family: 'MyFont';
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus,
