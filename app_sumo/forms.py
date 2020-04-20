@@ -18,10 +18,10 @@ class Mst_HeyaForm(forms.ModelForm):
         fields = ('Heya_code', 'Heya_official_kanji', 'Heya_official_kana', 'Heya_kanji_2char', 'Heya_kanji_3char',)
 
 
-class Tran_SystemstatusForm(forms.ModelForm):
-    class Meta:
-        model = Tran_Systemstatus
-        fields = ('Event_date', 'CurrentBasho', 'First_date', 'Banzuke_date')
+#class Tran_SystemstatusForm(forms.ModelForm):
+#    class Meta:
+#        model = Tran_Systemstatus
+#        fields = ('Event_date', 'CurrentBasho', 'First_date', 'Banzuke_date')
 
 
 class SearchRikishilistForm(forms.Form):
