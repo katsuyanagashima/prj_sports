@@ -4,11 +4,11 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
 from django.urls import reverse_lazy
-from django.views.generic import ListView
 from django import forms
 from .models import *
 from .forms import *
 from . import forms
+from . import models
 from .models import Tran_Systemstatus
 import re
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
@@ -24,8 +24,16 @@ def index(request):
      f = open(json_path, 'r')
      dammydata = json.load(f)
 
+     # ＜↑のダミーデータをマスタベースの正しい設計にするためにこれからやること＞
+     # １．競馬場マスタから競馬場の一覧を取得
+     # ２．運用日当日の開催場を、開催日割から取得
+     # ３．【受信】受信状況テーブルから、受信状況を取得
+     # ４．【編集】中間DB？中間DB管理テーブル？テンプレートの管理テーブル？から、各中間DBへの格納状況を取得
+     # ５．【送信】送信管理テーブル？から、新聞配信への送信状況を取得
+     # ６．これらの取得済みデータをパラメータ化して渡す。
+
      # システム状態を取得
-     tran_system = Tran_Systemstatus.objects.all().first() # ★ システム状態の1件目を見てるだけなので、ここは要検討
+     tran_system = Tran_Systemstatus.objects.all().first() # ★ システム状態の1件目のレコードを見てる
      status = str(tran_system.Operationmode)
 
      # パラメータに追加
@@ -87,7 +95,7 @@ def index(request):
                     'table_header_name': table_header_name,
                     'object_list': joulist,
                     'table_value': table_value
-                         }
+                    }
      
      # メイン画面をレンダリング
      return render(request, 'app_ckeiba/index.html', params)
@@ -269,6 +277,96 @@ def get_Model_and_ModelForm(mst_name):
 
 
 # ★★★マスタ編集フォームここまで★★★
+
+
+# ◎◎◎中間DBフォーム◎◎◎
+     
+# class Md_ShussouhyouUpdateView(UpdateView):
+#      template_name = 'app_ckeiba/mst_edit_form/md_db_update.html'
+#      model = Md_Shussouhyou
+#      slug_field = 'year', 'month', 'day', 'joucode', 'race'
+#      slug_url_kwarg = 'year', 'month', 'day', 'joucode', 'race'
+         
+#      def get_context_data(self, **kwargs):
+#           context = super().get_context_data(**kwargs)
+#           context['title'] = "【中間DB】出走表"
+#           return context
+
+#      def get_object(self, queryset=None):
+#           return Md_Shussouhyou.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)[0]
+
+#      # def get_queryset(self):
+#      #      return super().get_queryset().select_related('shussouba1')
+
+#      # fields = ('shussouba1',)
+#      form_class = Md_ShussouhyouForm
+#      success_url = reverse_lazy('app_ckeiba:index')
+
+# 【関数ベース】中間DBフォーム
+def md_update_forms(request, year, month, day, joucode, race):
+
+     # URLから、更新対象のレコードを抽出（データがなければ404エラー）
+     path = request.path
+     if "shussouhyou" in path:
+          mst_instance = get_object_or_404(Md_Shussouhyou.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+          Md_ModelForm = Md_ShussouhyouForm
+          title = "【中間DB】出走表"
+          
+     elif "seiseki" in path:
+          mst_instance = get_object_or_404(Md_Seiseki_Haraimodoshi.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+          Md_ModelForm = Md_Seiseki_HaraimodoshiForm
+          title = "【中間DB】成績・払戻"
+
+     elif "corner_rap" in path:
+          mst_instance = get_object_or_404(Md_Corner_Rap.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+          Md_ModelForm = Md_Corner_RapForm
+          title = "【中間DB】コーナー・ラップ"
+          
+     elif "agari" in path:
+          mst_instance = get_object_or_404(Md_Agari.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+          Md_ModelForm = Md_AgariForm
+          title = "【中間DB】上がり"
+          
+     elif "tushinbun" in path:
+          mst_instance = get_object_or_404(Md_Tshuushinbun.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+          Md_ModelForm = Md_TshuushinbunForm
+          title = "【中間DB】通信文"
+          
+     elif "nyujo" in path:
+          mst_instance = get_object_or_404(Md_Nyujo.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode)
+          Md_ModelForm = Md_NyujoForm
+          title = "【中間DB】入場人員"
+          
+     elif "uriage" in path:
+          mst_instance = get_object_or_404(Md_Uriagekin.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode)
+          Md_ModelForm = Md_UriagekinForm
+          title = "【中間DB】売上金"
+
+     else:
+          pass
+          
+
+     if request.method == 'POST':
+          # 更新ボタン押下時
+          form = Md_ModelForm(request.POST, instance=mst_instance)
+          if form.is_valid():
+               form.save()
+               return redirect('app_ckeiba:index')
+     else:
+          # GETリクエスト（更新画面の初期表示）時はDBに保存されているデータをFormに結びつける
+          form = Md_ModelForm(instance=mst_instance)
+
+     d = {'form': form,'title': title}
+     return render(request, 'app_ckeiba/mst_edit_form/md_db_update.html', d)
+
+
+# ◎◎◎中間DBフォームここまで◎◎◎
+
+
+
+
+
+
 
 
 # オプション送信画面

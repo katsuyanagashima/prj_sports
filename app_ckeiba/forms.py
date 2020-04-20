@@ -55,7 +55,42 @@ class Mst_WeatherForm(forms.ModelForm):
 
 
 
+# 中間DB
 
+class Md_ShussouhyouForm(forms.ModelForm):
+    class Meta:
+        model = Md_Shussouhyou
+        fields = '__all__'
+
+class Md_Seiseki_HaraimodoshiForm(forms.ModelForm):
+    class Meta:
+        model = Md_Seiseki_Haraimodoshi
+        fields = '__all__'
+
+class Md_Corner_RapForm(forms.ModelForm):
+    class Meta:
+        model = Md_Corner_Rap
+        fields = '__all__'
+
+class Md_AgariForm(forms.ModelForm):
+    class Meta:
+        model = Md_Agari
+        fields = '__all__'
+
+class Md_TshuushinbunForm(forms.ModelForm):
+    class Meta:
+        model = Md_Tshuushinbun
+        fields = '__all__'
+
+class Md_NyujoForm(forms.ModelForm):
+    class Meta:
+        model = Md_Nyujo
+        fields = '__all__'
+
+class Md_UriagekinForm(forms.ModelForm):
+    class Meta:
+        model = Md_Uriagekin
+        fields = '__all__'
 
 
 

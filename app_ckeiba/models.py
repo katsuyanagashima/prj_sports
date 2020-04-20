@@ -391,18 +391,22 @@ class Mst_Fix_annotation(Model):
 
 # 【中間DB】出走表
 class Md_Shussouhyou(Model):
+    # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "shussouhyou")  #競馬場マスタ
+    ck_kyounen = IntegerField(verbose_name='年')
+    ck_kyoutuki = IntegerField(verbose_name='月')
+    ck_kyouhi = IntegerField(verbose_name='日')
+    rebangou = IntegerField(verbose_name='レース番号')
+
+
     kaisuu = IntegerField(verbose_name='回数')
     kainichime = IntegerField(verbose_name='開催日目')
 
     # 競走年月日
-    ck_kyounichi = DateField(verbose_name='競走年月日')
-    ck_kyounen = IntegerField(verbose_name='年')
-    ck_kyoutuki = IntegerField(verbose_name='月')
-    ck_kyouhi = IntegerField(verbose_name='日')
+    # ck_kyounichi = DateField(verbose_name='競走年月日')
 
     # レース情報
-    rebangou = IntegerField(verbose_name='レース番号')
+    # rebangou = IntegerField(verbose_name='レース番号')
     shubetsu = ForeignKey('Mst_Breed_age', verbose_name='競争種別', on_delete=CASCADE, related_name = "shubetu")  #品種年齢区分マスタ
     tokusouhonsuu = IntegerField(verbose_name='特別競争本題回数')
     tokusoumeihon = CharField(verbose_name='特別競争名本題', max_length=100, blank=True, null=True)
@@ -458,15 +462,17 @@ class Md_Shussouhyou(Model):
         verbose_name_plural = '【中間DB】出走表'
 
     def __str__(self):
-        return self.joumei
+        return  str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+str(self.ck_kyouhi)+str(self.joumei) + str(self.rebangou)+'R'
 
 
 # 出走馬情報（最大16頭立ての前提。）
 class Md_Shussouba(Model):
 
-    #リレーション用の情報
+     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "shussouba")  #競馬場マスタ
-    ck_kyounichi = DateField(verbose_name='競走年月日')
+    ck_kyounen = IntegerField(verbose_name='年')
+    ck_kyoutuki = IntegerField(verbose_name='月')
+    ck_kyouhi = IntegerField(verbose_name='日')
     rebangou = IntegerField(verbose_name='レース番号')
 
 
@@ -550,7 +556,7 @@ class Md_Shussouba(Model):
         verbose_name_plural = '【中間DB】出走表_出走馬'
 
     def __str__(self):
-        return str(self.ck_kyounichi) + str(self.joumei) + str(self.rebangou)+'R ' + str(self.uma) +'番 ' + str(self.bamei)
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou)+'R ' + str(self.uma) +'番 ' + str(self.bamei)
 
     # 過去成績 5回分繰り返す
 class Md_Shussouba_kako(Model):
@@ -607,37 +613,58 @@ class Md_Shussouba_kako(Model):
 
 # 【中間DB】入場人員
 class Md_Nyujo(Model):
+    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="nyujo")  #競馬場マスタ
+     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "nyujo")  #競馬場マスタ
+    ck_kyounen = IntegerField(verbose_name='年')
+    ck_kyoutuki = IntegerField(verbose_name='月')
+    ck_kyouhi = IntegerField(verbose_name='日')
+
     tounyuujinin = IntegerField(verbose_name='当日入場人員')
 
     class Meta:
         verbose_name_plural = '【中間DB】入場人員'
 
     def __str__(self):
-        return str(self.tounyuujinin)
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.tounyuujinin)
 
 # 【中間DB】売上金
 class Md_Uriagekin(Model):
+    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="uriage")  #競馬場マスタ     
+    # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "uriage")  #競馬場マスタ
+    ck_kyounen = IntegerField(verbose_name='年')
+    ck_kyoutuki = IntegerField(verbose_name='月')
+    ck_kyouhi = IntegerField(verbose_name='日')
+
     touuriage = IntegerField(verbose_name='当日売上')
 
     class Meta:
         verbose_name_plural = '【中間DB】売上金'
 
     def __str__(self):
-        return str(self.touuriage)
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.touuriage)
 
 # 【中間DB】成績・払戻
 class Md_Seiseki_Haraimodoshi(Model):
+    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="seiseki_haraimodoshi")  #競馬場マスタ
+
+    # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "seiseki_haraimodoshi")  #競馬場マスタ
+    ck_kyounen = IntegerField(verbose_name='年')
+    ck_kyoutuki = IntegerField(verbose_name='月')
+    ck_kyouhi = IntegerField(verbose_name='日')
+    rebangou = IntegerField(verbose_name='レース番号')
+
+    
     kaisuu = IntegerField(verbose_name='回数')
     kainichime = IntegerField(verbose_name='開催日目')
 
     # 競走年月日
-    ck_kyounichi = DateField(verbose_name='競走年月日')
-    ck_kyounen = IntegerField(verbose_name='年')
-    ck_kyoutuki = IntegerField(verbose_name='月')
-    ck_kyouhi = IntegerField(verbose_name='日')
+    # ck_kyounichi = DateField(verbose_name='競走年月日')
+    # ck_kyounen = IntegerField(verbose_name='年')
+    # ck_kyoutuki = IntegerField(verbose_name='月')
+    # ck_kyouhi = IntegerField(verbose_name='日')
 
     #当日情報
     tenkou = ForeignKey('Mst_Weather', verbose_name='天候マスタ', on_delete=CASCADE)  #天候マスタ
@@ -646,7 +673,7 @@ class Md_Seiseki_Haraimodoshi(Model):
     ck_babamizu = IntegerField(verbose_name='馬場水分')
 
     #レース情報
-    rebangou = IntegerField(verbose_name='レース番号')
+    # rebangou = IntegerField(verbose_name='レース番号')
     shubetsu = ForeignKey('Mst_Breed_age', verbose_name='競争種別', on_delete=CASCADE, related_name = "seiseki_shubetu")  #品種年齢区分マスタ
     tokusouhonsuu = IntegerField(verbose_name='特別競争本題回数')
     tokusoumeihon = CharField(verbose_name='特別競争名本題', max_length=100, blank=True, null=True)
@@ -775,15 +802,17 @@ class Md_Seiseki_Haraimodoshi(Model):
         verbose_name_plural = '【中間DB】成績・払戻'
 
     def __str__(self):
-        return str(self.ck_kyounichi) + str(self.joumei) + str(self.rebangou)+'R'
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou)+'R'
 
 
 # 【中間DB】成績・払戻_成績
 class Md_Seiseki_Haraimodoshi_seiseki(Model):
 
-    #リレーション用の情報
+    # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "seiseki")  #競馬場マスタ
-    ck_kyounichi = DateField(verbose_name='競走年月日')
+    ck_kyounen = IntegerField(verbose_name='年')
+    ck_kyoutuki = IntegerField(verbose_name='月')
+    ck_kyouhi = IntegerField(verbose_name='日')
     rebangou = IntegerField(verbose_name='レース番号')
 
     #着順情報
@@ -836,25 +865,33 @@ class Md_Seiseki_Haraimodoshi_seiseki(Model):
         verbose_name_plural = '【中間DB】成績・払戻_成績'
 
     def __str__(self):
-        return str(self.ck_kyounichi) + str(self.joumei) + str(self.rebangou)+'R ' + str(self.juni) +'着 ' + str(self.bamei)
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou)+'R ' + str(self.juni) +'着 ' + str(self.bamei)
 
 
 # 【中間DB】コーナー・ラップ
 class Md_Corner_Rap(Model):
+    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="corner_rap")  #競馬場マスタ
+    # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "corner_rap")  #競馬場マスタ
-    kainichime = IntegerField(verbose_name='開催日目')
-
-    #競争年月日
-    ck_kyounichi = DateField(verbose_name='競走年月日')
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
     rebangou = IntegerField(verbose_name='レース番号')
 
+
+    kainichime = IntegerField(verbose_name='開催日目')
+
+    #競争年月日
+    # ck_kyounichi = DateField(verbose_name='競走年月日')
+    # ck_kyounen = IntegerField(verbose_name='年')
+    # ck_kyoutuki = IntegerField(verbose_name='月')
+    # ck_kyouhi = IntegerField(verbose_name='日')
+    # rebangou = IntegerField(verbose_name='レース番号')
+
     #１着馬情報 最大３頭（同着を考慮）
     chaku1uma_1 = IntegerField(verbose_name='１着馬番')
     chaku1uma_2 = IntegerField(verbose_name='１着馬番(同着)')
-    chaku1uma_3 = IntegerField(verbose_name='１着馬番(同着)(同着)   ')
+    chaku1uma_3 = IntegerField(verbose_name='１着馬番(同着)(同着)')
 
 
     a4ha = IntegerField(verbose_name='上がり４ハロン')
@@ -873,21 +910,30 @@ class Md_Corner_Rap(Model):
         verbose_name_plural = '【中間DB】コーナー・ラップ'
 
     def __str__(self):
-        return str(self.ck_kyounichi) + str(self.joumei) + str(self.rebangou) + 'R'
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou) + 'R'
         
 # 【中間DB】上がり
 class Md_Agari(Model):
+    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="agari")  #競馬場マスタ
+    
+    # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "agari")  #競馬場マスタ
-    kainichime = IntegerField(verbose_name='開催日目')
-
-    #競争年月日
-    ck_kyounichi = DateField(verbose_name='競走年月日')
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    rebangou = IntegerField(verbose_name='レース番号')
+
+
+    kainichime = IntegerField(verbose_name='開催日目')
+
+    #競争年月日
+    # ck_kyounichi = DateField(verbose_name='競走年月日')
+    # ck_kyounen = IntegerField(verbose_name='年')
+    # ck_kyoutuki = IntegerField(verbose_name='月')
+    # ck_kyouhi = IntegerField(verbose_name='日')
 
     #レース名
-    rebangou = IntegerField(verbose_name='レース番号')
+    # rebangou = IntegerField(verbose_name='レース番号')
 
     # 馬情報
     uma = IntegerField(verbose_name='馬番')
@@ -898,21 +944,28 @@ class Md_Agari(Model):
         verbose_name_plural = '【中間DB】上がり'
 
     def __str__(self):
-        return str(self.ck_kyounichi) + str(self.joumei) + str(self.rebangou) + 'R'
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou) + 'R'
 
 # 【中間DB】通信文
 class Md_Tshuushinbun(Model):
+    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="tsushinbun")  #競馬場マスタ
+    # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "tsushinbun")  #競馬場マスタ
-    kainichime = IntegerField(verbose_name='開催日目')
-
-    #競争年月日
-    ck_kyounichi = DateField(verbose_name='競走年月日')
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    rebangou = IntegerField(verbose_name='レース番号')
+
+    kainichime = IntegerField(verbose_name='開催日目')
+
+    #競争年月日
+    # ck_kyounichi = DateField(verbose_name='競走年月日')
+    # ck_kyounen = IntegerField(verbose_name='年')
+    # ck_kyoutuki = IntegerField(verbose_name='月')
+    # ck_kyouhi = IntegerField(verbose_name='日')
 
     #レース名
-    rebangou = IntegerField(verbose_name='レース番号')
+    # rebangou = IntegerField(verbose_name='レース番号')
     
     # 付加文書内容
     ck_jishou = ForeignKey('Mst_Matter', verbose_name='事象', on_delete=CASCADE)  #事象マスタ
@@ -925,4 +978,4 @@ class Md_Tshuushinbun(Model):
         verbose_name_plural = '【中間DB】通信文'
 
     def __str__(self):
-        return str(self.ck_kyounichi) + str(self.joumei) + str(self.rebangou) + 'R'
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) +  str(self.rebangou) + 'R'
