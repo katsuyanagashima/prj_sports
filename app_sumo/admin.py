@@ -42,6 +42,14 @@ class Mst_KindofNewsMLAdmin(admin.ModelAdmin):
     ]
     list_display = ('Group_code', 'ContentName', 'NewsMLNo')
 
+class Mst_SubHeaderAdmin(admin.ModelAdmin):
+    fieldssets = [
+        ('電文種別', {'fields':['Content_code'] }),
+        ('都道府県', {'fields':['Prefectures_code'] }),
+	    ('#配信コード', {'fields':['Delivery_code'] }),
+    ]
+    list_display = ('Content_code', 'Prefectures_code', 'Delivery_code')
+
 admin.site.register(Mst_Rikishi)
 admin.site.register(Mst_Rikishistatus)
 admin.site.register(Mst_Rename_history, Mst_Rename_historyAdmin)
@@ -60,6 +68,9 @@ admin.site.register(Mst_Lifetime_result)
 admin.site.register(Mst_Lifetime_award)
 admin.site.register(Mst_Gameinfo)
 admin.site.register(Mst_KindofNewsML, Mst_KindofNewsMLAdmin)
+admin.site.register(Mst_Prefectures)
+admin.site.register(Mst_Delivery)
+admin.site.register(Mst_SubHeader, Mst_SubHeaderAdmin)
 #admin.site.register(Mst_Operationmode)
 # --------------------
 admin.site.register(Tran_Systemstatus)
