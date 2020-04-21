@@ -352,3 +352,40 @@ class Mst_Operationmode(Model):
 
     def __str__(self):
         return str(self.Operationmode_name)
+
+#都道府県マスタ
+class Mst_Prefectures(Model):
+    Prefectures_code =  IntegerField(verbose_name='都道府県コード', blank=True, null=True)
+    Prefectures_name = CharField(verbose_name='名称', max_length=10, blank=True, null=True)
+
+    class Meta:
+       verbose_name_plural = '都道府県'
+
+    def __str__(self):
+        return str(self.Prefectures_name)
+
+#配信コードマスタ
+class Mst_Delivery(Model):
+    Delivery_code =  IntegerField(verbose_name='配信コード', blank=True, null=True)
+    Delivery_name = CharField(verbose_name='配信名称', max_length=10, blank=True, null=True)
+    Individual_address =  IntegerField(verbose_name='個別指定', blank=True, null=True)
+
+    class Meta:
+       verbose_name_plural = '配信名称'
+
+    def __str__(self):
+        return str(self.Delivery_name)
+
+#副ヘッタマスタ
+class Mst_SubHeader(Model):
+    Content_code =  ForeignKey('Mst_KindofNewsML', on_delete=CASCADE, blank=True, null=True) #電文種別マスタ
+    Makecontent_code = IntegerField(verbose_name='作成種別コード', blank=True, null=True) 
+    Prefectures_code =  ForeignKey('Mst_Prefectures', on_delete=CASCADE, blank=True, null=True) #都道府県マスタ
+    Nichime_code =  ForeignKey('Mst_Nichime', on_delete=CASCADE, blank=True, null=True) #日目マスタ
+    Delivery_code =  ForeignKey('Mst_Delivery', on_delete=CASCADE, blank=True, null=True) #配信コードマスタ
+
+    class Meta:
+        verbose_name_plural = '副ヘッタマスタ'
+    
+        def __str__(self):
+            return str(self.Content_code)
