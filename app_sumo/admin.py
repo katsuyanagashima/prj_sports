@@ -64,8 +64,8 @@ admin.site.register(Mst_KindofNewsML, Mst_KindofNewsMLAdmin)
 # --------------------
 admin.site.register(Tran_Systemstatus)
 # --------------------
-admin.site.register(Tran_Banzuke_forecast)   #01:新番付資料
-admin.site.register(Tran_Banzuke)   #02-05:番付
+admin.site.register(Tran_Banzuke_forecast)  #01:新番付資料
+admin.site.register(Tran_Banzuke)  #02-05:番付
 # --------------------
 class Tran_TopClassRikishiAdmin(admin.ModelAdmin):
     fieldssets =[
