@@ -1,4 +1,9 @@
 {
+    "meta": {
+        "year": 2020,
+        "month": 4,
+        "day": 17
+    },
     "submit": [
         {
             "jou": "帯広ばんえい",
@@ -233,7 +238,7 @@
         },
         {
             "jou": "大井競馬",
-            "jou_code": 4,
+            "jou_code": 6,
             "img": "jouimg_tck",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -310,7 +315,7 @@
         },
         {
             "jou": "名古屋競馬",
-            "jou_code": 5,
+            "jou_code": 10,
             "img": "jouimg_nagoya",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -387,7 +392,7 @@
         },
         {
             "jou": "高知競馬",
-            "jou_code": 6,
+            "jou_code": 12,
             "img": "jouimg_kochi",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -464,7 +469,7 @@
         },
         {
             "jou": "船橋競馬",
-            "jou_code": 7,
+            "jou_code": 5,
             "img": "jouimg_funabashi",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -541,7 +546,7 @@
         },
         {
             "jou": "川崎競馬",
-            "jou_code": 8,
+            "jou_code": 7,
             "img": "jouimg_kawasaki",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -618,7 +623,7 @@
         },
         {
             "jou": "園田競馬",
-            "jou_code": 9,
+            "jou_code": 11,
             "img": "jouimg_sonoda",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -695,7 +700,7 @@
         },
         {
             "jou": "笠松競馬",
-            "jou_code": 10,
+            "jou_code": 9,
             "img": "jouimg_kasamatsu",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -772,7 +777,7 @@
         },
         {
             "jou": "金沢競馬",
-            "jou_code": 11,
+            "jou_code": 8,
             "img": "jouimg_kanazawa",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -849,7 +854,7 @@
         },
         {
             "jou": "浦和競馬",
-            "jou_code": 12,
+            "jou_code": 4,
             "img": "jouimg_urawa",
             "seisekiA": "○",
             "tsusinA": "○",
@@ -1005,24 +1010,28 @@
     "edit": [
         {
             "jou": "帯広ばんえい",
+            "jou_code": 1,
             "img": "jouimg_banei",
             "nyujo": "○",
             "uriage": "○",
             "shussou": [
+                "◎",
+                "◎",
+                "◎",
                 "○",
                 "○",
                 "○",
+                "●",
                 "○",
                 "○",
                 "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○"
+                "△",
+                ""
             ],
             "seiseki": [
+                "◎",
+                "◎",
+                "◉",
                 "○",
                 "○",
                 "○",
@@ -1030,57 +1039,55 @@
                 "○",
                 "○",
                 "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○"
+                "△",
+                ""
             ],
             "corner": [
+                "◎",
+                "●",
+                "◎",
+                "●",
                 "○",
                 "○",
                 "○",
                 "○",
                 "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○"
+                "△",
+                "△",
+                ""
             ],
             "agari": [
+                "◎",
+                "◎",
+                "◉",
                 "○",
                 "○",
                 "○",
                 "○",
                 "○",
                 "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○"
+                "△",
+                "△",
+                ""
             ],
             "tsusin": [
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○",
-                "○"
+                "-",
+                "-",
+                "-",
+                "-",
+                "-",
+                "-",
+                "-",
+                "-",
+                "-",
+                "-",
+                "-",
+                "-"
             ]
         },
         {
             "jou": "門別競馬",
+            "jou_code": 2,
             "img": "jouimg_monbetsu",
             "nyujo": "○",
             "uriage": "○",
@@ -1157,6 +1164,7 @@
         },
         {
             "jou": "岩手競馬",
+            "jou_code": 3,
             "img": "jouimg_iwate",
             "nyujo": "○",
             "uriage": "○",
@@ -1233,6 +1241,7 @@
         },
         {
             "jou": "大井競馬",
+            "jou_code": 6,
             "img": "jouimg_tck",
             "nyujo": "○",
             "uriage": "○",
@@ -1309,6 +1318,7 @@
         },
         {
             "jou": "名古屋競馬",
+            "jou_code": 10,
             "img": "jouimg_nagoya",
             "nyujo": "○",
             "uriage": "○",
@@ -1385,6 +1395,7 @@
         },
         {
             "jou": "高知競馬",
+            "jou_code": 12,
             "img": "jouimg_kochi",
             "nyujo": "○",
             "uriage": "○",
@@ -1461,6 +1472,7 @@
         },
         {
             "jou": "船橋競馬",
+            "jou_code": 5,
             "img": "jouimg_funabashi",
             "nyujo": "○",
             "uriage": "○",
@@ -1537,6 +1549,7 @@
         },
         {
             "jou": "川崎競馬",
+            "jou_code": 7,
             "img": "jouimg_kawasaki",
             "nyujo": "○",
             "uriage": "○",
@@ -1613,6 +1626,7 @@
         },
         {
             "jou": "園田競馬",
+            "jou_code": 11,
             "img": "jouimg_sonoda",
             "nyujo": "○",
             "uriage": "○",
@@ -1689,6 +1703,7 @@
         },
         {
             "jou": "笠松競馬",
+            "jou_code": 9,
             "img": "jouimg_kasamatsu",
             "nyujo": "○",
             "uriage": "○",
@@ -1765,6 +1780,7 @@
         },
         {
             "jou": "金沢競馬",
+            "jou_code": 8,
             "img": "jouimg_kanazawa",
             "nyujo": "○",
             "uriage": "○",
@@ -1841,6 +1857,7 @@
         },
         {
             "jou": "浦和競馬",
+            "jou_code": 4,
             "img": "jouimg_urawa",
             "nyujo": "○",
             "uriage": "○",
@@ -1917,6 +1934,7 @@
         },
         {
             "jou": "佐賀競馬",
+            "jou_code": 13,
             "img": "jouimg_saga",
             "nyujo": "○",
             "uriage": "○",

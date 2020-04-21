@@ -182,6 +182,11 @@ h6 {
     padding-left: 0.1rem !important;
 }
 
+
+.nyujo-jinin{
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
 /* テーブルの項目異常時のスタイル */
     .misakusei{
         background-color: red;
@@ -192,6 +197,15 @@ h6 {
         background-color: yellow;
     }
 
+/* 編集可能ボタン */
+.edit_push{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 70%;
+    border: outset 1px #6c757d;
+    border-radius: 3px;
+}
 
 /* ５．メイン画面の切替タブ部分 */
 .menu-tab{
@@ -482,7 +496,7 @@ h6 {
 }
 
 .master_edit-table{
-    font-size: 0.9em;
+    font-size: 0.7em;
     margin-bottom: 0px;
     text-align: center;
 }
@@ -620,17 +634,80 @@ h6 {
     padding-bottom: 5px;
 }
 
+.td_value {
+    width:2.5em; 
+    height:1rem;
+}
 
+
+.hanrei_value {
+    width:2em; 
+    height:1rem;
+}
 /* SVG画像 */
+
 .maru-img{
     background: url('/static/app_ckeiba/pic/svg/panorama_fish_eye-black-18dp.svg');
-    background-size: 100%;
-    width:15px; 
-    height:15px;
-    display: block;
-    background-position: left;
+    background-size: 60%;
     background-repeat: no-repeat;
+    background-position: center;
 }
+
+.nakaguro-maru-img{
+    background: url('/static/app_ckeiba/pic/svg/radio_button_checked-black-18dp.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.kuromaru-img{
+    background: url('/static/app_ckeiba/pic/svg/brightness_1-black-18dp.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+.sankaku-img{
+    background: url('/static/app_ckeiba/pic/svg/change_history-black-18dp.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.niju-maru-img{
+    background: url('/static/app_ckeiba/pic/svg/double-circle.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bike-img{
+    background: url('/static/app_ckeiba/pic/svg/two_wheeler-black-18dp.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.umakao-img{
+    background: url('/static/app_ckeiba/pic/svg/uma1.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.uma-img{
+    background: url('/static/app_ckeiba/pic/svg/uma2.svg');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity:0.5;
+}
+
+
 
 .hourglass-img{
     background: url('/static/app_ckeiba/pic/svg/hourglass_empty-black-18dp.svg');
@@ -651,58 +728,25 @@ h6 {
     width:15px; 
     height:15px;
 }
-.bike-img{
-    background: url('/static/app_ckeiba/pic/svg/two_wheeler-black-18dp.svg');
-    background-size: 100%;
-    width:15px; 
-    height:15px;
-}
-.maru2-img{
-    background: url('/static/app_ckeiba/pic/svg/radio_button_checked-black-18dp.svg');
-    background-size: 100%;
-    width:15px; 
-    height:15px;
-}
-
 
 .check-img{
     background: url('/static/app_ckeiba/pic/svg/done-black-18dp.svg');
     background-size: 100%;
-    width:15px; 
-    height:15px;
+    width:10px; 
+    height:10px;
 }
 .check_circle-img{
     background: url('/static/app_ckeiba/pic/svg/check_circle_outline-black-18dp.svg');
     background-size: 100%;
-    width:15px; 
-    height:15px;
+    width:1rem; 
+    height:1rem;
 }
 
-.change_history-black-img{
-    background: url('/static/app_ckeiba/pic/svg/change_history-black-18dp.svg');
-    background-size: 100%;
-    width:15px; 
-    height:15px;
-}
-
-.brightness-img{
-    background: url('/static/app_ckeiba/pic/svg/brightness_1-black-18dp.svg');
-    background-size: 100%;
-    width:15px; 
-    height:15px;
-}
 
 .arrow_drop_down-img{
     background: url('/static/app_ckeiba/pic/svg/arrow_drop_down-black-18dp.svg');
     background-size: 100%;
-    width:15px; 
-    height:15px;
+    width:10px; 
+    height:10px;
 }
 
-
-.double-circle-img{
-    background: url('/static/app_ckeiba/pic/svg/double-circle.svg');
-    background-size: 100%;
-    width:12px; 
-    height:12px;
-}

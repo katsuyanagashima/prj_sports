@@ -16,15 +16,35 @@
                                         <td class="table-dark nyujo-jinin">入場人員</td>
 
                                         {% if edit_data.nyujo == '○' %}
-                                        <td class="maru-img td_value"></td>
+                                        <td class="maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:nyujo' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.nyujo == '△' %}
                                         <td class="sankaku-img td_value"></td>
                                         {% elif edit_data.nyujo == '◎' %}
-                                        <td class="niju-maru-img td_value"></td>
+                                        <td class="niju-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:nyujo' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.nyujo == '●' %}
-                                        <td class="kuromaru-img td_value"></td>
+                                        <td class="kuromaru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:nyujo' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.nyujo == '◉' %}
-                                        <td class="nakaguro-maru-img td_value"></td>
+                                        <td class="nakaguro-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:nyujo' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.nyujo == '-' %}
                                         <td class="uma-img td_value"></td>
                                         {% else %}
@@ -40,16 +60,37 @@
                                 <tbody>
                                     <tr>
                                         <td class="table-dark">売上金</td>
+
                                         {% if edit_data.nyujo == '○' %}
-                                        <td class="maru-img td_value"></td>
+                                        <td class="maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:uriage' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.uriage == '△' %}
                                         <td class="sankaku-img td_value"></td>
                                         {% elif edit_data.uriage == '◎' %}
-                                        <td class="niju-maru-img td_value"></td>
+                                        <td class="niju-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:uriage' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.uriage == '●' %}
-                                        <td class="kuromaru-img td_value"></td>
+                                        <td class="kuromaru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:uriage' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.uriage == '◉' %}
-                                        <td class="nakaguro-maru-img td_value"></td>
+                                        <td class="nakaguro-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:uriage' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code %}">
+                                                <div class="edit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif edit_data.uriage == '-' %}
                                         <td class="uma-img td_value"></td>
                                         {% else %}
@@ -88,15 +129,35 @@
                             {% for shussou in edit_data.shussou %}
 
                             {% if shussou == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif shussou == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
@@ -111,15 +172,33 @@
                             {% for seiseki in edit_data.seiseki %}
 
                             {% if seiseki == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif seiseki == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif seiseki == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif seiseki == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a></td>
                             {% elif seiseki == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a></td>
                             {% elif seiseki == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
@@ -133,15 +212,35 @@
                             {% for corner in edit_data.corner %}
 
                             {% if corner == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:corner_rap' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif corner == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif corner == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:corner_rap' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif corner == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:corner_rap' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif corner == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:corner_rap' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif corner == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
@@ -155,15 +254,35 @@
                             {% for agari in edit_data.agari %}
 
                             {% if agari == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif agari == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
@@ -178,15 +297,35 @@
                             {% for tsusin in edit_data.tsusin %}
 
                             {% if tsusin == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif tsusin == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=forloop.counter %}">
+                                    <div class="edit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
