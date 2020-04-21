@@ -79,3 +79,24 @@ class Tran_TopClassRikishi(Model):
     def __str__(self):
         return str(self.Class_code)
 
+# --------------------------------------------------------------------------------------------------
+#優勝・三賞入力
+#
+class Tran_YushoSansho(Model):
+    Yearmonth = IntegerField(verbose_name='開催年月西暦') #６桁数字
+    Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE)
+    Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE)
+    Rikishi =  ForeignKey('Mst_Rikishi', on_delete=PROTECT)
+    Yusho_flg = BooleanField(verbose_name='優勝区分', blank=False, null=False, default=False)
+    Shukunsho_flg = BooleanField(verbose_name='殊勲賞区分', blank=False, null=False, default=False)
+    Kantosho_flg = BooleanField(verbose_name='敢闘賞区分', blank=False, null=False, default=False)
+    Ginosho_flg = BooleanField(verbose_name='技能賞区分', blank=False, null=False, default=False)
+    #過去の優勝・三賞力士を保存する必要がある？
+    #  保存する場合は、入力された日目を残す？
+
+    class Meta:
+        verbose_name_plural = '*優勝・三賞入力'
+        unique_together = ('Yearmonth', 'Nichime_code', 'Class_code', 'Rikishi')
+
+    def __str__(self):
+        return str(self.Rikishi)
