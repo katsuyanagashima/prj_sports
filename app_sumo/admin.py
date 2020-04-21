@@ -95,7 +95,7 @@ class Tran_YushoSanshoAdmin(admin.ModelAdmin):
         ('開催年月西暦', {'fields':['Yearmonth']}),
         ('日目', {'fields':['Nichime_code']}),
         ('階級', {'fields':['Class_code']}),
-        ('力士', {'fields':['Rikishi']}),
+        ('力士名', {'fields':['Rikishi']}),
         ('優勝区分', {'fields':['Yusho_flg']}),
         ('殊勲賞区分', {'fields':['Shukunsho_flg']}),
         ('敢闘賞区分', {'fields':['Kantosho_flg']}),
