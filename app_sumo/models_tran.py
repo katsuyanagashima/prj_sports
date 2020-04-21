@@ -86,7 +86,7 @@ class Tran_YushoSansho(Model):
     Yearmonth = IntegerField(verbose_name='開催年月西暦') #６桁数字
     Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE)
     Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE)
-    Rikishi =  ForeignKey('Mst_Rikishi', on_delete=PROTECT)
+    Rikishi =  ForeignKey('Mst_Rikishi', verbose_name='力士名', on_delete=PROTECT)
     Yusho_flg = BooleanField(verbose_name='優勝区分', blank=False, null=False, default=False)
     Shukunsho_flg = BooleanField(verbose_name='殊勲賞区分', blank=False, null=False, default=False)
     Kantosho_flg = BooleanField(verbose_name='敢闘賞区分', blank=False, null=False, default=False)
