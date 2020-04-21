@@ -48,6 +48,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
                 
             if not schedule.insert_or_update_Trn_Schedule(name):
                 logger.warn("DB insert_or_update_Trn_Schedule: 失敗：ファイル名" + name)
+                # raise Exception()
             logger.info( "created End:")
 
         if RESULTDATA in filepath:   
