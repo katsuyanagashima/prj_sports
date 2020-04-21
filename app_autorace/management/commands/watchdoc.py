@@ -34,8 +34,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
 
     # ファイル作成時のイベント
     def on_created(self, event):
-        if PAUSED is True:
-            return
+
         # ①～⑤　どれを呼び出すかパスから判断する。
         filepath = event.src_path
         if SCHEDULEDATA in filepath:   
@@ -47,7 +46,8 @@ class WatchDocHandler(PatternMatchingEventHandler):
             # ファイル読み込み
             schedule = trn_Schedule.Schedule()
                 
-            schedule.insert_or_update_Trn_Schedule(name)
+            if not schedule.insert_or_update_Trn_Schedule(name):
+                logger.warn("DB insert_or_update_Trn_Schedule: 失敗：ファイル名" + name)
             logger.info( "created End:")
 
         if RESULTDATA in filepath:   
@@ -59,7 +59,8 @@ class WatchDocHandler(PatternMatchingEventHandler):
             # ファイル読み込み
             result = trn_Result.Result()
                 
-            result.insert_or_update_Trn_Result(name)
+            if not result.insert_or_update_Trn_Result(name):
+                logger.warn("DB insert_or_update_Trn_Result: 失敗：ファイル名" + name)
             logger.info( "created End:")
 
         if PROGRAMDATA in filepath:   
@@ -71,7 +72,8 @@ class WatchDocHandler(PatternMatchingEventHandler):
             # ファイル読み込み
             program = trn_program.Program()
                 
-            program.insert_or_update_Trn_Program(name)
+            if not program.insert_or_update_Trn_Program(name):
+                logger.warn("DB insert_or_update_Trn_Program: 失敗：ファイル名" + name)
             logger.info( "created End:")
 
         if TOP30PRIZEDATA in filepath:   
@@ -83,7 +85,8 @@ class WatchDocHandler(PatternMatchingEventHandler):
             # ファイル読み込み
             top_30_prize = trn_top_30_prize.Top_30_prize()
                 
-            top_30_prize.insert_or_update_Trn_Top_30_Prize(name)
+            if not top_30_prize.insert_or_update_Trn_Top_30_Prize(name):
+                logger.warn("DB insert_or_update_Trn_Top_30_Prize: 失敗：ファイル名" + name)
             logger.info( "created End:")
 
         if OUTSIDETRACKDATA in filepath:   
@@ -94,8 +97,8 @@ class WatchDocHandler(PatternMatchingEventHandler):
             logger.info( "created Start:" + name)
             # ファイル読み込み
             outside_track = trn_outside_track.Outside_track()
-                
-            outside_track.insert_or_update_Trn_Outside_track(name)
+            if not outside_track.insert_or_update_Trn_Outside_track(name):
+                logger.warn("DB insert_or_update_Trn_Outside_track: 失敗：ファイル名" + name)
             logger.info( "created End:")
 
     # ファイル変更時のイベント

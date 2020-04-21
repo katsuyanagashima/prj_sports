@@ -2,6 +2,7 @@ import logging
 # ファイルアクセスとスリープのため、osとtimeをインポート
 import os
 import re
+import sys
 import time
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
@@ -13,7 +14,8 @@ from django.db.models import Max
 from app_autorace.models import *
 from logging import getLogger
 from pathlib import Path
-
+sys.path.append("/code/app_autorace/")
+from consts import *
 logger = getLogger('command')
 
 top30prize = 50 # 取得賞金テーブル　繰り返しの数
@@ -141,16 +143,22 @@ class Top_30_prize():
                 top30prizeLine = line[18:]
                 
                 self.setDatData(top30prizeLine)
-                break
+
             file.close()
 
+            return NORMAL
+
         except FileNotFoundError as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
         except UnboundLocalError as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
         except ValueError as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
         except Exception as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
 
 

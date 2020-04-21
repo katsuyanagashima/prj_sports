@@ -21,6 +21,7 @@ from django.db.models import Max
 sys.path.append("/code/app_autorace/")
 from consts import *
 
+
 logger = getLogger("command")
 
 # 監視対象ファイルのパターンマッチを指定する
@@ -33,8 +34,10 @@ target_file_outsidetrack_record = ['*00000004.dat']
 
 base_trn = os.path.dirname(os.path.abspath(__file__))
 
+
 # コマンド実行の確認
-class Command(BaseCommand):
+
+class Command(BaseCommand):    
     # コンストラクターの定義
     def __init__(self):
         self.observer_trn_schedule = PollingObserver()
