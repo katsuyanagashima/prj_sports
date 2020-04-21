@@ -36,7 +36,7 @@ class Tran_Banzuke_forecast(Model):
     #Demoted_rank =  IntegerField(verbose_name='昇降順位', blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = '*【NewsML】01新番付資料'
+        verbose_name_plural = '*【NewsML】01:新番付資料'
 
     def __str__(self):
         return str(self.Rikishi)	
@@ -57,7 +57,7 @@ class Tran_Banzuke(Model):
     Demoted_rank =  IntegerField(verbose_name='昇降順位', blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = '*【NewsML】02-05番付'
+        verbose_name_plural = '*【NewsML】02-0:5番付'
 
     def __str__(self):
         return str(self.Rikishi)	
