@@ -1,0 +1,16 @@
+<div>
+    <h2>{{title}}更新画面</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <hr />
+        {{ formset.as_p }}
+        <hr />
+        {{ formset_kako5sou.as_p }}
+
+
+        <button type="submit" class="btn btn-primary">更新</button></br>
+        <a href="{% url 'app_ckeiba:index'%}" class="btn" role="button">戻る</a>
+    </form>
+</div>
