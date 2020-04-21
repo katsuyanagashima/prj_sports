@@ -3,6 +3,7 @@ import datetime
 # ファイルアクセスとスリープのため、osとtimeをインポート
 import os
 import re
+import sys
 import time
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
@@ -14,13 +15,14 @@ from django.db.models import Max
 from app_autorace.models import *
 from logging import getLogger
 from pathlib import Path
+sys.path.append("/code/app_autorace/")
+from consts import *
 
-#!/usr/bin/env 
 logger = getLogger('command')
 
 # 監視対象ファイルのパターンマッチを指定する
 # レース結果データレコード（mmddhhmmss0000JRR2.dat）
-# resultID = 3
+
 trn_rider_result_list = 8
 resultData = "resultData"
 
@@ -500,17 +502,18 @@ class Result():
                     
                        
             file.close()
+            return NORMAL
 
         except FileNotFoundError as e:
             logger.warn(e)
-            raise (e)
+            return ABNORMAL
         except UnboundLocalError as e:
             logger.warn(e)
-            raise (e)
+            return ABNORMAL
         except ValueError as e:
             logger.warn(e)
-            raise (e)
+            return ABNORMAL
         except Exception as e:
-            logger.warn("DB insert_or_update_Trn_Result")
-            raise (e)
+            logger.warn(e)
+            return ABNORMAL
 
