@@ -90,10 +90,10 @@
                         {% for haishinsha in mst_haishin %}
                         <div class="custom-control custom-checkbox haishin-box col-1">
                             <input type="checkbox" class="custom-control-input"
-                                id="haishin_chk_{{ haishinsha.Company_code }}" name="haishinsha"
-                                value="{{ haishinsha.Company_code }},{{ haishinsha }}">
+                                id="haishin_chk_{{ haishinsha.Haishinsha_code }}" name="haishinsha"
+                                value="{{ haishinsha.Haishinsha_code }},{{ haishinsha }}">
                             <label class="custom-control-label"
-                                for="haishin_chk_{{ haishinsha.Company_code }}">{{ haishinsha }}</label>
+                                for="haishin_chk_{{ haishinsha.Haishinsha_code }}">{{ haishinsha }}</label>
                         </div>
                         {% endfor %}
                     </div>

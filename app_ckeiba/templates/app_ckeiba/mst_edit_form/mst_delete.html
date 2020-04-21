@@ -1,0 +1,16 @@
+<div>
+    <h2>{{title}}削除画面</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field">
+            {{ field.label }}：{{ field.value }}
+        </div>
+        {% endfor %}
+
+        を削除しますか？
+
+        <button type="submit" class="btn btn-primary">削除</button></br>
+        <a href="../../../" class="btn" role="button">戻る</a>
+    </form>
+</div>
