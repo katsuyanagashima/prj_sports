@@ -82,7 +82,16 @@ def output_NewsML(request):
                 'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
             }    
-
+            elif newsno == "06":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho':tran_system.CurrentBasho,
+                'torikuminichime':tran_system.TorikumiDate.Nichime_4char,
+            }  
+            
         if "Input_status" in request.POST:
             st = request.POST["Input_status"] # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
             if st in ["0","1"]: # 編集か配信であれば、NewsMLをファイルに出力
