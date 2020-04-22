@@ -42,6 +42,14 @@ class Mst_KindofNewsMLAdmin(admin.ModelAdmin):
     ]
     list_display = ('Group_code', 'ContentName', 'NewsMLNo')
 
+class Mst_SubHeaderAdmin(admin.ModelAdmin):
+    fieldssets = [
+        ('電文種別', {'fields':['Content_code'] }),
+        ('都道府県', {'fields':['Prefectures_code'] }),
+	    ('#配信コード', {'fields':['Delivery_code'] }),
+    ]
+    list_display = ('Content_code', 'Prefectures_code', 'Delivery_code')
+
 admin.site.register(Mst_Rikishi)
 admin.site.register(Mst_Rikishistatus)
 admin.site.register(Mst_Rename_history, Mst_Rename_historyAdmin)
@@ -60,11 +68,15 @@ admin.site.register(Mst_Lifetime_result)
 admin.site.register(Mst_Lifetime_award)
 admin.site.register(Mst_Gameinfo)
 admin.site.register(Mst_KindofNewsML, Mst_KindofNewsMLAdmin)
+admin.site.register(Mst_Prefectures)
+admin.site.register(Mst_Delivery)
+admin.site.register(Mst_SubHeader, Mst_SubHeaderAdmin)
 #admin.site.register(Mst_Operationmode)
 # --------------------
 admin.site.register(Tran_Systemstatus)
 # --------------------
-admin.site.register(Tran_Banzuke)
+admin.site.register(Tran_Banzuke_forecast)  #01:新番付資料
+admin.site.register(Tran_Banzuke)  #02-05:番付
 # --------------------
 class Tran_TopClassRikishiAdmin(admin.ModelAdmin):
     fieldssets =[
@@ -78,6 +90,28 @@ class Tran_TopClassRikishiAdmin(admin.ModelAdmin):
 
 admin.site.register(Tran_TopClassRikishi, Tran_TopClassRikishiAdmin)
 # --------------------
+class Tran_YushoSanshoAdmin(admin.ModelAdmin):
+    """Yearmonth = IntegerField(verbose_name='開催年月西暦') #６桁数字
+    Nichime_code = ForeignKey('Mst_Nichime', verbose_name='日目', on_delete=CASCADE)
+    Class_code = ForeignKey('Mst_Class', verbose_name='階級', on_delete=CASCADE)
+    Rikishi =  ForeignKey('Mst_Rikishi', on_delete=PROTECT)
+    Yusho_flg = BooleanField(verbose_name='優勝区分', blank=False, null=False, default=False)
+    Kantosho_flg = BooleanField(verbose_name='敢闘賞区分', blank=False, null=False, default=False)
+    Ginosho_flg = BooleanField(verbose_name='技能賞区分', blank=False, null=False, default=False)
+    Shukunsho_flg = BooleanField(verbose_name='殊勲賞区分', blank=False, null=False, default=False)
+    """
+    fieldssets =[
+        ('開催年月西暦', {'fields':['Yearmonth']}),
+        ('日目', {'fields':['Nichime_code']}),
+        ('階級', {'fields':['Class_code']}),
+        ('力士', {'fields':['Rikishi']}),
+        ('優勝区分', {'fields':['Yusho_flg']}),
+        ('殊勲賞区分', {'fields':['Shukunsho_flg']}),
+        ('敢闘賞区分', {'fields':['Kantosho_flg']}),
+        ('技能賞区分', {'fields':['Ginosho_flg']}),
+    ]
+    list_display = ('Yearmonth', 'Nichime_code', 'Class_code', 'Rikishi',
+                    'Yusho_flg', 'Shukunsho_flg', 'Kantosho_flg', 'Ginosho_flg')
 
-
+admin.site.register(Tran_YushoSansho, Tran_YushoSanshoAdmin)
 

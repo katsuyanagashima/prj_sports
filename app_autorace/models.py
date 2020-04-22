@@ -520,18 +520,18 @@ class Trn_Outside_track(models.Model):
     Cllasification = models.CharField('区分', blank=True, null=True, max_length=1)
     Data_type = models.CharField('データ種別', blank=True, null=True ,max_length=1)
     Track_code = models.CharField('場コード', blank=True, null=True ,max_length=1)
-    Track_name = models.CharField('場名', blank=True, null=True ,max_length=6)
+    Track_name = models.CharField('場名', blank=True, null=True ,max_length=3)
     Date_AD = models.CharField('開催日（西暦）', blank=True, null=True ,max_length=8)
-    Date_Japanese_calendar = models.CharField('開催日（和暦）', blank=True, null=True, max_length=22)
-    Held_day = models.CharField('開催回日目', blank=True, null=True, max_length=28)
-    Period_days = models.CharField('節日数', blank=True, null=True, max_length=8)
-    Event_name = models.CharField('開催名称', blank=True, null=True, max_length=40)
+    Date_Japanese_calendar = models.CharField('開催日（和暦）', blank=True, null=True, max_length=11)
+    Held_day = models.CharField('開催回日目', blank=True, null=True, max_length=14)
+    Period_days = models.CharField('節日数', blank=True, null=True, max_length=4)
+    Event_name = models.CharField('開催名称', blank=True, null=True, max_length=20)
     First_day_of_the_event = models.CharField('開催初日', blank=True, null=True, max_length=8)
     Commemorative_code = models.CharField('記念コード', blank=True, null=True, max_length=1)
     Special_commemorative_code = models.CharField('特別記念コード', blank=True, null=True, max_length=2)
-    
+
     OTB_code_1 = models.CharField('売場コード＿１', blank=True, null=True, max_length=1)
-    OTB_1 = models.CharField('売場名＿１', blank=True, null=True, max_length=6)
+    OTB_1 = models.CharField('売場名＿１', blank=True, null=True, max_length=3)
     OTB_Classification_1 = models.CharField('売場区分＿１', blank=True, null=True, max_length=1)
     Held_Classification_1 = models.CharField('開催区分＿１', blank=True, null=True, max_length=1)
     Note_code_1 = models.CharField('注釈コード＿１', blank=True, null=True, max_length=2)
@@ -549,7 +549,7 @@ class Trn_Outside_track(models.Model):
     race_12_1 = models.CharField('レース１２＿１', blank=True, null=True, max_length=1)
 
     OTB_code_2 = models.CharField('売場コード＿２', blank=True, null=True, max_length=1)
-    OTB_2 = models.CharField('売場名＿２', blank=True, null=True, max_length=6)
+    OTB_2 = models.CharField('売場名＿２', blank=True, null=True, max_length=3)
     OTB_Classification_2 = models.CharField('売場区分＿２', blank=True, null=True, max_length=1)
     Held_Classification_2 = models.CharField('開催区分＿２', blank=True, null=True, max_length=1)
     Note_code_2 = models.CharField('注釈コード＿２', blank=True, null=True, max_length=2)
@@ -567,7 +567,7 @@ class Trn_Outside_track(models.Model):
     race_12_2 = models.CharField('レース１２＿２', blank=True, null=True, max_length=1)
 
     OTB_code_3 = models.CharField('売場コード＿３', blank=True, null=True, max_length=1)
-    OTB_3 = models.CharField('売場名＿３', blank=True, null=True, max_length=6)
+    OTB_3 = models.CharField('売場名＿３', blank=True, null=True, max_length=3)
     OTB_Classification_3 = models.CharField('売場区分＿３', blank=True, null=True, max_length=1)
     Held_Classification_3 = models.CharField('開催区分＿３', blank=True, null=True, max_length=1)
     Note_code_2 = models.CharField('注釈コード＿３', blank=True, null=True, max_length=2)
@@ -585,7 +585,7 @@ class Trn_Outside_track(models.Model):
     race_12_3 = models.CharField('レース１２＿３', blank=True, null=True, max_length=1)
 
     OTB_code_4 = models.CharField('売場コード＿４', blank=True, null=True, max_length=1)
-    OTB_4 = models.CharField('売場名＿４', blank=True, null=True, max_length=6)
+    OTB_4 = models.CharField('売場名＿４', blank=True, null=True, max_length=3)
     OTB_Classification_4 = models.CharField('売場区分＿４', blank=True, null=True, max_length=1)
     Held_Classification_4 = models.CharField('開催区分＿４', blank=True, null=True, max_length=1)
     Note_code_4 = models.CharField('注釈コード＿４', blank=True, null=True, max_length=2)
@@ -603,7 +603,7 @@ class Trn_Outside_track(models.Model):
     race_12_4 = models.CharField('レース１２＿４', blank=True, null=True, max_length=1)
 
     OTB_code_5 = models.CharField('売場コード＿５', blank=True, null=True, max_length=1)
-    OTB_5 = models.CharField('売場名＿５', blank=True, null=True, max_length=6)
+    OTB_5 = models.CharField('売場名＿５', blank=True, null=True, max_length=3)
     OTB_Classification_5 = models.CharField('売場区分＿５', blank=True, null=True, max_length=1)
     Held_Classification_5 = models.CharField('開催区分＿５', blank=True, null=True, max_length=1)
     Note_code_5 = models.CharField('注釈コード＿５', blank=True, null=True, max_length=2)
@@ -621,7 +621,7 @@ class Trn_Outside_track(models.Model):
     race_12_5 = models.CharField('レース１２＿５', blank=True, null=True, max_length=1)
 
     OTB_code_6 = models.CharField('売場コード＿６', blank=True, null=True, max_length=1)
-    OTB_6 = models.CharField('売場名＿６', blank=True, null=True, max_length=6)
+    OTB_6 = models.CharField('売場名＿６', blank=True, null=True, max_length=3)
     OTB_Classification_6 = models.CharField('売場区分＿６', blank=True, null=True, max_length=1)
     Held_Classification_6 = models.CharField('開催区分＿６', blank=True, null=True, max_length=1)
     Note_code_6 = models.CharField('注釈コード＿６', blank=True, null=True, max_length=2)
@@ -639,7 +639,7 @@ class Trn_Outside_track(models.Model):
     race_12_6 = models.CharField('レース１２＿６', blank=True, null=True, max_length=1)
 
     OTB_code_7 = models.CharField('売場コード＿７', blank=True, null=True, max_length=1)
-    OTB_7 = models.CharField('売場名＿７', blank=True, null=True, max_length=6)
+    OTB_7 = models.CharField('売場名＿７', blank=True, null=True, max_length=3)
     OTB_Classification_7 = models.CharField('売場区分＿７', blank=True, null=True, max_length=1)
     Held_Classification_7 = models.CharField('開催区分＿７', blank=True, null=True, max_length=1)
     Note_code_7 = models.CharField('注釈コード＿７', blank=True, null=True, max_length=2)
@@ -657,7 +657,7 @@ class Trn_Outside_track(models.Model):
     race_12_7 = models.CharField('レース１２＿７', blank=True, null=True, max_length=1)
 
     OTB_code_8 = models.CharField('売場コード＿８', blank=True, null=True, max_length=1)
-    OTB_8 = models.CharField('売場名＿８', blank=True, null=True, max_length=6)
+    OTB_8 = models.CharField('売場名＿８', blank=True, null=True, max_length=3)
     OTB_Classification_8 = models.CharField('売場区分＿８', blank=True, null=True, max_length=1)
     Held_Classification_8 = models.CharField('開催区分＿８', blank=True, null=True, max_length=1)
     Note_code_8 = models.CharField('注釈コード＿８', blank=True, null=True, max_length=2)
@@ -675,7 +675,7 @@ class Trn_Outside_track(models.Model):
     race_12_8 = models.CharField('レース１２＿８', blank=True, null=True, max_length=1)
 
     OTB_code_9 = models.CharField('売場コード＿９', blank=True, null=True, max_length=1)
-    OTB_9 = models.CharField('売場名＿９', blank=True, null=True, max_length=6)
+    OTB_9 = models.CharField('売場名＿９', blank=True, null=True, max_length=3)
     OTB_Classification_9 = models.CharField('売場区分＿９', blank=True, null=True, max_length=1)
     Held_Classification_9 = models.CharField('開催区分＿９', blank=True, null=True, max_length=1)
     Note_code_9 = models.CharField('注釈コード＿９', blank=True, null=True, max_length=2)
@@ -693,7 +693,7 @@ class Trn_Outside_track(models.Model):
     race_12_9 = models.CharField('レース１２＿９', blank=True, null=True, max_length=1)
 
     OTB_code_10 = models.CharField('売場コード＿１０', blank=True, null=True, max_length=1)
-    OTB_code_10 = models.CharField('売場名＿１０', blank=True, null=True, max_length=6)
+    OTB_10 = models.CharField('売場名＿１０', blank=True, null=True, max_length=3)
     OTB_Classification_10 = models.CharField('売場区分＿１０', blank=True, null=True, max_length=1)
     Held_Classification_10 = models.CharField('開催区分＿１０', blank=True, null=True, max_length=1)
     Note_code_10 = models.CharField('注釈コード＿１０', blank=True, null=True, max_length=2)
@@ -711,7 +711,7 @@ class Trn_Outside_track(models.Model):
     race_12_10 = models.CharField('レース１２＿１０', blank=True, null=True, max_length=1)
 
     OTB_code_11 = models.CharField('売場コード＿１１', blank=True, null=True, max_length=1)
-    OTB_code_11 = models.CharField('売場名＿１１', blank=True, null=True, max_length=6)
+    OTB_11 = models.CharField('売場名＿１１', blank=True, null=True, max_length=3)
     OTB_Classification_11 = models.CharField('売場区分＿１１', blank=True, null=True, max_length=1)
     Held_Classification_11 = models.CharField('開催区分＿１１', blank=True, null=True, max_length=1)
     Note_code_11 = models.CharField('注釈コード＿１１', blank=True, null=True, max_length=2)
@@ -729,7 +729,7 @@ class Trn_Outside_track(models.Model):
     race_12_11 = models.CharField('レース１２＿１１', blank=True, null=True, max_length=1)
 
     OTB_code_12 = models.CharField('売場コード＿１２', blank=True, null=True, max_length=1)
-    OTB_code_12 = models.CharField('売場名＿１２', blank=True, null=True, max_length=6)
+    OTB_12 = models.CharField('売場名＿１２', blank=True, null=True, max_length=3)
     OTB_Classification_12 = models.CharField('売場区分＿１２', blank=True, null=True, max_length=1)
     Held_Classification_12 = models.CharField('開催区分＿１２', blank=True, null=True, max_length=1)
     Note_code_12 = models.CharField('注釈コード＿１２', blank=True, null=True, max_length=2)
@@ -747,7 +747,7 @@ class Trn_Outside_track(models.Model):
     race_12_12 = models.CharField('レース１２＿１２', blank=True, null=True, max_length=1)
 
     OTB_code_13 = models.CharField('売場コード＿１３', blank=True, null=True, max_length=1)
-    OTB_code_13 = models.CharField('売場名＿１３', blank=True, null=True, max_length=6)
+    OTB_13 = models.CharField('売場名＿１３', blank=True, null=True, max_length=3)
     OTB_Classification_13 = models.CharField('売場区分＿１３', blank=True, null=True, max_length=1)
     Held_Classification_13 = models.CharField('開催区分＿１３', blank=True, null=True, max_length=1)
     Note_code_13 = models.CharField('注釈コード＿１３', blank=True, null=True, max_length=2)
@@ -765,7 +765,7 @@ class Trn_Outside_track(models.Model):
     race_12_13 = models.CharField('レース１２＿１３', blank=True, null=True, max_length=1)
 
     OTB_code_14 = models.CharField('売場コード＿１４', blank=True, null=True, max_length=1)
-    OTB_code_14 = models.CharField('売場名＿１４', blank=True, null=True, max_length=6)
+    OTB_14 = models.CharField('売場名＿１４', blank=True, null=True, max_length=3)
     OTB_Classification_14 = models.CharField('売場区分＿１４', blank=True, null=True, max_length=1)
     Held_Classification_14 = models.CharField('開催区分＿１４', blank=True, null=True, max_length=1)
     Note_code_14 = models.CharField('注釈コード＿１４', blank=True, null=True, max_length=2)
@@ -783,7 +783,7 @@ class Trn_Outside_track(models.Model):
     race_12_14 = models.CharField('レース１２＿１４', blank=True, null=True, max_length=1)
 
     OTB_code_15 = models.CharField('売場コード＿１５', blank=True, null=True, max_length=1)
-    OTB_code_15 = models.CharField('売場名＿１５', blank=True, null=True, max_length=6)
+    OTB_15 = models.CharField('売場名＿１５', blank=True, null=True, max_length=3)
     OTB_Classification_15 = models.CharField('売場区分＿１５', blank=True, null=True, max_length=1)
     Held_Classification_15 = models.CharField('開催区分＿１５', blank=True, null=True, max_length=1)
     Note_code_15 = models.CharField('注釈コード＿１５', blank=True, null=True, max_length=2)
@@ -801,7 +801,7 @@ class Trn_Outside_track(models.Model):
     race_12_15 = models.CharField('レース１２＿１５', blank=True, null=True, max_length=1)
 
     OTB_code_16 = models.CharField('売場コード＿１６', blank=True, null=True, max_length=1)
-    OTB_code_16 = models.CharField('売場名＿１６', blank=True, null=True, max_length=6)
+    OTB_16 = models.CharField('売場名＿１６', blank=True, null=True, max_length=3)
     OTB_Classification_16 = models.CharField('売場区分＿１６', blank=True, null=True, max_length=1)
     Held_Classification_16 = models.CharField('開催区分＿１６', blank=True, null=True, max_length=1)
     Note_code_16 = models.CharField('注釈コード＿１６', blank=True, null=True, max_length=2)
@@ -819,7 +819,7 @@ class Trn_Outside_track(models.Model):
     race_12_16 = models.CharField('レース１２＿１６', blank=True, null=True, max_length=1)
 
     OTB_code_17 = models.CharField('売場コード＿１７', blank=True, null=True, max_length=1)
-    OTB_code_17 = models.CharField('売場名＿１７', blank=True, null=True, max_length=6)
+    OTB_17 = models.CharField('売場名＿１７', blank=True, null=True, max_length=3)
     OTB_Classification_17 = models.CharField('売場区分＿１７', blank=True, null=True, max_length=1)
     Held_Classification_17 = models.CharField('開催区分＿１７', blank=True, null=True, max_length=1)
     Note_code_17 = models.CharField('注釈コード＿１７', blank=True, null=True, max_length=2)
@@ -837,7 +837,7 @@ class Trn_Outside_track(models.Model):
     race_12_17 = models.CharField('レース１２＿１７', blank=True, null=True, max_length=1)
 
     OTB_code_18 = models.CharField('売場コード＿１８', blank=True, null=True, max_length=1)
-    OTB_code_18 = models.CharField('売場名＿１８', blank=True, null=True, max_length=6)
+    OTB_18 = models.CharField('売場名＿１８', blank=True, null=True, max_length=3)
     OTB_Classification_18 = models.CharField('売場区分＿１８', blank=True, null=True, max_length=1)
     Held_Classification_18 = models.CharField('開催区分＿１８', blank=True, null=True, max_length=1)
     Note_code_18 = models.CharField('注釈コード＿１８', blank=True, null=True, max_length=2)
@@ -855,7 +855,7 @@ class Trn_Outside_track(models.Model):
     race_12_18 = models.CharField('レース１２＿１８', blank=True, null=True, max_length=1)
 
     OTB_code_19 = models.CharField('売場コード＿１９', blank=True, null=True, max_length=1)
-    OTB_code_19 = models.CharField('売場名＿１９', blank=True, null=True, max_length=6)
+    OTB_19 = models.CharField('売場名＿１９', blank=True, null=True, max_length=3)
     OTB_Classification_19 = models.CharField('売場区分＿１９', blank=True, null=True, max_length=1)
     Held_Classification_19 = models.CharField('開催区分＿１９', blank=True, null=True, max_length=1)
     Note_code_19 = models.CharField('注釈コード＿１９', blank=True, null=True, max_length=2)
@@ -873,7 +873,7 @@ class Trn_Outside_track(models.Model):
     race_12_19 = models.CharField('レース１２＿１９', blank=True, null=True, max_length=1)
 
     OTB_code_20 = models.CharField('売場コード＿２０', blank=True, null=True, max_length=1)
-    OTB_code_20 = models.CharField('売場名＿２０', blank=True, null=True, max_length=6)
+    OTB_20 = models.CharField('売場名＿２０', blank=True, null=True, max_length=3)
     OTB_Classification_20 = models.CharField('売場区分＿２０', blank=True, null=True, max_length=1)
     Held_Classification_20 = models.CharField('開催区分＿２０', blank=True, null=True, max_length=1)
     Note_code_20 = models.CharField('注釈コード＿２０', blank=True, null=True, max_length=2)

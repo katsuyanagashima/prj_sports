@@ -2,6 +2,7 @@ import logging
 # ファイルアクセスとスリープのため、osとtimeをインポート
 import os
 import re
+import sys
 import time
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
@@ -13,14 +14,14 @@ from django.db.models import Max
 from app_autorace.models import *
 from logging import getLogger
 from pathlib import Path
+sys.path.append("/code/app_autorace/")
+from consts import *
 
-#!/usr/bin/env
-logger = getLogger(__name__)
+logger = getLogger('command')
 
 # 監視対象ファイルのパターンマッチを指定する
 # 場外売場情報レコード（mmddhhmmss00000004.dat）
-scheduleID = 5
-outsidetrackData = "outsidetrackData"
+
 
 outsidetrack = 6 # 場情報　繰り返しの数
 
@@ -239,16 +240,21 @@ class Outside_track():
                 outsidetrackLine = line[2:]
 
                 self.setDatData(outsidetrackLine)
-                break
+                
             file.close()
+            return NORMAL
 
         except FileNotFoundError as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
         except UnboundLocalError as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
         except ValueError as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
         except Exception as e:
-            print(e)
+            logger.warn(e)
+            return ABNORMAL
 
 

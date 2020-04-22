@@ -6,8 +6,10 @@
 	<!ENTITY % Kddata SYSTEM "{% static 'app_sumo/OSDTD/KdXBSContentv1.1.dtd' %}">
 	%Kddata;
 ]>
-				<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent01.xsl' %}"?>
-
+<!--  ●●　デバックのため、スタイルシート宣言を外す　●●-->
+<!--
+<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent01.xsl' %}"?>
+-->
 <ITalk version="1.0">
 <IManage>
 <IhInfo>
@@ -162,11 +164,15 @@
 <SportsData Version="1.1">
 <Head>
 {% for meta in newsmlmeta %}
+<!-- ==== システム状態（Tran_Systemstatus）から取得 ==== -->
 <Meta>
-<Title>◎大相撲初場所新番付資料（月日現在）</Title>
+<!-- 以下の想定は、◎2020大相撲初場所新番付資料（12月24日現在）-->
+<!-- 2020は開催年月の年を取得して連数字x2、12月24日の数字も連数 -->
+<Title>◎大相撲{{ meta.CurrentBasho }}新番付資料（月日現在）</Title>
 <Competition>
-<Formal>初場所</Formal>
+<Formal>{{ meta.CurrentBasho }}</Formal>
 </Competition>
+<!-- 場所前の固定値で良い？　-->
 <CompetitionDay>場所前</CompetitionDay>
 <Discipline>
 <Formal>相撲</Formal>
@@ -176,33 +182,32 @@
 <Body BlockId="OS01MU____">
 <Meta>
 <FormatType>Ｓ－Ｐ－Ｒ</FormatType>
-<!-- ==== システム状態から現在の場所を取得 ==== -->
 <DataType>{{ meta.CurrentBasho }}</DataType>
 </Meta>
 {% endfor %}
 <!-- ======================================= -->
 <Standing BlockId="S001">
-<!-- ==== tran番付から取得 ================== -->
-{% if Banzuke %}
-{% for player in Banzuke %}
+<!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ================== -->
+{% if Banzuke_forecast %}
+{% for player in Banzuke_forecast %}
 <Player PlayerId="009620">
 <PlayerName>
-<Writing>{{ player.RikishiId.Rikishi_name_Kanji_4char  }}</Writing>
-<Formal>{{ player.RikishiId.Rikishi_name_kanji_official  }}</Formal>
-<Formal Display="4字">{{ player.RikishiId.Rikishi_name_Kanji_4char  }}</Formal>
-<Formal Display="3字">{{ player.RikishiId.Rikishi_name_Kanji_3char  }}</Formal>
-<Formal Display="2字">{{ player.RikishiId.Rikishi_name_Kanji_2char  }}</Formal>
-<Formal Display="よみがな">{{ player.RikishiId.Rikishi_name_kanji_kana  }}</Formal>
+<Writing>{{ player.Rikishi.Rikishi_name_Kanji_4char  }}</Writing>
+<Formal>{{ player.Rikishi.Rikishi_name_kanji_official  }}</Formal>
+<Formal Display="4字">{{ player.Rikishi.Rikishi_name_Kanji_4char  }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Rikishi_name_Kanji_3char  }}</Formal>
+<Formal Display="2字">{{ player.Rikishi.Rikishi_name_Kanji_2char  }}</Formal>
+<Formal Display="よみがな">{{ player.Rikishi.Rikishi_name_kanji_kana  }}</Formal>
 </PlayerName>
 <Belong>
-<Writing>{{ player.RikishiId.Heya_code.Heya_official_kanji  }}</Writing>
-<Formal>{{ player.RikishiId.Heya_code.Heya_official_kanji  }}</Formal>
-<Formal Display="3字">{{ player.RikishiId.Heya_code.Heya_kanji_3char  }}</Formal>
-<Formal Display="よみがな">{{ player.RikishiId.Heya_code.Heya_official_kana  }}</Formal>
+<Writing>{{ player.Rikishi.Heya_code.Heya_official_kanji  }}</Writing>
+<Formal>{{ player.Rikishi.Heya_code.Heya_official_kanji  }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Heya_code.Heya_kanji_3char  }}</Formal>
+<Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana  }}</Formal>
 </Belong>
 <Age>●●</Age>
-<Height Unit="センチメートル">{{ player.RikishiId.Height  }}</Height>
-<Weight Unit="キログラム">{{ player.RikishiId.Weight  }}</Weight>
+<Height Unit="センチメートル">{{ player.Rikishi.Height  }}</Height>
+<Weight Unit="キログラム">{{ player.Rikishi.Weight  }}</Weight>
 <Result Period="幕内通算">
 <Record Kind="与金星" Unit="回">
 <Writing></Writing>
@@ -263,6 +268,7 @@
 {% endfor %}
 {% endif %}
 <!-- ===== ここまで ================= -->
+<!-- ==== ここから下は完成後に削除 ====-->
 <Player PlayerId="009620">
 <PlayerName>
 <Writing>稀勢の里</Writing>

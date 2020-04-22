@@ -12,8 +12,8 @@
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
-<IhSendDate>２０１８１２２６</IhSendDate>
-<IhSendTime>１９１８１８</IhSendTime>
+<IhSendDate>ＹＹＹＹＭＭＤＤ（運用日？）</IhSendDate>
+<IhSendTime>ＨＨＭＭＳＳ（運用時間？）</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
 <IhSendTo IhNs="3">
 <IhSendToSys>ＨＳ</IhSendToSys>
@@ -106,7 +106,7 @@
 <InMetadata>
 <InAdminInfo>
 <InProductId>２０１８１２２６ＯＳＦ０２＿＿＿＿＿＿＿＿＿＿０１</InProductId>
-<InDateTime>２０１８年１２月２６日１９時１８分１８秒</InDateTime>
+<InDateTime>（プレビューでは空欄）</InDateTime>
 <InFormat>
 <InFormatType>フルタグ書式</InFormatType>
 <InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>

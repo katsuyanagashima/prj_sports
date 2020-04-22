@@ -57,17 +57,41 @@ def output_NewsML(request):
     # newsmlmetaから現在の場所と取得して、テンプレートに渡す
     # 力士マスタ、生涯成績マスタから現在の値を取得して、テンプレートに渡す
     # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
-    #生涯成績、
-        tran_system = Tran_Systemstatus.objects.all().first()
-        context = {
-            'newsmlmeta':Tran_Systemstatus.objects.all(),
-            'Banzuke': Tran_Banzuke.objects.all(),
-            'Liferesult': Mst_Lifetime_result.objects.all(),
-            'Lifeaward': Mst_Lifetime_award.objects.all(),
-            'basho':tran_system.CurrentBasho,
-            'torikuminichime':tran_system.TorikumiDate.Nichime_4char,
-        }
-
+    #生涯成績
+        if newsno == "01":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),               #システム状態マスタ
+                'subheader':Mst_SubHeader.objects.all(),                    #副ヘッダマスタ
+                'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),    #予想番付マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),            #生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),              #生涯受賞マスタ
+            }
+        elif newsno == "02":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
+                'subheader':Mst_SubHeader.objects.all(),            #副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
+            }
+        elif newsno == "03":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
+                'subheader':Mst_SubHeader.objects.all(),            #副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
+            }    
+            elif newsno == "06":
+            context = {
+                'newsmlmeta':Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho':tran_system.CurrentBasho,
+                'torikuminichime':tran_system.TorikumiDate.Nichime_4char,
+            }  
+            
         if "Input_status" in request.POST:
             st = request.POST["Input_status"] # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
             if st in ["0","1"]: # 編集か配信であれば、NewsMLをファイルに出力

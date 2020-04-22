@@ -16,6 +16,8 @@ from app_autorace.models import *
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django.db.models import Max
+sys.path.append("/code/app_autorace/")
+from consts import *
 
 logger = getLogger('command')
 
@@ -197,16 +199,17 @@ class Schedule():
                     logger.info( "内容:update_Trn_Schedule End")
                           
             file.close()
+            return NORMAL
 
         except FileNotFoundError as e:
             logger.warn(e)
-            raise (e)
+            return ABNORMAL
         except UnboundLocalError as e:
             logger.warn(e)
-            raise (e)
+            return ABNORMAL
         except ValueError as e:
             logger.warn(e)
-            raise (e)
+            return ABNORMAL
         except Exception as e:
-            logger.warn("DB insert_or_update_Trn_Schedule")
-            raise (e)
+            logger.warn(e)
+            return ABNORMAL

@@ -9,9 +9,10 @@
             {% endfor %}
             <th></th>
             <th>
-                <a href="../admin/app_ckeiba/" class="btn btn-success rounded-pill btn-sm add_btn" role="button"><i
-                        class="fas fa-plus"></i>
-                    追加</a>
+                <a href="{% url 'app_ckeiba:master_create' title=title %}"
+                    class="btn btn-success rounded-pill btn-sm add_btn" role="button"><i class="fas fa-plus"></i>
+                    追加
+                </a>
             </th>
         </thead>
         {% for jou_value in table_value  %}
@@ -19,12 +20,25 @@
             {% for value in jou_value  %}
             <td>{{ value }}</td>
             {% endfor %}
-            <td> <a href="../admin/app_ckeiba/" class="btn btn-info btn-sm" role="button"><i
-                        class="fas fa-pencil-alt"></i>
-                    更新</a></td>
-            <td><a href="../admin/app_ckeiba/" class="btn btn-danger btn-sm" role="button"><i
-                        class="fas fa-trash-alt"></i>
-                    削除</a></td>
+
+            {% for value in jou_value  %}
+            {% if forloop.first %}
+
+            <td>
+                <a href="{% url 'app_ckeiba:master_update' pk=value title=title %}" class="btn btn-info btn-sm"
+                    role="button">
+                    <i class="fas fa-pencil-alt"></i>更新
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'app_ckeiba:master_delete' pk=value title=title %}" class="btn btn-danger btn-sm"
+                    role="button"><i class="fas fa-trash-alt"></i>
+                    削除
+                </a>
+            </td>
+
+            {% endif %}
+            {% endfor %}
         </tr>
         {% endfor %}
     </table>
