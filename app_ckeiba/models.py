@@ -539,7 +539,7 @@ class Md_Shussouhyou_shussouba(Model):
 class Md_Shussouhyou_shussouba_5seiseki(Model):
 
     # 出走馬外部キー
-    shussouhba = ForeignKey('Md_Shussouhyou_shussouba', verbose_name='出走馬', on_delete=CASCADE, related_name = "shussouba_kako")  #【中間DB】出走表_出走馬
+    shussouba = ForeignKey('Md_Shussouhyou_shussouba', verbose_name='出走馬', on_delete=CASCADE, related_name = "shussouba_kako")  #【中間DB】出走表_出走馬
 
     # 出走日付
     ck_kkhiduke = DateField(verbose_name='出走日付')
@@ -592,7 +592,7 @@ class Md_Shussouhyou_shussouba_5seiseki(Model):
         verbose_name_plural = '【中間DB】出走表_出走馬_過去成績'
 
     def __str__(self):
-        return str(self.shussouhba) + ' ' + str(self.ck_kkhiduke)
+        return str(self.shussouba) + ' ' + str(self.ck_kkhiduke)
 
 # 【中間DB】入場人員
 class Md_Nyujo(Model):
@@ -738,7 +738,7 @@ class Md_Seiseki_Haraimodoshi_tan(Model):
         verbose_name_plural = '【中間DB】成績・払戻_単勝'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.tansaki) + ' '+ str(self.tanharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.tansaki) + ' '+ str(self.tanharakin)+ '円'
         
 
 # 【中間DB】成績・払戻_複勝　３つ分用意した方がいい？
@@ -754,7 +754,7 @@ class Md_Seiseki_Haraimodoshi_fuku(Model):
         verbose_name_plural = '【中間DB】成績・払戻_複勝'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.fukusaki) + ' '+ str(self.fukuharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.fukusaki) + ' '+ str(self.fukuharakin)+ '円'
 
 # 【中間DB】成績・払戻_枠連複
 class Md_Seiseki_Haraimodoshi_wakupuku(Model):
@@ -770,7 +770,7 @@ class Md_Seiseki_Haraimodoshi_wakupuku(Model):
         verbose_name_plural = '【中間DB】成績・払戻_枠連複'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wakupukusaki) + ' '+ str(self.wakupukuato) + ' '+ str(self.wakupukuharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wakupukusaki) + '-'+ str(self.wakupukuato) + ' '+ str(self.wakupukuharakin)+ '円'
 
 # 【中間DB】成績・払戻_枠連単
 class Md_Seiseki_Haraimodoshi_wakutan(Model):
@@ -787,7 +787,7 @@ class Md_Seiseki_Haraimodoshi_wakutan(Model):
         verbose_name_plural = '【中間DB】成績・払戻_枠連単'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.ck_wakutansaki) + ' '+ str(self.ck_wakutanato) + ' '+ str(self.ck_wakutanharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.ck_wakutansaki) + '-'+ str(self.ck_wakutanato) + ' '+ str(self.ck_wakutanharakin)+ '円'
 
 # 【中間DB】成績・払戻_馬連複
 class Md_Seiseki_Haraimodoshi_umapuku(Model):
@@ -804,7 +804,7 @@ class Md_Seiseki_Haraimodoshi_umapuku(Model):
         verbose_name_plural = '【中間DB】成績・払戻_馬連複'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umapukusaki) + ' '+ str(self.umapukuato) + ' '+ str(self.umapukuharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umapukusaki) + '-'+ str(self.umapukuato) + ' '+ str(self.umapukuharakin)+ '円'
 
 
 # 【中間DB】成績・払戻_馬連単
@@ -822,7 +822,7 @@ class Md_Seiseki_Haraimodoshi_umatan(Model):
         verbose_name_plural = '【中間DB】成績・払戻_馬連単'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umatansaki) + ' '+ str(self.umatanato) + ' '+ str(self.umatanharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umatansaki) + '-'+ str(self.umatanato) + ' '+ str(self.umatanharakin)+ '円'
 
 # 【中間DB】成績・払戻_三連複
 class Md_Seiseki_Haraimodoshi_sanpuku(Model):
@@ -840,7 +840,7 @@ class Md_Seiseki_Haraimodoshi_sanpuku(Model):
         verbose_name_plural = '【中間DB】成績・払戻_三連複'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.sanpukusaki) + ' '+ str(self.sanpukunaka) + ' '+ str(self.sanpukuato)+ ' '+ str(self.sanpukuharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.sanpukusaki) + '-'+ str(self.sanpukunaka) + '-'+ str(self.sanpukuato)+ ' '+ str(self.sanpukuharakin)+ '円'
 
 # 【中間DB】成績・払戻_三連単
 class Md_Seiseki_Haraimodoshi_santan(Model):
@@ -858,7 +858,7 @@ class Md_Seiseki_Haraimodoshi_santan(Model):
         verbose_name_plural = '【中間DB】成績・払戻_三連単'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.santansaki) + ' '+ str(self.santannaka) + ' '+ str(self.santanato)+ ' '+ str(self.santanharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.santansaki) + '-'+ str(self.santannaka) + '-'+ str(self.santanato)+ ' '+ str(self.santanharakin)+ '円'
 
 
 # 【中間DB】成績・払戻_ワイド
@@ -876,7 +876,7 @@ class Md_Seiseki_Haraimodoshi_wa(Model):
         verbose_name_plural = '【中間DB】成績・払戻_ワイド'
 
     def __str__(self):
-        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wasaki) + ' '+ str(self.waato) + ' '+ str(self.waharakin)
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wasaki) + '-'+ str(self.waato) + ' '+ str(self.waharakin)+ '円'
 
 
 

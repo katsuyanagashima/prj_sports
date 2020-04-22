@@ -356,7 +356,9 @@ def md_update_forms(request, year, month, day, joucode, race):
 
 # 出走表
 def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
-     
+
+     tran_system = Tran_Systemstatus.objects.all().first() # ★ システム状態
+
      mst_instance = get_object_or_404(Md_Shussouhyou.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
      title = "【中間DB】出走表"
 
@@ -366,30 +368,55 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
 
      # 過去５走のフォームセットも取得
      shussouba_instance_list = get_list_or_404(Md_Shussouhyou_shussouba.objects, shussouhyou=mst_instance)
-     formset_kako5sou = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[0]) #とりあえず一件目（１頭目の馬）だけとってる
 
+     kako5sou_formset_list = []
+     for i, j in enumerate(shussouba_instance_list):
+          formset_kako5sou = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[i])
+          kako5sou_formset_list.append(formset_kako5sou)
 
-     if request.method == 'POST' and form.is_valid() and formset.is_valid() and formset_kako5sou.is_valid():
+     # formset_kako5sou_1 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[0]) #とりあえず一件目（１頭目の馬）だけとってる
+     # formset_kako5sou_2 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[1]) #2件目
+
+     # 過去５走をまとめてisvaldする関数
+     def kako5is_valid(formset_list):
+          for i, j in enumerate(kako5sou_formset_list):
+               if formset_list[i].is_valid():
+                    pass
+               else:
+                    return False
+                    bleak
+          return True
+
+     # 更新ボタン押下時、エラーが発生するので、要修正。エラー「(隠しフィールド shussouba) インライン値が親のインスタンスに一致しません。」
+     # 馬一頭ぶんだけ過去5走を表示させるとうまくいくけど、２頭以上を表示させて更新すると上記エラー。
+     if request.method == 'POST' and form.is_valid() and formset.is_valid() and kako5is_valid(kako5sou_formset_list):
           form.save()
           formset.save()
-          formset_kako5sou.save()
+
+          # まとめてsaveする
+          for formset_kako5sou in kako5sou_formset_list:
+               formset_kako5sou.save()
+
+
           return redirect('app_ckeiba:index')
 
-          context = {
-               'form': form,
-               'formset': formset,
-               'formset_kako5sou':formset_kako5sou,
-               'title': title
-          }
 
      # 初期表示のとき
      else:
+
           context = {
                'form': form,
                'formset': formset,
-               'formset_kako5sou':formset_kako5sou,
-               'title': title
+               # 'formset_kako5sou':kako5sou_formset_list,
+               'title': title,
+               'unyobi': tran_system.Unyou_date,
+               'status': tran_system.Operationmode
           }
+          
+          # listを分解して、それぞれformを渡しても同じ。
+          for i, kako5sou_formset in enumerate(kako5sou_formset_list):
+               fs = "kako5sou_formset" + str(i)
+               context[fs] = kako5sou_formset
 
      return render(request, 'app_ckeiba/mst_edit_form/md_shussouhyou_db_update.html', context)
 
@@ -398,29 +425,47 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
 # 成績・払戻
 def md_update_seiseki_haraimodoshi_forms(request, year, month, day, joucode, race):
      
+     tran_system = Tran_Systemstatus.objects.all().first()  # ★ システム状態
+     
      mst_instance = get_object_or_404(Md_Seiseki_Haraimodoshi.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
      title = "【中間DB】成績・払戻"
 
      form = Md_Seiseki_HaraimodoshiForm(request.POST or None, instance=mst_instance)
-     formset = seiseki_haraimodoshiFormset(request.POST or None, instance=mst_instance)
+     formset_seiseki = seiseki_haraimodoshiFormset(request.POST or None, instance=mst_instance)
+     formset_tan = seiseki_haraimodoshi_tan_Formset(request.POST or None, instance=mst_instance)
+     formset_fuku = seiseki_haraimodoshi_fuku_Formset(request.POST or None, instance=mst_instance)
+     formset_wakupuku = seiseki_haraimodoshi_wakupuku_Formset(request.POST or None, instance=mst_instance)
+     formset_wakutan = seiseki_haraimodoshi_wakutan_Formset(request.POST or None, instance=mst_instance)
+     formset_umapuku = seiseki_haraimodoshi_umapuku_Formset(request.POST or None, instance=mst_instance)
+     formset_umatan = seiseki_haraimodoshi_umatan_Formset(request.POST or None, instance=mst_instance)
+     formset_sanpuku = seiseki_haraimodoshi_sanpuku_Formset(request.POST or None, instance=mst_instance)
+     formset_santan = seiseki_haraimodoshi_santan_Formset(request.POST or None, instance=mst_instance)
+     formset_wa = seiseki_haraimodoshi_wa_Formset(request.POST or None, instance=mst_instance)
 
-     if request.method == 'POST' and form.is_valid() and formset.is_valid():
+
+
+     if request.method == 'POST' and form.is_valid() and formset_seiseki.is_valid() and formset_tan.is_valid() and formset_fuku.is_valid() and formset_wakupuku.is_valid() and formset_wakutan.is_valid() and formset_umapuku.is_valid() and formset_umatan.is_valid() and formset_sanpuku.is_valid() and formset_santan.is_valid() and formset_wa.is_valid():
           form.save()
           formset.save()
           return redirect('app_ckeiba:index')
-
-          context = {
-               'form': form,
-               'formset': formset,
-               'title': title
-          }
 
      # 初期表示のとき
      else:
           context = {
                'form': form,
-               'formset': formset,
-               'title': title
+               'formset_seiseki': formset_seiseki,
+               'formset_tan': formset_tan,
+               'formset_fuku': formset_fuku,
+               'formset_wakupuku': formset_wakupuku,
+               'formset_wakutan': formset_wakutan,
+               'formset_umapuku': formset_umapuku,
+               'formset_umatan': formset_umatan,
+               'formset_sanpuku': formset_sanpuku,
+               'formset_santan': formset_santan,
+               'formset_wa': formset_wa,
+               'title': title,
+               'unyobi': tran_system.Unyou_date,
+               'status': tran_system.Operationmode
           }
 
      return render(request, 'app_ckeiba/mst_edit_form/md_seisekiharaimodoshi_db_update.html', context)

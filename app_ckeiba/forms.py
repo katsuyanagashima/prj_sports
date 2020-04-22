@@ -104,16 +104,104 @@ ShussouhyouFormset = forms.inlineformset_factory(
 
 #出走表用フォームセット過去成績用
 Shussouhyou_shussoubaFormset = forms.inlineformset_factory(
-    Md_Shussouhyou_shussouba ,Md_Shussouhyou_shussouba_5seiseki, fk_name='shussouhba',
+    Md_Shussouhyou_shussouba ,Md_Shussouhyou_shussouba_5seiseki,
     fields='__all__',
     extra=0,
     max_num=5,
     can_delete=True
 )
 
-#成績払戻用フォームセット
+
+
+
+
+#成績払戻用フォームセット成績
 seiseki_haraimodoshiFormset = forms.inlineformset_factory(
     Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_seiseki, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+
+
+
+#成績払戻用フォームセット単勝
+seiseki_haraimodoshi_tan_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_tan, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセット複勝
+seiseki_haraimodoshi_fuku_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_fuku, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセット枠複
+seiseki_haraimodoshi_wakupuku_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_wakupuku, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセット枠単
+seiseki_haraimodoshi_wakutan_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_wakutan, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセット馬複
+seiseki_haraimodoshi_umapuku_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_umapuku, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセット馬単
+seiseki_haraimodoshi_umatan_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_umatan, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセット三連複
+seiseki_haraimodoshi_sanpuku_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_sanpuku, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセット三連単
+seiseki_haraimodoshi_santan_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_santan, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
+
+#成績払戻用フォームセットワイド
+seiseki_haraimodoshi_wa_Formset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_wa, fk_name='seiseki_haraimodoshi',
     fields='__all__',
     extra=0,
     max_num=16,
