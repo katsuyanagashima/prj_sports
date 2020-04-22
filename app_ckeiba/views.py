@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render, redirect,get_list_or_404
 from django.utils import timezone
 from datetime import datetime
 from django.urls import reverse_lazy
@@ -310,17 +310,7 @@ def md_update_forms(request, year, month, day, joucode, race):
 
      # URLから、更新対象のレコードを抽出（データがなければ404エラー）
      path = request.path
-     if "shussouhyou" in path:
-          mst_instance = get_object_or_404(Md_Shussouhyou.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
-          Md_ModelForm = Md_ShussouhyouForm
-          title = "【中間DB】出走表"
-          
-     elif "seiseki" in path:
-          mst_instance = get_object_or_404(Md_Seiseki_Haraimodoshi.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
-          Md_ModelForm = Md_Seiseki_HaraimodoshiForm
-          title = "【中間DB】成績・払戻"
-
-     elif "corner_rap" in path:
+     if "corner_rap" in path:
           mst_instance = get_object_or_404(Md_Corner_Rap.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
           Md_ModelForm = Md_Corner_RapForm
           title = "【中間DB】コーナー・ラップ"
@@ -352,6 +342,7 @@ def md_update_forms(request, year, month, day, joucode, race):
      if request.method == 'POST':
           # 更新ボタン押下時
           form = Md_ModelForm(request.POST, instance=mst_instance)
+
           if form.is_valid():
                form.save()
                return redirect('app_ckeiba:index')
@@ -361,6 +352,82 @@ def md_update_forms(request, year, month, day, joucode, race):
 
      d = {'form': form,'title': title}
      return render(request, 'app_ckeiba/mst_edit_form/md_db_update.html', d)
+
+
+# 出走表
+def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
+     
+     mst_instance = get_object_or_404(Md_Shussouhyou.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+     title = "【中間DB】出走表"
+
+     context={}
+     form = Md_ShussouhyouForm(request.POST or None, instance=mst_instance)
+     formset = ShussouhyouFormset(request.POST or None, instance=mst_instance)
+
+     # 過去５走のフォームセットも取得
+     shussouba_instance_list = get_list_or_404(Md_Shussouhyou_shussouba.objects, shussouhyou=mst_instance)
+     formset_kako5sou = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[0]) #とりあえず一件目（１頭目の馬）だけとってる
+
+
+     if request.method == 'POST' and form.is_valid() and formset.is_valid() and formset_kako5sou.is_valid():
+          form.save()
+          formset.save()
+          formset_kako5sou.save()
+          return redirect('app_ckeiba:index')
+
+          context = {
+               'form': form,
+               'formset': formset,
+               'formset_kako5sou':formset_kako5sou,
+               'title': title
+          }
+
+     # 初期表示のとき
+     else:
+          context = {
+               'form': form,
+               'formset': formset,
+               'formset_kako5sou':formset_kako5sou,
+               'title': title
+          }
+
+     return render(request, 'app_ckeiba/mst_edit_form/md_shussouhyou_db_update.html', context)
+
+
+
+# 成績・払戻
+def md_update_seiseki_haraimodoshi_forms(request, year, month, day, joucode, race):
+     
+     mst_instance = get_object_or_404(Md_Seiseki_Haraimodoshi.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+     title = "【中間DB】成績・払戻"
+
+     form = Md_Seiseki_HaraimodoshiForm(request.POST or None, instance=mst_instance)
+     formset = seiseki_haraimodoshiFormset(request.POST or None, instance=mst_instance)
+
+     if request.method == 'POST' and form.is_valid() and formset.is_valid():
+          form.save()
+          formset.save()
+          return redirect('app_ckeiba:index')
+
+          context = {
+               'form': form,
+               'formset': formset,
+               'title': title
+          }
+
+     # 初期表示のとき
+     else:
+          context = {
+               'form': form,
+               'formset': formset,
+               'title': title
+          }
+
+     return render(request, 'app_ckeiba/mst_edit_form/md_seisekiharaimodoshi_db_update.html', context)
+
+
+
+
 
 
 # ◎◎◎中間DBフォームここまで◎◎◎

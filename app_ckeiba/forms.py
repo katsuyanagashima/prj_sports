@@ -93,4 +93,29 @@ class Md_UriagekinForm(forms.ModelForm):
         fields = '__all__'
 
 
+#出走表用フォームセット
+ShussouhyouFormset = forms.inlineformset_factory(
+    Md_Shussouhyou ,Md_Shussouhyou_shussouba, fk_name='shussouhyou',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
 
+#出走表用フォームセット過去成績用
+Shussouhyou_shussoubaFormset = forms.inlineformset_factory(
+    Md_Shussouhyou_shussouba ,Md_Shussouhyou_shussouba_5seiseki, fk_name='shussouhba',
+    fields='__all__',
+    extra=0,
+    max_num=5,
+    can_delete=True
+)
+
+#成績払戻用フォームセット
+seiseki_haraimodoshiFormset = forms.inlineformset_factory(
+    Md_Seiseki_Haraimodoshi ,Md_Seiseki_Haraimodoshi_seiseki, fk_name='seiseki_haraimodoshi',
+    fields='__all__',
+    extra=0,
+    max_num=16,
+    can_delete=True
+)
