@@ -539,7 +539,7 @@ class Md_Shussouhyou_shussouba(Model):
 class Md_Shussouhyou_shussouba_5seiseki(Model):
 
     # 出走馬外部キー
-    shussouhba = ForeignKey('Md_Shussouhyou_shussouba', verbose_name='出走馬', on_delete=CASCADE, related_name = "shussouba_kako")  #【中間DB】出走表_出走馬
+    shussouba = ForeignKey('Md_Shussouhyou_shussouba', verbose_name='出走馬', on_delete=CASCADE, related_name = "shussouba_kako")  #【中間DB】出走表_出走馬
 
     # 出走日付
     ck_kkhiduke = DateField(verbose_name='出走日付')
@@ -592,7 +592,7 @@ class Md_Shussouhyou_shussouba_5seiseki(Model):
         verbose_name_plural = '【中間DB】出走表_出走馬_過去成績'
 
     def __str__(self):
-        return str(self.shussouhba) + ' ' + str(self.ck_kkhiduke)
+        return str(self.shussouba) + ' ' + str(self.ck_kkhiduke)
 
 # 【中間DB】入場人員
 class Md_Nyujo(Model):
@@ -690,302 +690,33 @@ class Md_Seiseki_Haraimodoshi(Model):
 
 
     # 払戻情報
-    #★★★　 以下、同着時に複数ある場合は、','(カンマ)で区切って格納する。
 
     # 単勝払戻情報
-    tanharajyoukyou = IntegerField(verbose_name='単勝払戻状況')
-    tankumijoukyou1 = IntegerField(verbose_name='単勝組番状況1', blank=True, null=True)  #式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
-    tansaki1 = IntegerField(verbose_name='単勝先番1', blank=True, null=True)
-    tanharakin1 = IntegerField(verbose_name='単勝払戻金1', blank=True, null=True)
-    tantounin1 = IntegerField(verbose_name='単勝投票人気1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    tankumijoukyou2 = IntegerField(verbose_name='単勝組番状況2', blank=True, null=True)  
-    tansaki2 = IntegerField(verbose_name='単勝先番2', blank=True, null=True)
-    tanharakin2 = IntegerField(verbose_name='単勝払戻金2', blank=True, null=True)
-    tantounin2 = IntegerField(verbose_name='単勝投票人気2', blank=True, null=True)
-
-    tankumijoukyou3 = IntegerField(verbose_name='単勝組番状況3', blank=True, null=True)  
-    tansaki3 = IntegerField(verbose_name='単勝先番3', blank=True, null=True)
-    tanharakin3 = IntegerField(verbose_name='単勝払戻金3', blank=True, null=True)
-    tantounin3 = IntegerField(verbose_name='単勝投票人気3', blank=True, null=True)
+    tanharajyoukyou = CharField(verbose_name='単勝払戻状況', max_length=10, blank=True, null=True)
 
     # 複勝払戻情報
-    fukuharajoukyou = IntegerField(verbose_name='複勝払戻状況')
-    fukukumijoukyou1_1 = IntegerField(verbose_name='複勝組番状況1_1', blank=True, null=True)
-    fukusaki1_1 = IntegerField(verbose_name='複勝先番1_1', blank=True, null=True)
-    tanharakin1_1 = IntegerField(verbose_name='複勝払戻金1_1', blank=True, null=True)
-    fukuharakin1_1 = IntegerField(verbose_name='複勝投票人気1_1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    fukukumijoukyou1_2 = IntegerField(verbose_name='複勝組番状況1_2', blank=True, null=True)
-    fukusaki1_2 = IntegerField(verbose_name='複勝先番1_2', blank=True, null=True)
-    tanharakin1_2 = IntegerField(verbose_name='複勝払戻金1_2', blank=True, null=True)
-    fukuharakin1_2 = IntegerField(verbose_name='複勝投票人気1_2', blank=True, null=True)
-    
-    fukukumijoukyou1_3 = IntegerField(verbose_name='複勝組番状況1_3', blank=True, null=True)
-    fukusaki1_3 = IntegerField(verbose_name='複勝先番1_3', blank=True, null=True)
-    tanharakin1_3 = IntegerField(verbose_name='複勝払戻金1_3', blank=True, null=True)
-    fukuharakin1_3 = IntegerField(verbose_name='複勝投票人気1_3', blank=True, null=True)
-
-    
-    fukukumijoukyou2_1 = IntegerField(verbose_name='複勝組番状況2_1', blank=True, null=True)
-    fukusaki2_1 = IntegerField(verbose_name='複勝先番2_1', blank=True, null=True)
-    tanharakin2_1 = IntegerField(verbose_name='複勝払戻金2_1', blank=True, null=True)
-    fukuharakin2_1 = IntegerField(verbose_name='複勝投票人気2_1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    fukukumijoukyou2_2 = IntegerField(verbose_name='複勝組番状況2_2', blank=True, null=True)
-    fukusaki2_2 = IntegerField(verbose_name='複勝先番2_2', blank=True, null=True)
-    tanharakin2_2 = IntegerField(verbose_name='複勝払戻金2_2', blank=True, null=True)
-    fukuharakin2_2 = IntegerField(verbose_name='複勝投票人気2_2', blank=True, null=True)
-    
-    fukukumijoukyou2_3 = IntegerField(verbose_name='複勝組番状況2_3', blank=True, null=True)
-    fukusaki2_3 = IntegerField(verbose_name='複勝先番2_3', blank=True, null=True)
-    tanharakin2_3 = IntegerField(verbose_name='複勝払戻金2_3', blank=True, null=True)
-    fukuharakin2_3 = IntegerField(verbose_name='複勝投票人気2_3', blank=True, null=True)
-
-    
-    fukukumijoukyou3_1 = IntegerField(verbose_name='複勝組番状況3_1', blank=True, null=True)
-    fukusaki3_1 = IntegerField(verbose_name='複勝先番3_1', blank=True, null=True)
-    tanharakin3_1 = IntegerField(verbose_name='複勝払戻金3_1', blank=True, null=True)
-    fukuharakin3_1 = IntegerField(verbose_name='複勝投票人気3_1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    fukukumijoukyou3_2 = IntegerField(verbose_name='複勝組番状況3_2', blank=True, null=True)
-    fukusaki3_2 = IntegerField(verbose_name='複勝先番3_2', blank=True, null=True)
-    tanharakin3_2 = IntegerField(verbose_name='複勝払戻金3_2', blank=True, null=True)
-    fukuharakin3_2 = IntegerField(verbose_name='複勝投票人気3_2', blank=True, null=True)
-    
-    fukukumijoukyou3_3 = IntegerField(verbose_name='複勝組番状況3_3', blank=True, null=True)
-    fukusaki3_3 = IntegerField(verbose_name='複勝先番3_3', blank=True, null=True)
-    tanharakin3_3 = IntegerField(verbose_name='複勝払戻金3_3', blank=True, null=True)
-    fukuharakin3_3 = IntegerField(verbose_name='複勝投票人気3_3', blank=True, null=True)
+    fukuharajoukyou = CharField(verbose_name='複勝払戻状況', max_length=10, blank=True, null=True)
 
     # 枠連複払戻情報
-    wakupukuharajoukyou = IntegerField(verbose_name='枠連複払戻状況')
-    wakupukukumijoukyou1 = IntegerField(verbose_name='枠連複組番状況1', blank=True, null=True)
-    wakupukusaki1 = IntegerField(verbose_name='枠連複先番1', blank=True, null=True)
-    wakupukuato1 = IntegerField(verbose_name='枠連複後番1', blank=True, null=True)
-    wakupukuharakin1 = IntegerField(verbose_name='枠連複払戻金1', blank=True, null=True)
-    wakupukutounin1 = IntegerField(verbose_name='枠連複投票人気1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    wakupukukumijoukyou2 = IntegerField(verbose_name='枠連複組番状況2', blank=True, null=True)
-    wakupukusaki2 = IntegerField(verbose_name='枠連複先番2', blank=True, null=True)
-    wakupukuato2 = IntegerField(verbose_name='枠連複後番2', blank=True, null=True)
-    wakupukuharakin2 = IntegerField(verbose_name='枠連複払戻金2', blank=True, null=True)
-    wakupukutounin2 = IntegerField(verbose_name='枠連複投票人気2', blank=True, null=True)
-    
-    wakupukukumijoukyou3 = IntegerField(verbose_name='枠連複組番状況3', blank=True, null=True)
-    wakupukusaki3 = IntegerField(verbose_name='枠連複先番3', blank=True, null=True)
-    wakupukuato3 = IntegerField(verbose_name='枠連複後番3', blank=True, null=True)
-    wakupukuharakin3 = IntegerField(verbose_name='枠連複払戻金3', blank=True, null=True)
-    wakupukutounin3 = IntegerField(verbose_name='枠連複投票人気3', blank=True, null=True)
+    wakupukuharajoukyou = CharField(verbose_name='枠連複払戻状況', max_length=10, blank=True, null=True)
 
     # 枠連単払戻情報
-    ck_wakutanharajoukyou = IntegerField(verbose_name='枠連単払戻状況')
-    ck_wakutankumijoukyou1 = IntegerField(verbose_name='枠連単組番状況1', blank=True, null=True)
-    ck_wakutansaki1 = IntegerField(verbose_name='枠連単先番1', blank=True, null=True)
-    ck_wakutanato1 = IntegerField(verbose_name='枠連単後番1', blank=True, null=True)
-    ck_wakutanharakin1 = IntegerField(verbose_name='枠連単払戻金1', blank=True, null=True)
-    ck_wakutantounin1 = IntegerField(verbose_name='枠連単投票人気1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    ck_wakutankumijoukyou2 = IntegerField(verbose_name='枠連単組番状況2', blank=True, null=True)
-    ck_wakutansaki2 = IntegerField(verbose_name='枠連単先番2', blank=True, null=True)
-    ck_wakutanato2 = IntegerField(verbose_name='枠連単後番2', blank=True, null=True)
-    ck_wakutanharakin2 = IntegerField(verbose_name='枠連単払戻金2', blank=True, null=True)
-    ck_wakutantounin2 = IntegerField(verbose_name='枠連単投票人気2', blank=True, null=True)
-    
-    ck_wakutankumijoukyou3 = IntegerField(verbose_name='枠連単組番状況3', blank=True, null=True)
-    ck_wakutansaki3 = IntegerField(verbose_name='枠連単先番3', blank=True, null=True)
-    ck_wakutanato3 = IntegerField(verbose_name='枠連単後番3', blank=True, null=True)
-    ck_wakutanharakin3 = IntegerField(verbose_name='枠連単払戻金3', blank=True, null=True)
-    ck_wakutantounin3 = IntegerField(verbose_name='枠連単投票人気3', blank=True, null=True)
-    
-    ck_wakutankumijoukyou4 = IntegerField(verbose_name='枠連単組番状況4', blank=True, null=True)
-    ck_wakutansaki4 = IntegerField(verbose_name='枠連単先番4', blank=True, null=True)
-    ck_wakutanato4 = IntegerField(verbose_name='枠連単後番4', blank=True, null=True)
-    ck_wakutanharakin4 = IntegerField(verbose_name='枠連単払戻金4', blank=True, null=True)
-    ck_wakutantounin4 = IntegerField(verbose_name='枠連単投票人気4', blank=True, null=True)
-    
-    ck_wakutankumijoukyou5 = IntegerField(verbose_name='枠連単組番状況5', blank=True, null=True)
-    ck_wakutansaki5 = IntegerField(verbose_name='枠連単先番5', blank=True, null=True)
-    ck_wakutanato5 = IntegerField(verbose_name='枠連単後番5', blank=True, null=True)
-    ck_wakutanharakin5 = IntegerField(verbose_name='枠連単払戻金5', blank=True, null=True)
-    ck_wakutantounin5 = IntegerField(verbose_name='枠連単投票人気5', blank=True, null=True)
-    
-    ck_wakutankumijoukyou6 = IntegerField(verbose_name='枠連単組番状況6', blank=True, null=True)
-    ck_wakutansaki6 = IntegerField(verbose_name='枠連単先番6', blank=True, null=True)
-    ck_wakutanato6 = IntegerField(verbose_name='枠連単後番6', blank=True, null=True)
-    ck_wakutanharakin6 = IntegerField(verbose_name='枠連単払戻金6', blank=True, null=True)
-    ck_wakutantounin6 = IntegerField(verbose_name='枠連単投票人気6', blank=True, null=True)
+    ck_wakutanharajoukyou = CharField(verbose_name='枠連単払戻状況', max_length=10, blank=True, null=True)
 
-    
     # 馬連複払戻情報
-    umapukuharajoukyou = IntegerField(verbose_name='馬連複払戻状況')
-    umapukukumijoukyou1 = IntegerField(verbose_name='馬連複組番状況1', blank=True, null=True)
-    umapukusaki1 = IntegerField(verbose_name='馬連複先番1', blank=True, null=True)
-    umapukuato1 = IntegerField(verbose_name='馬連複後番1', blank=True, null=True)
-    umapukuharakin1 = IntegerField(verbose_name='馬連複払戻金1', blank=True, null=True)
-    umapukutounin1 = IntegerField(verbose_name='馬連複投票人気1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    umapukukumijoukyou2 = IntegerField(verbose_name='馬連複組番状況2', blank=True, null=True)
-    umapukusaki2 = IntegerField(verbose_name='馬連複先番2', blank=True, null=True)
-    umapukuato2 = IntegerField(verbose_name='馬連複後番2', blank=True, null=True)
-    umapukuharakin2 = IntegerField(verbose_name='馬連複払戻金2', blank=True, null=True)
-    umapukutounin2 = IntegerField(verbose_name='馬連複投票人気2', blank=True, null=True)
-
-    umapukukumijoukyou3 = IntegerField(verbose_name='馬連複組番状況3', blank=True, null=True)
-    umapukusaki3 = IntegerField(verbose_name='馬連複先番3', blank=True, null=True)
-    umapukuato3 = IntegerField(verbose_name='馬連複後番3', blank=True, null=True)
-    umapukuharakin3 = IntegerField(verbose_name='馬連複払戻金3', blank=True, null=True)
-    umapukutounin3 = IntegerField(verbose_name='馬連複投票人気3', blank=True, null=True)
+    umapukuharajoukyou = CharField(verbose_name='馬連複払戻状況', max_length=10, blank=True, null=True)
 
     # 馬連単払戻情報
-    umatanharajoukyou = IntegerField(verbose_name='馬連単払戻状況')
-    umatankumijoukyou1 = IntegerField(verbose_name='馬連単組番状況1', blank=True, null=True)
-    umatansaki1 = IntegerField(verbose_name='馬連単先番1', blank=True, null=True)
-    umatanato1 = IntegerField(verbose_name='馬連単後番1', blank=True, null=True)
-    umatanharakin1 = IntegerField(verbose_name='馬連単払戻金1', blank=True, null=True)
-    umatantounin1 = IntegerField(verbose_name='馬連単投票人気1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    umatankumijoukyou2 = IntegerField(verbose_name='馬連単組番状況2', blank=True, null=True)
-    umatansaki2 = IntegerField(verbose_name='馬連単先番2', blank=True, null=True)
-    umatanato2 = IntegerField(verbose_name='馬連単後番2', blank=True, null=True)
-    umatanharakin2 = IntegerField(verbose_name='馬連単払戻金2', blank=True, null=True)
-    umatantounin2 = IntegerField(verbose_name='馬連単投票人気2', blank=True, null=True)
-    
-    umatankumijoukyou3 = IntegerField(verbose_name='馬連単組番状況3', blank=True, null=True)
-    umatansaki3 = IntegerField(verbose_name='馬連単先番3', blank=True, null=True)
-    umatanato3 = IntegerField(verbose_name='馬連単後番3', blank=True, null=True)
-    umatanharakin3 = IntegerField(verbose_name='馬連単払戻金3', blank=True, null=True)
-    umatantounin3 = IntegerField(verbose_name='馬連単投票人気3', blank=True, null=True)
-    
-    umatankumijoukyou4 = IntegerField(verbose_name='馬連単組番状況4', blank=True, null=True)
-    umatansaki4 = IntegerField(verbose_name='馬連単先番4', blank=True, null=True)
-    umatanato4 = IntegerField(verbose_name='馬連単後番4', blank=True, null=True)
-    umatanharakin4 = IntegerField(verbose_name='馬連単払戻金4', blank=True, null=True)
-    umatantounin4 = IntegerField(verbose_name='馬連単投票人気4', blank=True, null=True)
-    
-    umatankumijoukyou5 = IntegerField(verbose_name='馬連単組番状況5', blank=True, null=True)
-    umatansaki5 = IntegerField(verbose_name='馬連単先番5', blank=True, null=True)
-    umatanato5 = IntegerField(verbose_name='馬連単後番5', blank=True, null=True)
-    umatanharakin5 = IntegerField(verbose_name='馬連単払戻金5', blank=True, null=True)
-    umatantounin5 = IntegerField(verbose_name='馬連単投票人気5', blank=True, null=True)
-    
-    umatankumijoukyou6 = IntegerField(verbose_name='馬連単組番状況6', blank=True, null=True)
-    umatansaki6 = IntegerField(verbose_name='馬連単先番6', blank=True, null=True)
-    umatanato6 = IntegerField(verbose_name='馬連単後番6', blank=True, null=True)
-    umatanharakin6 = IntegerField(verbose_name='馬連単払戻金6', blank=True, null=True)
-    umatantounin6 = IntegerField(verbose_name='馬連単投票人気6', blank=True, null=True)
-    
+    umatanharajoukyou = CharField(verbose_name='馬連単払戻状況', max_length=10, blank=True, null=True)
+        
     # 三連複複払戻情報
-    sanpukuharajoukyou = IntegerField(verbose_name='三連複払戻状況')
-    sanpukukumijoukyou1 = IntegerField(verbose_name='三連複組番状況1', blank=True, null=True)
-    sanpukusaki1 = IntegerField(verbose_name='三連複先番1', blank=True, null=True)
-    sanpukunaka1 = IntegerField(verbose_name='三連複中番1', blank=True, null=True)
-    sanpukuato1 = IntegerField(verbose_name='三連複後番1', blank=True, null=True)
-    sanpukuharakin1 = IntegerField(verbose_name='三連複払戻金1', blank=True, null=True)
-    sanpukutounin1 = IntegerField(verbose_name='三連複投票人気1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    sanpukukumijoukyou2 = IntegerField(verbose_name='三連複組番状況2', blank=True, null=True)
-    sanpukusaki2 = IntegerField(verbose_name='三連複先番2', blank=True, null=True)
-    sanpukunaka2 = IntegerField(verbose_name='三連複中番2', blank=True, null=True)
-    sanpukuato2 = IntegerField(verbose_name='三連複後番2', blank=True, null=True)
-    sanpukuharakin2 = IntegerField(verbose_name='三連複払戻金2', blank=True, null=True)
-    sanpukutounin2 = IntegerField(verbose_name='三連複投票人気2', blank=True, null=True)
-    
-    sanpukukumijoukyou3 = IntegerField(verbose_name='三連複組番状況3', blank=True, null=True)
-    sanpukusaki3 = IntegerField(verbose_name='三連複先番3', blank=True, null=True)
-    sanpukunaka3 = IntegerField(verbose_name='三連複中番3', blank=True, null=True)
-    sanpukuato3 = IntegerField(verbose_name='三連複後番3', blank=True, null=True)
-    sanpukuharakin3 = IntegerField(verbose_name='三連複払戻金3', blank=True, null=True)
-    sanpukutounin3 = IntegerField(verbose_name='三連複投票人気3', blank=True, null=True)
+    sanpukuharajoukyou = CharField(verbose_name='三連複払戻状況', max_length=10, blank=True, null=True)
 
     # 三連単払戻情報
-    santanharajoukyou = IntegerField(verbose_name='三連単払戻状況')
-    santankumijoukyou1 = IntegerField(verbose_name='三連単組番状況1', blank=True, null=True)
-    santansaki1 = IntegerField(verbose_name='三連単先番1', blank=True, null=True)
-    santannaka1 = IntegerField(verbose_name='三連単中番1', blank=True, null=True)
-    santanato1 = IntegerField(verbose_name='三連単後番1', blank=True, null=True)
-    santanharakin1 = IntegerField(verbose_name='三連単払戻金1', blank=True, null=True)
-    santantounin1 = IntegerField(verbose_name='三連単投票人気1', blank=True, null=True)
-    # 以降、同着発生時のテーブル
-    santankumijoukyou2 = IntegerField(verbose_name='三連単組番状況2', blank=True, null=True)
-    santansaki2 = IntegerField(verbose_name='三連単先番2', blank=True, null=True)
-    santannaka2 = IntegerField(verbose_name='三連単中番2', blank=True, null=True)
-    santanato2 = IntegerField(verbose_name='三連単後番2', blank=True, null=True)
-    santanharakin2 = IntegerField(verbose_name='三連単払戻金2', blank=True, null=True)
-    santantounin2 = IntegerField(verbose_name='三連単投票人気2', blank=True, null=True)
+    santanharajoukyou = CharField(verbose_name='三連単払戻状況', max_length=10, blank=True, null=True)
     
-    santankumijoukyou3 = IntegerField(verbose_name='三連単組番状況3', blank=True, null=True)
-    santansaki3 = IntegerField(verbose_name='三連単先番3', blank=True, null=True)
-    santannaka3 = IntegerField(verbose_name='三連単中番3', blank=True, null=True)
-    santanato3 = IntegerField(verbose_name='三連単後番3', blank=True, null=True)
-    santanharakin3 = IntegerField(verbose_name='三連単払戻金3', blank=True, null=True)
-    santantounin3 = IntegerField(verbose_name='三連単投票人気3', blank=True, null=True)
-
-    santankumijoukyou4 = IntegerField(verbose_name='三連単組番状況4', blank=True, null=True)
-    santansaki4 = IntegerField(verbose_name='三連単先番4', blank=True, null=True)
-    santannaka4 = IntegerField(verbose_name='三連単中番4', blank=True, null=True)
-    santanato4 = IntegerField(verbose_name='三連単後番4', blank=True, null=True)
-    santanharakin4 = IntegerField(verbose_name='三連単払戻金4', blank=True, null=True)
-    santantounin4 = IntegerField(verbose_name='三連単投票人気4', blank=True, null=True)
-
-    santankumijoukyou5 = IntegerField(verbose_name='三連単組番状況5', blank=True, null=True)
-    santansaki5 = IntegerField(verbose_name='三連単先番5', blank=True, null=True)
-    santannaka5 = IntegerField(verbose_name='三連単中番5', blank=True, null=True)
-    santanato5 = IntegerField(verbose_name='三連単後番5', blank=True, null=True)
-    santanharakin5 = IntegerField(verbose_name='三連単払戻金5', blank=True, null=True)
-    santantounin5 = IntegerField(verbose_name='三連単投票人気5', blank=True, null=True)
-    
-    santankumijoukyou6 = IntegerField(verbose_name='三連単組番状況6', blank=True, null=True)
-    santansaki6 = IntegerField(verbose_name='三連単先番6', blank=True, null=True)
-    santannaka6 = IntegerField(verbose_name='三連単中番6', blank=True, null=True)
-    santanato6 = IntegerField(verbose_name='三連単後番6', blank=True, null=True)
-    santanharakin6 = IntegerField(verbose_name='三連単払戻金6', blank=True, null=True)
-    santantounin6 = IntegerField(verbose_name='三連単投票人気6', blank=True, null=True)
-
     # ワイド払戻情報
-    waharajoukyou = IntegerField(verbose_name='ワイド払戻状況')
-    wakumijoukyou1 = IntegerField(verbose_name='ワイド組番状況1', blank=True, null=True)
-    wasaki1 = IntegerField(verbose_name='ワイド先番1', blank=True, null=True)
-    waato1 = IntegerField(verbose_name='ワイド後番1', blank=True, null=True)
-    waharakin1 = IntegerField(verbose_name='ワイド払戻金1', blank=True, null=True)
-    watounin1 = IntegerField(verbose_name='ワイド投票人気1', blank=True, null=True)
-    
-    wakumijoukyou2 = IntegerField(verbose_name='ワイド組番状況2', blank=True, null=True)
-    wasaki2 = IntegerField(verbose_name='ワイド先番2', blank=True, null=True)
-    waato2 = IntegerField(verbose_name='ワイド後番2', blank=True, null=True)
-    waharakin2 = IntegerField(verbose_name='ワイド払戻金2', blank=True, null=True)
-    watounin2 = IntegerField(verbose_name='ワイド投票人気2', blank=True, null=True)
-    
-    wakumijoukyou3 = IntegerField(verbose_name='ワイド組番状況3', blank=True, null=True)
-    wasaki3 = IntegerField(verbose_name='ワイド先番3', blank=True, null=True)
-    waato3 = IntegerField(verbose_name='ワイド後番3', blank=True, null=True)
-    waharakin3 = IntegerField(verbose_name='ワイド払戻金3', blank=True, null=True)
-    watounin3 = IntegerField(verbose_name='ワイド投票人気3', blank=True, null=True)
-    
-    # 以降、同着発生時のテーブル
-    wakumijoukyou4 = IntegerField(verbose_name='ワイド組番状況4', blank=True, null=True)
-    wasaki4 = IntegerField(verbose_name='ワイド先番4', blank=True, null=True)
-    waato4 = IntegerField(verbose_name='ワイド後番4', blank=True, null=True)
-    waharakin4 = IntegerField(verbose_name='ワイド払戻金4', blank=True, null=True)
-    watounin4 = IntegerField(verbose_name='ワイド投票人気4', blank=True, null=True)
-    
-    wakumijoukyou5 = IntegerField(verbose_name='ワイド組番状況5', blank=True, null=True)
-    wasaki5 = IntegerField(verbose_name='ワイド先番5', blank=True, null=True)
-    waato5 = IntegerField(verbose_name='ワイド後番5', blank=True, null=True)
-    waharakin5 = IntegerField(verbose_name='ワイド払戻金5', blank=True, null=True)
-    watounin5 = IntegerField(verbose_name='ワイド投票人気5', blank=True, null=True)
-    
-    wakumijoukyou6 = IntegerField(verbose_name='ワイド組番状況6', blank=True, null=True)
-    wasaki6 = IntegerField(verbose_name='ワイド先番6', blank=True, null=True)
-    waato6 = IntegerField(verbose_name='ワイド後番6', blank=True, null=True)
-    waharakin6 = IntegerField(verbose_name='ワイド払戻金6', blank=True, null=True)
-    watounin6 = IntegerField(verbose_name='ワイド投票人気6', blank=True, null=True)
-    
-    wakumijoukyou7 = IntegerField(verbose_name='ワイド組番状況7', blank=True, null=True)
-    wasaki7 = IntegerField(verbose_name='ワイド先番7', blank=True, null=True)
-    waato7 = IntegerField(verbose_name='ワイド後番7', blank=True, null=True)
-    waharakin7 = IntegerField(verbose_name='ワイド払戻金7', blank=True, null=True)
-    watounin7 = IntegerField(verbose_name='ワイド投票人気7', blank=True, null=True)
+    waharajoukyou = CharField(verbose_name='ワイド払戻状況', max_length=10, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '【中間DB】成績・払戻'
@@ -994,12 +725,173 @@ class Md_Seiseki_Haraimodoshi(Model):
         return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou)+'R'
 
 
+# 【中間DB】成績・払戻_単勝
+class Md_Seiseki_Haraimodoshi_tan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "tanshou")  #【中間DB】成績・払戻
+
+    tankumijoukyou = CharField(verbose_name='単勝組番状況', max_length=10,blank=True, null=True) 
+    tansaki = IntegerField(verbose_name='単勝先番', blank=True, null=True)
+    tanharakin = IntegerField(verbose_name='単勝払戻金', blank=True, null=True)
+    tantounin = IntegerField(verbose_name='単勝投票人気', blank=True, null=True)
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_単勝'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.tansaki) + ' '+ str(self.tanharakin)+ '円'
+        
+
+# 【中間DB】成績・払戻_複勝　３つ分用意した方がいい？
+class Md_Seiseki_Haraimodoshi_fuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "fukushou")  #【中間DB】成績・払戻
+
+    fukukumijoukyou = CharField(verbose_name='複勝組番状況', max_length=10,blank=True, null=True)
+    fukusaki = IntegerField(verbose_name='複勝先番', blank=True, null=True)
+    fukuharakin = IntegerField(verbose_name='複勝払戻金', blank=True, null=True)
+    ck_fukutounin = IntegerField(verbose_name='複勝投票人気', blank=True, null=True)
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_複勝'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.fukusaki) + ' '+ str(self.fukuharakin)+ '円'
+
+# 【中間DB】成績・払戻_枠連複
+class Md_Seiseki_Haraimodoshi_wakupuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "wakupuku")  #【中間DB】成績・払戻
+
+    wakupukukumijoukyou = CharField(verbose_name='枠連複組番状況', max_length=10,blank=True, null=True)
+    wakupukusaki = IntegerField(verbose_name='枠連複先番', blank=True, null=True)
+    wakupukuato = IntegerField(verbose_name='枠連複後番', blank=True, null=True)
+    wakupukuharakin = IntegerField(verbose_name='枠連複払戻金', blank=True, null=True)
+    wakupukutounin = IntegerField(verbose_name='枠連複投票人気', blank=True, null=True)
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_枠連複'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wakupukusaki) + '-'+ str(self.wakupukuato) + ' '+ str(self.wakupukuharakin)+ '円'
+
+# 【中間DB】成績・払戻_枠連単
+class Md_Seiseki_Haraimodoshi_wakutan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "wakutan")  #【中間DB】成績・払戻
+
+    ck_wakutankumijoukyou = CharField(verbose_name='枠連単組番状況', max_length=10,blank=True, null=True)
+    ck_wakutansaki = IntegerField(verbose_name='枠連単先番', blank=True, null=True)
+    ck_wakutanato = IntegerField(verbose_name='枠連単後番', blank=True, null=True)
+    ck_wakutanharakin = IntegerField(verbose_name='枠連単払戻金', blank=True, null=True)
+    ck_wakutantounin = IntegerField(verbose_name='枠連単投票人気', blank=True, null=True)
+    
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_枠連単'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.ck_wakutansaki) + '-'+ str(self.ck_wakutanato) + ' '+ str(self.ck_wakutanharakin)+ '円'
+
+# 【中間DB】成績・払戻_馬連複
+class Md_Seiseki_Haraimodoshi_umapuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "umapuku")  #【中間DB】成績・払戻
+
+    umapukukumijoukyou = CharField(verbose_name='馬連複組番状況', max_length=10,blank=True, null=True)
+    umapukusaki = IntegerField(verbose_name='馬連複先番', blank=True, null=True)
+    umapukuato = IntegerField(verbose_name='馬連複後番', blank=True, null=True)
+    umapukuharakin = IntegerField(verbose_name='馬連複払戻金', blank=True, null=True)
+    umapukutounin = IntegerField(verbose_name='馬連複投票人気', blank=True, null=True)
+    
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_馬連複'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umapukusaki) + '-'+ str(self.umapukuato) + ' '+ str(self.umapukuharakin)+ '円'
+
+
+# 【中間DB】成績・払戻_馬連単
+class Md_Seiseki_Haraimodoshi_umatan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "umatan")  #【中間DB】成績・払戻
+
+    umatankumijoukyou = CharField(verbose_name='馬連単組番状況', max_length=10,blank=True, null=True)
+    umatansaki = IntegerField(verbose_name='馬連単先番', blank=True, null=True)
+    umatanato = IntegerField(verbose_name='馬連単後番', blank=True, null=True)
+    umatanharakin = IntegerField(verbose_name='馬連単払戻金', blank=True, null=True)
+    umatantounin = IntegerField(verbose_name='馬連単投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_馬連単'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umatansaki) + '-'+ str(self.umatanato) + ' '+ str(self.umatanharakin)+ '円'
+
+# 【中間DB】成績・払戻_三連複
+class Md_Seiseki_Haraimodoshi_sanpuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "sanpuku")  #【中間DB】成績・払戻
+
+    sanpukukumijoukyou = CharField(verbose_name='三連複組番状況', max_length=10,blank=True, null=True)
+    sanpukusaki = IntegerField(verbose_name='三連複先番', blank=True, null=True)
+    sanpukunaka = IntegerField(verbose_name='三連複中番', blank=True, null=True)
+    sanpukuato = IntegerField(verbose_name='三連複後番', blank=True, null=True)
+    sanpukuharakin = IntegerField(verbose_name='三連複払戻金', blank=True, null=True)
+    sanpukutounin = IntegerField(verbose_name='三連複投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_三連複'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.sanpukusaki) + '-'+ str(self.sanpukunaka) + '-'+ str(self.sanpukuato)+ ' '+ str(self.sanpukuharakin)+ '円'
+
+# 【中間DB】成績・払戻_三連単
+class Md_Seiseki_Haraimodoshi_santan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "santan")  #【中間DB】成績・払戻
+
+    santankumijoukyou = CharField(verbose_name='三連単組番状況', max_length=10,blank=True, null=True)
+    santansaki = IntegerField(verbose_name='三連単先番', blank=True, null=True)
+    santannaka = IntegerField(verbose_name='三連単中番', blank=True, null=True)
+    santanato = IntegerField(verbose_name='三連単後番', blank=True, null=True)
+    santanharakin = IntegerField(verbose_name='三連単払戻金', blank=True, null=True)
+    santantounin = IntegerField(verbose_name='三連単投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_三連単'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.santansaki) + '-'+ str(self.santannaka) + '-'+ str(self.santanato)+ ' '+ str(self.santanharakin)+ '円'
+
+
+# 【中間DB】成績・払戻_ワイド
+class Md_Seiseki_Haraimodoshi_wa(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "wa")  #【中間DB】成績・払戻
+
+    wakumijoukyou = CharField(verbose_name='ワイド組番状況', max_length=10,blank=True, null=True)
+    wasaki = IntegerField(verbose_name='ワイド先番', blank=True, null=True)
+    waato = IntegerField(verbose_name='ワイド後番', blank=True, null=True)
+    waharakin = IntegerField(verbose_name='ワイド払戻金', blank=True, null=True)
+    watounin = IntegerField(verbose_name='ワイド投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_ワイド'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wasaki) + '-'+ str(self.waato) + ' '+ str(self.waharakin)+ '円'
+
+
+
+
+
+
+
+
+
+
 # 【中間DB】成績・払戻_成績
 class Md_Seiseki_Haraimodoshi_seiseki(Model):
 
-    
     # 成績・払戻外部キー
-    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE, related_name = "seiseki_haraimodoshi")  #【中間DB】成績・払戻
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE, related_name = "seiseki")  #【中間DB】成績・払戻
 
     #着順情報
     juni = IntegerField(verbose_name='順位')

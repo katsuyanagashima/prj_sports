@@ -1,16 +1,38 @@
-<div>
+{% extends 'app_ckeiba/base.html' %}
+
+{% block content %}
+
+<div style="margin-top: 10px;" class="container">
     <h2>{{title}}更新画面</h2>
     <form method="post">
         {% csrf_token %}
 
-        {{ form.as_p }}
-        <hr />
-        {{ formset.as_p }}
-        <hr />
-        {{ formset_kako5sou.as_p }}
-
-
+        <div class="row">
+            <div class="col-4">
+                <h3>出走表</h3>
+                {{ form.management_form }}
+                {{ form }}
+            </div>
+            <div class="col-4">
+                <h3>出走表各馬</h3>
+                {{ formset.management_form }}
+                {{ formset }}
+            </div>
+            <div class="col-4">
+                <h3>各馬過去５成績</h3>
+                <h6 style="color: red;">過去成績を更新しようとするとエラーが出るので、要修正</br>エラーメッセージ：「(隠しフィールド shussouba)
+                    インライン値が親のインスタンスに一致しません。」</h6>
+                <h5>馬1</h5>
+                {{ kako5sou_formset0.management_form }}
+                {{ kako5sou_formset0 }}
+                <h5>馬2</h5>
+                {{ kako5sou_formset1.management_form }}
+                {{ kako5sou_formset1 }}
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">更新</button></br>
         <a href="{% url 'app_ckeiba:index'%}" class="btn" role="button">戻る</a>
     </form>
 </div>
+
+{% endblock %}
