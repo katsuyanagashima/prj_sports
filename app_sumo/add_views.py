@@ -83,6 +83,7 @@ def output_NewsML(request):
                 'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
             }
         elif newsno == "06":
+
             context = {
                 'newsmlmeta':Tran_Systemstatus.objects.all(),
                 'Banzuke': Tran_Banzuke.objects.all(),
