@@ -371,7 +371,7 @@ class Mst_Delivery(Model):
     Individual_address =  IntegerField(verbose_name='個別指定', blank=True, null=True)
 
     class Meta:
-       verbose_name_plural = '配信名称'
+       verbose_name_plural = '配信コードマスタ'
 
     def __str__(self):
         return str(self.Delivery_name)

@@ -61,6 +61,7 @@ def output_NewsML(request):
         if newsno == "01":
             context = {
                 'newsmlmeta':Tran_Systemstatus.objects.all(),               #システム状態マスタ
+                'subheader':Mst_SubHeader.objects.all(),                    #副ヘッダマスタ
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),    #予想番付マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),            #生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),              #生涯受賞マスタ
@@ -68,6 +69,7 @@ def output_NewsML(request):
         elif newsno == "02":
             context = {
                 'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
+                'subheader':Mst_SubHeader.objects.all(),            #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
@@ -75,6 +77,7 @@ def output_NewsML(request):
         elif newsno == "03":
             context = {
                 'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
+                'subheader':Mst_SubHeader.objects.all(),            #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
