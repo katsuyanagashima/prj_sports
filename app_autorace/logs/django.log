@@ -1,0 +1,24 @@
+[INFO]	2020-04-22 14:12:21,326	module:trn_receiving_autorace	command.handle:69	target_dir_scheduleData:/code/app_autorace/management/commands/scheduleData
+[INFO]	2020-04-22 14:12:21,336	module:trn_receiving_autorace	command.handle:73	scheduleData: スケジュール監視　Start
+[INFO]	2020-04-22 14:12:21,337	module:trn_receiving_autorace	command.handle:86	target_dir_programData:/code/app_autorace/management/commands/programData
+[INFO]	2020-04-22 14:12:21,344	module:trn_receiving_autorace	command.handle:89	programData: 番組編成監視　Start
+[INFO]	2020-04-22 14:12:21,350	module:trn_receiving_autorace	command.handle:103	target_dir_resultData:/code/app_autorace/management/commands/resultData
+[INFO]	2020-04-22 14:12:21,351	module:trn_receiving_autorace	command.handle:106	resultData: レース結果監視　Start
+[INFO]	2020-04-22 14:12:21,360	module:trn_receiving_autorace	command.handle:120	target_dir_top30prizeData:/code/app_autorace/management/commands/top30prizeData
+[INFO]	2020-04-22 14:12:21,361	module:trn_receiving_autorace	command.handle:123	top30prizeData: 選手取得賞金上位３０位監視　Start
+[INFO]	2020-04-22 14:12:21,369	module:trn_receiving_autorace	command.handle:137	target_dir_outsidetrackData:/code/app_autorace/management/commands/outsidetrackData
+[INFO]	2020-04-22 14:12:21,370	module:trn_receiving_autorace	command.handle:140	outsidetrackData: 場外売場情報監視　Start
+[INFO]	2020-04-22 14:16:49,825	module:watchdoc	command.on_created:98	created Start:/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
+[WARNING]	2020-04-22 14:16:50,143	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:257	'Outside_track' object has no attribute 'date_japanese_calendar'
+[WARNING]	2020-04-22 14:16:50,145	module:watchdoc	command.on_created:102	DB insert_or_update_Trn_Outside_track: 失敗：ファイル名/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
+[INFO]	2020-04-22 14:16:50,146	module:watchdoc	command.on_created:103	created End:
+[INFO]	2020-04-22 14:26:20,093	module:watchdoc	command.on_deleted:115	deleted:
+[INFO]	2020-04-22 14:26:29,213	module:watchdoc	command.on_created:98	created Start:/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
+[WARNING]	2020-04-22 14:26:29,324	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:257	'Outside_track' object has no attribute 'date_japanese_calendar'
+[WARNING]	2020-04-22 14:26:29,325	module:watchdoc	command.on_created:102	DB insert_or_update_Trn_Outside_track: 失敗：ファイル名/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
+[INFO]	2020-04-22 14:26:29,326	module:watchdoc	command.on_created:103	created End:
+[INFO]	2020-04-22 14:38:14,513	module:watchdoc	command.on_deleted:115	deleted:
+[INFO]	2020-04-22 14:38:21,683	module:watchdoc	command.on_created:98	created Start:/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
+[WARNING]	2020-04-22 14:38:21,802	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:257	'Outside_track' object has no attribute 'date_japanese_calendar'
+[WARNING]	2020-04-22 14:38:21,803	module:watchdoc	command.on_created:102	DB insert_or_update_Trn_Outside_track: 失敗：ファイル名/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
+[INFO]	2020-04-22 14:38:21,804	module:watchdoc	command.on_created:103	created End:
