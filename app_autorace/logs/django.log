@@ -932,3 +932,45 @@ Traceback (most recent call last):
 django.db.utils.DataError: (1406, "Data too long for column 'Data_ID' at row 1")
 [WARNING]	2020-04-20 16:39:02,944	module:log	django.request.log_response:228	Not Found: /favicon.ico
 [WARNING]	2020-04-20 16:45:07,284	module:log	django.request.log_response:228	Not Found: /favicon.ico
+[WARNING]	2020-04-20 17:29:40,592	module:log	django.request.log_response:228	Not Found: /favicon.ico
+[WARNING]	2020-04-21 15:20:37,772	module:log	django.request.log_response:228	Not Found: /favicon.ico
+[WARNING]	2020-04-22 14:40:36,780	module:log	django.request.log_response:228	Not Found: /favicon.ico
+[ERROR]	2020-04-22 17:27:23,620	module:log	django.request.log_response:228	Internal Server Error: /app_sumo/SUMOUT02/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./app_sumo/views.py", line 148, in SUMOUT02
+    res = output_NewsML(request)
+  File "./app_sumo/add_views.py", line 66, in output_NewsML
+    'basho': tran_system.CurrentBasho,
+NameError: name 'tran_system' is not defined
+[ERROR]	2020-04-22 17:30:56,624	module:log	django.request.log_response:228	Internal Server Error: /app_sumo/SUMOUT02/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./app_sumo/views.py", line 148, in SUMOUT02
+    res = output_NewsML(request)
+  File "./app_sumo/add_views.py", line 67, in output_NewsML
+    'torikuminichime': Tran_Systemstatus.TorikumiDate.Nichime_name,
+AttributeError: 'ForwardManyToOneDescriptor' object has no attribute 'Nichime_name'
+[ERROR]	2020-04-22 17:37:24,746	module:log	django.request.log_response:228	Internal Server Error: /app_sumo/SUMOUT02/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./app_sumo/views.py", line 148, in SUMOUT02
+    res = output_NewsML(request)
+  File "./app_sumo/add_views.py", line 79, in output_NewsML
+    with open('app_sumo/output/hold/%s' % newfile_name,'w') as static_file:
+OSError: [Errno 26] Text file busy: 'app_sumo/output/hold/20200422OSF06AA__CC____01.xml'

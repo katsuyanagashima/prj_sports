@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-16"?>
+<?xml version="1.0" encoding="UTF-8"?>
 {% load static %}
 <!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
 	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
@@ -76,7 +76,7 @@
 </NewsManagement>
 <NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
 <NewsLines>
-<HeadLine>初日郷土力士取組</HeadLine>
+<HeadLine>{{ torikuminichime }}郷土力士取組</HeadLine>
 <SubHeadLine>北海道</SubHeadLine>
 <NewsLine>
 <NewsLineType FormalName="EndInfo"/>
@@ -117,7 +117,7 @@
 <InClasses>
 <InClass>
 <InBClass>相撲</InBClass>
-<InMClass1>初場所初日</InMClass1>
+<InMClass1>{{ basho }}{{ torikuminichime }}</InMClass1>
 <InMClass2>郷土力士取組</InMClass2>
 <InSClass>北海道</InSClass>
 </InClass>
@@ -126,7 +126,7 @@
 <InNewsGenre>相撲</InNewsGenre>
 </InNewsCategory>
 <InNewsLine>
-<InHeadLine>初日郷土力士取組</InHeadLine>
+<InHeadLine>{{ torikuminichime }}郷土力士取組</InHeadLine>
 <InSubHeadLines>
 <InSubHeadLine>北海道</InSubHeadLine>
 </InSubHeadLines>
@@ -166,9 +166,9 @@
 <Head>
 <Meta>
 <Competition>
-<Formal>初場所</Formal>
+<Formal>{{ basho }}</Formal>
 </Competition>
-<CompetitionDay>初日</CompetitionDay>
+<CompetitionDay>{{ torikuminichime }}</CompetitionDay>
 <Discipline>
 <Formal>相撲</Formal>
 </Discipline>
