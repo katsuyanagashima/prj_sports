@@ -191,7 +191,9 @@ window.addEventListener("load", function () {
     let date_obj = new Date(arr[0],arr[1]-1, arr[2]);
 
     // DATEオブジェクトに日数を加算
-    let dt = date_obj.setDate(date_obj.getDate() + (val-1));
+    let dt = date_obj.setDate(date_obj.getDate() + (val));
+  //  let dt = date_obj.setDate(date_obj.getDate() + (val-1));
+  //  年齢算出基準日の初日～千秋楽は、初日に勝負日目＋１日を設定
     dt = new Date(dt)
 
     // DATEオブジェクトからYYYY-MM-DD形式の文字列に戻す

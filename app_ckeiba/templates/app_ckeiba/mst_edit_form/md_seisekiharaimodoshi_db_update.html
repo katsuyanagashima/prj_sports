@@ -1,0 +1,56 @@
+{% extends 'app_ckeiba/base.html' %}
+
+{% block content %}
+<div style="margin-top: 10px;" class="container">
+    <h2>{{title}}更新画面</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-4">
+                <h3>成績</h3>
+                {{ form.management_form }}
+                {{ form }}
+            </div>
+            <div class="col-4">
+                <h3>成績詳細</h3>
+                {{ formset_seiseki.management_form }}
+                {{ formset_seiseki }}
+            </div>
+            <div class="col-4">
+                <h3>払戻</h3>
+                <h5>単勝</h5>
+                {{ formset_tan.management_form }}
+                {{ formset_tan }}
+                <h5>複勝</h5>
+                {{ formset_fuku.management_form }}
+                {{ formset_fuku }}
+                <h5>枠複</h5>
+                {{ formset_wakupuku.management_form }}
+                {{ formset_wakupuku }}
+                <h5>枠単</h5>
+                {{ formset_wakutan.management_form }}
+                {{ formset_wakutan }}
+                <h5>馬複</h5>
+                {{ formset_umapuku.management_form }}
+                {{ formset_umapuku }}
+                <h5>馬単</h5>
+                {{ formset_umatan.management_form }}
+                {{ formset_umatan }}
+                <h5>三連複</h5>
+                {{ formset_sanpuku.management_form }}
+                {{ formset_sanpuku }}
+                <h5>三連単</h5>
+                {{ formset_santan.management_form }}
+                {{ formset_santan }}
+                <h5>ワイド</h5>
+                {{ formset_wa.management_form }}
+                {{ formset_wa }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">更新</button></br>
+        <a href="{% url 'app_ckeiba:index'%}" class="btn" role="button">戻る</a>
+    </form>
+</div>
+
+{% endblock %}

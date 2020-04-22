@@ -394,6 +394,7 @@ class Mst_Fix_annotation(Model):
 
 # 【中間DB】出走表
 class Md_Shussouhyou(Model):
+
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "shussouhyou")  #競馬場マスタ
     ck_kyounen = IntegerField(verbose_name='年')
@@ -405,16 +406,14 @@ class Md_Shussouhyou(Model):
     kaisuu = IntegerField(verbose_name='回数')
     kainichime = IntegerField(verbose_name='開催日目')
 
-    # 競走年月日
-    # ck_kyounichi = DateField(verbose_name='競走年月日')
-
-    # レース情報
-    # rebangou = IntegerField(verbose_name='レース番号')
     shubetsu = ForeignKey('Mst_Breed_age', verbose_name='競争種別', on_delete=CASCADE, related_name = "shubetu")  #品種年齢区分マスタ
     tokusouhonsuu = IntegerField(verbose_name='特別競争本題回数')
     tokusoumeihon = CharField(verbose_name='特別競争名本題', max_length=100, blank=True, null=True)
     tokusoumeifuku = CharField(verbose_name='特別競争名副題', max_length=100, blank=True, null=True)
-    ck_fukusyoumei = CharField(verbose_name='副賞名', max_length=100, blank=True, null=True) #複数ある場合繰り返すかリスト化する必要あり
+    
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_fukusyoumei = CharField(verbose_name='副賞名', max_length=100, blank=True, null=True) 
+    
     guredo = ForeignKey('Mst_Grade', verbose_name='グレード', on_delete=CASCADE, blank=True, null=True)  #グレードマスタ
     md_kyousousyu = ForeignKey('Mst_Race_type', verbose_name='競争種類コード', on_delete=CASCADE)  #競走種類マスタ
     ck_chuokouryu = ForeignKey('Mst_JRA_exchanges', verbose_name='中央交流区分', on_delete=CASCADE)  #中央交流区分マスタ
@@ -437,30 +436,16 @@ class Md_Shussouhyou(Model):
     shusuu = IntegerField(verbose_name='出走頭数')
     hassoujikoku = TimeField(verbose_name='発送時刻')
     bareijouken = ForeignKey('Mst_Breed_age', verbose_name='競争種別', on_delete=CASCADE, related_name = "barei")    #品種年齢区分マスタ。もう取得してる競走種別用名称から馬齢条件用名称を取得？
-    ck_shikaku = CharField(verbose_name='レコード馬名', max_length=10, blank=True, null=True) #複数ある場合繰り返すかリスト化する必要あり
-    ck_rkaku = CharField(verbose_name='レース格', max_length=10, blank=True, null=True) #複数ある場合繰り返すかリスト化する必要あり
-    ck_rkumi = CharField(verbose_name='レース組', max_length=10, blank=True, null=True) #複数ある場合繰り返すかリスト化する必要あり
+    
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_shikaku = CharField(verbose_name='レコード馬名', max_length=10, blank=True, null=True)  
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_rkaku = CharField(verbose_name='レース格', max_length=10, blank=True, null=True)  
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_rkumi = CharField(verbose_name='レース組', max_length=10, blank=True, null=True)  
+    
     jyuuryoushubetsu = ForeignKey('Mst_Handicap', verbose_name='負担重量区分', on_delete=CASCADE)  #負担重量区分マスタ
 
-
-    # 出走馬。最大16頭立て
-    shussouba1 = ForeignKey('Md_Shussouba', verbose_name='出走馬1', on_delete=CASCADE, related_name = "umaban_1", blank=True, null=True)  #出走馬マスタ
-    shussouba2 = ForeignKey('Md_Shussouba', verbose_name='出走馬2', on_delete=CASCADE, related_name = "umaban_2", blank=True, null=True)  #出走馬マスタ
-    shussouba3 = ForeignKey('Md_Shussouba', verbose_name='出走馬3', on_delete=CASCADE, related_name = "umaban_3", blank=True, null=True)  #出走馬マスタ
-    shussouba4 = ForeignKey('Md_Shussouba', verbose_name='出走馬4', on_delete=CASCADE, related_name = "umaban_4", blank=True, null=True)  #出走馬マスタ
-    shussouba5 = ForeignKey('Md_Shussouba', verbose_name='出走馬5', on_delete=CASCADE, related_name = "umaban_5", blank=True, null=True)  #出走馬マスタ
-    shussouba6 = ForeignKey('Md_Shussouba', verbose_name='出走馬6', on_delete=CASCADE, related_name = "umaban_6", blank=True, null=True)  #出走馬マスタ
-    shussouba7 = ForeignKey('Md_Shussouba', verbose_name='出走馬7', on_delete=CASCADE, related_name = "umaban_7", blank=True, null=True)  #出走馬マスタ
-    shussouba8 = ForeignKey('Md_Shussouba', verbose_name='出走馬8', on_delete=CASCADE, related_name = "umaban_8", blank=True, null=True)  #出走馬マスタ
-    shussouba9 = ForeignKey('Md_Shussouba', verbose_name='出走馬9', on_delete=CASCADE, related_name = "umaban_9", blank=True, null=True)  #出走馬マスタ
-    shussouba10 = ForeignKey('Md_Shussouba', verbose_name='出走馬10', on_delete=CASCADE, related_name = "umaban_10", blank=True, null=True)  #出走馬マスタ
-    shussouba11 = ForeignKey('Md_Shussouba', verbose_name='出走馬11', on_delete=CASCADE, related_name = "umaban_11", blank=True, null=True)  #出走馬マスタ
-    shussouba12 = ForeignKey('Md_Shussouba', verbose_name='出走馬12', on_delete=CASCADE, related_name = "umaban_12", blank=True, null=True)  #出走馬マスタ
-    shussouba13 = ForeignKey('Md_Shussouba', verbose_name='出走馬13', on_delete=CASCADE, related_name = "umaban_13", blank=True, null=True)  #出走馬マスタ
-    shussouba14 = ForeignKey('Md_Shussouba', verbose_name='出走馬14', on_delete=CASCADE, related_name = "umaban_14", blank=True, null=True)  #出走馬マスタ
-    shussouba15 = ForeignKey('Md_Shussouba', verbose_name='出走馬15', on_delete=CASCADE, related_name = "umaban_15", blank=True, null=True)  #出走馬マスタ
-    shussouba16 = ForeignKey('Md_Shussouba', verbose_name='出走馬16', on_delete=CASCADE, related_name = "umaban_16", blank=True, null=True)  #出走馬マスタ
-    
     class Meta:
         verbose_name_plural = '【中間DB】出走表'
 
@@ -469,14 +454,10 @@ class Md_Shussouhyou(Model):
 
 
 # 出走馬情報（最大16頭立ての前提。）
-class Md_Shussouba(Model):
+class Md_Shussouhyou_shussouba(Model):
 
-     # 基本情報
-    joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "shussouba")  #競馬場マスタ
-    ck_kyounen = IntegerField(verbose_name='年')
-    ck_kyoutuki = IntegerField(verbose_name='月')
-    ck_kyouhi = IntegerField(verbose_name='日')
-    rebangou = IntegerField(verbose_name='レース番号')
+    # 出走表外部キー
+    shussouhyou = ForeignKey('Md_Shussouhyou', verbose_name='出走表', on_delete=CASCADE, related_name = "shussouba")  #【中間DB】出走表
 
 
     # 馬情報
@@ -547,25 +528,18 @@ class Md_Shussouba(Model):
     ck_jyou_3chaku = IntegerField(verbose_name='該当競馬場芝orダート成績 3着')
     ck_jyou_chakugai = IntegerField(verbose_name='該当競馬場芝orダート成績 着外')
 
-    #過去成績
-    kakoseiseki1 = ForeignKey('Md_Shussouba_kako', verbose_name='過去成績1', on_delete=CASCADE, related_name = "kako_1")  #過去成績マスタ
-    kakoseiseki2 = ForeignKey('Md_Shussouba_kako', verbose_name='過去成績2', on_delete=CASCADE, related_name = "kako_2")  #過去成績マスタ
-    kakoseiseki3 = ForeignKey('Md_Shussouba_kako', verbose_name='過去成績3', on_delete=CASCADE, related_name = "kako_3")  #過去成績マスタ
-    kakoseiseki4 = ForeignKey('Md_Shussouba_kako', verbose_name='過去成績4', on_delete=CASCADE, related_name = "kako_4")  #過去成績マスタ
-    kakoseiseki5 = ForeignKey('Md_Shussouba_kako', verbose_name='過去成績5', on_delete=CASCADE, related_name = "kako_5")  #過去成績マスタ
 
-    
     class Meta:
         verbose_name_plural = '【中間DB】出走表_出走馬'
 
     def __str__(self):
-        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou)+'R ' + str(self.uma) +'番 ' + str(self.bamei)
+        return str(self.shussouhyou) + str(self.uma) +'番 ' + str(self.bamei)
 
     # 過去成績 5回分繰り返す
-class Md_Shussouba_kako(Model):
+class Md_Shussouhyou_shussouba_5seiseki(Model):
 
-    #リレーション用の情報
-    bamei = CharField(verbose_name='馬名', max_length=10, blank=True, null=True)
+    # 出走馬外部キー
+    shussouba = ForeignKey('Md_Shussouhyou_shussouba', verbose_name='出走馬', on_delete=CASCADE, related_name = "shussouba_kako")  #【中間DB】出走表_出走馬
 
     # 出走日付
     ck_kkhiduke = DateField(verbose_name='出走日付')
@@ -578,9 +552,15 @@ class Md_Shussouba_kako(Model):
     ck_kknaita = ForeignKey('Mst_Night_race_class', verbose_name='ナイター区分マスタ', on_delete=CASCADE)  #ナイター区分マスタ
     ck_kkshubetsu = ForeignKey('Mst_Breed_age', verbose_name='品種年齢区分マスタ', on_delete=CASCADE , related_name = "kako")  #品種年齢区分マスタ
     ck_kkrmei = CharField(verbose_name='レース名称', max_length=50, blank=True, null=True)
-    ck_kkshikaku = CharField(verbose_name='競争資格条件', max_length=30, blank=True, null=True) # 複数ある場合、,で区切る
-    ck_kkrkaku = CharField(verbose_name='レース格', max_length=20, blank=True, null=True) # 複数ある場合、,で区切る
-    ck_kkrkumi = CharField(verbose_name='レース組', max_length=20, blank=True, null=True) # 複数ある場合、,で区切る
+
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_kkshikaku = CharField(verbose_name='競争資格条件', max_length=30, blank=True, null=True) 
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_kkrkaku = CharField(verbose_name='レース格', max_length=20, blank=True, null=True) 
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_kkrkumi = CharField(verbose_name='レース組', max_length=20, blank=True, null=True) 
+    
+
     ck_kkguredo = ForeignKey('Mst_Grade', verbose_name='グレードマスタ', on_delete=CASCADE)  #グレードマスタ
     ck_kkkyori = IntegerField(verbose_name='競争距離')
     # トラック情報
@@ -612,11 +592,10 @@ class Md_Shussouba_kako(Model):
         verbose_name_plural = '【中間DB】出走表_出走馬_過去成績'
 
     def __str__(self):
-        return str(self.bamei) + ' ' + str(self.ck_kkhiduke)
+        return str(self.shussouba) + ' ' + str(self.ck_kkhiduke)
 
 # 【中間DB】入場人員
 class Md_Nyujo(Model):
-    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="nyujo")  #競馬場マスタ
      # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "nyujo")  #競馬場マスタ
     ck_kyounen = IntegerField(verbose_name='年')
@@ -633,7 +612,6 @@ class Md_Nyujo(Model):
 
 # 【中間DB】売上金
 class Md_Uriagekin(Model):
-    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="uriage")  #競馬場マスタ     
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "uriage")  #競馬場マスタ
     ck_kyounen = IntegerField(verbose_name='年')
@@ -650,7 +628,6 @@ class Md_Uriagekin(Model):
 
 # 【中間DB】成績・払戻
 class Md_Seiseki_Haraimodoshi(Model):
-    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="seiseki_haraimodoshi")  #競馬場マスタ
 
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "seiseki_haraimodoshi")  #競馬場マスタ
@@ -663,11 +640,6 @@ class Md_Seiseki_Haraimodoshi(Model):
     kaisuu = IntegerField(verbose_name='回数')
     kainichime = IntegerField(verbose_name='開催日目')
 
-    # 競走年月日
-    # ck_kyounichi = DateField(verbose_name='競走年月日')
-    # ck_kyounen = IntegerField(verbose_name='年')
-    # ck_kyoutuki = IntegerField(verbose_name='月')
-    # ck_kyouhi = IntegerField(verbose_name='日')
 
     #当日情報
     tenkou = ForeignKey('Mst_Weather', verbose_name='天候マスタ', on_delete=CASCADE)  #天候マスタ
@@ -676,12 +648,14 @@ class Md_Seiseki_Haraimodoshi(Model):
     ck_babamizu = IntegerField(verbose_name='馬場水分')
 
     #レース情報
-    # rebangou = IntegerField(verbose_name='レース番号')
     shubetsu = ForeignKey('Mst_Breed_age', verbose_name='競争種別', on_delete=CASCADE, related_name = "seiseki_shubetu")  #品種年齢区分マスタ
     tokusouhonsuu = IntegerField(verbose_name='特別競争本題回数')
     tokusoumeihon = CharField(verbose_name='特別競争名本題', max_length=100, blank=True, null=True)
     tokusoumeifuku = CharField(verbose_name='特別競争名副題', max_length=100, blank=True, null=True)
-    ck_fukusyoumei = CharField(verbose_name='副賞名', max_length=100, blank=True, null=True) #複数ある場合繰り返すかリスト化する必要あり
+
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_fukusyoumei = CharField(verbose_name='副賞名', max_length=100, blank=True, null=True)
+    
     guredo = ForeignKey('Mst_Grade', verbose_name='グレード', on_delete=CASCADE, blank=True, null=True)  #グレードマスタ
     md_kyousousyu = ForeignKey('Mst_Race_type', verbose_name='競争種類コード', on_delete=CASCADE)  #競走種類マスタ
     ck_chuokouryu = ForeignKey('Mst_JRA_exchanges', verbose_name='中央交流区分', on_delete=CASCADE)  #中央交流区分マスタ
@@ -703,103 +677,46 @@ class Md_Seiseki_Haraimodoshi(Model):
 
     #競争条件情報
     bareijouken = ForeignKey('Mst_Breed_age', verbose_name='競争種別', on_delete=CASCADE, related_name="seiseki_barei")  #品種年齢区分マスタ
-    ck_shikaku = CharField(verbose_name='競争資格条件', max_length=30, blank=True, null=True) # 複数ある場合、,で区切る
-    ck_rkaku = CharField(verbose_name='レース格', max_length=20, blank=True, null=True) # 複数ある場合、,で区切る
-    ck_rkumi = CharField(verbose_name='レース組', max_length=20, blank=True, null=True)  # 複数ある場合、,で区切る
+
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_shikaku = CharField(verbose_name='競争資格条件', max_length=30, blank=True, null=True)
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_rkaku = CharField(verbose_name='レース格', max_length=20, blank=True, null=True)
+    #★★★　 複数ある場合は、','(カンマ)で区切って格納する。
+    ck_rkumi = CharField(verbose_name='レース組', max_length=20, blank=True, null=True)
+
+
     jyuuryoushubetsu = ForeignKey('Mst_Handicap', verbose_name='負担重量区分', on_delete=CASCADE)  #負担重量区分マスタ
 
-    # 成績情報。最大16頭立て
-    seiseki1 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績1', on_delete=CASCADE, related_name = "umaban_1", blank=True, null=True)  #成績マスタ
-    seiseki2 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績2', on_delete=CASCADE, related_name = "umaban_2", blank=True, null=True)  #成績マスタ
-    seiseki3 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績3', on_delete=CASCADE, related_name = "umaban_3", blank=True, null=True)  #成績マスタ
-    seiseki4 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績4', on_delete=CASCADE, related_name = "umaban_4", blank=True, null=True)  #成績マスタ
-    seiseki5 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績5', on_delete=CASCADE, related_name = "umaban_5", blank=True, null=True)  #成績マスタ
-    seiseki6 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績6', on_delete=CASCADE, related_name = "umaban_6", blank=True, null=True)  #成績マスタ
-    seiseki7 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績7', on_delete=CASCADE, related_name = "umaban_7", blank=True, null=True)  #成績マスタ
-    seiseki8 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績8', on_delete=CASCADE, related_name = "umaban_8", blank=True, null=True)  #成績マスタ
-    seiseki9 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績9', on_delete=CASCADE, related_name = "umaban_9", blank=True, null=True)  #成績マスタ
-    seiseki10 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績10', on_delete=CASCADE, related_name = "umaban_10", blank=True, null=True)  #成績マスタ
-    seiseki11 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績11', on_delete=CASCADE, related_name = "umaban_11", blank=True, null=True)  #成績マスタ
-    seiseki12 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績12', on_delete=CASCADE, related_name = "umaban_12", blank=True, null=True)  #成績マスタ
-    seiseki13 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績13', on_delete=CASCADE, related_name = "umaban_13", blank=True, null=True)  #成績マスタ
-    seiseki14 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績14', on_delete=CASCADE, related_name = "umaban_14", blank=True, null=True)  #成績マスタ
-    seiseki15 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績15', on_delete=CASCADE, related_name = "umaban_15", blank=True, null=True)  #成績マスタ
-    seiseki16 = ForeignKey('Md_Seiseki_Haraimodoshi_seiseki', verbose_name='出走馬成績16', on_delete=CASCADE, related_name = "umaban_16", blank=True, null=True)  #成績マスタ
-    
+
     # 払戻情報
+
     # 単勝払戻情報
-    tanharajyoukyou = IntegerField(verbose_name='単勝払戻状況')
-    tankumijoukyou = IntegerField(verbose_name='単勝組番状況')
-    tansaki = IntegerField(verbose_name='単勝先番')
-    tanharakin = IntegerField(verbose_name='単勝払戻金')
-    tantounin = IntegerField(verbose_name='単勝投票人気')
+    tanharajyoukyou = CharField(verbose_name='単勝払戻状況', max_length=10, blank=True, null=True)
 
     # 複勝払戻情報
-    fukuharajoukyou = IntegerField(verbose_name='複勝払戻状況')
-    fukukumijoukyou = IntegerField(verbose_name='複勝組番状況')
-    fukusaki = IntegerField(verbose_name='複勝先番')
-    tanharakin = IntegerField(verbose_name='複勝払戻金')
-    fukuharakin = IntegerField(verbose_name='複勝投票人気')
+    fukuharajoukyou = CharField(verbose_name='複勝払戻状況', max_length=10, blank=True, null=True)
 
     # 枠連複払戻情報
-    wakupukuharajoukyou = IntegerField(verbose_name='枠連複払戻状況')
-    wakupukukumijoukyou = IntegerField(verbose_name='枠連複組番状況')
-    wakupukusaki = IntegerField(verbose_name='枠連複先番')
-    wakupukuato = IntegerField(verbose_name='枠連複後番')
-    wakupukuharakin = IntegerField(verbose_name='枠連複払戻金')
-    wakupukutounin = IntegerField(verbose_name='枠連複投票人気')
+    wakupukuharajoukyou = CharField(verbose_name='枠連複払戻状況', max_length=10, blank=True, null=True)
 
     # 枠連単払戻情報
-    ck_wakutanharajoukyou = IntegerField(verbose_name='枠連単払戻状況')
-    ck_wakutankumijoukyou = IntegerField(verbose_name='枠連単組番状況')
-    ck_wakutansaki = IntegerField(verbose_name='枠連単先番')
-    ck_wakutanato = IntegerField(verbose_name='枠連単後番')
-    ck_wakutanharakin = IntegerField(verbose_name='枠連単払戻金')
-    ck_wakutantounin = IntegerField(verbose_name='枠連単投票人気')
+    ck_wakutanharajoukyou = CharField(verbose_name='枠連単払戻状況', max_length=10, blank=True, null=True)
 
-    
     # 馬連複払戻情報
-    umapukuharajoukyou = IntegerField(verbose_name='馬連複払戻状況')
-    umapukukumijoukyou = IntegerField(verbose_name='馬連複組番状況')
-    umapukusaki = IntegerField(verbose_name='馬連複先番')
-    umapukuato = IntegerField(verbose_name='馬連複後番')
-    umapukuharakin = IntegerField(verbose_name='馬連複払戻金')
-    umapukutounin = IntegerField(verbose_name='馬連複投票人気')
+    umapukuharajoukyou = CharField(verbose_name='馬連複払戻状況', max_length=10, blank=True, null=True)
 
     # 馬連単払戻情報
-    umatanharajoukyou = IntegerField(verbose_name='馬連単払戻状況')
-    umatankumijoukyou = IntegerField(verbose_name='馬連単組番状況')
-    umatansaki = IntegerField(verbose_name='馬連単先番')
-    umatanato = IntegerField(verbose_name='馬連単後番')
-    umatanharakin = IntegerField(verbose_name='馬連単払戻金')
-    umatantounin = IntegerField(verbose_name='馬連単投票人気')
-
-    
+    umatanharajoukyou = CharField(verbose_name='馬連単払戻状況', max_length=10, blank=True, null=True)
+        
     # 三連複複払戻情報
-    sanpukuharajoukyou = IntegerField(verbose_name='三連複払戻状況')
-    sanpukukumijoukyou = IntegerField(verbose_name='三連複組番状況')
-    sanpukusaki = IntegerField(verbose_name='三連複先番')
-    sanpukunaka = IntegerField(verbose_name='三連複中番')
-    sanpukuato = IntegerField(verbose_name='三連複後番')
-    sanpukuharakin = IntegerField(verbose_name='三連複払戻金')
-    sanpukutounin = IntegerField(verbose_name='三連複投票人気')
+    sanpukuharajoukyou = CharField(verbose_name='三連複払戻状況', max_length=10, blank=True, null=True)
 
     # 三連単払戻情報
-    santanharajoukyou = IntegerField(verbose_name='三連単払戻状況')
-    santankumijoukyou = IntegerField(verbose_name='三連単組番状況')
-    santansaki = IntegerField(verbose_name='三連単先番')
-    santannaka = IntegerField(verbose_name='三連単中番')
-    santanato = IntegerField(verbose_name='三連単後番')
-    santanharakin = IntegerField(verbose_name='三連単払戻金')
-    santantounin = IntegerField(verbose_name='三連単投票人気')
-
+    santanharajoukyou = CharField(verbose_name='三連単払戻状況', max_length=10, blank=True, null=True)
+    
     # ワイド払戻情報
-    waharajoukyou = IntegerField(verbose_name='ワイド払戻状況')
-    wakumijoukyou = IntegerField(verbose_name='ワイド組番状況')
-    wasaki = IntegerField(verbose_name='ワイド先番')
-    waato = IntegerField(verbose_name='ワイド後番')
-    waharakin = IntegerField(verbose_name='ワイド払戻金')
-    watounin = IntegerField(verbose_name='ワイド投票人気')
+    waharajoukyou = CharField(verbose_name='ワイド払戻状況', max_length=10, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '【中間DB】成績・払戻'
@@ -808,15 +725,173 @@ class Md_Seiseki_Haraimodoshi(Model):
         return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou)+'R'
 
 
+# 【中間DB】成績・払戻_単勝
+class Md_Seiseki_Haraimodoshi_tan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "tanshou")  #【中間DB】成績・払戻
+
+    tankumijoukyou = CharField(verbose_name='単勝組番状況', max_length=10,blank=True, null=True) 
+    tansaki = IntegerField(verbose_name='単勝先番', blank=True, null=True)
+    tanharakin = IntegerField(verbose_name='単勝払戻金', blank=True, null=True)
+    tantounin = IntegerField(verbose_name='単勝投票人気', blank=True, null=True)
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_単勝'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.tansaki) + ' '+ str(self.tanharakin)+ '円'
+        
+
+# 【中間DB】成績・払戻_複勝　３つ分用意した方がいい？
+class Md_Seiseki_Haraimodoshi_fuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "fukushou")  #【中間DB】成績・払戻
+
+    fukukumijoukyou = CharField(verbose_name='複勝組番状況', max_length=10,blank=True, null=True)
+    fukusaki = IntegerField(verbose_name='複勝先番', blank=True, null=True)
+    fukuharakin = IntegerField(verbose_name='複勝払戻金', blank=True, null=True)
+    ck_fukutounin = IntegerField(verbose_name='複勝投票人気', blank=True, null=True)
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_複勝'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.fukusaki) + ' '+ str(self.fukuharakin)+ '円'
+
+# 【中間DB】成績・払戻_枠連複
+class Md_Seiseki_Haraimodoshi_wakupuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "wakupuku")  #【中間DB】成績・払戻
+
+    wakupukukumijoukyou = CharField(verbose_name='枠連複組番状況', max_length=10,blank=True, null=True)
+    wakupukusaki = IntegerField(verbose_name='枠連複先番', blank=True, null=True)
+    wakupukuato = IntegerField(verbose_name='枠連複後番', blank=True, null=True)
+    wakupukuharakin = IntegerField(verbose_name='枠連複払戻金', blank=True, null=True)
+    wakupukutounin = IntegerField(verbose_name='枠連複投票人気', blank=True, null=True)
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_枠連複'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wakupukusaki) + '-'+ str(self.wakupukuato) + ' '+ str(self.wakupukuharakin)+ '円'
+
+# 【中間DB】成績・払戻_枠連単
+class Md_Seiseki_Haraimodoshi_wakutan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "wakutan")  #【中間DB】成績・払戻
+
+    ck_wakutankumijoukyou = CharField(verbose_name='枠連単組番状況', max_length=10,blank=True, null=True)
+    ck_wakutansaki = IntegerField(verbose_name='枠連単先番', blank=True, null=True)
+    ck_wakutanato = IntegerField(verbose_name='枠連単後番', blank=True, null=True)
+    ck_wakutanharakin = IntegerField(verbose_name='枠連単払戻金', blank=True, null=True)
+    ck_wakutantounin = IntegerField(verbose_name='枠連単投票人気', blank=True, null=True)
+    
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_枠連単'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.ck_wakutansaki) + '-'+ str(self.ck_wakutanato) + ' '+ str(self.ck_wakutanharakin)+ '円'
+
+# 【中間DB】成績・払戻_馬連複
+class Md_Seiseki_Haraimodoshi_umapuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "umapuku")  #【中間DB】成績・払戻
+
+    umapukukumijoukyou = CharField(verbose_name='馬連複組番状況', max_length=10,blank=True, null=True)
+    umapukusaki = IntegerField(verbose_name='馬連複先番', blank=True, null=True)
+    umapukuato = IntegerField(verbose_name='馬連複後番', blank=True, null=True)
+    umapukuharakin = IntegerField(verbose_name='馬連複払戻金', blank=True, null=True)
+    umapukutounin = IntegerField(verbose_name='馬連複投票人気', blank=True, null=True)
+    
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_馬連複'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umapukusaki) + '-'+ str(self.umapukuato) + ' '+ str(self.umapukuharakin)+ '円'
+
+
+# 【中間DB】成績・払戻_馬連単
+class Md_Seiseki_Haraimodoshi_umatan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "umatan")  #【中間DB】成績・払戻
+
+    umatankumijoukyou = CharField(verbose_name='馬連単組番状況', max_length=10,blank=True, null=True)
+    umatansaki = IntegerField(verbose_name='馬連単先番', blank=True, null=True)
+    umatanato = IntegerField(verbose_name='馬連単後番', blank=True, null=True)
+    umatanharakin = IntegerField(verbose_name='馬連単払戻金', blank=True, null=True)
+    umatantounin = IntegerField(verbose_name='馬連単投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_馬連単'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.umatansaki) + '-'+ str(self.umatanato) + ' '+ str(self.umatanharakin)+ '円'
+
+# 【中間DB】成績・払戻_三連複
+class Md_Seiseki_Haraimodoshi_sanpuku(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "sanpuku")  #【中間DB】成績・払戻
+
+    sanpukukumijoukyou = CharField(verbose_name='三連複組番状況', max_length=10,blank=True, null=True)
+    sanpukusaki = IntegerField(verbose_name='三連複先番', blank=True, null=True)
+    sanpukunaka = IntegerField(verbose_name='三連複中番', blank=True, null=True)
+    sanpukuato = IntegerField(verbose_name='三連複後番', blank=True, null=True)
+    sanpukuharakin = IntegerField(verbose_name='三連複払戻金', blank=True, null=True)
+    sanpukutounin = IntegerField(verbose_name='三連複投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_三連複'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.sanpukusaki) + '-'+ str(self.sanpukunaka) + '-'+ str(self.sanpukuato)+ ' '+ str(self.sanpukuharakin)+ '円'
+
+# 【中間DB】成績・払戻_三連単
+class Md_Seiseki_Haraimodoshi_santan(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "santan")  #【中間DB】成績・払戻
+
+    santankumijoukyou = CharField(verbose_name='三連単組番状況', max_length=10,blank=True, null=True)
+    santansaki = IntegerField(verbose_name='三連単先番', blank=True, null=True)
+    santannaka = IntegerField(verbose_name='三連単中番', blank=True, null=True)
+    santanato = IntegerField(verbose_name='三連単後番', blank=True, null=True)
+    santanharakin = IntegerField(verbose_name='三連単払戻金', blank=True, null=True)
+    santantounin = IntegerField(verbose_name='三連単投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_三連単'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.santansaki) + '-'+ str(self.santannaka) + '-'+ str(self.santanato)+ ' '+ str(self.santanharakin)+ '円'
+
+
+# 【中間DB】成績・払戻_ワイド
+class Md_Seiseki_Haraimodoshi_wa(Model):
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE,  related_name = "wa")  #【中間DB】成績・払戻
+
+    wakumijoukyou = CharField(verbose_name='ワイド組番状況', max_length=10,blank=True, null=True)
+    wasaki = IntegerField(verbose_name='ワイド先番', blank=True, null=True)
+    waato = IntegerField(verbose_name='ワイド後番', blank=True, null=True)
+    waharakin = IntegerField(verbose_name='ワイド払戻金', blank=True, null=True)
+    watounin = IntegerField(verbose_name='ワイド投票人気', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '【中間DB】成績・払戻_ワイド'
+
+    def __str__(self):
+        return str(self.seiseki_haraimodoshi) + ' '+ str(self.wasaki) + '-'+ str(self.waato) + ' '+ str(self.waharakin)+ '円'
+
+
+
+
+
+
+
+
+
+
 # 【中間DB】成績・払戻_成績
 class Md_Seiseki_Haraimodoshi_seiseki(Model):
 
-    # 基本情報
-    joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "seiseki")  #競馬場マスタ
-    ck_kyounen = IntegerField(verbose_name='年')
-    ck_kyoutuki = IntegerField(verbose_name='月')
-    ck_kyouhi = IntegerField(verbose_name='日')
-    rebangou = IntegerField(verbose_name='レース番号')
+    # 成績・払戻外部キー
+    seiseki_haraimodoshi = ForeignKey('Md_Seiseki_Haraimodoshi', verbose_name='成績・払戻', on_delete=CASCADE, related_name = "seiseki")  #【中間DB】成績・払戻
 
     #着順情報
     juni = IntegerField(verbose_name='順位')
@@ -852,7 +927,9 @@ class Md_Seiseki_Haraimodoshi_seiseki(Model):
     reko = CharField(verbose_name='レコード', max_length=5, blank=True, null=True)
 
     #着差情報
+    #★★★　 降着時に複数ある場合は、','(カンマ)で区切って格納する。
     sa = ForeignKey('Mst_Margin', verbose_name='着差', on_delete=CASCADE)  #着差マスタ
+
     md_doutyaku = IntegerField(verbose_name='同着区分')
     sareigai = ForeignKey('Mst_Accident_type', verbose_name='着差例外', on_delete=CASCADE, related_name="chakusa_reigai")  #事故種類マスタ
     ck_jikosyu = ForeignKey('Mst_Accident_type', verbose_name='事故種別', on_delete=CASCADE, related_name="jiko_shubetu")  #事故種類マスタ
@@ -868,12 +945,12 @@ class Md_Seiseki_Haraimodoshi_seiseki(Model):
         verbose_name_plural = '【中間DB】成績・払戻_成績'
 
     def __str__(self):
-        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou)+'R ' + str(self.juni) +'着 ' + str(self.bamei)
+        return str(self.seiseki_haraimodoshi)+'/'+ str(self.juni) +'着 ' + str(self.bamei)
 
 
 # 【中間DB】コーナー・ラップ
 class Md_Corner_Rap(Model):
-    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="corner_rap")  #競馬場マスタ
+
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "corner_rap")  #競馬場マスタ
     ck_kyounen = IntegerField(verbose_name='年')
@@ -883,13 +960,6 @@ class Md_Corner_Rap(Model):
 
 
     kainichime = IntegerField(verbose_name='開催日目')
-
-    #競争年月日
-    # ck_kyounichi = DateField(verbose_name='競走年月日')
-    # ck_kyounen = IntegerField(verbose_name='年')
-    # ck_kyoutuki = IntegerField(verbose_name='月')
-    # ck_kyouhi = IntegerField(verbose_name='日')
-    # rebangou = IntegerField(verbose_name='レース番号')
 
     #１着馬情報 最大３頭（同着を考慮）
     chaku1uma_1 = IntegerField(verbose_name='１着馬番')
@@ -917,7 +987,6 @@ class Md_Corner_Rap(Model):
         
 # 【中間DB】上がり
 class Md_Agari(Model):
-    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="agari")  #競馬場マスタ
     
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "agari")  #競馬場マスタ
@@ -929,14 +998,6 @@ class Md_Agari(Model):
 
     kainichime = IntegerField(verbose_name='開催日目')
 
-    #競争年月日
-    # ck_kyounichi = DateField(verbose_name='競走年月日')
-    # ck_kyounen = IntegerField(verbose_name='年')
-    # ck_kyoutuki = IntegerField(verbose_name='月')
-    # ck_kyouhi = IntegerField(verbose_name='日')
-
-    #レース名
-    # rebangou = IntegerField(verbose_name='レース番号')
 
     # 馬情報
     uma = IntegerField(verbose_name='馬番')
@@ -951,7 +1012,7 @@ class Md_Agari(Model):
 
 # 【中間DB】通信文
 class Md_Tshuushinbun(Model):
-    # joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name="tsushinbun")  #競馬場マスタ
+
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "tsushinbun")  #競馬場マスタ
     ck_kyounen = IntegerField(verbose_name='年')
@@ -960,15 +1021,6 @@ class Md_Tshuushinbun(Model):
     rebangou = IntegerField(verbose_name='レース番号')
 
     kainichime = IntegerField(verbose_name='開催日目')
-
-    #競争年月日
-    # ck_kyounichi = DateField(verbose_name='競走年月日')
-    # ck_kyounen = IntegerField(verbose_name='年')
-    # ck_kyoutuki = IntegerField(verbose_name='月')
-    # ck_kyouhi = IntegerField(verbose_name='日')
-
-    #レース名
-    # rebangou = IntegerField(verbose_name='レース番号')
     
     # 付加文書内容
     ck_jishou = ForeignKey('Mst_Matter', verbose_name='事象', on_delete=CASCADE)  #事象マスタ

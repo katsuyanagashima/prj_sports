@@ -1,4 +1,4 @@
-34343231import logging
+_234343231import logging
 # ファイルアクセスとスリープのため、osとtimeをインポート
 import os
 import re
@@ -34,7 +34,7 @@ class Outside_track():
         self.track_code	 = str()
         self.track_name	 = str()
         self.date_ad	 = str()
-        self.date_japanese_calender	 = str()
+        self.date_japanese_calendar	 = str()
         self.held_day = str()
         self.period_days	 = str()
         self.event_name = str()
@@ -409,7 +409,7 @@ class Outside_track():
                 if self.chkBlank(outsidetrackLine[4:12]):
                     self.date_ad	 = outsidetrackLine[4:12]
                 if self.chkBlank(outsidetrackLine[12:23]):
-                    self.date_japanese_calender	 = outsidetrackLine[12:23]
+                    self.date_japanese_calendar	 = outsidetrackLine[12:23]
                 if self.chkBlank(outsidetrackLine[23:37]):
                     self.held_day	 = outsidetrackLine[23:37]
                 if self.chkBlank(outsidetrackLine[37:41]):
@@ -914,6 +914,216 @@ class Outside_track():
                 if self.chkBlank(outsidetrackLine[351:352]):
                     self.race_12_14	 = outsidetrackLine[351:352]
 
+                if self.chkBlank(outsidetrackLine[352:353]):
+                    self.otb_code_15	 = outsidetrackLine[352:353]
+                if self.chkBlank(outsidetrackLine[353:356]):
+                    self.otb_15	 = outsidetrackLine[353:356]
+                if self.chkBlank(outsidetrackLine[356:357]):
+                    self.otb_classification_15	 = outsidetrackLine[356:357]
+                if self.chkBlank(outsidetrackLine[357:358]):
+                    self.held_classification_15	 = outsidetrackLine[357:358]
+                if self.chkBlank(outsidetrackLine[358:360]):
+                    self.note_code_15	 = outsidetrackLine[358:360]
+                if self.chkBlank(outsidetrackLine[360:361]):
+                    self.race_1_15	 = outsidetrackLine[360:361]
+                if self.chkBlank(outsidetrackLine[361:362]):
+                    self.race_2_15	 = outsidetrackLine[361:362]
+                if self.chkBlank(outsidetrackLine[362:363]):
+                    self.race_3_15	 = outsidetrackLine[362:363]
+                if self.chkBlank(outsidetrackLine[363:364]):
+                    self.race_4_15	 = outsidetrackLine[363:364]
+                if self.chkBlank(outsidetrackLine[364:365]):
+                    self.race_5_15	 = outsidetrackLine[364:365]
+                if self.chkBlank(outsidetrackLine[365:366]):
+                    self.race_6_15	 = outsidetrackLine[365:366]
+                if self.chkBlank(outsidetrackLine[366:367]):
+                    self.race_7_15	 = outsidetrackLine[366:367]
+                if self.chkBlank(outsidetrackLine[367:368]):
+                    self.race_8_15	 = outsidetrackLine[367:368]
+                if self.chkBlank(outsidetrackLine[368:369]):
+                    self.race_9_15	 = outsidetrackLine[368:369]
+                if self.chkBlank(outsidetrackLine[369:370]):
+                    self.race_10_15	 = outsidetrackLine[369:370]
+                if self.chkBlank(outsidetrackLine[370:371]):
+                    self.race_11_15	 = outsidetrackLine[370:371]
+                if self.chkBlank(outsidetrackLine[371:372]):
+                    self.race_12_15	 = outsidetrackLine[371:372]
+
+                if self.chkBlank(outsidetrackLine[372:373]):
+                    self.otb_code_16	 = outsidetrackLine[372:373]
+                if self.chkBlank(outsidetrackLine[373:376]):
+                    self.otb_16	 = outsidetrackLine[373:376]
+                if self.chkBlank(outsidetrackLine[376:377]):
+                    self.otb_classification_16	 = outsidetrackLine[376:377]
+                if self.chkBlank(outsidetrackLine[377:378]):
+                    self.held_classification_16	 = outsidetrackLine[377:378]
+                if self.chkBlank(outsidetrackLine[378:380]):
+                    self.note_code_16	 = outsidetrackLine[378:380]
+                if self.chkBlank(outsidetrackLine[380:381]):
+                    self.race_1_16	 = outsidetrackLine[380:381]
+                if self.chkBlank(outsidetrackLine[381:382]):
+                    self.race_2_16	 = outsidetrackLine[381:382]
+                if self.chkBlank(outsidetrackLine[382:383]):
+                    self.race_3_16	 = outsidetrackLine[382:383]
+                if self.chkBlank(outsidetrackLine[383:384]):
+                    self.race_4_16	 = outsidetrackLine[383:384]
+                if self.chkBlank(outsidetrackLine[384:385]):
+                    self.race_5_16	 = outsidetrackLine[384:385]
+                if self.chkBlank(outsidetrackLine[385:386]):
+                    self.race_6_16	 = outsidetrackLine[385:386]
+                if self.chkBlank(outsidetrackLine[386:387]):
+                    self.race_7_16	 = outsidetrackLine[386:387]
+                if self.chkBlank(outsidetrackLine[387:388]):
+                    self.race_8_16	 = outsidetrackLine[387:388]
+                if self.chkBlank(outsidetrackLine[388:389]):
+                    self.race_9_16	 = outsidetrackLine[388:389]
+                if self.chkBlank(outsidetrackLine[389:390]):
+                    self.race_10_16	 = outsidetrackLine[389:390]
+                if self.chkBlank(outsidetrackLine[390:391]):
+                    self.race_11_16	 = outsidetrackLine[390:391]
+                if self.chkBlank(outsidetrackLine[391:392]):
+                    self.race_12_16	 = outsidetrackLine[391:392]
+
+                if self.chkBlank(outsidetrackLine[392:393]):
+                    self.otb_code_17	 = outsidetrackLine[392:393]
+                if self.chkBlank(outsidetrackLine[393:396]):
+                    self.otb_17	 = outsidetrackLine[393:396]
+                if self.chkBlank(outsidetrackLine[396:397]):
+                    self.otb_classification_17	 = outsidetrackLine[396:397]
+                if self.chkBlank(outsidetrackLine[397:398]):
+                    self.held_classification_17	 = outsidetrackLine[397:398]
+                if self.chkBlank(outsidetrackLine[398:400]):
+                    self.note_code_17	 = outsidetrackLine[398:400]
+                if self.chkBlank(outsidetrackLine[400:401]):
+                    self.race_1_17	 = outsidetrackLine[400:401]
+                if self.chkBlank(outsidetrackLine[401:402]):
+                    self.race_2_17	 = outsidetrackLine[401:402]
+                if self.chkBlank(outsidetrackLine[402:403]):
+                    self.race_3_17	 = outsidetrackLine[402:403]
+                if self.chkBlank(outsidetrackLine[403:404]):
+                    self.race_4_17	 = outsidetrackLine[403:404]
+                if self.chkBlank(outsidetrackLine[404:405]):
+                    self.race_5_17	 = outsidetrackLine[404:405]
+                if self.chkBlank(outsidetrackLine[405:406]):
+                    self.race_6_17	 = outsidetrackLine[405:406]
+                if self.chkBlank(outsidetrackLine[406:407]):
+                    self.race_7_17	 = outsidetrackLine[406:407]
+                if self.chkBlank(outsidetrackLine[407:408]):
+                    self.race_8_17	 = outsidetrackLine[407:408]
+                if self.chkBlank(outsidetrackLine[408:409]):
+                    self.race_9_17	 = outsidetrackLine[408:409]
+                if self.chkBlank(outsidetrackLine[409:410]):
+                    self.race_10_17	 = outsidetrackLine[409:410]
+                if self.chkBlank(outsidetrackLine[410:411]):
+                    self.race_11_17	 = outsidetrackLine[410:411]
+                if self.chkBlank(outsidetrackLine[411:412]):
+                    self.race_12_17	 = outsidetrackLine[411:412]
+
+                if self.chkBlank(outsidetrackLine[412:413]):
+                    self.otb_code_18	 = outsidetrackLine[412:413]
+                if self.chkBlank(outsidetrackLine[413:416]):
+                    self.otb_18	 = outsidetrackLine[413:416]
+                if self.chkBlank(outsidetrackLine[416:417]):
+                    self.otb_classification_18	 = outsidetrackLine[416:417]
+                if self.chkBlank(outsidetrackLine[417:418]):
+                    self.held_classification_18	 = outsidetrackLine[417:418]
+                if self.chkBlank(outsidetrackLine[418:420]):
+                    self.note_code_18	 = outsidetrackLine[418:420]
+                if self.chkBlank(outsidetrackLine[420:421]):
+                    self.race_1_18	 = outsidetrackLine[420:421]
+                if self.chkBlank(outsidetrackLine[421:422]):
+                    self.race_2_18	 = outsidetrackLine[421:422]
+                if self.chkBlank(outsidetrackLine[422:423]):
+                    self.race_3_18	 = outsidetrackLine[422:423]
+                if self.chkBlank(outsidetrackLine[423:424]):
+                    self.race_4_18	 = outsidetrackLine[423:424]
+                if self.chkBlank(outsidetrackLine[424:425]):
+                    self.race_5_18	 = outsidetrackLine[424:425]
+                if self.chkBlank(outsidetrackLine[425:426]):
+                    self.race_6_18	 = outsidetrackLine[425:426]
+                if self.chkBlank(outsidetrackLine[426:427]):
+                    self.race_7_18	 = outsidetrackLine[426:427]
+                if self.chkBlank(outsidetrackLine[427:428]):
+                    self.race_8_18	 = outsidetrackLine[427:428]
+                if self.chkBlank(outsidetrackLine[428:429]):
+                    self.race_9_18	 = outsidetrackLine[428:429]
+                if self.chkBlank(outsidetrackLine[429:430]):
+                    self.race_10_18	 = outsidetrackLine[429:430]
+                if self.chkBlank(outsidetrackLine[430:431]):
+                    self.race_11_18	 = outsidetrackLine[430:431]
+                if self.chkBlank(outsidetrackLine[431:432]):
+                    self.race_12_18	 = outsidetrackLine[431:432]
+
+                if self.chkBlank(outsidetrackLine[432:433]):
+                    self.otb_code_19	 = outsidetrackLine[432:433]
+                if self.chkBlank(outsidetrackLine[433:436]):
+                    self.otb_19	 = outsidetrackLine[433:436]
+                if self.chkBlank(outsidetrackLine[436:437]):
+                    self.otb_classification_19	 = outsidetrackLine[436:437]
+                if self.chkBlank(outsidetrackLine[437:438]):
+                    self.held_classification_19	 = outsidetrackLine[437:438]
+                if self.chkBlank(outsidetrackLine[438:440]):
+                    self.note_code_19	 = outsidetrackLine[438:440]
+                if self.chkBlank(outsidetrackLine[440:441]):
+                    self.race_1_19	 = outsidetrackLine[440:441]
+                if self.chkBlank(outsidetrackLine[441:442]):
+                    self.race_2_19	 = outsidetrackLine[441:442]
+                if self.chkBlank(outsidetrackLine[442:443]):
+                    self.race_3_19	 = outsidetrackLine[442:443]
+                if self.chkBlank(outsidetrackLine[443:444]):
+                    self.race_4_19	 = outsidetrackLine[443:444]
+                if self.chkBlank(outsidetrackLine[444:445]):
+                    self.race_5_19	 = outsidetrackLine[444:445]
+                if self.chkBlank(outsidetrackLine[445:446]):
+                    self.race_6_19	 = outsidetrackLine[445:446]
+                if self.chkBlank(outsidetrackLine[446:447]):
+                    self.race_7_19	 = outsidetrackLine[446:447]
+                if self.chkBlank(outsidetrackLine[447:448]):
+                    self.race_8_19	 = outsidetrackLine[447:448]
+                if self.chkBlank(outsidetrackLine[448:449]):
+                    self.race_9_19	 = outsidetrackLine[448:449]
+                if self.chkBlank(outsidetrackLine[449:450]):
+                    self.race_10_19	 = outsidetrackLine[449:450]
+                if self.chkBlank(outsidetrackLine[450:451]):
+                    self.race_11_19	 = outsidetrackLine[450:451]
+                if self.chkBlank(outsidetrackLine[451:452]):
+                    self.race_12_19	 = outsidetrackLine[451:452]
+
+                if self.chkBlank(outsidetrackLine[452:453]):
+                    self.otb_code_20	 = outsidetrackLine[452:453]
+                if self.chkBlank(outsidetrackLine[453:456]):
+                    self.otb_20	 = outsidetrackLine[453:456]
+                if self.chkBlank(outsidetrackLine[456:457]):
+                    self.otb_classification_20	 = outsidetrackLine[456:457]
+                if self.chkBlank(outsidetrackLine[457:458]):
+                    self.held_classification_20	 = outsidetrackLine[457:458]
+                if self.chkBlank(outsidetrackLine[458:460]):
+                    self.note_code_20	 = outsidetrackLine[458:460]
+                if self.chkBlank(outsidetrackLine[460:461]):
+                    self.race_1_20	 = outsidetrackLine[460:461]
+                if self.chkBlank(outsidetrackLine[461:462]):
+                    self.race_2_20	 = outsidetrackLine[461:462]
+                if self.chkBlank(outsidetrackLine[462:463]):
+                    self.race_3_20	 = outsidetrackLine[462:463]
+                if self.chkBlank(outsidetrackLine[463:464]):
+                    self.race_4_20	 = outsidetrackLine[463:464]
+                if self.chkBlank(outsidetrackLine[464:465]):
+                    self.race_5_20	 = outsidetrackLine[464:465]
+                if self.chkBlank(outsidetrackLine[465:466]):
+                    self.race_6_20	 = outsidetrackLine[465:466]
+                if self.chkBlank(outsidetrackLine[466:467]):
+                    self.race_7_20	 = outsidetrackLine[466:467]
+                if self.chkBlank(outsidetrackLine[467:468]):
+                    self.race_8_20	 = outsidetrackLine[467:468]
+                if self.chkBlank(outsidetrackLine[468:469]):
+                    self.race_9_20	 = outsidetrackLine[468:469]
+                if self.chkBlank(outsidetrackLine[469:470]):
+                    self.race_10_20	 = outsidetrackLine[469:470]
+                if self.chkBlank(outsidetrackLine[470:471]):
+                    self.race_11_20	 = outsidetrackLine[470:471]
+                if self.chkBlank(outsidetrackLine[471:472]):
+                    self.race_12_20	 = outsidetrackLine[471:472]
+
                 # 空白チェックして実体があるカラムは更新
                 self.update_trn_outside_track(Trn_Outside_track.objects.get(id=Trn_Outside_track.objects.all().aggregate(Max('id')).get('id__max')))
 
@@ -950,57 +1160,1045 @@ class Outside_track():
         if self.special_commemorative_code:
             trn_Update.Special_commemorative_code=self.special_commemorative_code
             updateFields.append('Special_commemorative_code')
-        if self.otb_code:
-            trn_Update.OTB_code=self.otb_code
-            updateFields.append('OTB_code')
-        if self.otb:
-            trn_Update.OTB=self.otb
-            updateFields.append('OTB')
-        if self.otb_classification:
-            trn_Update.OTB_Classification=self.otb_classification
-            updateFields.append('OTB_Classification')
-        if self.held_classification:
-            trn_Update.Held_Classification=self.held_classification
-            updateFields.append('Held_Classification')
-        if self.note_code:
-            trn_Update.Note_code=self.note_code
-            updateFields.append('Note_code')
-        if self.race_1:
-            trn_Update.race_1=self.race_1
-            updateFields.append('race_1')
-        if self.race_2:
-            trn_Update.race_2=self.race_2
-            updateFields.append('race_2')
-        if self.race_3:
-            trn_Update.race_3=self.race_3
-            updateFields.append('race_3')
-        if self.race_4:
-            trn_Update.race_4=self.race_4
-            updateFields.append('race_4')
-        if self.race_5:
-            trn_Update.race_5=self.race_5
-            updateFields.append('race_5')
-        if self.race_6:
-            trn_Update.race_6=self.race_6
-            updateFields.append('race_6')
-        if self.race_7:
-            trn_Update.race_7=self.race_7
-            updateFields.append('race_7')
-        if self.race_8:
-            trn_Update.race_8=self.race_8
-            updateFields.append('race_8')
-        if self.race_9:
-            trn_Update.race_9=self.race_9
-            updateFields.append('race_9')
-        if self.race_10:
-            trn_Update.race_10=self.race_10
-            updateFields.append('race_10')
-        if self.race_11:
-            trn_Update.race_11=self.race_11
-            updateFields.append('race_11')
-        if self.race_12:
-            trn_Update.race_12=self.race_12
-            updateFields.append('race_12')
+        if self.otb_code_1:
+            trn_Update.OTB_code_1=self.otb_code_1
+            updateFields.append('OTB_code_1')
+        if self.otb_1:
+            trn_Update.OTB_1=self.otb_1
+            updateFields.append('OTB_1')
+        if self.otb_classification_1:
+            trn_Update.OTB_Classification_1=self.otb_classification_1
+            updateFields.append('OTB_Classification_1')
+        if self.held_classification_1:
+            trn_Update.Held_Classification_1=self.held_classification_1
+            updateFields.append('Held_Classification_1')
+        if self.note_code_1:
+            trn_Update.Note_code_1=self.note_code_1
+            updateFields.append('Note_code_1')
+        if self.race_1_1:
+            trn_Update.race_1_1=self.race_1_1
+            updateFields.append('race_1_1')
+        if self.race_2_1:
+            trn_Update.race_2_1=self.race_2_1
+            updateFields.append('race_2_1')
+        if self.race_3_1:
+            trn_Update.race_3_1=self.race_3_1
+            updateFields.append('race_3_1')
+        if self.race_4_1:
+            trn_Update.race_4_1=self.race_4_1
+            updateFields.append('race_4_1')
+        if self.race_5_1:
+            trn_Update.race_5_1=self.race_5_1
+            updateFields.append('race_5_1')
+        if self.race_6_1:
+            trn_Update.race_6_1=self.race_6_1
+            updateFields.append('race_6_1')
+        if self.race_7_1:
+            trn_Update.race_7_1=self.race_7_1
+            updateFields.append('race_7_1')
+        if self.race_8_1:
+            trn_Update.race_8_1=self.race_8_1
+            updateFields.append('race_8_1')
+        if self.race_9_1:
+            trn_Update.race_9_1=self.race_9_1
+            updateFields.append('race_9_1')
+        if self.race_10_1:
+            trn_Update.race_10_1=self.race_10_1
+            updateFields.append('race_10_1')
+        if self.race_11_1:
+            trn_Update.race_11_1=self.race_11_1
+            updateFields.append('race_11_1')
+        if self.race_12_1:
+            trn_Update.race_12_1=self.race_12_1
+            updateFields.append('race_12_1')
+
+        if self.otb_code_2:
+            trn_Update.OTB_code_2=self.otb_code_2
+            updateFields.append('OTB_code_2')
+        if self.otb_2:
+            trn_Update.OTB_2=self.otb_2
+            updateFields.append('OTB_2')
+        if self.otb_classification_2:
+            trn_Update.OTB_Classification_2=self.otb_classification_2
+            updateFields.append('OTB_Classification_2')
+        if self.held_classification_2:
+            trn_Update.Held_Classification_2=self.held_classification_2
+            updateFields.append('Held_Classification_2')
+        if self.note_code_2:
+            trn_Update.Note_code_2=self.note_code_2
+            updateFields.append('Note_code_2')
+        if self.race_1_2:
+            trn_Update.race_1_2=self.race_1_2
+            updateFields.append('race_1_2')
+        if self.race_2_2:
+            trn_Update.race_2_2=self.race_2_2
+            updateFields.append('race_2_2')
+        if self.race_3_2:
+            trn_Update.race_3_2=self.race_3_2
+            updateFields.append('race_3_2')
+        if self.race_4_2:
+            trn_Update.race_4_2=self.race_4_2
+            updateFields.append('race_4_2')
+        if self.race_5_2:
+            trn_Update.race_5_2=self.race_5_2
+            updateFields.append('race_5_2')
+        if self.race_6_2:
+            trn_Update.race_6_2=self.race_6_2
+            updateFields.append('race_6_2')
+        if self.race_7_2:
+            trn_Update.race_7_2=self.race_7_2
+            updateFields.append('race_7_2')
+        if self.race_8_2:
+            trn_Update.race_8_2=self.race_8_2
+            updateFields.append('race_8_2')
+        if self.race_9_2:
+            trn_Update.race_9_2=self.race_9_2
+            updateFields.append('race_9_2')
+        if self.race_10_2:
+            trn_Update.race_10_2=self.race_10_2
+            updateFields.append('race_10_2')
+        if self.race_11_2:
+            trn_Update.race_11_2=self.race_11_2
+            updateFields.append('race_11_2')
+        if self.race_12_2:
+            trn_Update.race_12_2=self.race_12_2
+            updateFields.append('race_12_2')
+
+        if self.otb_code_3:
+            trn_Update.OTB_code_3=self.otb_code_3
+            updateFields.append('OTB_code_3')
+        if self.otb_3:
+            trn_Update.OTB_3=self.otb_3
+            updateFields.append('OTB_3')
+        if self.otb_classification_3:
+            trn_Update.OTB_Classification_3=self.otb_classification_3
+            updateFields.append('OTB_Classification_3')
+        if self.held_classification_3:
+            trn_Update.Held_Classification_3=self.held_classification_3
+            updateFields.append('Held_Classification_3')
+        if self.note_code_3:
+            trn_Update.Note_code_3=self.note_code_3
+            updateFields.append('Note_code_3')
+        if self.race_1_3:
+            trn_Update.race_1_3=self.race_1_3
+            updateFields.append('race_1_3')
+        if self.race_2_3:
+            trn_Update.race_2_3=self.race_2_3
+            updateFields.append('race_2_3')
+        if self.race_3_3:
+            trn_Update.race_3_3=self.race_3_3
+            updateFields.append('race_3_3')
+        if self.race_4_3:
+            trn_Update.race_4_3=self.race_4_3
+            updateFields.append('race_4_3')
+        if self.race_5_3:
+            trn_Update.race_5_3=self.race_5_3
+            updateFields.append('race_5_3')
+        if self.race_6_3:
+            trn_Update.race_6_3=self.race_6_3
+            updateFields.append('race_6_3')
+        if self.race_7_3:
+            trn_Update.race_7_3=self.race_7_3
+            updateFields.append('race_7_3')
+        if self.race_8_3:
+            trn_Update.race_8_3=self.race_8_3
+            updateFields.append('race_8_3')
+        if self.race_9_3:
+            trn_Update.race_9_3=self.race_9_3
+            updateFields.append('race_9_3')
+        if self.race_10_3:
+            trn_Update.race_10_3=self.race_10_3
+            updateFields.append('race_10_3')
+        if self.race_11_3:
+            trn_Update.race_11_3=self.race_11_3
+            updateFields.append('race_11_3')
+        if self.race_12_3:
+            trn_Update.race_12_3=self.race_12_3
+            updateFields.append('race_12_3')
+
+        if self.otb_code_4:
+            trn_Update.OTB_code_4=self.otb_code_4
+            updateFields.append('OTB_code_4')
+        if self.otb_4:
+            trn_Update.OTB_4=self.otb_4
+            updateFields.append('OTB_4')
+        if self.otb_classification_4:
+            trn_Update.OTB_Classification_4=self.otb_classification_4
+            updateFields.append('OTB_Classification_4')
+        if self.held_classification_4:
+            trn_Update.Held_Classification_4=self.held_classification_4
+            updateFields.append('Held_Classification_4')
+        if self.note_code_4:
+            trn_Update.Note_code_4=self.note_code_4
+            updateFields.append('Note_code_4')
+        if self.race_1_4:
+            trn_Update.race_1_4=self.race_1_4
+            updateFields.append('race_1_4')
+        if self.race_2_4:
+            trn_Update.race_2_4=self.race_2_4
+            updateFields.append('race_2_4')
+        if self.race_3_4:
+            trn_Update.race_3_4=self.race_3_4
+            updateFields.append('race_3_4')
+        if self.race_4_4:
+            trn_Update.race_4_4=self.race_4_4
+            updateFields.append('race_4_4')
+        if self.race_5_4:
+            trn_Update.race_5_4=self.race_5_4
+            updateFields.append('race_5_4')
+        if self.race_6_4:
+            trn_Update.race_6_4=self.race_6_4
+            updateFields.append('race_6_4')
+        if self.race_7_4:
+            trn_Update.race_7_4=self.race_7_4
+            updateFields.append('race_7_4')
+        if self.race_8_4:
+            trn_Update.race_8_4=self.race_8_4
+            updateFields.append('race_8_4')
+        if self.race_9_4:
+            trn_Update.race_9_4=self.race_9_4
+            updateFields.append('race_9_4')
+        if self.race_10_4:
+            trn_Update.race_10_4=self.race_10_4
+            updateFields.append('race_10_4')
+        if self.race_11_4:
+            trn_Update.race_11_4=self.race_11_4
+            updateFields.append('race_11_4')
+        if self.race_12_4:
+            trn_Update.race_12_4=self.race_12_4
+            updateFields.append('race_12_4')
+
+        if self.otb_code_5:
+            trn_Update.OTB_code_5=self.otb_code_5
+            updateFields.append('OTB_code_5')
+        if self.otb_5:
+            trn_Update.OTB_5=self.otb_5
+            updateFields.append('OTB_5')
+        if self.otb_classification_5:
+            trn_Update.OTB_Classification_5=self.otb_classification_5
+            updateFields.append('OTB_Classification_5')
+        if self.held_classification_5:
+            trn_Update.Held_Classification_5=self.held_classification_5
+            updateFields.append('Held_Classification_5')
+        if self.note_code_5:
+            trn_Update.Note_code_5=self.note_code_5
+            updateFields.append('Note_code_5')
+        if self.race_1_5:
+            trn_Update.race_1_5=self.race_1_5
+            updateFields.append('race_1_5')
+        if self.race_2_5:
+            trn_Update.race_2_5=self.race_2_5
+            updateFields.append('race_2_5')
+        if self.race_3_5:
+            trn_Update.race_3_5=self.race_3_5
+            updateFields.append('race_3_5')
+        if self.race_4_5:
+            trn_Update.race_4_5=self.race_4_5
+            updateFields.append('race_4_5')
+        if self.race_5_5:
+            trn_Update.race_5_5=self.race_5_5
+            updateFields.append('race_5_5')
+        if self.race_6_5:
+            trn_Update.race_6_5=self.race_6_5
+            updateFields.append('race_6_5')
+        if self.race_7_5:
+            trn_Update.race_7_5=self.race_7_5
+            updateFields.append('race_7_5')
+        if self.race_8_5:
+            trn_Update.race_8_5=self.race_8_5
+            updateFields.append('race_8_5')
+        if self.race_9_5:
+            trn_Update.race_9_5=self.race_9_5
+            updateFields.append('race_9_5')
+        if self.race_10_5:
+            trn_Update.race_10_5=self.race_10_5
+            updateFields.append('race_10_5')
+        if self.race_11_5:
+            trn_Update.race_11_5=self.race_11_5
+            updateFields.append('race_11_5')
+        if self.race_12_5:
+            trn_Update.race_12_5=self.race_12_5
+            updateFields.append('race_12_5')
+
+        if self.otb_code_6:
+            trn_Update.OTB_code_6=self.otb_code_6
+            updateFields.append('OTB_code_6')
+        if self.otb_6:
+            trn_Update.OTB_6=self.otb_6
+            updateFields.append('OTB_6')
+        if self.otb_classification_6:
+            trn_Update.OTB_Classification_6=self.otb_classification_6
+            updateFields.append('OTB_Classification_6')
+        if self.held_classification_6:
+            trn_Update.Held_Classification_6=self.held_classification_6
+            updateFields.append('Held_Classification_6')
+        if self.note_code_6:
+            trn_Update.Note_code_6=self.note_code_6
+            updateFields.append('Note_code_6')
+        if self.race_1_6:
+            trn_Update.race_1_6=self.race_1_6
+            updateFields.append('race_1_6')
+        if self.race_2_6:
+            trn_Update.race_2_6=self.race_2_6
+            updateFields.append('race_2_6')
+        if self.race_3_6:
+            trn_Update.race_3_6=self.race_3_6
+            updateFields.append('race_3_6')
+        if self.race_4_6:
+            trn_Update.race_4_6=self.race_4_6
+            updateFields.append('race_4_6')
+        if self.race_5_6:
+            trn_Update.race_5_6=self.race_5_6
+            updateFields.append('race_5_6')
+        if self.race_6_6:
+            trn_Update.race_6_6=self.race_6_6
+            updateFields.append('race_6_6')
+        if self.race_7_6:
+            trn_Update.race_7_6=self.race_7_6
+            updateFields.append('race_7_6')
+        if self.race_8_6:
+            trn_Update.race_8_6=self.race_8_6
+            updateFields.append('race_8_6')
+        if self.race_9_6:
+            trn_Update.race_9_6=self.race_9_6
+            updateFields.append('race_9_6')
+        if self.race_10_6:
+            trn_Update.race_10_6=self.race_10_6
+            updateFields.append('race_10_6')
+        if self.race_11_6:
+            trn_Update.race_11_6=self.race_11_6
+            updateFields.append('race_11_6')
+        if self.race_12_6:
+            trn_Update.race_12_6=self.race_12_6
+            updateFields.append('race_12_6')
+
+        if self.otb_code_7:
+            trn_Update.OTB_code_7=self.otb_code_7
+            updateFields.append('OTB_code_7')
+        if self.otb_7:
+            trn_Update.OTB_7=self.otb_7
+            updateFields.append('OTB_7')
+        if self.otb_classification_7:
+            trn_Update.OTB_Classification_7=self.otb_classification_7
+            updateFields.append('OTB_Classification_7')
+        if self.held_classification_7:
+            trn_Update.Held_Classification_7=self.held_classification_7
+            updateFields.append('Held_Classification_7')
+        if self.note_code_7:
+            trn_Update.Note_code_7=self.note_code_7
+            updateFields.append('Note_code_7')
+        if self.race_1_7:
+            trn_Update.race_1_7=self.race_1_7
+            updateFields.append('race_1_7')
+        if self.race_2_7:
+            trn_Update.race_2_7=self.race_2_7
+            updateFields.append('race_2_7')
+        if self.race_3_7:
+            trn_Update.race_3_7=self.race_3_7
+            updateFields.append('race_3_7')
+        if self.race_4_7:
+            trn_Update.race_4_7=self.race_4_7
+            updateFields.append('race_4_7')
+        if self.race_5_7:
+            trn_Update.race_5_7=self.race_5_7
+            updateFields.append('race_5_7')
+        if self.race_6_7:
+            trn_Update.race_6_7=self.race_6_7
+            updateFields.append('race_6_7')
+        if self.race_7_7:
+            trn_Update.race_7_7=self.race_7_7
+            updateFields.append('race_7_7')
+        if self.race_8_7:
+            trn_Update.race_8_7=self.race_8_7
+            updateFields.append('race_8_7')
+        if self.race_9_7:
+            trn_Update.race_9_7=self.race_9_7
+            updateFields.append('race_9_7')
+        if self.race_10_7:
+            trn_Update.race_10_7=self.race_10_7
+            updateFields.append('race_10_7')
+        if self.race_11_7:
+            trn_Update.race_11_7=self.race_11_7
+            updateFields.append('race_11_7')
+        if self.race_12_7:
+            trn_Update.race_12_7=self.race_12_7
+            updateFields.append('race_12_7')
+
+        if self.otb_code_8:
+            trn_Update.OTB_code_8=self.otb_code_8
+            updateFields.append('OTB_code_8')
+        if self.otb_8:
+            trn_Update.OTB_8=self.otb_8
+            updateFields.append('OTB_8')
+        if self.otb_classification_8:
+            trn_Update.OTB_Classification_8=self.otb_classification_8
+            updateFields.append('OTB_Classification_8')
+        if self.held_classification_8:
+            trn_Update.Held_Classification_8=self.held_classification_8
+            updateFields.append('Held_Classification_8')
+        if self.note_code_8:
+            trn_Update.Note_code_8=self.note_code_8
+            updateFields.append('Note_code_8')
+        if self.race_1_8:
+            trn_Update.race_1_8=self.race_1_8
+            updateFields.append('race_1_8')
+        if self.race_2_8:
+            trn_Update.race_2_8=self.race_2_8
+            updateFields.append('race_2_8')
+        if self.race_3_8:
+            trn_Update.race_3_8=self.race_3_8
+            updateFields.append('race_3_8')
+        if self.race_4_8:
+            trn_Update.race_4_8=self.race_4_8
+            updateFields.append('race_4_8')
+        if self.race_5_8:
+            trn_Update.race_5_8=self.race_5_8
+            updateFields.append('race_5_8')
+        if self.race_6_8:
+            trn_Update.race_6_8=self.race_6_8
+            updateFields.append('race_6_8')
+        if self.race_7_8:
+            trn_Update.race_7_8=self.race_7_8
+            updateFields.append('race_7_8')
+        if self.race_8_8:
+            trn_Update.race_8_8=self.race_8_8
+            updateFields.append('race_8_8')
+        if self.race_9_8:
+            trn_Update.race_9_8=self.race_9_8
+            updateFields.append('race_9_8')
+        if self.race_10_8:
+            trn_Update.race_10_8=self.race_10_8
+            updateFields.append('race_10_8')
+        if self.race_11_8:
+            trn_Update.race_11_8=self.race_11_8
+            updateFields.append('race_11_8')
+        if self.race_12_8:
+            trn_Update.race_12_8=self.race_12_8
+            updateFields.append('race_12_8')
+
+        if self.otb_code_9:
+            trn_Update.OTB_code_9=self.otb_code_9
+            updateFields.append('OTB_code_9')
+        if self.otb_9:
+            trn_Update.OTB_9=self.otb_9
+            updateFields.append('OTB_9')
+        if self.otb_classification_9:
+            trn_Update.OTB_Classification_9=self.otb_classification_9
+            updateFields.append('OTB_Classification_9')
+        if self.held_classification_9:
+            trn_Update.Held_Classification_9=self.held_classification_9
+            updateFields.append('Held_Classification_9')
+        if self.note_code_9:
+            trn_Update.Note_code_9=self.note_code_9
+            updateFields.append('Note_code_9')
+        if self.race_1_9:
+            trn_Update.race_1_9=self.race_1_9
+            updateFields.append('race_1_9')
+        if self.race_2_9:
+            trn_Update.race_2_9=self.race_2_9
+            updateFields.append('race_2_9')
+        if self.race_3_9:
+            trn_Update.race_3_9=self.race_3_9
+            updateFields.append('race_3_9')
+        if self.race_4_9:
+            trn_Update.race_4_9=self.race_4_9
+            updateFields.append('race_4_9')
+        if self.race_5_9:
+            trn_Update.race_5_9=self.race_5_9
+            updateFields.append('race_5_9')
+        if self.race_6_9:
+            trn_Update.race_6_9=self.race_6_9
+            updateFields.append('race_6_9')
+        if self.race_7_9:
+            trn_Update.race_7_9=self.race_7_9
+            updateFields.append('race_7_9')
+        if self.race_8_9:
+            trn_Update.race_8_9=self.race_8_9
+            updateFields.append('race_8_9')
+        if self.race_9_9:
+            trn_Update.race_9_9=self.race_9_9
+            updateFields.append('race_9_9')
+        if self.race_10_9:
+            trn_Update.race_10_9=self.race_10_9
+            updateFields.append('race_10_9')
+        if self.race_11_9:
+            trn_Update.race_11_9=self.race_11_9
+            updateFields.append('race_11_9')
+        if self.race_12_9:
+            trn_Update.race_12_9=self.race_12_9
+            updateFields.append('race_12_9')
+
+        if self.otb_code_10:
+            trn_Update.OTB_code_10=self.otb_code_10
+            updateFields.append('OTB_code_10')
+        if self.otb_10:
+            trn_Update.OTB_10=self.otb_10
+            updateFields.append('OTB_10')
+        if self.otb_classification_10:
+            trn_Update.OTB_Classification_10=self.otb_classification_10
+            updateFields.append('OTB_Classification_10')
+        if self.held_classification_10:
+            trn_Update.Held_Classification_10=self.held_classification_10
+            updateFields.append('Held_Classification_10')
+        if self.note_code_10:
+            trn_Update.Note_code_10=self.note_code_10
+            updateFields.append('Note_code_10')
+        if self.race_1_10:
+            trn_Update.race_1_10=self.race_1_10
+            updateFields.append('race_1_10')
+        if self.race_2_10:
+            trn_Update.race_2_10=self.race_2_10
+            updateFields.append('race_2_10')
+        if self.race_3_10:
+            trn_Update.race_3_10=self.race_3_10
+            updateFields.append('race_3_10')
+        if self.race_4_10:
+            trn_Update.race_4_10=self.race_4_10
+            updateFields.append('race_4_10')
+        if self.race_5_10:
+            trn_Update.race_5_10=self.race_5_10
+            updateFields.append('race_5_10')
+        if self.race_6_10:
+            trn_Update.race_6_10=self.race_6_10
+            updateFields.append('race_6_10')
+        if self.race_7_10:
+            trn_Update.race_7_10=self.race_7_10
+            updateFields.append('race_7_10')
+        if self.race_8_10:
+            trn_Update.race_8_10=self.race_8_10
+            updateFields.append('race_8_10')
+        if self.race_9_10:
+            trn_Update.race_9_10=self.race_9_10
+            updateFields.append('race_9_10')
+        if self.race_10_10:
+            trn_Update.race_10_10=self.race_10_10
+            updateFields.append('race_10_10')
+        if self.race_11_10:
+            trn_Update.race_11_10=self.race_11_10
+            updateFields.append('race_11_10')
+        if self.race_12_10:
+            trn_Update.race_12_10=self.race_12_10
+            updateFields.append('race_12_10')
+
+        if self.otb_code_11:
+            trn_Update.OTB_code_11=self.otb_code_11
+            updateFields.append('OTB_code_11')
+        if self.otb_11:
+            trn_Update.OTB_11=self.otb_11
+            updateFields.append('OTB_11')
+        if self.otb_classification_11:
+            trn_Update.OTB_Classification_11=self.otb_classification_11
+            updateFields.append('OTB_Classification_11')
+        if self.held_classification_11:
+            trn_Update.Held_Classification_11=self.held_classification_11
+            updateFields.append('Held_Classification_11')
+        if self.note_code_11:
+            trn_Update.Note_code_11=self.note_code_11
+            updateFields.append('Note_code_11')
+        if self.race_1_11:
+            trn_Update.race_1_11=self.race_1_11
+            updateFields.append('race_1_11')
+        if self.race_2_11:
+            trn_Update.race_2_11=self.race_2_11
+            updateFields.append('race_2_11')
+        if self.race_3_11:
+            trn_Update.race_3_11=self.race_3_11
+            updateFields.append('race_3_11')
+        if self.race_4_11:
+            trn_Update.race_4_11=self.race_4_11
+            updateFields.append('race_4_11')
+        if self.race_5_11:
+            trn_Update.race_5_11=self.race_5_11
+            updateFields.append('race_5_11')
+        if self.race_6_11:
+            trn_Update.race_6_11=self.race_6_11
+            updateFields.append('race_6_11')
+        if self.race_7_11:
+            trn_Update.race_7_11=self.race_7_11
+            updateFields.append('race_7_11')
+        if self.race_8_11:
+            trn_Update.race_8_11=self.race_8_11
+            updateFields.append('race_8_11')
+        if self.race_9_11:
+            trn_Update.race_9_11=self.race_9_11
+            updateFields.append('race_9_11')
+        if self.race_10_11:
+            trn_Update.race_10_11=self.race_10_11
+            updateFields.append('race_10_11')
+        if self.race_11_11:
+            trn_Update.race_11_11=self.race_11_11
+            updateFields.append('race_11_11')
+        if self.race_12_11:
+            trn_Update.race_12_11=self.race_12_11
+            updateFields.append('race_12_11')
+
+        if self.otb_code_12:
+            trn_Update.OTB_code_12=self.otb_code_12
+            updateFields.append('OTB_code_12')
+        if self.otb_12:
+            trn_Update.OTB_12=self.otb_12
+            updateFields.append('OTB_12')
+        if self.otb_classification_12:
+            trn_Update.OTB_Classification_12=self.otb_classification_12
+            updateFields.append('OTB_Classification_12')
+        if self.held_classification_12:
+            trn_Update.Held_Classification_12=self.held_classification_12
+            updateFields.append('Held_Classification_12')
+        if self.note_code_12:
+            trn_Update.Note_code_12=self.note_code_12
+            updateFields.append('Note_code_12')
+        if self.race_1_12:
+            trn_Update.race_1_12=self.race_1_12
+            updateFields.append('race_1_12')
+        if self.race_2_12:
+            trn_Update.race_2_12=self.race_2_12
+            updateFields.append('race_2_12')
+        if self.race_3_12:
+            trn_Update.race_3_12=self.race_3_12
+            updateFields.append('race_3_12')
+        if self.race_4_12:
+            trn_Update.race_4_12=self.race_4_12
+            updateFields.append('race_4_12')
+        if self.race_5_12:
+            trn_Update.race_5_12=self.race_5_12
+            updateFields.append('race_5_12')
+        if self.race_6_12:
+            trn_Update.race_6_12=self.race_6_12
+            updateFields.append('race_6_12')
+        if self.race_7_12:
+            trn_Update.race_7_12=self.race_7_12
+            updateFields.append('race_7_12')
+        if self.race_8_12:
+            trn_Update.race_8_12=self.race_8_12
+            updateFields.append('race_8_12')
+        if self.race_9_12:
+            trn_Update.race_9_12=self.race_9_12
+            updateFields.append('race_9_12')
+        if self.race_10_12:
+            trn_Update.race_10_12=self.race_10_12
+            updateFields.append('race_10_12')
+        if self.race_11_12:
+            trn_Update.race_11_12=self.race_11_12
+            updateFields.append('race_11_12')
+        if self.race_12_12:
+            trn_Update.race_12_12=self.race_12_12
+            updateFields.append('race_12_12')
+
+        if self.otb_code_13:
+            trn_Update.OTB_code_13=self.otb_code_13
+            updateFields.append('OTB_code_13')
+        if self.otb_13:
+            trn_Update.OTB_13=self.otb_13
+            updateFields.append('OTB_13')
+        if self.otb_classification_13:
+            trn_Update.OTB_Classification_13=self.otb_classification_13
+            updateFields.append('OTB_Classification_13')
+        if self.held_classification_13:
+            trn_Update.Held_Classification_13=self.held_classification_13
+            updateFields.append('Held_Classification_13')
+        if self.note_code_13:
+            trn_Update.Note_code_13=self.note_code_13
+            updateFields.append('Note_code_13')
+        if self.race_1_13:
+            trn_Update.race_1_13=self.race_1_13
+            updateFields.append('race_1_13')
+        if self.race_2_13:
+            trn_Update.race_2_13=self.race_2_13
+            updateFields.append('race_2_13')
+        if self.race_3_13:
+            trn_Update.race_3_13=self.race_3_13
+            updateFields.append('race_3_13')
+        if self.race_4_13:
+            trn_Update.race_4_13=self.race_4_13
+            updateFields.append('race_4_13')
+        if self.race_5_13:
+            trn_Update.race_5_13=self.race_5_13
+            updateFields.append('race_5_13')
+        if self.race_6_13:
+            trn_Update.race_6_13=self.race_6_13
+            updateFields.append('race_6_13')
+        if self.race_7_13:
+            trn_Update.race_7_13=self.race_7_13
+            updateFields.append('race_7_13')
+        if self.race_8_13:
+            trn_Update.race_8_13=self.race_8_13
+            updateFields.append('race_8_13')
+        if self.race_9_13:
+            trn_Update.race_9_13=self.race_9_13
+            updateFields.append('race_9_13')
+        if self.race_10_13:
+            trn_Update.race_10_13=self.race_10_13
+            updateFields.append('race_10_13')
+        if self.race_11_13:
+            trn_Update.race_11_13=self.race_11_13
+            updateFields.append('race_11_13')
+        if self.race_12_13:
+            trn_Update.race_12_13=self.race_12_13
+            updateFields.append('race_12_13')
+
+        if self.otb_code_14:
+            trn_Update.OTB_code_14=self.otb_code_14
+            updateFields.append('OTB_code_14')
+        if self.otb_14:
+            trn_Update.OTB_14=self.otb_14
+            updateFields.append('OTB_14')
+        if self.otb_classification_14:
+            trn_Update.OTB_Classification_14=self.otb_classification_14
+            updateFields.append('OTB_Classification_14')
+        if self.held_classification_14:
+            trn_Update.Held_Classification_14=self.held_classification_14
+            updateFields.append('Held_Classification_14')
+        if self.note_code_14:
+            trn_Update.Note_code_14=self.note_code_14
+            updateFields.append('Note_code_14')
+        if self.race_1_14:
+            trn_Update.race_1_14=self.race_1_14
+            updateFields.append('race_1_14')
+        if self.race_2_14:
+            trn_Update.race_2_14=self.race_2_14
+            updateFields.append('race_2_14')
+        if self.race_3_14:
+            trn_Update.race_3_14=self.race_3_14
+            updateFields.append('race_3_14')
+        if self.race_4_14:
+            trn_Update.race_4_14=self.race_4_14
+            updateFields.append('race_4_14')
+        if self.race_5_14:
+            trn_Update.race_5_14=self.race_5_14
+            updateFields.append('race_5_14')
+        if self.race_6_14:
+            trn_Update.race_6_14=self.race_6_14
+            updateFields.append('race_6_14')
+        if self.race_7_14:
+            trn_Update.race_7_14=self.race_7_14
+            updateFields.append('race_7_14')
+        if self.race_8_14:
+            trn_Update.race_8_14=self.race_8_14
+            updateFields.append('race_8_14')
+        if self.race_9_14:
+            trn_Update.race_9_14=self.race_9_14
+            updateFields.append('race_9_14')
+        if self.race_10_14:
+            trn_Update.race_10_14=self.race_10_14
+            updateFields.append('race_10_14')
+        if self.race_11_14:
+            trn_Update.race_11_14=self.race_11_14
+            updateFields.append('race_11_14')
+        if self.race_12_14:
+            trn_Update.race_12_14=self.race_12_14
+            updateFields.append('race_12_14')
+
+        if self.otb_code_15:
+            trn_Update.OTB_code_15=self.otb_code_15
+            updateFields.append('OTB_code_15')
+        if self.otb_15:
+            trn_Update.OTB_15=self.otb_15
+            updateFields.append('OTB_15')
+        if self.otb_classification_15:
+            trn_Update.OTB_Classification_15=self.otb_classification_15
+            updateFields.append('OTB_Classification_15')
+        if self.held_classification_15:
+            trn_Update.Held_Classification_15=self.held_classification_15
+            updateFields.append('Held_Classification_15')
+        if self.note_code_15:
+            trn_Update.Note_code_15=self.note_code_15
+            updateFields.append('Note_code_15')
+        if self.race_1_15:
+            trn_Update.race_1_15=self.race_1_15
+            updateFields.append('race_1_15')
+        if self.race_2_15:
+            trn_Update.race_2_15=self.race_2_15
+            updateFields.append('race_2_15')
+        if self.race_3_15:
+            trn_Update.race_3_15=self.race_3_15
+            updateFields.append('race_3_15')
+        if self.race_4_15:
+            trn_Update.race_4_15=self.race_4_15
+            updateFields.append('race_4_15')
+        if self.race_5_15:
+            trn_Update.race_5_15=self.race_5_15
+            updateFields.append('race_5_15')
+        if self.race_6_15:
+            trn_Update.race_6_15=self.race_6_15
+            updateFields.append('race_6_15')
+        if self.race_7_15:
+            trn_Update.race_7_15=self.race_7_15
+            updateFields.append('race_7_15')
+        if self.race_8_15:
+            trn_Update.race_8_15=self.race_8_15
+            updateFields.append('race_8_15')
+        if self.race_9_15:
+            trn_Update.race_9_15=self.race_9_15
+            updateFields.append('race_9_15')
+        if self.race_10_15:
+            trn_Update.race_10_15=self.race_10_15
+            updateFields.append('race_10_15')
+        if self.race_11_15:
+            trn_Update.race_11_15=self.race_11_15
+            updateFields.append('race_11_15')
+        if self.race_12_15:
+            trn_Update.race_12_15=self.race_12_15
+            updateFields.append('race_12_15')
+
+        if self.otb_code_16:
+            trn_Update.OTB_code_16=self.otb_code_16
+            updateFields.append('OTB_code_16')
+        if self.otb_16:
+            trn_Update.OTB_16=self.otb_16
+            updateFields.append('OTB_16')
+        if self.otb_classification_16:
+            trn_Update.OTB_Classification_16=self.otb_classification_16
+            updateFields.append('OTB_Classification_16')
+        if self.held_classification_16:
+            trn_Update.Held_Classification_16=self.held_classification_16
+            updateFields.append('Held_Classification_16')
+        if self.note_code_16:
+            trn_Update.Note_code_16=self.note_code_16
+            updateFields.append('Note_code_16')
+        if self.race_1_16:
+            trn_Update.race_1_16=self.race_1_16
+            updateFields.append('race_1_16')
+        if self.race_2_16:
+            trn_Update.race_2_16=self.race_2_16
+            updateFields.append('race_2_16')
+        if self.race_3_16:
+            trn_Update.race_3_16=self.race_3_16
+            updateFields.append('race_3_16')
+        if self.race_4_16:
+            trn_Update.race_4_16=self.race_4_16
+            updateFields.append('race_4_16')
+        if self.race_5_16:
+            trn_Update.race_5_16=self.race_5_16
+            updateFields.append('race_5_16')
+        if self.race_6_16:
+            trn_Update.race_6_16=self.race_6_16
+            updateFields.append('race_6_16')
+        if self.race_7_16:
+            trn_Update.race_7_16=self.race_7_16
+            updateFields.append('race_7_16')
+        if self.race_8_16:
+            trn_Update.race_8_16=self.race_8_16
+            updateFields.append('race_8_16')
+        if self.race_9_16:
+            trn_Update.race_9_16=self.race_9_16
+            updateFields.append('race_9_16')
+        if self.race_10_16:
+            trn_Update.race_10_16=self.race_10_16
+            updateFields.append('race_10_16')
+        if self.race_11_16:
+            trn_Update.race_11_16=self.race_11_16
+            updateFields.append('race_11_16')
+        if self.race_12_16:
+            trn_Update.race_12_16=self.race_12_16
+            updateFields.append('race_12_16')
+
+        if self.otb_code_17:
+            trn_Update.OTB_code_17=self.otb_code_17
+            updateFields.append('OTB_code_17')
+        if self.otb_17:
+            trn_Update.OTB_17=self.otb_17
+            updateFields.append('OTB_17')
+        if self.otb_classification_17:
+            trn_Update.OTB_Classification_17=self.otb_classification_17
+            updateFields.append('OTB_Classification_17')
+        if self.held_classification_17:
+            trn_Update.Held_Classification_17=self.held_classification_17
+            updateFields.append('Held_Classification_17')
+        if self.note_code_17:
+            trn_Update.Note_code_17=self.note_code_17
+            updateFields.append('Note_code_17')
+        if self.race_1_17:
+            trn_Update.race_1_17=self.race_1_17
+            updateFields.append('race_1_17')
+        if self.race_2_17:
+            trn_Update.race_2_17=self.race_2_17
+            updateFields.append('race_2_17')
+        if self.race_3_17:
+            trn_Update.race_3_17=self.race_3_17
+            updateFields.append('race_3_17')
+        if self.race_4_17:
+            trn_Update.race_4_17=self.race_4_17
+            updateFields.append('race_4_17')
+        if self.race_5_17:
+            trn_Update.race_5_17=self.race_5_17
+            updateFields.append('race_5_17')
+        if self.race_6_17:
+            trn_Update.race_6_17=self.race_6_17
+            updateFields.append('race_6_17')
+        if self.race_7_17:
+            trn_Update.race_7_17=self.race_7_17
+            updateFields.append('race_7_17')
+        if self.race_8_17:
+            trn_Update.race_8_17=self.race_8_17
+            updateFields.append('race_8_17')
+        if self.race_9_17:
+            trn_Update.race_9_17=self.race_9_17
+            updateFields.append('race_9_17')
+        if self.race_10_17:
+            trn_Update.race_10_17=self.race_10_17
+            updateFields.append('race_10_17')
+        if self.race_11_17:
+            trn_Update.race_11_17=self.race_11_17
+            updateFields.append('race_11_17')
+        if self.race_12_17:
+            trn_Update.race_12_17=self.race_12_17
+            updateFields.append('race_12_17')
+
+        if self.otb_code_18:
+            trn_Update.OTB_code_18=self.otb_code_18
+            updateFields.append('OTB_code_18')
+        if self.otb_18:
+            trn_Update.OTB_18=self.otb_18
+            updateFields.append('OTB_18')
+        if self.otb_classification_18:
+            trn_Update.OTB_Classification_18=self.otb_classification_18
+            updateFields.append('OTB_Classification_18')
+        if self.held_classification_18:
+            trn_Update.Held_Classification_18=self.held_classification_18
+            updateFields.append('Held_Classification_18')
+        if self.note_code_18:
+            trn_Update.Note_code_18=self.note_code_18
+            updateFields.append('Note_code_18')
+        if self.race_1_18:
+            trn_Update.race_1_18=self.race_1_18
+            updateFields.append('race_1_18')
+        if self.race_2_18:
+            trn_Update.race_2_18=self.race_2_18
+            updateFields.append('race_2_18')
+        if self.race_3_18:
+            trn_Update.race_3_18=self.race_3_18
+            updateFields.append('race_3_18')
+        if self.race_4_18:
+            trn_Update.race_4_18=self.race_4_18
+            updateFields.append('race_4_18')
+        if self.race_5_18:
+            trn_Update.race_5_18=self.race_5_18
+            updateFields.append('race_5_18')
+        if self.race_6_18:
+            trn_Update.race_6_18=self.race_6_18
+            updateFields.append('race_6_18')
+        if self.race_7_18:
+            trn_Update.race_7_18=self.race_7_18
+            updateFields.append('race_7_18')
+        if self.race_8_18:
+            trn_Update.race_8_18=self.race_8_18
+            updateFields.append('race_8_18')
+        if self.race_9_18:
+            trn_Update.race_9_18=self.race_9_18
+            updateFields.append('race_9_18')
+        if self.race_10_18:
+            trn_Update.race_10_18=self.race_10_18
+            updateFields.append('race_10_18')
+        if self.race_11_18:
+            trn_Update.race_11_18=self.race_11_18
+            updateFields.append('race_11_18')
+        if self.race_12_18:
+            trn_Update.race_12_18=self.race_12_18
+            updateFields.append('race_12_18')
+
+        if self.otb_code_19:
+            trn_Update.OTB_code_19=self.otb_code_19
+            updateFields.append('OTB_code_19')
+        if self.otb_19:
+            trn_Update.OTB_19=self.otb_19
+            updateFields.append('OTB_19')
+        if self.otb_classification_19:
+            trn_Update.OTB_Classification_19=self.otb_classification_19
+            updateFields.append('OTB_Classification_19')
+        if self.held_classification_19:
+            trn_Update.Held_Classification_19=self.held_classification_19
+            updateFields.append('Held_Classification_19')
+        if self.note_code_19:
+            trn_Update.Note_code_19=self.note_code_19
+            updateFields.append('Note_code_19')
+        if self.race_1_19:
+            trn_Update.race_1_19=self.race_1_19
+            updateFields.append('race_1_19')
+        if self.race_2_19:
+            trn_Update.race_2_19=self.race_2_19
+            updateFields.append('race_2_19')
+        if self.race_3_19:
+            trn_Update.race_3_19=self.race_3_19
+            updateFields.append('race_3_19')
+        if self.race_4_19:
+            trn_Update.race_4_19=self.race_4_19
+            updateFields.append('race_4_19')
+        if self.race_5_19:
+            trn_Update.race_5_19=self.race_5_19
+            updateFields.append('race_5_19')
+        if self.race_6_19:
+            trn_Update.race_6_19=self.race_6_19
+            updateFields.append('race_6_19')
+        if self.race_7_19:
+            trn_Update.race_7_19=self.race_7_19
+            updateFields.append('race_7_19')
+        if self.race_8_19:
+            trn_Update.race_8_19=self.race_8_19
+            updateFields.append('race_8_19')
+        if self.race_9_19:
+            trn_Update.race_9_19=self.race_9_19
+            updateFields.append('race_9_19')
+        if self.race_10_19:
+            trn_Update.race_10_19=self.race_10_19
+            updateFields.append('race_10_19')
+        if self.race_11_19:
+            trn_Update.race_11_19=self.race_11_19
+            updateFields.append('race_11_19')
+        if self.race_12_19:
+            trn_Update.race_12_19=self.race_12_19
+            updateFields.append('race_12_19')
+
+        if self.otb_code_20:
+            trn_Update.OTB_code_20=self.otb_code_20
+            updateFields.append('OTB_code_20')
+        if self.otb_20:
+            trn_Update.OTB_20=self.otb_20
+            updateFields.append('OTB_20')
+        if self.otb_classification_20:
+            trn_Update.OTB_Classification_20=self.otb_classification_20
+            updateFields.append('OTB_Classification_20')
+        if self.held_classification_20:
+            trn_Update.Held_Classification_20=self.held_classification_20
+            updateFields.append('Held_Classification_20')
+        if self.note_code_20:
+            trn_Update.Note_code_20=self.note_code_20
+            updateFields.append('Note_code_20')
+        if self.race_1_20:
+            trn_Update.race_1_20=self.race_1_20
+            updateFields.append('race_1_20')
+        if self.race_2_20:
+            trn_Update.race_2_20=self.race_2_20
+            updateFields.append('race_2_20')
+        if self.race_3_20:
+            trn_Update.race_3_20=self.race_3_20
+            updateFields.append('race_3_20')
+        if self.race_4_20:
+            trn_Update.race_4_20=self.race_4_20
+            updateFields.append('race_4_20')
+        if self.race_5_20:
+            trn_Update.race_5_20=self.race_5_20
+            updateFields.append('race_5_20')
+        if self.race_6_20:
+            trn_Update.race_6_20=self.race_6_20
+            updateFields.append('race_6_20')
+        if self.race_7_20:
+            trn_Update.race_7_20=self.race_7_20
+            updateFields.append('race_7_20')
+        if self.race_8_20:
+            trn_Update.race_8_20=self.race_8_20
+            updateFields.append('race_8_20')
+        if self.race_9_20:
+            trn_Update.race_9_20=self.race_9_20
+            updateFields.append('race_9_20')
+        if self.race_10_20:
+            trn_Update.race_10_20=self.race_10_20
+            updateFields.append('race_10_20')
+        if self.race_11_20:
+            trn_Update.race_11_20=self.race_11_20
+            updateFields.append('race_11_20')
+        if self.race_12_20:
+            trn_Update.race_12_20=self.race_12_20
+            updateFields.append('race_12_20')
 
         # 実体のあるカラム更新
         trn_Update.save(update_fields=updateFields)
