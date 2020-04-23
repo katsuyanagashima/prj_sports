@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-16"?>
 
-<!DOCTYPE ITalk SYSTEM "/static/app_sumo/DTD/ITalkv1.0.dtd" [
-	<!ENTITY % InContent SYSTEM "/static/app_sumo/DTD/InContentv1.0.dtd">
+<!--
+<!DOCTYPE ITalk SYSTEM "../DTD/ITalkv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
 	%InContent;
-	<!ENTITY % Kddata SYSTEM "/static/app_sumo/OSDTD/KdXBSContentv1.1.dtd">
+	<!ENTITY % Kddata SYSTEM "../OSDTD/KdXBSContentv1.1.dtd">
 	%Kddata;
 ]>
-<!--  ●●　デバックのため、スタイルシート宣言を外す　●●-->
-<!--
-<?xml-stylesheet type="text/xsl"  href="/static/app_sumo/OSStylesheets/OSKdXBSContent01.xsl"?>
+<?xml-stylesheet type="text/xsl"  href="../OSStylesheets/OSKdXBSContent01.xsl"?>
 -->
 <ITalk version="1.0">
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
+<!-- ここのtestの値を表示  -->
 <IhSendDate>ＹＹＹＹＭＭＤＤ（運用日？）</IhSendDate>
 <IhSendTime>ＨＨＭＭＳＳ（運用時間？）</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
@@ -33,8 +33,17 @@
 <IhMainRank>角</IhMainRank>
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
-<!-- ==== 副ヘッダマスタから取得 =========== -->
-
+<IhSubHeader>
+<IhSendBlkInfo IhNb="1">
+<IhSendBlk>フル相全</IhSendBlk>
+</IhSendBlkInfo>
+<IhSendIndInfo IhNi="1">
+<IhSendInd>アサガミ</IhSendInd>
+</IhSendIndInfo>
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
@@ -154,13 +163,23 @@
 <InData>
 <SportsData Version="1.1">
 <Head>
-
-<!-- ======================================= -->
+<Meta>
+<Title>◎大相撲初場所新番付資料（月日現在）</Title>
+<Competition>
+<Formal>初場所</Formal>
+</Competition>
+<CompetitionDay>場所前</CompetitionDay>
+<Discipline>
+<Formal>相撲</Formal>
+</Discipline>
+</Meta>
+</Head>
+<Body BlockId="OS01MU____">
+<Meta>
+<FormatType>Ｓ－Ｐ－Ｒ</FormatType>
+<DataType>新番付資料</DataType>
+</Meta>
 <Standing BlockId="S001">
-<!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ================== -->
-
-<!-- ===== ここまで ================= -->
-<!-- ==== ここから下は完成後に削除 ====-->
 <Player PlayerId="009620">
 <PlayerName>
 <Writing>稀勢の里</Writing>
