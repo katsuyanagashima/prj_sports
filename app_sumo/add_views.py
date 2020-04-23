@@ -249,7 +249,7 @@ class Output_NewsML():
         elif self.newsno == "22":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),
-            }     
+            }
 
-        return context.update(fix_context)
+        return dict(context, **fix_context)
 
