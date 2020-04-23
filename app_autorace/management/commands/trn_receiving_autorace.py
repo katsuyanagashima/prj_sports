@@ -1,4 +1,3 @@
-import logging
 # ファイルアクセスとスリープのため、osとtimeをインポート
 import os
 import pprint
@@ -21,22 +20,16 @@ from django.db.models import Max
 sys.path.append("/code/app_autorace/")
 from consts import *
 
-
 logger = getLogger('command')
-
 # 監視対象ファイルのパターンマッチを指定する
-# スケジュールレコード（mmddhhmmss00000000.dat）
 target_file_schedule_record = ['*00000000.dat']
 target_file_program_record = ['*0000[1-6]001.dat']
 target_file_result_record = ['*0000[1-6]0[1-9]2.dat','*0000[1-6]1[0-2]2.dat']
 target_file_top30prize_record = ['*00000003.dat']
 target_file_outsidetrack_record = ['*00000004.dat']
 
-base_trn = os.path.dirname(os.path.abspath(__file__))
-
-
+base_trn = os.path.dirname(os.path.abspath(__file__))   
 # コマンド実行の確認
-
 class Command(BaseCommand):    
     # コンストラクターの定義
     def __init__(self):
@@ -55,10 +48,9 @@ class Command(BaseCommand):
         # parser.add_argument('command_id', nargs='+', type=int)
 
     """受け取った引数を登録する"""
+    # ファイル監視の開始
     def handle(self, *args, **options):
-        # scheduleFlg = True
-        # resultFlg = True
-        # ファイル監視の開始
+
         # 監視対象ディレクトリを指定する
         # スケジュールレコード（mmddhhmmss00000000.dat） 1: スケジュール
         try:
@@ -72,9 +64,7 @@ class Command(BaseCommand):
             self.observer_trn_schedule.start()
             logger.info("scheduleData: スケジュール監視　Start" )
         except Exception as e:
-            logger.info("scheduleData: スケジュール監視　End")
-            self.observer_trn_schedule.stop()
-            raise e
+            logger.error(e)
 
         # 監視対象ディレクトリを指定する
         # 番組編成データレコード（mmddhhmmss0000J001.dat） 2: 番組編成
@@ -89,9 +79,7 @@ class Command(BaseCommand):
             logger.info("programData: 番組編成監視　Start")
             self.observer_trn_program.start()
         except Exception as e:
-            logger.info("programData: 番組編成監視　End")
-            self.observer_trn_program.stop()
-            raise e
+            logger.error(e)
 
         # 監視対象ディレクトリを指定する
         # レース結果データレコード（mmddhhmmss0000JRR2.dat） 3: レース結果
@@ -106,9 +94,7 @@ class Command(BaseCommand):
             logger.info("resultData: レース結果監視　Start")
             self.observer_trn_result.start()
         except Exception as e:
-            logger.info("resultData: レース結果監視　End")
-            self.observer_trn_result.stop()
-            raise e
+            logger.error(e)
 
         # 監視対象ディレクトリを指定する
         # 選手取得賞金上位３０位レコード（mmddhhmmss00000003.dat） 4: 選手取得賞金上位３０位
@@ -123,9 +109,7 @@ class Command(BaseCommand):
             logger.info("top30prizeData: 選手取得賞金上位３０位監視　Start")
             self.observer_trn_top_30_prize.start()
         except Exception as e:
-            logger.info("top30prizeData: 選手取得賞金上位３０位監視　End")
-            self.observer_trn_top_30_prize.stop()      
-            raise e      
+            logger.error(e)    
 
         # 監視対象ディレクトリを指定する
         # 場外売場情報（mmddhhmmss00000004.dat） 5: 場外売場情報 
@@ -140,23 +124,33 @@ class Command(BaseCommand):
             logger.info("outsidetrackData: 場外売場情報監視　Start")
             self.observer_trn_outsidetrack.start()
         except Exception as e:
-            logger.info("outsidetrackData: 場外売場情報監視　End")
-            self.observer_trn_outsidetrack.stop()  
-            raise e
+            logger.error(e)
+
         # 処理が終了しないようスリープを挟んで無限ループ
         try:
             while True:
-                time.sleep(0.1)
+                time.sleep(1)
+                # システムステータスの処理
                 # エラーの処理を判断して止める
+
+
+
 
         except KeyboardInterrupt:
             self.observer_trn_schedule.stop()
+            logger.info("scheduleData: スケジュール監視　End")
             self.observer_trn_program.stop()
+            logger.info("programData: 番組編成監視　End")
             self.observer_trn_result.stop()
+            logger.info("resultData: レース結果監視　End")
             self.observer_trn_top_30_prize.stop()
+            logger.info("top30prizeData: 選手取得賞金上位３０位監視　End")
             self.observer_trn_outsidetrack.stop()
+            logger.info("outsidetrackData: 場外売場情報監視　End")
             
         finally:
+            # .pid_lockfile消去
+
             # finaly = 例外の発生に関係なく最後に処理
             self.observer_trn_schedule.join()
             self.observer_trn_program.join()

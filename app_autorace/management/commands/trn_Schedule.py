@@ -9,7 +9,6 @@ from pathlib import Path
 
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
-from watchdog.observers import Observer
 from watchdog.observers.polling import PollingObserver
 
 from app_autorace.models import *
@@ -202,14 +201,14 @@ class Schedule():
             return NORMAL
 
         except FileNotFoundError as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
         except UnboundLocalError as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
         except ValueError as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
         except Exception as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
