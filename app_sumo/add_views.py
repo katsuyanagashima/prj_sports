@@ -45,7 +45,7 @@ class Output_NewsML():
         self.st = 0
 
     # NewsML作成関数
-    def Create_NewsML(self, request):　
+    def Create_NewsML(self, request):
 
         if request.method == "POST":
             if "NewsMLNo" not in request.POST:
@@ -88,7 +88,8 @@ class Output_NewsML():
         # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
         # 生涯成績
 
-        # 'newsmlmeta'が21種類共通であれば、ここに記載して辞書をマージするとよいかもしれません。例として記述させて頂きました。
+        # 例として記述させて頂きました。
+        # 'newsmlmeta'が21種類共通であれば、または他のテーブルを共通記述出来れば、ここに記載して辞書をマージするとよいかもしれません。
         # 他の分岐は共通化が難しければ、この関数の行数が100文字以上に増えた場合に、各パターンを関数で分離させる必要があるかもしれません。
         tran_system = Tran_Systemstatus.objects.all()
         context = { 'newsmlmeta':tran_system }
