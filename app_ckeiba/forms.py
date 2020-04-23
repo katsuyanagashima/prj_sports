@@ -77,9 +77,9 @@ class Md_AgariForm(forms.ModelForm):
         model = Md_Agari
         fields = '__all__'
 
-class Md_TshuushinbunForm(forms.ModelForm):
+class Md_TsuushimbunForm(forms.ModelForm):
     class Meta:
-        model = Md_Tshuushinbun
+        model = Md_Tsuushimbun
         fields = '__all__'
 
 class Md_NyujoForm(forms.ModelForm):

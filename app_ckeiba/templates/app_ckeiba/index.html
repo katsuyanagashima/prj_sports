@@ -60,7 +60,10 @@
                     <div class="uma-img hanrei_value"></div>：作成予定なし
                 </div>
             </span>
-            <div><a href="./option_submit" class="badge badge-success opt_submit_button">オプション送信</a>
+            <div>
+                <a href="{% url 'app_ckeiba:create_NewsML_tsuushimbunC' kyounen=2020 kyoutuki=4 kyouhi=17 joucode=1 rebangou=1 %}"
+                    target="_blank" class="badge badge-primary opt_submit_button">NewsML生成テスト</a>
+                <a href="./option_submit" class="badge badge-success opt_submit_button">オプション送信</a>
                 <span class="badge badge-secondary nav-badge-state log-button" data-toggle="modal"
                     data-target="#submit_log">送信ログ</span></div>
         </div>
