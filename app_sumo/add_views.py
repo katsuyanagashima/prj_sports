@@ -33,7 +33,6 @@ def nav_info(request, get_type=0):
     else:
         return params
 
-
 # 編集・配信処理
 class Output_NewsML():
 
@@ -95,6 +94,7 @@ class Output_NewsML():
         context = { 'newsmlmeta':tran_system }
         fix_context = {}
         
+        #01新番付資料
         if self.newsno == "01":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
@@ -103,6 +103,7 @@ class Output_NewsML():
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
+        #02新番付資料・補正
         elif self.newsno == "02":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
@@ -111,6 +112,7 @@ class Output_NewsML():
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
+        #03新番付
         elif self.newsno == "03":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
@@ -119,6 +121,25 @@ class Output_NewsML():
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
+        #04郷土力士新番付
+        elif self.newsno == "04":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+            }
+        #05幕下以下新番付
+        elif self.newsno == "05":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+            }
+        #06郷土力士取組
         elif self.newsno == "06":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),
@@ -127,6 +148,107 @@ class Output_NewsML():
                 'Lifeaward': Mst_Lifetime_award.objects.all(),
                 'basho': tran_system.first().CurrentBasho,
                 'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
-            }        
+            }  
+        #06郷土力士取組
+        elif self.newsno == "06":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
+        #07幕下以下取組
+        elif self.newsno == "07":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
+        #08十両取組
+        elif self.newsno == "08":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
+        #09中入り取組
+        elif self.newsno == "09":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
+        #10郷土力士勝負・階級別
+        elif self.newsno == "10":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #11郷土力士勝負・まとめ
+        elif self.newsno == "11":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #12幕下以下勝負
+        elif self.newsno == "12":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #13勝負
+        elif self.newsno == "13":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #14まとめ勝負
+        elif self.newsno == "14":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #15郷土力士星取表
+        elif self.newsno == "15":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #16外国力士成績
+        elif self.newsno == "16":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #17優勝三賞受賞力士
+        elif self.newsno == "17":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #18階級別成績上位力士
+        elif self.newsno == "18":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #20幕下以下全成績
+        elif self.newsno == "20":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
+        #21十両星取表
+        elif self.newsno == "21":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }  
+        #2222幕内星取表
+        elif self.newsno == "22":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }     
 
         return context.update(fix_context)
+
