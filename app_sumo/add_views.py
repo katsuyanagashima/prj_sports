@@ -97,7 +97,6 @@ class Output_NewsML():
         #01新番付資料
         if self.newsno == "01":
             fix_context = {
-                'test':"あああ",
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
