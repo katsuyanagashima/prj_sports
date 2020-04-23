@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-16"?>
+
+<!DOCTYPE ITalk SYSTEM "/static/app_sumo/DTD/ITalkv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "/static/app_sumo/DTD/InContentv1.0.dtd">
+	%InContent;
+	<!ENTITY % Kddata SYSTEM "/static/app_sumo/OSDTD/KdXBSContentv1.1.dtd">
+	%Kddata;
+]>
+				<?xml-stylesheet type="text/xsl"  href="/static/app_sumo/OSStylesheets/OSKdXBSContent08.xsl"?>
+
+<ITalk version="1.0">
+<IManage>
+<IhInfo>
+<IhSubSysInfo>
+<IhSendDate>２０１９０１１１</IhSendDate>
+<IhSendTime>１０３６５２</IhSendTime>
+<IhSendFrom>ＯＳ</IhSendFrom>
+<IhSendTo IhNs="3">
+<IhSendToSys>ＨＳ</IhSendToSys>
+<IhSendToSys>ＫＪ</IhSendToSys>
+<IhSendToSys>ＪＭ</IhSendToSys>
+</IhSendTo>
+</IhSubSysInfo>
+<IhSendMode>通常</IhSendMode>
+<IhSendDataKind>漢テレ</IhSendDataKind>
+<IhSendBase>
+<IhSendPriority>３</IhSendPriority>
+</IhSendBase>
+<IhAddrInfo>
+<IhMainHeader>
+<IhMainRank>角</IhMainRank>
+<IhNewsGenre>相撲</IhNewsGenre>
+</IhMainHeader>
+<IhSubHeader>
+<IhSendBlkInfo IhNb="2">
+<IhSendBlk>フル相全</IhSendBlk>
+<IhSendBlk>Ｎデ</IhSendBlk>
+</IhSendBlkInfo>
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
+<IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
+</IhAddrInfo>
+<IhDataForm>フルタグ書式</IhDataForm>
+</IhInfo>
+</IManage>
+<NewsML>
+<Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
+<NewsEnvelope>
+<TransmissionId>20190111OSF000021</TransmissionId>
+<DateAndTime>20190111T103652+0900</DateAndTime>
+<NewsProduct FormalName="NskNewsML:1"/>
+</NewsEnvelope>
+<NewsItem Duid="NI_OS01" xml:lang="ja-JP">
+<Identification>
+<NewsIdentifier>
+<ProviderId>kyodonews.jp</ProviderId>
+<DateId>20190111</DateId>
+<NewsItemId>20190111OSF0801________</NewsItemId>
+<RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+<PublicIdentifier>urn:newsml:kyodonews.jp:20190111:20190111OSF0801________:1</PublicIdentifier>
+</NewsIdentifier>
+</Identification>
+<NewsManagement>
+<NewsItemType FormalName="News"/>
+<FirstCreated>20190111T103652+0900</FirstCreated>
+<ThisRevisionCreated>20190111T103652+0900</ThisRevisionCreated>
+<Status FormalName="Usable"/>
+</NewsManagement>
+<NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
+<NewsLines>
+<HeadLine>初日取組（十両）</HeadLine>
+</NewsLines>
+<AdministrativeMetadata>
+<Provider>
+<Party FormalName="KYODONEWS"/>
+</Provider>
+</AdministrativeMetadata>
+<DescriptiveMetadata>
+<Language FormalName="ja"/>
+<SubjectCode>
+<Subject FormalName="15000000"/>
+<SubjectMatter FormalName="15060000"/>
+</SubjectCode>
+</DescriptiveMetadata>
+<ContentItem>
+<MediaType FormalName="Text"/>
+<Format FormalName="KdXBSContentv1.1"/>
+<MimeType FormalName="text/xml"/>
+<DataContent>
+<InContent version="1.0">
+<InMetadata>
+<InAdminInfo>
+<InProductId>２０１９０１１１ＯＳＦ０８０１＿＿＿＿＿＿＿＿０１</InProductId>
+<InDateTime>２０１９年０１月１１日１０時３６分５２秒</InDateTime>
+<InFormat>
+<InFormatType>フルタグ書式</InFormatType>
+<InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>
+</InFormat>
+</InAdminInfo>
+<InCategoryInfo>
+<InClasses>
+<InClass>
+<InBClass>相撲</InBClass>
+<InMClass1>初場所初日</InMClass1>
+<InMClass2>十両取組</InMClass2>
+<InSClass>全県</InSClass>
+</InClass>
+</InClasses>
+<InNewsCategory>
+<InNewsGenre>相撲</InNewsGenre>
+</InNewsCategory>
+<InNewsLine>
+<InHeadLine>初日取組（十両）</InHeadLine>
+</InNewsLine>
+</InCategoryInfo>
+<InNewsInfo>
+<InMainHeader>
+<InPriority>３</InPriority>
+</InMainHeader>
+<InSubHeader>
+<InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<InSendControl>
+<InSendBlkInfo InNb="2">
+<InSendBlk>相全</InSendBlk>
+<InSendBlk>Ｎデ</InSendBlk>
+</InSendBlkInfo>
+</InSendControl>
+</InSubHeader>
+</InNewsInfo>
+</InMetadata>
+<InData>
+<SportsData Version="1.1">
+<Head>
+<Meta>
+<Competition>
+<Formal>初場所</Formal>
+</Competition>
+<CompetitionDay>初日</CompetitionDay>
+<Discipline>
+<Formal>相撲</Formal>
+</Discipline>
+</Meta>
+</Head>
+<Body BlockId="OS08JR____">
+<Meta>
+<FormatType>Ｍ－Ｐ</FormatType>
+<DataType>十両取組</DataType>
+<Title>＝十　両＝</Title>
+</Meta>
+<Match BlockId="M001">
+<Player PlayerId="014160">
+<PlayerName>
+<Writing>臥牙丸</Writing>
+<Formal>臥牙丸</Formal>
+<Formal Display="3字">臥牙丸</Formal>
+<Formal Display="よみがな">ががまる</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022900">
+<PlayerName>
+<Writing>霧馬山</Writing>
+<Formal>霧馬山</Formal>
+<Formal Display="3字">霧馬山</Formal>
+<Formal Display="よみがな">きりばやま</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>幕下</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M002">
+<Player PlayerId="022860">
+<PlayerName>
+<Writing>千代海</Writing>
+<Formal>千代の海</Formal>
+<Formal Display="3字">千代海</Formal>
+<Formal Display="よみがな">ちよのうみ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="019370">
+<PlayerName>
+<Writing>常幸龍</Writing>
+<Formal>常幸龍</Formal>
+<Formal Display="3字">常幸龍</Formal>
+<Formal Display="よみがな">じょうこうりゅう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M003">
+<Player PlayerId="016070">
+<PlayerName>
+<Writing>旭秀鵬</Writing>
+<Formal>旭秀鵬</Formal>
+<Formal Display="3字">旭秀鵬</Formal>
+<Formal Display="よみがな">きょくしゅうほう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="011310">
+<PlayerName>
+<Writing>蒼国来</Writing>
+<Formal>蒼国来</Formal>
+<Formal Display="3字">蒼国来</Formal>
+<Formal Display="よみがな">そうこくらい</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M004">
+<Player PlayerId="009780">
+<PlayerName>
+<Writing>豪　風</Writing>
+<Formal>豪風</Formal>
+<Formal Display="3字">豪　風</Formal>
+<Formal Display="よみがな">たけかぜ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="021320">
+<PlayerName>
+<Writing>剣　翔</Writing>
+<Formal>剣翔</Formal>
+<Formal Display="3字">剣　翔</Formal>
+<Formal Display="よみがな">つるぎしょう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M005">
+<Player PlayerId="020340">
+<PlayerName>
+<Writing>志摩海</Writing>
+<Formal>志摩ノ海</Formal>
+<Formal Display="3字">志摩海</Formal>
+<Formal Display="よみがな">しまのうみ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022320">
+<PlayerName>
+<Writing>翔　猿</Writing>
+<Formal>翔猿</Formal>
+<Formal Display="3字">翔　猿</Formal>
+<Formal Display="よみがな">とびざる</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M006">
+<Player PlayerId="010170">
+<PlayerName>
+<Writing>荒　鷲</Writing>
+<Formal>荒鷲</Formal>
+<Formal Display="3字">荒　鷲</Formal>
+<Formal Display="よみがな">あらわし</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="024790">
+<PlayerName>
+<Writing>水戸龍</Writing>
+<Formal>水戸龍</Formal>
+<Formal Display="3字">水戸龍</Formal>
+<Formal Display="よみがな">みとりゅう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M007">
+<Player PlayerId="016330">
+<PlayerName>
+<Writing>旭大星</Writing>
+<Formal>旭大星</Formal>
+<Formal Display="3字">旭大星</Formal>
+<Formal Display="よみがな">きょくたいせい</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020350">
+<PlayerName>
+<Writing>英乃海</Writing>
+<Formal>英乃海</Formal>
+<Formal Display="3字">英乃海</Formal>
+<Formal Display="よみがな">ひでのうみ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M008">
+<Player PlayerId="024380">
+<PlayerName>
+<Writing>炎　鵬</Writing>
+<Formal>炎鵬</Formal>
+<Formal Display="3字">炎　鵬</Formal>
+<Formal Display="よみがな">えんほう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="016280">
+<PlayerName>
+<Writing>明瀬山</Writing>
+<Formal>明瀬山</Formal>
+<Formal Display="3字">明瀬山</Formal>
+<Formal Display="よみがな">あきせやま</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M009">
+<Player PlayerId="017450">
+<PlayerName>
+<Writing>東　龍</Writing>
+<Formal>東龍</Formal>
+<Formal Display="3字">東　龍</Formal>
+<Formal Display="よみがな">あずまりゅう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="016080">
+<PlayerName>
+<Writing>千代丸</Writing>
+<Formal>千代丸</Formal>
+<Formal Display="3字">千代丸</Formal>
+<Formal Display="よみがな">ちよまる</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M010">
+<Player PlayerId="019510">
+<PlayerName>
+<Writing>白鷹山</Writing>
+<Formal>白鷹山</Formal>
+<Formal Display="3字">白鷹山</Formal>
+<Formal Display="よみがな">はくようざん</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="009260">
+<PlayerName>
+<Writing>豊ノ島</Writing>
+<Formal>豊ノ島</Formal>
+<Formal Display="3字">豊ノ島</Formal>
+<Formal Display="よみがな">とよのしま</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M011">
+<Player PlayerId="024260">
+<PlayerName>
+<Writing>若隆景</Writing>
+<Formal>若隆景</Formal>
+<Formal Display="3字">若隆景</Formal>
+<Formal Display="よみがな">わかたかかげ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="017290">
+<PlayerName>
+<Writing>徳勝龍</Writing>
+<Formal>徳勝龍</Formal>
+<Formal Display="3字">徳勝龍</Formal>
+<Formal Display="よみがな">とくしょうりゅう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M012">
+<Player PlayerId="024830">
+<PlayerName>
+<Writing>友　風</Writing>
+<Formal>友風</Formal>
+<Formal Display="3字">友　風</Formal>
+<Formal Display="よみがな">ともかぜ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020660">
+<PlayerName>
+<Writing>石　浦</Writing>
+<Formal>石浦</Formal>
+<Formal Display="3字">石　浦</Formal>
+<Formal Display="よみがな">いしうら</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M013">
+<Player PlayerId="002041">
+<PlayerName>
+<Writing>安美錦</Writing>
+<Formal>安美錦</Formal>
+<Formal Display="3字">安美錦</Formal>
+<Formal Display="よみがな">あみにしき</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="018550">
+<PlayerName>
+<Writing>隆の勝</Writing>
+<Formal>隆の勝</Formal>
+<Formal Display="3字">隆の勝</Formal>
+<Formal Display="よみがな">たかのしょう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+<Match BlockId="M014">
+<Player PlayerId="020900">
+<PlayerName>
+<Writing>貴源治</Writing>
+<Formal>貴源治</Formal>
+<Formal Display="3字">貴源治</Formal>
+<Formal Display="よみがな">たかげんじ</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>東</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020720">
+<PlayerName>
+<Writing>大翔鵬</Writing>
+<Formal>大翔鵬</Formal>
+<Formal Display="3字">大翔鵬</Formal>
+<Formal Display="よみがな">だいしょうほう</Formal>
+</PlayerName>
+<PlayerForSumo>
+<SumoGrade>
+<Direction>西</Direction>
+<SumoRank>十両</SumoRank>
+</SumoGrade>
+</PlayerForSumo>
+</Player>
+</Match>
+</Body>
+</SportsData>
+</InData>
+</InContent>
+</DataContent>
+</ContentItem>
+</NewsComponent>
+</NewsItem>
+</NewsML>
+</ITalk>
