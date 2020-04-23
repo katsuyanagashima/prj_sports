@@ -7,6 +7,8 @@ from .models import Trn_Schedule, Trn_Program, Trn_Running_list, Trn_Result, Trn
 """
 
 #DBマスターテーブル
+admin.site.register(Mst_Operationmode)
+admin.site.register(Mst_Environment)
 admin.site.register(Mst_Race_track)
 admin.site.register(Mst_Commemorative_Race)
 admin.site.register(Mst_Special_Commemorative_Race)
@@ -22,6 +24,7 @@ admin.site.register(Mst_Putout_Reason)
 admin.site.register(Mst_Outside_track)
 
 #DBトランザクションテーブル
+admin.site.register(Tran_Systemstatus)
 admin.site.register(Trn_Schedule)
 admin.site.register(Trn_Program)
 admin.site.register(Trn_Running_list)

@@ -33,6 +33,7 @@ base_trn = os.path.dirname(os.path.abspath(__file__))
 class Command(BaseCommand):    
     # コンストラクターの定義
     def __init__(self):
+
         self.observer_trn_schedule = PollingObserver()
         self.observer_trn_program = PollingObserver()
         self.observer_trn_result = PollingObserver()
@@ -128,29 +129,41 @@ class Command(BaseCommand):
 
         # 処理が終了しないようスリープを挟んで無限ループ
         try:
+
             while True:
                 time.sleep(1)
                 # システムステータスの処理
                 # エラーの処理を判断して止める
+                # systemstatus = Tran_Systemstatus.objects.select_related('Operationmode').get(id=1)
+                # if (systemstatus.Operationmode.Operationmode_code==1):
 
-
-
+                #    self.observer_trn_schedule.stop()
+                #    logger.warning("scheduleData: スケジュール監視　End")
+                #    self.observer_trn_program.stop()
+                #    logger.warning("programData: 番組編成監視　End")
+                #    self.observer_trn_result.stop()
+                #    logger.warning("resultData: レース結果監視　End")
+                #    self.observer_trn_top_30_prize.stop()
+                #    logger.warning("top30prizeData: 選手取得賞金上位３０位監視　End")
+                #    self.observer_trn_outsidetrack.stop()
+                #    logger.warning("outsidetrackData: 場外売場情報監視　End")                    
+                #    return False
 
         except KeyboardInterrupt:
             self.observer_trn_schedule.stop()
-            logger.info("scheduleData: スケジュール監視　End")
             self.observer_trn_program.stop()
-            logger.info("programData: 番組編成監視　End")
             self.observer_trn_result.stop()
-            logger.info("resultData: レース結果監視　End")
             self.observer_trn_top_30_prize.stop()
-            logger.info("top30prizeData: 選手取得賞金上位３０位監視　End")
             self.observer_trn_outsidetrack.stop()
-            logger.info("outsidetrackData: 場外売場情報監視　End")
             
         finally:
+            logger.info("scheduleData: スケジュール監視　End")
+            logger.info("programData: 番組編成監視　End")
+            logger.info("resultData: レース結果監視　End")
+            logger.info("top30prizeData: 選手取得賞金上位３０位監視　End")
+            logger.info("outsidetrackData: 場外売場情報監視　End")
+ 
             # .pid_lockfile消去
-
             # finaly = 例外の発生に関係なく最後に処理
             self.observer_trn_schedule.join()
             self.observer_trn_program.join()

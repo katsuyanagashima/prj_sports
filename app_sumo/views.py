@@ -145,7 +145,7 @@ def SUMOUT02(request):
     nml = Mst_KindofNewsML.objects.all()
 
     if request.method == "POST":
-        res = output_NewsML(request)
+        res = Output_NewsML().Create_NewsML(request)
         if "Input_status" in request.POST and request.POST["Input_status"] is "2":
             return res
         for key in init.keys():

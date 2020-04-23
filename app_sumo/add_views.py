@@ -8,278 +8,247 @@ from .models import *
 from datetime import datetime
 
 temp = [
-    'YYYYMMDDOSF01__________01','YYYYMMDDOSF02__________01','YYYYMMDDOSF03__________01','YYYYMMDDOSF04____CC____01','YYYYMMDDOSF05__BB__D___01',
-    'YYYYMMDDOSF06AA__CC____01','YYYYMMDDOSF07AA__CC____01','YYYYMMDDOSF08AA________01','YYYYMMDDOSF09AA________01',
-    'YYYYMMDDOSF10AABBCC____01','YYYYMMDDOSF11AA__CC____01','YYYYMMDDOSF12AABB______01','YYYYMMDDOSF13AA_____EEE01','YYYYMMDDOSF14AA________01','YYYYMMDDOSF15AA__CC____01',
-    'YYYYMMDDOSF16AA________01','YYYYMMDDOSF17AA________01','YYYYMMDDOSF18AABB______01',
-    '','YYYYMMDDOSF20AABB__D___01','YYYYMMDDOSF21AA________01','YYYYMMDDOSF22AA________01',
+    'YYYYMMDDOSF01__________01', 'YYYYMMDDOSF02__________01', 'YYYYMMDDOSF03__________01', 'YYYYMMDDOSF04____CC____01', 'YYYYMMDDOSF05__BB__D___01',
+    'YYYYMMDDOSF06AA__CC____01', 'YYYYMMDDOSF07AA__CC____01', 'YYYYMMDDOSF08AA________01', 'YYYYMMDDOSF09AA________01',
+    'YYYYMMDDOSF10AABBCC____01', 'YYYYMMDDOSF11AA__CC____01', 'YYYYMMDDOSF12AABB______01', 'YYYYMMDDOSF13AA_____EEE01', 'YYYYMMDDOSF14AA________01', 'YYYYMMDDOSF15AA__CC____01',
+    'YYYYMMDDOSF16AA________01', 'YYYYMMDDOSF17AA________01', 'YYYYMMDDOSF18AABB______01',
+    '', 'YYYYMMDDOSF20AABB__D___01', 'YYYYMMDDOSF21AA________01', 'YYYYMMDDOSF22AA________01',
     'YYYYMMDDOSF23AABB______01'
 ]
+
 
 def nav_info(request, get_type=0):
     tran_system = Tran_Systemstatus.objects.all().first()
 
     params = {
-            'nav':{
-            'basho':tran_system.CurrentBasho,
-            'systatus':tran_system.SystemStatus,
-            'torikumiday':tran_system.TorikumiDate.Nichime_name,
-            'shoubuday':tran_system.MatchDate.Nichime_name
-            } 
+        'nav': {
+            'basho': tran_system.CurrentBasho,
+            'systatus': tran_system.SystemStatus,
+            'torikumiday': tran_system.TorikumiDate.Nichime_name,
+            'shoubuday': tran_system.MatchDate.Nichime_name
         }
+    }
     if get_type:
         return [params, tran_system]
     else:
         return params
 
-def output_NewsML(request):
-    grade = 0 # 階級コード
-    now = datetime.now()
-    stnow = now.strftime("%Y%m%d")
+# 編集・配信処理
+class Output_NewsML():
 
-    if request.method == "POST":
-        if "NewsMLNo" not in request.POST:
-            return "Input error."
-        newsno = request.POST["NewsMLNo"] # NEWSML種別コードを受け取る
-        if newsno.startswith("0"):
-            newsno.lstrip("0")
-        if not newsno.isdigit(): # 全ての文字が数値でない場合、末尾2文字を抽出・削除
-            grade = newsno[-2]
-            newsno = newsno[:-2]
-        temp_product_id = temp[int(newsno)-1] # NEWSML種別コードに対応するtemplateIDを取得
-        file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
-        temp_file_name = 'NewsML_temp/%s' % file_name
-        t = loader.get_template(temp_file_name) # Djangoのテンプレートとして取得
+    def __init__(self):
+        self.grade = 0 # 階級コード
+        self.now = datetime.now()
+        self.stnow = self.now.strftime("%Y%m%d")
+        self.newsno = 0
+        self.st = 0
 
+    # NewsML作成関数
+    def Create_NewsML(self, request):
+
+        if request.method == "POST":
+            if "NewsMLNo" not in request.POST:
+                return "Input error."
+
+            self.newsno = request.POST["NewsMLNo"]  # NEWSML種別コードを受け取る
+            if self.newsno.startswith("0"):
+                self.newsno.lstrip("0")
+            if not self.newsno.isdigit():  # 全ての文字が数値でない場合、末尾2文字を抽出・削除
+                self.grade = self.newsno[-2]
+                self.newsno = self.newsno[:-2]
+
+            temp_product_id = temp[int(self.newsno)-1]  # NEWSML種別コードに対応するtemplateIDを取得
+            file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
+            temp_file_name = 'NewsML_temp/%s' % file_name
+            t = loader.get_template(temp_file_name)  # Djangoのテンプレートとして取得
+
+            context = self.Create_context() # 21種のコンテキストを代入する関数
+
+            if "Input_status" in request.POST:
+                self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
+                if self.st in ["0", "1"]:  # 編集か配信であれば、NewsMLをファイルに出力
+                    content = loader.render_to_string(temp_file_name, context)
+                    # file名は運用日付、パラメータに合わせて変更
+                    newfile_name = file_name.replace("YYYYMMDD", self.stnow)
+                    if self.grade:
+                        newfile_name.replace('BB', self.grade)
+                    # 配信済みフォルダに保存する場合のUtf-16保存検証済み
+                    # with open('app_sumo/output/deliveried/%s' % newfile_name, 'w', encoding = 'utf-16') as static_file: 
+                    with open('app_sumo/output/hold/%s' % newfile_name, 'w') as static_file:
+                        static_file.write(content)
+
+                elif self.st == "2":  # プレビューであれば、UTF-16に変換し表示
+                    return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
+
+    # NewsML内のコンテキスト作成
+    def Create_context(self):
+        # newsmlmetaから現在の場所と取得して、テンプレートに渡す
+        # 力士マスタ、生涯成績マスタから現在の値を取得して、テンプレートに渡す
+        # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
+        # 生涯成績
+
+        # 例として記述させて頂きました。
+        # 'newsmlmeta'が21種類共通であれば、または他のテーブルを共通記述出来れば、ここに記載して辞書をマージするとよいかもしれません。
+        # 他の分岐は共通化が難しければ、この関数の行数が100文字以上に増えた場合に、各パターンを関数で分離させる必要があるかもしれません。
+        tran_system = Tran_Systemstatus.objects.all()
+        context = { 'newsmlmeta':tran_system }
+        fix_context = {}
+        
         #01新番付資料
-        if newsno == "01":
-            context = {
-                'newsmlmeta':Tran_Systemstatus.objects.all(),               #システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
-                'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),    #予想番付マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),            #生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),              #生涯受賞マスタ
+        if self.newsno == "01":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #02新番付資料・補正
-        elif newsno == "02":
-            context = {
-                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="02") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
+        elif self.newsno == "02":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #03新番付
-        elif newsno == "03":
-            context = {
-                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
+        elif self.newsno == "03":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #04郷土力士新番付
-        elif newsno == "04":
-            context = {
-                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
+        elif self.newsno == "04":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #05幕下以下新番付
-        elif newsno == "05":
-            context = {
-                'newsmlmeta':Tran_Systemstatus.objects.all(),       #システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),              #番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),    #生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),      #生涯受賞マスタ
+        elif self.newsno == "05":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #06郷土力士取組
-        elif newsno == "06":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
+        elif self.newsno == "06":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
                 'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
             }  
+        #06郷土力士取組
+        elif self.newsno == "06":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+                'Banzuke': Tran_Banzuke.objects.all(),
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
         #07幕下以下取組
-        elif newsno == "07":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
+        elif self.newsno == "07":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
                 'Banzuke': Tran_Banzuke.objects.all(),
-            }    
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
         #08十両取組
-        elif newsno == "08":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
+        elif self.newsno == "08":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
                 'Banzuke': Tran_Banzuke.objects.all(),
-            }    
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
         #09中入り取組
-        elif newsno == "09":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
+        elif self.newsno == "09":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
                 'Banzuke': Tran_Banzuke.objects.all(),
-            }    
+                'Liferesult': Mst_Lifetime_result.objects.all(),
+                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                'basho': tran_system.first().CurrentBasho,
+                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+            }
         #10郷土力士勝負・階級別
-        elif newsno == "10":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            }    
+        elif self.newsno == "10":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #11郷土力士勝負・まとめ
-        elif newsno == "11":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            }    
+        elif self.newsno == "11":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #12幕下以下勝負
-        elif newsno == "12":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            }   
+        elif self.newsno == "12":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #13勝負
-        elif newsno == "13":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
+        elif self.newsno == "13":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #14まとめ勝負
-        elif newsno == "14":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
+        elif self.newsno == "14":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #15郷土力士星取表
-        elif newsno == "15":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
+        elif self.newsno == "15":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #16外国力士成績
-        elif newsno == "16":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
+        elif self.newsno == "16":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #17優勝三賞受賞力士
-        elif newsno == "17":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
+        elif self.newsno == "17":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #18階級別成績上位力士
-        elif newsno == "18":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
+        elif self.newsno == "18":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #20幕下以下全成績
-        elif newsno == "20":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
+        elif self.newsno == "20":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }
         #21十両星取表
-        elif newsno == "21":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
-        #22幕内星取表
-        elif newsno == "22":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            } 
-        #23優勝決定戦
-        #コンテンツの準備ができてから実装
-        """
-        elif newsno == "22":
-            context = {
-            #    'newsmlmeta':Tran_Systemstatus.objects.all(),
-            #    'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),
-            }                         
-        """
+        elif self.newsno == "21":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }  
+        #2222幕内星取表
+        elif self.newsno == "22":
+            fix_context = {
+                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+            }     
 
-        if "Input_status" in request.POST:
-            st = request.POST["Input_status"] # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
-            if st in ["0","1"]: # 編集か配信であれば、NewsMLをファイルに出力
-                content = loader.render_to_string(temp_file_name, context)
-                # file名は運用日付、パラメータに合わせて変更
-                newfile_name = file_name.replace("YYYYMMDD", stnow)
-                if grade:
-                    newfile_name.replace('BB', grade)
-                with open('app_sumo/output/hold/%s' % newfile_name,'w') as static_file:
-                    static_file.write(content)
-        
-            elif st == "2": # プレビューであれば、UTF-16に変換し表示
-                return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
+        return context.update(fix_context)
 
-
-# def xmlout_14(request):
-#     latest_match_list = Match.objects.all().order_by('-pub_date')
-#     taikai_list = Eventinfo.objects.all()   
-#     context = {
-#         'latest_match_list': latest_match_list,
-#         'taikai_list': taikai_list,
-#     }
-#     t = loader.get_template('app_sumo/os14.xml')
-#     return HttpResponse(t.render(context), content_type='text/xml; charset=utf-8')
-
-# def xmlout_14(request):
-#     response = HttpResponse(content_type='text/xml; charset=utf-8')
-#     response['Content-Disposition'] =  'attachment; filename=test.xml'
-
-#     latest_match_list = Match.objects.all().order_by('-pub_date')
-#     taikai_list = Eventinfo.objects.all()
-#     t = loader.get_template('app_sumo/os14.xml')
-#     context = {
-#         'latest_match_list': latest_match_list,
-#         'taikai_list': taikai_list,
-#     }
-
-#     response.write(t.render(context))
-#     return response
-
-# def input14(request):
-#     d = {
-#         'matchlist': Match.objects.all(),
-#     }
-#     return render(request, 'app_sumo/input14.html', d)
-
-# def update14(request):
-#     d = {
-#         'matchlist': Match.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date'),
-#     }
-#     return render(request, 'app_sumo/update14.html', d)
-
-# def update14_new(request):
-#     if request.method == "POST":
-#         form = MatchForm(request.POST)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.author = request.user
-#             post.pub_date = timezone.now()
-#             post.save()
-#             return redirect('update14')
-#     else:
-#         form = MatchForm()
-#     return render(request, 'app_sumo/update14_edit.html', {'form': form})
