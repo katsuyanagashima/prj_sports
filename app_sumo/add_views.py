@@ -97,8 +97,9 @@ class Output_NewsML():
         #01新番付資料
         if self.newsno == "01":
             fix_context = {
-                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'test':"あああ",
+                'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
@@ -106,7 +107,7 @@ class Output_NewsML():
         #02新番付資料・補正
         elif self.newsno == "02":
             fix_context = {
-                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
