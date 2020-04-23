@@ -6,7 +6,6 @@ import sys
 import time
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
-from watchdog.observers import Observer
 from watchdog.observers.polling import PollingObserver
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -92,23 +91,21 @@ class Top_30_prize():
                         # 空白チェックして実体があるカラムは更新
                         self.update_Trn_Top_30_Prize(top30prize_record, top30prizeLine, Trn_Top_30_Prize.objects.get(id=Trn_Top_30_Prize.objects.all().aggregate(Max('id')).get('id__max')))
             
-
-
             file.close()
 
             return NORMAL
 
         except FileNotFoundError as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
         except UnboundLocalError as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
         except ValueError as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
         except Exception as e:
-            logger.warn(e)
+            logger.error(e)
             return ABNORMAL
 
 
