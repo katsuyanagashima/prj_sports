@@ -42,7 +42,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
             
             logger.info( "created Start:" + name)
             # ファイル読み込み
-            schedule = trn_Schedule.Schedule()
+            schedule = trn_schedule.Schedule()
                 
             logger.error("DB insert_or_update_Trn_Schedule: 失敗：ファイル名" + name) if not schedule.insert_or_update_Trn_Schedule(name) else logger.info( "created End:")
 
@@ -53,7 +53,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
 
             logger.info( "created Start:" + name)
             # ファイル読み込み
-            result = trn_Result.Result()
+            result = trn_result.Result()
                 
             logger.error("DB insert_or_update_Trn_Result: 失敗：ファイル名" + name) if not result.insert_or_update_Trn_Result(name) else logger.info( "created End:")
 
