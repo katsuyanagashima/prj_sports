@@ -14,8 +14,8 @@
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
-<IhSendDate>ＹＹＹＹＭＭＤＤ（運用日？）</IhSendDate>
-<IhSendTime>ＨＨＭＭＳＳ（運用時間？）</IhSendTime>
+<IhSendDate>ＹＹＹＹＭＭＤＤ</IhSendDate>
+<IhSendTime>ＨＨＭＭＳＳ</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
 <IhSendTo IhNs="3">
 <IhSendToSys>ＨＳ</IhSendToSys>

@@ -107,7 +107,7 @@ class Output_NewsML():
         elif self.newsno == "02":
             fix_context = {
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="02") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
@@ -116,7 +116,7 @@ class Output_NewsML():
         elif self.newsno == "03":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
@@ -125,7 +125,7 @@ class Output_NewsML():
         elif self.newsno == "04":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="04") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
@@ -134,7 +134,7 @@ class Output_NewsML():
         elif self.newsno == "05":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader': Mst_SubHeader.objects.all(),  # 副ヘッダマスタ
+                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="05") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ

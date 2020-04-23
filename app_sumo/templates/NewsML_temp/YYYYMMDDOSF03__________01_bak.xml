@@ -6,16 +6,14 @@
 	<!ENTITY % Kddata SYSTEM "{% static 'app_sumo/OSDTD/KdXBSContentv1.1.dtd' %}">
 	%Kddata;
 ]>
-<!--  ●●　デバックのため、スタイルシート宣言を外す　●●-->
-<!--
 				<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent03.xsl' %}"?>
--->
+
 <ITalk version="1.0">
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
-<IhSendDate>ＹＹＹＹＭＭＤＤ</IhSendDate>
-<IhSendTime>ＨＨＭＭＳＳ</IhSendTime>
+<IhSendDate>２０１８１２２５</IhSendDate>
+<IhSendTime>０６００１７</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
 <IhSendTo IhNs="3">
 <IhSendToSys>ＨＳ</IhSendToSys>
