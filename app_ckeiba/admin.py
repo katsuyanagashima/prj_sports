@@ -59,7 +59,7 @@ admin.site.register(Md_Seiseki_Haraimodoshi_seiseki)
 
 admin.site.register(Md_Corner_Rap)
 admin.site.register(Md_Agari)
-admin.site.register(Md_Tshuushinbun)
+admin.site.register(Md_Tsuushimbun)
 
 # CSV取り込み
 admin.site.register(Schedule_BA7)

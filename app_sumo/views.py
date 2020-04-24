@@ -186,7 +186,7 @@ def SUMOUT02(request):
     nml = Mst_KindofNewsML.objects.all()
 
     if request.method == "POST":
-        res = output_NewsML(request)
+        res = Output_NewsML().Create_NewsML(request)
         if "Input_status" in request.POST and request.POST["Input_status"] is "2":
             return res
         for key in init.keys():
@@ -401,13 +401,14 @@ class RikishiDeleteView(DeleteView):
 
 
 # マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
+"""
 def SUMMSM01_heya_html(request):
     d = {
         'heyalist': Mst_Heya.objects.all(),
     }
 
     return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)
-
+"""
 
 # 年度・場所切替画面
 # def SUMINT01(request):

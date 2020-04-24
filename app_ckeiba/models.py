@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import * 
+from django.shortcuts import get_object_or_404, get_list_or_404
 
 #CSV取り込み用に分離したテーブルをインポート
 from .models_csv import *
@@ -66,6 +67,14 @@ class Mst_Jou(Model):
     class Meta:
         verbose_name_plural = '競馬場マスタ'
 
+    # NewsML生成時用の、正式名と３文字略称取得関数
+    def getJouname(joucode):
+        jou_data = get_object_or_404(Mst_Jou, Jou_code=joucode)
+        jou_3char = jou_data.Jou_3char
+        # ３字略称は、△を全角スペースに変換する
+        jou_3char_trans = jou_3char.translate(str.maketrans({"△": "　"}))
+        return jou_data.Jou_name , jou_3char_trans
+        
     def __str__(self):
         return self.Jou_name
 
@@ -400,11 +409,11 @@ class Md_Shussouhyou(Model):
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    kaisuu = IntegerField(verbose_name='回数')
+    kainichime = IntegerField(verbose_name='開催日目')
     rebangou = IntegerField(verbose_name='レース番号')
 
 
-    kaisuu = IntegerField(verbose_name='回数')
-    kainichime = IntegerField(verbose_name='開催日目')
 
     shubetsu = ForeignKey('Mst_Breed_age', verbose_name='競争種別', on_delete=CASCADE, related_name = "shubetu")  #品種年齢区分マスタ
     tokusouhonsuu = IntegerField(verbose_name='特別競争本題回数')
@@ -601,6 +610,8 @@ class Md_Nyujo(Model):
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    kaisuu = IntegerField(verbose_name='回数')
+    kainichime = IntegerField(verbose_name='開催日目')
 
     tounyuujinin = IntegerField(verbose_name='当日入場人員')
 
@@ -617,6 +628,8 @@ class Md_Uriagekin(Model):
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    kaisuu = IntegerField(verbose_name='回数')
+    kainichime = IntegerField(verbose_name='開催日目')
 
     touuriage = IntegerField(verbose_name='当日売上')
 
@@ -634,11 +647,11 @@ class Md_Seiseki_Haraimodoshi(Model):
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    kaisuu = IntegerField(verbose_name='回数')
+    kainichime = IntegerField(verbose_name='開催日目')
     rebangou = IntegerField(verbose_name='レース番号')
 
     
-    kaisuu = IntegerField(verbose_name='回数')
-    kainichime = IntegerField(verbose_name='開催日目')
 
 
     #当日情報
@@ -956,10 +969,10 @@ class Md_Corner_Rap(Model):
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    kaisuu = IntegerField(verbose_name='回数')
+    kainichime = IntegerField(verbose_name='開催日目')
     rebangou = IntegerField(verbose_name='レース番号')
 
-
-    kainichime = IntegerField(verbose_name='開催日目')
 
     #１着馬情報 最大３頭（同着を考慮）
     chaku1uma_1 = IntegerField(verbose_name='１着馬番')
@@ -993,10 +1006,9 @@ class Md_Agari(Model):
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
-    rebangou = IntegerField(verbose_name='レース番号')
-
-
+    kaisuu = IntegerField(verbose_name='回数')
     kainichime = IntegerField(verbose_name='開催日目')
+    rebangou = IntegerField(verbose_name='レース番号')
 
 
     # 馬情報
@@ -1011,20 +1023,21 @@ class Md_Agari(Model):
         return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) + str(self.rebangou) + 'R'
 
 # 【中間DB】通信文
-class Md_Tshuushinbun(Model):
+class Md_Tsuushimbun(Model):
 
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード', on_delete=CASCADE, related_name = "tsushinbun")  #競馬場マスタ
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
+    kaisuu = IntegerField(verbose_name='回数')
+    kainichime = IntegerField(verbose_name='開催日目')
     rebangou = IntegerField(verbose_name='レース番号')
 
-    kainichime = IntegerField(verbose_name='開催日目')
     
     # 付加文書内容
     ck_jishou = ForeignKey('Mst_Matter', verbose_name='事象', on_delete=CASCADE)  #事象マスタ
-    ck_taishousya = ForeignKey('Mst_Target_person', verbose_name='対象者', on_delete=CASCADE)  #対象者マスタ
+    ck_taishousya = ForeignKey('Mst_Target_person', verbose_name='対象者', on_delete=CASCADE, blank=True, null=True)  #対象者マスタ
     uma = IntegerField(verbose_name='馬番')
     ck_jisyoumei = CharField(verbose_name='事象名', max_length=10)
     kijinai = CharField(verbose_name='記事内容', max_length=200)
@@ -1033,4 +1046,4 @@ class Md_Tshuushinbun(Model):
         verbose_name_plural = '【中間DB】通信文'
 
     def __str__(self):
-        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) +  str(self.rebangou) + 'R'
+        return str(self.ck_kyounen)+'/'+ str(self.ck_kyoutuki)+ '/'+ str(self.ck_kyouhi) + str(self.joumei) +  str(self.rebangou) + 'R ' + str(self.ck_jisyoumei)

@@ -25,6 +25,10 @@ urlpatterns = [
     path('nyujo/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='nyujo'),  #中間DB_入場人員編集画面
     path('uriage/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='uriage'),  #中間DB_売上金編集画面
 
+
+    path('create_NewsML_tsuushimbunC/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/', views.NewsML_tsuushimbunC, name='create_NewsML_tsuushimbunC'),  #NewsML 通信文C
+
+
     #CSV検証用
     path('upload/', views.upload, name='upload'),
     path('upload2/', views.upload2, name='upload2'),

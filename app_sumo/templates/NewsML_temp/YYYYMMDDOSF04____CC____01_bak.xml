@@ -6,16 +6,14 @@
 	<!ENTITY % Kddata SYSTEM "{% static 'app_sumo/OSDTD/KdXBSContentv1.1.dtd' %}">
 	%Kddata;
 ]>
-<!--  ●●　デバックのため、スタイルシート宣言を外す　●●-->
-<!--
 				<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent04.xsl' %}"?>
--->
+
 <ITalk version="1.0">
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
-<IhSendDate>ＹＹＹＹＭＭＤＤ</IhSendDate>
-<IhSendTime>ＨＨＭＭＳＳ</IhSendTime>
+<IhSendDate>２０１８１２２５</IhSendDate>
+<IhSendTime>０６０１５０</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
 <IhSendTo IhNs="3">
 <IhSendToSys>ＨＳ</IhSendToSys>
@@ -33,7 +31,6 @@
 <IhMainRank>角</IhMainRank>
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
-<!--
 <IhSubHeader>
 <IhSendBlkInfo IhNb="1">
 <IhSendBlk>Ｎデ</IhSendBlk>
@@ -53,39 +50,6 @@
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
 </IhSubHeader>
--->
-
-<!-- 副ヘッダを設定 -->
-<!-- 副ヘッダマスタにブロック宛先もしくは個別宛先が存在したらIhSubHearタグを編集する-->
-{% if subheader %}
-<IhSubHeader>
-<!-- ブロック宛先を設定-->
-<!-- ●ブロック宛先が存在したIhSndBlkInfoタグを編集するように修正が必要●  -->
-<!-- ●IhNbの値はIhSndBlkの発生数（＝ブロック宛先の個数）を編集する必要がある● -->
-<!-- ●変数を持たせて処理した方が良いが、これはテンプレート側ではなく、vierwsで処理してから渡して貰った方が良い？●-->
-<!-- ●そもそも個々のテンプレートに記述するのは非効率？●-->
-{% for sub in subheader %}
-{% if sub.Delivery_code.Individual_address == 0 %}
-<IhSendBlkInfo IhNb="1">
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
-</IhSendBlkInfo>
-{% endif %}
-{% endfor %}
-<!-- 個別宛先を設定 -->
-<!-- ●ブロック宛先と同様の処理が必要●　-->
-<IhSendIndInfo IhNi="1">
-{% for sub in subheader %}
-{% if sub.Delivery_code.Individual_address == 1 %}
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
-{% endif %}
-{% endfor %}
-</IhSendIndInfo>
-<!-- 否定個別宛先を設定 -->
-<IhSendNIndInfo IhNi="1">
-<IhSendNInd>校閲</IhSendNInd>
-</IhSendNIndInfo>
-</IhSubHeader>
-{% endif %}
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
