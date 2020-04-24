@@ -92,16 +92,16 @@ admin.site.register(Tran_TopClassRikishi, Tran_TopClassRikishiAdmin)
 # --------------------
 class Tran_YushoSanshoAdmin(admin.ModelAdmin):
     fieldssets =[
+        ('力士名', {'fields':['Rikishi']}),
         ('開催年月西暦', {'fields':['Yearmonth']}),
         ('日目', {'fields':['Nichime_code']}),
         ('階級', {'fields':['Class_code']}),
-        ('力士名', {'fields':['Rikishi']}),
         ('優勝区分', {'fields':['Yusho_flg']}),
         ('殊勲賞区分', {'fields':['Shukunsho_flg']}),
         ('敢闘賞区分', {'fields':['Kantosho_flg']}),
         ('技能賞区分', {'fields':['Ginosho_flg']}),
     ]
-    list_display = ('Yearmonth', 'Nichime_code', 'Class_code', 'Rikishi',
+    list_display = ('Rikishi', 'Yearmonth', 'Nichime_code', 'Class_code',
                     'Yusho_flg', 'Shukunsho_flg', 'Kantosho_flg', 'Ginosho_flg')
 
 admin.site.register(Tran_YushoSansho, Tran_YushoSanshoAdmin)
