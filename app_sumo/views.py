@@ -6,6 +6,7 @@ from django.template import loader
 from django.utils import timezone
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.decorators.http import require_POST
 
 from .models import *
 from .forms import *
@@ -128,8 +129,48 @@ def SUMSHO02(request):
 
 # 優勝・三賞入力画面
 def SUMYUS01(request):
-    return render(request, 'app_sumo/SUMYUS01.html')
+    # 最終的には、全データではなく開催年月と日目が一致するデータのみ渡すべき
+    posts = Tran_YushoSansho.objects.all()
+    return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts})
 
+
+def SUMYUS01_detailfunc(request, pk):
+    post = Tran_YushoSansho.objects.get(pk=pk)
+    return render(request, 'app_sumo/SUMYUS01_detail.html', {'post': post})
+
+
+@require_POST
+def SUMYUS01_deletefunc(request, pk):
+    post = get_object_or_404(Tran_YushoSansho, pk=pk)
+    post.delete()
+    return redirect('app_sumo:SUMYUS01')
+
+
+def SUMYUS01_formfunc(request):
+    if request.method == 'POST':
+        form = Tran_YushoSanshoForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('app_sumo:SUMYUS01')
+    else:
+        form = Tran_YushoSanshoForm()
+    return render(request, 'app_sumo/SUMYUS01_form.html', {'form': form})
+
+
+def SUMYUS01_editfunc(request, pk):
+    post = get_object_or_404(Tran_YushoSansho, pk=pk)
+    if request.method == "POST":
+        form = Tran_YushoSanshoForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('app_sumo:SUMYUS01')
+    else:
+        form = Tran_YushoSanshoForm(instance=post)
+    return render(request, 'app_sumo/SUMYUS01_edit.html', {'form': form, 'post': post})
+
+
+######
 
 # コンテンツ出力指示画面
 def SUMOUT01(request):
@@ -369,7 +410,7 @@ def SUMMSM01_heya_html(request):
 
 
 # 年度・場所切替画面
-#def SUMINT01(request):
+# def SUMINT01(request):
 #    systemstatus = Tran_Systemstatus.objects.get(id=1)
 #    if request.method == "POST":
 #        form = Tran_SystemstatusForm(request.POST, instance=systemstatus)
@@ -383,11 +424,11 @@ def SUMMSM01_heya_html(request):
 def SUMINT01(request):
     systemstatus = Tran_Systemstatus.objects.get(id=1)
     init = {
-            'event_date': str(systemstatus.Event_date)[:4],
-            'currentbasho': systemstatus.CurrentBasho.Basho_code,
-            'first_date': systemstatus.First_date.strftime("%Y-%m-%d"),
-            'banzuke_date': systemstatus.Banzuke_date.strftime("%Y-%m-%d"),
-            }
+        'event_date': str(systemstatus.Event_date)[:4],
+        'currentbasho': systemstatus.CurrentBasho.Basho_code,
+        'first_date': systemstatus.First_date.strftime("%Y-%m-%d"),
+        'banzuke_date': systemstatus.Banzuke_date.strftime("%Y-%m-%d"),
+    }
     basho = Mst_Basho.objects.all()
 
     if request.method == "POST":

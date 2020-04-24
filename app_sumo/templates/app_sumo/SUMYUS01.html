@@ -1,6 +1,24 @@
 {% extends 'app_sumo/base.html' %}
-
 {% block content %}
-<h1 class="caption">優勝・三賞入力画面</h1>
-<a href="../" type="button" class="btn btn-primary">戻る</a>
+    <h1 class="caption">優勝・三賞入力画面</h1>
+    <h2>
+        {% for post in posts %}
+            <a href="{% url 'app_sumo:SUMYUS01_detail' post.pk %}">{{ post.Rikishi }}</a>
+            <span>（{{ post.Yearmonth }} {{ post.Nichime_code }}）</span>
+            <span>（{{ post.Class_code }}）</span>
+            {% if post.Yusho_flg %} <span>優勝</span> {% endif %}
+            {% if post.Shukunsho_flg %} <span>殊勲賞</span> {% endif %}
+            {% if post.Kantosho_flg %} <span>敢闘賞</span> {% endif %}
+            {% if post.Ginosho_flg %} <span>技能賞</span> {% endif %}
+            <br/>
+        {% endfor %}
+    </h2>
+    <p>※開催年月と日目は本文部には不要<br/>
+        上記は力士別の表記になっているが、最終的には階級と賞別の表記にする必要がある<br/>
+        千秋楽以外に優勝が確定した場合は、当日から千秋楽までの確実のデータを更新するという動作でよいか？
+    </p>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        <a href="{% url 'app_sumo:SUMYUS01_form' %}" class="btn btn-success">追加</a>
+        <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
+    </nav>
 {% endblock %}
