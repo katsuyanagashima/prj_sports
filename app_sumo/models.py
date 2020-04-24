@@ -286,14 +286,14 @@ class Mst_Lifetime_result(Model):
     Totalgivekinboshi = IntegerField(verbose_name='通算与金星回数')
     Totalgetkinboshi = IntegerField(verbose_name='通算奪金星回数')
     Highestchii_code = ForeignKey(Mst_Chii, on_delete=CASCADE) #地位マスタ
-    Highestorder = IntegerField(verbose_name='最高順位')
-    Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE) #東西マスタ
+    Highestorder = IntegerField(verbose_name='最高順位', blank=True, null=True)
+    Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE, blank=True, null=True) #東西マスタ
     Maxsticking = IntegerField(verbose_name='最高張付')
-    Overallwinrate = IntegerField(verbose_name='通算勝率')
-    Overallwinrate_yasumimake = IntegerField(verbose_name='通算勝率（休を負）')
-    Maxcontinuousplayed = IntegerField(verbose_name='最高連続出場回数')
-    Currentcontinuosplayed = IntegerField(verbose_name='現連続出場回数')
-    Numberofreignedbasho = IntegerField(verbose_name='在位場所数')
+    Overallwinrate = FloatField(verbose_name='通算勝率')
+    Overallwinrate_yasumimake = FloatField(verbose_name='通算勝率（休を負）')
+    Maxcontinuousplayed = IntegerField(verbose_name='最高連続出場回数', blank=True, null=True)
+    Currentcontinuosplayed = IntegerField(verbose_name='現連続出場回数', blank=True, null=True)
+    Numberofreignedbasho = IntegerField(verbose_name='在位場所数', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '生涯成績マスタ'
