@@ -673,11 +673,15 @@ class Program():
         , Date_AD=self.date_ad, First_day_of_the_event=self.first_day_of_the_event, Race_No=self.race_no, Race_distance=self.race_distance).save()
 
         # 空白チェックして実体があるカラムは更新
+        logger.info( "内容:update_trn_program Start:" + str(repeat))
         self.update_trn_program(line, Trn_Program.objects.get(id=Trn_Program.objects.all().aggregate(Max('id')).get('id__max')))
+        logger.info( "内容:update_trn_program End")
 
         # 出走選手テーブル
+        logger.info( "内容:insert_or_update_trn_running_list Start:" + str(repeat))
         self.insert_or_update_trn_running_list(line, repeat)
-                    
+        logger.info( "内容:insert_or_update_trn_running_list End")
+
 
     def insert_or_update_Trn_Program(self, fileName):
         try:
@@ -692,7 +696,10 @@ class Program():
 
                     for repeat in range(trn_program_repeat):
 
+                        logger.info( "内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:" + str(repeat))
                         self.insert_or_update_trn_program_list(line, repeat)
+                        logger.info( "内容:insert_Trn_Outside_track End")
+
 
             file.close()
             return NORMAL
