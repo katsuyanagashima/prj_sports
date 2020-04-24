@@ -31,8 +31,8 @@ def index(request):
      # １．競馬場マスタから競馬場の一覧を取得
      # ２．運用日当日の開催場を、開催日割から取得
      # ３．【受信】受信状況テーブルから、受信状況を取得
-     # ４．【編集】中間DB？中間DB管理テーブル？テンプレートの管理テーブル？から、各中間DBへの格納状況を取得
-     # ５．【送信】送信管理テーブル？から、新聞配信への送信状況を取得
+     # ４．【編集】中間DB管理テーブルから、各中間DBへの格納状況を取得
+     # ５．【送信】送信管理テーブルから、新聞配信への送信状況を取得
      # ６．これらの取得済みデータをパラメータ化して渡す。
 
      # システム状態を取得
@@ -124,11 +124,10 @@ def Change_To_Nomal_Mode(request):
      return redirect('../')
 
      
-# 編集マスタの番号をセッションに詰めてマスタ編集画面にリダイレクト
+# マスタ編集画面で編集するマスタを指定時、その編集マスタの番号をセッションに詰めてマスタ編集画面にリダイレクトする処理
 def Edit_Mst(request, mst_num):
      # セッション情報をクリア
      request.session.clear()
-
      # 編集マスタの番号をセッションに登録
      request.session['mst_num'] = mst_num
      
@@ -137,10 +136,14 @@ def Edit_Mst(request, mst_num):
 
 
 # ★★★マスタ編集フォーム★★★
-# 【関数ベース】作成フォーム紐付け機能
+
+# 各マスタごとのフォームを作ると多いので、汎用的にフォームを自動生成できるようにした。
+# 各マスタの判別はurlのtitleから取得した、マスタの日本語名
+
+# マスタ新規作成フォーム
 def create_forms(request, title):
 
-     # マスタ名(title)から、ModelとModelFormを取得
+     # マスタ名(title)から、ModelFormを取得
      Model_and_ModelForm = get_Model_and_ModelForm(title)
      Mst_ModelForm = Model_and_ModelForm[1]
 
@@ -157,7 +160,7 @@ def create_forms(request, title):
      d = {'form': form,'title':title}
      return render(request, 'app_ckeiba/mst_edit_form/mst_create.html', d)
 
-# 【関数ベース】更新フォーム紐付け機能
+# マスタ更新フォーム
 def update_forms(request, pk, title):
 
      # マスタ名(title)から、ModelとModelFormを取得
@@ -180,7 +183,7 @@ def update_forms(request, pk, title):
      d = {'form': form,'title':title}
      return render(request, 'app_ckeiba/mst_edit_form/mst_update.html', d)
 
-# 【関数ベース】削除フォーム紐付け機能
+# マスタ削除フォーム
 def delete_forms(request, pk, title):
 
      # マスタ名(title)から、ModelとModelFormを取得
@@ -202,7 +205,7 @@ def delete_forms(request, pk, title):
      return render(request, 'app_ckeiba/mst_edit_form/mst_delete.html', d)
 
 
-# マスタ名から、ModelとModelFormを返す関数
+# マスタ名からマスタを判別して、ModelとModelFormを返す関数（各画面共通で使う）
 def get_Model_and_ModelForm(mst_name):
      if mst_name == '競馬場マスタ':
           Mst_Model = Mst_Jou
@@ -234,11 +237,13 @@ def get_Model_and_ModelForm(mst_name):
      elif mst_name == '天候マスタ':
           Mst_Model = Mst_Weather
           Mst_ModelForm = Mst_WeatherForm
-
+     
      return Mst_Model, Mst_ModelForm
 
 
-# 【classベースで実装】競馬場マスタ更新フォーム紐付け　→汎用性がないので通常マスタ更新では使わない
+# 以下、上記処理をCreateView、UpdateView、DeleteViewで実装したパターン
+# 　→汎用性がなかったので通常マスタ更新では使わないことにした。
+
 # class JouCreateView(CreateView):
 #      template_name = 'app_ckeiba/mst_edit_form/mst_create.html'
 
@@ -281,63 +286,36 @@ def get_Model_and_ModelForm(mst_name):
 
 # ★★★マスタ編集フォームここまで★★★
 
-
 # ◎◎◎中間DBフォーム◎◎◎
-     
-# class Md_ShussouhyouUpdateView(UpdateView):
-#      template_name = 'app_ckeiba/mst_edit_form/md_db_update.html'
-#      model = Md_Shussouhyou
-#      slug_field = 'year', 'month', 'day', 'joucode', 'race'
-#      slug_url_kwarg = 'year', 'month', 'day', 'joucode', 'race'
-         
-#      def get_context_data(self, **kwargs):
-#           context = super().get_context_data(**kwargs)
-#           context['title'] = "【中間DB】出走表"
-#           return context
 
-#      def get_object(self, queryset=None):
-#           return Md_Shussouhyou.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)[0]
-
-#      # def get_queryset(self):
-#      #      return super().get_queryset().select_related('shussouba1')
-
-#      # fields = ('shussouba1',)
-#      form_class = Md_ShussouhyouForm
-#      success_url = reverse_lazy('app_ckeiba:index')
-
-# 【関数ベース】中間DBフォーム
+# 中間DB更新画面（出走表と成績払戻以外）
 def md_update_forms(request, year, month, day, joucode, race):
 
+     # 出走表と成績払戻以外は汎用的に処理。
      # URLから、更新対象のレコードを抽出（データがなければ404エラー）
      path = request.path
      if "corner_rap" in path:
           mst_instance = get_object_or_404(Md_Corner_Rap.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
           Md_ModelForm = Md_Corner_RapForm
           title = "【中間DB】コーナー・ラップ"
-          
      elif "agari" in path:
           mst_instance = get_object_or_404(Md_Agari.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
           Md_ModelForm = Md_AgariForm
           title = "【中間DB】上がり"
-          
      elif "tushinbun" in path:
-          mst_instance = get_object_or_404(Md_Tshuushinbun.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
-          Md_ModelForm = Md_TshuushinbunForm
+          mst_instance = get_object_or_404(Md_tsuushimbun.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+          Md_ModelForm = Md_tsuushimbunForm
           title = "【中間DB】通信文"
-          
      elif "nyujo" in path:
           mst_instance = get_object_or_404(Md_Nyujo.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode)
           Md_ModelForm = Md_NyujoForm
           title = "【中間DB】入場人員"
-          
      elif "uriage" in path:
           mst_instance = get_object_or_404(Md_Uriagekin.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode)
           Md_ModelForm = Md_UriagekinForm
           title = "【中間DB】売上金"
-
      else:
           pass
-          
 
      if request.method == 'POST':
           # 更新ボタン押下時
@@ -353,8 +331,7 @@ def md_update_forms(request, year, month, day, joucode, race):
      d = {'form': form,'title': title}
      return render(request, 'app_ckeiba/mst_edit_form/md_db_update.html', d)
 
-
-# 出走表
+# 出走表更新画面 （編集管理画面の各記号をクリックして、URLで各出走表の更新画面リンクを飛ばす。）
 def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
 
      tran_system = Tran_Systemstatus.objects.all().first() # ★ システム状態
@@ -362,22 +339,27 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
      mst_instance = get_object_or_404(Md_Shussouhyou.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
      title = "【中間DB】出走表"
 
-     context={}
+     context = {}
+     # 出走表のフォームセットを取得
      form = Md_ShussouhyouForm(request.POST or None, instance=mst_instance)
+     # 出走表に紐付く、各出走馬のフォームセットを取得
      formset = ShussouhyouFormset(request.POST or None, instance=mst_instance)
 
-     # 過去５走のフォームセットも取得
+     # 各出走馬に紐付く、過去５走のフォームセットも取得(最大で16頭*5走ぶん)
      shussouba_instance_list = get_list_or_404(Md_Shussouhyou_shussouba.objects, shussouhyou=mst_instance)
 
+     # 各馬の過去5走フォームセットをリストにまとめる
      kako5sou_formset_list = []
      for i, j in enumerate(shussouba_instance_list):
           formset_kako5sou = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[i])
           kako5sou_formset_list.append(formset_kako5sou)
 
-     # formset_kako5sou_1 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[0]) #とりあえず一件目（１頭目の馬）だけとってる
-     # formset_kako5sou_2 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[1]) #2件目
+     # とりあえず一件目（１頭目の馬）だけとる場合
+     # formset_kako5sou_1 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[0]) 
+     # ２頭目
+     # formset_kako5sou_2 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[1]) 
 
-     # 過去５走をまとめてisvaldする関数
+     # 各馬の過去5走をまとめてisvaldする関数
      def kako5is_valid(formset_list):
           for i, j in enumerate(kako5sou_formset_list):
                if formset_list[i].is_valid():
@@ -387,33 +369,32 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
                     bleak
           return True
 
-     # 更新ボタン押下時、エラーが発生するので、要修正。エラー「(隠しフィールド shussouba) インライン値が親のインスタンスに一致しません。」
-     # 馬一頭ぶんだけ過去5走を表示させるとうまくいくけど、２頭以上を表示させて更新すると上記エラー。
+     # 更新ボタン押下時、バリデーションエラーが発生するので、要修正。
+     # エラー：「(隠しフィールド shussouba) インライン値が親のインスタンスに一致しません。」
+     # 馬一頭ぶんだけ過去5走を表示させるとうまくいくけど、２頭以上を表示させて更新すると上記バリデーションエラー。
+     # バリデーションを外すとエラーは出ないが、登録されない。別画面に分けるなどが必要？
      if request.method == 'POST' and form.is_valid() and formset.is_valid() and kako5is_valid(kako5sou_formset_list):
           form.save()
           formset.save()
-
-          # まとめてsaveする
+          # 過去５走をまとめてsaveする
           for formset_kako5sou in kako5sou_formset_list:
                formset_kako5sou.save()
 
-
           return redirect('app_ckeiba:index')
-
 
      # 初期表示のとき
      else:
-
           context = {
                'form': form,
                'formset': formset,
+               # formのリストごとを渡しても、（↓）
                # 'formset_kako5sou':kako5sou_formset_list,
                'title': title,
                'unyobi': tran_system.Unyou_date,
                'status': tran_system.Operationmode
           }
           
-          # listを分解して、それぞれformを渡しても同じ。
+          # listを分解して、それぞれformを渡しても（↓）同じ。
           for i, kako5sou_formset in enumerate(kako5sou_formset_list):
                fs = "kako5sou_formset" + str(i)
                context[fs] = kako5sou_formset
@@ -422,7 +403,7 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
 
 
 
-# 成績・払戻
+# 成績・払戻更新画面 （編集管理画面の各記号をクリックして、URLで各レースの成績・払戻の更新画面リンクを飛ばす。）
 def md_update_seiseki_haraimodoshi_forms(request, year, month, day, joucode, race):
      
      tran_system = Tran_Systemstatus.objects.all().first()  # ★ システム状態
@@ -430,8 +411,11 @@ def md_update_seiseki_haraimodoshi_forms(request, year, month, day, joucode, rac
      mst_instance = get_object_or_404(Md_Seiseki_Haraimodoshi.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
      title = "【中間DB】成績・払戻"
 
+     # 成績・払戻のフォームセットを取得
      form = Md_Seiseki_HaraimodoshiForm(request.POST or None, instance=mst_instance)
+     # 成績・払戻に紐付く、各馬の成績のフォームセットを取得
      formset_seiseki = seiseki_haraimodoshiFormset(request.POST or None, instance=mst_instance)
+     # 成績・払戻に紐付く、各馬券のフォームセットを取得
      formset_tan = seiseki_haraimodoshi_tan_Formset(request.POST or None, instance=mst_instance)
      formset_fuku = seiseki_haraimodoshi_fuku_Formset(request.POST or None, instance=mst_instance)
      formset_wakupuku = seiseki_haraimodoshi_wakupuku_Formset(request.POST or None, instance=mst_instance)
@@ -443,13 +427,24 @@ def md_update_seiseki_haraimodoshi_forms(request, year, month, day, joucode, rac
      formset_wa = seiseki_haraimodoshi_wa_Formset(request.POST or None, instance=mst_instance)
 
 
-
+     # 更新ボタン押下の処理。バリデーションがOKならsaveする。
      if request.method == 'POST' and form.is_valid() and formset_seiseki.is_valid() and formset_tan.is_valid() and formset_fuku.is_valid() and formset_wakupuku.is_valid() and formset_wakutan.is_valid() and formset_umapuku.is_valid() and formset_umatan.is_valid() and formset_sanpuku.is_valid() and formset_santan.is_valid() and formset_wa.is_valid():
           form.save()
-          formset.save()
+          formset_seiseki.save()
+          formset_tan.save()
+          formset_fuku.save()
+          formset_wakupuku.save()
+          formset_wakutan.save()
+          formset_umapuku.save()
+          formset_umatan.save()
+          formset_seiseki.save()
+          formset_sanpuku.save()
+          formset_santan.save()
+          formset_wa.save()
+
           return redirect('app_ckeiba:index')
 
-     # 初期表示のとき
+     # 更新画面初期表示のとき
      else:
           context = {
                'form': form,
@@ -469,10 +464,6 @@ def md_update_seiseki_haraimodoshi_forms(request, year, month, day, joucode, rac
           }
 
      return render(request, 'app_ckeiba/mst_edit_form/md_seisekiharaimodoshi_db_update.html', context)
-
-
-
-
 
 
 # ◎◎◎中間DBフォームここまで◎◎◎
@@ -570,3 +561,65 @@ def option_submit(request):
           'selected_haishinsha':selected_haishinsha
      }
      return render(request, 'app_ckeiba/option_submit.html', params)
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|
+#                                                               NewsML生成処理　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|
+#　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　|
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#【共通処理】
+# 半角int→全角str用の辞書と関数を作成しておく（毎回作るとコスト高）
+# （参考） https://qiita.com/YuukiMiyoshi/items/6ce77bf402a29a99f1bf
+def intToZen(i):
+     HAN2ZEN = str.maketrans({"0":"０", "1":"１", "2":"２", "3":"３", "4":"４", "5":"５", "6":"６", "7":"７", "8":"８", "9":"９"})
+     return str(i).translate(HAN2ZEN)
+
+# ========================================================================
+
+# 【通信文C】(InData内部のみ)
+def NewsML_tsuushimbunC(request,kyounen,kyoutuki,kyouhi,joucode,rebangou):
+
+     # 年月日と場とレース番号から通信文オブジェクトを取得。無かったら404
+     tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+          joumei=joucode,
+          ck_kyounen=kyounen,
+          ck_kyoutuki=kyoutuki,
+          ck_kyouhi=kyouhi,
+          rebangou=rebangou
+          )
+
+     # 場マスタから場のデータを取得
+     jou_data = Mst_Jou.getJouname(joucode)
+     
+     # 数値の全角化処理(馬番)
+     for tb in tsuushimbun_list:
+          tb.uma = intToZen(tb.uma)
+
+     # レース情報を一件目のデータからとる。
+     tsuushinbun = tsuushimbun_list[0]
+
+     # パラメータに追加(数値の項目は全角化する)
+     params = {
+          'joumei_seishiki': jou_data[0],
+          'joumei_3' : jou_data[1],
+          
+          'kaisuu' : intToZen(tsuushinbun.kaisuu),
+          'kainichime': intToZen(tsuushinbun.kainichime),
+          
+          'ck_kyounen' : intToZen(tsuushinbun.ck_kyounen),
+          'ck_kyoutuki' : intToZen(tsuushinbun.ck_kyoutuki),
+          'ck_kyouhi' : intToZen(tsuushinbun.ck_kyouhi),
+          'rebangou' : intToZen(tsuushinbun.rebangou),
+          
+          'tsuushimbun_list':tsuushimbun_list
+     }
+
+     # xml形式で出力
+     res = render(request, 'NewsML_temp/tsuushimbunC_.xml', params)
+     res['Content-Type'] = 'application/xml'
+     return res
+
+
