@@ -81,7 +81,7 @@ class Output_NewsML():
                     return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
 
     # NewsML内のコンテキスト作成
-    def Create_context(self):
+    def Create_context(self, prefecture_code=0):
         # newsmlmetaから現在の場所と取得して、テンプレートに渡す
         # 力士マスタ、生涯成績マスタから現在の値を取得して、テンプレートに渡す
         # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
@@ -93,13 +93,16 @@ class Output_NewsML():
         tran_system = Tran_Systemstatus.objects.all()
         context = { 'newsmlmeta':tran_system }
         fix_context = {}
+
+        # 都道府県コード
+        prefecture_code=1
         
         #01新番付資料
         if self.newsno == "01":
             fix_context = {
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
-                'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
+                # 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
+                # 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
                 'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
