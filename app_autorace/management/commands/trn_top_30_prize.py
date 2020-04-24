@@ -83,14 +83,17 @@ class Top_30_prize():
                     # 選手取得賞金上位３０位
                     for top30prize_record in range(top30prize):
 
-                        logger.info( "内容:insert_Trn_Top_30_Prize Start:")
+                        logger.info( "内容:Trn_Top_30_Prize Start:")
                         Trn_Top_30_Prize(Cllasification=line[0:1], Data_type=line[1:2], Send_date=line[2:10], Totaling_date=line[10:18]).save()
+                        logger.info( "内容:Trn_Top_30_Prize End")
 
                         top30prize_record = top30prize_record * top30prizeNum
 
                         # 空白チェックして実体があるカラムは更新
+                        logger.info( "内容:update_Trn_Top_30_Prize Start:")
                         self.update_Trn_Top_30_Prize(top30prize_record, top30prizeLine, Trn_Top_30_Prize.objects.get(id=Trn_Top_30_Prize.objects.all().aggregate(Max('id')).get('id__max')))
-            
+                        logger.info( "内容:update_Trn_Top_30_Prize End")
+
             file.close()
 
             return NORMAL

@@ -1,24 +1,94 @@
-[INFO]	2020-04-22 14:12:21,326	module:trn_receiving_autorace	command.handle:69	target_dir_scheduleData:/code/app_autorace/management/commands/scheduleData
-[INFO]	2020-04-22 14:12:21,336	module:trn_receiving_autorace	command.handle:73	scheduleData: スケジュール監視　Start
-[INFO]	2020-04-22 14:12:21,337	module:trn_receiving_autorace	command.handle:86	target_dir_programData:/code/app_autorace/management/commands/programData
-[INFO]	2020-04-22 14:12:21,344	module:trn_receiving_autorace	command.handle:89	programData: 番組編成監視　Start
-[INFO]	2020-04-22 14:12:21,350	module:trn_receiving_autorace	command.handle:103	target_dir_resultData:/code/app_autorace/management/commands/resultData
-[INFO]	2020-04-22 14:12:21,351	module:trn_receiving_autorace	command.handle:106	resultData: レース結果監視　Start
-[INFO]	2020-04-22 14:12:21,360	module:trn_receiving_autorace	command.handle:120	target_dir_top30prizeData:/code/app_autorace/management/commands/top30prizeData
-[INFO]	2020-04-22 14:12:21,361	module:trn_receiving_autorace	command.handle:123	top30prizeData: 選手取得賞金上位３０位監視　Start
-[INFO]	2020-04-22 14:12:21,369	module:trn_receiving_autorace	command.handle:137	target_dir_outsidetrackData:/code/app_autorace/management/commands/outsidetrackData
-[INFO]	2020-04-22 14:12:21,370	module:trn_receiving_autorace	command.handle:140	outsidetrackData: 場外売場情報監視　Start
-[INFO]	2020-04-22 14:16:49,825	module:watchdoc	command.on_created:98	created Start:/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
-[WARNING]	2020-04-22 14:16:50,143	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:257	'Outside_track' object has no attribute 'date_japanese_calendar'
-[WARNING]	2020-04-22 14:16:50,145	module:watchdoc	command.on_created:102	DB insert_or_update_Trn_Outside_track: 失敗：ファイル名/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
-[INFO]	2020-04-22 14:16:50,146	module:watchdoc	command.on_created:103	created End:
-[INFO]	2020-04-22 14:26:20,093	module:watchdoc	command.on_deleted:115	deleted:
-[INFO]	2020-04-22 14:26:29,213	module:watchdoc	command.on_created:98	created Start:/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
-[WARNING]	2020-04-22 14:26:29,324	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:257	'Outside_track' object has no attribute 'date_japanese_calendar'
-[WARNING]	2020-04-22 14:26:29,325	module:watchdoc	command.on_created:102	DB insert_or_update_Trn_Outside_track: 失敗：ファイル名/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
-[INFO]	2020-04-22 14:26:29,326	module:watchdoc	command.on_created:103	created End:
-[INFO]	2020-04-22 14:38:14,513	module:watchdoc	command.on_deleted:115	deleted:
-[INFO]	2020-04-22 14:38:21,683	module:watchdoc	command.on_created:98	created Start:/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
-[WARNING]	2020-04-22 14:38:21,802	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:257	'Outside_track' object has no attribute 'date_japanese_calendar'
-[WARNING]	2020-04-22 14:38:21,803	module:watchdoc	command.on_created:102	DB insert_or_update_Trn_Outside_track: 失敗：ファイル名/code/app_autorace/management/commands/outsidetrackData/test20200422-092617341400000004.dat
-[INFO]	2020-04-22 14:38:21,804	module:watchdoc	command.on_created:103	created End:
+[INFO]	2020-04-24 17:11:59,576	module:apps	command.ready:30	command End:
+:
+[INFO]	2020-04-24 17:15:18,674	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 17:15:18,674	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 17:40:32,063	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 17:40:32,064	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 17:40:34,048	module:trn_receiving_autorace	command.run_trn_schedule:58	target_dir_scheduleData:/code/app_autorace/management/commands/scheduleData
+[INFO]	2020-04-24 17:40:34,056	module:trn_receiving_autorace	command.run_trn_schedule:62	scheduleData: スケジュール監視　Start
+[INFO]	2020-04-24 17:40:34,057	module:trn_receiving_autorace	command.run_trn_program:69	target_dir_programData:/code/app_autorace/management/commands/programData
+[INFO]	2020-04-24 17:40:34,064	module:trn_receiving_autorace	command.run_trn_program:72	programData: 番組編成監視　Start
+[INFO]	2020-04-24 17:40:34,070	module:trn_receiving_autorace	command.run_trn_result:80	target_dir_resultData:/code/app_autorace/management/commands/resultData
+[INFO]	2020-04-24 17:40:34,071	module:trn_receiving_autorace	command.run_trn_result:83	resultData: レース結果監視　Start
+[INFO]	2020-04-24 17:40:34,087	module:trn_receiving_autorace	command.run_trn_top_30_prize:91	target_dir_top30prizeData:/code/app_autorace/management/commands/top30prizeData
+[INFO]	2020-04-24 17:40:34,088	module:trn_receiving_autorace	command.run_trn_top_30_prize:94	top30prizeData: 選手取得賞金上位３０位監視　Start
+[INFO]	2020-04-24 17:40:34,099	module:trn_receiving_autorace	command.run_trn_outsidetrack:102	target_dir_outsidetrackData:/code/app_autorace/management/commands/outsidetrackData
+[INFO]	2020-04-24 17:40:34,100	module:trn_receiving_autorace	command.run_trn_outsidetrack:105	outsidetrackData: 場外売場情報監視　Start
+[INFO]	2020-04-24 17:42:41,185	module:watchdoc	command.on_created:43	created Start:/code/app_autorace/management/commands/scheduleData/042408013600000000.dat
+[INFO]	2020-04-24 17:42:41,467	module:trn_schedule	command.insert_or_update_Trn_Schedule:192	内容:insert_Trn_Schedule Start:詳細:ファイルデータ:2020200424
+[INFO]	2020-04-24 17:42:41,576	module:trn_schedule	command.insert_or_update_Trn_Schedule:194	内容:insert_Trn_Schedule End
+[INFO]	2020-04-24 17:42:41,577	module:trn_schedule	command.insert_or_update_Trn_Schedule:196	内容:update_Trn_Schedule Start:詳細:ファイルデータ:20200424 212               202004251512                                          1
+[INFO]	2020-04-24 17:42:41,640	module:trn_schedule	command.insert_or_update_Trn_Schedule:198	内容:update_Trn_Schedule End
+[INFO]	2020-04-24 17:42:41,694	module:watchdoc	command.on_created:47	created End:
+[INFO]	2020-04-24 17:45:09,209	module:trn_receiving_autorace	command.handle:182	scheduleData: スケジュール監視　End
+[INFO]	2020-04-24 17:45:09,213	module:trn_receiving_autorace	command.handle:183	programData: 番組編成監視　End
+[INFO]	2020-04-24 17:45:09,230	module:trn_receiving_autorace	command.handle:184	resultData: レース結果監視　End
+[INFO]	2020-04-24 17:45:09,231	module:trn_receiving_autorace	command.handle:185	top30prizeData: 選手取得賞金上位３０位監視　End
+[INFO]	2020-04-24 17:45:09,232	module:trn_receiving_autorace	command.handle:186	outsidetrackData: 場外売場情報監視　End
+[INFO]	2020-04-24 17:45:19,502	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 17:45:19,502	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 17:45:20,342	module:trn_receiving_autorace	command.run_trn_schedule:58	target_dir_scheduleData:/code/app_autorace/management/commands/scheduleData
+[INFO]	2020-04-24 17:45:20,352	module:trn_receiving_autorace	command.run_trn_schedule:62	scheduleData: スケジュール監視　Start
+[INFO]	2020-04-24 17:45:20,352	module:trn_receiving_autorace	command.run_trn_program:69	target_dir_programData:/code/app_autorace/management/commands/programData
+[INFO]	2020-04-24 17:45:20,353	module:trn_receiving_autorace	command.run_trn_program:72	programData: 番組編成監視　Start
+[INFO]	2020-04-24 17:45:20,362	module:trn_receiving_autorace	command.run_trn_result:80	target_dir_resultData:/code/app_autorace/management/commands/resultData
+[INFO]	2020-04-24 17:45:20,363	module:trn_receiving_autorace	command.run_trn_result:83	resultData: レース結果監視　Start
+[INFO]	2020-04-24 17:45:20,368	module:trn_receiving_autorace	command.run_trn_top_30_prize:91	target_dir_top30prizeData:/code/app_autorace/management/commands/top30prizeData
+[INFO]	2020-04-24 17:45:20,369	module:trn_receiving_autorace	command.run_trn_top_30_prize:94	top30prizeData: 選手取得賞金上位３０位監視　Start
+[INFO]	2020-04-24 17:45:20,388	module:trn_receiving_autorace	command.run_trn_outsidetrack:102	target_dir_outsidetrackData:/code/app_autorace/management/commands/outsidetrackData
+[INFO]	2020-04-24 17:45:20,388	module:trn_receiving_autorace	command.run_trn_outsidetrack:105	outsidetrackData: 場外売場情報監視　Start
+[INFO]	2020-04-24 17:56:41,271	module:trn_receiving_autorace	command.handle:182	scheduleData: スケジュール監視　End
+[INFO]	2020-04-24 17:56:41,273	module:trn_receiving_autorace	command.handle:183	programData: 番組編成監視　End
+[INFO]	2020-04-24 17:56:41,275	module:trn_receiving_autorace	command.handle:184	resultData: レース結果監視　End
+[INFO]	2020-04-24 17:56:41,276	module:trn_receiving_autorace	command.handle:185	top30prizeData: 選手取得賞金上位３０位監視　End
+[INFO]	2020-04-24 17:56:41,279	module:trn_receiving_autorace	command.handle:186	outsidetrackData: 場外売場情報監視　End
+[INFO]	2020-04-24 17:56:56,411	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 17:56:56,412	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 17:57:05,570	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 17:57:05,570	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:26:28,567	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:26:28,568	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:26:43,723	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:26:43,724	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:27:06,919	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:27:06,919	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:27:13,774	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:27:13,774	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:27:21,691	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:27:21,692	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:27:40,443	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:27:40,443	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:27:49,689	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:27:49,690	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:28:03,090	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:28:03,091	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:28:14,022	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:28:14,022	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:28:21,419	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:28:21,420	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 18:35:39,611	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 18:35:39,611	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:16:01,631	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:16:01,632	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:19:39,388	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:19:39,388	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:26:00,664	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:26:00,665	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:27:45,970	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:27:45,971	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:28:15,182	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:28:15,183	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:31:09,511	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:31:09,512	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:31:29,998	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:31:29,998	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:31:33,547	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:31:33,547	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:39:52,936	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:39:52,936	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:40:27,787	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:40:27,787	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:46:30,542	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:46:30,543	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:46:48,080	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 19:46:48,081	module:apps	command.ready:30	command End:
