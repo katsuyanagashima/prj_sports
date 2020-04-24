@@ -1,15 +1,16 @@
 {% extends 'app_sumo/base.html' %}
 {% block content %}
     <h1 class="caption">優勝・三賞入力画面</h1>
-    <form method="POST" action="{% url 'app_sumo:SUMYUS01_form' %}">
+    <form method="POST" action="{% url 'app_sumo:SUMYUS01_update' post.pk %}">
         {% csrf_token %}
         {{ form.as_p }}
         <nav class="navbar fixed-bottom navbar-dark bg-dark">
             <button type="submit" class="btn btn-primary">保存</button>
-            <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
+            <a href="{% url 'app_sumo:SUMYUS01_view' post.pk %}" class="btn menubutton5 btn-block"
+               role="button">戻る</a>
         </nav>
     </form>
-    <p>※登録済みデータの修正と削除は未実装<br/>
-        力士名は、階級別メニューからの選択、および検索可能とする必要がある
+    <p>※開催年月、日目を本文部に表示する必要はない<br/>
+        　階級は力士名に紐づいて固定
     </p>
 {% endblock %}

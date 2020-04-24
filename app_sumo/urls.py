@@ -20,11 +20,11 @@ urlpatterns = [
     path('SUMSHO01/', views.SUMSHO01, name='SUMSHO01'),  # 勝負入力処理
     path('SUMSHO01/SUMSHO02/', views.SUMSHO02, name='SUMSHO02'),  # 勝負入力処理
     ###path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'), #勝負入力処理
-    path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'),  # 優勝・三賞入力●●●
-    path('SUMYUS01/form/', views.SUMYUS01_formfunc, name='SUMYUS01_form'),  # 優勝・三賞入力●●●
-    path('SUMYUS01/detail/<int:pk>', views.SUMYUS01_detailfunc, name='SUMYUS01_detail'),  # 優勝・三賞入力●●●
-    path('SUMYUS01/delete/<int:pk>', views.SUMYUS01_deletefunc, name='SUMYUS01_delete'),  # 優勝・三賞入力●●●
-    path('SUMYUS01/edit/<int:pk>', views.SUMYUS01_editfunc, name='SUMYUS01_edit'),  # 優勝・三賞入力●●●
+    path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'),  # 優勝・三賞入力画面
+    path('SUMYUS01/create/', views.SUMYUS01_create, name='SUMYUS01_create'),  # 優勝・三賞入力画面（追加）
+    path('SUMYUS01/view/<int:pk>', views.SUMYUS01_view, name='SUMYUS01_view'),  # 優勝・三賞入力画面（参照）
+    path('SUMYUS01/update/<int:pk>', views.SUMYUS01_update, name='SUMYUS01_update'),  # 優勝・三賞入力画面（更新）
+    path('SUMYUS01/delete/<int:pk>', views.SUMYUS01_delete, name='SUMYUS01_delete'),  # 優勝・三賞入力画面（削除）
 
     # path('<int:memo_id>', views.detail, name='detail'),
     # path('new_memo', views.new_memo, name='new_memo'),

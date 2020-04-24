@@ -14,7 +14,7 @@
     <form method="POST" action="{% url 'app_sumo:SUMYUS01_delete' post.pk %}">
         {% csrf_token %}
         <nav class="navbar fixed-bottom navbar-dark bg-dark">
-            <a href="{% url 'app_sumo:SUMYUS01_edit' post.pk %}" class="btn btn-success">編集</a>
+            <a href="{% url 'app_sumo:SUMYUS01_update' post.pk %}" class="btn btn-success">編集</a>
             <button type="submit" class="btn btn-danger" onclick='return confirm("削除しますか？");'>削除</button>
             <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
         </nav>

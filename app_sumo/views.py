@@ -129,24 +129,13 @@ def SUMSHO02(request):
 
 # 優勝・三賞入力画面
 def SUMYUS01(request):
-    # 最終的には、全データではなく開催年月と日目が一致するデータのみ渡すべき
+    # ●●●最終的には、全データではなく開催年月と日目が一致するデータのみ渡すべき●●●
     posts = Tran_YushoSansho.objects.all()
     return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts})
 
 
-def SUMYUS01_detailfunc(request, pk):
-    post = Tran_YushoSansho.objects.get(pk=pk)
-    return render(request, 'app_sumo/SUMYUS01_detail.html', {'post': post})
-
-
-@require_POST
-def SUMYUS01_deletefunc(request, pk):
-    post = get_object_or_404(Tran_YushoSansho, pk=pk)
-    post.delete()
-    return redirect('app_sumo:SUMYUS01')
-
-
-def SUMYUS01_formfunc(request):
+# 優勝・三賞入力画面（追加）
+def SUMYUS01_create(request):
     if request.method == 'POST':
         form = Tran_YushoSanshoForm(request.POST)
         if form.is_valid():
@@ -155,10 +144,17 @@ def SUMYUS01_formfunc(request):
             return redirect('app_sumo:SUMYUS01')
     else:
         form = Tran_YushoSanshoForm()
-    return render(request, 'app_sumo/SUMYUS01_form.html', {'form': form})
+    return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form})
 
 
-def SUMYUS01_editfunc(request, pk):
+# 優勝・三賞入力画面（参照）
+def SUMYUS01_view(request, pk):
+    post = Tran_YushoSansho.objects.get(pk=pk)
+    return render(request, 'app_sumo/SUMYUS01_view.html', {'post': post})
+
+
+# 優勝・三賞入力画面（更新）
+def SUMYUS01_update(request, pk):
     post = get_object_or_404(Tran_YushoSansho, pk=pk)
     if request.method == "POST":
         form = Tran_YushoSanshoForm(request.POST, instance=post)
@@ -167,10 +163,16 @@ def SUMYUS01_editfunc(request, pk):
             return redirect('app_sumo:SUMYUS01')
     else:
         form = Tran_YushoSanshoForm(instance=post)
-    return render(request, 'app_sumo/SUMYUS01_edit.html', {'form': form, 'post': post})
+    return render(request, 'app_sumo/SUMYUS01_update.html', {'form': form, 'post': post})
 
 
-######
+# 優勝・三賞入力画面（削除）
+@require_POST
+def SUMYUS01_delete(request, pk):
+    post = get_object_or_404(Tran_YushoSansho, pk=pk)
+    post.delete()
+    return redirect('app_sumo:SUMYUS01')
+
 
 # コンテンツ出力指示画面
 def SUMOUT01(request):
@@ -409,6 +411,7 @@ def SUMMSM01_heya_html(request):
 
     return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)
 """
+
 
 # 年度・場所切替画面
 # def SUMINT01(request):
