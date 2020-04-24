@@ -146,22 +146,24 @@ class Output_NewsML():
         elif self.newsno == "06":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),
-                'Banzuke': Tran_Banzuke.objects.all(),
-                'Liferesult': Mst_Lifetime_result.objects.all(),
-                'Lifeaward': Mst_Lifetime_award.objects.all(),
+                #'subheader': Mst_SubHeader.objects.filter(Content_code__NewsMLNo="06"),  # 副ヘッダマスタ
+                #'Banzuke': Tran_Banzuke.objects.all(),
+                #'Liferesult': Mst_Lifetime_result.objects.all(),
+                #'Lifeaward': Mst_Lifetime_award.objects.all(),
                 'basho': tran_system.first().CurrentBasho,
                 'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+                'torikuminichime_code': str(tran_system.first().TorikumiDate.Nichime_code).zfill(2),
             }  
         #06郷土力士取組
-        elif self.newsno == "06":
-            fix_context = {
-                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
-                'Banzuke': Tran_Banzuke.objects.all(),
-                'Liferesult': Mst_Lifetime_result.objects.all(),
-                'Lifeaward': Mst_Lifetime_award.objects.all(),
-                'basho': tran_system.first().CurrentBasho,
-                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
-            }
+#        elif self.newsno == "06":
+#            fix_context = {
+#                # 'newsmlmeta': Tran_Systemstatus.objects.all(),
+#                'Banzuke': Tran_Banzuke.objects.all(),
+#                'Liferesult': Mst_Lifetime_result.objects.all(),
+#                'Lifeaward': Mst_Lifetime_award.objects.all(),
+#                'basho': tran_system.first().CurrentBasho,
+#                'torikuminichime': tran_system.first().TorikumiDate.Nichime_4char,
+#            }
         #07幕下以下取組
         elif self.newsno == "07":
             fix_context = {

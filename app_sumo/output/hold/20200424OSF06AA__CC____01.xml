@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-{% load static %}
-<!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
-	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
+
+<!DOCTYPE ITalk SYSTEM "/static/app_sumo/DTD/ITalkv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "/static/app_sumo/DTD/InContentv1.0.dtd">
 	%InContent;
-	<!ENTITY % Kddata SYSTEM "{% static 'app_sumo/OSDTD/KdXBSContentv1.1.dtd' %}">
+	<!ENTITY % Kddata SYSTEM "/static/app_sumo/OSDTD/KdXBSContentv1.1.dtd">
 	%Kddata;
 ]>
-				<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent06.xsl' %}"?>
+				<?xml-stylesheet type="text/xsl"  href="/static/app_sumo/OSStylesheets/OSKdXBSContent06.xsl"?>
 
 <ITalk version="1.0">
 <IManage>
@@ -63,9 +63,9 @@
 <NewsIdentifier>
 <ProviderId>kyodonews.jp</ProviderId>
 <DateId>YYYYMMDD</DateId>
-<NewsItemId>YYYYMMDDOSF06{{torikuminichime_code}}__CC____</NewsItemId>
+<NewsItemId>YYYYMMDDOSF0602__CC____</NewsItemId>
 <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
-<PublicIdentifier>urn:newsml:kyodonews.jp:YYYYMMDD:YYYYMMDDOSF06{{torikuminichime_code}}__CC____:1</PublicIdentifier>
+<PublicIdentifier>urn:newsml:kyodonews.jp:YYYYMMDD:YYYYMMDDOSF0602__CC____:1</PublicIdentifier>
 </NewsIdentifier>
 </Identification>
 <NewsManagement>
@@ -76,7 +76,7 @@
 </NewsManagement>
 <NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
 <NewsLines>
-<HeadLine>{{ torikuminichime }}郷土力士取組</HeadLine>
+<HeadLine>二日目郷土力士取組</HeadLine>
 <SubHeadLine>北海道</SubHeadLine>
 <NewsLine>
 <NewsLineType FormalName="EndInfo"/>
@@ -106,7 +106,7 @@
 <InContent version="1.0">
 <InMetadata>
 <InAdminInfo>
-<InProductId>ＹＹＹＹＭＭＤＤＯＳＦ０６{{torikuminichime_code}}＿＿ＣＣ＿＿＿＿０１</InProductId>
+<InProductId>ＹＹＹＹＭＭＤＤＯＳＦ０６02＿＿ＣＣ＿＿＿＿０１</InProductId>
 <InDateTime>ＹＹＹＹ年ＭＭ月ＤＤ日ｈｈ時ｍｍ分ｄｄ秒</InDateTime>
 <InFormat>
 <InFormatType>フルタグ書式</InFormatType>
@@ -117,7 +117,7 @@
 <InClasses>
 <InClass>
 <InBClass>相撲</InBClass>
-<InMClass1>{{ basho }}{{ torikuminichime }}</InMClass1>
+<InMClass1>夏場所二日目</InMClass1>
 <InMClass2>郷土力士取組</InMClass2>
 <InSClass>北海道</InSClass>
 </InClass>
@@ -126,7 +126,7 @@
 <InNewsGenre>相撲</InNewsGenre>
 </InNewsCategory>
 <InNewsLine>
-<InHeadLine>{{ torikuminichime }}郷土力士取組</InHeadLine>
+<InHeadLine>二日目郷土力士取組</InHeadLine>
 <InSubHeadLines>
 <InSubHeadLine>北海道</InSubHeadLine>
 </InSubHeadLines>
@@ -166,9 +166,9 @@
 <Head>
 <Meta>
 <Competition>
-<Formal>{{ basho }}</Formal>
+<Formal>夏場所</Formal>
 </Competition>
-<CompetitionDay>{{ torikuminichime }}</CompetitionDay>
+<CompetitionDay>二日目</CompetitionDay>
 <Discipline>
 <Formal>相撲</Formal>
 </Discipline>
