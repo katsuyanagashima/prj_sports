@@ -129,13 +129,19 @@ def SUMSHO02(request):
 
 # 優勝・三賞入力画面
 def SUMYUS01(request):
+    nav= nav_info(request)
     # ●●●最終的には、全データではなく開催年月と日目が一致するデータのみ渡すべき●●●
     posts = Tran_YushoSansho.objects.all()
-    return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts})
+    return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts, **nav})
 
 
 # 優勝・三賞入力画面（追加）
 def SUMYUS01_create(request):
+    nav= nav_info(request)
+    initial_dict = {
+        'Yearmonth': Tran_Systemstatus.objects.first().Event_date,
+        'Nichime_code': Tran_Systemstatus.objects.first().MatchDate, # 取組日目でなく勝負日目でよいか？
+    }
     if request.method == 'POST':
         form = Tran_YushoSanshoForm(request.POST)
         if form.is_valid():
@@ -143,18 +149,21 @@ def SUMYUS01_create(request):
             post.save()
             return redirect('app_sumo:SUMYUS01')
     else:
-        form = Tran_YushoSanshoForm()
-    return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form})
+        #form = Tran_YushoSanshoForm()
+        form = Tran_YushoSanshoForm(initial=initial_dict)
+    return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form, **nav})
 
 
 # 優勝・三賞入力画面（参照）
 def SUMYUS01_view(request, pk):
+    nav= nav_info(request)
     post = Tran_YushoSansho.objects.get(pk=pk)
-    return render(request, 'app_sumo/SUMYUS01_view.html', {'post': post})
+    return render(request, 'app_sumo/SUMYUS01_view.html', {'post': post, **nav})
 
 
 # 優勝・三賞入力画面（更新）
 def SUMYUS01_update(request, pk):
+    nav= nav_info(request)
     post = get_object_or_404(Tran_YushoSansho, pk=pk)
     if request.method == "POST":
         form = Tran_YushoSanshoForm(request.POST, instance=post)
@@ -163,7 +172,7 @@ def SUMYUS01_update(request, pk):
             return redirect('app_sumo:SUMYUS01')
     else:
         form = Tran_YushoSanshoForm(instance=post)
-    return render(request, 'app_sumo/SUMYUS01_update.html', {'form': form, 'post': post})
+    return render(request, 'app_sumo/SUMYUS01_update.html', {'form': form, 'post': post, **nav})
 
 
 # 優勝・三賞入力画面（削除）
@@ -254,7 +263,7 @@ def SUMTKD02(request):
 
 # 階級上位力士
 def SUMJOR01(request):
-    params = nav_info(request)
+    nav= nav_info(request)
     match_nichime_id = Tran_Systemstatus.objects.first().MatchDate  # tran_system.MatchDate.Nichime_codeを使用すると１日ずれる！
     yearmonth = Tran_Systemstatus.objects.first().Event_date  # 開催年月YYYYMM
     tbl_top_class_rikishi = Tran_TopClassRikishi.objects.filter(Nichime_code=match_nichime_id)  # 現在の勝負日目のみを抽出
@@ -275,7 +284,6 @@ def SUMJOR01(request):
         'tbl_top_class_rikishi': tbl_top_class_rikishi.order_by('Class_code'),  # 階級順に表示させるためソート
         'range_of_wins_or_losses': ['', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]  # プルダウンメニュー用
     }
-    params.update(dict)
 
     # 画面で選択された値を保存
     if request.method == "POST":
@@ -289,7 +297,7 @@ def SUMJOR01(request):
             row.LossCount = reqlist_looses[i] if reqlist_looses[i].isdigit() == True else None
             row.save()
 
-    return render(request, 'app_sumo/SUMJOR01.html', params)
+    return render(request, 'app_sumo/SUMJOR01.html', {**dict, **nav})
 
 
 # 資料出力
