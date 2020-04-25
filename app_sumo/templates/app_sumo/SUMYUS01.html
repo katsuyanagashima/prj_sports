@@ -4,7 +4,7 @@
     <h2>
         {% for post in posts %}
             <a href="{% url 'app_sumo:SUMYUS01_view' post.pk %}">{{ post.Rikishi }}</a>
-            <span>（{{ post.Yearmonth }} {{ post.Nichime_code }}）</span>
+            <!--<span>（{{ post.Yearmonth }} {{ post.Nichime_code }}）</span>-->
             <span>（{{ post.Class_code }}）</span>
             {% if post.Yusho_flg %} <span>優勝</span> {% endif %}
             {% if post.Shukunsho_flg %} <span>殊勲賞</span> {% endif %}
@@ -13,12 +13,12 @@
             <br/>
         {% endfor %}
     </h2>
-    <p>※開催年月と日目は本文部には不要<br/>
-        上記は力士別の表記になっているが、最終的には階級と賞別の表記にする必要がある<br/>
-        千秋楽以外に優勝が確定した場合は、当日から千秋楽までの確実のデータを更新するという動作でよいか？
-    </p>
     <nav class="navbar fixed-bottom navbar-dark bg-dark">
         <a href="{% url 'app_sumo:SUMYUS01_create' %}" class="btn btn-success">追加</a>
         <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
     </nav>
+    <p>※開催年月と日目が一致するデータのみ表示している<br/>
+        現行システムの画面レイアウトにあわせること<br/>
+        千秋楽以前に優勝が確定した場合は、以降の各日にも優勝をセットする処理は必要？
+    </p>
 {% endblock %}

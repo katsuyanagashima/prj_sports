@@ -59,3 +59,7 @@ class Tran_YushoSanshoForm(forms.ModelForm):
         model = Tran_YushoSansho
         fields = ('Rikishi', 'Yearmonth', 'Nichime_code', 'Class_code',
                   'Yusho_flg', 'Shukunsho_flg', 'Kantosho_flg', 'Ginosho_flg')
+        widgets = {
+            'Yearmonth': forms.HiddenInput,
+            'Nichime_code': forms.HiddenInput,
+        }
