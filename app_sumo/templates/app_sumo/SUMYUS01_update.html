@@ -1,18 +1,22 @@
 {% extends 'app_sumo/base.html' %}
 {% block content %}
     <h1 class="caption">優勝・三賞入力画面</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_ul }}
-        <nav class="navbar fixed-bottom navbar-dark bg-dark">
-            <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_update' post.pk %}"
-                    class="btn btn-success">保存</button>
-            <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_delete' post.pk %}"
-                    class="btn btn-danger" onclick='return confirm("削除しますか？");'>削除</button>
-            <button type="submit" formaction="{% url 'app_sumo:SUMYUS01' %}"
-                    class="btn btn-warning">戻る</button>
-        </nav>
-    </form>
+    <div class="container-fluid row">
+        <div class="col-6 gyomu-menu caption_box">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <nav class="navbar fixed-bottom navbar-dark bg-dark">
+                    <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_update' post.pk %}"
+                            class="btn btn-success">保存</button>
+                    <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_delete' post.pk %}"
+                            class="btn btn-danger" onclick='return confirm("削除しますか？");'>削除</button>
+                    <button type="submit" formaction="{% url 'app_sumo:SUMYUS01' %}"
+                            class="btn btn-warning">戻る</button>
+                </nav>
+            </form>
+        </div>
+    </div>
     <p>※力士名は階級別メニューから選択、および検索可能にする必要がある
     </p>
 {% endblock %}
