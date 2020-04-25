@@ -155,11 +155,12 @@ def SUMYUS01_create(request):
     return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form, **nav})
 
 
-# 優勝・三賞入力画面（参照）
-def SUMYUS01_view(request, pk):
+# 優勝・三賞入力画面（参照）●本画面は廃止●
+'''def SUMYUS01_view(request, pk):
     nav= nav_info(request)
     post = Tran_YushoSansho.objects.get(pk=pk)
     return render(request, 'app_sumo/SUMYUS01_view.html', {'post': post, **nav})
+    '''
 
 
 # 優勝・三賞入力画面（更新）
