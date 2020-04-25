@@ -130,8 +130,9 @@ def SUMSHO02(request):
 # 優勝・三賞入力画面
 def SUMYUS01(request):
     nav= nav_info(request)
-    # ●●●最終的には、全データではなく開催年月と日目が一致するデータのみ渡すべき●●●
-    posts = Tran_YushoSansho.objects.all()
+    match_nichime_id = Tran_Systemstatus.objects.first().MatchDate
+    yearmonth = Tran_Systemstatus.objects.first().Event_date
+    posts = Tran_YushoSansho.objects.filter(Yearmonth=yearmonth, Nichime_code=match_nichime_id)  # 現在の勝負日目のみを抽出
     return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts, **nav})
 
 
