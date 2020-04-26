@@ -132,8 +132,11 @@ def SUMYUS01(request):
     nav= nav_info(request)
     match_nichime_id = Tran_Systemstatus.objects.first().MatchDate
     yearmonth = Tran_Systemstatus.objects.first().Event_date
-    posts = Tran_YushoSansho.objects.filter(Yearmonth=yearmonth, Nichime_code=match_nichime_id)  # 現在の勝負日目のみを抽出
-    return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts, **nav})
+    dict = {
+        'posts': Tran_YushoSansho.objects.filter(Yearmonth=yearmonth, Nichime_code=match_nichime_id),  # 現在の勝負日目のみを抽出
+        'classes': Mst_Class.objects.all()
+    }
+    return render(request, 'app_sumo/SUMYUS01.html', {**dict, **nav})
 
 
 # 優勝・三賞入力画面（追加）
