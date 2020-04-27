@@ -20,14 +20,15 @@ temp = [
 def nav_info(request, get_type=0):
     tran_system = Tran_Systemstatus.objects.all().first()
 
-    params = {
-        'nav': {
-            'basho': tran_system.CurrentBasho,
-            'systatus': tran_system.SystemStatus,
-            'torikumiday': tran_system.TorikumiDate.Nichime_name,
-            'shoubuday': tran_system.MatchDate.Nichime_name
-        }
-    }
+    # params = {
+    #     'nav': {
+    #         'basho': tran_system.CurrentBasho,
+    #         'systatus': tran_system.SystemStatus,
+    #         'torikumiday': tran_system.TorikumiDate.Nichime_name,
+    #         'shoubuday': tran_system.MatchDate.Nichime_name
+    #     }
+    # }
+    params = {} # dump.json 復旧までの退避
     if get_type:
         return [params, tran_system]
     else:
