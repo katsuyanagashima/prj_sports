@@ -53,6 +53,7 @@
 </IhSendNIndInfo>
 </IhSubHeader>
 {% endif %}
+<!-- ===================================== -->
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
@@ -88,6 +89,7 @@
 <NewsLineType FormalName="EditInfo"/>
 <NewsLineText>貴ノ岩は引退</NewsLineText>
 </NewsLine>
+<!-- 力士の編集内容によって可変  -->
 <NewsLine>
 <NewsLineType FormalName="EndInfo"/>
 <NewsLineText>ブラジはブラジル</NewsLineText>
@@ -145,6 +147,7 @@
 </InMainHeader>
 <InSubHeader>
 <InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<!-- ==== 副ヘッダマスタから取得 =========== -->
 <InSendControl>
 <InSendBlkInfo InNb="1">
 <InSendBlk>相全</InSendBlk>
@@ -153,13 +156,16 @@
 <InSendInd>ガミ</InSendInd>
 </InSendIndInfo>
 </InSendControl>
+<!-- ===================================== -->
 </InSubHeader>
+<!-- 画面からの入力値 -->
 <InEditInfo>
 <InEditLines InNc="1">
 <InEditLine>貴ノ岩は引退</InEditLine>
 </InEditLines>
 </InEditInfo>
 <InEndInfo>
+<!-- 力士の編集内容によって可変  -->
 <InEndLines InNc="4">
 <InEndLine>ブラジはブラジル</InEndLine>
 <InEndLine>ブルガはブルガリア</InEndLine>
@@ -176,7 +182,7 @@
 <Meta>
 <!-- 以下の想定は、◎2020大相撲初場所新番付資料（12月24日現在）-->
 <!-- 2020は開催年月の年を取得して連数字x2、12月24日の数字も連数 -->
-<Title>◎大相撲{{ meta.CurrentBasho }}新番付資料（月日現在）</Title>
+<Title>◎{{ meta.Event_date }}大相撲{{ meta.CurrentBasho }}新番付資料（月日現在）</Title>
 <Competition>
 <Formal>{{ meta.CurrentBasho }}</Formal>
 </Competition>
@@ -218,53 +224,53 @@
 <Weight Unit="キログラム">{{ player.Rikishi.Weight  }}</Weight>
 <Result Period="幕内通算">
 <Record Kind="与金星" Unit="回">
-<Writing></Writing>
-<IntegerPart>１６</IntegerPart>
+<Writing>{{ player.Lifetime_result.Totalgivekinboshi  }}</Writing>
+<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi  }}</IntegerPart>
 </Record>
 <Record Kind="奪金星" Unit="回">
-<Writing>③</Writing>
-<IntegerPart>３</IntegerPart>
+<Writing>{{ player.Lifetime_result.Totalgetkinboshi  }}</Writing>
+<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi  }}</IntegerPart>
 </Record>
 <Award Kind="優勝">
 <Count>
 <Writing>２</Writing>
-<CountValue>２</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="殊勲賞">
 <Count>
 <Writing>５</Writing>
-<CountValue>５</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="敢闘賞">
 <Count>
 <Writing>３</Writing>
-<CountValue>３</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="技能賞">
 <Count>
 <Writing>１</Writing>
-<CountValue>１</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
 <ResultForSumo>
 <SumoOutcomeTotal>
-<BashoCount>８４</BashoCount>
-<WinCount>７１４</WinCount>
-<LossCount>４４９</LossCount>
-<DrawCount>０</DrawCount>
-<AbsenceCount>９７</AbsenceCount>
+<BashoCount>{{ player.Lifetime_result.Totalbasho  }}</BashoCount>
+<WinCount>{{ player.Lifetime_result.Totalwins  }}</WinCount>
+<LossCount>{{ player.Lifetime_result.Totalloss  }}</LossCount>
+<DrawCount>{{ player.Lifetime_result.Totalties  }}</DrawCount>
+<AbsenceCount>{{ player.Lifetime_result.Totalkyuujou  }}</AbsenceCount>
 </SumoOutcomeTotal>
-<WinningPercentage>．６１４</WinningPercentage>
-<WinningPercentage Kind="休みを負とした">．５６７</WinningPercentage>
+<WinningPercentage>{{ player.Lifetime_result.Overallwinrate  }}</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">{{ player.Lifetime_result.Overallwinrate_yasumimake  }}</WinningPercentage>
 </ResultForSumo>
 </Result>
 <PlayerForSumo>
 <SumoGrade Kind="最高位">
 <Writing>横綱</Writing>
-<SumoRank>横綱</SumoRank>
+<SumoRank>{{ player.Lifetime_chii.Chii_code  }}</SumoRank>
 </SumoGrade>
 <NativeArea>
 <Writing>茨　城</Writing>

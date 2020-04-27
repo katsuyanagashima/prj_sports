@@ -103,8 +103,8 @@ class Output_NewsML():
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+        #        'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+        #        'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #02新番付資料・補正
         elif self.newsno == "02":
@@ -112,8 +112,6 @@ class Output_NewsML():
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="02") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #03新番付
         elif self.newsno == "03":
@@ -121,8 +119,6 @@ class Output_NewsML():
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #04郷土力士新番付
         elif self.newsno == "04":
@@ -130,8 +126,6 @@ class Output_NewsML():
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="04") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #05幕下以下新番付
         elif self.newsno == "05":
@@ -139,8 +133,6 @@ class Output_NewsML():
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="05") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #06郷土力士取組
         elif self.newsno == "06":

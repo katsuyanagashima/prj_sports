@@ -21,20 +21,20 @@ class Tran_Systemstatus(Model):
     def __str__(self):
         return str(self.Event_date)
 
-
 # --------------------------------------------------------------------------------------------------
 # 01:新番付資料
 class Tran_Banzuke_forecast(Model):
     Sys_status = ForeignKey('Tran_Systemstatus', on_delete=CASCADE)  # システム状態の開催年月
-    Rikishi = ForeignKey('Mst_Rikishi', on_delete=CASCADE)  # 力士マスタ
+    Rikishi = ForeignKey('Mst_Rikishi', on_delete=CASCADE, related_name='rikishi')  # 力士マスタ
     #Join_code =  IntegerField(verbose_name='参加区分', blank=True, null=True)
     Class_code = ForeignKey('Mst_Class', on_delete=CASCADE)  # 階級マスタ
     #Eastwest_code =  ForeignKey('Mst_Eastwest', on_delete=CASCADE) #東西マスタ
-    Chii_code = ForeignKey('Mst_Chii', on_delete=CASCADE)  # 地位マスタ
+    Lifetime_chii = ForeignKey('Mst_Lifetime_statusinfo', on_delete=CASCADE, related_name='Lifetime_chii', blank=True, null=True)  # 生涯地位情報
     Banzuke_rank = IntegerField(verbose_name='番付順位', blank=True, null=True)
     #Haridashi =  IntegerField(verbose_name='張付区分', blank=True, null=True)
     Banzuke_no = IntegerField(verbose_name='番付通番', blank=True, null=True)
-
+    Lifetime_result = ForeignKey('Mst_Lifetime_result', on_delete=CASCADE, related_name='Lifetime_result', blank=True, null=True)  # 生涯成績マスタ
+    Lifetime_award = ForeignKey('Mst_Lifetime_award', on_delete=CASCADE, related_name='Lifetime_award', blank=True, null=True)  # 生涯受賞回数マスタ
     #Appear_code =  IntegerField(verbose_name='新再降区分', blank=True, null=True)
     #Demoted_rank =  IntegerField(verbose_name='昇降順位', blank=True, null=True)
 
@@ -52,11 +52,13 @@ class Tran_Banzuke(Model):
     Join_code = IntegerField(verbose_name='参加区分', blank=True, null=True)
     Class_code = ForeignKey('Mst_Class', on_delete=CASCADE)  # 階級マスタ
     Eastwest_code = ForeignKey('Mst_Eastwest', on_delete=CASCADE)  # 東西マスタ
-    Chii_code = ForeignKey('Mst_Chii', on_delete=CASCADE)  # 地位マスタ
+    Lifetime_chii = ForeignKey('Mst_Lifetime_statusinfo', on_delete=CASCADE, related_name='Lifetime_chiis', blank=True, null=True)  # 生涯地位情報
     Banzuke_rank = IntegerField(verbose_name='番付順位', blank=True, null=True)
     Haridashi = IntegerField(verbose_name='張付区分', blank=True, null=True)
     Banzuke_no = IntegerField(verbose_name='番付通番', blank=True, null=True)
     Appear_code = IntegerField(verbose_name='新再降区分', blank=True, null=True)
+    Lifetime_result = ForeignKey('Mst_Lifetime_result', on_delete=CASCADE, related_name='Lifetime_results', blank=True, null=True)  # 生涯成績マスタ
+    Lifetime_award = ForeignKey('Mst_Lifetime_award', on_delete=CASCADE, related_name='Lifetime_awards', blank=True, null=True)  # 生涯受賞回数マスタ
     #Appear_code =  IntegerField(verbose_name='新再降区分', blank=True, null=True)　
     Demoted_rank = IntegerField(verbose_name='昇降順位', blank=True, null=True)
 

@@ -91,4 +91,583 @@
 [INFO]	2020-04-24 19:46:30,542	module:apps	command.ready:24	command Start:
 [INFO]	2020-04-24 19:46:30,543	module:apps	command.ready:30	command End:
 [INFO]	2020-04-24 19:46:48,080	module:apps	command.ready:24	command Start:
-[INFO]	2020-04-24 19:46:48,081	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 19:46:48,081	module:apps	command.ready:30	command End:[INFO]	2020-04-24 20:29:58,981	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 20:29:58,982	module:apps	command.ready:30	command End:
+[INFO]	2020-04-24 20:33:03,952	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-24 20:33:03,953	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:18:15,890	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:18:15,902	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:19:09,383	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:19:09,383	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:19:32,575	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:19:32,576	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:19:47,161	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:19:47,161	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:20:12,261	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:20:12,261	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:20:26,375	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:20:26,375	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:20:34,729	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:20:34,730	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:20:43,706	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:20:43,707	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:26:50,505	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:26:50,505	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:27:23,365	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:27:23,369	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:27:54,445	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:27:54,446	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:27:56,171	module:trn_receiving_autorace	command.run_trn_schedule:58	target_dir_scheduleData:/code/app_autorace/management/commands/scheduleData
+[INFO]	2020-04-25 16:27:56,180	module:trn_receiving_autorace	command.run_trn_schedule:62	scheduleData: スケジュール監視　Start
+[INFO]	2020-04-25 16:27:56,180	module:trn_receiving_autorace	command.run_trn_program:69	target_dir_programData:/code/app_autorace/management/commands/programData
+[INFO]	2020-04-25 16:27:56,181	module:trn_receiving_autorace	command.run_trn_program:72	programData: 番組編成監視　Start
+[INFO]	2020-04-25 16:27:56,191	module:trn_receiving_autorace	command.run_trn_result:80	target_dir_resultData:/code/app_autorace/management/commands/resultData
+[INFO]	2020-04-25 16:27:56,191	module:trn_receiving_autorace	command.run_trn_result:83	resultData: レース結果監視　Start
+[INFO]	2020-04-25 16:27:56,196	module:trn_receiving_autorace	command.run_trn_top_30_prize:91	target_dir_top30prizeData:/code/app_autorace/management/commands/top30prizeData
+[INFO]	2020-04-25 16:27:56,197	module:trn_receiving_autorace	command.run_trn_top_30_prize:94	top30prizeData: 選手取得賞金上位３０位監視　Start
+[INFO]	2020-04-25 16:27:56,202	module:trn_receiving_autorace	command.run_trn_outsidetrack:102	target_dir_outsidetrackData:/code/app_autorace/management/commands/outsidetrackData
+[INFO]	2020-04-25 16:27:56,202	module:trn_receiving_autorace	command.run_trn_outsidetrack:105	outsidetrackData: 場外売場情報監視　Start
+[INFO]	2020-04-25 16:30:17,431	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:30:17,432	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:30:34,607	module:trn_receiving_autorace	command.handle:182	scheduleData: スケジュール監視　End
+[INFO]	2020-04-25 16:30:34,613	module:trn_receiving_autorace	command.handle:183	programData: 番組編成監視　End
+[INFO]	2020-04-25 16:30:34,616	module:trn_receiving_autorace	command.handle:184	resultData: レース結果監視　End
+[INFO]	2020-04-25 16:30:34,625	module:trn_receiving_autorace	command.handle:185	top30prizeData: 選手取得賞金上位３０位監視　End
+[INFO]	2020-04-25 16:30:34,629	module:trn_receiving_autorace	command.handle:186	outsidetrackData: 場外売場情報監視　End
+[INFO]	2020-04-25 16:30:38,270	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:30:38,271	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:30:51,953	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:30:51,953	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:31:09,042	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:31:09,043	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:31:45,070	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:31:45,071	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:31:53,079	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:31:53,080	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:31:58,725	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:31:58,726	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:32:30,159	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:32:30,159	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:33:40,608	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:33:40,609	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:33:41,576	module:trn_receiving_autorace	command.run_trn_schedule:58	target_dir_scheduleData:/code/app_autorace/management/commands/scheduleData
+[INFO]	2020-04-25 16:33:41,585	module:trn_receiving_autorace	command.run_trn_schedule:62	scheduleData: スケジュール監視　Start
+[INFO]	2020-04-25 16:33:41,586	module:trn_receiving_autorace	command.run_trn_program:69	target_dir_programData:/code/app_autorace/management/commands/programData
+[INFO]	2020-04-25 16:33:41,586	module:trn_receiving_autorace	command.run_trn_program:72	programData: 番組編成監視　Start
+[INFO]	2020-04-25 16:33:41,597	module:trn_receiving_autorace	command.run_trn_result:80	target_dir_resultData:/code/app_autorace/management/commands/resultData
+[INFO]	2020-04-25 16:33:41,597	module:trn_receiving_autorace	command.run_trn_result:83	resultData: レース結果監視　Start
+[INFO]	2020-04-25 16:33:41,602	module:trn_receiving_autorace	command.run_trn_top_30_prize:91	target_dir_top30prizeData:/code/app_autorace/management/commands/top30prizeData
+[INFO]	2020-04-25 16:33:41,611	module:trn_receiving_autorace	command.run_trn_top_30_prize:94	top30prizeData: 選手取得賞金上位３０位監視　Start
+[INFO]	2020-04-25 16:33:41,628	module:trn_receiving_autorace	command.run_trn_outsidetrack:102	target_dir_outsidetrackData:/code/app_autorace/management/commands/outsidetrackData
+[INFO]	2020-04-25 16:33:41,629	module:trn_receiving_autorace	command.run_trn_outsidetrack:105	outsidetrackData: 場外売場情報監視　Start
+[INFO]	2020-04-25 16:34:49,219	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,220	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,222	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,225	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,226	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,227	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,228	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,229	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:34:49,230	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:35:17,320	module:watchdoc	command.on_created:43	created Start:/code/app_autorace/management/commands/scheduleData/042408013600000000.dat
+[INFO]	2020-04-25 16:35:17,418	module:trn_schedule	command.insert_or_update_Trn_Schedule:192	内容:insert_Trn_Schedule Start:詳細:ファイルデータ:2020200424
+[INFO]	2020-04-25 16:35:17,427	module:trn_schedule	command.insert_or_update_Trn_Schedule:194	内容:insert_Trn_Schedule End
+[INFO]	2020-04-25 16:35:17,428	module:trn_schedule	command.insert_or_update_Trn_Schedule:196	内容:update_Trn_Schedule Start:詳細:ファイルデータ:20200424 212               202004251512                                          1
+[INFO]	2020-04-25 16:35:17,455	module:trn_schedule	command.insert_or_update_Trn_Schedule:198	内容:update_Trn_Schedule End
+[INFO]	2020-04-25 16:35:17,527	module:watchdoc	command.on_created:47	created End:
+[INFO]	2020-04-25 16:36:08,570	module:watchdoc	command.on_created:43	created Start:/code/app_autorace/management/commands/scheduleData/042508013400000000.dat
+[INFO]	2020-04-25 16:36:08,578	module:trn_schedule	command.insert_or_update_Trn_Schedule:192	内容:insert_Trn_Schedule Start:詳細:ファイルデータ:2020200425
+[INFO]	2020-04-25 16:36:08,604	module:trn_schedule	command.insert_or_update_Trn_Schedule:194	内容:insert_Trn_Schedule End
+[INFO]	2020-04-25 16:36:08,605	module:trn_schedule	command.insert_or_update_Trn_Schedule:196	内容:update_Trn_Schedule Start:詳細:ファイルデータ:20200425 512               202004261512                                           
+[INFO]	2020-04-25 16:36:08,739	module:trn_schedule	command.insert_or_update_Trn_Schedule:198	内容:update_Trn_Schedule End
+[INFO]	2020-04-25 16:36:08,745	module:watchdoc	command.on_created:47	created End:
+[INFO]	2020-04-25 16:36:56,257	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:36:56,258	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:36:56,259	module:watchdoc	command.on_deleted:99	deleted:
+[INFO]	2020-04-25 16:37:12,321	module:watchdoc	command.on_created:65	created Start:/code/app_autorace/management/commands/programData/042417055900005001.dat
+[INFO]	2020-04-25 16:37:12,350	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:0
+[INFO]	2020-04-25 16:37:12,364	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:0
+[INFO]	2020-04-25 16:37:12,430	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:12,431	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:0
+[INFO]	2020-04-25 16:37:13,020	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:13,023	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:13,025	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:1
+[INFO]	2020-04-25 16:37:13,036	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:1
+[INFO]	2020-04-25 16:37:13,054	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:13,055	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:1
+[INFO]	2020-04-25 16:37:13,314	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:13,314	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:13,315	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:2
+[INFO]	2020-04-25 16:37:13,317	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:2
+[INFO]	2020-04-25 16:37:13,325	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:13,331	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:2
+[INFO]	2020-04-25 16:37:13,618	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:13,619	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:13,620	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:3
+[INFO]	2020-04-25 16:37:13,622	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:3
+[INFO]	2020-04-25 16:37:13,630	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:13,631	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:3
+[INFO]	2020-04-25 16:37:13,851	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:13,852	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:13,852	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:4
+[INFO]	2020-04-25 16:37:13,854	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:4
+[INFO]	2020-04-25 16:37:13,862	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:13,868	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:4
+[INFO]	2020-04-25 16:37:14,130	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:14,131	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:14,132	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:5
+[INFO]	2020-04-25 16:37:14,134	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:5
+[INFO]	2020-04-25 16:37:14,144	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:14,145	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:5
+[INFO]	2020-04-25 16:37:14,363	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:14,363	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:14,364	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:6
+[INFO]	2020-04-25 16:37:14,366	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:6
+[INFO]	2020-04-25 16:37:14,374	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:14,380	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:6
+[INFO]	2020-04-25 16:37:14,594	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:14,595	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:14,596	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:7
+[INFO]	2020-04-25 16:37:14,598	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:7
+[INFO]	2020-04-25 16:37:14,606	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:14,611	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:7
+[INFO]	2020-04-25 16:37:14,841	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:14,842	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:14,842	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:8
+[INFO]	2020-04-25 16:37:14,844	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:8
+[INFO]	2020-04-25 16:37:14,853	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:14,858	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:8
+[INFO]	2020-04-25 16:37:15,083	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:15,084	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:15,084	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:9
+[INFO]	2020-04-25 16:37:15,086	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:9
+[INFO]	2020-04-25 16:37:15,094	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:15,100	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:9
+[INFO]	2020-04-25 16:37:15,344	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:15,348	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:15,348	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:10
+[INFO]	2020-04-25 16:37:15,351	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:10
+[INFO]	2020-04-25 16:37:15,358	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:15,361	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:10
+[INFO]	2020-04-25 16:37:15,582	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:15,582	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:15,583	module:trn_program	command.insert_or_update_Trn_Program:699	内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:11
+[INFO]	2020-04-25 16:37:15,585	module:trn_program	command.insert_or_update_trn_program_list:676	内容:update_trn_program Start:11
+[INFO]	2020-04-25 16:37:15,593	module:trn_program	command.insert_or_update_trn_program_list:678	内容:update_trn_program End
+[INFO]	2020-04-25 16:37:15,598	module:trn_program	command.insert_or_update_trn_program_list:681	内容:insert_or_update_trn_running_list Start:11
+[INFO]	2020-04-25 16:37:15,843	module:trn_program	command.insert_or_update_trn_program_list:683	内容:insert_or_update_trn_running_list End
+[INFO]	2020-04-25 16:37:15,843	module:trn_program	command.insert_or_update_Trn_Program:701	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:37:15,860	module:watchdoc	command.on_created:69	created End:
+[INFO]	2020-04-25 16:41:03,227	module:watchdoc	command.on_created:54	created Start:/code/app_autorace/management/commands/resultData/042515010500005012.dat
+[INFO]	2020-04-25 16:41:03,236	module:trn_result	command.insert_or_update_Trn_Result:490	内容:insert_Trn_Trn_Result Start:詳細:ファイルデータ:225飯　塚20200425令和０２年０４月２５日第１回第５日目　　　　　　　２節１日ＳＧオールスター・オートレース　　　　　202004254T200000000000000000000000000000000000000000000000000000000000000001予選　　　　　　　　　　　31008  10000012051900000000000000000130000#5119014吉川　麻季　　　吉川麻吉川麻季飯　塚5ﾏﾘﾉS        大　分24330001  　　　  33603426146221223311花田　一輝　　　花田一花田一輝浜　松4ﾉﾉﾘｷ        静　岡22330207  　　　  33303462148023331202穴見　和正　　　穴見和穴見和正山　陽6ﾌﾟﾗﾀﾞ       福　岡66120205  　　　  34103455147807442416中野　憲人　　　中野憲中野憲人川　口2ｼﾞｪﾘｰ2      埼　玉44240208  　　　  34103465148121552101五十嵐　一夫　　五十一五十嵐一川　口2ﾎﾞｰﾘﾊﾞｰｼﾞｭ  千　葉54210206  　　　  33803458147911663214松本　やすし　　松本や松本やす伊勢崎3ｵﾌﾞｾRMC     長　野41320203  　　　  33203413146511772505岩崎　亮一　　　岩崎亮岩崎亮一山　陽6FGﾋﾞｾﾞﾝ     福　岡44250202  　　　  33303410146407882606木村　武之　　　木村武木村武之浜　松4ﾜﾝﾄ         千　葉43260204  　　　  334034231468161-7000476019   0000000001-7000222009   0000000003101-7-6               0012120000000000000000000000035000000000410001-71-66-7      000063000004200000170000000000000000110060020000005101-6-7               0001060000000000000000000000004000000000　　　 　　　 　　　 　　　 　　　  　                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+[INFO]	2020-04-25 16:41:03,250	module:trn_result	command.insert_or_update_Trn_Result:492	内容:insert_Trn_Trn_Result End
+[INFO]	2020-04-25 16:41:03,301	module:trn_result	command.insert_or_update_Trn_Result:498	内容:insert_or_update_trn_rider_results Start:詳細:ファイルデータ:119014吉川　麻季　　　吉川麻吉川麻季飯　塚5ﾏﾘﾉS        大　分24330001  　　　  33603426146221223311花田　一輝　　　花田一花田一輝浜　松4ﾉﾉﾘｷ        静　岡22330207  　　　  33303462148023331202穴見　和正　　　穴見和穴見和正山　陽6ﾌﾟﾗﾀﾞ       福　岡66120205  　　　  34103455147807442416中野　憲人　　　中野憲中野憲人川　口2ｼﾞｪﾘｰ2      埼　玉44240208  　　　  34103465148121552101五十嵐　一夫　　五十一五十嵐一川　口2ﾎﾞｰﾘﾊﾞｰｼﾞｭ  千　葉54210206  　　　  33803458147911663214松本　やすし　　松本や松本やす伊勢崎3ｵﾌﾞｾRMC     長　野41320203  　　　  33203413146511772505岩崎　亮一　　　岩崎亮岩崎亮一山　陽6FGﾋﾞｾﾞﾝ     福　岡44250202  　　　  33303410146407882606木村　武之　　　木村武木村武之浜　松4ﾜﾝﾄ         千　葉43260204  　　　  33403423146816
+[INFO]	2020-04-25 16:41:03,668	module:trn_result	command.insert_or_update_Trn_Result:500	内容:insert_or_update_trn_rider_results End
+[INFO]	2020-04-25 16:41:03,762	module:watchdoc	command.on_created:58	created End:
+[INFO]	2020-04-25 16:42:11,900	module:watchdoc	command.on_created:54	created Start:/code/app_autorace/management/commands/resultData/042515260300005022.dat
+[INFO]	2020-04-25 16:42:11,908	module:trn_result	command.insert_or_update_Trn_Result:490	内容:insert_Trn_Trn_Result Start:詳細:ファイルデータ:225飯　塚20200425令和０２年０４月２５日第１回第５日目　　　　　　　２節１日ＳＧオールスター・オートレース　　　　　202004254T200000000000000000000000000000000000000000000000000000000000000002予選　　　　　　　　　　　31008  10000011141400000000000000000130000#5110208鈴木　章夫　　　鈴木章鈴木章夫浜　松4ｵｰｸﾆｰ       静　岡74020007  　　　  34403494148316223304稲川　聖也　　　稲川聖稲川聖也川　口2Rｽｶｲ        東　京23330108  　　　  34103486148417332902阿部　仁志　　　阿部仁阿部仁志飯　塚5ｻﾃｨｱV       福　岡41290104  　　　  33803463147708441503岩田　行雄　　　岩田行岩田行雄伊勢崎3ﾀﾞｲﾚｸﾄ3     神奈川63150102  　　　  33503450147311552821桝崎　陽介　　　桝崎陽桝崎陽介飯　塚5ﾀｯｸ         福　岡40280105  　　　  33503466147802662927平田　雅崇　　　平田雅平田雅崇川　口2Sﾄﾗﾉｽｹ      東　京39290106  　　　  33803473148013772404伊藤　信夫　　　伊藤信伊藤信夫浜　松4ﾌﾟﾛﾄﾞﾗｲﾌﾞ   静　岡48240103  　　　  33703453147421882925丹村　飛竜　　　丹村飛丹村飛竜山　陽6ﾋｼｬｶｸ       福　岡36290101  　　　  333034411470168-4000039001   0000000004-8000027001   0000000003108-4-7               0001460000000000000000000000002000000000410004-87-84-7      000017000002400000230000000000000000010040030000005104-7-8               0000460000000000000000000000002000000000　　　 　　　 　　　 　　　 　　　  　                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+[INFO]	2020-04-25 16:42:11,917	module:trn_result	command.insert_or_update_Trn_Result:492	内容:insert_Trn_Trn_Result End
+[INFO]	2020-04-25 16:42:12,056	module:trn_result	command.insert_or_update_Trn_Result:498	内容:insert_or_update_trn_rider_results Start:詳細:ファイルデータ:110208鈴木　章夫　　　鈴木章鈴木章夫浜　松4ｵｰｸﾆｰ       静　岡74020007  　　　  34403494148316223304稲川　聖也　　　稲川聖稲川聖也川　口2Rｽｶｲ        東　京23330108  　　　  34103486148417332902阿部　仁志　　　阿部仁阿部仁志飯　塚5ｻﾃｨｱV       福　岡41290104  　　　  33803463147708441503岩田　行雄　　　岩田行岩田行雄伊勢崎3ﾀﾞｲﾚｸﾄ3     神奈川63150102  　　　  33503450147311552821桝崎　陽介　　　桝崎陽桝崎陽介飯　塚5ﾀｯｸ         福　岡40280105  　　　  33503466147802662927平田　雅崇　　　平田雅平田雅崇川　口2Sﾄﾗﾉｽｹ      東　京39290106  　　　  33803473148013772404伊藤　信夫　　　伊藤信伊藤信夫浜　松4ﾌﾟﾛﾄﾞﾗｲﾌﾞ   静　岡48240103  　　　  33703453147421882925丹村　飛竜　　　丹村飛丹村飛竜山　陽6ﾋｼｬｶｸ       福　岡36290101  　　　  33303441147016
+[INFO]	2020-04-25 16:42:12,218	module:trn_result	command.insert_or_update_Trn_Result:500	内容:insert_or_update_trn_rider_results End
+[INFO]	2020-04-25 16:42:12,230	module:watchdoc	command.on_created:58	created End:
+[INFO]	2020-04-25 16:42:45,178	module:watchdoc	command.on_created:54	created Start:/code/app_autorace/management/commands/resultData/042515511300005032.dat
+[INFO]	2020-04-25 16:42:45,181	module:trn_result	command.insert_or_update_Trn_Result:490	内容:insert_Trn_Trn_Result Start:詳細:ファイルデータ:225飯　塚20200425令和０２年０４月２５日第１回第５日目　　　　　　　２節１日ＳＧオールスター・オートレース　　　　　202004254T200000000000000000000000000000000000000000000000000000000000000003予選　　　　　　　　　　　31008  10000014279700000000000000000130000#5112820平川　博康　　　平川博平川博康川　口2ｷﾚﾈﾝｺ       千　葉41280003  　　　  33703442146704222003伊藤　正司　　　伊藤正伊藤正司伊勢崎3Rﾘﾉﾘｺ       群　馬54200108  　　　  33703469147920332507遠藤　　誠　　　遠藤誠遠藤　誠浜　松4ﾜｰﾙﾄﾞｼｮｰ    東　京46250106  　　　  33603460147609443115丸山　智史　　　丸山智丸山智史山　陽6ｼﾞｪｼｶ       山　口33310101  　　　  33303418146308553211中村　友和　　　中村友中村友和浜　松4ﾋｶﾘ         静　岡31320102  　　　  32903424146508663104鐘ヶ江　将平　　鐘ヶ江鐘ヶ江将飯　塚5ｼﾞｪｲﾄﾞA     福　岡32310107  　　　  33403460147615773215吉原　恭佑　　　吉原恭吉原恭佑伊勢崎3ﾊﾞｰｼｱ       群　馬32320105  　　　  33403444147106882532若井　友和　　　若井友若井友和川　口2ﾓｴﾙﾄｳｺﾝ     埼　玉46250104  　　　  334034341468024-5000062002   0000000004-5000028001   0000000003104-5-1               0004530000000000000000000000017000000000410004-51-41-5      000016000006000000590000000000000000010110100000005101-4-5               0001390000000000000000000000006000000000　　　 　　　 　　　 　　　 　　　  　                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+[INFO]	2020-04-25 16:42:45,186	module:trn_result	command.insert_or_update_Trn_Result:492	内容:insert_Trn_Trn_Result End
+[INFO]	2020-04-25 16:42:45,245	module:trn_result	command.insert_or_update_Trn_Result:498	内容:insert_or_update_trn_rider_results Start:詳細:ファイルデータ:112820平川　博康　　　平川博平川博康川　口2ｷﾚﾈﾝｺ       千　葉41280003  　　　  33703442146704222003伊藤　正司　　　伊藤正伊藤正司伊勢崎3Rﾘﾉﾘｺ       群　馬54200108  　　　  33703469147920332507遠藤　　誠　　　遠藤誠遠藤　誠浜　松4ﾜｰﾙﾄﾞｼｮｰ    東　京46250106  　　　  33603460147609443115丸山　智史　　　丸山智丸山智史山　陽6ｼﾞｪｼｶ       山　口33310101  　　　  33303418146308553211中村　友和　　　中村友中村友和浜　松4ﾋｶﾘ         静　岡31320102  　　　  32903424146508663104鐘ヶ江　将平　　鐘ヶ江鐘ヶ江将飯　塚5ｼﾞｪｲﾄﾞA     福　岡32310107  　　　  33403460147615773215吉原　恭佑　　　吉原恭吉原恭佑伊勢崎3ﾊﾞｰｼｱ       群　馬32320105  　　　  33403444147106882532若井　友和　　　若井友若井友和川　口2ﾓｴﾙﾄｳｺﾝ     埼　玉46250104  　　　  33403434146802
+[INFO]	2020-04-25 16:42:45,467	module:trn_result	command.insert_or_update_Trn_Result:500	内容:insert_or_update_trn_rider_results End
+[INFO]	2020-04-25 16:42:45,473	module:watchdoc	command.on_created:58	created End:
+[INFO]	2020-04-25 16:43:27,535	module:watchdoc	command.on_created:76	created Start:/code/app_autorace/management/commands/top30prizeData/042416050600000003.dat
+[INFO]	2020-04-25 16:43:27,540	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,542	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,542	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,549	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,553	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,556	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,556	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,564	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,583	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,586	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,586	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,593	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,593	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,595	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,596	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,602	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,621	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,622	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,623	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,628	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,639	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,641	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,652	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,661	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,663	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,670	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,675	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,681	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,691	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,693	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,695	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,708	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,710	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,713	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,721	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,727	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,739	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,740	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,741	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,748	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,756	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,758	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,769	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,787	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,788	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,790	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,792	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,804	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,805	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,819	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,820	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,828	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,839	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,841	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,844	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,851	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,868	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,870	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,874	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,906	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,909	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,919	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,922	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,928	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,930	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,939	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,943	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,951	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,975	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,980	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:27,981	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:27,989	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,014	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,019	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,021	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,029	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,052	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,054	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,054	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,060	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,080	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,081	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,082	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,088	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,097	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,099	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,100	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,107	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,126	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,129	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,129	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,135	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,137	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,144	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,148	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,156	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,166	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,168	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,170	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,183	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,186	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,188	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,196	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,202	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,211	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,216	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,217	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,224	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,231	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,234	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,235	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,248	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,260	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,262	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,262	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,268	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,269	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,279	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,282	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,288	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,297	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,299	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,301	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,314	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,326	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,329	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,329	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,336	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,337	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,347	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,349	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,356	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,367	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,369	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,377	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,386	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,387	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,390	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,401	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,411	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,418	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,420	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,423	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,430	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,449	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,451	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,453	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,461	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,477	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,482	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,483	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,490	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,498	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,500	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,508	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,517	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,526	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,529	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,529	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,536	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,537	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,544	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,549	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,557	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,558	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,570	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,578	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,587	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,598	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,600	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,607	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,613	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,626	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,628	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,629	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,634	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,645	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,647	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,649	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,656	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,664	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,666	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,678	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,693	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,694	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,695	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,696	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,701	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,703	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,712	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,715	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,721	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,731	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,733	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,734	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,747	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,750	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:86	内容:Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,752	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:88	内容:Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,761	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:93	内容:update_Trn_Top_30_Prize Start:
+[INFO]	2020-04-25 16:43:28,767	module:trn_top_30_prize	command.insert_or_update_Trn_Top_30_Prize:95	内容:update_Trn_Top_30_Prize End
+[INFO]	2020-04-25 16:43:28,783	module:watchdoc	command.on_created:80	created End:
+[INFO]	2020-04-25 16:44:21,972	module:watchdoc	command.on_created:87	created Start:/code/app_autorace/management/commands/outsidetrackData/042417055900000004.dat
+[INFO]	2020-04-25 16:44:21,982	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1144	内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: outsidetrack_record:0
+[INFO]	2020-04-25 16:44:22,006	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1146	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:44:22,032	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1149	内容:update_trn_outside_track Start:0
+[INFO]	2020-04-25 16:44:22,167	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1151	内容:update_trn_outside_track End
+[INFO]	2020-04-25 16:44:22,168	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1144	内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: outsidetrack_record:1
+[INFO]	2020-04-25 16:44:22,186	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1146	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:44:22,187	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1149	内容:update_trn_outside_track Start:584
+[INFO]	2020-04-25 16:44:22,367	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1151	内容:update_trn_outside_track End
+[INFO]	2020-04-25 16:44:22,369	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1144	内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: outsidetrack_record:2
+[INFO]	2020-04-25 16:44:22,381	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1146	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:44:22,387	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1149	内容:update_trn_outside_track Start:1168
+[INFO]	2020-04-25 16:44:22,490	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1151	内容:update_trn_outside_track End
+[INFO]	2020-04-25 16:44:22,492	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1144	内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: outsidetrack_record:3
+[INFO]	2020-04-25 16:44:22,503	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1146	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:44:22,504	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1149	内容:update_trn_outside_track Start:1752
+[INFO]	2020-04-25 16:44:22,591	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1151	内容:update_trn_outside_track End
+[INFO]	2020-04-25 16:44:22,592	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1144	内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: outsidetrack_record:4
+[INFO]	2020-04-25 16:44:22,603	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1146	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:44:22,609	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1149	内容:update_trn_outside_track Start:2336
+[INFO]	2020-04-25 16:44:22,694	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1151	内容:update_trn_outside_track End
+[INFO]	2020-04-25 16:44:22,694	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1144	内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: outsidetrack_record:5
+[INFO]	2020-04-25 16:44:22,704	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1146	内容:insert_Trn_Outside_track End
+[INFO]	2020-04-25 16:44:22,704	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1149	内容:update_trn_outside_track Start:2920
+[INFO]	2020-04-25 16:44:22,761	module:trn_outside_track	command.insert_or_update_Trn_Outside_track:1151	内容:update_trn_outside_track End
+[INFO]	2020-04-25 16:44:22,773	module:watchdoc	command.on_created:91	created End:
+[INFO]	2020-04-25 16:56:44,217	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:56:44,218	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:56:59,398	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:56:59,398	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:57:06,473	module:trn_receiving_autorace	command.handle:182	scheduleData: スケジュール監視　End
+[INFO]	2020-04-25 16:57:06,474	module:trn_receiving_autorace	command.handle:183	programData: 番組編成監視　End
+[INFO]	2020-04-25 16:57:06,477	module:trn_receiving_autorace	command.handle:184	resultData: レース結果監視　End
+[INFO]	2020-04-25 16:57:06,489	module:trn_receiving_autorace	command.handle:185	top30prizeData: 選手取得賞金上位３０位監視　End
+[INFO]	2020-04-25 16:57:06,493	module:trn_receiving_autorace	command.handle:186	outsidetrackData: 場外売場情報監視　End
+[INFO]	2020-04-25 16:57:22,975	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:57:22,975	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:57:53,162	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:57:53,162	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:57:55,407	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:57:55,407	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 16:58:19,036	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 16:58:19,036	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 20:31:47,666	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 20:31:47,672	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:29:14,561	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:29:14,562	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:29:47,929	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:29:47,930	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:30:01,107	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:30:01,107	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:31:40,677	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:31:40,678	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:31:40,678	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:31:40,678	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:31:47,856	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:31:47,857	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:37:29,926	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:37:29,925	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:37:29,927	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:37:29,928	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:37:39,992	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:37:39,992	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:38:18,577	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:38:18,578	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:38:21,068	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:38:21,069	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 21:38:27,462	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 21:38:27,462	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:10:18,752	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:10:18,753	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:10:31,639	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:10:31,640	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:10:38,109	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:10:38,110	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:12:05,195	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:12:05,196	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:12:05,643	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:12:05,644	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:12:35,279	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:12:35,280	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:12:38,564	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:12:38,564	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:12:45,983	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:12:45,983	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:13:29,103	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:13:29,103	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:13:31,186	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:13:31,187	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:14:59,327	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:14:59,331	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:15:00,600	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:15:00,606	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:15:26,807	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:15:26,818	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:15:26,818	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:15:26,818	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:15:37,876	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:15:37,877	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:34:52,994	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:34:52,995	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:35:15,220	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:35:15,220	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:35:24,306	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:35:24,307	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:38:04,867	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:38:04,868	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:44:03,943	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:44:03,943	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:45:24,191	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:45:24,192	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:46:19,524	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:46:19,536	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:46:33,142	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:46:33,143	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:46:42,042	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:46:42,042	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:57:01,056	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:57:01,057	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:57:13,468	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:57:13,469	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 22:57:18,619	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 22:57:18,619	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:02:40,654	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:02:40,655	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:08:12,487	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:08:12,488	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:09:50,271	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:09:50,272	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:10:04,689	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:10:04,689	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:10:12,248	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:10:12,248	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:10:49,515	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:10:49,516	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:14:16,025	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:14:16,028	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:14:16,547	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:14:16,547	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:14:22,653	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:14:22,654	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:14:56,770	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:14:56,771	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:15:37,772	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:15:37,772	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:15:54,481	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:15:54,482	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:16:20,138	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:16:20,138	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:16:23,878	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:16:23,879	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:19:16,872	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:19:16,873	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:19:48,267	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:19:48,268	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:26:00,468	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:26:00,468	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:30:12,389	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:30:12,389	module:apps	command.ready:30	command End:
+[INFO]	2020-04-25 23:30:56,284	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-25 23:30:56,285	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 14:45:15,424	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 14:45:15,425	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 15:29:59,485	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 15:29:59,485	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 15:32:09,101	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 15:32:09,102	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 15:33:02,401	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 15:33:02,402	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 15:35:21,431	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 15:35:21,431	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 15:35:39,401	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 15:35:39,401	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 15:43:43,738	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 15:43:43,739	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 15:44:23,219	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 15:44:23,220	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 16:05:41,957	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 16:05:41,957	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 16:06:07,702	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 16:06:07,702	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 16:22:54,800	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 16:22:54,801	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 16:33:19,309	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 16:33:19,310	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 16:37:36,074	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 16:37:36,075	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 17:19:05,803	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 17:19:05,803	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 21:50:42,494	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 21:50:42,495	module:apps	command.ready:30	command End:
+[INFO]	2020-04-26 23:29:19,089	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-26 23:29:19,089	module:apps	command.ready:30	command End:
