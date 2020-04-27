@@ -81,8 +81,25 @@ class Output_NewsML():
                 elif self.st == "2":  # プレビューであれば、UTF-16に変換し表示
                     return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
 
-    # NewsML内のコンテキスト作成
-    def Create_context(self, prefecture_code=0):
+    def Create_context(self, prefecture_code=1, class_code=1, eastwest_code=1, display_order=0):
+        """NewsML内のコンテキスト作成
+        
+        Parameters
+        ----------
+        prefecture_code : int
+            対象の都道府県コード。
+        class_code : int
+            対象の部署コード。
+        eastwest_code : int
+            対象の東西コード。
+        display_order : int
+            対象の取組順。
+
+        Returns
+        -------
+        context : dict
+            NewsMl_template内に渡す変数。
+        """
         # newsmlmetaから現在の場所と取得して、テンプレートに渡す
         # 力士マスタ、生涯成績マスタから現在の値を取得して、テンプレートに渡す
         # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
@@ -95,9 +112,6 @@ class Output_NewsML():
         context = { 'newsmlmeta':tran_system }
         fix_context = {}
 
-        # 都道府県コード
-        prefecture_code=1
-        
         #01新番付資料
         if self.newsno == "01":
             fix_context = {
