@@ -15,6 +15,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers.polling import PollingObserver
 
 from app_autorace.consts import *
+from app_autorace.commons import Common
 
 logger = getLogger('command')
 
@@ -22,7 +23,6 @@ top30prize = 50 # 取得賞金テーブル　繰り返しの数
 top30prizeNum = 45
 
 class Top_30_prize():
-        
 
     def update_Trn_Top_30_Prize(self, top30prize_record, top30prizeLine, trn_Top_30_Prize):
 
@@ -63,28 +63,27 @@ class Top_30_prize():
         if top30prizeLine[top30prize_record+33:top30prize_record+45]:
             trn_Top_30_Prize.Prize=top30prizeLine[top30prize_record+33:top30prize_record+45]
             updateFields.append('Prize')
-      
+
         # 実体のあるカラム更新
         trn_Top_30_Prize.save(update_fields=updateFields)
 
-
     def insert_or_update_Trn_Top_30_Prize(self, fileName):
-        
+
         try:
             # モデル読み込みがここでしか読み込みできない
-            from app_autorace.models import Trn_Top_30_Prize 
+            from app_autorace.models import Trn_Top_30_Prize
+            cmn = Common()
 
             # ファイル読み込み　データセット
             logger.info('文字コード確認')
             with open(fileName, 'rb') as f:
                 logger.info(chardet.detect(f.read()))
 
-
             file = open(fileName,'r',encoding='shift_jis')
             for line in file: # 1行しかない
+                # ファイル文字サイズ
+                logger.info(f'{fileName}はファイルサイズ ' + f'{len(line)}')
 
-                top30prizeLine = line[18:]
-                
                 # DB　ファイル登録
                 # 必須項目のみ
                 #INSERTが実行される
@@ -92,12 +91,18 @@ class Top_30_prize():
 
                     # 選手取得賞金上位３０位
                     for top30prize_record in range(top30prize):
+                        top30prize_record = top30prize_record * top30prizeNum
+                        top30prizeLine = line[18:]
+                        chkline = top30prizeLine[top30prize_record:]
+                        # insert チェックする。データがからのときはスキップ
+                        logger.info(f'データチェック{chkline}')
+                        if not cmn.chkBlank(chkline):
+                            logger.info( "データチェックがからのため End")
+                            break
 
                         logger.info( "内容:Trn_Top_30_Prize Start:")
                         Trn_Top_30_Prize(Cllasification=line[0:1], Data_type=line[1:2], Send_date=line[2:10], Totaling_date=line[10:18]).save()
                         logger.info( "内容:Trn_Top_30_Prize End")
-
-                        top30prize_record = top30prize_record * top30prizeNum
 
                         # 空白チェックして実体があるカラムは更新
                         logger.info( "内容:update_Trn_Top_30_Prize Start:")

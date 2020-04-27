@@ -1,4 +1,4 @@
-# pwd : /code 
+# pwd : /code
 import os
 import re
 import sys
@@ -16,9 +16,9 @@ try:
     import codecs
 except ImportError:
     codecs = None
-    
+
 logger = getLogger('command')
-base_trn = os.path.dirname(os.path.abspath(__file__)) 
+base_trn = os.path.dirname(os.path.abspath(__file__))
 try:
     from app_autorace import trn_schedule, trn_program, trn_result, trn_top_30_prize, trn_outside_track
 except Exception as e:
@@ -35,15 +35,15 @@ class DatManage():
         # エラーの処理を判断して止める
         # モデル読み込みがここでしか読み込みできない
         try:
-            from app_autorace.models import Tran_Systemstatus 
+            from app_autorace.models import Tran_Systemstatus
             while True:
                 time.sleep(1)
-                systemstatus = Tran_Systemstatus.objects.select_related('Operationmode').get(id=1)    
+                systemstatus = Tran_Systemstatus.objects.select_related('Operationmode').get(id=1)
                 if systemstatus and (systemstatus.Operationmode.Operationmode_code==1):
 
                     self.observer_trn_watchdoc.stop()
                     logger.warning("watchdoc監視　End")
-                return False       
+                return False
 
         except Exception as e:
             logger.error("トランシステム該当レコードなし" + str(e))
@@ -52,7 +52,7 @@ class DatManage():
         # watchdoc 呼び出し
         baseDatData = os.path.normpath(os.path.join(base_trn, DATDATA))
         targetDirDatData = os.path.expanduser(baseDatData)
-        
+
         event_handler_schedule = WatchDocHandler(TARGET_FILE_DAT_RECORD)
         logger.info("targetDirDatData: " + targetDirDatData )
         self.observer_trn_watchdoc.schedule(event_handler_schedule, targetDirDatData, recursive=GO_RECURSIVELY)# recursive再帰的
@@ -69,18 +69,18 @@ class WatchDocHandler(PatternMatchingEventHandler):
     def checkDatData(self, filepath):
         if re.search('00000000.dat', filepath):
             return SCHEDULE
-        
+
         if re.search('0000[1-6]001.dat', filepath):
             return PROGRAM
 
         if re.search('0000[1-6]0[1-9]2.dat', filepath) or re.search('0000[1-6]1[0-2]2.dat', filepath):
             return RESULT
-        
+
         if re.search('00000003.dat', filepath):
             return TOP30PRIZE
-        
+
         if re.search('00000004.dat', filepath):
-            return OUTSIDETRACK 
+            return OUTSIDETRACK
 
         return None
 
@@ -97,11 +97,11 @@ class WatchDocHandler(PatternMatchingEventHandler):
             filename_schedule_record = os.path.basename(filepath)
             # 監視元のフォルダパスを生成
             fileName = os.path.normpath(os.path.join(base_trn, DATDATA, filename_schedule_record))
-            
+
             logger.info( "created Start:" + fileName)
             # ファイル読み込み
             schedule = trn_schedule.Schedule()
-                
+
             logger.error("DB insert_or_update_Trn_Schedule: 失敗：ファイル名" + fileName) if not schedule.insert_or_update_Trn_Schedule(fileName) else logger.info( "created End:")
 
         if datDataFileFlg == PROGRAM:
@@ -112,7 +112,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
             logger.info( "created Start:" + fileName)
             # ファイル読み込み
             program = trn_program.Program()
-                
+
             logger.error("DB insert_or_update_Trn_Program: 失敗：ファイル名" + fileName) if not program.insert_or_update_Trn_Program(fileName) else logger.info( "created End:")
 
         if datDataFileFlg == RESULT:
@@ -123,7 +123,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
             logger.info( "created Start:" + fileName)
             # ファイル読み込み
             result = trn_result.Result()
-                
+
             logger.error("DB insert_or_update_Trn_Result: 失敗：ファイル名" + fileName) if not result.insert_or_update_Trn_Result(fileName) else logger.info( "created End:")
 
         if datDataFileFlg == TOP30PRIZE:
@@ -134,7 +134,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
             logger.info( "created Start:" + fileName)
             # ファイル読み込み
             top_30_prize = trn_top_30_prize.Top_30_prize()
-                
+
             logger.error("DB insert_or_update_Trn_Top_30_Prize: 失敗：ファイル名" + fileName) if not top_30_prize.insert_or_update_Trn_Top_30_Prize(fileName) else logger.info( "created End:")
 
         if datDataFileFlg == OUTSIDETRACK:

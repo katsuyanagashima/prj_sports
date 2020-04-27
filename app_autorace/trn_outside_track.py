@@ -15,6 +15,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers.polling import PollingObserver
 
 from app_autorace.consts import *
+from app_autorace.commons import Common
 
 logger = getLogger('command')
 
@@ -23,14 +24,14 @@ logger = getLogger('command')
 
 
 outsidetrack_repeat = 6 # 場情報　繰り返しの数
-outsidetrackNum = 584
+outsidetrackNum = 472
 
 class Outside_track():
 
-    def update_trn_outside_track(self,outsidetrack, outsidetrackLine, trn_Update):
+    def update_trn_outside_track(self, outsidetrack, outsidetrackLine, trn_Update):
         updateFields = list()
 
-        # 場情報  繰り返しの数 
+        # 場情報  繰り返しの数
         if outsidetrackLine[outsidetrack:outsidetrack+1]:
             trn_Update.Track_code=outsidetrackLine[outsidetrack:outsidetrack+1]
             updateFields.append('Track_code')
@@ -61,8 +62,8 @@ class Outside_track():
         if outsidetrackLine[outsidetrack+70:outsidetrack+72]:
             trn_Update.Special_commemorative_code=outsidetrackLine[outsidetrack+70:outsidetrack+72]
             updateFields.append('Special_commemorative_code')
-   
-        # 場外売場情報 繰り返し 1×20 
+
+        # 場外売場情報 繰り返し 1×20
         if outsidetrackLine[outsidetrack+72:outsidetrack+73]:
             trn_Update.OTB_code_1=outsidetrackLine[outsidetrack+72:outsidetrack+73]
             updateFields.append('OTB_code_1')
@@ -114,7 +115,7 @@ class Outside_track():
         if outsidetrackLine[outsidetrack+91:outsidetrack+92]:
             trn_Update.race_12_1=outsidetrackLine[outsidetrack+91:outsidetrack+92]
             updateFields.append('race_12_1')
-          
+
         # 場外売場情報 繰り返し 2×20
         if outsidetrackLine[outsidetrack+92:outsidetrack+93]:
             trn_Update.OTB_code_2=outsidetrackLine[outsidetrack+92:outsidetrack+93]
@@ -219,7 +220,7 @@ class Outside_track():
             updateFields.append('race_11_3')
         if outsidetrackLine[outsidetrack+131:outsidetrack+132]:
             trn_Update.race_12_3=outsidetrackLine[outsidetrack+131:outsidetrack+132]
-            updateFields.append('race_12_3')         
+            updateFields.append('race_12_3')
 
         # 場外売場情報 繰り返し 4×20
         if outsidetrackLine[outsidetrack+132:outsidetrack+133]:
@@ -592,7 +593,7 @@ class Outside_track():
             trn_Update.race_12_10=outsidetrackLine[outsidetrack+271:outsidetrack+272]
             updateFields.append('race_12_10')
 
-        # 場外売場情報 繰り返し 11×20 
+        # 場外売場情報 繰り返し 11×20
         if outsidetrackLine[outsidetrack+272:outsidetrack+273]:
             trn_Update.OTB_code_11=outsidetrackLine[outsidetrack+272:outsidetrack+273]
             updateFields.append('OTB_code_11')
@@ -644,7 +645,7 @@ class Outside_track():
         if outsidetrackLine[outsidetrack+291:outsidetrack+292]:
             trn_Update.race_12_11=outsidetrackLine[outsidetrack+291:outsidetrack+292]
             updateFields.append('race_12_11')
-          
+
         # 場外売場情報 繰り返し 12×20
         if outsidetrackLine[outsidetrack+292:outsidetrack+293]:
             trn_Update.OTB_code_12=outsidetrackLine[outsidetrack+292:outsidetrack+293]
@@ -749,7 +750,7 @@ class Outside_track():
             updateFields.append('race_11_13')
         if outsidetrackLine[outsidetrack+331:outsidetrack+332]:
             trn_Update.race_12_13=outsidetrackLine[outsidetrack+331:outsidetrack+332]
-            updateFields.append('race_12_13')         
+            updateFields.append('race_12_13')
 
         # 場外売場情報 繰り返し 14×20
         if outsidetrackLine[outsidetrack+332:outsidetrack+333]:
@@ -1129,7 +1130,8 @@ class Outside_track():
 
         try:
             # モデル読み込みがここでしか読み込みできない
-            from app_autorace.models import Trn_Outside_track 
+            from app_autorace.models import Trn_Outside_track
+            cmn = Common()
 
             # ファイル読み込み　データセット
             logger.info('文字コード確認')
@@ -1138,18 +1140,27 @@ class Outside_track():
 
             file = open(fileName,'r',encoding='shift_jis')
             for line in file: # 1行しかない
-
-                outsidetrackLine = line[2:]
+                # ファイル文字サイズ
+                logger.info(f'{fileName}はファイルサイズ {len(line)}')
 
                 # DB　ファイル登録
                 # 必須項目のみ
                 #INSERTが実行される
                 with transaction.atomic():
-                    
+
                     # 場外売場情報
                     for outsidetrack_record in range(outsidetrack_repeat):
                         outsidetrack = outsidetrackNum * outsidetrack_record
-                        logger.info( "内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: outsidetrack_record:" + str(outsidetrack_record))
+                        outsidetrackLine = line[2:]
+
+                        chkline = outsidetrackLine[outsidetrack:]
+                        # insert チェックする。データがからのときはスキップ
+                        logger.info(f'データチェック{chkline}')
+                        if not cmn.chkBlank(chkline):
+                            logger.info( "データチェックがからのため End")
+                            break
+
+                        logger.info( f'内容:insert_Trn_Outside_track Start:詳細:ファイルデータ: 繰り返し{outsidetrack_record}: 先頭番号{outsidetrack}')
                         Trn_Outside_track(Cllasification=line[0:1], Data_type=line[1:2]).save()
                         logger.info( "内容:insert_Trn_Outside_track End")
 
