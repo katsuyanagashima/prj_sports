@@ -20,14 +20,15 @@ temp = [
 def nav_info(request, get_type=0):
     tran_system = Tran_Systemstatus.objects.all().first()
 
-    params = {
-        'nav': {
-            'basho': tran_system.CurrentBasho,
-            'systatus': tran_system.SystemStatus,
-            'torikumiday': tran_system.TorikumiDate.Nichime_name,
-            'shoubuday': tran_system.MatchDate.Nichime_name
-        }
-    }
+    # params = {
+    #     'nav': {
+    #         'basho': tran_system.CurrentBasho,
+    #         'systatus': tran_system.SystemStatus,
+    #         'torikumiday': tran_system.TorikumiDate.Nichime_name,
+    #         'shoubuday': tran_system.MatchDate.Nichime_name
+    #     }
+    # }
+    params = {} # dump.json 復旧までの退避
     if get_type:
         return [params, tran_system]
     else:
@@ -80,8 +81,25 @@ class Output_NewsML():
                 elif self.st == "2":  # プレビューであれば、UTF-16に変換し表示
                     return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
 
-    # NewsML内のコンテキスト作成
-    def Create_context(self, prefecture_code=0):
+    def Create_context(self, prefecture_code=1, class_code=1, eastwest_code=1, display_order=0):
+        """NewsML内のコンテキスト作成
+        
+        Parameters
+        ----------
+        prefecture_code : int
+            対象の都道府県コード。
+        class_code : int
+            対象の部署コード。
+        eastwest_code : int
+            対象の東西コード。
+        display_order : int
+            対象の取組順。
+
+        Returns
+        -------
+        context : dict
+            NewsMl_template内に渡す変数。
+        """
         # newsmlmetaから現在の場所と取得して、テンプレートに渡す
         # 力士マスタ、生涯成績マスタから現在の値を取得して、テンプレートに渡す
         # （現状は体重等が力士マスタになっているのでそうなるが、力士マスタは全ての力士を蓄積しているので、番付だけのトランザクションテーブルに移動させて方が良いかも）
@@ -94,17 +112,14 @@ class Output_NewsML():
         context = { 'newsmlmeta':tran_system }
         fix_context = {}
 
-        # 都道府県コード
-        prefecture_code=1
-        
         #01新番付資料
         if self.newsno == "01":
             fix_context = {
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+        #        'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+        #        'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #02新番付資料・補正
         elif self.newsno == "02":
@@ -112,8 +127,6 @@ class Output_NewsML():
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="02") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #03新番付
         elif self.newsno == "03":
@@ -121,8 +134,6 @@ class Output_NewsML():
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #04郷土力士新番付
         elif self.newsno == "04":
@@ -130,8 +141,6 @@ class Output_NewsML():
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="04") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #05幕下以下新番付
         elif self.newsno == "05":
@@ -139,8 +148,6 @@ class Output_NewsML():
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="05") ,  #副ヘッダマスタ
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
-                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
             }
         #06郷土力士取組
         elif self.newsno == "06":

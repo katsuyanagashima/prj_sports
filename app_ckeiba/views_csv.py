@@ -11,166 +11,9 @@ from .forms import *
 import csv
 from io import TextIOWrapper, StringIO
 
-#CSV検証用
-def upload(request):
-    if 'csv' in request.FILES:
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='utf-8')
-        csv_file = csv.reader(form_data)
-        for line in csv_file:
-          BA7, created = Schedule_BA7.objects.get_or_create(Data_ID=line[1])
-          BA7.Data_ID = line[0]
-          BA7.held_year = line[1]
-          BA7.Organizer_times = line[2]
-          BA7.Track_times = line[3]
-          BA7.Organizer_code = line[4]
-          BA7.Track_code = line[5]
-          BA7.Held_code = line[6]
-          BA7.Night_game_code = line[7]
-          BA7.Dates = line[8]
-          BA7.Date_1 = line[9]
-          BA7.Day_code_1 = line[10]
-          BA7.Races_1 = line[11]
-          BA7.Postpone_date_1_1 = line[12]
-          BA7.Postpone_day_code_1_1 = line[13]
-          BA7.Postpone_start_1_1 = line[14]
-          BA7.Postpone_date_1_2 = line[15]
-          BA7.Postpone_day_code_1_2 = line[16]
-          BA7.Postpone_start_1_2 = line[17]
-          BA7.Date_2 = line[18]
-          BA7.Day_code_2 = line[19]
-          BA7.Races_2 = line[20]
-          BA7.Postpone_date_2_1 = line[21]
-          BA7.Postpone_day_code_2_1 = line[22]
-          BA7.Postpone_start_2_1 = line[23]
-          BA7.Postpone_date_2_2 = line[24]
-          BA7.Postpone_day_code_2_2 = line[25]
-          BA7.Postpone_start_2_2 = line[26]
-          BA7.Date_3 = line[27]
-          BA7.Day_code_3 = line[28]
-          BA7.Races_3 = line[29]
-          BA7.Postpone_date_3_1 = line[30]
-          BA7.Postpone_day_code_3_1 = line[31]
-          BA7.Postpone_start_3_1 = line[32]
-          BA7.Postpone_date_3_2 = line[33]
-          BA7.Postpone_day_code_3_2 = line[34]
-          BA7.Postpone_start_3_2 = line[35]
-          BA7.Date_4 = line[36]
-          BA7.Day_code_4 = line[37]
-          BA7.Races_4 = line[38]
-          BA7.Postpone_date_4_1 = line[39]
-          BA7.Postpone_day_code_4_1 = line[40]
-          BA7.Postpone_start_4_1 = line[41]
-          BA7.Postpone_date_4_2 = line[42]
-          BA7.Postpone_day_code_4_2 = line[43]
-          BA7.Postpone_start_4_2 = line[44]
-          BA7.Date_5 = line[45]
-          BA7.Day_code_5 = line[46]
-          BA7.Races_5 = line[47]
-          BA7.Postpone_date_5_1 = line[48]
-          BA7.Postpone_day_code_5_1 = line[49]
-          BA7.Postpone_start_5_1 = line[50]
-          BA7.Postpone_date_5_2 = line[51]
-          BA7.Postpone_day_code_5_2 = line[52]
-          BA7.Postpone_start_5_2 = line[53]
-          BA7.Date_6 = line[54]
-          BA7.Day_code_6 = line[55]
-          BA7.Races_6 = line[56]
-          BA7.Postpone_date_6_1 = line[57]
-          BA7.Postpone_day_code_6_1 = line[58]
-          BA7.Postpone_start_6_1 = line[59]
-          BA7.Postpone_date_6_2 = line[60]
-          BA7.Postpone_day_code_6_2 = line[61]
-          BA7.Postpone_start_6_2 = line[62]
-          BA7.save()
 
-        return render(request, 'app_ckeiba/upload.html')
-
-    else:
-        return render(request, 'app_ckeiba/upload.html')
-    
-
-#CSV検証用（パターン２）
-def upload2(request):
-    if 'csv' in request.FILES:
-        form_data = TextIOWrapper(request.FILES['csv'].file, encoding='utf-8')
-        csv_file = csv.reader(form_data)
-        for line in csv_file:
-          BA7, created = Schedule_BA7.objects.get_or_create(Data_ID=line[1])
-          BA7.Data_ID = line[0]
-          BA7.held_year = line[1]
-          BA7.Organizer_times = line[2]
-          BA7.Track_times = line[3]
-          BA7.Organizer_code = line[4]
-          BA7.Track_code = line[5]
-          BA7.Held_code = line[6]
-          BA7.Night_game_code = line[7]
-          BA7.Dates = line[8]
-          BA7.Date_1 = line[9]
-          BA7.Day_code_1 = line[10]
-          BA7.Races_1 = line[11]
-          BA7.Postpone_date_1_1 = line[12]
-          BA7.Postpone_day_code_1_1 = line[13]
-          BA7.Postpone_start_1_1 = line[14]
-          BA7.Postpone_date_1_2 = line[15]
-          BA7.Postpone_day_code_1_2 = line[16]
-          BA7.Postpone_start_1_2 = line[17]
-          BA7.Date_2 = line[18]
-          BA7.Day_code_2 = line[19]
-          BA7.Races_2 = line[20]
-          BA7.Postpone_date_2_1 = line[21]
-          BA7.Postpone_day_code_2_1 = line[22]
-          BA7.Postpone_start_2_1 = line[23]
-          BA7.Postpone_date_2_2 = line[24]
-          BA7.Postpone_day_code_2_2 = line[25]
-          BA7.Postpone_start_2_2 = line[26]
-          BA7.Date_3 = line[27]
-          BA7.Day_code_3 = line[28]
-          BA7.Races_3 = line[29]
-          BA7.Postpone_date_3_1 = line[30]
-          BA7.Postpone_day_code_3_1 = line[31]
-          BA7.Postpone_start_3_1 = line[32]
-          BA7.Postpone_date_3_2 = line[33]
-          BA7.Postpone_day_code_3_2 = line[34]
-          BA7.Postpone_start_3_2 = line[35]
-          BA7.Date_4 = line[36]
-          BA7.Day_code_4 = line[37]
-          BA7.Races_4 = line[38]
-          BA7.Postpone_date_4_1 = line[39]
-          BA7.Postpone_day_code_4_1 = line[40]
-          BA7.Postpone_start_4_1 = line[41]
-          BA7.Postpone_date_4_2 = line[42]
-          BA7.Postpone_day_code_4_2 = line[43]
-          BA7.Postpone_start_4_2 = line[44]
-          BA7.Date_5 = line[45]
-          BA7.Day_code_5 = line[46]
-          BA7.Races_5 = line[47]
-          BA7.Postpone_date_5_1 = line[48]
-          BA7.Postpone_day_code_5_1 = line[49]
-          BA7.Postpone_start_5_1 = line[50]
-          BA7.Postpone_date_5_2 = line[51]
-          BA7.Postpone_day_code_5_2 = line[52]
-          BA7.Postpone_start_5_2 = line[53]
-          BA7.Date_6 = line[54]
-          BA7.Day_code_6 = line[55]
-          BA7.Races_6 = line[56]
-          BA7.Postpone_date_6_1 = line[57]
-          BA7.Postpone_day_code_6_1 = line[58]
-          BA7.Postpone_start_6_1 = line[59]
-          BA7.Postpone_date_6_2 = line[60]
-          BA7.Postpone_day_code_6_2 = line[61]
-          BA7.Postpone_start_6_2 = line[62]
-          BA7.save()
-
-        return render(request, 'app_ckeiba/upload2.html')
-    #    return render(request, 'app_ckeiba/upload2.html')
-
-    else:
-        return render(request, 'app_ckeiba/upload2.html')
-    #    return render(request, 'app_ckeiba/upload2.html')
-
-
-#開催日割_BA7 CSVファイル読み込み
-def Line2Schedule_BA7(line):
+#開催日割_BA7
+def CSV_Schedule_BA7(line):
     Schedule_BA7.objects.get_or_create(
     Data_ID = line[0],
     held_year = line[1],
@@ -235,3 +78,776 @@ def Line2Schedule_BA7(line):
     Postpone_date_6_2 = line[60],
     Postpone_day_code_6_2 = line[61],
     Postpone_start_6_2 = line[62])
+
+
+#本日施行情報_INI
+def CSV_INI(line):
+    Trn_Enforcement_information_today_INI.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code_id = line[2],
+    Held_day = line[3],
+    Track_times = line[4],
+    Races = line[5])
+
+
+#出馬表Ａ_SUA CSVファイル読み込み
+def Line2Trn_Running_list_A_SUA(line):
+    Trn_Running_list_A_SUA.objects.get_or_create(
+    Data_ID = line[0],
+    Organizer_times = line[1],
+    Track_times = line[2],
+    Race_date = line[3],
+    Track_code = line[4],
+    Track_name = line[5],
+    Track_name_shortened = line[6],
+    Organizer_code = line[7],
+    Organizer_name = line[8],
+    Held_day = line[9],
+    Held_times = line[10],
+    Race_No = line[11],
+    Win_sale = line[12],
+    Place_sale = line[13],
+    Bracketquinella_sale = line[14],
+    bracketexacta_sale = line[15],
+    Quinella_sale = line[16],
+    Exacta_sale = line[17],
+    Race_type_code = line[18],
+    Race_type_name = line[19],
+    Breed_age_code = line[20],
+    Breed_age_name = line[21],
+    Weight_code = line[22],
+    Weight_name = line[23],
+    Male_weight = line[24],
+    Female_weight = line[25],
+    Race_times = line[26],
+    Race_name = line[27],
+    Additional_name = line[28],
+    JRA_exchanges_code = line[29],
+    Race_code = line[30],
+    Certified_race_code = line[31],
+    Grade_code = line[32],
+    Grade_name = line[33],
+    Night_race_code = line[34],
+    Prize_money_1 = line[35],
+    Prize_money_2 = line[36],
+    Prize_money_3 = line[37],
+    Prize_money_4 = line[38],
+    Main_prize_5 = line[39],
+    Additional_prize_1 = line[40],
+    Additional_prize_2 = line[41],
+    Additional_prize_3 = line[42],
+    Additional_prize_4 = line[43],
+    Additional_prize_5 = line[44],
+    Supplementary_prize_1 = line[45],
+    Supplementary_prize_2 = line[46],
+    Supplementary_prize_3 = line[47],
+    Supplementary_prize_4 = line[48],
+    Supplementary_prize_5 = line[49],
+    Supplementary_prize_6 = line[50],
+    Supplementary_prize_7 = line[51],
+    Supplementary_prize_8 = line[52],
+    Supplementary_prize_9 = line[53],
+    Supplementary_prize_10 = line[54],
+    Supplementary_prize_11 = line[55],
+    Supplementary_prize_12 = line[56],
+    Supplementary_Award_13 = line[57],
+    Supplementary_prize_14 = line[58],
+    Supplementary_prize_15 = line[59],
+    Organizer_total_races = line[60],
+    Scheduled_participation = line[61],
+    Race_qualification_1 = line[62],
+    Race_qualification_2 = line[63],
+    Race_qualification_3 = line[64],
+    Race_rank_1 = line[65],
+    Race_rank_2 = line[66],
+    Race_group_1 = line[67],
+    Race_group_2 = line[68],
+    Prize_amount_1 = line[69],
+    Under_1 = line[70],
+    Prize_amount_2 = line[71],
+    Under_2 = line[72],
+    Saddling_enclosure_time = line[73],
+    Start_time = line[74],
+    Race_Distance = line[75],
+    Turf_dirt_code = line[76],
+    Turf_Dart_name = line[77],
+    Inner_outer_code = line[78],
+    Inner_outer_name = line[79],
+    CW_or_CCW_code = line[80],
+    Weather_code = line[81],
+    Weather_name = line[82],
+    Track_condition_code = line[83],
+    Track_condition_name = line[84],
+    Track_moisture = line[85],
+    Night_lighting = line[86],
+    Record_time = line[87],
+    Record_era = line[88],
+    Record_race_date_JP = line[89],
+    Horse_name = line[90],
+    Weight = line[91],
+    Jockey_name = line[92])
+
+
+#出馬表Ｂ_SUB CSVファイル読み込み
+def Line2Trn_Running_list_B_SUB(line):
+    Trn_Running_list_B_SUB.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Held_times = line[2],
+    #Track_code = ●,
+    Race_No = line[3],
+    Bracket_No = line[4],
+    Hat_color = line[5],
+    Horse_No = line[6],
+    Horse_registration_No = line[7],
+    Horse_invitation_code = line[8],
+    Horse_classification = line[9],
+    Horse_name = line[10],
+    Horse_gender_code = line[11],
+    Horse_birth_date = line[12],
+    Horse_age = line[13],
+    Coat_color = line[14],
+    Horse_name_change = line[15],
+    Old_horse_name = line[16],
+    Horce_belonging_code = line[17],
+    Location_code = line[18],
+    Birth_pref = line[19],
+    Birth_town = line[20],
+    Breeder_name = line[21],
+    Arab_blood_volume = line[22],
+    Breed_name = line[23],
+    Sire_breed_name = line[24],
+    Sire_name = line[25],
+    Mare_breed_name = line[26],
+    Mare_horse = line[27],
+    BroodMareSire_breed_name = line[28],
+    BroodMareSire_name = line[29],
+    Previous_horse_weight = line[30],
+    Case = line[31],
+    Program_prize_money = line[32],
+    Last_race_date = line[33],
+    Weight = line[34],
+    Carry_weight = line[35],
+    Owner_Registration_No = line[36],
+    Horse_owner_name = line[37],
+    Trainer_license_No = line[38],
+    Trainer_name = line[39],
+    Trainer_shortened = line[40],
+    Jockey_license_No = line[41],
+    Jockey_name = line[42],
+    Jockey_shortened = line[43],
+    Weight_handicap = line[44],
+    Weight_handicap_symbol = line[45],
+    Jockey_belong_stable = line[46],
+    Jockey_invitation_code = line[47],
+    Jockey_invitation_name = line[48],
+    Jockey_belonging_code = line[49],
+    Jockey_location_code = line[50])
+
+
+#出馬表Ｃ_SUC CSVファイル読み込み
+def Line2Trn_Running_list_C_SUC(line):
+    Trn_Running_list_C_SUC.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Horse_name = line[5],
+    Run_history_classification = line[6],
+    JRA_exchanges_code = line[7],
+    Track_name = line[8],
+    Track_name_shortened = line[9],
+    Track_times = line[10],
+    Race_type_code = line[11],
+    Race_Distance = line[12],
+    Night_race_code = line[13],
+    Breed_age_code = line[14],
+    Race_times = line[15],
+    Race_name = line[16],
+    Grade_code = line[17],
+    Race_qualification_1 = line[18],
+    Race_qualification_2 = line[19],
+    Race_qualification_3 = line[20],
+    Race_rank_1 = line[21],
+    Race_rank_2 = line[22],
+    Race_group_1 = line[23],
+    Race_group_2 = line[24],
+    Prize_amount_1 = line[25],
+    Under_1 = line[26],
+    Prize_amount_2 = line[27],
+    Under_2 = line[28],
+    Weather_code = line[29],
+    Weather_name = line[30],
+    Track_condition_code = line[31],
+    Track_condition_name = line[32],
+    Track_moisture = line[33],
+    Turf_dirt_code = line[34],
+    Turf_Dart_name = line[35],
+    Inner_outer_code = line[36],
+    Inner_outer_name = line[37],
+    CW_or_CCW_code = line[38],
+    Participation = line[39],
+    Horse_gender_code = line[40],
+    Bracket_No = line[41],
+    Horse_No = line[42],
+    Horse_weight = line[43],
+    Weight = line[44],
+    Carry_weight = line[45],
+    Trainer_license_No = line[46],
+    Trainer_shortened = line[47],
+    Jockey_license_No = line[48],
+    Jockey_shortened = line[49],
+    Weight_handicap = line[50],
+    Weight_handicap_symbol = line[51],
+    Result = line[52],
+    Margin_code_1 = line[53],
+    Margin_1 = line[54],
+    Margin_code_2 = line[55],
+    Margin_2 = line[56],
+    Margin_code_3 = line[57],
+    Margin_3 = line[58],
+    Deadheat_code = line[59],
+    Finish_time = line[60],
+    Finish_line_result = line[61],
+    Accident_code = line[62],
+    Accident_name = line[63],
+    Accident_reason_code = line[64],
+    Accident_reason_name = line[65],
+    Prize_money = line[66],
+    Additional_prize = line[67],
+    Corner_passing_rank_1 = line[68],
+    Corner_passing_rank_2 = line[69],
+    Corner_passing_rank_3 = line[70],
+    Corner_passing_rank_4 = line[71],
+    Corner_passing_rank_5 = line[72],
+    Corner_passing_rank_6 = line[73],
+    Corner_passing_rank_7 = line[74],
+    Corner_passing_rank_8 = line[75],
+    Last_3furlong = line[76],
+    Win_Pic = line[77],
+    Winner_finish_time = line[78],
+    Winner = line[79])
+
+
+#出馬表Ｄ_SUD CSVファイル読み込み
+def Line2Trn_Running_list_D_SUD(line):
+    Trn_Running_list_D_SUD.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Horse_No = line[5],
+    Horse_name = line[6],
+    Jockey_shortened = line[7],
+    Stats_win = line[8],
+    Stats_2nd = line[9],
+    Stats_3rd = line[10],
+    Stats_other = line[11],
+    Stats_CCW_dirt_win = line[12],
+    Stats_CCW_dirt_2nd = line[13],
+    Stats_CCW_dirt_3rd = line[14],
+    Stats_CCW_dirt_other = line[15],
+    Stats_CW_dirt_win = line[16],
+    Stats_CW_dirt_2nd = line[17],
+    Stats_CW_dirt_3rd = line[18],
+    Stats_CW_dirt_other = line[19],
+    Stats_track_win = line[20],
+    Stats_track_2nd = line[21],
+    Stats_track_3rd = line[22],
+    Stats_track_other = line[23],
+    Stats_short_distance_win = line[24],
+    Stats_short_distance_2nd = line[25],
+    Stats_short_distance_3rd = line[26],
+    Stats_short_distance_other = line[27],
+    Stats_middle_distance_win = line[28],
+    Stats_middle_distance_2nd = line[29],
+    Stats_middle_distance_3rd = line[30],
+    Stats_middle_distance_other = line[31],
+    Stats_long_distance_win = line[32],
+    Stats_long_distance_2nd = line[33],
+    Stats_long_distance_3rd = line[34],
+    Stats_long_distance_other = line[35],
+    Stats_jockey_win = line[36],
+    Stats_jockey_2nd = line[37],
+    Stats_jockey_3rd = line[38],
+    Stats_jockey_other = line[39])
+
+
+#出馬表Ｅ_SUE CSVファイル読み込み
+def Line2Trn_Running_list_E_SUE(line):
+    Trn_Running_list_E_SUE.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Turf_dirt_code = line[5],
+    Track_condition_code = line[6],
+    Stats_track_win = line[7],
+    Stats_track_2nd = line[8],
+    Stats_track_3rd = line[9],
+    Stats_track_other = line[10],
+    Earned_prize_money = line[11],
+    Best_time = line[12])
+
+
+#取消除外_SU1 CSVファイル読み込み
+def Line2Trn_Cancellation_exclusion_SU1(line):
+    Trn_Cancellation_exclusion_SU1.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Horse_name = line[5],
+    Horse_No = line[6],
+    Trainer_license_No = line[7],
+    Trainer_name = line[8],
+    Accident_code = line[9],
+    Accident_name = line[10],
+    Accident_reason_code = line[11],
+    Accident_reason_name = line[12])
+
+
+#騎乗変更_SU3 CSVファイル読み込み
+def Line2Trn_Change_riding_SU3(line):
+    Trn_Change_riding_SU3.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Horse_name = line[5],
+    Horse_No = line[6],
+    Weight = line[7],
+    Carry_weight = line[8],
+    Jockey_license_No = line[9],
+    Jockey_name = line[10],
+    Jockey_shortened = line[11],
+    Weight_handicap = line[12],
+    Weight_handicap_symbol = line[13],
+    Jockey_belong_stable = line[14],
+    Jockey_invitation_code = line[15],
+    Jockey_belonging_code = line[16],
+    Jockey_location_code = line[17],
+    Jockey_license_No_1 = line[18],
+    Jockey_name_1 = line[19],
+    Jockey_shortened_1 = line[20],
+    Weight_handicap_1 = line[21],
+    Weight_handicap_symbol_1 = line[22],
+    Jockey_changed_reason_code_1 = line[23],
+    Jockey_changed_reason_name_1 = line[24],
+    Jockey_belong_stable_1 = line[25],
+    Jockey_invitation_code_1 = line[26],
+    Jockey_belonging_code_1 = line[27],
+    Jockey_location_code_1 = line[28],
+    Jockey_license_No_2 = line[29],
+    Jockey_name_2 = line[30],
+    Jockey_shortened_2 = line[31],
+    Weight_handicap_2 = line[32],
+    Weight_handicap_symbol_2 = line[33],
+    Jockey_changed_reason_code_2 = line[34],
+    Jockey_changed_reason_name_2 = line[35],
+    Jockey_belong_stable_2 = line[36],
+    Jockey_invitation_code_2 = line[37],
+    Jockey_belonging_code_2 = line[38],
+    Jockey_location_code_2 = line[39])
+
+
+#コーナ通過順_BA2 CSVファイル読み込み
+def Line2Trn_Corner_passing_order_BA2(line):
+    Trn_Corner_passing_order_BA2.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Track_name = line[3],
+    Held_times = line[4],
+    Race_No = line[5],
+    Corner_name_1 = line[6],
+    Corner_passing_rank_1 = line[7],
+    Corner_name_2 = line[8],
+    Corner_passing_rank_2 = line[9],
+    Corner_name_3 = line[10],
+    Corner_passing_rank_3 = line[11],
+    Corner_name_4 = line[12],
+    Corner_passing_rank_4 = line[13],
+    Corner_name_5 = line[14],
+    Corner_passing_rank_5 = line[15],
+    Corner_name_6 = line[16],
+    Corner_passing_rank_6 = line[17],
+    Corner_name_7 = line[18],
+    Corner_passing_rank_7 = line[19],
+    Corner_name_8 = line[20],
+    Corner_passing_rank_8 = line[21])
+
+
+#ハロンタイム_BA3 CSVファイル読み込み
+def Line2Trn_Fallon_time_BA3(line):
+    Trn_Fallon_time_BA3.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Track_name = line[3],
+    Held_times = line[4],
+    Race_No = line[5],
+    Furlong_time_1 = line[6],
+    Furlong_time_2 = line[7],
+    Furlong_time_3 = line[8],
+    Furlong_time_4 = line[9],
+    Furlong_time_5 = line[10],
+    Furlong_time_6 = line[11],
+    Furlong_time_7 = line[12],
+    Furlong_time_8 = line[13],
+    Furlong_time_9 = line[14],
+    Furlong_time_10 = line[15],
+    Furlong_time_11 = line[16],
+    Furlong_time_12 = line[17],
+    Furlong_time_13 = line[18],
+    Furlong_time_14 = line[19],
+    Furlong_time_15 = line[20],
+    Last_3furlong = line[21],
+    Last_4furlong = line[22])
+
+
+#上がり３ハロン_BA4 CSVファイル読み込み
+def Line2Last_3_Fallon_BA4(line):
+    Last_3_Fallon_BA4.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Track_name = line[3],
+    Held_times = line[4],
+    Race_No = line[5],
+    Last_3furlong_1 = line[6],
+    Last_3furlong_2 = line[7],
+    Last_3furlong_3 = line[8],
+    Last_3furlong_4 = line[9],
+    Last_3furlong_5 = line[10],
+    Last_3furlong_6 = line[11],
+    Last_3furlong_7 = line[12],
+    Last_3furlong_8 = line[13],
+    Last_3furlong_9 = line[14],
+    Last_3furlong_10 = line[15],
+    Last_3furlong_11 = line[16],
+    Last_3furlong_12 = line[17],
+    Last_3furlong_13 = line[18],
+    Last_3furlong_14 = line[19],
+    Last_3furlong_15 = line[20],
+    Last_3furlong_16 = line[21])
+
+
+#入場人員_BA5 CSVファイル読み込み
+def Line2Trn_Visitors_BA5(line):
+    Trn_Visitors_BA5.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Paid_visitors = line[4],
+    Free_visitors = line[5])
+
+
+#付加文書_BU1 CSVファイル読み込み
+def Line2Trn_Attached_document_BU1(line):
+    Trn_Attached_document_BU1.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Output_order = line[5],
+    Event_code = line[6],
+    Accident_type_order = line[7],
+    Target_person = line[8],
+    Horse_No = line[9],
+    Event_name = line[10],
+    Attached_document_1 = line[11],
+    Attached_document_2 = line[12],
+    Attached_document_3 = line[13],
+    Attached_document_4 = line[14],
+    Attached_document_5 = line[15],
+    Attached_document_6 = line[16],
+    Attached_document_7 = line[17],
+    Attached_document_8 = line[18],
+    Attached_document_9 = line[19],
+    Attached_document_10 = line[20],
+    Attached_document_11 = line[21],
+    Attached_document_12 = line[22],
+    Attached_document_13 = line[23],
+    Attached_document_14 = line[24],
+    Attached_document_15 = line[25],
+    Attached_document_16 = line[26])
+
+
+#着タイムデータ_SU6 CSVファイル読み込み
+def Line2Trn_Result_SU6(line):
+    Trn_Result_SU6.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Horse_name = line[5],
+    Horse_gender_code = line[6],
+    Horse_birth_date = line[7],
+    Horse_age = line[8],
+    Bracket_No = line[9],
+    Hat_color = line[10],
+    Horse_No = line[11],
+    Horse_weight = line[12],
+    Previous_Horse_weight = line[13],
+    Weight = line[14],
+    Carry_weight = line[15],
+    Owner_Registration_No = line[16],
+    Horse_owner_name = line[17],
+    Trainer_license_No = line[18],
+    Trainer_name = line[19],
+    Trainer_shortened = line[20],
+    Jockey_license_No = line[21],
+    Jockey_name = line[22],
+    Jockey_shortened = line[23],
+    Weight_handicap = line[24],
+    Weight_handicap_symbol = line[25],
+    Jockey_belong_stable = line[26],
+    Jockey_invitation_code = line[27],
+    Jockey_belonging_code = line[28],
+    Jockey_location_code = line[29],
+    Jockey_license_No_1 = line[30],
+    Jockey_name_1 = line[31],
+    Jockey_shortened_1 = line[32],
+    Weight_handicap_1 = line[33],
+    Weight_handicap_symbol_1 = line[34],
+    Jockey_changed_reason_code_1 = line[35],
+    Jockey_changed_reason_name_1 = line[36],
+    Jockey_belong_stable_1 = line[37],
+    Jockey_invitation_code_1 = line[38],
+    Jockey_belonging_code_1 = line[39],
+    Jockey_location_code_1 = line[40],
+    Jockey_license_No_2 = line[41],
+    Jockey_name_2 = line[42],
+    Jockey_shortened_2 = line[43],
+    Weight_handicap_2 = line[44],
+    Weight_handicap_symbol_2 = line[45],
+    Jockey_changed_reason_code_2 = line[46],
+    Jockey_changed_reason_name_2 = line[47],
+    Jockey_belong_stable_2 = line[48],
+    Jockey_invitation_code_2 = line[49],
+    Jockey_belonging_code_2 = line[50],
+    Jockey_location_code_2 = line[51],
+    Result = line[52],
+    Result_input_order = line[53],
+    Margin_code_1 = line[54],
+    Margin_1 = line[55],
+    Margin_code_2 = line[56],
+    Margin_2 = line[57],
+    Margin_code_3 = line[58],
+    Margin_3 = line[59],
+    Deadheat_code = line[60],
+    Finish_time = line[61],
+    Finish_line_result = line[62],
+    Accident_code = line[63],
+    Accident_name = line[64],
+    Accident_reason_code = line[65],
+    Accident_reason_name = line[66],
+    Prize_money_1 = line[67],
+    Program_prize_1 = line[68],
+    Additional_prize_1 = line[69],
+    Last_3furlong = line[70],
+    Win_Pic = line[71])
+
+
+#単勝複勝払戻データ_WI2 CSVファイル読み込み
+def Line2Trn_Win_place_dividend_WI2(line):
+    Trn_Win_place_dividend_WI2.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Win_No_1 = line[5],
+    Win_1 = line[6],
+    Win_pick_1 = line[7],
+    Win_No_2 = line[8],
+    Win_2 = line[9],
+    Win_pick_2 = line[10],
+    Win_No_3 = line[11],
+    Win_3 = line[12],
+    Win_pick_3 = line[13],
+    Win_total = line[14],
+    Place_Resutl_1 = line[15],
+    Place_No_1 = line[16],
+    Place_1 = line[17],
+    Place_pick_1 = line[18],
+    Place_Resutl_2 = line[19],
+    Place_No_2 = line[20],
+    Place_2 = line[21],
+    Place_pick_2 = line[22],
+    Place_Resutl_3 = line[23],
+    Place_No_3 = line[24],
+    Place_3 = line[25],
+    Place_pick_3 = line[26],
+    Place_Resutl_4 = line[27],
+    Place_No_4 = line[28],
+    Place_4 = line[29],
+    Place_pick_4 = line[30],
+    Place_Resutl_5 = line[31],
+    Place_No_5 = line[32],
+    Place_5 = line[33],
+    Place_pick_5 = line[34],
+    Place_Resutl_6 = line[35],
+    Place_No_6 = line[36],
+    Place_6 = line[37],
+    Place_pick_6 = line[38],
+    Place_total = line[39],
+    Win_sales = line[40],
+    Place_sales = line[41])
+
+
+#枠複枠単払戻データ_BL2 CSVファイル読み込み
+def Line2Trn_Bracket_quinella_exacta_dividend_BL2(line):
+    Trn_Bracket_quinella_exacta_dividend_BL2.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Data_Classification = line[5],
+    Bracket_No_1_1 = line[6],
+    Bracket_No_1_2 = line[7],
+    Bracket_quinella_exacta_1 = line[8],
+    Bracket_quinella_exacta_pic_1 = line[9],
+    Bracket_No_2_1 = line[10],
+    Bracket_No_2_2 = line[11],
+    Bracket_quinella_exacta_2 = line[12],
+    Bracket_quinella_exacta_pic_2 = line[13],
+    Bracket_No_3_1 = line[14],
+    Bracket_No_3_2 = line[15],
+    Bracket_quinella_exacta_3 = line[16],
+    Bracket_quinella_exacta_pic_3 = line[17],
+    Bracket_No_4_1 = line[18],
+    Bracket_No_4_2 = line[19],
+    Bracket_quinella_exacta_4 = line[20],
+    Bracket_quinella_exacta_pic_4 = line[21],
+    Bracket_No_5_1 = line[22],
+    Bracket_No_5_2 = line[23],
+    Bracket_quinella_exacta_5 = line[24],
+    Bracket_quinella_exacta_pic_5 = line[25],
+    Bracket_No_6_1 = line[26],
+    Bracket_No_6_2 = line[27],
+    Bracket_quinella_exacta_6 = line[28],
+    Bracket_quinella_exacta_pic_6 = line[29],
+    Bracket_quinella_exacta_total = line[30],
+    Bracket_quinella_exacta_sales = line[31])
+
+
+#馬連馬単ワイド払戻データ_QU2 CSVファイル読み込み	
+def Line2Trn_Quinella_exacta_wide_dividend_QU2(line):	
+    Trn_Quinella_exacta_wide_dividend_QU2.objects.get_or_create(	
+    Data_ID = line[0],	
+    Race_date = line[1],	
+    Track_code = line[2],	
+    Held_times = line[3],	
+    Race_No = line[4],	
+    Data_Classification = line[5],	
+    Horce_No_1_1 = line[6],	
+    Horce_No_1_2 = line[7],	
+    Quinella_exacta_wide_1 = line[8],	
+    Quinella_exacta_wide_pic_1 = line[9],	
+    Horce_No_2_1 = line[10],	
+    Horce_No_2_2 = line[11],	
+    Quinella_exacta_wide_2 = line[12],	
+    Quinella_exacta_wide_pic_2 = line[13],	
+    Horce_No_3_1 = line[14],	
+    Horce_No_3_2 = line[15],	
+    Quinella_exacta_wide_3 = line[16],	
+    Quinella_exacta_wide_pic_3 = line[17],	
+    Horce_No_4_1 = line[18],	
+    Horce_No_4_2 = line[19],	
+    Quinella_exacta_wide_4 = line[20],	
+    Quinella_exacta_wide_pic_4 = line[21],	
+    Horce_No_5_1 = line[22],	
+    Horce_No_5_2 = line[23],	
+    Quinella_exacta_wide_5 = line[24],	
+    Quinella_exacta_wide_pic_5 = line[25],	
+    Horce_No_6_1 = line[26],	
+    Horce_No_6_2 = line[27],	
+    Quinella_exacta_wide_6 = line[28],	
+    Quinella_exacta_wide_pic_6 = line[29],	
+    Horce_No_7_1 = line[30],	
+    Horce_No_7_2 = line[31],	
+    Quinella_exacta_wide_7 = line[32],	
+    Quinella_exacta_wide_pic_7 = line[33],	
+    Quinella_exacta_wide_total = line[34],	
+    Quinella_exacta_wide_sales = line[35])
+
+
+#三連複払戻データ_TB3 CSVファイル読み込み
+def Line2Trn_Trio_dividend_TB3(line):
+    Trn_Trio_dividend_TB3.objects.get_or_create(
+    Data_ID = line[0],
+    Race_date = line[1],
+    Track_code = line[2],
+    Held_times = line[3],
+    Race_No = line[4],
+    Horce_No_1_1 = line[5],
+    Horce_No_1_2 = line[6],
+    Horce_No_1_3 = line[7],
+    Trio_1 = line[8],
+    Trio_pic_1 = line[9],
+    Horce_No_2_1 = line[10],
+    Horce_No_2_2 = line[11],
+    Horce_No_2_3 = line[12],
+    Trio_2 = line[13],
+    Trio_pic_2 = line[14],
+    Horce_No_3_1 = line[15],
+    Horce_No_3_2 = line[16],
+    Horce_No_3_3 = line[17],
+    Trio_3 = line[18],
+    Trio_pic_3 = line[19],
+    Trio_total = line[20],
+    Trio_sales = line[21])
+
+
+#三連単払戻データ_TB4 CSVファイル読み込み	
+def Line2Trn_Trifecta_dividend_TB4(line):	
+    Trn_Trifecta_dividend_TB4.objects.get_or_create(	
+    Data_ID = line[0],	
+    Race_date = line[1],	
+    Track_code = line[2],	
+    Held_times = line[3],	
+    Race_No = line[4],	
+    Horce_No_1_1 = line[5],	
+    Horce_No_1_2 = line[6],	
+    Horce_No_1_3 = line[7],	
+    Trifecta_1 = line[8],	
+    Trifecta_pic_1 = line[9],	
+    Horce_No_2_1 = line[10],	
+    Horce_No_2_2 = line[11],	
+    Horce_No_2_3 = line[12],	
+    Trifecta_2 = line[13],	
+    Trifecta_pic_2 = line[14],	
+    Horce_No_3_1 = line[15],	
+    Horce_No_3_2 = line[16],	
+    Horce_No_3_3 = line[17],	
+    Trifecta_3 = line[18],	
+    Trifecta_pic_3 = line[19],	
+    Horce_No_4_1 = line[20],	
+    Horce_No_4_2 = line[21],	
+    Horce_No_4_3 = line[22],	
+    Trifecta_4 = line[23],	
+    Trifecta_pic_4 = line[24],	
+    Horce_No_5_1 = line[25],	
+    Horce_No_5_2 = line[26],	
+    Horce_No_5_3 = line[27],	
+    Trifecta_5 = line[28],	
+    Trifecta_pic_5 = line[29],	
+    Horce_No_6_1 = line[30],	
+    Horce_No_6_2 = line[31],	
+    Horce_No_6_3 = line[32],	
+    Trifecta_6 = line[33],	
+    Trifecta_pic_6 = line[34],	
+    Trifecta_total = line[35],	
+    Trifecta_sales = line[36])

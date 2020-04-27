@@ -42,6 +42,7 @@ class Mst_KindofNewsMLAdmin(admin.ModelAdmin):
     ]
     list_display = ('Group_code', 'ContentName', 'NewsMLNo')
 
+#副ヘッダ
 class Mst_SubHeaderAdmin(admin.ModelAdmin):
     fieldssets = [
         ('電文種別', {'fields':['Content_code'] }),
@@ -49,6 +50,14 @@ class Mst_SubHeaderAdmin(admin.ModelAdmin):
 	    ('#配信コード', {'fields':['Delivery_code'] }),
     ]
     list_display = ('Content_code', 'Prefectures_code', 'Delivery_code')
+
+#配信コードマスタ
+class Mst_DeliveryAdmin(admin.ModelAdmin):
+    fieldssets = [
+        ('配信名称', {'fields':['Delivery_name'] }),
+        ('個別指定', {'fields':['Individual_address'] }),
+    ]
+    list_display = ('Delivery_name', 'Individual_address')
 
 #生涯受賞回数マスタ
 class Mst_Lifetime_awardAdmin(admin.ModelAdmin):
@@ -95,11 +104,11 @@ admin.site.register(Mst_Lifetime_award, Mst_Lifetime_awardAdmin)
 admin.site.register(Mst_Gameinfo)
 admin.site.register(Mst_KindofNewsML, Mst_KindofNewsMLAdmin)
 admin.site.register(Mst_Prefectures)
-admin.site.register(Mst_Delivery)
+admin.site.register(Mst_Delivery, Mst_DeliveryAdmin)
 admin.site.register(Mst_SubHeader, Mst_SubHeaderAdmin)
 #admin.site.register(Mst_Operationmode)
 # --------------------
-admin.site.register(Tran_Systemstatus)
+admin.site.register(Tran_Systemstatus)  # システム状態
 # --------------------
 admin.site.register(Tran_Banzuke_forecast)  #01:新番付資料
 admin.site.register(Tran_Banzuke)  #02-05:番付
