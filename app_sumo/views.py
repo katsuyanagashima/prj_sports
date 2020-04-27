@@ -300,9 +300,10 @@ def SUMJOR01(request):
     return render(request, 'app_sumo/SUMJOR01.html', {**dict, **nav})
 
 
-# 資料出力
+# 閲覧メニュー
 def SUMSHI01(request):
-    return render(request, 'app_sumo/SUMSHI01.html')
+    nav= nav_info(request)
+    return render(request, 'app_sumo/SUMSHI01.html', {**nav})
 
 
 # NewsML修正画面
@@ -434,7 +435,8 @@ def SUMMSM01_heya_html(request):
 #
 #    return render(request, 'app_sumo/SUMINT01.html', {'form': form})
 def SUMINT01(request):
-    systemstatus = Tran_Systemstatus.objects.get(id=1)
+    systemstatus = Tran_Systemstatus.objects.first()
+ #   systemstatus = Tran_Systemstatus.objects.get(id=1)
     init = {
         'event_date': str(systemstatus.Event_date)[:4],
         'currentbasho': systemstatus.CurrentBasho.Basho_code,

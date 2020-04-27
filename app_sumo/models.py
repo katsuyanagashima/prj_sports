@@ -272,7 +272,7 @@ class Mst_Lifetime_statusinfo(Model):
         verbose_name_plural = '生涯地位情報'
 
     def __str__(self):
-        return str(self.Chii_code)
+        return str(self.Rikishi_code)
 
 #生涯成績マスタ
 class Mst_Lifetime_result(Model):
@@ -309,6 +309,9 @@ class Mst_Lifetime_award(Model):
 
     class Meta:
         verbose_name_plural = '生涯受賞回数マスタ'
+    
+    def __str__(self):
+        return str(self.Rikishi_code)
 
 
 #勝負情報
