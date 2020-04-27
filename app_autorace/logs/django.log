@@ -671,3 +671,101 @@
 [INFO]	2020-04-26 21:50:42,495	module:apps	command.ready:30	command End:
 [INFO]	2020-04-26 23:29:19,089	module:apps	command.ready:24	command Start:
 [INFO]	2020-04-26 23:29:19,089	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 09:38:05,921	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 09:38:05,944	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 09:48:32,572	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 09:48:32,573	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 09:51:07,934	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 09:51:07,935	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 09:51:47,235	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 09:51:47,235	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 10:11:16,826	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 10:11:16,826	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 10:14:13,714	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 10:14:13,715	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 10:14:54,491	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 10:14:54,492	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 10:15:01,429	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 10:15:01,429	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 10:15:17,333	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 10:15:17,334	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 10:20:58,518	module:apps	command.ready:24	command Start:
+[INFO]	2020-04-27 10:20:58,518	module:apps	command.ready:30	command End:
+[INFO]	2020-04-27 10:24:05,493	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 10:24:05,504	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-04-27 10:24:05,510	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 10:24:05,510	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 10:24:05,511	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 10:24:05,514	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 11:29:18,848	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:29:18,851	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 11:31:56,346	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:31:56,362	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-04-27 11:31:56,367	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 11:31:56,367	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 11:31:56,368	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 11:31:56,370	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 11:32:34,314	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:32:34,318	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 11:32:47,251	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:32:47,255	module:apps	command.make_lock_file:50	pid = [28]
+[INFO]	2020-04-27 11:32:47,260	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 11:32:47,261	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 11:32:47,261	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 11:32:47,264	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 11:45:54,899	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:45:54,902	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 11:47:02,327	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:47:02,332	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-04-27 11:47:02,341	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 11:47:02,342	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 11:47:02,342	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 11:47:02,346	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 11:50:26,753	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:50:26,756	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 11:52:41,362	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:52:41,365	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-04-27 11:52:41,374	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 11:52:41,374	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 11:52:41,375	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 11:52:41,378	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 11:53:06,361	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:53:06,364	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 11:56:39,848	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:56:39,851	module:apps	command.make_lock_file:50	pid = [53]
+[INFO]	2020-04-27 11:56:39,856	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 11:56:39,857	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 11:56:39,857	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 11:56:39,860	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 11:56:44,181	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:56:44,185	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 11:59:34,440	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 11:59:34,444	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-04-27 11:59:34,449	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 11:59:34,450	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 11:59:34,451	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 11:59:34,453	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 12:00:18,999	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 12:00:19,002	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 12:03:58,470	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 12:03:58,476	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-04-27 12:03:58,483	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 12:03:58,483	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 12:03:58,484	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 12:03:58,488	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 12:04:10,138	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 12:04:10,142	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 12:04:18,592	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 12:04:18,596	module:apps	command.make_lock_file:50	pid = [76]
+[INFO]	2020-04-27 12:04:18,601	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 12:04:18,601	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 12:04:18,601	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 12:04:18,604	module:apps	command.ready:105	ready call_watch_doc End:
+[INFO]	2020-04-27 12:04:40,746	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 12:04:40,750	module:apps	command.ready:100	ready End:
+[INFO]	2020-04-27 12:04:45,662	module:apps	command.ready:88	ready Start:
+[INFO]	2020-04-27 12:04:45,665	module:apps	command.make_lock_file:50	pid = [83]
+[INFO]	2020-04-27 12:04:45,671	module:apps	command.call_watch_doc:70	固定長フォルダ[]
+[INFO]	2020-04-27 12:04:45,671	module:dat_start_manage	command.run_trn_watchdoc:57	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-04-27 12:04:45,672	module:dat_start_manage	command.run_trn_watchdoc:60	watchdoc監視　Start
+[INFO]	2020-04-27 12:04:45,679	module:apps	command.ready:105	ready call_watch_doc End:
