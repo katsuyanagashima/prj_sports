@@ -18,14 +18,14 @@ try:
     import codecs
 except ImportError:
     codecs = None
-    
+
 logger = getLogger('command')
 base =  os.path.dirname(os.path.abspath(__file__)) # app_autorace
 
 class AppAutoraceConfig(AppConfig):
     name = 'app_autorace'
 
-    run_already = False 
+    run_already = False
 
     def make_dat_folder(self):
         """
@@ -35,16 +35,16 @@ class AppAutoraceConfig(AppConfig):
         datdir = pathlib.Path(base) / pathlib.Path(DATDATA)
         if not datdir.exists():
             os.makedirs(str(datdir))
-            
+
     def make_lock_file(self):
         baseDatData = os.path.normpath(os.path.join(base, DATDATA))
-        pidDatData = os.path.normpath(os.path.join(baseDatData, DAD_LOCK_FILE))            
+        pidDatData = os.path.normpath(os.path.join(baseDatData, DAD_LOCK_FILE))
 
         # ロックファイルを削除する。
         if os.path.isfile(pidDatData):
             os.remove(pidDatData)
 
-            return False 
+            return False
 
         with open(pidDatData, mode='w') as f:
             logger.info(f'pid = [{str(os.getpid())}]')
@@ -58,15 +58,15 @@ class AppAutoraceConfig(AppConfig):
         try:
             # 受信　/code
             #path = os.getcwd()
-            #cmd = "ls" 
+            #cmd = "ls"
             #proc= sp.Popen(cmd, shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
             #std_out, std_err = proc.communicate()
             # byte文字列で返るのでstrに
-            #ls_file_name = std_out.decode('utf-8').rstrip().split('\n')        
+            #ls_file_name = std_out.decode('utf-8').rstrip().split('\n')
             #logger.info(ls_file_name)
 
             datFileNameList = sorted(glob.glob('./app_autorace/固定長フォルダ/*.dat'), key=lambda f: os.stat(f).st_mtime, reverse=False)
-            
+
             logger.info(DATDATA + str(datFileNameList))
 
             # watchdoc
@@ -78,9 +78,6 @@ class AppAutoraceConfig(AppConfig):
 
         except Exception as e:
             logger.error(e)
-        
-
-
 
     # docker-compose up -d docker-compose stop 呼ばれる？
     def ready(self):
@@ -88,9 +85,9 @@ class AppAutoraceConfig(AppConfig):
             logger.info('ready Start:')
 
             # 2回呼ばれる対策
-            if AppAutoraceConfig.run_already: 
-                return 
-            AppAutoraceConfig.run_already = True 
+            if AppAutoraceConfig.run_already:
+                return
+            AppAutoraceConfig.run_already = True
 
             # 固定長フォルダフォルダ作成
             self.make_dat_folder()
@@ -98,8 +95,7 @@ class AppAutoraceConfig(AppConfig):
             # ロックファイル作成
             if not self.make_lock_file():
                 logger.info('ready End:')
-                return 
-
+                return
 
             self.call_watch_doc()
             logger.info('ready call_watch_doc End:')
