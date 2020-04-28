@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-16"?>
 {% load static %}
+{% load fix_tags %}
 <!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
 	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
 	%InContent;
@@ -14,7 +15,7 @@
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
-<IhSendDate>ＹＹＹＹＭＭＤＤ</IhSendDate>
+<IhSendDate>ＹＹＹＹＭＭＤＤ{{ test|text_get4char }}</IhSendDate>
 <IhSendTime>ＨＨＭＭＳＳ</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
 <IhSendTo IhNs="3">

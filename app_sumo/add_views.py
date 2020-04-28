@@ -109,7 +109,7 @@ class Output_NewsML():
         # 'newsmlmeta'が21種類共通であれば、または他のテーブルを共通記述出来れば、ここに記載して辞書をマージするとよいかもしれません。
         # 他の分岐は共通化が難しければ、この関数の行数が100文字以上に増えた場合に、各パターンを関数で分離させる必要があるかもしれません。
         tran_system = Tran_Systemstatus.objects.all()
-        context = { 'newsmlmeta':tran_system }
+        context = { 'newsmlmeta':tran_system,'test':'abcdefg' }
         fix_context = {}
 
         #01新番付資料
