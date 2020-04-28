@@ -371,6 +371,7 @@ class Mst_Prefectures(Model):
 class Mst_Delivery(Model):
     Delivery_code =  IntegerField(verbose_name='配信コード', blank=True, null=True)
     Delivery_name = CharField(verbose_name='配信名称', max_length=10, blank=True, null=True)
+    Delivery_name_2char = CharField(verbose_name='配信名称２字略', max_length=2, blank=True, null=True)
     Individual_address =  IntegerField(verbose_name='個別指定', blank=True, null=True)
 
     class Meta:
