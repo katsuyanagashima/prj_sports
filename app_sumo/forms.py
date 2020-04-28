@@ -63,3 +63,17 @@ class Tran_YushoSanshoForm(forms.ModelForm):
             'Yearmonth': forms.HiddenInput,
             'Nichime_code': forms.HiddenInput,
         }
+    def clean(self):
+        cleaned_data = super().clean()
+        Yusho_flg = cleaned_data.get('Yusho_flg')
+        Shukunsho_flg = cleaned_data.get('Shukunsho_flg')
+        Kantosho_flg = cleaned_data.get('Kantosho_flg')
+        Ginosho_flg = cleaned_data.get('Ginosho_flg')
+        if not (Yusho_flg or Shukunsho_flg or Kantosho_flg or Ginosho_flg):
+            raise forms.ValidationError('受賞区分を選択してください')
+            #raise forms.ValidationError('')
+        return cleaned_data
+
+
+
+
