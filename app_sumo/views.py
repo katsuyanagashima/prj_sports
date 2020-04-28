@@ -60,7 +60,7 @@ def SUMUDY01(request):
     nav = nav_info(request)
     d = {
         'init': init,
-        'nichime': nichime,
+        'nichime': nichime
     }
     d.update(nav)
 
@@ -235,7 +235,8 @@ def SUMOUT02(request):
     d = {
         'init': init,
         'telegram_group': telegram_group,
-        'NewsMLNo': telegram
+        'NewsMLNo': telegram,
+        'test':'abcdef'
     }
     d.update(nav_info(request))
     return render(request, 'app_sumo/SUMOUT02.html', d)
