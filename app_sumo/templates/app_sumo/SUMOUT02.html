@@ -1,7 +1,8 @@
 {% extends 'app_sumo/base.html' %}
 
 {% block content %}
-<h1 class="caption">電文／データ出力画面</h1>
+{% load fix_tags %}
+<h1 class="caption">電文／データ出力画面{{ test|text_get4char }}</h1>
 
 <div class="container p-3">
     <form method="post" id="telegram" name="telgram">
