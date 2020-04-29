@@ -116,7 +116,7 @@
 								</ck_kyounichi>
 								<ck_resumei>
 									<rebangou>{{rebangou}}Ｒ</rebangou>
-									{% for tsuushinbun in tsuushimbun_list reversed  %}
+									{% for tsuushinbun in tsuushimbun_list reversed %}
 									<ck_fukabunnsyo>
 										<ck_jishou>{{ tsuushinbun.ck_jishou }}</ck_jishou>
 										{% if tsuushinbun.ck_taishousya %}

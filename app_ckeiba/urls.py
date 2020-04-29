@@ -26,7 +26,7 @@ urlpatterns = [
     path('uriage/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='uriage'),  #中間DB_売上金編集画面
 
 
-    path('create_NewsML_tsuushimbunC/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/', views.NewsML_tsuushimbunC, name='create_NewsML_tsuushimbunC'),  #NewsML 通信文C
+    path('create_NewsML_test/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/', views.NewsML_shussouhyou, name='create_NewsML_test'),  #NewsML 通信文C
 
 
     #CSV検証用
