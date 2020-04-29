@@ -1,54 +1,75 @@
 {% extends 'app_sumo/base.html' %}
 {% block content %}
     <h1 class="caption">優勝・三賞入力画面</h1>
-    <div class="container-fluid row">
-        <div class="col-6 gyomu-menu caption_box">
-            <h2>優勝力士</h2>
-            {% for i_class in classes %}
-                <span>【{{ i_class.Class_name_3char }}】</span>
+    <div class="container-fluid row gyomu-menu caption_box">
+    <div class="col-4 _gyomu-menu _caption_box">
+        <table class="table table-hover table-sm">
+            <thead class="thead-dark"> <tr> <th>東西</th> <th>階級</th> <th>番付順位</th> <th>力士名</th> </tr> </thead>
+            <tbody>
+            {% for rikishi in rikishis %}
+                <tr>
+                    <td>{{ rikishi.Eastwest_code }}</td>
+                    <td>{{ rikishi.Class_code }}</td>
+                    <td>{{ rikishi.Banzuke_rank }}</td>
+                    <td>{{ rikishi }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4 _gyomu-menu _caption_box">
+    <table class="table table-hover table-sm">
+        <thead class="thead-dark"> <tr> <th>優勝</th> </tr> </thead>
+        <tbody>
+        {% for i_class in classes %}
+            <tr>
+                <td>【{{ i_class.Class_name_3char }}】</td>
+                <td>
+                    {% for j in posts %}
+                        {% if j.Class_code_id == i_class.Class_code and j.Yusho_flg %}
+                            <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table class="table table-hover table-sm">
+        <thead class="thead-dark"> <tr> <th>三賞</th> </tr> </thead>
+        <tbody>
+        <tr>
+            <td>【殊勲賞】</td>
+            <td>
                 {% for j in posts %}
-                    {% if j.Class_code_id == i_class.Class_code and j.Yusho_flg %}
-                        <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a>
+                    {% if j.Shukunsho_flg %}
+                        <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
                     {% endif %}
                 {% endfor %}
-                <br/>
-            {% endfor %}
-            <h2>三賞</h2>
-            <span>【殊勲賞】</span>
-            {% for j in posts %}
-                {% if j.Shukunsho_flg %}
-                    <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a>
-                {% endif %}
-            {% endfor %}
-            <br/>
-            <span>【敢闘賞】</span>
-            {% for j in posts %}
-                {% if j.Kantosho_flg %}
-                    <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a>
-                {% endif %}
-            {% endfor %}
-            <br/>
-            <span>【技能賞】</span>
-            {% for j in posts %}
-                {% if j.Ginosho_flg %}
-                    <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    <!--<div class="container-fluid row">
-        <div class="col-6 gyomu-menu caption_box">
-            {% for post in posts %}
-                <a href="{% url 'app_sumo:SUMYUS01_update' post.pk %}">{{ post.Rikishi }}</a>
-                <span>（{{ post.Class_code }}）</span>
-                {% if post.Yusho_flg %} <span>優勝</span> {% endif %}
-                {% if post.Shukunsho_flg %} <span>殊勲賞</span> {% endif %}
-                {% if post.Kantosho_flg %} <span>敢闘賞</span> {% endif %}
-                {% if post.Ginosho_flg %} <span>技能賞</span> {% endif %}
-                <br/>
-            {% endfor %}
-        </div>
-    </div>-->
+            </td>
+        </tr>
+        <tr>
+            <td>【敢闘賞】</td>
+            <td>
+                {% for j in posts %}
+                    {% if j.Kantosho_flg %}
+                        <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>【技能賞】</td>
+            <td>
+                {% for j in posts %}
+                    {% if j.Ginosho_flg %}
+                        <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
     <nav class="navbar fixed-bottom navbar-dark bg-dark">
         <a href="{% url 'app_sumo:SUMYUS01_create' %}" class="btn btn-success">追加</a>
         <a href="{% url 'app_sumo:index' %}" class="btn btn-warning" role="button">戻る</a>

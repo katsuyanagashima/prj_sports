@@ -133,6 +133,7 @@ def SUMYUS01(request):
     match_nichime_id = Tran_Systemstatus.objects.first().MatchDate
     yearmonth = Tran_Systemstatus.objects.first().Event_date
     dict = {
+        'rikishis': Tran_Banzuke.objects.order_by('Class_code'),
         'posts': Tran_YushoSansho.objects.filter(Yearmonth=yearmonth, Nichime_code=match_nichime_id),  # 現在の勝負日目のみを抽出
         'classes': Mst_Class.objects.all()
     }
