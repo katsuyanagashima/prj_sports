@@ -3,19 +3,34 @@
     <h1 class="caption">優勝・三賞入力画面</h1>
     <div class="container-fluid row gyomu-menu caption_box">
     <div class="col-4 _gyomu-menu _caption_box">
-        <table class="table table-hover table-sm">
-            <thead class="thead-dark"> <tr> <th>東西</th> <th>階級</th> <th>番付順位</th> <th>力士名</th> </tr> </thead>
-            <tbody>
-            {% for rikishi in rikishis %}
-                <tr>
-                    <td>{{ rikishi.Eastwest_code }}</td>
-                    <td>{{ rikishi.Class_code }}</td>
-                    <td>{{ rikishi.Banzuke_rank }}</td>
-                    <td>{{ rikishi }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <form method="POST" action="{% url 'app_sumo:SUMYUS01_create2' 'dummy' %}">
+            {% csrf_token %}
+            <table class="table table-hover table-sm">
+                <thead class="thead-dark"> <th>東西</th> <th>階級</th> <th>番付順位</th> <th>力士名</th> </tr> </thead>
+                <tbody>
+                {% for rikishi in rikishis %}
+                    <tr>
+                        <td>{{ rikishi.Eastwest_code }}</td>
+                        <td>{{ rikishi.Class_code }}</td>
+                        <td>{{ rikishi.Banzuke_rank }}</td>
+                        <td> {{ rikishi.Rikishi }} </td>
+                        <td> <input type="radio" name="rikishi_id"
+                                    value="{{ rikishi.Rikishi_id }}"> </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Yusho' %}"
+                        class="btn btn-success">▷優勝</button>
+                <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Shukunsho' %}"
+                        class="btn btn-success">▷殊勲賞</button>
+                <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Kantosho' %}"
+                        class="btn btn-success">▷敢闘賞</button>
+                <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Ginosho' %}"
+                        class="btn btn-success">▷技能賞</button>
+            </div>
+        </form>
     </div>
     <div class="col-4 _gyomu-menu _caption_box">
     <table class="table table-hover table-sm">

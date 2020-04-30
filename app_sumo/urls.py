@@ -22,6 +22,7 @@ urlpatterns = [
     ###path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'), #勝負入力処理
     path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'),  # 優勝・三賞入力画面
     path('SUMYUS01/create/', views.SUMYUS01_create, name='SUMYUS01_create'),  # 優勝・三賞入力画面（追加）
+    path('SUMYUS01/create2/<str:str>', views.SUMYUS01_create2, name='SUMYUS01_create2'),  # 優勝・三賞入力画面（追加２）
     ###path('SUMYUS01/view/<int:pk>', views.SUMYUS01_view, name='SUMYUS01_view'),  # 優勝・三賞入力画面（参照）●廃止●
     path('SUMYUS01/update/<int:pk>', views.SUMYUS01_update, name='SUMYUS01_update'),  # 優勝・三賞入力画面（更新）
     path('SUMYUS01/delete/<int:pk>', views.SUMYUS01_delete, name='SUMYUS01_delete'),  # 優勝・三賞入力画面（削除）

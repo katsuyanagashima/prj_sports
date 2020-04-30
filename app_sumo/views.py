@@ -147,7 +147,7 @@ def SUMYUS01_create(request):
         'Yearmonth': Tran_Systemstatus.objects.first().Event_date,
         'Nichime_code': Tran_Systemstatus.objects.first().MatchDate, # 取組日目でなく勝負日目でよいか？
     }
-    if request.method == 'POST':
+    if request.method == "POST":
         form = Tran_YushoSanshoForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
@@ -157,6 +157,35 @@ def SUMYUS01_create(request):
         #form = Tran_YushoSanshoForm()
         form = Tran_YushoSanshoForm(initial=initial_dict)
     return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form, **nav})
+
+
+# 優勝・三賞入力画面（追加２）
+def SUMYUS01_create2(request, str):
+    logging.info(str)
+    row = request.POST.get('rikishi_id')
+    Yusho_flg = 1 if str == 'Yusho' else 0
+    Shukunsho_flg = 1 if str == 'Shukunsho' else 0
+    Kantosho_flg = 1 if str == 'Kantosho' else 0
+    Ginosho_flg = 1 if str == 'Ginosho' else 0
+    # 画面で力士が選択されている場合
+    if row:
+        reqlist_rikishi_id = request.POST.get('rikishi_id')
+        ccid = Tran_Banzuke.objects.get(Rikishi_id=reqlist_rikishi_id).Class_code_id
+        # DBのデータを更新または新規登録
+        Tran_YushoSansho.objects.update_or_create(
+            Rikishi_id = reqlist_rikishi_id,
+            Yearmonth = Tran_Systemstatus.objects.first().Event_date,
+            Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
+            Class_code_id = ccid,
+            ###●●●更新時に、既存の登録がクリアされる欠点がある！！！！！●●●###
+            defaults={
+                "Yusho_flg" : Yusho_flg,
+                "Shukunsho_flg" : Shukunsho_flg,
+                "Kantosho_flg" : Kantosho_flg,
+                "Ginosho_flg" : Ginosho_flg,
+            }
+        )
+    return redirect('app_sumo:SUMYUS01')
 
 
 # 優勝・三賞入力画面（参照）●本画面は廃止●
