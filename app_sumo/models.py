@@ -288,7 +288,7 @@ class Mst_Lifetime_result(Model):
     Highestchii_code = ForeignKey(Mst_Chii, on_delete=CASCADE) #地位マスタ
     Highestorder = IntegerField(verbose_name='最高順位', blank=True, null=True)
     Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE, blank=True, null=True) #東西マスタ
-    Maxsticking = IntegerField(verbose_name='最高張付')
+    Maxsticking = IntegerField(verbose_name='最高張付', blank=True, null=True)
     Overallwinrate = FloatField(verbose_name='通算勝率')
     Overallwinrate_yasumimake = FloatField(verbose_name='通算勝率（休を負）')
     Maxcontinuousplayed = IntegerField(verbose_name='最高連続出場回数', blank=True, null=True)
