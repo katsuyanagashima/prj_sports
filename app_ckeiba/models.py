@@ -187,6 +187,7 @@ class Mst_Difference(Model):
 
 class Mst_Accident_type(Model):
     Accident_type_code = IntegerField(verbose_name='事故種類コード', unique=True)
+    # Accident_type_code = IntegerField(verbose_name='事故種類コード', unique=True)
     Accident_type_name = CharField(
         verbose_name='事故種類名称', max_length=15, blank=True, null=True)  # 競走不成立
     Fulltag_all = CharField(verbose_name='フルタグＡＬＬ',

@@ -109,3 +109,36 @@ class Tran_YushoSansho(Model):
 
     def __str__(self):
         return str(self.Rikishi)
+
+# --------------------------------------------------------------------------------------------------
+# NewsMLステータス
+#
+class Tran_NewsMLStatus(Model):
+    content_id =  CharField(verbose_name='製品ID', max_length=23, blank=True, null=True)
+    status = IntegerField(verbose_name='状態', blank=True, null=True) 
+    revised = IntegerField(verbose_name='修正回数', blank=True, null=True) 
+    delivery_flag = BooleanField(verbose_name='配信済フラグ', blank=True, null=True) 
+    premiss_date = DateField(verbose_name='運用日付', blank=True, null=True) 
+    create_date = DateTimeField(verbose_name='レコード作成日時', auto_now_add=True, blank=True, null=True)
+    update_date = DateTimeField(verbose_name='レコード更新日時', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'NewsMLステータス'
+    
+        def __str__(self):
+            return str(self.content_id)
+
+# --------------------------------------------------------------------------------------------------
+# MQシーケンス
+#
+class Tran_MQ_sequense(Model):
+    sequense =  IntegerField(verbose_name='シーケンス番号', blank=True, null=True)
+    create_date = DateTimeField(verbose_name='レコード作成日時', auto_now_add=True, blank=True, null=True)
+    update_date = DateTimeField(verbose_name='レコード更新日時', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'MQステータス'
+    
+        def __str__(self):
+            return str(self.sequense)
+
