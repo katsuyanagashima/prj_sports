@@ -4,7 +4,9 @@
     <form method="post">
         {% csrf_token %}
 
-        {{ form.as_p }}
+        <table>
+            {{ form.as_table }}
+        </table>
 
         <button type="submit" class="btn btn-primary">更新</button></br>
         <a href="{% url 'app_ckeiba:index'%}" class="btn" role="button">戻る</a>

@@ -67,30 +67,50 @@ class Md_Seiseki_HaraimodoshiForm(forms.ModelForm):
         model = Md_Seiseki_Haraimodoshi
         fields = '__all__'
 
+# コーナー・ラップフォームセット
 class Md_Corner_RapForm(forms.ModelForm):
     class Meta:
         model = Md_Corner_Rap
         fields = '__all__'
+Corner_RapFormset = forms.modelformset_factory(
+    Md_Corner_Rap, form=Md_Corner_RapForm, extra=0
+)
 
+# 上がりフォームセット
 class Md_AgariForm(forms.ModelForm):
     class Meta:
         model = Md_Agari
         fields = '__all__'
+AgariFormset = forms.modelformset_factory(
+    Md_Agari, form=Md_AgariForm, extra=0
+)
 
+# 通信文フォームセット
 class Md_TsuushimbunForm(forms.ModelForm):
     class Meta:
         model = Md_Tsuushimbun
         fields = '__all__'
+TsuushimbunFormset = forms.modelformset_factory(
+    Md_Tsuushimbun, form=Md_TsuushimbunForm, extra=0
+)
 
+# 入場人員フォームセット
 class Md_NyujoForm(forms.ModelForm):
     class Meta:
         model = Md_Nyujo
         fields = '__all__'
+NyujoFormset = forms.modelformset_factory(
+    Md_Nyujo, form=Md_NyujoForm, extra=0
+)
 
+# 売上金フォームセット
 class Md_UriagekinForm(forms.ModelForm):
     class Meta:
         model = Md_Uriagekin
         fields = '__all__'
+UriagekinFormset = forms.modelformset_factory(
+    Md_Uriagekin, form=Md_UriagekinForm, extra=0
+)
 
 
 #出走表用フォームセット
@@ -102,13 +122,22 @@ ShussouhyouFormset = forms.inlineformset_factory(
     can_delete=True
 )
 
-#出走表用フォームセット過去成績用
-Shussouhyou_shussoubaFormset = forms.inlineformset_factory(
-    Md_Shussouhyou_shussouba ,Md_Shussouhyou_shussouba_5seiseki,
-    fields='__all__',
-    extra=0,
-    max_num=5,
-    can_delete=True
+#出走表用フォームセット過去5成績用
+class Md_Shussouhyou_shussouba_5seisekiForm(forms.ModelForm):
+    class Meta:
+        model = Md_Shussouhyou_shussouba_5seiseki
+        fields = '__all__'
+Shussouhyou_shussouba_5seiseki_Formset = forms.modelformset_factory(
+    Md_Shussouhyou_shussouba_5seiseki, form=Md_Shussouhyou_shussouba_5seisekiForm, extra=0
+)
+
+#出走表用フォームセット場別距離別累計成績用
+class Md_Shussouhyou_shussouba_ruikeiForm(forms.ModelForm):
+    class Meta:
+        model = Md_Shussouhyou_shussouba_ruikei
+        fields = '__all__'
+Shussouhyou_shussouba_ruikei_Formset = forms.modelformset_factory(
+    Md_Shussouhyou_shussouba_ruikei, form=Md_Shussouhyou_shussouba_ruikeiForm, extra=0
 )
 
 
