@@ -27,12 +27,12 @@ ADDITIONALDOCUMENT  = 'BU1' # 付加文書データ
 # エラーメッセージ
 
 # 競馬場マスタ 必須項目
-JOU_NAME     = 'XXXXXXXXX競馬場'
-JOU_SEISEKIA = 'X'
-JOU_3CHAR    = 'XXX'
+JOU_NAME     = '●●●競馬場'
+JOU_SEISEKIA = '●'
+JOU_3CHAR    = '●'
 JOU_BANEI    = False
 
-NIGHT_RACE_NAME = 'XXXXX'
+NIGHT_RACE_NAME = '●●●●●'
 
 #####################
 # watchdoc 関連　End
