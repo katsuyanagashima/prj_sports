@@ -41,6 +41,7 @@ admin.site.register(Mst_Fix_annotation)
 # 中間DB
 admin.site.register(Md_Shussouhyou)
 admin.site.register(Md_Shussouhyou_shussouba)
+admin.site.register(Md_Shussouhyou_shussouba_ruikei)
 admin.site.register(Md_Shussouhyou_shussouba_5seiseki)
 admin.site.register(Md_Nyujo)
 admin.site.register(Md_Uriagekin)

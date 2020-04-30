@@ -20,15 +20,15 @@ temp = [
 def nav_info(request, get_type=0):
     tran_system = Tran_Systemstatus.objects.all().first()
 
-    # params = {
-    #     'nav': {
-    #         'basho': tran_system.CurrentBasho,
-    #         'systatus': tran_system.SystemStatus,
-    #         'torikumiday': tran_system.TorikumiDate.Nichime_name,
-    #         'shoubuday': tran_system.MatchDate.Nichime_name
-    #     }
-    # }
-    params = {} # dump.json 復旧までの退避
+    params = {
+         'nav': {
+             'basho': tran_system.CurrentBasho,
+             'systatus': tran_system.SystemStatus,
+             'torikumiday': tran_system.TorikumiDate.Nichime_name,
+             'shoubuday': tran_system.MatchDate.Nichime_name
+         }
+     }
+    # params = {} # dump.json 復旧までの退避
     if get_type:
         return [params, tran_system]
     else:
@@ -43,43 +43,65 @@ class Output_NewsML():
         self.stnow = self.now.strftime("%Y%m%d")
         self.newsno = 0
         self.st = 0
+    
+    # 初期動作 編集、チェック、配信とループを管理
+    # def Start_NewsML(self, request):
+    #     if request.method == "POST":
+    #         if "NewsMLNo" not in request.POST:
+    #             return "Input error."
+
+    #         if "Input_status" in request.POST:
+    #             self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
+
+    #         self.newsno = request.POST["NewsMLNo"]  # NEWSML種別コードを受け取る
+    #         if self.newsno.startswith("0"):
+    #             self.newsno.lstrip("0")
+    #         if not self.newsno.isdigit():  # 全ての文字が数値でない場合、末尾2文字を抽出・削除
+    #             self.grade = self.newsno[-2]
+    #             self.newsno = self.newsno[:-2]            
+            
+    #         if self.st == "2":
+    #             return self.Create_NewsML(request)
+    #         else:
+    #             # ここでnesnoによる判定により、都道府県、東西、取組順にてループ予定
+    #             self.Create_NewsML(request)
+            
 
     # NewsML作成関数
     def Create_NewsML(self, request):
 
-        if request.method == "POST":
-            if "NewsMLNo" not in request.POST:
-                return "Input error."
+        if "NewsMLNo" not in request.POST:
+             return "Input error."
 
-            self.newsno = request.POST["NewsMLNo"]  # NEWSML種別コードを受け取る
-            if self.newsno.startswith("0"):
-                self.newsno.lstrip("0")
-            if not self.newsno.isdigit():  # 全ての文字が数値でない場合、末尾2文字を抽出・削除
-                self.grade = self.newsno[-2]
-                self.newsno = self.newsno[:-2]
+        self.newsno = request.POST["NewsMLNo"]  # NEWSML種別コードを受け取る
+        if self.newsno.startswith("0"):
+            self.newsno.lstrip("0")
+        if not self.newsno.isdigit():  # 全ての文字が数値でない場合、末尾2文字を抽出・削除
+            self.grade = self.newsno[-2]
+            self.newsno = self.newsno[:-2]
 
-            temp_product_id = temp[int(self.newsno)-1]  # NEWSML種別コードに対応するtemplateIDを取得
-            file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
-            temp_file_name = 'NewsML_temp/%s' % file_name
-            t = loader.get_template(temp_file_name)  # Djangoのテンプレートとして取得
+        temp_product_id = temp[int(self.newsno)-1]  # NEWSML種別コードに対応するtemplateIDを取得
+        file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
+        temp_file_name = 'NewsML_temp/%s' % file_name
+        t = loader.get_template(temp_file_name)  # Djangoのテンプレートとして取得
 
-            context = self.Create_context() # 21種のコンテキストを代入する関数
+        context = self.Create_context() # 21種のコンテキストを代入する関数
 
-            if "Input_status" in request.POST:
-                self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
-                if self.st in ["0", "1"]:  # 編集か配信であれば、NewsMLをファイルに出力
-                    content = loader.render_to_string(temp_file_name, context)
-                    # file名は運用日付、パラメータに合わせて変更
-                    newfile_name = file_name.replace("YYYYMMDD", self.stnow)
-                    if self.grade:
-                        newfile_name.replace('BB', self.grade)
-                    # 配信済みフォルダに保存する場合のUtf-16保存検証済み
-                    # with open('app_sumo/output/deliveried/%s' % newfile_name, 'w', encoding = 'utf-16') as static_file: 
-                    with open('app_sumo/output/hold/%s' % newfile_name, 'w') as static_file:
-                        static_file.write(content)
+        if "Input_status" in request.POST:
+            self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
+            if self.st in ["0", "1"]:  # 編集か配信であれば、NewsMLをファイルに出力
+                content = loader.render_to_string(temp_file_name, context)
+                # file名は運用日付、パラメータに合わせて変更
+                newfile_name = file_name.replace("YYYYMMDD", self.stnow)
+                if self.grade:
+                    newfile_name.replace('BB', self.grade)
+                # 配信済みフォルダに保存する場合のUtf-16保存検証済み
+                # with open('app_sumo/output/deliveried/%s' % newfile_name, 'w', encoding = 'utf-16') as static_file: 
+                with open('app_sumo/output/hold/%s' % newfile_name, 'w') as static_file:
+                    static_file.write(content)
 
-                elif self.st == "2":  # プレビューであれば、UTF-16に変換し表示
-                    return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
+            elif self.st == "2":  # プレビューであれば、UTF-16に変換し表示
+                return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
 
     def Create_context(self, prefecture_code=1, class_code=1, eastwest_code=1, display_order=0):
         """NewsML内のコンテキスト作成
@@ -118,8 +140,9 @@ class Output_NewsML():
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
-        #        'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-        #        'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+                'Lifechii': Mst_Lifetime_statusinfo.objects.all(),  # 生涯地位マスタ
             }
         #02新番付資料・補正
         elif self.newsno == "02":

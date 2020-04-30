@@ -14,23 +14,43 @@
                                 <tbody>
                                     <tr>
                                         <td class="table-dark">成績表A</td>
-
                                         {% if submit_data.seisekiA == '○' %}
-                                        <td class="maru-img td_value"></td>
+                                        <td class="maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:seisekiA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.seisekiA == '△' %}
                                         <td class="sankaku-img td_value"></td>
                                         {% elif submit_data.seisekiA == '◎' %}
-                                        <td class="niju-maru-img td_value"></td>
+                                        <td class="niju-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:seisekiA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.seisekiA == '●' %}
-                                        <td class="kuromaru-img td_value"></td>
+                                        <td class="kuromaru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:seisekiA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.seisekiA == '◉' %}
-                                        <td class="nakaguro-maru-img td_value"></td>
+                                        <td class="nakaguro-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:seisekiA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.seisekiA == '-' %}
-                                        <td class="uma-img td_value"></td>
+                                        <td class="uma-img td_value">
+                                            <div class="non_push"></div>
+                                        </td>
                                         {% else %}
-                                        <td>{{ submit_data.seisekiA }}</td>
+                                        <td class="td_value"><div class="non_push">{{ submit_data.seisekiA }}</div></td>
                                         {% endif %}
-
                                     </tr>
                                 </tbody>
                             </table>
@@ -41,21 +61,44 @@
                                     <tr>
                                         <td class="table-dark">通信文A</td>
 
+
                                         {% if submit_data.tsusinA == '○' %}
-                                        <td class="maru-img td_value"></td>
+                                        <td class="maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:tsusinA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.tsusinA == '△' %}
                                         <td class="sankaku-img td_value"></td>
                                         {% elif submit_data.tsusinA == '◎' %}
-                                        <td class="niju-maru-img td_value"></td>
+                                        <td class="niju-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:tsusinA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.tsusinA == '●' %}
-                                        <td class="kuromaru-img td_value"></td>
+                                        <td class="kuromaru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:tsusinA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.tsusinA == '◉' %}
-                                        <td class="nakaguro-maru-img td_value"></td>
+                                        <td class="nakaguro-maru-img td_value">
+                                            <a
+                                                href="{% url 'app_ckeiba:tsusinA_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=0 %}" target="_blank">
+                                                <div class="submit_push"></div>
+                                            </a>
+                                        </td>
                                         {% elif submit_data.tsusinA == '-' %}
-                                        <td class="uma-img td_value"></td>
+                                        <td class="uma-img td_value">
+                                            <div class="non_push"></div>
+                                        </td>
                                         {% else %}
-                                        {{ submit_data.tsusinA }}
-                                        <td>{% endif %}</td>
+                                        <td class="td_value"><div class="non_push">{{ submit_data.tsusinA }}</div></td>
+                                        {% endif %}
 
                                     </tr>
                                 </tbody>
@@ -88,20 +131,43 @@
                             <td>出走表</td>
                             {% for shussou in submit_data.shussou %}
 
+
                             {% if shussou == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif shussou == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:shussouhyou_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif shussou == '-' %}
-                            <td class="uma-img td_value"></td>
+                            <td class="uma-img td_value">
+                                <div class="non_push"></div>
+                            </td>
                             {% else %}
-                            <td>{{ shussou }}</td>
+                            <td class="td_value"><div class="non_push">{{ shussou }}</div></td>
                             {% endif %}
 
                             {% endfor %}
@@ -110,20 +176,41 @@
                             <td>成績表C</td>
                             {% for seiseki in submit_data.seiseki %}
 
+
                             {% if seiseki == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif seiseki == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif seiseki == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif seiseki == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a></td>
                             {% elif seiseki == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:seiseki_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a></td>
                             {% elif seiseki == '-' %}
-                            <td class="uma-img td_value"></td>
+                            <td class="uma-img td_value">
+                                <div class="non_push"></div>
+                            </td>
                             {% else %}
-                            <td>{{ seiseki }}</td>
+                            <td class="td_value"><div class="non_push">{{ seiseki }}</div></td>
                             {% endif %}
 
                             {% endfor %}
@@ -133,41 +220,88 @@
                             {% for rap in submit_data.rap %}
 
                             {% if rap == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:rap_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif rap == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif rap == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:rap_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif rap == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:rap_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif rap == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:rap_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif rap == '-' %}
-                            <td class="uma-img td_value"></td>
+                            <td class="uma-img td_value">
+                                <div class="non_push"></div>
+                            </td>
                             {% else %}
-                            <td>{{ rap }}</td>
+                            <td class="td_value"><div class="non_push">{{ rap }}</div></td>
                             {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
                             <td>上がり</td>
                             {% for agari in submit_data.agari %}
 
+
                             {% if agari == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif agari == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:agari_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif agari == '-' %}
-                            <td class="uma-img td_value"></td>
+                            <td class="uma-img td_value">
+                                <div class="non_push"></div>
+                            </td>
                             {% else %}
-                            <td>{{ agari }}</td>
+                            <td class="td_value"><div class="non_push">{{ agari }}</div></td>
                             {% endif %}
+
                             {% endfor %}
                         </tr>
                         <tr>
@@ -175,19 +309,41 @@
                             {% for tsusin in submit_data.tsusin %}
 
                             {% if tsusin == '○' %}
-                            <td class="maru-img td_value"></td>
+                            <td class="maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '△' %}
                             <td class="sankaku-img td_value"></td>
                             {% elif tsusin == '◎' %}
-                            <td class="niju-maru-img td_value"></td>
+                            <td class="niju-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '●' %}
-                            <td class="kuromaru-img td_value"></td>
+                            <td class="kuromaru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '◉' %}
-                            <td class="nakaguro-maru-img td_value"></td>
+                            <td class="nakaguro-maru-img td_value">
+                                <a
+                                    href="{% url 'app_ckeiba:tushinbun_NewsML' kyounen=data.meta.year kyoutuki=data.meta.month kyouhi=data.meta.day joucode=submit_data.jou_code rebangou=forloop.counter %}" target="_blank">
+                                    <div class="submit_push"></div>
+                                </a>
+                            </td>
                             {% elif tsusin == '-' %}
-                            <td class="uma-img td_value"></td>
+                            <td class="uma-img td_value">
+                                <div class="non_push"></div>
+                            </td>
                             {% else %}
-                            <td>{{ tsusin }}</td>
+                            <td class="td_value"><div class="non_push">{{ tsusin }}</div></td>
                             {% endif %}
 
                             {% endfor %}

@@ -12,4 +12,5 @@
 /app_autorace/management/__pycache__/
 /app_autorace/management/commands/__pycache__/
 /app_autorace/logs/
+/app_ckeiba/logs/
 

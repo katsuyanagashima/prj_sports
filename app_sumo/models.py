@@ -288,7 +288,7 @@ class Mst_Lifetime_result(Model):
     Highestchii_code = ForeignKey(Mst_Chii, on_delete=CASCADE) #地位マスタ
     Highestorder = IntegerField(verbose_name='最高順位', blank=True, null=True)
     Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE, blank=True, null=True) #東西マスタ
-    Maxsticking = IntegerField(verbose_name='最高張付')
+    Maxsticking = IntegerField(verbose_name='最高張付', blank=True, null=True)
     Overallwinrate = FloatField(verbose_name='通算勝率')
     Overallwinrate_yasumimake = FloatField(verbose_name='通算勝率（休を負）')
     Maxcontinuousplayed = IntegerField(verbose_name='最高連続出場回数', blank=True, null=True)
@@ -393,3 +393,33 @@ class Mst_SubHeader(Model):
     
         def __str__(self):
             return str(self.Content_code)
+
+# 修正句マスタ
+class Mst_Fix_annotation(Model):
+    content_id =  CharField(verbose_name='製品ID', max_length=23,blank=True, null=True)
+    tag_name = CharField(verbose_name='タグ名', max_length=64, blank=True, null=True) 
+    fix_tag_annotation = CharField(verbose_name='修正名', max_length=64, blank=True, null=True)
+    create_date = DateTimeField(verbose_name='レコード作成日時', auto_now_add=True, blank=True, null=True)
+    update_date = DateTimeField(verbose_name='レコード更新日時', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = '修正文言マスタ'
+    
+        def __str__(self):
+            return str(self.content_id)
+
+# 編注・注釈マスタ
+class Mst_Tag_annotation(Model):
+    content_id =  CharField(verbose_name='製品ID', max_length=23,blank=True, null=True)
+    edit = CharField(verbose_name='編注', max_length=64, blank=True, null=True) 
+    end_edit = CharField(verbose_name='末尾編注', max_length=64, blank=True, null=True) 
+    annotation = CharField(verbose_name='注釈', max_length=64, blank=True, null=True) 
+    create_date = DateTimeField(verbose_name='レコード作成日時', auto_now_add=True, blank=True, null=True)
+    update_date = DateTimeField(verbose_name='レコード更新日時', auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'タグ注釈マスタ'
+    
+        def __str__(self):
+            return str(self.content_id)
+
