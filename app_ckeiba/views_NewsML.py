@@ -31,8 +31,6 @@ def intToZen(i):
 
 # ２．,(カンマ)で区切られた文字列をリスト化して返す関数。余分な空白は削除する。
 # 文字列がない場合、空白で返す
-
-
 def makelist(mojiretsu):
     str_list = ""
     if mojiretsu:
@@ -41,8 +39,6 @@ def makelist(mojiretsu):
     return str_list
 
 # ３．馬名を９文字にする関数。馬名を左詰にして、空いたところには全角スペースを挿入。
-
-
 def bamei9char(bamei):
     bamei_9char = ""
     if bamei:
@@ -50,10 +46,246 @@ def bamei9char(bamei):
     return bamei_9char
 
 # ========================================================================
+# 【ヘッダー】(共通)
+# 各NewsML共通のヘッダー部分のパラメータ生成処理を実装する
+
+
+
+# ========================================================================
+# 【成績表A】(InData内部)
+def NewsML_seisekiA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
+
+    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
+    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+    #                                    joumei=joucode,
+    #                                    ck_kyounen=kyounen,
+    #                                    ck_kyoutuki=kyoutuki,
+    #                                    ck_kyouhi=kyouhi,
+    #                                    rebangou=rebangou
+    #                                    )
+
+    # # 場マスタから場のデータを取得
+    # jou_data = Mst_Jou.getJoudata(joucode)
+
+    # # 数値の全角化処理(馬番)
+    # for tb in tsuushimbun_list:
+    #     tb.uma = intToZen(tb.uma)
+
+    # # レース情報を一件目のデータからとる。
+    # tsuushinbun = tsuushimbun_list[0]
+
+    # # パラメータに追加(数値の項目は全角化する)
+    # params = {
+    #     'joumei_seishiki': jou_data[0],
+    #     'joumei_3': jou_data[1],
+
+    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
+    #     'kainichime': intToZen(tsuushinbun.kainichime),
+
+    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
+    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
+    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
+    #     'rebangou': intToZen(tsuushinbun.rebangou),
+
+    #     'tsuushimbun_list': tsuushimbun_list
+    # }
+
+    # # xml形式で出力
+    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
+    # res['Content-Type'] = 'application/xml'
+    # return res
+
+    return render(request, 'NewsML_temp/NewsML.html', {'title':'【成績表A】NewsMLプレビュー画面作成中(4/30)'})
+
+
+# ========================================================================
+# 【通信文A】(InData内部)
+def NewsML_tsusinA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
+
+    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
+    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+    #                                    joumei=joucode,
+    #                                    ck_kyounen=kyounen,
+    #                                    ck_kyoutuki=kyoutuki,
+    #                                    ck_kyouhi=kyouhi,
+    #                                    rebangou=rebangou
+    #                                    )
+
+    # # 場マスタから場のデータを取得
+    # jou_data = Mst_Jou.getJoudata(joucode)
+
+    # # 数値の全角化処理(馬番)
+    # for tb in tsuushimbun_list:
+    #     tb.uma = intToZen(tb.uma)
+
+    # # レース情報を一件目のデータからとる。
+    # tsuushinbun = tsuushimbun_list[0]
+
+    # # パラメータに追加(数値の項目は全角化する)
+    # params = {
+    #     'joumei_seishiki': jou_data[0],
+    #     'joumei_3': jou_data[1],
+
+    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
+    #     'kainichime': intToZen(tsuushinbun.kainichime),
+
+    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
+    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
+    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
+    #     'rebangou': intToZen(tsuushinbun.rebangou),
+
+    #     'tsuushimbun_list': tsuushimbun_list
+    # }
+
+    # # xml形式で出力
+    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
+    # res['Content-Type'] = 'application/xml'
+    # return res
+
+    return render(request, 'NewsML_temp/NewsML.html', {'title': '【通信文A】NewsMLプレビュー画面作成中(4/30)'})
+# ========================================================================
+
+# 【成績表C】(InData内部)
+def NewsML_seisekiC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
+
+    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
+    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+    #                                    joumei=joucode,
+    #                                    ck_kyounen=kyounen,
+    #                                    ck_kyoutuki=kyoutuki,
+    #                                    ck_kyouhi=kyouhi,
+    #                                    rebangou=rebangou
+    #                                    )
+
+    # # 場マスタから場のデータを取得
+    # jou_data = Mst_Jou.getJoudata(joucode)
+
+    # # 数値の全角化処理(馬番)
+    # for tb in tsuushimbun_list:
+    #     tb.uma = intToZen(tb.uma)
+
+    # # レース情報を一件目のデータからとる。
+    # tsuushinbun = tsuushimbun_list[0]
+
+    # # パラメータに追加(数値の項目は全角化する)
+    # params = {
+    #     'joumei_seishiki': jou_data[0],
+    #     'joumei_3': jou_data[1],
+
+    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
+    #     'kainichime': intToZen(tsuushinbun.kainichime),
+
+    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
+    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
+    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
+    #     'rebangou': intToZen(tsuushinbun.rebangou),
+
+    #     'tsuushimbun_list': tsuushimbun_list
+    # }
+
+    # # xml形式で出力
+    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
+    # res['Content-Type'] = 'application/xml'
+    # return res
+
+    return render(request, 'NewsML_temp/NewsML.html', {'title': '【成績表C】NewsMLプレビュー画面作成中(4/30)'})
+# ========================================================================
+
+# 【ラップ】(InData内部)
+def NewsML_rap(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
+
+    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
+    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+    #                                    joumei=joucode,
+    #                                    ck_kyounen=kyounen,
+    #                                    ck_kyoutuki=kyoutuki,
+    #                                    ck_kyouhi=kyouhi,
+    #                                    rebangou=rebangou
+    #                                    )
+
+    # # 場マスタから場のデータを取得
+    # jou_data = Mst_Jou.getJoudata(joucode)
+
+    # # 数値の全角化処理(馬番)
+    # for tb in tsuushimbun_list:
+    #     tb.uma = intToZen(tb.uma)
+
+    # # レース情報を一件目のデータからとる。
+    # tsuushinbun = tsuushimbun_list[0]
+
+    # # パラメータに追加(数値の項目は全角化する)
+    # params = {
+    #     'joumei_seishiki': jou_data[0],
+    #     'joumei_3': jou_data[1],
+
+    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
+    #     'kainichime': intToZen(tsuushinbun.kainichime),
+
+    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
+    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
+    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
+    #     'rebangou': intToZen(tsuushinbun.rebangou),
+
+    #     'tsuushimbun_list': tsuushimbun_list
+    # }
+
+    # # xml形式で出力
+    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
+    # res['Content-Type'] = 'application/xml'
+    # return res
+
+    return render(request, 'NewsML_temp/NewsML.html', {'title': '【ラップ】NewsMLプレビュー画面作成中(4/30)'})
+# ========================================================================
+
+
+# 【上がり】(InData内部)
+def NewsML_agari(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
+
+    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
+    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+    #                                    joumei=joucode,
+    #                                    ck_kyounen=kyounen,
+    #                                    ck_kyoutuki=kyoutuki,
+    #                                    ck_kyouhi=kyouhi,
+    #                                    rebangou=rebangou
+    #                                    )
+
+    # # 場マスタから場のデータを取得
+    # jou_data = Mst_Jou.getJoudata(joucode)
+
+    # # 数値の全角化処理(馬番)
+    # for tb in tsuushimbun_list:
+    #     tb.uma = intToZen(tb.uma)
+
+    # # レース情報を一件目のデータからとる。
+    # tsuushinbun = tsuushimbun_list[0]
+
+    # # パラメータに追加(数値の項目は全角化する)
+    # params = {
+    #     'joumei_seishiki': jou_data[0],
+    #     'joumei_3': jou_data[1],
+
+    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
+    #     'kainichime': intToZen(tsuushinbun.kainichime),
+
+    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
+    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
+    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
+    #     'rebangou': intToZen(tsuushinbun.rebangou),
+
+    #     'tsuushimbun_list': tsuushimbun_list
+    # }
+
+    # # xml形式で出力
+    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
+    # res['Content-Type'] = 'application/xml'
+    # return res
+
+    return render(request, 'NewsML_temp/NewsML.html', {'title': '【上がり】NewsMLプレビュー画面作成中(4/30)'})
+
+# ========================================================================
 
 # 【通信文C】(InData内部)
-
-
 def NewsML_tsuushimbunC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
     # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
@@ -95,8 +327,6 @@ def NewsML_tsuushimbunC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
     res['Content-Type'] = 'application/xml'
     return res
-
-
 # ========================================================================
 # 【出走表】(InData内部)
 def NewsML_shussouhyou(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):

@@ -107,6 +107,8 @@ admin.site.register(Mst_Prefectures)
 admin.site.register(Mst_Delivery, Mst_DeliveryAdmin)
 admin.site.register(Mst_SubHeader, Mst_SubHeaderAdmin)
 #admin.site.register(Mst_Operationmode)
+admin.site.register(Mst_Fix_annotation)
+admin.site.register(Mst_Tag_annotation)
 # --------------------
 admin.site.register(Tran_Systemstatus)  # システム状態
 # --------------------
@@ -141,3 +143,5 @@ class Tran_YushoSanshoAdmin(admin.ModelAdmin):
 
 admin.site.register(Tran_YushoSansho, Tran_YushoSanshoAdmin)
 
+admin.site.register(Tran_NewsMLStatus)
+admin.site.register(Tran_MQ_sequense)

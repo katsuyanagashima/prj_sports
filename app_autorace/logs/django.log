@@ -1608,3 +1608,4 @@
 [INFO]	2020-04-30 19:18:46,308	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
 [INFO]	2020-04-30 19:18:46,308	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
 [INFO]	2020-04-30 19:18:46,311	module:apps	command.ready:101	ready call_watch_doc End:
+
