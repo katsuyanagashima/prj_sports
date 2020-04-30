@@ -160,30 +160,28 @@ def SUMYUS01_create(request):
 
 
 # 優勝・三賞入力画面（追加２）
-def SUMYUS01_create2(request, str):
-    logging.info(str)
+def SUMYUS01_create2(request, str_award):
     row = request.POST.get('rikishi_id')
-    Yusho_flg = 1 if str == 'Yusho' else 0
-    Shukunsho_flg = 1 if str == 'Shukunsho' else 0
-    Kantosho_flg = 1 if str == 'Kantosho' else 0
-    Ginosho_flg = 1 if str == 'Ginosho' else 0
     # 画面で力士が選択されている場合
     if row:
         reqlist_rikishi_id = request.POST.get('rikishi_id')
         ccid = Tran_Banzuke.objects.get(Rikishi_id=reqlist_rikishi_id).Class_code_id
+        awards = {}
+        if str_award == 'Yusho':
+            awards['Yusho_flg'] = 1
+        if str_award == 'Shukunsho':
+            awards['Shukunsho_flg'] = 1
+        if str_award == 'Kantosho':
+            awards['Kantosho_flg'] = 1
+        if str_award == 'Ginosho':
+            awards['Ginosho_flg'] = 1
         # DBのデータを更新または新規登録
         Tran_YushoSansho.objects.update_or_create(
             Rikishi_id = reqlist_rikishi_id,
             Yearmonth = Tran_Systemstatus.objects.first().Event_date,
             Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
             Class_code_id = ccid,
-            ###●●●更新時に、既存の登録がクリアされる欠点がある！！！！！●●●###
-            defaults={
-                "Yusho_flg" : Yusho_flg,
-                "Shukunsho_flg" : Shukunsho_flg,
-                "Kantosho_flg" : Kantosho_flg,
-                "Ginosho_flg" : Ginosho_flg,
-            }
+            defaults = awards,
         )
     return redirect('app_sumo:SUMYUS01')
 
