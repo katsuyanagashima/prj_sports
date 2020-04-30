@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-16"?>
 {% load static %}
-{% load fix_tags %}
+{% load text_tags %}
 <!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
 	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
 	%InContent;
@@ -183,7 +183,7 @@
 <Meta>
 <!-- 以下の想定は、◎2020大相撲初場所新番付資料（12月24日現在）-->
 <!-- 2020は開催年月の年を取得して連数字x2、12月24日の数字も連数 -->
-<Title>◎{{ meta.Event_date|get_first4char|intToZen|split2char }}大相撲{{ meta.CurrentBasho }}新番付資料（{{ meta.Banzuke_date|intToZen }}現在）</Title>
+<Title>{% text_length 'abcdef' %}{% text_replace '123' 'b' %}◎{{ meta.Event_date }}大相撲{{ meta.CurrentBasho }}新番付資料（月日現在）</Title>
 <Competition>
 <Formal>{{ meta.CurrentBasho }}</Formal>
 </Competition>
@@ -205,7 +205,8 @@
 <!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ================== -->
 {% if Banzuke_forecast %}
 {% for player in Banzuke_forecast %}
-<Player PlayerId="009620">
+<Player PlayerId="{{ player.Rikishi.Rikishi_code  }}">
+<!-- <Player PlayerId="0096620">  -->
 <PlayerName>
 <Writing>{{ player.Rikishi.Rikishi_name_Kanji_4char  }}</Writing>
 <Formal>{{ player.Rikishi.Rikishi_name_kanji_official  }}</Formal>
@@ -221,56 +222,52 @@
 <Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana  }}</Formal>
 </Belong>
 <Age>●●</Age>
-<Height Unit="センチメートル">{{ player.Rikishi.Height | intToZen  }}</Height>
-<Weight Unit="キログラム">{{ player.Rikishi.Weight | intToZen  }}</Weight>
+<Height Unit="センチメートル">{{ player.Rikishi.Height  }}</Height>
+<Weight Unit="キログラム">{{ player.Rikishi.Weight  }}</Weight>
 <Result Period="幕内通算">
 <Record Kind="与金星" Unit="回">
 <Writing>{{ player.Lifetime_result.Totalgivekinboshi  }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi | intToZen  }}</IntegerPart>
+<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi  }}</IntegerPart>
 </Record>
 <Record Kind="奪金星" Unit="回">
 <Writing>{{ player.Lifetime_result.Totalgetkinboshi  }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi | intToZen  }}</IntegerPart>
+<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi  }}</IntegerPart>
 </Record>
 <Award Kind="優勝">
 <Count>
-<Writing>{{ player.Lifetime_award.Numberofaward }}</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<Writing>２</Writing>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="殊勲賞">
 <Count>
 <Writing>５</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="敢闘賞">
 <Count>
 <Writing>３</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="技能賞">
 <Count>
 <Writing>１</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
 </Count>
 </Award>
-{% for lresult in Liferesult %}
-{% if lresult.Rikishi_code.Rikishi_code ==  lresult.Rikishi_code.Rikishi_code %}
 <ResultForSumo>
 <SumoOutcomeTotal>
-<BashoCount>{{ lresult.Totalbasho | intToZen  }}{{ lresult.Rikishi_code.Rikishi_code}}{{ lresult.Rikishi_code.Rikishi_code}}</BashoCount>
-<WinCount>{{ lresult.Totalwins | intToZen  }}</WinCount>
-<LossCount>{{ lresult.Totalloss | intToZen  }}</LossCount>
-<DrawCount>{{ lresult.Totalties | intToZen  }}</DrawCount>
-<AbsenceCount>{{ lresult.Totalkyuujou | intToZen  }}</AbsenceCount>
+<BashoCount>{{ player.Lifetime_result.Totalbasho  }}</BashoCount>
+<WinCount>{{ player.Lifetime_result.Totalwins  }}</WinCount>
+<LossCount>{{ player.Lifetime_result.Totalloss  }}</LossCount>
+<DrawCount>{{ player.Lifetime_result.Totalties  }}</DrawCount>
+<AbsenceCount>{{ player.Lifetime_result.Totalkyuujou  }}</AbsenceCount>
 </SumoOutcomeTotal>
-<WinningPercentage>{{ lresult.Overallwinrate | remmove_integer0 | intToZen }}</WinningPercentage>
-<WinningPercentage Kind="休みを負とした">{{ lresult.Overallwinrate_yasumimake | intToZen  }}</WinningPercentage>
+<WinningPercentage>{{ player.Lifetime_result.Overallwinrate  }}</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">{{ player.Lifetime_result.Overallwinrate_yasumimake  }}</WinningPercentage>
 </ResultForSumo>
-{% endif %} 
-{% endfor %}
 </Result>
 <PlayerForSumo>
 <SumoGrade Kind="最高位">

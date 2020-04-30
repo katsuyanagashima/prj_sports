@@ -20,15 +20,15 @@ temp = [
 def nav_info(request, get_type=0):
     tran_system = Tran_Systemstatus.objects.all().first()
 
-    # params = {
-    #     'nav': {
-    #         'basho': tran_system.CurrentBasho,
-    #         'systatus': tran_system.SystemStatus,
-    #         'torikumiday': tran_system.TorikumiDate.Nichime_name,
-    #         'shoubuday': tran_system.MatchDate.Nichime_name
-    #     }
-    # }
-    params = {} # dump.json 復旧までの退避
+    params = {
+         'nav': {
+             'basho': tran_system.CurrentBasho,
+             'systatus': tran_system.SystemStatus,
+             'torikumiday': tran_system.TorikumiDate.Nichime_name,
+             'shoubuday': tran_system.MatchDate.Nichime_name
+         }
+     }
+    #params = {} # dump.json 復旧までの退避
     if get_type:
         return [params, tran_system]
     else:
@@ -118,8 +118,9 @@ class Output_NewsML():
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
                 'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
-        #        'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
-        #        'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+                'Lifechii': Mst_Lifetime_statusinfo.objects.all(),  # 生涯地位マスタ
             }
         #02新番付資料・補正
         elif self.newsno == "02":
