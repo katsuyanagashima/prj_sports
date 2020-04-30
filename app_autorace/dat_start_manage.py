@@ -12,11 +12,6 @@ from watchdog.observers.polling import PollingObserver
 
 from app_autorace.consts import *
 
-try:
-    import codecs
-except ImportError:
-    codecs = None
-
 logger = getLogger('command')
 base_trn = os.path.dirname(os.path.abspath(__file__))
 try:
