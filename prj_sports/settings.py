@@ -149,6 +149,7 @@ MEDIA_ROOT = '/usr/share/nginx/html/media'
 
 import logging
 APP_AUTORACE_ROOT = '/code/app_autorace'
+APP_CKEIBA_ROOT = '/code/app_ckeiba'
 LOGGING = {
     "version": 1,# これを設定しないと怒られる
     "disable_existing_loggers": False,
@@ -162,7 +163,7 @@ LOGGING = {
                     "%(name)s.%(funcName)s:%(lineno)s",
                     "%(message)s",
                     #"process:%(process)d",
-                    # "thread:%(thread)d",                    
+                    # "thread:%(thread)d",
                 ]
             )
         },
@@ -178,19 +179,33 @@ LOGGING = {
             "filename": APP_AUTORACE_ROOT + "/logs/django.log",
             "formatter": "test",
             'when': 'D', # 単位は日
-            'interval': 1, # 一日おき            
+            'interval': 1, # 一日おき
             # "maxBytes": 1024 * 1024 * 1,
             # "backupCount": 5,
             'backupCount': 7, # 世代数
         },
-        
+        "app_ckeiba": { # どこに出すかの設定に名前をつける `file`という名前をつけている
+            # 'class': 'logging.FileHandler',  # ログを出力するためのクラスを指定
+            'level': 'INFO',  # INFO以上のログを取り扱うという意味
+            # ファイルサイズによるローテーション
+            # "class": "logging.handlers.RotatingFileHandler",
+            # 期間によるローテーション
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            "filename": APP_CKEIBA_ROOT + "/logs/app_ckeiba.log",
+            "formatter": "test",
+            'when': 'D', # 単位は日
+            'interval': 1, # 一日おき
+            # "maxBytes": 1024 * 1024 * 1,
+            # "backupCount": 5,
+            'backupCount': 7, # 世代数
+        },
         #'console': { # どこに出すかの設定をもう一つ、こちらの設定には`console`という名前
         #    'level': 'DEBUG',
             # こちらは標準出力に出してくれるクラスを指定
-        #    'class': 'logging.StreamHandler', 
+        #    'class': 'logging.StreamHandler',
         #    'formatter': 'test'
-        #}, 
-              
+        #},
+
     },
     "loggers": {# どんなloggerがあるかを設定する
         # 自作したログ出力
@@ -198,6 +213,13 @@ LOGGING = {
             "handlers": ["file"
             #, 'console'
             ],# 先述のfile, consoleの設定で出力
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        },
+        # 自作したログ出力
+        'app_ckeiba': {# app_ckeibaという名前のloggerを定義
+            "handlers": ["app_ckeiba"
+            ],# 先述のfile_app_ckeibaの設定で出力
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
             "propagate": True,
         },
