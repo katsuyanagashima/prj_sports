@@ -2,10 +2,10 @@ import datetime
 # ファイルアクセスとスリープのため、osとtimeをインポート
 import os
 import re
+import sys
 import time
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
-from watchdog.observers import Observer
 from watchdog.observers.polling import PollingObserver
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -13,14 +13,14 @@ from django.db.models import Max
 from app_autorace.models import *
 from logging import getLogger
 from pathlib import Path
+sys.path.append("/code/app_autorace/")
+from consts import *
 
 logger = getLogger('command')
 
 # 監視対象ファイルのパターンマッチを指定する
 # 番組編成データレコード（mmddhhmmss0000J001.dat）
-programID = 2
-programData = "programData"
-go_recursively = False
+
 # target_file_program_record = '*0000[1-6]001.dat'
 trn_program_repeat = 12 # 番組編成データレコードテーブル　繰り返しの数
 trn_running_list = 8
@@ -673,11 +673,15 @@ class Program():
         , Date_AD=self.date_ad, First_day_of_the_event=self.first_day_of_the_event, Race_No=self.race_no, Race_distance=self.race_distance).save()
 
         # 空白チェックして実体があるカラムは更新
+        logger.info( "内容:update_trn_program Start:" + str(repeat))
         self.update_trn_program(line, Trn_Program.objects.get(id=Trn_Program.objects.all().aggregate(Max('id')).get('id__max')))
+        logger.info( "内容:update_trn_program End")
 
         # 出走選手テーブル
+        logger.info( "内容:insert_or_update_trn_running_list Start:" + str(repeat))
         self.insert_or_update_trn_running_list(line, repeat)
-                    
+        logger.info( "内容:insert_or_update_trn_running_list End")
+
 
     def insert_or_update_Trn_Program(self, fileName):
         try:
@@ -692,19 +696,23 @@ class Program():
 
                     for repeat in range(trn_program_repeat):
 
+                        logger.info( "内容:insert_or_update_trn_program_list Start:詳細:ファイルデータ: outsidetrack_record:" + str(repeat))
                         self.insert_or_update_trn_program_list(line, repeat)
+                        logger.info( "内容:insert_Trn_Outside_track End")
+
 
             file.close()
+            return NORMAL
 
         except FileNotFoundError as e:
-            logger.warn(e)
-            raise (e)
+            logger.error(e)
+            return ABNORMAL
         except UnboundLocalError as e:
-            logger.warn(e)
-            raise (e)
+            logger.error(e)
+            return ABNORMAL
         except ValueError as e:
-            logger.warn(e)
-            raise (e)
+            logger.error(e)
+            return ABNORMAL
         except Exception as e:
-            logger.warn("DB insert_or_update_Trn_Program")
-            raise (e)
+            logger.error(e)
+            return ABNORMAL

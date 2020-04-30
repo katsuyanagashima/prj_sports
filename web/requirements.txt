@@ -6,3 +6,4 @@ django-bootstrap4==1.0.1
 django-widget-tweaks==1.4.5
 watchdog==0.10.2
 pathtools==0.1.1
+chardet==3.0.4

@@ -53,6 +53,6 @@ urlpatterns = [
 
 
     #CSV検証用
-    path('upload/', views.upload, name='upload'),
-    path('upload2/', views.upload2, name='upload2'),
+ #   path('upload/', views.upload, name='upload'),
+ #   path('upload2/', views.upload2, name='upload2'),
 ]

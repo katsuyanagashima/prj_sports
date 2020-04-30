@@ -1,0 +1,24 @@
+{% extends 'app_sumo/base.html' %}
+{% block content %}
+    <h1 class="caption">優勝・三賞入力画面</h1>
+    <span> {{ post.Yearmonth }}</span>
+    <span> {{ post.Nichime_code }}</span>
+    <h1> {{ post.Rikishi }}</h1>
+    <h2>
+        <span>（{{ post.Class_code }}）</span>
+        {% if post.Yusho_flg %} <span>優勝</span> {% endif %}
+        {% if post.Shukunsho_flg %} <span>殊勲賞</span> {% endif %}
+        {% if post.Kantosho_flg %} <span>敢闘賞</span> {% endif %}
+        {% if post.Ginosho_flg %} <span>技能賞</span> {% endif %}
+    </h2>
+    <form method="POST" action="{% url 'app_sumo:SUMYUS01_delete' post.pk %}">
+        {% csrf_token %}
+        <nav class="navbar fixed-bottom navbar-dark bg-dark">
+            <a href="{% url 'app_sumo:SUMYUS01_update' post.pk %}" class="btn btn-success">編集</a>
+            <button type="submit" class="btn btn-danger" onclick='return confirm("削除しますか？");'>削除</button>
+            <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
+        </nav>
+    </form>
+    <p>※この画面で直接修正と削除ができるようにする<
+    </p>
+{% endblock %}

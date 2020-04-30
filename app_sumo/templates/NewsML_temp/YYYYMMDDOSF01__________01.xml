@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-16"?>
 {% load static %}
+{% load fix_tags %}
 <!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
 	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
 	%InContent;
@@ -14,8 +15,8 @@
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
-<IhSendDate>ＹＹＹＹＭＭＤＤ（運用日？）</IhSendDate>
-<IhSendTime>ＨＨＭＭＳＳ（運用時間？）</IhSendTime>
+<IhSendDate>ＹＹＹＹＭＭＤＤ</IhSendDate>
+<IhSendTime>ＨＨＭＭＳＳ</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
 <IhSendTo IhNs="3">
 <IhSendToSys>ＨＳ</IhSendToSys>
@@ -33,17 +34,27 @@
 <IhMainRank>角</IhMainRank>
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader %}
 <IhSubHeader>
+{% for sub in subheader %}
+{% if sub.Delivery_code.Individual_address == 0 %}
 <IhSendBlkInfo IhNb="1">
-<IhSendBlk>フル相全</IhSendBlk>
+<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
 </IhSendBlkInfo>
+{% endif %}
+{% if sub.Delivery_code.Individual_address == 1 %}
 <IhSendIndInfo IhNi="1">
-<IhSendInd>アサガミ</IhSendInd>
+<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
 </IhSendIndInfo>
+{% endif %}
+{% endfor %}
 <IhSendNIndInfo IhNi="1">
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
 </IhSubHeader>
+{% endif %}
+<!-- ===================================== -->
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
@@ -79,6 +90,7 @@
 <NewsLineType FormalName="EditInfo"/>
 <NewsLineText>貴ノ岩は引退</NewsLineText>
 </NewsLine>
+<!-- 力士の編集内容によって可変  -->
 <NewsLine>
 <NewsLineType FormalName="EndInfo"/>
 <NewsLineText>ブラジはブラジル</NewsLineText>
@@ -136,6 +148,7 @@
 </InMainHeader>
 <InSubHeader>
 <InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<!-- ==== 副ヘッダマスタから取得 =========== -->
 <InSendControl>
 <InSendBlkInfo InNb="1">
 <InSendBlk>相全</InSendBlk>
@@ -144,13 +157,16 @@
 <InSendInd>ガミ</InSendInd>
 </InSendIndInfo>
 </InSendControl>
+<!-- ===================================== -->
 </InSubHeader>
+<!-- 画面からの入力値 -->
 <InEditInfo>
 <InEditLines InNc="1">
 <InEditLine>貴ノ岩は引退</InEditLine>
 </InEditLines>
 </InEditInfo>
 <InEndInfo>
+<!-- 力士の編集内容によって可変  -->
 <InEndLines InNc="4">
 <InEndLine>ブラジはブラジル</InEndLine>
 <InEndLine>ブルガはブルガリア</InEndLine>
@@ -164,11 +180,10 @@
 <SportsData Version="1.1">
 <Head>
 {% for meta in newsmlmeta %}
-<!-- ==== システム状態（Tran_Systemstatus）から取得 ==== -->
 <Meta>
 <!-- 以下の想定は、◎2020大相撲初場所新番付資料（12月24日現在）-->
 <!-- 2020は開催年月の年を取得して連数字x2、12月24日の数字も連数 -->
-<Title>◎大相撲{{ meta.CurrentBasho }}新番付資料（月日現在）</Title>
+<Title>◎{{ meta.Event_date|get_first4char|intToZen|split2char }}大相撲{{ meta.CurrentBasho }}新番付資料（{{ meta.Banzuke_date|intToZen }}現在）</Title>
 <Competition>
 <Formal>{{ meta.CurrentBasho }}</Formal>
 </Competition>
@@ -206,57 +221,61 @@
 <Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana  }}</Formal>
 </Belong>
 <Age>●●</Age>
-<Height Unit="センチメートル">{{ player.Rikishi.Height  }}</Height>
-<Weight Unit="キログラム">{{ player.Rikishi.Weight  }}</Weight>
+<Height Unit="センチメートル">{{ player.Rikishi.Height | intToZen  }}</Height>
+<Weight Unit="キログラム">{{ player.Rikishi.Weight | intToZen  }}</Weight>
 <Result Period="幕内通算">
 <Record Kind="与金星" Unit="回">
-<Writing></Writing>
-<IntegerPart>１６</IntegerPart>
+<Writing>{{ player.Lifetime_result.Totalgivekinboshi  }}</Writing>
+<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi | intToZen  }}</IntegerPart>
 </Record>
 <Record Kind="奪金星" Unit="回">
-<Writing>③</Writing>
-<IntegerPart>３</IntegerPart>
+<Writing>{{ player.Lifetime_result.Totalgetkinboshi  }}</Writing>
+<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi | intToZen  }}</IntegerPart>
 </Record>
 <Award Kind="優勝">
 <Count>
-<Writing>２</Writing>
-<CountValue>２</CountValue>
+<Writing>{{ player.Lifetime_award.Numberofaward }}</Writing>
+<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="殊勲賞">
 <Count>
 <Writing>５</Writing>
-<CountValue>５</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="敢闘賞">
 <Count>
 <Writing>３</Writing>
-<CountValue>３</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
 </Count>
 </Award>
 <Award Kind="技能賞">
 <Count>
 <Writing>１</Writing>
-<CountValue>１</CountValue>
+<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
 </Count>
 </Award>
+{% for lresult in Liferesult %}
+{% if lresult.Rikishi_code.Rikishi_code ==  lresult.Rikishi_code.Rikishi_code %}
 <ResultForSumo>
 <SumoOutcomeTotal>
-<BashoCount>８４</BashoCount>
-<WinCount>７１４</WinCount>
-<LossCount>４４９</LossCount>
-<DrawCount>０</DrawCount>
-<AbsenceCount>９７</AbsenceCount>
+<BashoCount>{{ lresult.Totalbasho | intToZen  }}{{ lresult.Rikishi_code.Rikishi_code}}{{ lresult.Rikishi_code.Rikishi_code}}</BashoCount>
+<WinCount>{{ lresult.Totalwins | intToZen  }}</WinCount>
+<LossCount>{{ lresult.Totalloss | intToZen  }}</LossCount>
+<DrawCount>{{ lresult.Totalties | intToZen  }}</DrawCount>
+<AbsenceCount>{{ lresult.Totalkyuujou | intToZen  }}</AbsenceCount>
 </SumoOutcomeTotal>
-<WinningPercentage>．６１４</WinningPercentage>
-<WinningPercentage Kind="休みを負とした">．５６７</WinningPercentage>
+<WinningPercentage>{{ lresult.Overallwinrate | remmove_integer0 | intToZen }}</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">{{ lresult.Overallwinrate_yasumimake | intToZen  }}</WinningPercentage>
 </ResultForSumo>
+{% endif %} 
+{% endfor %}
 </Result>
 <PlayerForSumo>
 <SumoGrade Kind="最高位">
 <Writing>横綱</Writing>
-<SumoRank>横綱</SumoRank>
+<SumoRank>{{ player.Lifetime_chii.Chii_code  }}</SumoRank>
 </SumoGrade>
 <NativeArea>
 <Writing>茨　城</Writing>
@@ -267,8 +286,8 @@
 </Player>
 {% endfor %}
 {% endif %}
-<!-- ===== ここまで ================= -->
-<!-- ==== ここから下は完成後に削除 ====-->
+<!-- =================================================== ここまで ================================================================== -->
+<!-- ========================================== ここから下は完成後に削除 ==============================================================-->
 <Player PlayerId="009620">
 <PlayerName>
 <Writing>稀勢の里</Writing>

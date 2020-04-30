@@ -6,6 +6,7 @@ from django.template import loader
 from django.utils import timezone
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views.decorators.http import require_POST
 
 from .models import *
 from .forms import *
@@ -59,7 +60,7 @@ def SUMUDY01(request):
     nav = nav_info(request)
     d = {
         'init': init,
-        'nichime': nichime,
+        'nichime': nichime
     }
     d.update(nav)
 
@@ -128,7 +129,59 @@ def SUMSHO02(request):
 
 # 優勝・三賞入力画面
 def SUMYUS01(request):
-    return render(request, 'app_sumo/SUMYUS01.html')
+    nav= nav_info(request)
+    match_nichime_id = Tran_Systemstatus.objects.first().MatchDate
+    yearmonth = Tran_Systemstatus.objects.first().Event_date
+    posts = Tran_YushoSansho.objects.filter(Yearmonth=yearmonth, Nichime_code=match_nichime_id)  # 現在の勝負日目のみを抽出
+    return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts, **nav})
+
+
+# 優勝・三賞入力画面（追加）
+def SUMYUS01_create(request):
+    nav= nav_info(request)
+    initial_dict = {
+        'Yearmonth': Tran_Systemstatus.objects.first().Event_date,
+        'Nichime_code': Tran_Systemstatus.objects.first().MatchDate, # 取組日目でなく勝負日目でよいか？
+    }
+    if request.method == 'POST':
+        form = Tran_YushoSanshoForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('app_sumo:SUMYUS01')
+    else:
+        #form = Tran_YushoSanshoForm()
+        form = Tran_YushoSanshoForm(initial=initial_dict)
+    return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form, **nav})
+
+
+# 優勝・三賞入力画面（参照）
+def SUMYUS01_view(request, pk):
+    nav= nav_info(request)
+    post = Tran_YushoSansho.objects.get(pk=pk)
+    return render(request, 'app_sumo/SUMYUS01_view.html', {'post': post, **nav})
+
+
+# 優勝・三賞入力画面（更新）
+def SUMYUS01_update(request, pk):
+    nav= nav_info(request)
+    post = get_object_or_404(Tran_YushoSansho, pk=pk)
+    if request.method == "POST":
+        form = Tran_YushoSanshoForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('app_sumo:SUMYUS01')
+    else:
+        form = Tran_YushoSanshoForm(instance=post)
+    return render(request, 'app_sumo/SUMYUS01_update.html', {'form': form, 'post': post, **nav})
+
+
+# 優勝・三賞入力画面（削除）
+@require_POST
+def SUMYUS01_delete(request, pk):
+    post = get_object_or_404(Tran_YushoSansho, pk=pk)
+    post.delete()
+    return redirect('app_sumo:SUMYUS01')
 
 
 # コンテンツ出力指示画面
@@ -145,7 +198,7 @@ def SUMOUT02(request):
     nml = Mst_KindofNewsML.objects.all()
 
     if request.method == "POST":
-        res = output_NewsML(request)
+        res = Output_NewsML().Create_NewsML(request)
         if "Input_status" in request.POST and request.POST["Input_status"] is "2":
             return res
         for key in init.keys():
@@ -178,7 +231,8 @@ def SUMOUT02(request):
     d = {
         'init': init,
         'telegram_group': telegram_group,
-        'NewsMLNo': telegram
+        'NewsMLNo': telegram,
+        'test':'abcdef'
     }
     d.update(nav_info(request))
     return render(request, 'app_sumo/SUMOUT02.html', d)
@@ -211,7 +265,7 @@ def SUMTKD02(request):
 
 # 階級上位力士
 def SUMJOR01(request):
-    params = nav_info(request)
+    nav= nav_info(request)
     match_nichime_id = Tran_Systemstatus.objects.first().MatchDate  # tran_system.MatchDate.Nichime_codeを使用すると１日ずれる！
     yearmonth = Tran_Systemstatus.objects.first().Event_date  # 開催年月YYYYMM
     tbl_top_class_rikishi = Tran_TopClassRikishi.objects.filter(Nichime_code=match_nichime_id)  # 現在の勝負日目のみを抽出
@@ -232,7 +286,6 @@ def SUMJOR01(request):
         'tbl_top_class_rikishi': tbl_top_class_rikishi.order_by('Class_code'),  # 階級順に表示させるためソート
         'range_of_wins_or_losses': ['', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]  # プルダウンメニュー用
     }
-    params.update(dict)
 
     # 画面で選択された値を保存
     if request.method == "POST":
@@ -246,12 +299,13 @@ def SUMJOR01(request):
             row.LossCount = reqlist_looses[i] if reqlist_looses[i].isdigit() == True else None
             row.save()
 
-    return render(request, 'app_sumo/SUMJOR01.html', params)
+    return render(request, 'app_sumo/SUMJOR01.html', {**dict, **nav})
 
 
-# 資料出力
+# 閲覧メニュー
 def SUMSHI01(request):
-    return render(request, 'app_sumo/SUMSHI01.html')
+    nav= nav_info(request)
+    return render(request, 'app_sumo/SUMSHI01.html', {**nav})
 
 
 # NewsML修正画面
@@ -360,16 +414,18 @@ class RikishiDeleteView(DeleteView):
 
 
 # マスタテーブル保守画面の部屋マスタ（htmlで表示するパターン）
+"""
 def SUMMSM01_heya_html(request):
     d = {
         'heyalist': Mst_Heya.objects.all(),
     }
 
     return render(request, 'app_sumo/SUMMSM01_heya_html.html', d)
+"""
 
 
 # 年度・場所切替画面
-#def SUMINT01(request):
+# def SUMINT01(request):
 #    systemstatus = Tran_Systemstatus.objects.get(id=1)
 #    if request.method == "POST":
 #        form = Tran_SystemstatusForm(request.POST, instance=systemstatus)
@@ -381,13 +437,14 @@ def SUMMSM01_heya_html(request):
 #
 #    return render(request, 'app_sumo/SUMINT01.html', {'form': form})
 def SUMINT01(request):
-    systemstatus = Tran_Systemstatus.objects.get(id=1)
+    systemstatus = Tran_Systemstatus.objects.first()
+ #   systemstatus = Tran_Systemstatus.objects.get(id=1)
     init = {
-            'event_date': str(systemstatus.Event_date)[:4],
-            'currentbasho': systemstatus.CurrentBasho.Basho_code,
-            'first_date': systemstatus.First_date.strftime("%Y-%m-%d"),
-            'banzuke_date': systemstatus.Banzuke_date.strftime("%Y-%m-%d"),
-            }
+        'event_date': str(systemstatus.Event_date)[:4],
+        'currentbasho': systemstatus.CurrentBasho.Basho_code,
+        'first_date': systemstatus.First_date.strftime("%Y-%m-%d"),
+        'banzuke_date': systemstatus.Banzuke_date.strftime("%Y-%m-%d"),
+    }
     basho = Mst_Basho.objects.all()
 
     if request.method == "POST":

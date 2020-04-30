@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-16"?>
+<?xml version="1.0" encoding="UTF-8"?>
 {% load static %}
 <!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
 	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
@@ -12,8 +12,8 @@
 <IManage>
 <IhInfo>
 <IhSubSysInfo>
-<IhSendDate>２０１９０１１２</IhSendDate>
-<IhSendTime>１６０２１８</IhSendTime>
+<IhSendDate>ＹＹＹＹＭＭＤＤ</IhSendDate>
+<IhSendTime>ＨＨＭＭＳＳ</IhSendTime>
 <IhSendFrom>ＯＳ</IhSendFrom>
 <IhSendTo IhNs="3">
 <IhSendToSys>ＨＳ</IhSendToSys>
@@ -54,29 +54,29 @@
 <NewsML>
 <Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
 <NewsEnvelope>
-<TransmissionId>20190112OSF000307</TransmissionId>
-<DateAndTime>20190112T160218+0900</DateAndTime>
+<TransmissionId>YYYYMMDDOSFXXXXXX</TransmissionId>
+<DateAndTime>YYYYMMDDThhmmss+0900</DateAndTime>
 <NewsProduct FormalName="NskNewsML:1"/>
 </NewsEnvelope>
 <NewsItem Duid="NI_OS01" xml:lang="ja-JP">
 <Identification>
 <NewsIdentifier>
 <ProviderId>kyodonews.jp</ProviderId>
-<DateId>20190112</DateId>
-<NewsItemId>20190112OSF0601__01____</NewsItemId>
+<DateId>YYYYMMDD</DateId>
+<NewsItemId>YYYYMMDDOSF06{{torikuminichime_code}}__CC____</NewsItemId>
 <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
-<PublicIdentifier>urn:newsml:kyodonews.jp:20190112:20190112OSF0601__01____:1</PublicIdentifier>
+<PublicIdentifier>urn:newsml:kyodonews.jp:YYYYMMDD:YYYYMMDDOSF06{{torikuminichime_code}}__CC____:1</PublicIdentifier>
 </NewsIdentifier>
 </Identification>
 <NewsManagement>
 <NewsItemType FormalName="News"/>
-<FirstCreated>20190112T160218+0900</FirstCreated>
-<ThisRevisionCreated>20190112T160218+0900</ThisRevisionCreated>
+<FirstCreated>YYYYMMDDThhmmss+0900</FirstCreated>
+<ThisRevisionCreated>YYMMDDThhmmdd+0900</ThisRevisionCreated>
 <Status FormalName="Usable"/>
 </NewsManagement>
 <NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
 <NewsLines>
-<HeadLine>初日郷土力士取組</HeadLine>
+<HeadLine>{{ torikuminichime }}郷土力士取組</HeadLine>
 <SubHeadLine>北海道</SubHeadLine>
 <NewsLine>
 <NewsLineType FormalName="EndInfo"/>
@@ -106,8 +106,8 @@
 <InContent version="1.0">
 <InMetadata>
 <InAdminInfo>
-<InProductId>２０１９０１１２ＯＳＦ０６０１＿＿０１＿＿＿＿０１</InProductId>
-<InDateTime>２０１９年０１月１２日１６時０２分１８秒</InDateTime>
+<InProductId>ＹＹＹＹＭＭＤＤＯＳＦ０６{{torikuminichime_code}}＿＿ＣＣ＿＿＿＿０１</InProductId>
+<InDateTime>ＹＹＹＹ年ＭＭ月ＤＤ日ｈｈ時ｍｍ分ｄｄ秒</InDateTime>
 <InFormat>
 <InFormatType>フルタグ書式</InFormatType>
 <InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>
@@ -117,7 +117,7 @@
 <InClasses>
 <InClass>
 <InBClass>相撲</InBClass>
-<InMClass1>初場所初日</InMClass1>
+<InMClass1>{{ basho }}{{ torikuminichime }}</InMClass1>
 <InMClass2>郷土力士取組</InMClass2>
 <InSClass>北海道</InSClass>
 </InClass>
@@ -126,7 +126,7 @@
 <InNewsGenre>相撲</InNewsGenre>
 </InNewsCategory>
 <InNewsLine>
-<InHeadLine>初日郷土力士取組</InHeadLine>
+<InHeadLine>{{ torikuminichime }}郷土力士取組</InHeadLine>
 <InSubHeadLines>
 <InSubHeadLine>北海道</InSubHeadLine>
 </InSubHeadLines>
@@ -166,9 +166,9 @@
 <Head>
 <Meta>
 <Competition>
-<Formal>初場所</Formal>
+<Formal>{{ basho }}</Formal>
 </Competition>
-<CompetitionDay>初日</CompetitionDay>
+<CompetitionDay>{{ torikuminichime }}</CompetitionDay>
 <Discipline>
 <Formal>相撲</Formal>
 </Discipline>
@@ -185,6 +185,7 @@
 <Title>【序ノ口】</Title>
 <Class>序ノ口</Class>
 </Meta>
+
 <Match BlockId="M001">
 <Player PlayerId="024950">
 <PlayerName>
@@ -237,6 +238,8 @@
 </PlayerForSumo>
 </Player>
 </Match>
+
+
 </Body>
 <Body BlockId="OS06JN____">
 <Meta>
@@ -245,6 +248,8 @@
 <Title>【序二段】</Title>
 <Class>序二段</Class>
 </Meta>
+
+
 <Match BlockId="M002">
 <Player PlayerId="020110">
 <PlayerName>

@@ -5,6 +5,7 @@ from .models import Mst_Heya
 from .models import Mst_Event
 from .models import Mst_Rikishi
 from .models import Tran_Systemstatus
+from .models import Tran_YushoSansho
 from django.contrib.admin.widgets import AdminDateWidget
 
 STATUS_CHOICES = (
@@ -12,13 +13,14 @@ STATUS_CHOICES = (
     ('notActiveDuty', '現役以外'),
 )
 
+
 class Mst_HeyaForm(forms.ModelForm):
     class Meta:
         model = Mst_Heya
         fields = ('Heya_code', 'Heya_official_kanji', 'Heya_official_kana', 'Heya_kanji_2char', 'Heya_kanji_3char',)
 
 
-#class Tran_SystemstatusForm(forms.ModelForm):
+# class Tran_SystemstatusForm(forms.ModelForm):
 #    class Meta:
 #        model = Tran_Systemstatus
 #        fields = ('Event_date', 'CurrentBasho', 'First_date', 'Banzuke_date')
@@ -26,7 +28,7 @@ class Mst_HeyaForm(forms.ModelForm):
 
 class SearchRikishilistForm(forms.Form):
     status_chk = forms.ChoiceField(
-        label = 'ステータス',
+        label='ステータス',
         widget=forms.CheckboxSelectMultiple(),
         choices=STATUS_CHOICES,
         required=False,
@@ -34,7 +36,6 @@ class SearchRikishilistForm(forms.Form):
 
 
 class Mst_RikishiForm(forms.ModelForm):
-    
     class Meta:
         model = Mst_Rikishi
         fields = '__all__'
@@ -52,3 +53,13 @@ class Mst_RikishiForm(forms.ModelForm):
         self.fields['Retirebasho_code'].label = '場所マスタ'
         self.fields['Day_of_retirement'].label = '日目マスタ'
 
+
+class Tran_YushoSanshoForm(forms.ModelForm):
+    class Meta:
+        model = Tran_YushoSansho
+        fields = ('Rikishi', 'Yearmonth', 'Nichime_code', 'Class_code',
+                  'Yusho_flg', 'Shukunsho_flg', 'Kantosho_flg', 'Ginosho_flg')
+        widgets = {
+            'Yearmonth': forms.HiddenInput,
+            'Nichime_code': forms.HiddenInput,
+        }

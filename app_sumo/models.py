@@ -272,7 +272,7 @@ class Mst_Lifetime_statusinfo(Model):
         verbose_name_plural = '生涯地位情報'
 
     def __str__(self):
-        return str(self.Chii_code)
+        return str(self.Rikishi_code)
 
 #生涯成績マスタ
 class Mst_Lifetime_result(Model):
@@ -286,14 +286,14 @@ class Mst_Lifetime_result(Model):
     Totalgivekinboshi = IntegerField(verbose_name='通算与金星回数')
     Totalgetkinboshi = IntegerField(verbose_name='通算奪金星回数')
     Highestchii_code = ForeignKey(Mst_Chii, on_delete=CASCADE) #地位マスタ
-    Highestorder = IntegerField(verbose_name='最高順位')
-    Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE) #東西マスタ
+    Highestorder = IntegerField(verbose_name='最高順位', blank=True, null=True)
+    Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE, blank=True, null=True) #東西マスタ
     Maxsticking = IntegerField(verbose_name='最高張付')
-    Overallwinrate = IntegerField(verbose_name='通算勝率')
-    Overallwinrate_yasumimake = IntegerField(verbose_name='通算勝率（休を負）')
-    Maxcontinuousplayed = IntegerField(verbose_name='最高連続出場回数')
-    Currentcontinuosplayed = IntegerField(verbose_name='現連続出場回数')
-    Numberofreignedbasho = IntegerField(verbose_name='在位場所数')
+    Overallwinrate = FloatField(verbose_name='通算勝率')
+    Overallwinrate_yasumimake = FloatField(verbose_name='通算勝率（休を負）')
+    Maxcontinuousplayed = IntegerField(verbose_name='最高連続出場回数', blank=True, null=True)
+    Currentcontinuosplayed = IntegerField(verbose_name='現連続出場回数', blank=True, null=True)
+    Numberofreignedbasho = IntegerField(verbose_name='在位場所数', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '生涯成績マスタ'
@@ -309,6 +309,9 @@ class Mst_Lifetime_award(Model):
 
     class Meta:
         verbose_name_plural = '生涯受賞回数マスタ'
+    
+    def __str__(self):
+        return str(self.Rikishi_code)
 
 
 #勝負情報
@@ -352,3 +355,41 @@ class Mst_Operationmode(Model):
 
     def __str__(self):
         return str(self.Operationmode_name)
+
+#都道府県マスタ
+class Mst_Prefectures(Model):
+    Prefectures_code =  IntegerField(verbose_name='都道府県コード', blank=True, null=True)
+    Prefectures_name = CharField(verbose_name='名称', max_length=10, blank=True, null=True)
+
+    class Meta:
+       verbose_name_plural = '都道府県'
+
+    def __str__(self):
+        return str(self.Prefectures_name)
+
+#配信コードマスタ
+class Mst_Delivery(Model):
+    Delivery_code =  IntegerField(verbose_name='配信コード', blank=True, null=True)
+    Delivery_name = CharField(verbose_name='配信名称', max_length=10, blank=True, null=True)
+    Delivery_name_2char = CharField(verbose_name='配信名称２字略', max_length=2, blank=True, null=True)
+    Individual_address =  IntegerField(verbose_name='個別指定', blank=True, null=True)
+
+    class Meta:
+       verbose_name_plural = '配信コードマスタ'
+
+    def __str__(self):
+        return str(self.Delivery_name)
+
+#副ヘッタマスタ
+class Mst_SubHeader(Model):
+    Content_code =  ForeignKey('Mst_KindofNewsML', on_delete=CASCADE, blank=True, null=True) #電文種別マスタ
+    Makecontent_code = IntegerField(verbose_name='作成種別コード', blank=True, null=True) 
+    Prefectures_code =  ForeignKey('Mst_Prefectures', on_delete=CASCADE, blank=True, null=True) #都道府県マスタ
+    Nichime_code =  ForeignKey('Mst_Nichime', on_delete=CASCADE, blank=True, null=True) #日目マスタ
+    Delivery_code =  ForeignKey('Mst_Delivery', on_delete=CASCADE, blank=True, null=True) #配信コードマスタ
+
+    class Meta:
+        verbose_name_plural = '副ヘッタマスタ'
+    
+        def __str__(self):
+            return str(self.Content_code)

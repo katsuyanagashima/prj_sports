@@ -1,6 +1,24 @@
 {% extends 'app_sumo/base.html' %}
-
 {% block content %}
-<h1 class="caption">優勝・三賞入力画面</h1>
-<a href="../" type="button" class="btn btn-primary">戻る</a>
+    <h1 class="caption">優勝・三賞入力画面</h1>
+    <h2>
+        {% for post in posts %}
+            <a href="{% url 'app_sumo:SUMYUS01_view' post.pk %}">{{ post.Rikishi }}</a>
+            <!--<span>（{{ post.Yearmonth }} {{ post.Nichime_code }}）</span>-->
+            <span>（{{ post.Class_code }}）</span>
+            {% if post.Yusho_flg %} <span>優勝</span> {% endif %}
+            {% if post.Shukunsho_flg %} <span>殊勲賞</span> {% endif %}
+            {% if post.Kantosho_flg %} <span>敢闘賞</span> {% endif %}
+            {% if post.Ginosho_flg %} <span>技能賞</span> {% endif %}
+            <br/>
+        {% endfor %}
+    </h2>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        <a href="{% url 'app_sumo:SUMYUS01_create' %}" class="btn btn-success">追加</a>
+        <a href="../" class="btn menubutton5 btn-block" role="button">戻る</a>
+    </nav>
+    <p>※開催年月と日目が一致するデータのみ表示している<br/>
+        現行システムの画面レイアウトにあわせること<br/>
+        千秋楽以前に優勝が確定した場合は、以降の各日にも優勝をセットする処理は必要？
+    </p>
 {% endblock %}

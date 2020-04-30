@@ -1,4 +1,3 @@
-import logging
 # ファイルアクセスとスリープのため、osとtimeをインポート
 import os
 import pprint
@@ -10,10 +9,9 @@ from pathlib import Path
 
 # ファイル変更イベント検出のため、watchdogをインポート
 from watchdog.events import PatternMatchingEventHandler
-from watchdog.observers import Observer
 from watchdog.observers.polling import PollingObserver
 sys.path.append("/code/app_autorace/management/commands/")
-import trn_Schedule, trn_program, trn_Result, trn_top_30_prize, trn_outside_track
+import trn_schedule, trn_program, trn_result, trn_top_30_prize, trn_outside_track
 from app_autorace.models import *
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -34,8 +32,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
 
     # ファイル作成時のイベント
     def on_created(self, event):
-        if PAUSED is True:
-            return
+
         # ①～⑤　どれを呼び出すかパスから判断する。
         filepath = event.src_path
         if SCHEDULEDATA in filepath:   
@@ -45,10 +42,9 @@ class WatchDocHandler(PatternMatchingEventHandler):
             
             logger.info( "created Start:" + name)
             # ファイル読み込み
-            schedule = trn_Schedule.Schedule()
+            schedule = trn_schedule.Schedule()
                 
-            schedule.insert_or_update_Trn_Schedule(name)
-            logger.info( "created End:")
+            logger.error("DB insert_or_update_Trn_Schedule: 失敗：ファイル名" + name) if not schedule.insert_or_update_Trn_Schedule(name) else logger.info( "created End:")
 
         if RESULTDATA in filepath:   
             filename_result_record = os.path.basename(filepath)
@@ -57,10 +53,9 @@ class WatchDocHandler(PatternMatchingEventHandler):
 
             logger.info( "created Start:" + name)
             # ファイル読み込み
-            result = trn_Result.Result()
+            result = trn_result.Result()
                 
-            result.insert_or_update_Trn_Result(name)
-            logger.info( "created End:")
+            logger.error("DB insert_or_update_Trn_Result: 失敗：ファイル名" + name) if not result.insert_or_update_Trn_Result(name) else logger.info( "created End:")
 
         if PROGRAMDATA in filepath:   
             filename_program_record = os.path.basename(filepath)
@@ -71,8 +66,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
             # ファイル読み込み
             program = trn_program.Program()
                 
-            program.insert_or_update_Trn_Program(name)
-            logger.info( "created End:")
+            logger.error("DB insert_or_update_Trn_Program: 失敗：ファイル名" + name) if not program.insert_or_update_Trn_Program(name) else logger.info( "created End:")
 
         if TOP30PRIZEDATA in filepath:   
             filename_top30prize_record = os.path.basename(filepath)
@@ -83,8 +77,7 @@ class WatchDocHandler(PatternMatchingEventHandler):
             # ファイル読み込み
             top_30_prize = trn_top_30_prize.Top_30_prize()
                 
-            top_30_prize.insert_or_update_Trn_Top_30_Prize(name)
-            logger.info( "created End:")
+            logger.error("DB insert_or_update_Trn_Top_30_Prize: 失敗：ファイル名" + name) if not top_30_prize.insert_or_update_Trn_Top_30_Prize(name) else logger.info( "created End:")
 
         if OUTSIDETRACKDATA in filepath:   
             filename_outside_track_record = os.path.basename(filepath)
@@ -94,24 +87,17 @@ class WatchDocHandler(PatternMatchingEventHandler):
             logger.info( "created Start:" + name)
             # ファイル読み込み
             outside_track = trn_outside_track.Outside_track()
-                
-            outside_track.insert_or_update_Trn_Outside_track(name)
-            logger.info( "created End:")
+
+            logger.error("DB insert_or_update_Trn_Outside_track: 失敗：ファイル名" + name) if not outside_track.insert_or_update_Trn_Outside_track(name) else logger.info( "created End:")
 
     # ファイル変更時のイベント
     def on_modified(self, event):
-        filepath = event.src_path
-        filename_schedule_record = os.path.basename(filepath)
         logger.info( "changed:")
 
     # ファイル削除時のイベント
     def on_deleted(self, event):
-        filepath = event.src_path
-        filename_schedule_record = os.path.basename(filepath)
         logger.info( "deleted:")
 
     # ファイル移動時のイベント
     def on_moved(self, event):
-        filepath = event.src_path
-        filename_schedule_record = os.path.basename(filepath)
         logger.info( "moved:")

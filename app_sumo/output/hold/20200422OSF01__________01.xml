@@ -1,0 +1,3215 @@
+<?xml version="1.0" encoding="UTF-16"?>
+
+<!DOCTYPE ITalk SYSTEM "/static/app_sumo/DTD/ITalkv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "/static/app_sumo/DTD/InContentv1.0.dtd">
+	%InContent;
+	<!ENTITY % Kddata SYSTEM "/static/app_sumo/OSDTD/KdXBSContentv1.1.dtd">
+	%Kddata;
+]>
+<!--  ●●　デバックのため、スタイルシート宣言を外す　●●-->
+<!--
+<?xml-stylesheet type="text/xsl"  href="/static/app_sumo/OSStylesheets/OSKdXBSContent01.xsl"?>
+-->
+<ITalk version="1.0">
+<IManage>
+<IhInfo>
+<IhSubSysInfo>
+<IhSendDate>ＹＹＹＹＭＭＤＤ（運用日？）</IhSendDate>
+<IhSendTime>ＨＨＭＭＳＳ（運用時間？）</IhSendTime>
+<IhSendFrom>ＯＳ</IhSendFrom>
+<IhSendTo IhNs="3">
+<IhSendToSys>ＨＳ</IhSendToSys>
+<IhSendToSys>ＫＪ</IhSendToSys>
+<IhSendToSys>ＪＭ</IhSendToSys>
+</IhSendTo>
+</IhSubSysInfo>
+<IhSendMode>通常</IhSendMode>
+<IhSendDataKind>漢テレ</IhSendDataKind>
+<IhSendBase>
+<IhSendPriority>３</IhSendPriority>
+</IhSendBase>
+<IhAddrInfo>
+<IhMainHeader>
+<IhMainRank>角</IhMainRank>
+<IhNewsGenre>相撲</IhNewsGenre>
+</IhMainHeader>
+<IhSubHeader>
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+
+
+<IhSendBlkInfo IhNb="1">
+<IhSendBlk>相全</IhSendBlk>
+</IhSendBlkInfo>
+
+<IhSendBlkInfo IhNb="1">
+<IhSendBlk>アサガミ</IhSendBlk>
+</IhSendBlkInfo>
+
+<IhSendBlkInfo IhNb="1">
+<IhSendBlk>校閲</IhSendBlk>
+</IhSendBlkInfo>
+
+
+<IhSendIndInfo IhNi="1">
+<IhSendInd>アサガミ</IhSendInd>
+</IhSendIndInfo>
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
+<IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
+</IhAddrInfo>
+<IhDataForm>フルタグ書式</IhDataForm>
+</IhInfo>
+</IManage>
+<NewsML>
+<Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
+<NewsEnvelope>
+<TransmissionId>20181218OSF000013</TransmissionId>
+<DateAndTime>20181218T140250+0900</DateAndTime>
+<NewsProduct FormalName="NskNewsML:1"/>
+</NewsEnvelope>
+<NewsItem Duid="NI_OS01" xml:lang="ja-JP">
+<Identification>
+<NewsIdentifier>
+<ProviderId>kyodonews.jp</ProviderId>
+<DateId>20181218</DateId>
+<NewsItemId>20181218OSF01__________</NewsItemId>
+<RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+<PublicIdentifier>urn:newsml:kyodonews.jp:20181218:20181218OSF01__________:1</PublicIdentifier>
+</NewsIdentifier>
+</Identification>
+<NewsManagement>
+<NewsItemType FormalName="News"/>
+<FirstCreated>20181218T140250+0900</FirstCreated>
+<ThisRevisionCreated>20181218T140250+0900</ThisRevisionCreated>
+<Status FormalName="Usable"/>
+</NewsManagement>
+<NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
+<NewsLines>
+<HeadLine>新番付資料</HeadLine>
+<NewsLine>
+<NewsLineType FormalName="EditInfo"/>
+<NewsLineText>貴ノ岩は引退</NewsLineText>
+</NewsLine>
+<NewsLine>
+<NewsLineType FormalName="EndInfo"/>
+<NewsLineText>ブラジはブラジル</NewsLineText>
+<NewsLineText>ブルガはブルガリア</NewsLineText>
+<NewsLineText>ジョーはジョージア</NewsLineText>
+<NewsLineText>モンゴはモンゴル</NewsLineText>
+</NewsLine>
+</NewsLines>
+<AdministrativeMetadata>
+<Provider>
+<Party FormalName="KYODONEWS"/>
+</Provider>
+</AdministrativeMetadata>
+<DescriptiveMetadata>
+<Language FormalName="ja"/>
+<SubjectCode>
+<Subject FormalName="15000000"/>
+<SubjectMatter FormalName="15060000"/>
+</SubjectCode>
+</DescriptiveMetadata>
+<ContentItem>
+<MediaType FormalName="Text"/>
+<Format FormalName="KdXBSContentv1.1"/>
+<MimeType FormalName="text/xml"/>
+<DataContent>
+<InContent version="1.0">
+<InMetadata>
+<InAdminInfo>
+<InProductId>２０１８１２１８ＯＳＦ０１＿＿＿＿＿＿＿＿＿＿０１</InProductId>
+<InDateTime>２０１８年１２月１８日１４時０２分５０秒</InDateTime>
+<InFormat>
+<InFormatType>フルタグ書式</InFormatType>
+<InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>
+</InFormat>
+</InAdminInfo>
+<InCategoryInfo>
+<InClasses>
+<InClass>
+<InBClass>相撲</InBClass>
+<InMClass1>初場所場所前</InMClass1>
+<InMClass2>新番付資料</InMClass2>
+<InSClass>全県</InSClass>
+</InClass>
+</InClasses>
+<InNewsCategory>
+<InNewsGenre>相撲</InNewsGenre>
+</InNewsCategory>
+<InNewsLine>
+<InHeadLine>新番付資料</InHeadLine>
+</InNewsLine>
+</InCategoryInfo>
+<InNewsInfo>
+<InMainHeader>
+<InPriority>３</InPriority>
+</InMainHeader>
+<InSubHeader>
+<InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<InSendControl>
+<InSendBlkInfo InNb="1">
+<InSendBlk>相全</InSendBlk>
+</InSendBlkInfo>
+<InSendIndInfo InNi="1">
+<InSendInd>ガミ</InSendInd>
+</InSendIndInfo>
+</InSendControl>
+</InSubHeader>
+<InEditInfo>
+<InEditLines InNc="1">
+<InEditLine>貴ノ岩は引退</InEditLine>
+</InEditLines>
+</InEditInfo>
+<InEndInfo>
+<InEndLines InNc="4">
+<InEndLine>ブラジはブラジル</InEndLine>
+<InEndLine>ブルガはブルガリア</InEndLine>
+<InEndLine>ジョーはジョージア</InEndLine>
+<InEndLine>モンゴはモンゴル</InEndLine>
+</InEndLines>
+</InEndInfo>
+</InNewsInfo>
+</InMetadata>
+<InData>
+<SportsData Version="1.1">
+<Head>
+
+<Meta>
+<!-- 以下の想定は、◎2020大相撲初場所新番付資料（12月24日現在）-->
+<!-- 2020は開催年月の年を取得して連数字x2、12月24日の数字も連数 -->
+<Title>◎大相撲初場所新番付資料（月日現在）</Title>
+<Competition>
+<Formal>初場所</Formal>
+</Competition>
+<!-- 場所前の固定値で良い？　-->
+<CompetitionDay>場所前</CompetitionDay>
+<Discipline>
+<Formal>相撲</Formal>
+</Discipline>
+</Meta>
+</Head>
+<Body BlockId="OS01MU____">
+<Meta>
+<FormatType>Ｓ－Ｐ－Ｒ</FormatType>
+<DataType>初場所</DataType>
+</Meta>
+
+<!-- ======================================= -->
+<Standing BlockId="S001">
+<!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ================== -->
+
+
+<Player PlayerId="009620">
+<PlayerName>
+<Writing>白　鵬　</Writing>
+<Formal>白鵬</Formal>
+<Formal Display="4字">白　鵬　</Formal>
+<Formal Display="3字">白　鵬</Formal>
+<Formal Display="2字">白鵬</Formal>
+<Formal Display="よみがな">はくほう</Formal>
+</PlayerName>
+<Belong>
+<Writing>宮城野</Writing>
+<Formal>宮城野</Formal>
+<Formal Display="3字">宮城野</Formal>
+<Formal Display="よみがな">みやぎの</Formal>
+</Belong>
+<Age>●●</Age>
+<Height Unit="センチメートル">192</Height>
+<Weight Unit="キログラム">154</Weight>
+<Result Period="幕内通算">
+<Record Kind="与金星" Unit="回">
+<Writing></Writing>
+<IntegerPart>１６</IntegerPart>
+</Record>
+<Record Kind="奪金星" Unit="回">
+<Writing>③</Writing>
+<IntegerPart>３</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>５</Writing>
+<CountValue>５</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>８４</BashoCount>
+<WinCount>７１４</WinCount>
+<LossCount>４４９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>９７</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．６１４</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５６７</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>横綱</Writing>
+<SumoRank>横綱</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>茨　城</Writing>
+<Formal>茨城</Formal>
+<Formal Display="3字">茨　城</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+
+
+<!-- ===== ここまで ================= -->
+<!-- ==== ここから下は完成後に削除 ====-->
+<Player PlayerId="009620">
+<PlayerName>
+<Writing>稀勢の里</Writing>
+<Formal>稀勢の里</Formal>
+<Formal Display="4字">稀勢の里</Formal>
+<Formal Display="3字">稀勢里</Formal>
+<Formal Display="2字">稀勢</Formal>
+<Formal Display="よみがな">きせのさと</Formal>
+</PlayerName>
+<Belong>
+<Writing>田子浦</Writing>
+<Formal>田子ノ浦</Formal>
+<Formal Display="3字">田子浦</Formal>
+<Formal Display="よみがな">たごのうら</Formal>
+</Belong>
+<Age>３２</Age>
+<Height Unit="センチメートル">１８８</Height>
+<Weight Unit="キログラム">１７６</Weight>
+<Result Period="幕内通算">
+<Record Kind="与金星" Unit="回">
+<Writing></Writing>
+<IntegerPart>１６</IntegerPart>
+</Record>
+<Record Kind="奪金星" Unit="回">
+<Writing>③</Writing>
+<IntegerPart>３</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>５</Writing>
+<CountValue>５</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>８４</BashoCount>
+<WinCount>７１４</WinCount>
+<LossCount>４４９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>９７</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．６１４</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５６７</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>横綱</Writing>
+<SumoRank>横綱</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>茨　城</Writing>
+<Formal>茨城</Formal>
+<Formal Display="3字">茨　城</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="007920">
+<PlayerName>
+<Writing>白　鵬　</Writing>
+<Formal>白鵬</Formal>
+<Formal Display="4字">白　鵬　</Formal>
+<Formal Display="3字">白　鵬</Formal>
+<Formal Display="2字">白鵬</Formal>
+<Formal Display="よみがな">はくほう</Formal>
+</PlayerName>
+<Belong>
+<Writing>宮城野</Writing>
+<Formal>宮城野</Formal>
+<Formal Display="3字">宮城野</Formal>
+<Formal Display="よみがな">みやぎの</Formal>
+</Belong>
+<Age>３３</Age>
+<Height Unit="センチメートル">１９２</Height>
+<Weight Unit="キログラム">１５４</Weight>
+<Result Period="幕内通算">
+<Record Kind="与金星" Unit="回">
+<Writing></Writing>
+<IntegerPart>１９</IntegerPart>
+</Record>
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing></Writing>
+<CountValue>４１</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>８７</BashoCount>
+<WinCount>１００１</WinCount>
+<LossCount>１８０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１２４</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．８４８</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．７６７</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>横綱</Writing>
+<SumoRank>横綱</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="009060">
+<PlayerName>
+<Writing>鶴　竜　</Writing>
+<Formal>鶴竜</Formal>
+<Formal Display="4字">鶴　竜　</Formal>
+<Formal Display="3字">鶴　竜</Formal>
+<Formal Display="2字">鶴竜</Formal>
+<Formal Display="よみがな">かくりゅう</Formal>
+</PlayerName>
+<Belong>
+<Writing>井　筒</Writing>
+<Formal>井筒</Formal>
+<Formal Display="3字">井　筒</Formal>
+<Formal Display="よみがな">いづつ</Formal>
+</Belong>
+<Age>３３</Age>
+<Height Unit="センチメートル">１８６</Height>
+<Weight Unit="キログラム">１５９</Weight>
+<Result Period="幕内通算">
+<Record Kind="与金星" Unit="回">
+<Writing></Writing>
+<IntegerPart>２０</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>５</Writing>
+<CountValue>５</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>７</Writing>
+<CountValue>７</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>７２</BashoCount>
+<WinCount>５９１</WinCount>
+<LossCount>３６６</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１２３</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．６１８</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５４７</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>横綱</Writing>
+<SumoRank>横綱</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="013260">
+<PlayerName>
+<Writing>高　安　</Writing>
+<Formal>高安</Formal>
+<Formal Display="4字">高　安　</Formal>
+<Formal Display="3字">高　安</Formal>
+<Formal Display="2字">高安</Formal>
+<Formal Display="よみがな">たかやす</Formal>
+</PlayerName>
+<Belong>
+<Writing>田子浦</Writing>
+<Formal>田子ノ浦</Formal>
+<Formal Display="3字">田子浦</Formal>
+<Formal Display="よみがな">たごのうら</Formal>
+</Belong>
+<Age>２８</Age>
+<Height Unit="センチメートル">１８５</Height>
+<Weight Unit="キログラム">１８０</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>④</Writing>
+<IntegerPart>４</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>４</Writing>
+<CountValue>４</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>４５</BashoCount>
+<WinCount>３５２</WinCount>
+<LossCount>２８３</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>４０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５５４</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５２１</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>大関</Writing>
+<SumoRank>大関</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>茨　城</Writing>
+<Formal>茨城</Formal>
+<Formal Display="3字">茨　城</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="014420">
+<PlayerName>
+<Writing>栃ノ心　</Writing>
+<Formal>栃ノ心</Formal>
+<Formal Display="4字">栃ノ心　</Formal>
+<Formal Display="3字">栃ノ心</Formal>
+<Formal Display="2字">栃心</Formal>
+<Formal Display="よみがな">とちのしん</Formal>
+</PlayerName>
+<Belong>
+<Writing>春日野</Writing>
+<Formal>春日野</Formal>
+<Formal Display="3字">春日野</Formal>
+<Formal Display="よみがな">かすがの</Formal>
+</Belong>
+<Age>３１</Age>
+<Height Unit="センチメートル">１９１</Height>
+<Weight Unit="キログラム">１７５</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>②</Writing>
+<IntegerPart>２</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>６</Writing>
+<CountValue>６</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>５６</BashoCount>
+<WinCount>４１６</WinCount>
+<LossCount>３９８</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２６</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５１１</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４９５</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>大関</Writing>
+<SumoRank>大関</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>ジョー</Writing>
+<Formal>ジョージア</Formal>
+<Formal Display="3字">ジョー</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="012970">
+<PlayerName>
+<Writing>豪栄道　</Writing>
+<Formal>豪栄道</Formal>
+<Formal Display="4字">豪栄道　</Formal>
+<Formal Display="3字">豪栄道</Formal>
+<Formal Display="2字">豪栄</Formal>
+<Formal Display="よみがな">ごうえいどう</Formal>
+</PlayerName>
+<Belong>
+<Writing>境　川</Writing>
+<Formal>境川</Formal>
+<Formal Display="3字">境　川</Formal>
+<Formal Display="よみがな">さかいがわ</Formal>
+</Belong>
+<Age>３２</Age>
+<Height Unit="センチメートル">１８４</Height>
+<Weight Unit="キログラム">１５７</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>５</Writing>
+<CountValue>５</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>６６</BashoCount>
+<WinCount>５３９</WinCount>
+<LossCount>４０５</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>４６</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５７１</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５４４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>大関</Writing>
+<SumoRank>大関</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>大　阪</Writing>
+<Formal>大阪</Formal>
+<Formal Display="3字">大　阪</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022120">
+<PlayerName>
+<Writing>貴景勝　</Writing>
+<Formal>貴景勝</Formal>
+<Formal Display="4字">貴景勝　</Formal>
+<Formal Display="3字">貴景勝</Formal>
+<Formal Display="2字">貴景</Formal>
+<Formal Display="よみがな">たかけいしょう</Formal>
+</PlayerName>
+<Belong>
+<Writing>千賀浦</Writing>
+<Formal>千賀ノ浦</Formal>
+<Formal Display="3字">千賀浦</Formal>
+<Formal Display="よみがな">ちがのうら</Formal>
+</Belong>
+<Age>２２</Age>
+<Height Unit="センチメートル">１７５</Height>
+<Weight Unit="キログラム">１７０</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>③</Writing>
+<IntegerPart>３</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１２</BashoCount>
+<WinCount>１０４</WinCount>
+<LossCount>７２</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>４</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５９１</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５７８</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>小結</Writing>
+<SumoRank>小結</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>兵　庫</Writing>
+<Formal>兵庫</Formal>
+<Formal Display="3字">兵　庫</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="011560">
+<PlayerName>
+<Writing>玉　鷲　</Writing>
+<Formal>玉鷲</Formal>
+<Formal Display="4字">玉　鷲　</Formal>
+<Formal Display="3字">玉　鷲</Formal>
+<Formal Display="2字">玉鷲</Formal>
+<Formal Display="よみがな">たまわし</Formal>
+</PlayerName>
+<Belong>
+<Writing>片男波</Writing>
+<Formal>片男波</Formal>
+<Formal Display="3字">片男波</Formal>
+<Formal Display="よみがな">かたおなみ</Formal>
+</Belong>
+<Age>３４</Age>
+<Height Unit="センチメートル">１８８</Height>
+<Weight Unit="キログラム">１７３</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>②</Writing>
+<IntegerPart>２</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>５６</BashoCount>
+<WinCount>３９７</WinCount>
+<LossCount>４４３</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４７３</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="017960">
+<PlayerName>
+<Writing>妙義龍　</Writing>
+<Formal>妙義龍</Formal>
+<Formal Display="4字">妙義龍　</Formal>
+<Formal Display="3字">妙義龍</Formal>
+<Formal Display="2字">妙義</Formal>
+<Formal Display="よみがな">みょうぎりゅう</Formal>
+</PlayerName>
+<Belong>
+<Writing>境　川</Writing>
+<Formal>境川</Formal>
+<Formal Display="3字">境　川</Formal>
+<Formal Display="よみがな">さかいがわ</Formal>
+</Belong>
+<Age>３２</Age>
+<Height Unit="センチメートル">１８６</Height>
+<Weight Unit="キログラム">１５３</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>③</Writing>
+<IntegerPart>３</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>５</Writing>
+<CountValue>５</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>４０</BashoCount>
+<WinCount>２９０</WinCount>
+<LossCount>２８３</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２７</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５０６</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４８３</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>兵　庫</Writing>
+<Formal>兵庫</Formal>
+<Formal Display="3字">兵　庫</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022420">
+<PlayerName>
+<Writing>御嶽海　</Writing>
+<Formal>御嶽海</Formal>
+<Formal Display="4字">御嶽海　</Formal>
+<Formal Display="3字">御嶽海</Formal>
+<Formal Display="2字">御嶽</Formal>
+<Formal Display="よみがな">みたけうみ</Formal>
+</PlayerName>
+<Belong>
+<Writing>出羽海</Writing>
+<Formal>出羽海</Formal>
+<Formal Display="3字">出羽海</Formal>
+<Formal Display="よみがな">でわのうみ</Formal>
+</Belong>
+<Age>２６</Age>
+<Height Unit="センチメートル">１８０</Height>
+<Weight Unit="キログラム">１７０</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>②</Writing>
+<IntegerPart>２</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１９</BashoCount>
+<WinCount>１６２</WinCount>
+<LossCount>１２１</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５７２</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５６８</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>長　野</Writing>
+<Formal>長野</Formal>
+<Formal Display="3字">長　野</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="012930">
+<PlayerName>
+<Writing>栃煌山　</Writing>
+<Formal>栃煌山</Formal>
+<Formal Display="4字">栃煌山　</Formal>
+<Formal Display="3字">栃煌山</Formal>
+<Formal Display="2字">栃煌</Formal>
+<Formal Display="よみがな">とちおうざん</Formal>
+</PlayerName>
+<Belong>
+<Writing>春日野</Writing>
+<Formal>春日野</Formal>
+<Formal Display="3字">春日野</Formal>
+<Formal Display="よみがな">かすがの</Formal>
+</Belong>
+<Age>３１</Age>
+<Height Unit="センチメートル">１８６</Height>
+<Weight Unit="キログラム">１５０</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>⑤</Writing>
+<IntegerPart>５</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>７０</BashoCount>
+<WinCount>５３５</WinCount>
+<LossCount>４９６</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１９</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５１９</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５１０</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>高　知</Writing>
+<Formal>高知</Formal>
+<Formal Display="3字">高　知</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="021310">
+<PlayerName>
+<Writing>逸ノ城　</Writing>
+<Formal>逸ノ城</Formal>
+<Formal Display="4字">逸ノ城　</Formal>
+<Formal Display="3字">逸ノ城</Formal>
+<Formal Display="2字">逸城</Formal>
+<Formal Display="よみがな">いちのじょう</Formal>
+</PlayerName>
+<Belong>
+<Writing>　湊　</Writing>
+<Formal>湊</Formal>
+<Formal Display="3字">　湊　</Formal>
+<Formal Display="よみがな">みなと</Formal>
+</Belong>
+<Age>２５</Age>
+<Height Unit="センチメートル">１９３</Height>
+<Weight Unit="キログラム">２２７</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>⑤</Writing>
+<IntegerPart>５</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>２６</BashoCount>
+<WinCount>１９６</WinCount>
+<LossCount>１７９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１５</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５２３</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５０３</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="014650">
+<PlayerName>
+<Writing>錦　木　</Writing>
+<Formal>錦木</Formal>
+<Formal Display="4字">錦　木　</Formal>
+<Formal Display="3字">錦　木</Formal>
+<Formal Display="2字">錦木</Formal>
+<Formal Display="よみがな">にしきぎ</Formal>
+</PlayerName>
+<Belong>
+<Writing>伊勢海</Writing>
+<Formal>伊勢ノ海</Formal>
+<Formal Display="3字">伊勢海</Formal>
+<Formal Display="よみがな">いせのうみ</Formal>
+</Belong>
+<Age>２８</Age>
+<Height Unit="センチメートル">１８６</Height>
+<Weight Unit="キログラム">１７４</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１５</BashoCount>
+<WinCount>１０６</WinCount>
+<LossCount>１１９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４７１</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前３</Writing>
+<SumoRank>前頭３枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>岩　手</Writing>
+<Formal>岩手</Formal>
+<Formal Display="3字">岩　手</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="022510">
+<PlayerName>
+<Writing>北勝富士</Writing>
+<Formal>北勝富士</Formal>
+<Formal Display="4字">北勝富士</Formal>
+<Formal Display="3字">北勝富</Formal>
+<Formal Display="2字">北富</Formal>
+<Formal Display="よみがな">ほくとふじ</Formal>
+</PlayerName>
+<Belong>
+<Writing>八　角</Writing>
+<Formal>八角</Formal>
+<Formal Display="3字">八　角</Formal>
+<Formal Display="よみがな">はっかく</Formal>
+</Belong>
+<Age>２６</Age>
+<Height Unit="センチメートル">１８４</Height>
+<Weight Unit="キログラム">１６２</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>⑤</Writing>
+<IntegerPart>５</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１３</BashoCount>
+<WinCount>１０２</WinCount>
+<LossCount>８９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>４</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５３４</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５２３</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前１</Writing>
+<SumoRank>前頭１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>埼　玉</Writing>
+<Formal>埼玉</Formal>
+<Formal Display="3字">埼　玉</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="021630">
+<PlayerName>
+<Writing>正　代　</Writing>
+<Formal>正代</Formal>
+<Formal Display="4字">正　代　</Formal>
+<Formal Display="3字">正　代</Formal>
+<Formal Display="2字">正代</Formal>
+<Formal Display="よみがな">しょうだい</Formal>
+</PlayerName>
+<Belong>
+<Writing>時津風</Writing>
+<Formal>時津風</Formal>
+<Formal Display="3字">時津風</Formal>
+<Formal Display="よみがな">ときつかぜ</Formal>
+</Belong>
+<Age>２７</Age>
+<Height Unit="センチメートル">１８４</Height>
+<Weight Unit="キログラム">１６２</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１８</BashoCount>
+<WinCount>１３６</WinCount>
+<LossCount>１３４</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５０４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>熊　本</Writing>
+<Formal>熊本</Formal>
+<Formal Display="3字">熊　本</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="014340">
+<PlayerName>
+<Writing>松鳳山　</Writing>
+<Formal>松鳳山</Formal>
+<Formal Display="4字">松鳳山　</Formal>
+<Formal Display="3字">松鳳山</Formal>
+<Formal Display="2字">松鳳</Formal>
+<Formal Display="よみがな">しょうほうざん</Formal>
+</PlayerName>
+<Belong>
+<Writing>二所関</Writing>
+<Formal>二所ノ関</Formal>
+<Formal Display="3字">二所関</Formal>
+<Formal Display="よみがな">にしょのせき</Formal>
+</Belong>
+<Age>３４</Age>
+<Height Unit="センチメートル">１７７</Height>
+<Weight Unit="キログラム">１３９</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>⑤</Writing>
+<IntegerPart>５</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>４０</BashoCount>
+<WinCount>２８２</WinCount>
+<LossCount>３１８</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４７０</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>小結</Writing>
+<SumoRank>小結</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>福　岡</Writing>
+<Formal>福岡</Formal>
+<Formal Display="3字">福　岡</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="009220">
+<PlayerName>
+<Writing>琴奨菊　</Writing>
+<Formal>琴奨菊</Formal>
+<Formal Display="4字">琴奨菊　</Formal>
+<Formal Display="3字">琴奨菊</Formal>
+<Formal Display="2字">琴奨</Formal>
+<Formal Display="よみがな">ことしょうぎく</Formal>
+</PlayerName>
+<Belong>
+<Writing>佐渡嶽</Writing>
+<Formal>佐渡ケ嶽</Formal>
+<Formal Display="3字">佐渡嶽</Formal>
+<Formal Display="よみがな">さどがたけ</Formal>
+</Belong>
+<Age>３４</Age>
+<Height Unit="センチメートル">１８０</Height>
+<Weight Unit="キログラム">１７５</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>②</Writing>
+<IntegerPart>２</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>４</Writing>
+<CountValue>４</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>８２</BashoCount>
+<WinCount>６５２</WinCount>
+<LossCount>５４０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>３８</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５４７</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．５３０</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>大関</Writing>
+<SumoRank>大関</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>福　岡</Writing>
+<Formal>福岡</Formal>
+<Formal Display="3字">福　岡</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="013070">
+<PlayerName>
+<Writing>隠岐の海</Writing>
+<Formal>隠岐の海</Formal>
+<Formal Display="4字">隠岐の海</Formal>
+<Formal Display="3字">隠岐海</Formal>
+<Formal Display="2字">隠岐</Formal>
+<Formal Display="よみがな">おきのうみ</Formal>
+</PlayerName>
+<Belong>
+<Writing>八　角</Writing>
+<Formal>八角</Formal>
+<Formal Display="3字">八　角</Formal>
+<Formal Display="よみがな">はっかく</Formal>
+</Belong>
+<Age>３３</Age>
+<Height Unit="センチメートル">１９０</Height>
+<Weight Unit="キログラム">１６０</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>④</Writing>
+<IntegerPart>４</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>５１</BashoCount>
+<WinCount>３６０</WinCount>
+<LossCount>３７３</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>３２</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４９１</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４７１</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>島　根</Writing>
+<Formal>島根</Formal>
+<Formal Display="3字">島　根</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="018050">
+<PlayerName>
+<Writing>碧　山　</Writing>
+<Formal>碧山</Formal>
+<Formal Display="4字">碧　山　</Formal>
+<Formal Display="3字">碧　山</Formal>
+<Formal Display="2字">碧山</Formal>
+<Formal Display="よみがな">あおいやま</Formal>
+</PlayerName>
+<Belong>
+<Writing>春日野</Writing>
+<Formal>春日野</Formal>
+<Formal Display="3字">春日野</Formal>
+<Formal Display="よみがな">かすがの</Formal>
+</Belong>
+<Age>３２</Age>
+<Height Unit="センチメートル">１９１</Height>
+<Weight Unit="キログラム">１９７</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>４２</BashoCount>
+<WinCount>３１１</WinCount>
+<LossCount>３０２</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１７</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５０７</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４９４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>ブルガ</Writing>
+<Formal>ブルガリア</Formal>
+<Formal Display="3字">ブルガ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="011540">
+<PlayerName>
+<Writing>嘉　風　</Writing>
+<Formal>嘉風</Formal>
+<Formal Display="4字">嘉　風　</Formal>
+<Formal Display="3字">嘉　風</Formal>
+<Formal Display="2字">嘉風</Formal>
+<Formal Display="よみがな">よしかぜ</Formal>
+</PlayerName>
+<Belong>
+<Writing>尾　車</Writing>
+<Formal>尾車</Formal>
+<Formal Display="3字">尾　車</Formal>
+<Formal Display="よみがな">おぐるま</Formal>
+</Belong>
+<Age>３６</Age>
+<Height Unit="センチメートル">１７７</Height>
+<Weight Unit="キログラム">１５０</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>⑧</Writing>
+<IntegerPart>８</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>４</Writing>
+<CountValue>４</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>４</Writing>
+<CountValue>４</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>７５</BashoCount>
+<WinCount>５４４</WinCount>
+<LossCount>５７２</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>９</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４８７</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４８４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>大　分</Writing>
+<Formal>大分</Formal>
+<Formal Display="3字">大　分</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="019320">
+<PlayerName>
+<Writing>千代大龍</Writing>
+<Formal>千代大龍</Formal>
+<Formal Display="4字">千代大龍</Formal>
+<Formal Display="3字">千代大</Formal>
+<Formal Display="2字">千大</Formal>
+<Formal Display="よみがな">ちよたいりゅう</Formal>
+</PlayerName>
+<Belong>
+<Writing>九　重</Writing>
+<Formal>九重</Formal>
+<Formal Display="3字">九　重</Formal>
+<Formal Display="よみがな">ここのえ</Formal>
+</Belong>
+<Age>３０</Age>
+<Height Unit="センチメートル">１８１</Height>
+<Weight Unit="キログラム">１９１</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>③</Writing>
+<IntegerPart>３</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>３５</BashoCount>
+<WinCount>２３９</WinCount>
+<LossCount>２５７</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２９</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４８２</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４５５</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>小結</Writing>
+<SumoRank>小結</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>東　京</Writing>
+<Formal>東京</Formal>
+<Formal Display="3字">東　京</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="014680">
+<PlayerName>
+<Writing>竜　電　</Writing>
+<Formal>竜電</Formal>
+<Formal Display="4字">竜　電　</Formal>
+<Formal Display="3字">竜　電</Formal>
+<Formal Display="2字">竜電</Formal>
+<Formal Display="よみがな">りゅうでん</Formal>
+</PlayerName>
+<Belong>
+<Writing>高田川</Writing>
+<Formal>高田川</Formal>
+<Formal Display="3字">高田川</Formal>
+<Formal Display="よみがな">たかだがわ</Formal>
+</Belong>
+<Age>２８</Age>
+<Height Unit="センチメートル">１９０</Height>
+<Weight Unit="キログラム">１４９</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>６</BashoCount>
+<WinCount>４５</WinCount>
+<LossCount>４５</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５００</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前３</Writing>
+<SumoRank>前頭３枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>山　梨</Writing>
+<Formal>山梨</Formal>
+<Formal Display="3字">山　梨</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020550">
+<PlayerName>
+<Writing>阿武咲　</Writing>
+<Formal>阿武咲</Formal>
+<Formal Display="4字">阿武咲　</Formal>
+<Formal Display="3字">阿武咲</Formal>
+<Formal Display="2字">阿武</Formal>
+<Formal Display="よみがな">おうのしょう</Formal>
+</PlayerName>
+<Belong>
+<Writing>阿武松</Writing>
+<Formal>阿武松</Formal>
+<Formal Display="3字">阿武松</Formal>
+<Formal Display="よみがな">おうのまつ</Formal>
+</Belong>
+<Age>２２</Age>
+<Height Unit="センチメートル">１７７</Height>
+<Weight Unit="キログラム">１６８</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>９</BashoCount>
+<WinCount>６７</WinCount>
+<LossCount>４８</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５８３</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４９６</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>小結</Writing>
+<SumoRank>小結</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>青　森</Writing>
+<Formal>青森</Formal>
+<Formal Display="3字">青　森</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="019880">
+<PlayerName>
+<Writing>大栄翔　</Writing>
+<Formal>大栄翔</Formal>
+<Formal Display="4字">大栄翔　</Formal>
+<Formal Display="3字">大栄翔</Formal>
+<Formal Display="2字">大栄</Formal>
+<Formal Display="よみがな">だいえいしょう</Formal>
+</PlayerName>
+<Belong>
+<Writing>追手風</Writing>
+<Formal>追手風</Formal>
+<Formal Display="3字">追手風</Formal>
+<Formal Display="よみがな">おいてかぜ</Formal>
+</Belong>
+<Age>２５</Age>
+<Height Unit="センチメートル">１８１</Height>
+<Weight Unit="キログラム">１６３</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１７</BashoCount>
+<WinCount>１１８</WinCount>
+<LossCount>１３７</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４６３</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前３</Writing>
+<SumoRank>前頭３枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>埼　玉</Writing>
+<Formal>埼玉</Formal>
+<Formal Display="3字">埼　玉</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="015120">
+<PlayerName>
+<Writing>魁　聖　</Writing>
+<Formal>魁聖</Formal>
+<Formal Display="4字">魁　聖　</Formal>
+<Formal Display="3字">魁　聖</Formal>
+<Formal Display="2字">魁聖</Formal>
+<Formal Display="よみがな">かいせい</Formal>
+</PlayerName>
+<Belong>
+<Writing>友　綱</Writing>
+<Formal>友綱</Formal>
+<Formal Display="3字">友　綱</Formal>
+<Formal Display="よみがな">ともづな</Formal>
+</Belong>
+<Age>３２</Age>
+<Height Unit="センチメートル">１９５</Height>
+<Weight Unit="キログラム">２０７</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>３</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>４４</BashoCount>
+<WinCount>３１３</WinCount>
+<LossCount>３３９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>８</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４８０</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４７４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>ブラジ</Writing>
+<Formal>ブラジル</Formal>
+<Formal Display="3字">ブラジ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="023280">
+<PlayerName>
+<Writing>朝乃山　</Writing>
+<Formal>朝乃山</Formal>
+<Formal Display="4字">朝乃山　</Formal>
+<Formal Display="3字">朝乃山</Formal>
+<Formal Display="2字">朝山</Formal>
+<Formal Display="よみがな">あさのやま</Formal>
+</PlayerName>
+<Belong>
+<Writing>高　砂</Writing>
+<Formal>高砂</Formal>
+<Formal Display="3字">高　砂</Formal>
+<Formal Display="よみがな">たかさご</Formal>
+</Belong>
+<Age>２４</Age>
+<Height Unit="センチメートル">１８７</Height>
+<Weight Unit="キログラム">１６６</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>８</BashoCount>
+<WinCount>６３</WinCount>
+<LossCount>５７</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５２５</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前５</Writing>
+<SumoRank>前頭５枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>富　山</Writing>
+<Formal>富山</Formal>
+<Formal Display="3字">富　山</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="017460">
+<PlayerName>
+<Writing>貴ノ岩　</Writing>
+<Formal>貴ノ岩</Formal>
+<Formal Display="4字">貴ノ岩　</Formal>
+<Formal Display="3字">貴ノ岩</Formal>
+<Formal Display="2字">貴岩</Formal>
+<Formal Display="よみがな">たかのいわ</Formal>
+</PlayerName>
+<Belong>
+<Writing>千賀浦</Writing>
+<Formal>千賀ノ浦</Formal>
+<Formal Display="3字">千賀浦</Formal>
+<Formal Display="よみがな">ちがのうら</Formal>
+</Belong>
+<Age>２８</Age>
+<Height Unit="センチメートル">１８２</Height>
+<Weight Unit="キログラム">１５０</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>２１</BashoCount>
+<WinCount>１４０</WinCount>
+<LossCount>１５７</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１８</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４７１</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４４４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前２</Writing>
+<SumoRank>前頭２枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="020670">
+<PlayerName>
+<Writing>遠　藤　</Writing>
+<Formal>遠藤</Formal>
+<Formal Display="4字">遠　藤　</Formal>
+<Formal Display="3字">遠　藤</Formal>
+<Formal Display="2字">遠藤</Formal>
+<Formal Display="よみがな">えんどう</Formal>
+</PlayerName>
+<Belong>
+<Writing>追手風</Writing>
+<Formal>追手風</Formal>
+<Formal Display="3字">追手風</Formal>
+<Formal Display="よみがな">おいてかぜ</Formal>
+</Belong>
+<Age>２８</Age>
+<Height Unit="センチメートル">１８４</Height>
+<Weight Unit="キログラム">１５１</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>④</Writing>
+<IntegerPart>４</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>２</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>３１</BashoCount>
+<WinCount>２１６</WinCount>
+<LossCount>２１９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>３０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４９７</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４６５</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>小結</Writing>
+<SumoRank>小結</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>石　川</Writing>
+<Formal>石川</Formal>
+<Formal Display="3字">石　川</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="017310">
+<PlayerName>
+<Writing>宝富士　</Writing>
+<Formal>宝富士</Formal>
+<Formal Display="4字">宝富士　</Formal>
+<Formal Display="3字">宝富士</Formal>
+<Formal Display="2字">宝富</Formal>
+<Formal Display="よみがな">たからふじ</Formal>
+</PlayerName>
+<Belong>
+<Writing>伊勢浜</Writing>
+<Formal>伊勢ケ浜</Formal>
+<Formal Display="3字">伊勢浜</Formal>
+<Formal Display="よみがな">いせがはま</Formal>
+</Belong>
+<Age>３１</Age>
+<Height Unit="センチメートル">１８５</Height>
+<Weight Unit="キログラム">１６５</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>③</Writing>
+<IntegerPart>３</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>４２</BashoCount>
+<WinCount>２９６</WinCount>
+<LossCount>３３４</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４７０</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>青　森</Writing>
+<Formal>青森</Formal>
+<Formal Display="3字">青　森</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="021130">
+<PlayerName>
+<Writing>阿　炎　</Writing>
+<Formal>阿炎</Formal>
+<Formal Display="4字">阿　炎　</Formal>
+<Formal Display="3字">阿　炎</Formal>
+<Formal Display="2字">阿炎</Formal>
+<Formal Display="よみがな">あび</Formal>
+</PlayerName>
+<Belong>
+<Writing>錣　山</Writing>
+<Formal>錣山</Formal>
+<Formal Display="3字">錣　山</Formal>
+<Formal Display="よみがな">しころやま</Formal>
+</Belong>
+<Age>２４</Age>
+<Height Unit="センチメートル">１８７</Height>
+<Weight Unit="キログラム">１４４</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>②</Writing>
+<IntegerPart>２</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>６</BashoCount>
+<WinCount>４５</WinCount>
+<LossCount>４５</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５００</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前２</Writing>
+<SumoRank>前頭２枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>埼　玉</Writing>
+<Formal>埼玉</Formal>
+<Formal Display="3字">埼　玉</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="013520">
+<PlayerName>
+<Writing>　勢　　</Writing>
+<Formal>勢</Formal>
+<Formal Display="4字">　勢　　</Formal>
+<Formal Display="3字">　勢　</Formal>
+<Formal Display="2字">勢　</Formal>
+<Formal Display="よみがな">いきおい</Formal>
+</PlayerName>
+<Belong>
+<Writing>伊勢海</Writing>
+<Formal>伊勢ノ海</Formal>
+<Formal Display="3字">伊勢海</Formal>
+<Formal Display="よみがな">いせのうみ</Formal>
+</Belong>
+<Age>３２</Age>
+<Height Unit="センチメートル">１９４</Height>
+<Weight Unit="キログラム">１７３</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>⑤</Writing>
+<IntegerPart>５</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>４</Writing>
+<CountValue>４</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>３９</BashoCount>
+<WinCount>２７８</WinCount>
+<LossCount>３０７</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４７５</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>大　阪</Writing>
+<Formal>大阪</Formal>
+<Formal Display="3字">大　阪</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="010770">
+<PlayerName>
+<Writing>佐田の海</Writing>
+<Formal>佐田の海</Formal>
+<Formal Display="4字">佐田の海</Formal>
+<Formal Display="3字">佐田海</Formal>
+<Formal Display="2字">佐海</Formal>
+<Formal Display="よみがな">さだのうみ</Formal>
+</PlayerName>
+<Belong>
+<Writing>境　川</Writing>
+<Formal>境川</Formal>
+<Formal Display="3字">境　川</Formal>
+<Formal Display="よみがな">さかいがわ</Formal>
+</Belong>
+<Age>３１</Age>
+<Height Unit="センチメートル">１８４</Height>
+<Weight Unit="キログラム">１４２</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>２４</BashoCount>
+<WinCount>１６４</WinCount>
+<LossCount>１９１</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>５</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４６２</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４５６</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前１</Writing>
+<SumoRank>前頭１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>熊　本</Writing>
+<Formal>熊本</Formal>
+<Formal Display="3字">熊　本</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="018440">
+<PlayerName>
+<Writing>　輝　　</Writing>
+<Formal>輝</Formal>
+<Formal Display="4字">　輝　　</Formal>
+<Formal Display="3字">　輝　</Formal>
+<Formal Display="2字">輝　</Formal>
+<Formal Display="よみがな">かがやき</Formal>
+</PlayerName>
+<Belong>
+<Writing>高田川</Writing>
+<Formal>高田川</Formal>
+<Formal Display="3字">高田川</Formal>
+<Formal Display="よみがな">たかだがわ</Formal>
+</Belong>
+<Age>２４</Age>
+<Height Unit="センチメートル">１９３</Height>
+<Weight Unit="キログラム">１６８</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１６</BashoCount>
+<WinCount>１０９</WinCount>
+<LossCount>１３１</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４５４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前４</Writing>
+<SumoRank>前頭４枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>石　川</Writing>
+<Formal>石川</Formal>
+<Formal Display="3字">石　川</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="019540">
+<PlayerName>
+<Writing>明　生　</Writing>
+<Formal>明生</Formal>
+<Formal Display="4字">明　生　</Formal>
+<Formal Display="3字">明　生</Formal>
+<Formal Display="2字">明生</Formal>
+<Formal Display="よみがな">めいせい</Formal>
+</PlayerName>
+<Belong>
+<Writing>立　浪</Writing>
+<Formal>立浪</Formal>
+<Formal Display="3字">立　浪</Formal>
+<Formal Display="よみがな">たつなみ</Formal>
+</Belong>
+<Age>２３</Age>
+<Height Unit="センチメートル">１８０</Height>
+<Weight Unit="キログラム">１４９</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>２</BashoCount>
+<WinCount>１５</WinCount>
+<LossCount>１５</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５００</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前</Writing>
+<SumoRank>前頭１５枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>鹿児島</Writing>
+<Formal>鹿児島</Formal>
+<Formal Display="3字">鹿児島</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="024800">
+<PlayerName>
+<Writing>矢　後　</Writing>
+<Formal>矢後</Formal>
+<Formal Display="4字">矢　後　</Formal>
+<Formal Display="3字">矢　後</Formal>
+<Formal Display="2字">矢後</Formal>
+<Formal Display="よみがな">やご</Formal>
+</PlayerName>
+<Belong>
+<Writing>尾　車</Writing>
+<Formal>尾車</Formal>
+<Formal Display="3字">尾　車</Formal>
+<Formal Display="よみがな">おぐるま</Formal>
+</Belong>
+<Age>２４</Age>
+<Height Unit="センチメートル">１８７</Height>
+<Weight Unit="キログラム">１７６</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>０</BashoCount>
+<WinCount>０</WinCount>
+<LossCount>０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．０００</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>十１</Writing>
+<SumoRank>十両１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>北海道</Writing>
+<Formal>北海道</Formal>
+<Formal Display="3字">北海道</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="023290">
+<PlayerName>
+<Writing>豊　山　</Writing>
+<Formal>豊山</Formal>
+<Formal Display="4字">豊　山　</Formal>
+<Formal Display="3字">豊　山</Formal>
+<Formal Display="2字">豊山</Formal>
+<Formal Display="よみがな">ゆたかやま</Formal>
+</PlayerName>
+<Belong>
+<Writing>時津風</Writing>
+<Formal>時津風</Formal>
+<Formal Display="3字">時津風</Formal>
+<Formal Display="よみがな">ときつかぜ</Formal>
+</Belong>
+<Age>２５</Age>
+<Height Unit="センチメートル">１８５</Height>
+<Weight Unit="キログラム">１８２</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>８</BashoCount>
+<WinCount>４９</WinCount>
+<LossCount>６９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４１５</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４０８</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前２</Writing>
+<SumoRank>前頭２枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>新　潟</Writing>
+<Formal>新潟</Formal>
+<Formal Display="3字">新　潟</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="016640">
+<PlayerName>
+<Writing>琴勇輝　</Writing>
+<Formal>琴勇輝</Formal>
+<Formal Display="4字">琴勇輝　</Formal>
+<Formal Display="3字">琴勇輝</Formal>
+<Formal Display="2字">琴勇</Formal>
+<Formal Display="よみがな">ことゆうき</Formal>
+</PlayerName>
+<Belong>
+<Writing>佐渡嶽</Writing>
+<Formal>佐渡ケ嶽</Formal>
+<Formal Display="3字">佐渡嶽</Formal>
+<Formal Display="よみがな">さどがたけ</Formal>
+</Belong>
+<Age>２７</Age>
+<Height Unit="センチメートル">１７６</Height>
+<Weight Unit="キログラム">１６４</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>２６</BashoCount>
+<WinCount>１６９</WinCount>
+<LossCount>１９７</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２４</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４６２</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４３３</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>香　川</Writing>
+<Formal>香川</Formal>
+<Formal Display="3字">香　川</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="018070">
+<PlayerName>
+<Writing>千代翔馬</Writing>
+<Formal>千代翔馬</Formal>
+<Formal Display="4字">千代翔馬</Formal>
+<Formal Display="3字">千代翔</Formal>
+<Formal Display="2字">千翔</Formal>
+<Formal Display="よみがな">ちよしょうま</Formal>
+</PlayerName>
+<Belong>
+<Writing>九　重</Writing>
+<Formal>九重</Formal>
+<Formal Display="3字">九　重</Formal>
+<Formal Display="よみがな">ここのえ</Formal>
+</Belong>
+<Age>２７</Age>
+<Height Unit="センチメートル">１８４</Height>
+<Weight Unit="キログラム">１３６</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１４</BashoCount>
+<WinCount>９８</WinCount>
+<LossCount>１１２</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４６７</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前２</Writing>
+<SumoRank>前頭２枚目</SumoRank>
+</SumoGrade>
+<NativeCountry>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
+</NativeCountry>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="014980">
+<PlayerName>
+<Writing>千代の国</Writing>
+<Formal>千代の国</Formal>
+<Formal Display="4字">千代の国</Formal>
+<Formal Display="3字">千代国</Formal>
+<Formal Display="2字">千国</Formal>
+<Formal Display="よみがな">ちよのくに</Formal>
+</PlayerName>
+<Belong>
+<Writing>九　重</Writing>
+<Formal>九重</Formal>
+<Formal Display="3字">九　重</Formal>
+<Formal Display="よみがな">ここのえ</Formal>
+</Belong>
+<Age>２８</Age>
+<Height Unit="センチメートル">１８２</Height>
+<Weight Unit="キログラム">１４６</Weight>
+<Result Period="幕内通算">
+<Record Kind="奪金星" Unit="回">
+<Writing>①</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>１</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>２３</BashoCount>
+<WinCount>１３９</WinCount>
+<LossCount>１６２</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>４４</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４６２</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">．４０３</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前１</Writing>
+<SumoRank>前頭１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>三　重</Writing>
+<Formal>三重</Formal>
+<Formal Display="3字">三　重</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="023140">
+<PlayerName>
+<Writing>大奄美　</Writing>
+<Formal>大奄美</Formal>
+<Formal Display="4字">大奄美　</Formal>
+<Formal Display="3字">大奄美</Formal>
+<Formal Display="2字">大奄</Formal>
+<Formal Display="よみがな">だいあまみ</Formal>
+</PlayerName>
+<Belong>
+<Writing>追手風</Writing>
+<Formal>追手風</Formal>
+<Formal Display="3字">追手風</Formal>
+<Formal Display="よみがな">おいてかぜ</Formal>
+</Belong>
+<Age>２６</Age>
+<Height Unit="センチメートル">１８５</Height>
+<Weight Unit="キログラム">１８７</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>５</BashoCount>
+<WinCount>３５</WinCount>
+<LossCount>４０</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４６７</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前</Writing>
+<SumoRank>前頭１１枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>鹿児島</Writing>
+<Formal>鹿児島</Formal>
+<Formal Display="3字">鹿児島</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="015420">
+<PlayerName>
+<Writing>琴恵光　</Writing>
+<Formal>琴恵光</Formal>
+<Formal Display="4字">琴恵光　</Formal>
+<Formal Display="3字">琴恵光</Formal>
+<Formal Display="2字">琴恵</Formal>
+<Formal Display="よみがな">ことえこう</Formal>
+</PlayerName>
+<Belong>
+<Writing>佐渡嶽</Writing>
+<Formal>佐渡ケ嶽</Formal>
+<Formal Display="3字">佐渡嶽</Formal>
+<Formal Display="よみがな">さどがたけ</Formal>
+</Belong>
+<Age>２７</Age>
+<Height Unit="センチメートル">１７７</Height>
+<Weight Unit="キログラム">１３５</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１</BashoCount>
+<WinCount>３</WinCount>
+<LossCount>１２</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．２００</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前</Writing>
+<SumoRank>前頭１４枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>宮　崎</Writing>
+<Formal>宮崎</Formal>
+<Formal Display="3字">宮　崎</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+<Player PlayerId="021450">
+<PlayerName>
+<Writing>大翔丸　</Writing>
+<Formal>大翔丸</Formal>
+<Formal Display="4字">大翔丸　</Formal>
+<Formal Display="3字">大翔丸</Formal>
+<Formal Display="2字">大丸</Formal>
+<Formal Display="よみがな">だいしょうまる</Formal>
+</PlayerName>
+<Belong>
+<Writing>追手風</Writing>
+<Formal>追手風</Formal>
+<Formal Display="3字">追手風</Formal>
+<Formal Display="よみがな">おいてかぜ</Formal>
+</Belong>
+<Age>２７</Age>
+<Height Unit="センチメートル">１７４</Height>
+<Weight Unit="キログラム">１５７</Weight>
+<Result Period="幕内通算">
+<Award Kind="優勝">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>―</Writing>
+<CountValue>０</CountValue>
+</Count>
+</Award>
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１７</BashoCount>
+<WinCount>１１９</WinCount>
+<LossCount>１３６</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．４６７</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>前５</Writing>
+<SumoRank>前頭５枚目</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>大　阪</Writing>
+<Formal>大阪</Formal>
+<Formal Display="3字">大　阪</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+</Standing>
+</Body>
+</SportsData>
+</InData>
+</InContent>
+</DataContent>
+</ContentItem>
+</NewsComponent>
+</NewsItem>
+</NewsML>
+</ITalk>
