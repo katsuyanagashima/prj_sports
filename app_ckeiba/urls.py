@@ -26,6 +26,29 @@ urlpatterns = [
     path('uriage/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='uriage'),  #中間DB_売上金編集画面
 
 
+    path('seisekiA_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',
+         views.NewsML_seisekiA, name='seisekiA_NewsML'),  # NewsML 成績表A
+
+    path('tsusinA_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',
+         views.NewsML_tsusinA, name='tsusinA_NewsML'),  # NewsML 通信文A
+
+
+    path('shussouhyou_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',
+         views.NewsML_shussouhyou, name='shussouhyou_NewsML'),  # NewsML 出走表
+
+    path('seiseki_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',
+         views.NewsML_seisekiC, name='seiseki_NewsML'),  # NewsML 成績表C
+
+    path('rap_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',
+         views.NewsML_rap, name='rap_NewsML'),  # NewsML ラップ
+
+    path('agari_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',
+         views.NewsML_agari, name='agari_NewsML'),  # NewsML 上がり
+
+    path('tushinbun_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',
+         views.NewsML_tsuushimbunC, name='tushinbun_NewsML'),  # NewsML 通信文C
+
+
     path('create_NewsML_test/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/', views.NewsML_shussouhyou, name='create_NewsML_test'),  #NewsML 通信文C
 
 

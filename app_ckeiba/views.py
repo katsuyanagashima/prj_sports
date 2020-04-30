@@ -169,8 +169,6 @@ def create_forms(request, title):
     return render(request, 'app_ckeiba/mst_edit_form/mst_create.html', d)
 
 # マスタ更新フォーム
-
-
 def update_forms(request, pk, title):
 
     # マスタ名(title)から、ModelとModelFormを取得
@@ -193,8 +191,6 @@ def update_forms(request, pk, title):
     return render(request, 'app_ckeiba/mst_edit_form/mst_update.html', d)
 
 # マスタ削除フォーム
-
-
 def delete_forms(request, pk, title):
 
     # マスタ名(title)から、ModelとModelFormを取得
@@ -315,9 +311,10 @@ def md_update_forms(request, year, month, day, joucode, race):
         Md_ModelForm = Md_AgariForm
         title = "【中間DB】上がり"
     elif "tushinbun" in path:
+    # 通信文は1レースにつき複数インスタンスあるので、別途処理が必要
         mst_instance = get_object_or_404(
-            Md_tsuushimbun.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
-        Md_ModelForm = Md_tsuushimbunForm
+            Md_Tsuushimbun.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+        Md_ModelForm = Md_TsuushimbunForm
         title = "【中間DB】通信文"
     elif "nyujo" in path:
         mst_instance = get_object_or_404(
@@ -347,8 +344,6 @@ def md_update_forms(request, year, month, day, joucode, race):
     return render(request, 'app_ckeiba/mst_edit_form/md_db_update.html', d)
 
 # 出走表更新画面 （編集管理画面の各記号をクリックして、URLで各出走表の更新画面リンクを飛ばす。）
-
-
 def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
 
     tran_system = Tran_Systemstatus.objects.all().first()  # ★ システム状態
