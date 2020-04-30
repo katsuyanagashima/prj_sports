@@ -48,7 +48,9 @@
                                         {% elif edit_data.nyujo == '-' %}
                                         <td class="uma-img td_value"></td>
                                         {% else %}
-                                        <td>{{ edit_data.nyujo }}</td>
+                                        <td class="td_value">
+                                            <div class="non_push">{{ edit_data.nyujo }}</div>
+                                        </td>
                                         {% endif %}
 
                                     </tr>
@@ -94,7 +96,9 @@
                                         {% elif edit_data.uriage == '-' %}
                                         <td class="uma-img td_value"></td>
                                         {% else %}
-                                        <td>{{ edit_data.uriage }}</td>
+                                        <td class="td_value">
+                                            <div class="non_push">{{ edit_data.uriage }}</div>
+                                        </td>
                                         {% endif %}
                                     </tr>
                                 </tbody>
@@ -161,7 +165,9 @@
                             {% elif shussou == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
-                            <td>{{ shussou }}</td>
+                            <td class="td_value">
+                                <div class="non_push">{{ shussou }}</div>
+                            </td>
                             {% endif %}
 
                             {% endfor %}
@@ -202,7 +208,9 @@
                             {% elif seiseki == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
-                            <td>{{ seiseki }}</td>
+                            <td class="td_value">
+                                <div class="non_push">{{ seiseki }}</div>
+                            </td>
                             {% endif %}
 
                             {% endfor %}
@@ -244,7 +252,9 @@
                             {% elif corner == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
-                            <td>{{ corner }}</td>
+                            <td class="td_value">
+                                <div class="non_push">{{ corner }}</div>
+                            </td>
                             {% endif %}
 
                             {% endfor %}
@@ -286,7 +296,9 @@
                             {% elif agari == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
-                            <td>{{ agari }}</td>
+                            <td class="td_value">
+                                <div class="non_push">{{ agari }}</div>
+                            </td>
                             {% endif %}
 
                             {% endfor %}
@@ -329,7 +341,9 @@
                             {% elif tsusin == '-' %}
                             <td class="uma-img td_value"></td>
                             {% else %}
-                            <td>{{ tsusin }}</td>
+                            <td class="td_value">
+                                <div class="non_push">{{ tsusin }}</div>
+                            </td>
                             {% endif %}
 
                             {% endfor %}
