@@ -1,6 +1,20 @@
 from django.contrib import admin
 from .models import *
 
+#出走表Ａ
+class Trn_Running_list_A_SUAAdmin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('開催曜日', {'fields':['Held_day'] }),
+	    ('競馬場名称', {'fields':['Track_name'] }),
+        ('レース番号', {'fields':['Race_No'] }),
+        ('発走時刻', {'fields':['Start_time'] }),
+	    ('距離', {'fields':['Race_Distance'] }),
+        ('芝ダート区分名称', {'fields':['Turf_Dart_name'] }),
+    ]
+    list_display = ('Race_date', 'Held_day', 'Track_name', 'Race_No', 'Start_time', 'Race_Distance', 'Turf_Dart_name')
+
+
 admin.site.register(Tran_Systemstatus)
 admin.site.register(Mst_Operationmode)
 admin.site.register(Mst_Environment)
@@ -65,7 +79,7 @@ admin.site.register(Md_Tsuushimbun)
 # CSV取り込み
 admin.site.register(Schedule_BA7)
 admin.site.register(Trn_Enforcement_information_today_INI)
-admin.site.register(Trn_Running_list_A_SUA)
+admin.site.register(Trn_Running_list_A_SUA, Trn_Running_list_A_SUAAdmin)
 admin.site.register(Trn_Running_list_B_SUB)
 admin.site.register(Trn_Running_list_C_SUC)
 admin.site.register(Trn_Running_list_D_SUD)
