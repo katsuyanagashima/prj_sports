@@ -17,6 +17,8 @@ from watchdog.observers.polling import PollingObserver
 
 from app_ckeiba.consts import *
 
+#ダミーコメント
+
 logger = getLogger('app_ckeiba')
 
 class Su1():
