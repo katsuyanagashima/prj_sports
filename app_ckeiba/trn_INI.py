@@ -19,6 +19,8 @@ from app_ckeiba.consts import *
 
 logger = getLogger('app_ckeiba')
 
+#ダミーコメント
+
 class Ini():
 
     def chk_master(self, line, Mst_Jou):
