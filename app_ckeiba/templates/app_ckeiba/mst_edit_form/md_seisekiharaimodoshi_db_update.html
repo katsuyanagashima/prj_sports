@@ -11,12 +11,16 @@
             <div class="col-4">
                 <h3>成績</h3>
                 {{ form.management_form }}
-                {{ form }}
+                <table>
+                    {{ form.as_table }}
+                </table>
             </div>
             <div class="col-4">
                 <h3>成績詳細</h3>
                 {{ formset_seiseki.management_form }}
-                {{ formset_seiseki }}
+                <table>
+                    {{ formset_seiseki.as_table }}
+                </table>
             </div>
             <div class="col-4">
                 <h3>払戻</h3>

@@ -301,46 +301,43 @@ def md_update_forms(request, year, month, day, joucode, race):
     # URLから、更新対象のレコードを抽出（データがなければ404エラー）
     path = request.path
     if "corner_rap" in path:
-        mst_instance = get_object_or_404(
-            Md_Corner_Rap.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
-        Md_ModelForm = Md_Corner_RapForm
         title = "【中間DB】コーナー・ラップ"
+        formset = Corner_RapFormset(
+            request.POST or None, queryset=Md_Corner_Rap.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race))
+
     elif "agari" in path:
-        mst_instance = get_object_or_404(
-            Md_Agari.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
-        Md_ModelForm = Md_AgariForm
         title = "【中間DB】上がり"
+        formset = AgariFormset(
+            request.POST or None, queryset=Md_Agari.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race))
+
     elif "tushinbun" in path:
-    # 通信文は1レースにつき複数インスタンスあるので、別途処理が必要
-        mst_instance = get_object_or_404(
-            Md_Tsuushimbun.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
-        Md_ModelForm = Md_TsuushimbunForm
         title = "【中間DB】通信文"
+        formset = TsuushimbunFormset(
+            request.POST or None, queryset=Md_Tsuushimbun.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race))
+
     elif "nyujo" in path:
-        mst_instance = get_object_or_404(
-            Md_Nyujo.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode)
-        Md_ModelForm = Md_NyujoForm
         title = "【中間DB】入場人員"
+        formset = NyujoFormset(
+            request.POST or None, queryset=Md_Nyujo.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode))
+
     elif "uriage" in path:
-        mst_instance = get_object_or_404(
-            Md_Uriagekin.objects, ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode)
-        Md_ModelForm = Md_UriagekinForm
         title = "【中間DB】売上金"
+        formset = UriagekinFormset(
+            request.POST or None, queryset=Md_Uriagekin.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode))
+
     else:
         pass
 
     if request.method == 'POST':
         # 更新ボタン押下時
-        form = Md_ModelForm(request.POST, instance=mst_instance)
 
-        if form.is_valid():
-            form.save()
+        if formset.is_valid():
+            formset.save()
             return redirect('app_ckeiba:index')
-    else:
-        # GETリクエスト（更新画面の初期表示）時はDBに保存されているデータをFormに結びつける
-        form = Md_ModelForm(instance=mst_instance)
+    # else:
+        # GETリクエスト（更新画面の初期表示）時はそのままformsetの値を渡す
 
-    d = {'form': form, 'title': title}
+    d = {'form': formset, 'title': title}
     return render(request, 'app_ckeiba/mst_edit_form/md_db_update.html', d)
 
 # 出走表更新画面 （編集管理画面の各記号をクリックして、URLで各出走表の更新画面リンクを飛ばす。）
@@ -355,24 +352,27 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
     context = {}
     # 出走表のフォームセットを取得
     form = Md_ShussouhyouForm(request.POST or None, instance=mst_instance)
+
     # 出走表に紐付く、各出走馬のフォームセットを取得
     formset = ShussouhyouFormset(request.POST or None, instance=mst_instance)
 
-    # 各出走馬に紐付く、過去５走のフォームセットも取得(最大で16頭*5走ぶん)
-    shussouba_instance_list = get_list_or_404(
-        Md_Shussouhyou_shussouba.objects, shussouhyou=mst_instance)
-
-    # 各馬の過去5走フォームセットをリストにまとめる
+    # 各出走馬に紐付く、過去５走と累計成績のフォームセットも取得する。(最大で16頭*5走ぶん)
+    # まずは、出走馬のインスタンスのリストを取得
+    shussouba_instance_list = get_list_or_404(Md_Shussouhyou_shussouba.objects, shussouhyou=mst_instance)
+    
+    # ↑で取得した出走馬のインスタンスのリストから各馬の過去5走フォームセットを取得し、リストにまとめる
     kako5sou_formset_list = []
     for i, j in enumerate(shussouba_instance_list):
-        formset_kako5sou = Shussouhyou_shussoubaFormset(
-            request.POST or None, instance=shussouba_instance_list[i])
+        formset_kako5sou = Shussouhyou_shussouba_5seiseki_Formset(
+            request.POST or None, queryset=Md_Shussouhyou_shussouba_5seiseki.objects.filter(shussouba=shussouba_instance_list[i]), prefix=i)
         kako5sou_formset_list.append(formset_kako5sou)
 
-    # とりあえず一件目（１頭目の馬）だけとる場合
-    # formset_kako5sou_1 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[0])
-    # ２頭目
-    # formset_kako5sou_2 = Shussouhyou_shussoubaFormset(request.POST or None, instance=shussouba_instance_list[1])
+    # ↑で取得した出走馬のインスタンスのリストから各馬の累計成績フォームセットを取得し、リストにまとめる
+    ruikei_formset_list = []
+    for i, j in enumerate(shussouba_instance_list):
+        formset_ruikei = Shussouhyou_shussouba_ruikei_Formset(
+            request.POST or None, queryset=Md_Shussouhyou_shussouba_ruikei.objects.filter(shussouba=shussouba_instance_list[i]), prefix=i)
+        ruikei_formset_list.append(formset_ruikei)
 
     # 各馬の過去5走をまとめてisvaldする関数
     def kako5is_valid(formset_list):
@@ -384,16 +384,27 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
                 bleak
         return True
 
-    # 更新ボタン押下時、バリデーションエラーが発生するので、要修正。
-    # エラー：「(隠しフィールド shussouba) インライン値が親のインスタンスに一致しません。」
-    # 馬一頭ぶんだけ過去5走を表示させるとうまくいくけど、２頭以上を表示させて更新すると上記バリデーションエラー。
-    # バリデーションを外すとエラーは出ないが、登録されない。別画面に分けるなどが必要？
-    if request.method == 'POST' and form.is_valid() and formset.is_valid() and kako5is_valid(kako5sou_formset_list):
+    # 各馬の累計成績をまとめてisvaldする関数
+    def ruikeiis_valid(formset_list):
+        for i, j in enumerate(ruikei_formset_list):
+            if formset_list[i].is_valid():
+                pass
+            else:
+                return False
+                bleak
+        return True
+
+    # 更新ボタン押下時
+    if request.method == 'POST' and form.is_valid() and formset.is_valid() and kako5is_valid(kako5sou_formset_list) and ruikeiis_valid(ruikei_formset_list):
+    # if request.method == 'POST' and form.is_valid() and formset.is_valid() and formset_kako5sou_1.is_valid() and formset_kako5sou_2.is_valid():
         form.save()
         formset.save()
         # 過去５走をまとめてsaveする
         for formset_kako5sou in kako5sou_formset_list:
             formset_kako5sou.save()
+        # 累計成績をまとめてsaveする
+        for formset_ruikei in ruikei_formset_list:
+            formset_ruikei.save()
 
         return redirect('app_ckeiba:index')
 
@@ -402,17 +413,12 @@ def md_update_shussouhyou_forms(request, year, month, day, joucode, race):
         context = {
             'form': form,
             'formset': formset,
-            # formのリストごとを渡しても、（↓）
-            # 'formset_kako5sou':kako5sou_formset_list,
+            'formset_kako5sou': kako5sou_formset_list,
+            'formset_ruikei': ruikei_formset_list,
             'title': title,
             'unyobi': tran_system.Unyou_date,
             'status': tran_system.Operationmode
         }
-
-        # listを分解して、それぞれformを渡しても（↓）同じ。
-        for i, kako5sou_formset in enumerate(kako5sou_formset_list):
-            fs = "kako5sou_formset" + str(i)
-            context[fs] = kako5sou_formset
 
     return render(request, 'app_ckeiba/mst_edit_form/md_shussouhyou_db_update.html', context)
 

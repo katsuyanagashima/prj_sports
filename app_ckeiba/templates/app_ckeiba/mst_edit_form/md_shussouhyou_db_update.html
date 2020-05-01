@@ -9,26 +9,35 @@
         {% csrf_token %}
 
         <div class="row">
-            <div class="col-4">
+            <div class="col-3">
                 <h3>出走表</h3>
                 {{ form.management_form }}
-                {{ form }}
+                <table>
+                {{ form.as_table }}
+                </table>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <h3>出走表各馬</h3>
                 {{ formset.management_form }}
-                {{ formset }}
+                <table>
+                {{ formset.as_table }}
+                </table>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <h3>各馬過去５成績</h3>
-                <h6 style="color: red;">過去成績を更新しようとするとエラーが出るので、要修正</br>エラーメッセージ：「(隠しフィールド shussouba)
-                    インライン値が親のインスタンスに一致しません。」</h6>
-                <h5>馬1</h5>
-                {{ kako5sou_formset0.management_form }}
-                {{ kako5sou_formset0 }}
-                <h5>馬2</h5>
-                {{ kako5sou_formset1.management_form }}
-                {{ kako5sou_formset1 }}
+                {% for kako5sou in formset_kako5sou %}
+                    <h5>馬{{forloop.counter}}</h5>
+                    {{ kako5sou.management_form }}
+                    {{ kako5sou.as_p }}
+                {% endfor %}
+            </div>
+            <div class="col-3">
+                <h3>各馬過去累計成績</h3>
+                {% for ruikei in formset_ruikei %}
+                <h5>馬{{forloop.counter}}</h5>
+                {{ ruikei.management_form }}
+                {{ ruikei.as_p }}
+                {% endfor %}
             </div>
         </div>
         <button type="submit" class="btn btn-primary">更新</button></br>
