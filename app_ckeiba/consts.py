@@ -27,12 +27,68 @@ ADDITIONALDOCUMENT  = 'BU1' # 付加文書データ
 # エラーメッセージ
 
 # 競馬場マスタ 必須項目
-JOU_NAME     = '●●●競馬場'
+JOU_NAME     = '●●●●●●●●●●●●●●●●●●●●'
 JOU_SEISEKIA = '●'
-JOU_3CHAR    = '●'
+JOU_3CHAR    = '●●●'
 JOU_BANEI    = False
 
+# 競走種類マスタ
+RACE_TYPE_NAME = '●●●●●●●●●●'
+RACE_TYPE_DELIVERYTYPE = 3
+
+# 品種年齢区分マスタ
+NAME_FOR_RACE_TYPE = '●●●●●●●●●●'
+
+# 負担重量区分マスタ
+HANDICAP_NAME= '●●●●●'
+
+# 中央交流区分マスタ
+JRA_EXCHANGES = '●●●●●●●●●●'
+
+# グレードマスタ
+GRADE_NAME = '●●●●'
+
+# 芝・ダート区分マスタ
+TURF_DIRT_NAME = '●●●●●'
+
+# コース区分マスタ
+COURSE_CLASS_NAME= '●●●●●'
+
+# 回り区分マスタ
+CW_OR_CCW = '●●●●●'
+
+# 天候マスタ
+WEATHER_NAME = '●●●●●'
+
+# 馬場状態マスタ
+TRACK_CONDITION_NAME = '●●●●●'
+
+# ナイター区分マスタ
 NIGHT_RACE_NAME = '●●●●●'
+
+# 性別マスタ
+HORSE_GENDER = '●●'
+
+# 所属場マスタ
+BELONGING = '●●●●●●●●●●'
+
+# 騎手変更理由マスタ
+JOCKEY_CHANGED_REASON_NAME = '●●●●●●●●●●'
+
+# 着差マスタ
+MARGIN_NAME = '●●●●●●●●●●'
+
+# 事故種類マスタ
+ACCIDENT_TYPE_NAME = '●●●●●●●●●●●●●●●'
+
+# 事故理由マスタ
+ACCIDENT_REASON_NAME = '●●●●●●●●●●●●●●●'
+
+# 事象マスタ
+MATTER_NAME = '●●●●●●●●●●'
+
+# 対象者マスタ
+TARGET_PERSON_NAME = '●●●●●●●●●●'
 
 #####################
 # watchdoc 関連　End
