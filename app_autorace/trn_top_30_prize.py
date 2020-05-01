@@ -17,7 +17,7 @@ from watchdog.observers.polling import PollingObserver
 from app_autorace.consts import *
 from app_autorace.commons import Common
 
-logger = getLogger('command')
+logger = getLogger('app_autorace')
 
 top30prize = 50 # 取得賞金テーブル　繰り返しの数
 top30prizeNum = 45
@@ -82,7 +82,7 @@ class Top_30_prize():
             file = open(fileName,'r',encoding='shift_jis')
             for line in file: # 1行しかない
                 # ファイル文字サイズ
-                logger.info(f'{fileName}はファイルサイズ ' + f'{len(line)}')
+                logger.info(f'{fileName}はファイルサイズ {len(line)}')
 
                 # DB　ファイル登録
                 # 必須項目のみ

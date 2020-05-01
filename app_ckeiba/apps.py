@@ -88,9 +88,9 @@ class AppCkeibaConfig(AppConfig):
             self.make_csv_folder()
 
             # ロックファイル作成
-            if not self.make_lock_file():
-                logger.info('ready End:')
-                return
+            # if not self.make_lock_file():
+            #     logger.info('ready End:')
+            #     return
 
             self.call_watch_doc()
             logger.info('ready call_watch_doc End:')
