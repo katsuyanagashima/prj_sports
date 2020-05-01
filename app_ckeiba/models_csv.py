@@ -113,8 +113,8 @@ class Trn_Running_list_A_SUA(models.Model):
     Breed_age_name = models.CharField(verbose_name="品種年齢区分名称", max_length=7, null=True)
     Weight_code = models.ForeignKey("Mst_Handicap", to_field="Handicap_code", related_name="Trn_Running_list_A_SUA_Weight_code", on_delete=models.DO_NOTHING, verbose_name="負担重量区分", max_length=2, null=True)
     Weight_name = models.CharField(verbose_name="負担重量区分名称", max_length=3, null=True)
-    Male_weight = models.CharField(verbose_name="雄負担重量", max_length=3, null=True)
-    Female_weight = models.CharField(verbose_name="雌負担重量", max_length=3, null=True)
+    Male_weight = models.CharField(verbose_name="雄負担重量", max_length=4, null=True) # 小数点考慮
+    Female_weight = models.CharField(verbose_name="雌負担重量", max_length=4, null=True) # 小数点考慮
     Race_times = models.CharField(verbose_name="レース回次", max_length=2, null=True)
     Race_name = models.CharField(verbose_name="レース名称", max_length=40, null=True)
     Additional_name = models.CharField(verbose_name="付加名称", max_length=40, null=True)
@@ -180,7 +180,7 @@ class Trn_Running_list_A_SUA(models.Model):
     Record_era = models.CharField(verbose_name="レコード年号", max_length=1, null=True)
     Record_race_date_JP = models.CharField(verbose_name="レコード競走年月日和暦", max_length=6, null=True)
     Horse_name = models.CharField(verbose_name="馬名", max_length=9, null=True)
-    Weight = models.CharField(verbose_name="負担重量", max_length=3, null=True)
+    Weight = models.CharField(verbose_name="負担重量", max_length=4, null=True)
     Jockey_name = models.CharField(verbose_name="騎手氏名", max_length=15, null=True)
 
     class Meta:
@@ -606,7 +606,7 @@ class Trn_Result_SU6(models.Model):
     Horse_No = models.CharField(verbose_name="馬番", max_length=2, null=True)
     Horse_weight = models.CharField(verbose_name="馬体重", max_length=4, null=True)
     Previous_Horse_weight = models.CharField(verbose_name="前走馬体重", max_length=4, null=True)
-    Weight = models.CharField(verbose_name="負担重量", max_length=3, null=True)
+    Weight = models.CharField(verbose_name="負担重量", max_length=4, null=True)
     Carry_weight = models.CharField(verbose_name="積載重量", max_length=5, null=True)
     Owner_Registration_No = models.CharField(verbose_name="馬主登録番号", max_length=10, null=True)
     Horse_owner_name = models.CharField(verbose_name="馬主氏名", max_length=30, null=True)
