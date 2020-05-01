@@ -137,7 +137,7 @@ class Tran_MQ_sequense(Model):
     update_date = DateTimeField(verbose_name='レコード更新日時', auto_now=True)
 
     class Meta:
-        verbose_name_plural = 'MQステータス'
+        verbose_name_plural = 'MQシーケンス'
     
         def __str__(self):
             return str(self.sequense)

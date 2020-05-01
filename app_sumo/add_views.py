@@ -4,17 +4,9 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from datetime import datetime
 from .models import *
+from .consts import *
 
 from datetime import datetime
-
-temp = [
-    'YYYYMMDDOSF01__________01', 'YYYYMMDDOSF02__________01', 'YYYYMMDDOSF03__________01', 'YYYYMMDDOSF04____CC____01', 'YYYYMMDDOSF05__BB__D___01',
-    'YYYYMMDDOSF06AA__CC____01', 'YYYYMMDDOSF07AA__CC____01', 'YYYYMMDDOSF08AA________01', 'YYYYMMDDOSF09AA________01',
-    'YYYYMMDDOSF10AABBCC____01', 'YYYYMMDDOSF11AA__CC____01', 'YYYYMMDDOSF12AABB______01', 'YYYYMMDDOSF13AA_____EEE01', 'YYYYMMDDOSF14AA________01', 'YYYYMMDDOSF15AA__CC____01',
-    'YYYYMMDDOSF16AA________01', 'YYYYMMDDOSF17AA________01', 'YYYYMMDDOSF18AABB______01',
-    '', 'YYYYMMDDOSF20AABB__D___01', 'YYYYMMDDOSF21AA________01', 'YYYYMMDDOSF22AA________01',
-    'YYYYMMDDOSF23AABB______01'
-]
 
 
 def nav_info(request, get_type=0):
@@ -45,42 +37,31 @@ class Output_NewsML():
         self.st = 0
     
     # 初期動作 編集、チェック、配信とループを管理
-    # def Start_NewsML(self, request):
-    #     if request.method == "POST":
-    #         if "NewsMLNo" not in request.POST:
-    #             return "Input error."
-
-    #         if "Input_status" in request.POST:
-    #             self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
-
-    #         self.newsno = request.POST["NewsMLNo"]  # NEWSML種別コードを受け取る
-    #         if self.newsno.startswith("0"):
-    #             self.newsno.lstrip("0")
-    #         if not self.newsno.isdigit():  # 全ての文字が数値でない場合、末尾2文字を抽出・削除
-    #             self.grade = self.newsno[-2]
-    #             self.newsno = self.newsno[:-2]            
-            
-    #         if self.st == "2":
-    #             return self.Create_NewsML(request)
-    #         else:
-    #             # ここでnesnoによる判定により、都道府県、東西、取組順にてループ予定
-    #             self.Create_NewsML(request)
-            
-
-    # NewsML作成関数
-    def Create_NewsML(self, request):
-
+    def Start_NewsML(self, request):
         if "NewsMLNo" not in request.POST:
-             return "Input error."
+            return "Input error."
+
+        if "Input_status" in request.POST:
+            self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
 
         self.newsno = request.POST["NewsMLNo"]  # NEWSML種別コードを受け取る
         if self.newsno.startswith("0"):
             self.newsno.lstrip("0")
         if not self.newsno.isdigit():  # 全ての文字が数値でない場合、末尾2文字を抽出・削除
             self.grade = self.newsno[-2]
-            self.newsno = self.newsno[:-2]
+            self.newsno = self.newsno[:-2]            
+            
+        if self.st == "2":
+            return self.Create_NewsML(request)
+        else:
+            # ここでnesnoによる判定により、都道府県、東西、取組順にてループ予定
+            self.Create_NewsML(request)
+            
 
-        temp_product_id = temp[int(self.newsno)-1]  # NEWSML種別コードに対応するtemplateIDを取得
+    # NewsML作成関数
+    def Create_NewsML(self, request):
+        
+        temp_product_id = NewsML_template[int(self.newsno)-1]  # NEWSML種別コードに対応するtemplateIDを取得
         file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
         temp_file_name = 'NewsML_temp/%s' % file_name
         t = loader.get_template(temp_file_name)  # Djangoのテンプレートとして取得
