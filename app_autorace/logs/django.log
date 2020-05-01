@@ -1625,3 +1625,93 @@
 [INFO]	2020-05-01 11:07:05,458	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
 [INFO]	2020-05-01 11:07:05,458	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
 [INFO]	2020-05-01 11:07:05,460	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 11:18:18,558	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:18:18,560	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 11:21:47,072	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:21:47,075	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 11:21:47,082	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 11:21:47,082	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 11:21:47,082	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 11:21:47,084	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 11:21:53,565	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:21:53,567	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 11:26:59,294	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:26:59,296	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 11:26:59,302	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 11:26:59,303	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 11:26:59,303	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 11:26:59,304	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 11:36:31,669	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:36:31,670	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 11:39:54,611	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:39:54,613	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 11:39:54,619	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 11:39:54,619	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 11:39:54,620	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 11:39:54,621	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 11:47:19,627	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:47:19,630	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 11:49:15,410	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:49:15,412	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 11:49:15,419	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 11:49:15,419	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 11:49:15,420	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 11:49:15,421	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 11:53:53,910	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 11:53:53,912	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 12:14:52,750	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 12:14:52,752	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 12:14:52,760	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 12:14:52,760	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 12:14:52,760	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 12:14:52,762	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 13:13:32,230	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:13:32,232	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 13:14:08,928	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:14:08,931	module:apps	command.make_lock_file:50	pid = [25]
+[INFO]	2020-05-01 13:14:08,937	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 13:14:08,937	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 13:14:08,937	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 13:14:08,939	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 13:15:28,737	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:15:28,740	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 13:15:35,331	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:15:35,334	module:apps	command.make_lock_file:50	pid = [35]
+[INFO]	2020-05-01 13:15:35,340	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 13:15:35,340	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 13:15:35,341	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 13:15:35,342	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 13:16:02,716	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:16:02,719	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 13:16:25,225	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:16:25,227	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 13:16:25,234	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 13:16:25,234	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 13:16:25,234	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 13:16:25,236	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 13:17:04,602	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:17:04,604	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 13:20:14,075	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:20:14,077	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 13:20:14,084	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 13:20:14,084	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 13:20:14,084	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 13:20:14,085	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 13:22:13,222	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:22:13,225	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 13:25:00,736	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:25:00,739	module:apps	command.make_lock_file:50	pid = [1]
+[INFO]	2020-05-01 13:25:00,747	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 13:25:00,748	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 13:25:00,748	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 13:25:00,751	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 13:30:13,853	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:30:13,855	module:apps	command.ready:97	ready End:
+[INFO]	2020-05-01 13:30:24,615	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:30:24,617	module:apps	command.make_lock_file:50	pid = [47]
+[INFO]	2020-05-01 13:30:24,623	module:apps	command.call_watch_doc:70	固定長フォルダ['./app_autorace/固定長フォルダ/0013-164643-092616464300004122.dat', './app_autorace/固定長フォルダ/1_test_00004122.dat', './app_autorace/固定長フォルダ/3R_race_1着3着同着3R.dat', './app_autorace/固定長フォルダ/102315224500000003.dat', './app_autorace/固定長フォルダ/test2020041600000003.dat', './app_autorace/固定長フォルダ/test20200421-092616464300004122.dat', './app_autorace/固定長フォルダ/test20200422-092617341400000004.dat', './app_autorace/固定長フォルダ/042417055900005001.dat', './app_autorace/固定長フォルダ/042515010500005012.dat', './app_autorace/固定長フォルダ/042515260300005022.dat', './app_autorace/固定長フォルダ/042515511300005032.dat', './app_autorace/固定長フォルダ/042508013400000000.dat']
+[INFO]	2020-05-01 13:30:24,624	module:dat_start_manage	command.run_trn_watchdoc:52	targetDirDatData: /code/app_autorace/固定長フォルダ
+[INFO]	2020-05-01 13:30:24,624	module:dat_start_manage	command.run_trn_watchdoc:55	watchdoc監視　Start
+[INFO]	2020-05-01 13:30:24,625	module:apps	command.ready:101	ready call_watch_doc End:
+[INFO]	2020-05-01 13:31:04,583	module:apps	command.ready:85	ready Start:
+[INFO]	2020-05-01 13:31:04,585	module:apps	command.ready:97	ready End:

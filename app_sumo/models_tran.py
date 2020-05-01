@@ -14,6 +14,11 @@ class Tran_Systemstatus(Model):
     First_date = DateField(verbose_name='初日年月日')
     Banzuke_date = DateField(verbose_name='番付発表日')
     Age_calcu_reference_date = DateField(verbose_name='年齢算出基準日')
+    Daily_func_time = DateTimeField(verbose_name='日替わり設定時刻', blank=True, null=True)
+    Daily_func_prev_time = DateTimeField(verbose_name='日替わり前回実行時刻', blank=True, null=True)
+    Daily_func_prev_type = IntegerField(verbose_name='前回実行タイプ', blank=True, null=True)
+    # MQSend_address = ArrayField(verbose_name='MQ送信先', blank=True, null=True) ArrayFieldはpostgresだけの可能性
+    SendingMode = IntegerField(verbose_name='配信モード', blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '#システム状態'

@@ -7,7 +7,9 @@ from .models import *
 from .consts import *
 
 from datetime import datetime
+from logging import getLogger
 
+logger = getLogger('app_sumo')
 
 def nav_info(request, get_type=0):
     tran_system = Tran_Systemstatus.objects.all().first()
@@ -20,7 +22,6 @@ def nav_info(request, get_type=0):
              'shoubuday': tran_system.MatchDate.Nichime_name
          }
      }
-    # params = {} # dump.json 復旧までの退避
     if get_type:
         return [params, tran_system]
     else:
@@ -35,6 +36,9 @@ class Output_NewsML():
         self.stnow = self.now.strftime("%Y%m%d")
         self.newsno = 0
         self.st = 0
+        self.file_name = "" # NewsML_templateのファイル名
+        self.temp_file_name = "" # NewsML_templateの置き場所
+        self.newfile_name = "" # 補完されたファイル名 = Content_id
     
     # 初期動作 編集、チェック、配信とループを管理
     def Start_NewsML(self, request):
@@ -42,7 +46,8 @@ class Output_NewsML():
             return "Input error."
 
         if "Input_status" in request.POST:
-            self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
+            self.st = int(request.POST["Input_status"])  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
+            logger.info("%s処理 開始" % NewsML_status[self.st]) 
 
         self.newsno = request.POST["NewsMLNo"]  # NEWSML種別コードを受け取る
         if self.newsno.startswith("0"):
@@ -50,39 +55,79 @@ class Output_NewsML():
         if not self.newsno.isdigit():  # 全ての文字が数値でない場合、末尾2文字を抽出・削除
             self.grade = self.newsno[-2]
             self.newsno = self.newsno[:-2]            
-            
-        if self.st == "2":
-            return self.Create_NewsML(request)
-        else:
-            # ここでnesnoによる判定により、都道府県、東西、取組順にてループ予定
+
+        temp_product_id = NewsML_template[int(self.newsno)-1]  # NEWSML種別コードに対応するtemplateIDを取得
+        self.file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
+        self.temp_file_name = 'NewsML_temp/%s' % self.file_name
+        
+        if self.st == 2: # プレビューであれば、UTF-16に変換し表示
+            t = loader.get_template(self.temp_file_name)  # Djangoのテンプレートとして取得
+            logger.info("%s処理 終了" % NewsML_status[self.st])
+            return HttpResponse(t.render(self.Create_context()), content_type='text/xml; charset=utf-16')
+        else: # それ以外は、NewsMLをファイルに出力
+            ## nesnoによる判定により、都道府県、東西、取組順にてループ予定
             self.Create_NewsML(request)
+            if self.st == 3:
+                self.PrintOut_NewsML(request) # 印刷を行う関数(仮)
+                logger.info("%s処理 終了" % NewsML_status[self.st])
             
+            ## nesnoによる判定により、都道府県、東西、取組順にてループ予定
+            self.Check_NewsML(request)
+            if self.st == 0:
+                ## 編集の場合、Tran_NewsMLStatus を status = 0に更新。処理終了 (この関数を呼ぶ前に分解)
+                logger.info("%s処理 終了" % NewsML_status[self.st])
+            else:
+                ## 配信の場合、次へ
+                ## nesnoによる判定により、都道府県、東西、取組順にてループ予定
+                self.Delivery_NewsML(request)
+                logger.info("%s処理 終了" % NewsML_status[self.st])
+
+            
+
+
 
     # NewsML作成関数
     def Create_NewsML(self, request):
+        ## file名を運用日付、部署コード、都道府県コード、東西コード、取組順に合わせて変更 = コンテンツIDの作成
+        self.newfile_name = self.file_name.replace("YYYYMMDD", self.stnow)
+        if self.grade:
+            self.newfile_name.replace('BB', self.grade)
+        ## Tran_NewsMLStatusのContent_id＝コンテンツID、status=3であれば処理終了。
         
-        temp_product_id = NewsML_template[int(self.newsno)-1]  # NEWSML種別コードに対応するtemplateIDを取得
-        file_name = '%s.xml' % temp_product_id  # テンプレートのファイル名
-        temp_file_name = 'NewsML_temp/%s' % file_name
-        t = loader.get_template(temp_file_name)  # Djangoのテンプレートとして取得
+        context = self.Create_context(1,1,1,0) # 21種のコンテキストを代入する関数
+        content = loader.render_to_string(self.temp_file_name, context)
+        with open('app_sumo/output/hold/%s' % self.newfile_name, 'w') as static_file:
+            static_file.write(content)
 
-        context = self.Create_context() # 21種のコンテキストを代入する関数
+    def PrintOut_NewsML(self, request):
+        ## 印刷はどのようなロジックを組むか 要確認
+        return {}
 
-        if "Input_status" in request.POST:
-            self.st = request.POST["Input_status"]  # パラメータ 0=編集、1=配信、2=プレビュー、3=印刷
-            if self.st in ["0", "1"]:  # 編集か配信であれば、NewsMLをファイルに出力
-                content = loader.render_to_string(temp_file_name, context)
-                # file名は運用日付、パラメータに合わせて変更
-                newfile_name = file_name.replace("YYYYMMDD", self.stnow)
-                if self.grade:
-                    newfile_name.replace('BB', self.grade)
-                # 配信済みフォルダに保存する場合のUtf-16保存検証済み
-                # with open('app_sumo/output/deliveried/%s' % newfile_name, 'w', encoding = 'utf-16') as static_file: 
-                with open('app_sumo/output/hold/%s' % newfile_name, 'w') as static_file:
-                    static_file.write(content)
+    def Check_NewsML(self, request):
+        ## DTDチェック
+        ## ファイルサイズチェック
+        ## Tran_NewsMLStatus と Content_id＝コンテンツIDのレコードのdelivery_flag=TRUEを取得
+        ## 分岐1：レコードが存在すれば、配信済みフォルダコンテンツ内容のチェック
+        ## 分岐1：同一コンテンツチェックで内容の違う場合、修正区分を編集。
+        ## 分岐1：編注に「修正 == XX」を編集。次へ
+        ## 分岐1：修正があったNewsMLだけDelivery_NewsMLで処理
+        ## 分岐2：レコードが存在しなければ、次へ
+        return {}
 
-            elif self.st == "2":  # プレビューであれば、UTF-16に変換し表示
-                return HttpResponse(t.render(context), content_type='text/xml; charset=utf-16')
+
+    def Delivery_NewsML(self, request):
+        ## 配信参照区分が0(電文／データ出力画面)である場合、MQ配信先としてTran_SystemstatusのMQSend_addressを参照。
+        ## 配信参照区分が1(コンテンツ出力画面)である場合、MQ配信先としてパラメータ("MQSend_address")を参照。
+        ## IBMMQへ配信　関数を呼んだ方がよさそう
+        ## 当日配信済みフォルダ、配信済みフォルダへそれぞれ保存
+        content = loader.render_to_string(self.temp_file_name, self.Create_context()) # (仮)
+        ## 配信済みフォルダに保存する場合のUtf-16保存検証済み
+        with open('app_sumo/output/today\'s_delivered/%s' % self.newfile_name, 'w', encoding = 'utf-16') as static_file: 
+            static_file.write(content)
+        ## NewsMLStatusのContent_id＝コンテンツID、status=1で更新。
+        ## 出力状況テーブル(出力回数、出力時間)を更新、MQ_sequenceのsequenceを+1で更新。
+        ## 次へ
+
 
     def Create_context(self, prefecture_code=1, class_code=1, eastwest_code=1, display_order=0):
         """NewsML内のコンテキスト作成
