@@ -18,7 +18,7 @@ from watchdog.observers.polling import PollingObserver
 from app_autorace.consts import *
 from app_autorace.commons import Common
 
-logger = getLogger('command')
+logger = getLogger('app_autorace')
 
 # 監視対象ファイルのパターンマッチを指定する
 # レース結果データレコード（mmddhhmmss0000JRR2.dat）
@@ -436,20 +436,20 @@ class Result():
             file = open(fileName, 'r', encoding='shift_jis')
             for line in file:
                 # ファイル文字サイズ
-                logger.info(f'{fileName}はファイルサイズ ' + f'{len(line)}')
+                logger.info(f'{fileName}はファイルサイズ {len(line)}')
 
                 # DB　ファイル登録
                 with transaction.atomic():
                     # レース結果データレコード
                     #必須項目のみ INSERTが実行される
-                    logger.info( "内容:insert_Trn_Trn_Result Start:" + "詳細:ファイルデータ:" + line)
+                    logger.info( f'内容:insert_Trn_Trn_Result Start:詳細:ファイルデータ: {line}')
                     self.insert_Trn_Trn_Result(line, Trn_Result)
                     logger.info( "内容:insert_Trn_Trn_Result End")
 
                     # 空白チェックして実体があるカラムは更新
                     self.update_trn_results(line, Trn_Result.objects.get(id=Trn_Result.objects.all().aggregate(Max('id')).get('id__max')))
 
-                                       # insert チェックする。データがからのときはスキップ
+                    # insert チェックする。データがからのときはスキップ
                     chkline = line[196:748]
                     logger.info(f'データチェック{chkline}')
                     if not cmn.chkBlank(chkline):
@@ -457,7 +457,7 @@ class Result():
                         break
 
                     # 選手成績テーブル
-                    logger.info( f'内容:insert_or_update_trn_rider_results Start:詳細:ファイルデータ: " {line[196:748]}')
+                    logger.info( f'内容:insert_or_update_trn_rider_results Start:詳細:ファイルデータ:  {line[196:748]}')
                     self.insert_or_update_trn_rider_results(line, Trn_Rider_results)
                     logger.info( "内容:insert_or_update_trn_rider_results End")
 

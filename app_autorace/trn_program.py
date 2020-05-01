@@ -19,7 +19,7 @@ from watchdog.observers.polling import PollingObserver
 from app_autorace.consts import *
 from app_autorace.commons import Common
 
-logger = getLogger('command')
+logger = getLogger('app_autorace')
 
 # 監視対象ファイルのパターンマッチを指定する
 # 番組編成データレコード（mmddhhmmss0000J001.dat）

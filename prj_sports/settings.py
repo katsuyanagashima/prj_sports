@@ -170,14 +170,14 @@ LOGGING = {
         },
     },
     "handlers": {# ログをどこに出すかの設定
-        "file": { # どこに出すかの設定に名前をつける `file`という名前をつけている
+        "app_autorace": { # どこに出すかの設定に名前をつける `app_autorace`という名前をつけている
             # 'class': 'logging.FileHandler',  # ログを出力するためのクラスを指定
             'level': 'INFO',  # INFO以上のログを取り扱うという意味
             # ファイルサイズによるローテーション
             # "class": "logging.handlers.RotatingFileHandler",
             # 期間によるローテーション
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            "filename": APP_AUTORACE_ROOT + "/logs/django.log",
+            "filename": APP_AUTORACE_ROOT + "/logs/app_autorace.log",
             "formatter": "test",
             'when': 'D', # 単位は日
             'interval': 1, # 一日おき
@@ -185,7 +185,7 @@ LOGGING = {
             # "backupCount": 5,
             'backupCount': 7, # 世代数
         },
-        "app_ckeiba": { # どこに出すかの設定に名前をつける `file`という名前をつけている
+        "app_ckeiba": { # どこに出すかの設定に名前をつける `app_ckeiba`という名前をつけている
             # 'class': 'logging.FileHandler',  # ログを出力するためのクラスを指定
             'level': 'INFO',  # INFO以上のログを取り扱うという意味
             # ファイルサイズによるローテーション
@@ -226,8 +226,8 @@ LOGGING = {
     },
     "loggers": {# どんなloggerがあるかを設定する
         # 自作したログ出力
-        'command': {# commandという名前のloggerを定義
-            "handlers": ["file"
+        'app_autorace': {# app_autoraceという名前のloggerを定義
+            "handlers": ["app_autorace"
             #, 'console'
             ],# 先述のfile, consoleの設定で出力
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),

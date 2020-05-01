@@ -17,7 +17,7 @@ from watchdog.observers.polling import PollingObserver
 from app_autorace.consts import *
 from app_autorace.commons import Common
 
-logger = getLogger('command')
+logger = getLogger('app_autorace')
 
 # 監視対象ファイルのパターンマッチを指定する
 # スケジュールレコード（mmddhhmmss00000000.dat）
@@ -194,7 +194,7 @@ class Schedule():
                 # DB　ファイル登録
                 with transaction.atomic():
                     #必須項目のみ INSERTが実行される
-                    logger.info( "内容:insert_Trn_Schedule Start:" + "詳細:ファイルデータ:" + line[0:10])
+                    logger.info( f'内容:insert_Trn_Schedule Start:詳細:ファイルデータ:{line[0:10]}')
                     self.insert_Trn_Schedule(line[0:10], Trn_Schedule)
                     logger.info( "内容:insert_Trn_Schedule End")
 
@@ -205,7 +205,7 @@ class Schedule():
                         logger.info( "データチェックがからのため End")
                         break
 
-                    logger.info( "内容:update_Trn_Schedule Start:" + "詳細:ファイルデータ:" + line[10:])
+                    logger.info( f'内容:update_Trn_Schedule Start:詳細:ファイルデータ:{line[10:]}')
                     self.update_Trn_Schedule(line[10:], Trn_Schedule)
                     logger.info( "内容:update_Trn_Schedule End")
 

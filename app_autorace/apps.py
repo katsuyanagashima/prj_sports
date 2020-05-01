@@ -19,7 +19,7 @@ try:
 except ImportError:
     codecs = None
 
-logger = getLogger('command')
+logger = getLogger('app_autorace')
 base =  os.path.dirname(os.path.abspath(__file__)) # app_autorace
 
 class AppAutoraceConfig(AppConfig):
@@ -65,9 +65,14 @@ class AppAutoraceConfig(AppConfig):
             #ls_file_name = std_out.decode('utf-8').rstrip().split('\n')
             #logger.info(ls_file_name)
 
+            # 受信順に取り込み処理
             datFileNameList = sorted(glob.glob('./app_autorace/固定長フォルダ/*.dat'), key=lambda f: os.stat(f).st_mtime, reverse=False)
 
-            logger.info(DATDATA + str(datFileNameList))
+            logger.info(f'{DATDATA}にある受信順{datFileNameList}')
+
+            for file in datFileNameList:
+                logger.info(file)
+
 
             # watchdoc
             # 並列処理
@@ -93,9 +98,9 @@ class AppAutoraceConfig(AppConfig):
             self.make_dat_folder()
 
             # ロックファイル作成
-            if not self.make_lock_file():
-                logger.info('ready End:')
-                return
+            # if not self.make_lock_file():
+            #     logger.info('ready End:')
+            #     return
 
             self.call_watch_doc()
             logger.info('ready call_watch_doc End:')
