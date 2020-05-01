@@ -22,15 +22,10 @@ urlpatterns = [
     ###path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'), #勝負入力処理
     path('SUMYUS01/', views.SUMYUS01, name='SUMYUS01'),  # 優勝・三賞入力画面
     path('SUMYUS01/create/', views.SUMYUS01_create, name='SUMYUS01_create'),  # 優勝・三賞入力画面（追加）
-    path('SUMYUS01/view/<int:pk>', views.SUMYUS01_view, name='SUMYUS01_view'),  # 優勝・三賞入力画面（参照）
+    path('SUMYUS01/create2/<str:str_award>', views.SUMYUS01_create2, name='SUMYUS01_create2'),  # 優勝・三賞入力画面（追加２）
+    ###path('SUMYUS01/view/<int:pk>', views.SUMYUS01_view, name='SUMYUS01_view'),  # 優勝・三賞入力画面（参照）●廃止●
     path('SUMYUS01/update/<int:pk>', views.SUMYUS01_update, name='SUMYUS01_update'),  # 優勝・三賞入力画面（更新）
     path('SUMYUS01/delete/<int:pk>', views.SUMYUS01_delete, name='SUMYUS01_delete'),  # 優勝・三賞入力画面（削除）
-
-    # path('<int:memo_id>', views.detail, name='detail'),
-    # path('new_memo', views.new_memo, name='new_memo'),
-    # path('delete_memo/<int:memo_id>', views.delete_memo, name='delete_memo'),
-    # path('edit_memo/<int:memo_id>', views.edit_memo, name='edit_memo'),
-    ###
     path('SUMOUT01/', views.SUMOUT01, name='SUMOUT01'),  # コンテンツ出力指示画面
     path('SUMOUT02/', views.SUMOUT02, name='SUMOUT02'),  # 配信・作成・プレビュー・印刷
     path('SUMOUT03/', views.SUMOUT03, name='SUMOUT03'),  # 電文／データ強制出力

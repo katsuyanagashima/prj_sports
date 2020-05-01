@@ -135,8 +135,12 @@ def SUMYUS01(request):
     nav= nav_info(request)
     match_nichime_id = Tran_Systemstatus.objects.first().MatchDate
     yearmonth = Tran_Systemstatus.objects.first().Event_date
-    posts = Tran_YushoSansho.objects.filter(Yearmonth=yearmonth, Nichime_code=match_nichime_id)  # 現在の勝負日目のみを抽出
-    return render(request, 'app_sumo/SUMYUS01.html', {'posts': posts, **nav})
+    dict = {
+        'rikishis': Tran_Banzuke.objects.order_by('Class_code'),
+        'posts': Tran_YushoSansho.objects.filter(Yearmonth=yearmonth, Nichime_code=match_nichime_id),  # 現在の勝負日目のみを抽出
+        'classes': Mst_Class.objects.all()
+    }
+    return render(request, 'app_sumo/SUMYUS01.html', {**dict, **nav})
 
 
 # 優勝・三賞入力画面（追加）
@@ -146,7 +150,7 @@ def SUMYUS01_create(request):
         'Yearmonth': Tran_Systemstatus.objects.first().Event_date,
         'Nichime_code': Tran_Systemstatus.objects.first().MatchDate, # 取組日目でなく勝負日目でよいか？
     }
-    if request.method == 'POST':
+    if request.method == "POST":
         form = Tran_YushoSanshoForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
@@ -158,11 +162,39 @@ def SUMYUS01_create(request):
     return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form, **nav})
 
 
-# 優勝・三賞入力画面（参照）
-def SUMYUS01_view(request, pk):
+# 優勝・三賞入力画面（追加２）
+def SUMYUS01_create2(request, str_award):
+    row = request.POST.get('rikishi_id')
+    # 画面で力士が選択されている場合
+    if row:
+        reqlist_rikishi_id = request.POST.get('rikishi_id')
+        ccid = Tran_Banzuke.objects.get(Rikishi_id=reqlist_rikishi_id).Class_code_id
+        awards = {}
+        if str_award == 'Yusho':
+            awards['Yusho_flg'] = 1
+        if str_award == 'Shukunsho':
+            awards['Shukunsho_flg'] = 1
+        if str_award == 'Kantosho':
+            awards['Kantosho_flg'] = 1
+        if str_award == 'Ginosho':
+            awards['Ginosho_flg'] = 1
+        # DBのデータを更新または新規登録
+        Tran_YushoSansho.objects.update_or_create(
+            Rikishi_id = reqlist_rikishi_id,
+            Yearmonth = Tran_Systemstatus.objects.first().Event_date,
+            Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
+            Class_code_id = ccid,
+            defaults = awards,
+        )
+    return redirect('app_sumo:SUMYUS01')
+
+
+# 優勝・三賞入力画面（参照）●本画面は廃止●
+'''def SUMYUS01_view(request, pk):
     nav= nav_info(request)
     post = Tran_YushoSansho.objects.get(pk=pk)
     return render(request, 'app_sumo/SUMYUS01_view.html', {'post': post, **nav})
+    '''
 
 
 # 優勝・三賞入力画面（更新）
