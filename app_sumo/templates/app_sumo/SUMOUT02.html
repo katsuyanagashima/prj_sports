@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="NewsMLNo">電文種別:</label>
                     <select id="NewsMLNo" name="NewsMLNo" class="form-control">
-                        {% for i in NewsMLNo %}
+                        {% for i in kind_of_newsml_by_groupId %}
                         <option value="{{ i.NewsMLNo }}" {% if init.NewsMLNo == i.NewsMLNo %} selected{% endif %}>
                             {{ i.ContentName }}
                         </option>

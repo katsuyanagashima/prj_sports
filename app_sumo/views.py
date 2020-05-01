@@ -10,7 +10,9 @@ from django.views.decorators.http import require_POST
 
 from .models import *
 from .forms import *
+from .consts import *
 from .add_views import *
+
 
 import json
 ###●●●●●デバッグ用にログ出力を仮設定（正式なログ出力方法の判明後に削除すること）●●●●●
@@ -60,9 +62,10 @@ def SUMUDY01(request):
     nav = nav_info(request)
     d = {
         'init': init,
-        'nichime': nichime
+        'nichime': nichime,
+        **nav
     }
-    d.update(nav)
+    # d.update(nav)
 
     return render(request, 'app_sumo/SUMUDY01.html', d)
 
@@ -191,14 +194,12 @@ def SUMOUT01(request):
 
 # 電文／データ出力
 def SUMOUT02(request):
-    group_name = ["番付", "取組", "勝負", "星取", "成績", "新規"]
-
-    telegram_group = []
-    init = {"Group_code": 1, "Input_status": 0, "NewsMLNo": "01"}
+    telegram_group = [] # 種別：を構成するデータ
+    init = {"Group_code": 1, "Input_status": 0, "NewsMLNo": "01"} # 初期値
     nml = Mst_KindofNewsML.objects.all()
 
     if request.method == "POST":
-        res = Output_NewsML().Create_NewsML(request)
+        res = Output_NewsML().Start_NewsML(request)
         if "Input_status" in request.POST and request.POST["Input_status"] is "2":
             return res
         for key in init.keys():
@@ -209,21 +210,18 @@ def SUMOUT02(request):
 
     NewsMLNo_by_gcode = [[], [], [], [], [], []]
     code_list = nml.order_by("Group_code").values("Group_code").distinct()
-    # NewsMLNo_by_gcode.append([])
-    # for code in code_list:
-    #     NewsMLNo_by_gcode.append([])
 
     for n in nml:
         dataset = {"NewsMLNo": n.NewsMLNo, "ContentName": n.ContentName}
         ngcode = int(n.Group_code)
-        NewsMLNo_by_gcode[ngcode - 1].append(dataset)
+        NewsMLNo_by_gcode[ngcode - 1].append(dataset) # グループID毎にNewsMLNoと電文種別を追加
 
     for code in code_list:
         ngcode = code["Group_code"]
         telegram_group.append({
-            "Group_code": ngcode,
-            "Group_name": group_name[int(ngcode) - 1],
-            "group_data": json.dumps(NewsMLNo_by_gcode[int(ngcode) - 1], ensure_ascii=False)
+            "Group_code": ngcode, # 種別のグループID
+            "Group_name": NewsML_Group[int(ngcode) - 1], # 種別の表示
+            "group_data": json.dumps(NewsMLNo_by_gcode[int(ngcode) - 1], ensure_ascii=False) # 種別切り替え時、Data属性に渡すjson
         })
 
     telegram = nml.filter(Group_code=int(init["Group_code"]))
@@ -231,10 +229,11 @@ def SUMOUT02(request):
     d = {
         'init': init,
         'telegram_group': telegram_group,
-        'NewsMLNo': telegram,
-        'test':'abcdef'
+        'kind_of_newsml_by_groupId': telegram,
+        **nav_info(request)
+        # 'test':'abcdef'
     }
-    d.update(nav_info(request))
+    # d.update(nav_info(request))
     return render(request, 'app_sumo/SUMOUT02.html', d)
 
 
