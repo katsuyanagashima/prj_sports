@@ -150,6 +150,7 @@ MEDIA_ROOT = '/usr/share/nginx/html/media'
 import logging
 APP_AUTORACE_ROOT = '/code/app_autorace'
 APP_CKEIBA_ROOT = '/code/app_ckeiba'
+APP_SUMO_ROOT = '/code/app_sumo'
 LOGGING = {
     "version": 1,# これを設定しないと怒られる
     "disable_existing_loggers": False,
@@ -199,6 +200,22 @@ LOGGING = {
             # "backupCount": 5,
             'backupCount': 7, # 世代数
         },
+        "app_sumo": { # どこに出すかの設定に名前をつける `file`という名前をつけている
+            # 'class': 'logging.FileHandler',  # ログを出力するためのクラスを指定
+            'level': 'INFO',  # INFO以上のログを取り扱うという意味
+            # ファイルサイズによるローテーション
+            # "class": "logging.handlers.RotatingFileHandler",
+            # 期間によるローテーション
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            "filename": APP_SUMO_ROOT + "/logs/app_sumo.log",
+            "formatter": "test",
+            'when': 'D', # 単位は日
+            'interval': 1, # 一日おき
+            # "maxBytes": 1024 * 1024 * 1,
+            # "backupCount": 5,
+            'backupCount': 7, # 世代数
+        }
+
         #'console': { # どこに出すかの設定をもう一つ、こちらの設定には`console`という名前
         #    'level': 'DEBUG',
             # こちらは標準出力に出してくれるクラスを指定
@@ -223,6 +240,13 @@ LOGGING = {
             "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
             "propagate": True,
         },
+        # 自作したログ出力
+        'app_sumo': {# app_sumoという名前のloggerを定義
+            "handlers": ["app_sumo"
+            ],# 先述のapp_sumoの設定で出力
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": True,
+        }
         # Djangoの警告・エラー
         #'django': {
         #    'handlers': ['file'],

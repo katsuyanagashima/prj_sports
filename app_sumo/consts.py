@@ -21,6 +21,8 @@ NewsML_template = [
     'YYYYMMDDOSF23AABB______01'
 ]
 
+NewsML_status = ['編集','配信','プレビュー','印刷']
+
 #####################
 # add_views.py  End
 #####################

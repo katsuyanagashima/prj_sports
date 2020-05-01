@@ -23,6 +23,10 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(module)-18s %(funcName)-10s %(lineno)4s: %(message)s'
 )  ###------------------------------
 
+from logging import getLogger # ログ出力(仮)
+
+logger = getLogger('app_sumo')
+
 
 def index(request):
     params = nav_info(request)
@@ -263,9 +267,7 @@ def SUMOUT02(request):
         'telegram_group': telegram_group,
         'kind_of_newsml_by_groupId': telegram,
         **nav_info(request)
-        # 'test':'abcdef'
     }
-    # d.update(nav_info(request))
     return render(request, 'app_sumo/SUMOUT02.html', d)
 
 
