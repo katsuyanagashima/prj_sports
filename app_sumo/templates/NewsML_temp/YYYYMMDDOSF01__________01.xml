@@ -207,80 +207,80 @@
 {% for player in Banzuke_forecast %}
 <Player PlayerId="009620">
 <PlayerName>
-<Writing>{{ player.Rikishi.Rikishi_name_Kanji_4char  }}</Writing>
-<Formal>{{ player.Rikishi.Rikishi_name_kanji_official  }}</Formal>
-<Formal Display="4字">{{ player.Rikishi.Rikishi_name_Kanji_4char  }}</Formal>
-<Formal Display="3字">{{ player.Rikishi.Rikishi_name_Kanji_3char  }}</Formal>
-<Formal Display="2字">{{ player.Rikishi.Rikishi_name_Kanji_2char  }}</Formal>
-<Formal Display="よみがな">{{ player.Rikishi.Rikishi_name_kanji_kana  }}</Formal>
+<Writing>{{ player.Rikishi.Rikishi_name_Kanji_4char }}</Writing>
+<Formal>{{ player.Rikishi.Rikishi_name_kanji_official }}</Formal>
+<Formal Display="4字">{{ player.Rikishi.Rikishi_name_Kanji_4char }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Rikishi_name_Kanji_3char }}</Formal>
+<Formal Display="2字">{{ player.Rikishi.Rikishi_name_Kanji_2char }}</Formal>
+<Formal Display="よみがな">{{ player.Rikishi.Rikishi_name_kanji_kana }}</Formal>
 </PlayerName>
 <Belong>
-<Writing>{{ player.Rikishi.Heya_code.Heya_official_kanji  }}</Writing>
-<Formal>{{ player.Rikishi.Heya_code.Heya_official_kanji  }}</Formal>
-<Formal Display="3字">{{ player.Rikishi.Heya_code.Heya_kanji_3char  }}</Formal>
-<Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana  }}</Formal>
+<Writing>{{ player.Rikishi.Heya_code.Heya_official_kanji }}</Writing>
+<Formal>{{ player.Rikishi.Heya_code.Heya_official_kanji }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Heya_code.Heya_kanji_3char }}</Formal>
+<Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana }}</Formal>
 </Belong>
 <Age>●●</Age>
-<Height Unit="センチメートル">{{ player.Rikishi.Height | intToZen  }}</Height>
-<Weight Unit="キログラム">{{ player.Rikishi.Weight | intToZen  }}</Weight>
+<Height Unit="センチメートル">{{ player.Rikishi.Height | intToZen }}</Height>
+<Weight Unit="キログラム">{{ player.Rikishi.Weight | intToZen }}</Weight>
 <Result Period="幕内通算">
 <Record Kind="与金星" Unit="回">
-<Writing>{{ player.Lifetime_result.Totalgivekinboshi  }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi | intToZen  }}</IntegerPart>
+<Writing>{{ player.Lifetime_result.Totalgivekinboshi }}</Writing>
+<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi | intToZen }}</IntegerPart>
 </Record>
 <Record Kind="奪金星" Unit="回">
-<Writing>{{ player.Lifetime_result.Totalgetkinboshi  }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi | intToZen  }}</IntegerPart>
+<Writing>{{ player.Lifetime_result.Totalgetkinboshi }}</Writing>
+<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi | intToZen }}</IntegerPart>
 </Record>
+<!--生涯受賞回数マスタから取得  -->
+{% for award in Lifeaward %}
 <Award Kind="優勝">
 <Count>
-<Writing>{{ player.Lifetime_award.Numberofaward }}</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<Writing>43</Writing>
+<CountValue>{{ award.Numberofaward }}</CountValue>
 </Count>
 </Award>
 <Award Kind="殊勲賞">
 <Count>
-<Writing>５</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<Writing>３</Writing>
+<CountValue>{{ award.Numberofaward }}</CountValue>
 </Count>
 </Award>
 <Award Kind="敢闘賞">
 <Count>
-<Writing>３</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<Writing>１</Writing>
+<CountValue>{{ award.Numberofaward }}</CountValue>
 </Count>
 </Award>
 <Award Kind="技能賞">
 <Count>
-<Writing>１</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward | intToZen  }}</CountValue>
+<Writing>２</Writing>
+<CountValue>{{ award.Numberofaward }}</CountValue>
 </Count>
 </Award>
-{% for lresult in Liferesult %}
-{% if lresult.Rikishi_code.Rikishi_code ==  lresult.Rikishi_code.Rikishi_code %}
+{% endfor %}
+<!-- ======================== -->
 <ResultForSumo>
 <SumoOutcomeTotal>
-<BashoCount>{{ lresult.Totalbasho | intToZen  }}{{ lresult.Rikishi_code.Rikishi_code}}{{ lresult.Rikishi_code.Rikishi_code}}</BashoCount>
-<WinCount>{{ lresult.Totalwins | intToZen  }}</WinCount>
-<LossCount>{{ lresult.Totalloss | intToZen  }}</LossCount>
-<DrawCount>{{ lresult.Totalties | intToZen  }}</DrawCount>
-<AbsenceCount>{{ lresult.Totalkyuujou | intToZen  }}</AbsenceCount>
+<BashoCount>{{ player.Lifetime_result.Totalbasho | intToZen }}</BashoCount>
+<WinCount>{{ player.Lifetime_result.Totalwins | intToZen }}</WinCount>
+<LossCount>{{ player.Lifetime_result.Totalloss | intToZen }}</LossCount>
+<DrawCount>{{ player.Lifetime_result.Totalties | intToZen }}</DrawCount>
+<AbsenceCount>{{ player.Lifetime_result.Totalkyuujou | intToZen }}</AbsenceCount>
 </SumoOutcomeTotal>
-<WinningPercentage>{{ lresult.Overallwinrate | remmove_integer0 | intToZen }}</WinningPercentage>
-<WinningPercentage Kind="休みを負とした">{{ lresult.Overallwinrate_yasumimake | intToZen  }}</WinningPercentage>
+<WinningPercentage>{{ player.Lifetime_result.Overallwinrate | remmove_integer0 | intToZen }}</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">{{ player.Lifetime_result.Overallwinrate_yasumimake | intToZen }}</WinningPercentage>
 </ResultForSumo>
-{% endif %} 
-{% endfor %}
 </Result>
 <PlayerForSumo>
 <SumoGrade Kind="最高位">
-<Writing>横綱</Writing>
-<SumoRank>{{ player.Lifetime_chii.Chii_code  }}</SumoRank>
+<Writing>{{ player.Lifetime_chii.Chii_code }}</Writing>
+<SumoRank>{{ player.Lifetime_chii.Chii_code }}</SumoRank>
 </SumoGrade>
 <NativeArea>
-<Writing>茨　城</Writing>
-<Formal>茨城</Formal>
-<Formal Display="3字">茨　城</Formal>
+<Writing>{{ player.Rikishi.Hometown_code_1.Country_prefecture_3char }}</Writing>
+<Formal>{{ player.Rikishi.Hometown_code_1.Country_prefecture_kanji }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Hometown_code_1.Country_prefecture_3char }}</Formal>
 </NativeArea>
 </PlayerForSumo>
 </Player>
