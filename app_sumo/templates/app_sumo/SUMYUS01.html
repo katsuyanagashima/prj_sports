@@ -5,8 +5,8 @@
     <div class="col-4 _gyomu-menu _caption_box">
         <form method="POST" action="{% url 'app_sumo:SUMYUS01_create2' 'dummy' %}">
             {% csrf_token %}
-            <table class="table table-hover table-sm">
-                <thead class="thead-dark"> <th>東西</th> <th>階級</th> <th>番付順位</th> <th>力士名</th> </tr> </thead>
+            <table id="tbl_SUMYUS01" class="table table-hover table-sm">
+                <thead class="thead-dark"> <th>東西</th> <th>階級</th> <th>番付順位</th> <th>力士名</th> <th/> </tr> </thead>
                 <tbody>
                 {% for rikishi in rikishis %}
                     <tr>
