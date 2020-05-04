@@ -11,9 +11,17 @@ $(function () {
         },
         order: [[2, 'asc'], [4, 'asc'], [0, 'asc']], // 並び順
         columnDefs: [
-            {orderable: false, targets: [0, 1, 2, 3, 4, 5]}, // 利用者による並べ替えの禁止
+            <!-- [0]東西コード -->
+            <!-- [1]東西 -->
+            <!-- [2]階級コード -->
+            <!-- [3]階級 -->
+            <!-- [4]番付順位 -->
+            <!-- [5]力士名 -->
+            <!-- [6] -->
+            {orderable: false, targets: [0, 1, 2, 3, 4, 5, 6]}, // 利用者による並べ替えの禁止
             {targets: [0, 2], visible: false}, // 非表示の列
-            {targets: 3, width: '100px' }
+            {targets: 3, width: '110px'},
+            {targets: 5, width: '110px'},
         ],
         paginate: false, // ページング
         info: false, // 件数情報
@@ -24,7 +32,7 @@ $(function () {
         initComplete: function () { // プルダウンで階級を選択
             this.api().columns([3]).every(function () {
                 var column = this;
-                var select = $('<select><option value="">すべて</option></select>')
+                var select = $('<select><option value="">−−−</option></select>')
                     .appendTo($(column.header()).empty())
                     .attr('id', 'class_code_menu')
                     .addClass('form-control input-sm')
@@ -43,22 +51,20 @@ $(function () {
                 select.append('<option value="序二段">序二段</option>');
                 select.append('<option value="序ノ口">序ノ口</option>');
             });
-        }
+        },
+        dom: '<<t>f>\'', // 検索ボックスの位置
     });
     // 選択した行の背景色を変更し、チェックを入れる
     $('#tbl_SUMYUS01 tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
-            $(this).children('.aaa').children('input').prop('checked', false);
+            $(this).children('.selectedRikishi').children('input').prop('checked', false);
         } else {
             myTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            $(this).children('.aaa').children('input').prop('checked', true);
+            $(this).children('.selectedRikishi').children('input').prop('checked', true);
         }
     });
-    /*$('#button').click(function () {
-        myTable.row('.selected').remove().draw(false);
-    });*/
 });
 
 // 優勝・三賞入力画面の階級プルダウンメニュー前回の値を呼び出し

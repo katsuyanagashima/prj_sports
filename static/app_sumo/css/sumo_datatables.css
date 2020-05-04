@@ -1,0 +1,30 @@
+/* 優勝・三賞入力画面 */
+#tbl_SUMYUS01 thead td {
+    padding-top: 1px; !important;
+    padding-bottom: 1px; !important;
+    background-color: red; !important;
+}
+
+/* 優勝・三賞入力画面　テーブルのヘッダー */
+#tbl_SUMYUS01_header * {
+    padding-top: 1px; !important;
+    padding-bottom: 1px; !important;
+}
+
+/* 優勝・三賞入力画面　階級プルダウンメニュー */
+#class_code_menu {
+    height: 28px;
+    padding-top: 0; !important;
+    padding-bottom: 0; !important;
+    background-color: lightyellow; !important;
+}
+
+/* 優勝・三賞入力画面　キーワード検索 */
+#tbl_SUMYUS01_filter input {
+    background-color: lightyellow; !important;
+}
+
+/* 優勝・三賞入力画面　優勝・三賞の追加ボタン */
+.button-area {
+    text-align: center;
+}
