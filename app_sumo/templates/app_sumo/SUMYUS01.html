@@ -25,7 +25,7 @@
                                     <td>{{ rikishi.Eastwest_code_id }}</td>
                                     <td>{{ rikishi.Eastwest_code }}</td>
                                     <td>{{ rikishi.Class_code_id }}</td>
-                                    <td>{{ rikishi.Class_code }}</td>
+                                    <td class="class_code">{{ rikishi.Class_code }}</td>
                                     <td>{{ rikishi.Banzuke_rank }}</td>
                                     <td>{{ rikishi.Rikishi }}</td>
                                     <td class="selectedRikishi"><input type="radio" name="rikishi_id"
@@ -38,99 +38,91 @@
                         </table>
                     </div>
                     <div class="col-3 button-area">
-                        <br/>
-                        <br/>
-                        <br/>
+                        <br/> <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Yusho' %}"
-                                class="btn btn-primary">▷ 優　勝
-                        </button>
-                        <br/>
-                        <br/>
+                                class="btn btn-primary btn-yusho" disabled>▷ 優　勝</button>
+                        <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Shukunsho' %}"
-                                class="btn btn-primary">▷ 殊勲賞
-                        </button>
-                        <br/>
-                        <br/>
+                                class="btn btn-primary btn-3sho" disabled>▷ 殊勲賞</button>
+                        <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Kantosho' %}"
-                                class="btn btn-primary">▷ 敢闘賞
-                        </button>
-                        <br/>
-                        <br/>
+                                class="btn btn-primary btn-3sho" disabled>▷ 敢闘賞</button>
+                        <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Ginosho' %}"
-                                class="btn btn-primary">▷ 技能賞
-                        </button>
+                                class="btn btn-primary btn-3sho" disabled>▷ 技能賞</button>
                     </div>
                 </div>
             </form>
+            <p> ※番付テーブルを表示。「横綱」「大関」などの地位を取得する項目は？<br/>
+            </p>
         </div>
-        <div class="col-4 gyomu-menu caption_box">
-            <table class="table table-hover table-sm">
-                <thead class="thead-dark">
-                <tr>
-                    <th>優勝</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i_class in classes %}
+        <div class="col-4">
+            <div class="gyomu-menu caption_box">
+                <table class="table table-hover table-sm">
+                    <thead class="thead-dark">
+                    <tr> <th>優勝</th> </tr>
+                    </thead>
+                    <tbody>
+                    {% for i_class in classes %}
+                        <tr>
+                            <td>【{{ i_class.Class_name_3char }}】</td>
+                            <td>
+                                {% for j in posts %}
+                                    {% if j.Class_code_id == i_class.Class_code and j.Yusho_flg %}
+                                        <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <table class="table table-hover table-sm">
+                    <thead class="thead-dark">
+                    <tr> <th>三賞</th> </tr>
+                    </thead>
+                    <tbody>
                     <tr>
-                        <td>【{{ i_class.Class_name_3char }}】</td>
+                        <td>【殊勲賞】</td>
                         <td>
                             {% for j in posts %}
-                                {% if j.Class_code_id == i_class.Class_code and j.Yusho_flg %}
-                                    <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a>
+                                {% if j.Shukunsho_flg %}
+                                    <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
                                 {% endif %}
                             {% endfor %}
                         </td>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <table class="table table-hover table-sm">
-                <thead class="thead-dark">
-                <tr>
-                    <th>三賞</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>【殊勲賞】</td>
-                    <td>
-                        {% for j in posts %}
-                            {% if j.Shukunsho_flg %}
-                                <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>【敢闘賞】</td>
-                    <td>
-                        {% for j in posts %}
-                            {% if j.Kantosho_flg %}
-                                <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>【技能賞】</td>
-                    <td>
-                        {% for j in posts %}
-                            {% if j.Ginosho_flg %}
-                                <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                    <tr>
+                        <td>【敢闘賞】</td>
+                        <td>
+                            {% for j in posts %}
+                                {% if j.Kantosho_flg %}
+                                    <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>【技能賞】</td>
+                        <td>
+                            {% for j in posts %}
+                                {% if j.Ginosho_flg %}
+                                    <a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><br/>※開催年月と日目が一致するデータのみ表示<br/>
+                ※千秋楽以前に優勝が確定した場合は、翌日以降は自動でセットする？
         </div>
-        <nav class="navbar fixed-bottom navbar-dark bg-dark">
-            <a href="{% url 'app_sumo:SUMYUS01_create' %}" class="btn btn-success">追加</a>
-            <a href="{% url 'app_sumo:index' %}" class="btn btn-warning" role="button">戻る</a>
-        </nav>
-        <p>※開催年月と日目が一致するデータのみ表示している<br/>
-            ※画面左は番付テーブルを使用。「横綱」「大関」などの地位を取得する項目がない？<br/>
-            ※千秋楽以前に優勝が確定した場合は、以降の各日にも優勝をセットする処理は必要？
         </p>
+    </div>
+
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        <a href="{% url 'app_sumo:SUMYUS01_create' %}" class="btn btn-success">追加</a>
+        <a href="{% url 'app_sumo:index' %}" class="btn btn-warning" role="button">戻る</a>
+    </nav>
 {% endblock %}

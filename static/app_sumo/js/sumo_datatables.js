@@ -54,7 +54,7 @@ $(function () {
         },
         dom: '<<t>f>\'', // 検索ボックスの位置
     });
-    // 選択した行の背景色を変更し、チェックを入れる
+    // 選択した行の背景色を変更、ラジオボタンにチェック、優勝・三賞の指定ボタンの切り替え
     $('#tbl_SUMYUS01 tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
@@ -63,6 +63,18 @@ $(function () {
             myTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
             $(this).children('.selectedRikishi').children('input').prop('checked', true);
+        }
+        // 優勝・三賞の指定ボタンの切り替え
+        var my_class_code = myTable.$('tr.selected').children('td.class_code').text();
+        if (my_class_code == '幕内') {
+            $('.btn-yusho').prop("disabled", false);
+            $('.btn-3sho').prop("disabled", false);
+        } else if (my_class_code != '') { // 幕内以外
+            $('.btn-yusho').prop("disabled", false);
+            $('.btn-3sho').prop("disabled", true);
+        } else { // 未選択
+            $('.btn-yusho').prop("disabled", true);
+            $('.btn-3sho').prop("disabled", true);
         }
     });
 });
