@@ -1,7 +1,7 @@
 // 優勝・三賞入力画面
 var oTable = null;
 $(function () {
-    var myTable = $("#tbl_SUMYUS01").DataTable({
+    var myTable = $("#tbl_SUMYUS01_banzuke").DataTable({
         language: {
             search: '',
             lengthMenu: '_MENU_',
@@ -55,7 +55,7 @@ $(function () {
         dom: '<<t>f>\'', // 検索ボックスの位置
     });
     // 選択した行の背景色を変更、ラジオボタンにチェック、優勝・三賞の指定ボタンの切り替え
-    $('#tbl_SUMYUS01 tbody').on('click', 'tr', function () {
+    $('#tbl_SUMYUS01_banzuke tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
             $(this).children('.selectedRikishi').children('input').prop('checked', false);
