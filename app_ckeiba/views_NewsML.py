@@ -17,7 +17,7 @@ from django.db.models import Q
 # （参考） https://qiita.com/YuukiMiyoshi/items/6ce77bf402a29a99f1bf
 def intToZen(i):
     HAN2ZEN = str.maketrans({"0": "０", "1": "１", "2": "２", "3": "３", "4": "４",
-                             "5": "５", "6": "６", "7": "７", "8": "８", "9": "９", ".": "．"})
+                             "5": "５", "6": "６", "7": "７", "8": "８", "9": "９", ".": "．", "+": "＋", "-": "－", "G": "Ｇ"})
     return str(i).translate(HAN2ZEN)
 
 # ２．,(カンマ)で区切られた文字列をリスト化して返す関数。余分な空白は削除する。
@@ -777,47 +777,854 @@ def NewsML_tsusinA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 # 【成績表C】(InData内部)
 def NewsML_seisekiC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
-    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
-    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
-    #                                    joumei=joucode,
-    #                                    ck_kyounen=kyounen,
-    #                                    ck_kyoutuki=kyoutuki,
-    #                                    ck_kyouhi=kyouhi,
-    #                                    rebangou=rebangou
-    #                                    )
+    # 年月日と場から場当日情報オブジェクトを取得。無かったら404
+    jou_toujitsu = get_object_or_404(Md_Jou_Toujitsu.objects,
+                                       joumei=joucode,
+                                       ck_kyounen=kyounen,
+                                       ck_kyoutuki=kyoutuki,
+                                       ck_kyouhi=kyouhi
+                                       )
 
-    # # 場マスタから場のデータを取得
-    # jou_data = Mst_Jou.getJoudata(joucode)
+    # ○○○○○○○○○レース情報取得○○○○○○○○○
+    # 場当日情報オブジェクトとレース番号からレース別成績オブジェクトを取得。無かったら404
+    seiseki = get_object_or_404(
+        Md_Seiseki_Haraimodoshi.objects, jou_toujitsu=jou_toujitsu, rebangou=rebangou)
 
-    # # 数値の全角化処理(馬番)
-    # for tb in tsuushimbun_list:
-    #     tb.uma = intToZen(tb.uma)
 
-    # # レース情報を一件目のデータからとる。
-    # tsuushinbun = tsuushimbun_list[0]
+    params = {}
 
-    # # パラメータに追加(数値の項目は全角化する)
-    # params = {
-    #     'joumei_seishiki': jou_data[0],
-    #     'joumei_3': jou_data[1],
+    #１）開催関連情報
+    # １）－１ 開催場名（3字、正式名）
+    # <joumei hyouki = "3字" > 大井 < /joumei >
+    # <joumei hyouki = "正式名" > 大井 < /joumei >
+    # 開催競馬場名を3字と正式名を編集。属性値hyoukiの内容で区別する。
+    jou_data = Mst_Jou.getJoudata(jou_toujitsu.joumei)
+    params['joumei_seishiki'] = jou_data[0]
+    params['joumei_3char'] = jou_data[1]
 
-    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
-    #     'kainichime': intToZen(tsuushinbun.kainichime),
 
-    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
-    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
-    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
-    #     'rebangou': intToZen(tsuushinbun.rebangou),
+    # １）－２ 開催回数
+    # <kaisuu > １６回 < /kaisuu >
+    # 開催回数を編集。『回』付きで編集する。
+    params['kaisuu'] = intToZen(jou_toujitsu.kaisuu) + '回'
 
-    #     'tsuushimbun_list': tsuushimbun_list
-    # }
+    # １）－３ 開催日目
+    # <kainichime > ２日目 < /kainichime >
+    # 開催日目を編集。『日目』付きで編集する。
+    params['kainichime'] = intToZen(jou_toujitsu.kainichime) + '日目'
 
-    # # xml形式で出力
-    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
-    # res['Content-Type'] = 'application/xml'
-    # return res
+    # １）－４ 完表記
+    # <kanhyouki>完</kanhyouki>
+    # 当日最終レースを示す。 ※最終レースのみ編集
+    params['kanhyouki'] = seiseki.kanhyouki #完
 
-    return render(request, 'NewsML_temp/NewsML.html', {'title': '【成績表C】NewsMLプレビュー画面作成中(4/30)'})
+    # １）－５ 競走年月日
+    # <ck_kyounichi >
+    # <ck_kyounen > ２００４ < /ck_kyounen >
+    # <ck_kyoutuki > １０ < /ck_kyoutuki >
+    # <ck_kyouhi > １４ < /ck_kyouhi >
+    # </ck_kyounichi >
+    # 競走年月日を編集する。年・月・日別にそれぞれ編集。
+    params['ck_kyounen'] = intToZen(jou_toujitsu.ck_kyounen)
+    params['ck_kyoutuki'] = intToZen(jou_toujitsu.ck_kyoutuki)
+    params['ck_kyouhi'] = intToZen(jou_toujitsu.ck_kyouhi)
+
+
+    # ２）場情報 <joujouhou> … </joujouhou>で囲み編集
+    # ２）－１ 当日レース数
+    # <touresuu>１１</touresuu>
+    # 当日開催予定のレース数を編集する。 ※当日第１レースのみに編集する
+    params['touresuu'] = intToZen(jou_toujitsu.touresuu)
+
+    # ２）－２ 処理日
+    # <shoribi>２００５０３０７</shoribi>
+    # 当開催・開催日のレースを処理した年月日を編集する。 ※第１レースのみに編集
+    params['shoribi'] = intToZen(seiseki.shoribi)
+
+    # ２）－３ 天候
+    # <tenkou>晴</tenkou>
+    # レースごとに天候を編集する。
+    params['tenkou'] = seiseki.tenkou
+
+    # ２）－４ 馬場状態（芝）
+    # <bajousiba>重</bajousiba>
+    # 該当レースが芝の場合のみ、馬場状態を編集する。 ※ばんえい競馬は編集しない
+    if str(seiseki.md_sibada) == '芝':
+        params['bajousiba'] = seiseki.md_bajyou
+
+    # ２）－５ 馬場状態（ダート）
+    # <bajouda>不良</bajouda>
+    # 該当レースがダートの場合のみ、馬場状態を編集する。 ※ばんえい競馬は編集しない
+    if str(seiseki.md_sibada) == 'ダート':
+        params['bajouda'] = seiseki.md_bajyou
+
+    # ２）－６ 馬場水分
+    # <ck_babamizu>２．９％</ck_babamizu>
+    # ばんえい競馬のみの馬場状態で、『％』付きで編集する。
+    if seiseki.ck_babamizu:
+        params['ck_babamizu'] = intToZen(seiseki.ck_babamizu) + '％'
+
+    # ３）レース情報 <rejouhou> … </rejouhou>で囲み編集
+
+    # ３）－１ レース番号
+    # <rebangou > １ < /rebangou >
+    # レース番号を『Ｒ』付きで編集する。
+    params['rebangou'] = intToZen(seiseki.rebangou) + 'Ｒ'
+
+    # ３）－２ 競走種別
+    # <shubetsu>サラ３歳上</shubetsu>
+    # 競走種別を編集、馬齢部分は洋数字で編集する。
+    params['shubetsu'] = intToZen(seiseki.shubetsu)
+
+    # ３）－３ 特別競走本題回数
+    # <tokusouhonsuu >第１５回</tokusouhonsuu >
+    # 特別競走本題に回数がある場合は『第』『回』にはさむ形で編集する。
+    params['tokusouhonsuu'] = '第' + intToZen(seiseki.tokusouhonsuu) + '回'
+
+    # ３）－４ 特別競走名本題
+    # <tokusoumeihon >マーチ賞</tokusoumeihon>
+    # レース名称を編集する。
+    params['tokusoumeihon'] = seiseki.tokusoumeihon
+
+    # ３）－５ 特別競走名副題
+    # <tokusoumeifuku>中央競馬交流</tokusoumeifuku>
+    # 付加名称を編集する。
+    params['tokusoumeifuku'] = seiseki.tokusoumeifuku
+
+    # ３）－６ 副賞名
+    # <ck_fukusyoumei>特別区競馬組合議会議長賞</ck_fukusyoumei>
+    # 副賞名を編集する。 ※複数ある場合は繰り返して編集
+    ck_fukusyoumei_list = makelist(seiseki.ck_fukusyoumei)
+    params['ck_fukusyoumei_list'] = ck_fukusyoumei_list
+
+    # ３）－７ グレード区分
+    # <guredo>Ｇ３</guredo>
+    # グレード区分を編集する。
+    params['guredo'] = intToZen(seiseki.guredo)
+
+    # ３）－８ 中央交流区分
+    # <ck_chuokouryu>指定交流</ck_chuokouryu>
+    # 中央交流区分を編集する。
+    params['ck_chuokouryu'] = seiseki.ck_chuokouryu
+
+    # ３）－９ 競走距離
+    # <kyori>１２００</kyori>
+    # 競走距離を編集する。
+    params['kyori'] = intToZen(seiseki.kyori)
+
+    # ３）－10 トラック
+    # <torakku>ダート右・外コース</torakku>
+    # 芝・ダート区分、周り、コース区分を『ダート右・外コース』のように編集する。回り
+    # やコース区分がない場合などは省略し『ダート左』などになる。
+    torakku = str(seiseki.ck_shibadat) + str(seiseki.ck_mawari)
+    if seiseki.ck_naigai:
+        torakku = torakku + '・' + str(seiseki.ck_naigai)
+    params['torakku'] = torakku
+
+    # ３）－11 ナイター区分
+    # <ck_naita>ナイター</ck_naita>
+    # ナイターの場合のみ編集する。
+    params['ck_naita'] = seiseki.ck_kknaita
+
+    # ３）－12 本賞金
+    # <ck_shokin ck_chaku=”１着”>３００００００</ck_shokin>
+    # ～
+    # <ck_shokin ck_chaku=”５着”>２４００００</ck_shokin>
+    # レースの着別の本賞金を属性値ck_chaku で区別し、ＭＡＸ５着までの内容を繰り返し
+    # て編集する。
+    params['ck_shokin1'] = intToZen(seiseki.ck_shokin1)
+    params['ck_shokin2'] = intToZen(seiseki.ck_shokin2)
+    params['ck_shokin3'] = intToZen(seiseki.ck_shokin3)
+    params['ck_shokin4'] = intToZen(seiseki.ck_shokin4)
+    params['ck_shokin5'] = intToZen(seiseki.ck_shokin5)
+
+    # ３）－13 出走頭数
+    # <shusuu>１４</shusuu>
+    # 出走頭数を編集する。
+    params['shusuu'] = intToZen(seiseki.shusuu)
+
+    # ３）－14 競走条件
+    # <jyoukenjouhou1>オープン</jyoukenjouhou1>
+    # オープンや未勝利などを編集する。
+    # <jyoukenjouhou>
+    # <bareijouken>４歳上</bareijouken>
+    # レースの馬齢条件を編集する。
+    # <jouken/>
+    # 競走条件。常に空タグを設定（中央競馬で必須タグなため）。
+    # <ck_shikaku>選定馬</ck_shikaku>
+    # 競走資格を編集する。 ※複数ある場合は繰り返して編集
+    # <ck_rkaku>Ａ３</ck_rkaku>
+    # レース格を編集する。 ※複数ある場合は繰り返して編集
+    # <ck_rkumi>ロ</ck_rkumi>
+    # レース組を編集する。 ※複数ある場合は繰り返して編集
+    # </jyoukenjouhou>
+    params['jyoukenjouhou1'] = intToZen(seiseki.jyoukenjouhou1)
+
+    params['bareijouken'] = Mst_Breed_age.getBareiJouken(seiseki.shubetsu)
+
+    params['ck_shikaku_list'] = makelist(seiseki.ck_shikaku)
+    params['ck_rkaku_list'] = makelist(seiseki.ck_rkaku)
+    params['ck_rkumi_list'] = makelist(seiseki.ck_rkumi)
+
+    # ３）－15 重量種別
+    # <juuryoushubetsu>別定</juuryoushubetsu>
+    # 重量種別を編集する。
+    params['juuryoushubetsu'] = seiseki.jyuuryoushubetsu
+
+    # ３）－16 レース結果
+    # <rekekka>レース成立</rekekka>
+    # レース結果（レース成立・レース中止）を編集する。
+    params['rekekka'] = seiseki.rekekka
+
+
+    # ４）成績・着情報 <seisekijouhou><chakujunjouhou> … </chakujunjouhou>で囲み編集
+
+    # ○○○○○○○○○馬別成績情報取得○○○○○○○○○
+    # レース別成績オブジェクトから馬別成績オブジェクトのリストを取得。無かったら404
+    seiseiki_umabetsu_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_seiseki.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_umabetsu_params = {}  # 馬ごとの成績のパラメータ
+    seiseiki_umabetsu_params_list = []  # ↑の馬ごとの成績のパラメータをまとめたリスト
+
+    for seiseiki_umabetsu in seiseiki_umabetsu_list:
+        # ４）－１ 順位
+        # <juni > １ < /juni >
+        # 確定順位を編集。
+        seiseiki_umabetsu_params['juni'] = intToZen(seiseiki_umabetsu.juni)
+
+        # ４）－２ 入線順位
+        # <nyuusenjuni > １ < /nyuusenjuni >
+        # ゴールした順位を編集。
+        seiseiki_umabetsu_params['nyuusenjuni'] = intToZen(seiseiki_umabetsu.nyuusenjuni)
+
+        # ４）－３ 枠番
+        # <waku>３</waku>
+        # 枠番を編集する。
+        seiseiki_umabetsu_params['waku'] = intToZen(seiseiki_umabetsu.waku)
+
+        # ４）－４ 馬番
+        # <uma>３</uma>
+        # 馬番を編集する。
+        seiseiki_umabetsu_params['uma'] = intToZen(seiseiki_umabetsu.uma)
+        
+        # ４）－５ 帽子色
+        # <ck_boiro>赤</ck_boiro>
+        # 帽子の色を編集する。 （白、黒、赤、青、黄、緑、橙、桃、紫など）
+        seiseiki_umabetsu_params['ck_boiro'] = seiseiki_umabetsu.ck_boiro
+
+        # ４）－６ 馬名
+        # <bamei hyouki = "9字" > ドンバニヤン < /bamei >
+        # <bamei hyouki = "正式名" > ドンバニヤン < /bamei >
+        # 馬名の9字と正式名を編集。属性値hyoukiの内容で区別する。
+        seiseiki_umabetsu_params['bamei_seishiki'] = seiseiki_umabetsu.bamei
+        seiseiki_umabetsu_params['bamei_9char'] = bamei9char(seiseiki_umabetsu.bamei)
+        
+        # ４）－７ 馬の所属
+        # <ck_umasyozoku hyouki="１字">大</ck_seisansya>
+        # <ck_umasyozoku hyouki="正式名">大井</ck_seisansya>
+        # 馬が所属する場を１字略と正式名を属性値hyouki で区別し編集する。
+        seiseiki_umabetsu_params['ck_umasyozoku'] = seiseiki_umabetsu.ck_umasyozoku
+        seiseiki_umabetsu_params['ck_umasyozoku_1char'] = Mst_Belonging.getBelonging_1char(seiseiki_umabetsu.ck_umasyozoku)
+
+        # ４）－８ 馬の性別
+        # <seibetsu>牝</seibetsu>
+        # 馬の性別を編集する。
+        seiseiki_umabetsu_params['seibetsu'] = seiseiki_umabetsu.seibetsu
+
+        # ４）－９ 馬齢
+        # <barei>４</barei>
+        # 馬齢を編集する。
+        seiseiki_umabetsu_params['barei'] = intToZen(seiseiki_umabetsu.barei)
+
+        # ４）－10 負担重量
+        # <fujuu > ５６ < /fujuu >
+        # 負担重量を編集。ばんえい競馬は編集しないため空タグ。
+        seiseiki_umabetsu_params['fujuu'] = intToZen(seiseiki_umabetsu.fujuu)
+
+        # ４）－11 積載重量（ばんえい競馬のみ）
+        # <ck_sekijuu > ７５０ < /ck_sekijuu >
+        # 積載重量を編集。ばんえい競馬のみ編集。
+        seiseiki_umabetsu_params['ck_sekijuu'] = intToZen(seiseiki_umabetsu.ck_sekijuu)
+
+        # ４）－12 騎手名
+        # <kimei hyouki = "3字" > 的場文 < /kimei >
+        # <kimei hyouki = "姓" > 的場 < /kimei >
+        # <kimei hyouki = "名" > 文男 < /kimei >
+        # 騎手名の3字、姓、名を編集。属性値hyoukiの内容で区別する。
+        # 外国人騎手など姓と名の分割が難しいケースについては、姓に名前を編集し、名については編集しない。
+        seiseiki_umabetsu_params['kimei'] = seiseiki_umabetsu.kimei
+        seiseiki_umabetsu_params['kimei_sei'] = seiseiki_umabetsu.kimei_sei
+        seiseiki_umabetsu_params['kimei_mei'] = seiseiki_umabetsu.kimei_mei
+
+        # ４）－13 騎手コード
+        # <kiko/>
+        # 常に空タグを編集する。
+
+        # ４）－14 騎手免許番号
+        # <ck_kimnbangou > ３０１３３ < /ck_kimnbangou >
+        # 騎手免許番号を編集する。
+        seiseiki_umabetsu_params['ck_kimnbangou'] = intToZen(seiseiki_umabetsu.ck_kimnbangou)
+
+        # ４）－15 見習区分
+        # <mikubun > １ < /mikubun >
+        # 減量騎手が騎乗した場合の減量重量を編集。
+        seiseiki_umabetsu_params['mikubun'] = intToZen(seiseiki_umabetsu.mikubun)
+
+        # ４）－16 変更前騎手（騎手変更があった場合のみ編集）
+        # <ck_maekimei hyouki = "3字" > 張田京 < /ck_maekimei >
+        # <ck_maekimei hyouki = "姓" > 張田 < /ck_maekimei >
+        # <ck_maekimei hyouki = "名" > 京 < /ck_maekimei >
+        # 騎手変更があった場合に編集される。騎手変更前の騎乗予定だった騎手名の3字、姓、名を編集。属性値hyoukiの内容で区別する。
+        seiseiki_umabetsu_params['ck_maekimei'] = seiseiki_umabetsu.ck_maekimei
+        seiseiki_umabetsu_params['ck_maekimei_sei'] = seiseiki_umabetsu.ck_maekimei_sei
+        seiseiki_umabetsu_params['ck_maekimei_mei'] = seiseiki_umabetsu.ck_maekimei_mei
+
+        # ４）－17 変更前騎手免許番号（騎手変更があった場合のみ編集）
+        # <ck_maekimnbangou > ３００５９ < /ck_maekimnbangou >
+        # 騎手変更があった場合に編集される。騎手変更前の騎乗予定だった騎手の免許番号を編集する。
+        seiseiki_umabetsu_params['ck_maekimnbangou'] = intToZen(seiseiki_umabetsu.ck_maekimnbangou)
+
+        # ４）―18 変更前騎手見習区分（騎手変更があった場合のみ編集）
+        # <ck_maemikubun > １ < /ck_maemikubun >
+        # 騎手変更があった場合に編集される。騎手変更前の騎乗予定だった騎手が減量騎手の場合に減量重量を編集。
+        seiseiki_umabetsu_params['ck_maemikubun'] = intToZen(seiseiki_umabetsu.ck_maemikubun)
+
+        # ４）－19 騎手変更理由（騎手変更があった場合のみ編集）
+        # <ck_henriyuu > 事故 < /ck_henriyuu >
+        # 騎手変更があった場合に編集される。騎手変更理由を編集。
+        seiseiki_umabetsu_params['ck_henriyuu'] = seiseiki_umabetsu.ck_henriyuu
+
+        # ４）－20 タイム
+        # <ta >
+        # <fun > １ < /fun >
+        # <byo > ４８ < /byo >
+        # <miri > ５ < /miri >
+        # </ta >
+        # 入着タイムを編集。タイムを分、秒、ミリ秒で編集する。
+        seiseiki_umabetsu_params['fun'] = intToZen(seiseiki_umabetsu.fun)
+        seiseiki_umabetsu_params['byo'] = intToZen(seiseiki_umabetsu.byo)
+        seiseiki_umabetsu_params['miri'] = intToZen(seiseiki_umabetsu.miri)
+
+        # ４）－21 レコードタイム
+        # <reko > レコード < /reko >
+        # レコードが発生した場合に編集。
+        seiseiki_umabetsu_params['reko'] = seiseiki_umabetsu.reko
+
+        # ４）－22 着差情報 < sajouhou >・・・</sajouhou > で囲まれる。
+        # 着差の対象となる馬が降着した場合は < sajouhou > を繰り返して編集。
+        # <sa hyouki = "通常" > １馬身１／４ < /sa >
+        salist = []
+        for sa in seiseiki_umabetsu.sa.all():
+            salist.append(sa)
+        seiseiki_umabetsu_params['salist'] = salist
+
+        # 着差例外
+        # <sareigai > 降着 < /sareigai >
+        # 降着となった当該馬には降着後の着順が編集され、降着となったことを示す着差
+        # 例外<sareigai>タグが発生し、内容として“降着”を編集する
+        seiseiki_umabetsu_params['sareigai'] = seiseiki_umabetsu.sareigai
+
+        # ４）－23 事故情報
+        # 事故種類
+        # <ck_jikosyu > 降着 < /ck_jikosyu >
+        # 降着の場合など「降着」と編集。
+        seiseiki_umabetsu_params['ck_jikosyu'] = seiseiki_umabetsu.ck_jikosyu
+
+        # 事故理由
+        # <ck_jikoriyuu > 進路妨害 < /ck_jikoriyuu >
+        # 事故種類に対応した事故理由を編集。
+        seiseiki_umabetsu_params['ck_jikoriyuu'] = seiseiki_umabetsu.ck_jikoriyuu
+
+        # ４）－24 馬体重
+        # <bajuu>４７０</bajuu>
+        # 馬体重を編集する。
+        seiseiki_umabetsu_params['bajuu'] = intToZen(seiseiki_umabetsu.bajuu)
+
+        # ４）－25 馬体重増減
+        # <bajuuzougen>＋４</bajuuzougen>
+        # 馬体重が増加の場合は『＋』、減少は『－』付きで編集する。
+        seiseiki_umabetsu_params['bajuuzougen'] = intToZen(seiseiki_umabetsu.bajuuzougen) # これintでいいのか？
+
+        # ４）－26 単勝人気
+        # <tannin>１</tannin>
+        # 単勝の人気を編集する。
+        seiseiki_umabetsu_params['tannin'] = intToZen(seiseiki_umabetsu.tannin)
+
+        # ４）－27 調教師名
+        # <choumei hyouki="3 字">佐々仁</choumei>
+        # <choumei hyouki="姓">佐々木</choumei>
+        # <choumei hyouki="名">仁</choumei>
+        # 調教師の３字略、姓、名を属性値hyouki で区別し編集する。
+        seiseiki_umabetsu_params['choumei'] = seiseiki_umabetsu.choumei
+        seiseiki_umabetsu_params['choumei_sei'] = seiseiki_umabetsu.choumei_sei
+        seiseiki_umabetsu_params['choumei_mei'] = seiseiki_umabetsu.choumei_mei
+
+        # ４）－28 異常区分内容
+        # <ikubunnai>失格</ikubunnai>
+        # 異常区分を編集する。
+        # ※順位タグは編集しない
+        # ※異常区分としては、「出走取消」「出走除外」「競走除外」「競走中止」「失格」
+        # 「落馬」など。
+        seiseiki_umabetsu_params['ikubunnai'] = seiseiki_umabetsu.ikubunnai
+
+        seiseiki_umabetsu_params_list.append(seiseiki_umabetsu_params.copy())
+
+    params['seiseiki_umabetsu_params_list'] = seiseiki_umabetsu_params_list
+
+    # ５）成績・払戻情報 <harajouhou> … </harajouhou></seisekijouhou>
+    # ５）－１ 払戻情報
+    # <harajouhou> … </harajouhou>
+    # <harajouhou>タグ内に払い戻しの情報「５）－２、５－３）」を編集する。
+    # ※レース中止の場合は編集しない
+
+    # ５）－２ 券種
+    # <tanharajouhou> … </tanharajouhou>
+    # <.fukuharajouhou> … </fukuharajouhou>
+    # <wakupukuharajouhou> … </wakupukuharajouho>
+    # <ck_wakutanharajouhou> … </ck_wakutanharajouhou>
+    # <umapukuharajouhou> … </umapukuharajouhou>
+    # <umatanharajouhou> … </umatanharajouhou>
+    # <sanpukuharajouhou> … </sanpukuharajouhou>
+    # <santanharajouhou> … </santanharajouho>
+    # <waharajouhou> … </ waharajouhou >
+    # 単勝、複勝、枠複、枠単、馬複、馬単、三連複、三連単、ワイドの順で編集し、ただし
+    # 発売のない券種については編集はしない。
+    # ※各券種内の構成は同一構成のため、５）－３にて単勝で説明する。
+
+    # ５）－３ 払戻状況
+    # <tanharajouhou>
+    # <tankumijouhou>
+    # <tankumi>
+    # <tansaki>３</tansaki>
+    # １着馬の馬番号を編集する。
+    # </tankumi>
+    # <tanharakin>１５０</tanharakin>
+    # 払戻金額を編集する。
+    # <tantounin>１</tantounin>
+    # 投票人気を編集する。
+    # </tankumijouhou>
+    # </tanharajouhou>
+
+    # ○○○○○○○○○単勝払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから単勝払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_tan_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_tan.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_tan_params = {}  # 単勝1組分のパラメータ
+    seiseiki_tan_params_list = []  # ↑の単勝1組分ごとのパラメータをまとめたリスト
+
+    # ４）－１－１ 単勝払戻状況
+    # <tanharajyoukyou > 特払い < /tanharajyoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['tanharajyoukyou'] = seiseki.tanharajyoukyou
+
+    # ４）－１－２ 単勝組番情報 < tankumijouhou >・・・</tankumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_tan in seiseiki_tan_list:
+        # ４）－１－２－１ 単勝組番状況
+        # <tankumijoukyou > 無投票 < /tankumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_tan_params['tankumijoukyou'] = seiseiki_tan.tankumijoukyou
+
+        # ４）－１－２－２ 単勝組番
+        # <tankumi >
+        # <tansaki > ４ < /tansaki >
+        # </tankumi >
+        # 単勝馬番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_tan_params['tansaki'] = intToZen(seiseiki_tan.tansaki)
+
+        # ４）－１－２－３ 単勝払戻金
+        # <tanharakin > １０９０ < /tanharakin >
+        # 単勝払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_tan_params['tanharakin'] = intToZen(seiseiki_tan.tanharakin)
+
+        # ４）－１－２－４ 単勝投票人気
+        # <tantounin > ９ < /tantounin >
+        # 人気を編集する。
+        seiseiki_tan_params['tantounin'] = intToZen(seiseiki_tan.tantounin)
+
+        seiseiki_tan_params_list.append(seiseiki_tan_params.copy())
+
+    params['seiseiki_tan_params_list'] = seiseiki_tan_params_list
+    
+    # ４）－２ 複勝払戻情報 < fukuharajouhou >・・・</fukuharajouhou > で囲まれて編集。
+    # 式別発売がない場合は編集しない。
+
+    # ○○○○○○○○○複勝払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから複勝払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_fuku_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_fuku.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_fuku_params = {}  # 複勝1組分のパラメータ
+    seiseiki_fuku_params_list = []  # ↑の複勝1組分ごとのパラメータをまとめたリスト
+
+    # ４）－２－１ 複勝払戻状況
+    # <fukuharajoukyou > 特払い < /fukuharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['fukuharajoukyou'] = seiseki.fukuharajoukyou
+
+    # ４）－２－２ 複勝組番情報 < fukukumijouhou >・・・</fukukumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_fuku in seiseiki_fuku_list:
+        # ４）－２－２－１ 複勝組番状況
+        # <fukukumijoukyou > 無投票 < /fukukumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_fuku_params['fukukumijoukyou'] = seiseiki_fuku.fukukumijoukyou
+
+        # ４）－２－２－２ 複勝組番
+        # <fukukumi >
+        # <fukusaki > ４ < /fukusaki >
+        # </fukukumi >
+        # 複勝馬番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_fuku_params['fukusaki'] = intToZen(seiseiki_fuku.fukusaki)
+
+        # ４）－２－２－３ 複勝払戻金
+        # <fukuharakin > １０９０ < /fukuharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_fuku_params['fukuharakin'] = intToZen(seiseiki_fuku.fukuharakin)
+
+        # ４）－２－２－４ 複勝投票人気
+        # <ck_fukutounin > ９ < /ck_fukutounin >
+        # 人気を編集する。
+        seiseiki_fuku_params['ck_fukutounin'] = intToZen(seiseiki_fuku.ck_fukutounin)
+
+        seiseiki_fuku_params_list.append(seiseiki_fuku_params.copy())
+
+    params['seiseiki_fuku_params_list'] = seiseiki_fuku_params_list
+
+
+    # ４）－３ 枠連複払戻情報 < wakupukuharajouhou >・・・</wakupukuharajouhou > で囲み編集。
+    # 式別発売がない場合は編集しない。
+
+    # ○○○○○○○○○枠連複払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから枠連複払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_wakupuku_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_wakupuku.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_wakupuku_params = {}  # 枠連複1組分のパラメータ
+    seiseiki_wakupuku_params_list = []  # ↑の枠連複1組分ごとのパラメータをまとめたリスト
+
+    # ４）－３－１ 枠連複払戻状況
+    # <wakupukuharajoukyou > 特払い < /wakupukuharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['wakupukuharajoukyou'] = seiseki.wakupukuharajoukyou
+
+    # ４）－３－２ 枠連複組番情報 < wakupukukumijouhou >・・・</wakupukukumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_wakupuku in seiseiki_wakupuku_list:
+        # ４）－３－２－１ 枠連複組番状況
+        # <wakupukukumijoukyou > 無投票 < /wakupukukumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_wakupuku_params['wakupukukumijoukyou'] = seiseiki_wakupuku.wakupukukumijoukyou
+
+        # ４）－３－２－２ 枠連複組番
+        # <wakupukukumi >
+        # <wakupukusaki > ３ < /wakupukusaki >
+        # <wakupukuato > ８ < /wakupukuato >
+        # </wakupukukumi >
+        # 枠番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_wakupuku_params['wakupukusaki'] = intToZen(seiseiki_wakupuku.wakupukusaki)
+        seiseiki_wakupuku_params['wakupukuato'] = intToZen(seiseiki_wakupuku.wakupukuato)
+
+        # ４）－３－２－３ 枠連複払戻金
+        # <wakupukuharakin > ９８０ < /wakupukuharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_wakupuku_params['wakupukuharakin'] = intToZen(seiseiki_wakupuku.wakupukuharakin)
+
+        # ４）－３－２－４ 枠連複投票人気
+        # <wakupukutounin > ４ < /wakupukutounin >
+        # 人気を編集する。
+        seiseiki_wakupuku_params['wakupukutounin'] = intToZen(seiseiki_wakupuku.wakupukutounin)
+
+        seiseiki_wakupuku_params_list.append(seiseiki_wakupuku_params.copy())
+
+    params['seiseiki_wakupuku_params_list'] = seiseiki_wakupuku_params_list
+
+
+    # ４）－４ 枠連単払戻情報 < ck_wakutanharajouhou >・・・</ck_wakutanharajouhou > で囲み編集。
+    # 式別発売がない場合は編集しない。
+
+    # ○○○○○○○○○枠連単払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから枠連単払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_wakutan_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_wakutan.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_wakutan_params = {}  # 枠連単1組分のパラメータ
+    seiseiki_wakutan_params_list = []  # ↑の枠連単1組分ごとのパラメータをまとめたリスト
+
+    # ４）－４－１ 枠連単払戻状況
+    # <ck_wakutanharajoukyou > 特払い < /ck_wakutanharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['ck_wakutanharajoukyou'] = seiseki.ck_wakutanharajoukyou
+
+    # ４）－４－２ 枠連単組番情報 < ck_wakutankumijouhou >・・・</ck_wakutankumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_wakutan in seiseiki_wakutan_list:
+        # ４）－４－２－１ 枠連単組番状況
+        # <ck_wakutankumijoukyou > 無投票 < /ck_wakutankumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_wakutan_params['ck_wakutankumijoukyou'] = seiseiki_wakutan.ck_wakutankumijoukyou
+
+        # ４）－４－２－２ 枠連単組番
+        # <ck_wakutankumi >
+        # <ck_wakutansaki > ３ < /ck_wakutansaki >
+        # <ck_wakutanato > ８ < /ck_wakutanato >
+        # </ck_wakutankumi >
+        # 枠番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_wakutan_params['ck_wakutansaki'] = intToZen(seiseiki_wakutan.ck_wakutansaki)
+        seiseiki_wakutan_params['ck_wakutanato'] = intToZen(seiseiki_wakutan.ck_wakutanato)
+
+        # ４）－４－２－３ 枠連単払戻金
+        # <ck_wakutanharakin > ９８０ < /ck_wakutanharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_wakutan_params['ck_wakutanharakin'] = intToZen(seiseiki_wakutan.ck_wakutanharakin)
+
+        # ４）－４－２－４ 枠連単投票人気
+        # <ck_wakutantounin > ４ < /ck_wakutantounin >
+        # 人気を編集する。
+        seiseiki_wakutan_params['ck_wakutantounin'] = intToZen(seiseiki_wakutan.ck_wakutantounin)
+
+        seiseiki_wakutan_params_list.append(seiseiki_wakutan_params.copy())
+
+    params['seiseiki_wakutan_params_list'] = seiseiki_wakutan_params_list
+    
+
+    # ４）－５ 馬連複払戻情報 < umapukuharajouhou >・・・</umapukuharajouhou > で囲み編集。
+    # 式別発売がない場合は編集しない。
+
+    # ○○○○○○○○○馬連複払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから馬連複払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_umapuku_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_umapuku.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_umapuku_params = {}  # 馬連複1組分のパラメータ
+    seiseiki_umapuku_params_list = []  # ↑の馬連複1組分ごとのパラメータをまとめたリスト
+
+    # ４）－５－１ 馬連複払戻状況
+    # <umapukuharajoukyou > 特払い < /umapukuharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['umapukuharajoukyou'] = seiseki.umapukuharajoukyou
+
+    # ４）－５－２ 馬連複組番情報 < umapukukumijouhou >・・・</umapukukumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_umapuku in seiseiki_umapuku_list:
+        # ４）－５－２－１ 馬連複組番状況
+        # <umapukukumijoukyou > 無投票 < /umapukukumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_umapuku_params['umapukukumijoukyou'] = seiseiki_umapuku.umapukukumijoukyou
+
+        # ４）－５－２－２ 馬連複組番
+        # <umapukukumi >
+        # <umapukusaki > ４ < /umapukusaki >
+        # <umapukuato > １４ < /umapukuato >
+        # </umapukukumi >
+        # 馬番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_umapuku_params['umapukusaki'] = intToZen(seiseiki_umapuku.umapukusaki)
+        seiseiki_umapuku_params['umapukuato'] = intToZen(seiseiki_umapuku.umapukuato)
+
+        # ４）－５－２－３ 馬連複払戻金
+        # <umapukuharakin > ３０４ < /umapukuharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_umapuku_params['umapukuharakin'] = intToZen(seiseiki_umapuku.umapukuharakin)
+
+        # ４）－５－２－４ 馬連複投票人気
+        # <umapukutounin > １０ < /umapukutounin >
+        # 人気を編集する。
+        seiseiki_umapuku_params['umapukutounin'] = intToZen(seiseiki_umapuku.umapukutounin)
+
+        seiseiki_umapuku_params_list.append(seiseiki_umapuku_params.copy())
+
+    params['seiseiki_umapuku_params_list'] = seiseiki_umapuku_params_list
+
+    # ４）－６ 馬連単払戻情報 < umatanharajouhou >・・・</umatanharajouhou > で囲み編集。
+    # 式別発売がない場合は編集しない。
+
+    # ○○○○○○○○○馬連単払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから馬連単払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_umatan_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_umatan.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_umatan_params = {}  # 馬連単1組分のパラメータ
+    seiseiki_umatan_params_list = []  # ↑の馬連単1組分ごとのパラメータをまとめたリスト
+
+    # ４）－６－１ 馬連単払戻状況
+    # <umatanharajoukyou > 特払い < /umatanharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['umatanharajoukyou'] = seiseki.umatanharajoukyou
+
+    # ４）－６－２ 馬連単組番情報 < umatankumijouhou >・・・</umatankumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_umatan in seiseiki_umatan_list:
+        # ４）－６－２－１ 馬連単組番状況
+        # <umatankumijoukyou > 無投票 < /umatankumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_umatan_params['umatankumijoukyou'] = seiseiki_umatan.umatankumijoukyou
+
+        # ４）－６－２－２ 馬連単組番
+        # <umatankumi >
+        # <umatansaki > ４ < /umatansaki >
+        # <umatanato > １４ < /umatanato >
+        # </umatankumi >
+        # 馬番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_umatan_params['umatansaki'] = intToZen(seiseiki_umatan.umatansaki)
+        seiseiki_umatan_params['umatanato'] = intToZen(seiseiki_umatan.umatanato)
+
+        # ４）－６－２－３ 馬連単払戻金
+        # <umatanharakin > ３０４ < /umatanharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_umatan_params['umatanharakin'] = intToZen(seiseiki_umatan.umatanharakin)
+
+        # ４）－６－２－４ 馬連単投票人気
+        # <umatantounin > １０ < /umatantounin >
+        # 人気を編集する。
+        seiseiki_umatan_params['umatantounin'] = intToZen(seiseiki_umatan.umatantounin)
+
+        seiseiki_umatan_params_list.append(seiseiki_umatan_params.copy())
+
+    params['seiseiki_umatan_params_list'] = seiseiki_umatan_params_list
+
+    # ４）－７ 三連複払戻情報 < sanpukuharajouhou >・・・</sanpukuharajouhou > で囲み編集。
+    # 式別発売がない場合は編集しない。
+
+    # ○○○○○○○○○三連複払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから三連複払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_sanpuku_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_sanpuku.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_sanpuku_params = {}  # 三連複1組分のパラメータ
+    seiseiki_sanpuku_params_list = []  # ↑の三連複1組分ごとのパラメータをまとめたリスト
+
+    # ４）－７－１ 三連複払戻状況
+    # <sanpukuharajoukyou > 特払い < /sanpukuharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['sanpukuharajoukyou'] = seiseki.sanpukuharajoukyou
+
+    # ４）－７－２ 三連複組番情報 < sanpukukumijouhou >・・・</sanpukukumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_sanpuku in seiseiki_sanpuku_list:
+        # ４）－７－２－１ 三連複組番状況
+        # <sanpukukumijoukyou > 無投票 < /sanpukukumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_sanpuku_params['sanpukukumijoukyou'] = seiseiki_sanpuku.sanpukukumijoukyou
+
+        # ４）－７－２－２ 三連複組番
+        # <sanpukukumi >
+        # <sanpukusaki > ４ < /sanpukusaki >
+        # <sanpukunaka > １３ < /sanpukunaka >
+        # <sanpukuato > １４ < /sanpukuato >
+        # </sanpukukumi >
+        # 馬番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_sanpuku_params['sanpukusaki'] = intToZen(seiseiki_sanpuku.sanpukusaki)
+        seiseiki_sanpuku_params['sanpukunaka'] = intToZen(seiseiki_sanpuku.sanpukunaka)
+        seiseiki_sanpuku_params['sanpukuato'] = intToZen(seiseiki_sanpuku.sanpukuato)
+
+        # ４）－７－２－３ 三連複払戻金
+        # <sanpukuharakin > １２３０ < /sanpukuharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_sanpuku_params['sanpukuharakin'] = intToZen(seiseiki_sanpuku.sanpukuharakin)
+
+        # ４）－７－２－４ 三連複投票人気
+        # <sanpukutounin > ５ < /sanpukutounin >
+        # 人気を編集する。
+        seiseiki_sanpuku_params['sanpukutounin'] = intToZen(seiseiki_sanpuku.sanpukutounin)
+
+        seiseiki_sanpuku_params_list.append(seiseiki_sanpuku_params.copy())
+
+    params['seiseiki_sanpuku_params_list'] = seiseiki_sanpuku_params_list
+
+    # ４）－８ 三連単払戻情報 < santanharajouhou >・・・</santanharajouhou > で囲み編集。
+    # 式別発売がない場合は編集しない。
+
+    # ○○○○○○○○○三連単払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトから三連単払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_santan_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_santan.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_santan_params = {}  # 三連単1組分のパラメータ
+    seiseiki_santan_params_list = []  # ↑の三連単1組分ごとのパラメータをまとめたリスト
+
+    # ４）－８－１ 三連単払戻状況
+    # <santanharajoukyou > 特払い < /santanharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['santanharajoukyou'] = seiseki.santanharajoukyou
+
+    # ４）－８－２ 三連単組番情報 < santankumijouhou >・・・</santankumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_santan in seiseiki_santan_list:
+        # ４）－８－２－１ 三連単組番状況
+        # <santankumijoukyou > 無投票 < /santankumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_santan_params['santankumijoukyou'] = seiseiki_santan.santankumijoukyou
+
+        # ４）－８－２－２ 三連単組番
+        # <santankumi >
+        # <santansaki > ４ < /santansaki >
+        # <santannaka > １４ < /santannaka >
+        # <santanato > １３ < /santanato >
+        # </santankumi >
+        # 馬番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_santan_params['santansaki'] = intToZen(seiseiki_santan.santansaki)
+        seiseiki_santan_params['santannaka'] = intToZen(seiseiki_santan.santannaka)
+        seiseiki_santan_params['santanato'] = intToZen(seiseiki_santan.santanato)
+
+        # ４）－８－２－３ 三連単払戻金
+        # <santanharakin > １２３０ < /santanharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_santan_params['santanharakin'] = intToZen(seiseiki_santan.santanharakin)
+
+        # ４）－８－２－４ 三連単投票人気
+        # <santantounin > ５ < /santantounin >
+        # 人気を編集する。
+        seiseiki_santan_params['santantounin'] = intToZen(seiseiki_santan.santantounin)
+
+        seiseiki_santan_params_list.append(seiseiki_santan_params.copy())
+
+    params['seiseiki_santan_params_list'] = seiseiki_santan_params_list
+
+    # ４）－９ ワイド払戻情報 < waharajouhou >・・・</waharajouhou > で囲み編集。
+    # 式別発売がない場合は編集しない。
+    
+    # ○○○○○○○○○ワイド払戻情報取得○○○○○○○○○
+    # レース別成績オブジェクトからワイド払戻オブジェクトのリストを取得。無かったら404
+    seiseiki_wa_list = get_list_or_404(
+        Md_Seiseki_Haraimodoshi_wa.objects, seiseki_haraimodoshi=seiseki)
+    seiseiki_wa_params = {}  # ワイド1組分のパラメータ
+    seiseiki_wa_params_list = []  # ↑のワイド1組分ごとのパラメータをまとめたリスト
+
+    # ４）－９－１ ワイド払戻状況
+    # <waharajoukyou > 特払い < /waharajoukyou >
+    # 式別発売が不成立もしくは特払いになった場合は、「不成立」「特払い」と編集。
+    params['waharajoukyou'] = seiseki.waharajoukyou
+
+    # ４）－９－２ ワイド組番情報 < wakumijouhou >・・・</wakumijouhou > で囲み編集。
+    # 払戻が複数ある場合は繰り返して編集。
+    for seiseiki_wa in seiseiki_wa_list:
+        # ４）－９－２－１ ワイド組番状況
+        # <wakumijoukyou > 無投票 < /wakumijoukyou >
+        # 式別発売が不成立もしくは特払い以外で該当組番の購入がない場合に編集。
+        seiseiki_wa_params['wakumijoukyou'] = seiseiki_wa.wakumijoukyou
+
+        # ４）－９－２－２ ワイド組番
+        # <wakumi >
+        # <wasaki > ４ < /wasaki >
+        # <waato > １４ < /waato >
+        # </wakumi >
+        # 馬番を編集。式別発売が不成立もしくは特払いの場合は編集しない。
+        seiseiki_wa_params['wasaki'] = intToZen(seiseiki_wa.wasaki)
+        seiseiki_wa_params['waato'] = intToZen(seiseiki_wa.waato)
+
+        # ４）－９－２－３ ワイド払戻金
+        # <waharakin > ８６０ < /waharakin >
+        # 払戻金を編集。特払いの場合「７０」、不成立の場合「１００」、無投票の場合は編集しない。
+        seiseiki_wa_params['waharakin'] = intToZen(seiseiki_wa.waharakin)
+
+        # ４）－９－２－４ ワイド投票人気
+        # <watounin > ８ < /watounin >
+        # 人気を編集する。
+        seiseiki_wa_params['watounin'] = intToZen(seiseiki_wa.watounin)
+
+        seiseiki_wa_params_list.append(seiseiki_wa_params.copy())
+
+    params['seiseiki_wa_params_list'] = seiseiki_wa_params_list
+
+    # xml形式で出力
+    res = render(request, 'NewsML_temp/seiseki_C.xml', params)
+    res['Content-Type'] = 'application/xml'
+    return res
+
+    # return render(request, 'NewsML_temp/NewsML.html', {'title': '【成績表C】NewsMLプレビュー画面作成中(4/30)'})
 # ========================================================================
 
 # 【ラップ】(InData内部)
