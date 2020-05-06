@@ -120,8 +120,8 @@
                   <InData xml:space="preserve">
                      <seisekihyou meishou="成績表Ａ">
                         <joujouhou>
-                           <joumei hyouki="3字">{{joumei_seishiki}}</joumei>
-                           <joumei hyouki="正式名">{{joumei_3}}</joumei>
+                           <joumei hyouki="3字">{{joumei_3}}</joumei>
+                           <joumei hyouki="正式名">{{joumei_seishiki}}</joumei>
                            <kaisuu>{{kaisuu}}</kaisuu>
                            <kainichime>{{kainichime}}</kainichime>
                            <ck_kyounichi>

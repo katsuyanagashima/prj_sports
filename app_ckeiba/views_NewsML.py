@@ -61,7 +61,7 @@ def NewsML_seisekiA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     # <joumei hyouki = "3字" > 大井 < /joumei >
     # <joumei hyouki = "正式名" > 大井 < /joumei >
     # 開催競馬場名を3字と正式名を編集。属性値hyoukiの内容で区別する。
-    jou_data = Mst_Jou.getJoudata(jou_toujitsu.joumei)
+    jou_data = Mst_Jou.getJoudata(str(jou_toujitsu.joumei))
     params['joumei_seishiki'] = jou_data[0]
     params['joumei_3'] = jou_data[1]
 
@@ -728,6 +728,22 @@ def NewsML_seisekiA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
 
 # ========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ========================================================================
 # 【通信文A】(InData内部)
 def NewsML_tsusinA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
@@ -774,6 +790,22 @@ def NewsML_tsusinA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     return render(request, 'NewsML_temp/NewsML.html', {'title': '【通信文A】NewsMLプレビュー画面作成中(4/30)'})
 # ========================================================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ========================================================================
+
 # 【成績表C】(InData内部)
 def NewsML_seisekiC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
@@ -798,7 +830,7 @@ def NewsML_seisekiC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     # <joumei hyouki = "3字" > 大井 < /joumei >
     # <joumei hyouki = "正式名" > 大井 < /joumei >
     # 開催競馬場名を3字と正式名を編集。属性値hyoukiの内容で区別する。
-    jou_data = Mst_Jou.getJoudata(jou_toujitsu.joumei)
+    jou_data = Mst_Jou.getJoudata(str(jou_toujitsu.joumei))
     params['joumei_seishiki'] = jou_data[0]
     params['joumei_3char'] = jou_data[1]
 
@@ -1624,7 +1656,22 @@ def NewsML_seisekiC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     res['Content-Type'] = 'application/xml'
     return res
 
-    # return render(request, 'NewsML_temp/NewsML.html', {'title': '【成績表C】NewsMLプレビュー画面作成中(4/30)'})
+# ========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ========================================================================
 
 # 【ラップ】(InData内部)
@@ -1674,6 +1721,20 @@ def NewsML_rap(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 # ========================================================================
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ========================================================================
 # 【上がり】(InData内部)
 def NewsML_agari(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
@@ -1718,6 +1779,21 @@ def NewsML_agari(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     # return res
 
     return render(request, 'NewsML_temp/NewsML.html', {'title': '【上がり】NewsMLプレビュー画面作成中(4/30)'})
+# ========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ========================================================================
 
@@ -1763,6 +1839,22 @@ def NewsML_tsuushimbunC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
     res['Content-Type'] = 'application/xml'
     return res
+# ========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ========================================================================
 # 【出走表】(InData内部)
 def NewsML_shussouhyou(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):

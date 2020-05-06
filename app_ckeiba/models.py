@@ -88,12 +88,12 @@ class Mst_Jou(Model):
 
     # NewsML生成時用の、正式名と３文字略称、ばんえいフラグ取得関数
     def getJoudata(joucode):
-        if type('joucode') is int:
+        if type(joucode) is int:
             jou_data = get_object_or_404(Mst_Jou, Jou_code=joucode)
-        elif type('joucode') is str:
+        elif type(joucode) is str:
             jou_data = get_list_or_404(Mst_Jou, Jou_name=joucode)[0]
         else:
-            return none
+            return
 
         jou_3char = jou_data.Jou_3char
         # ３字略称は、△を全角スペースに変換する
@@ -939,7 +939,7 @@ class Md_Shussouhyou_shussouba_5seiseki(Model):
 class Md_Jou_Toujitsu(Model):
     # 基本情報
     joumei = ForeignKey('Mst_Jou', verbose_name='競馬場コード',
-                        on_delete=CASCADE, related_name="uriage")  # 競馬場マスタ
+                        on_delete=CASCADE, related_name="joutoujitsu")  # 競馬場マスタ
     ck_kyounen = IntegerField(verbose_name='年')
     ck_kyoutuki = IntegerField(verbose_name='月')
     ck_kyouhi = IntegerField(verbose_name='日')
