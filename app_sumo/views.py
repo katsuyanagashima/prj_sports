@@ -161,35 +161,53 @@ def SUMYUS01_create(request):
             post.save()
             return redirect('app_sumo:SUMYUS01')
     else:
-        #form = Tran_YushoSanshoForm()
         form = Tran_YushoSanshoForm(initial=initial_dict)
     return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form, **nav})
 
 
 # 優勝・三賞入力画面（追加２）
 def SUMYUS01_create2(request, str_award):
-    row = request.POST.get('rikishi_id')
+    req_rikishi_id = request.POST.get('rikishi_id')
     # 画面で力士が選択されている場合
-    if row:
-        reqlist_rikishi_id = request.POST.get('rikishi_id')
-        ccid = Tran_Banzuke.objects.get(Rikishi_id=reqlist_rikishi_id).Class_code_id
+    if req_rikishi_id:
         awards = {}
-        if str_award == 'Yusho':
-            awards['Yusho_flg'] = 1
-        if str_award == 'Shukunsho':
-            awards['Shukunsho_flg'] = 1
-        if str_award == 'Kantosho':
-            awards['Kantosho_flg'] = 1
-        if str_award == 'Ginosho':
-            awards['Ginosho_flg'] = 1
+        if str_award in {'Yusho', 'Shukunsho', 'Kantosho', 'Ginosho'}:
+            awards[str_award+'_flg'] = True
         # DBのデータを更新または新規登録
         Tran_YushoSansho.objects.update_or_create(
-            Rikishi_id = reqlist_rikishi_id,
+            Rikishi_id = req_rikishi_id,
             Yearmonth = Tran_Systemstatus.objects.first().Event_date,
             Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
-            Class_code_id = ccid,
+            Class_code_id = Tran_Banzuke.objects.get(Rikishi_id=req_rikishi_id).Class_code_id,
             defaults = awards,
         )
+    return redirect('app_sumo:SUMYUS01')
+
+
+# 優勝・三賞入力画面（削除２）
+def SUMYUS01_delete2(request):
+    logging.info('----- delete2!!!!! -----')
+    req_award_and_rikishi_id = request.POST.get('award_and_rikishi_id')
+    # 画面で力士が選択されている場合
+    if req_award_and_rikishi_id:
+        arr_award_and_rikishi_id = req_award_and_rikishi_id.split(':')
+        award = arr_award_and_rikishi_id[0]
+        rikishi_id = arr_award_and_rikishi_id[1]
+        tbl_yushosansho = Tran_YushoSansho.objects.get(
+            Rikishi_id = rikishi_id,
+            Yearmonth = Tran_Systemstatus.objects.first().Event_date,
+            Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
+        )
+        # DBのデータを更新
+        if award in {'Yusho', 'Shukunsho', 'Kantosho', 'Ginosho'}:
+            setattr(tbl_yushosansho, award+'_flg', False)
+            tbl_yushosansho.save()
+        # DBのデータを削除
+        if not (tbl_yushosansho.Yusho_flg
+                or tbl_yushosansho.Shukunsho_flg
+                or tbl_yushosansho.Kantosho_flg
+                or tbl_yushosansho.Ginosho_flg):
+            tbl_yushosansho.delete()
     return redirect('app_sumo:SUMYUS01')
 
 

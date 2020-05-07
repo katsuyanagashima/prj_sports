@@ -2,7 +2,7 @@
 {% block content %}
     <h1 class="caption">優勝・三賞入力画面</h1>
     <div class="container-fluid row gyomu-menu caption_box">
-        <div class="col-8">
+        <div class="col-7">
             <form method="POST">
                 {% csrf_token %}
                 <div class="row">
@@ -40,76 +40,106 @@
                     <div class="col-3 button-area">
                         <br/> <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Yusho' %}"
-                                class="btn btn-primary btn-yusho" disabled>▷ 優　勝
-                        </button>
+                                class="btn btn-primary btn-yusho" disabled>▷ 優　勝</button>
                         <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Shukunsho' %}"
-                                class="btn btn-primary btn-3sho" disabled>▷ 殊勲賞
-                        </button>
+                                class="btn btn-primary btn-3sho" disabled>▷ 殊勲賞</button>
                         <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Kantosho' %}"
-                                class="btn btn-primary btn-3sho" disabled>▷ 敢闘賞
-                        </button>
+                                class="btn btn-primary btn-3sho" disabled>▷ 敢闘賞</button>
                         <br/> <br/>
                         <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_create2' 'Ginosho' %}"
-                                class="btn btn-primary btn-3sho" disabled>▷ 技能賞
-                        </button>
+                                class="btn btn-primary btn-3sho" disabled>▷ 技能賞</button>
                     </div>
                 </div>
             </form>
             <p> ※番付テーブルを表示。「横綱」「大関」などの地位を取得する項目は？<br/>
             </p>
         </div>
-        <div class="col-4">
+        <div class="col-5">
             <div class="gyomu-menu caption_box">
-                <table id="tbl_SUMYUS01_yusho" class="table table-hover table-sm">
-                    <thead class="thead-dark">
-                    <tr> <th>優勝</th> </tr>
-                    </thead>
-                    <tbody>
-                    {% for i_class in classes %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <table id="tbl_SUMYUS01_yusho" class="table table-hover table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>優勝</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i_class in classes %}
+                            {% for j in posts %}
+                                {% if j.Class_code_id == i_class.Class_code and j.Yusho_flg %}
+                                    <tr>
+                                        <td> {% ifchanged %}【{{ i_class.Class_name_3char }}】{% endifchanged %} </td>
+                                        <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }} </a>
+                                        </td>
+                                        <!--●●●●●-->
+                                        <td class="selectedRikishi">
+                                            <input type="radio" name="award_and_rikishi_id" value="Yusho:{{ j.Rikishi_id }}">
+                                        </td>
+                                        <!--●●●●●-->
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <table id="tbl_SUMYUS01_3sho" class="table table-hover table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>三賞</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for j in posts %}
-                            {% if j.Class_code_id == i_class.Class_code and j.Yusho_flg %}
+                            {% if j.Shukunsho_flg %}
                                 <tr>
-                                    <td> {% ifchanged %}【{{ i_class.Class_name_3char }}】{% endifchanged %} </td>
-                                    <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }} </a></td>
+                                    <td> {% ifchanged %}【殊勲賞】{% endifchanged %} </td>
+                                    <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br></td>
+                                    <!--●●●●●-->
+                                    <td class="selectedRikishi">
+                                        <input type="radio" name="award_and_rikishi_id" value="Shukunsho:{{ j.Rikishi_id }}">
+                                    </td>
+                                    <!--●●●●●-->
                                 </tr>
                             {% endif %}
                         {% endfor %}
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <table id="tbl_SUMYUS01_3sho" class="table table-hover table-sm">
-                    <thead class="thead-dark">
-                    <tr> <th>三賞</th> </tr>
-                    </thead>
-                    <tbody>
-                    {% for j in posts %}
-                        {% if j.Shukunsho_flg %}
-                            <tr>
-                                <td> {% ifchanged %}【殊勲賞】{% endifchanged %} </td>
-                                <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br></td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                    {% for j in posts %}
-                        {% if j.Kantosho_flg %}
-                            <tr>
-                                <td> {% ifchanged %}【敢闘賞】{% endifchanged %} </td>
-                                <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br></td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                    {% for j in posts %}
-                        {% if j.Ginosho_flg %}
-                            <tr>
-                                <td> {% ifchanged %}【技能賞】{% endifchanged %} </td>
-                                <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br></td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        {% for j in posts %}
+                            {% if j.Kantosho_flg %}
+                                <tr>
+                                    <td> {% ifchanged %}【敢闘賞】{% endifchanged %} </td>
+                                    <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br></td>
+                                    <!--●●●●●-->
+                                    <td class="selectedRikishi">
+                                        <input type="radio" name="award_and_rikishi_id" value="Kantosho:{{ j.Rikishi_id }}">
+                                    </td>
+                                    <!--●●●●●-->
+
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        {% for j in posts %}
+                            {% if j.Ginosho_flg %}
+                                <tr>
+                                    <td> {% ifchanged %}【技能賞】{% endifchanged %} </td>
+                                    <td><a href="{% url 'app_sumo:SUMYUS01_update' j.pk %}">{{ j.Rikishi }}</a><br></td>
+                                    <!--●●●●●-->
+                                    <td class="selectedRikishi">
+                                        <input type="radio" name="award_and_rikishi_id" value="Ginosho:{{ j.Rikishi_id }}">
+                                    </td>
+                                    <!--●●●●●-->
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <!--●●●●●-->
+                    <button type="submit" formaction="{% url 'app_sumo:SUMYUS01_delete2' %}"
+                            class="btn btn-warning btn-torikeshi">◁ 取消︎</button>
+                    <!--●●●●●-->
+                </form>
             </div>
             <p><br/>※開催年月と日目が一致するデータのみ表示<br/>
                 ※千秋楽以前に優勝が確定した場合は、翌日以降は自動でセットする？

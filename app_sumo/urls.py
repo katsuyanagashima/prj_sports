@@ -26,6 +26,7 @@ urlpatterns = [
     ###path('SUMYUS01/view/<int:pk>', views.SUMYUS01_view, name='SUMYUS01_view'),  # 優勝・三賞入力画面（参照）●廃止●
     path('SUMYUS01/update/<int:pk>', views.SUMYUS01_update, name='SUMYUS01_update'),  # 優勝・三賞入力画面（更新）
     path('SUMYUS01/delete/<int:pk>', views.SUMYUS01_delete, name='SUMYUS01_delete'),  # 優勝・三賞入力画面（削除）
+    path('SUMYUS01/delete2/', views.SUMYUS01_delete2, name='SUMYUS01_delete2'),  # 優勝・三賞入力画面（削除２）
     path('SUMOUT01/', views.SUMOUT01, name='SUMOUT01'),  # コンテンツ出力指示画面
     path('SUMOUT02/', views.SUMOUT02, name='SUMOUT02'),  # 配信・作成・プレビュー・印刷
     path('SUMOUT03/', views.SUMOUT03, name='SUMOUT03'),  # 電文／データ強制出力
