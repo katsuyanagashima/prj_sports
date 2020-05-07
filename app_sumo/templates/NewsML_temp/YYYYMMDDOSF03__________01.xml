@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-16"?>
 {% load static %}
+{% load fix_tags %}
 <!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
 	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
 	%InContent;
@@ -33,6 +34,7 @@
 <IhMainRank>角</IhMainRank>
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
+<!--
 <IhSubHeader>
 <IhSendBlkInfo IhNb="2">
 <IhSendBlk>フル相全</IhSendBlk>
@@ -45,6 +47,36 @@
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
 </IhSubHeader>
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<IhSubHeader>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<IhSendBlkInfo IhNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}</IhSendBlk>
+{% endfor %}
+</IhSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<IhSendIndInfo IhNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<IhSendInd>{{ sub.Delivery_code.Delivery_name }}</IhSendInd>
+{% endfor %}
+</IhSendIndInfo>
+{% endif %}
+{% endfor %}
+<!-- 否定宛先を固定値で設定  -->
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
+{% endif %}
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
@@ -75,7 +107,10 @@
 </NewsManagement>
 <NewsComponent Duid="NC_OS01" xml:lang="ja-JP">
 <NewsLines>
-<HeadLine>初場所番付表</HeadLine>
+<!-- システム状態マスタから取得 -->
+{% for meta in newsmlmeta %}
+<HeadLine>{{ meta.CurrentBasho }}番付表</HeadLine>
+{% endfor %}
 <NewsLine>
 <NewsLineType FormalName="EditInfo"/>
 <NewsLineText>運動夕刊メモ（　）の（　）、貴ノ岩は引退</NewsLineText>
@@ -115,11 +150,13 @@
 <InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>
 </InFormat>
 </InAdminInfo>
+<!-- システム状態マスタから取得 -->
+{% for meta in newsmlmeta %}
 <InCategoryInfo>
 <InClasses>
 <InClass>
 <InBClass>相撲</InBClass>
-<InMClass1>初場所場所前</InMClass1>
+<InMClass1>{{ meta.CurrentBasho }}場所前</InMClass1>
 <InMClass2>新番付</InMClass2>
 <InSClass>全県</InSClass>
 </InClass>
@@ -128,15 +165,17 @@
 <InNewsGenre>相撲</InNewsGenre>
 </InNewsCategory>
 <InNewsLine>
-<InHeadLine>初場所番付表</InHeadLine>
+<InHeadLine>>{{ meta.CurrentBasho }}番付表</InHeadLine>
 </InNewsLine>
 </InCategoryInfo>
+{% endfor %}
 <InNewsInfo>
 <InMainHeader>
 <InPriority>３</InPriority>
 </InMainHeader>
 <InSubHeader>
 <InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<!--
 <InSendControl>
 <InSendBlkInfo InNb="2">
 <InSendBlk>相全</InSendBlk>
@@ -146,6 +185,33 @@
 <InSendInd>ガミ</InSendInd>
 </InSendIndInfo>
 </InSendControl>
+</InSubHeader>
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<InSendControl>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<InSendBlkInfo InNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<InSendBlk>{{ sub.Delivery_code.Delivery_name_2char }}</InSendBlk>
+{% endfor %}
+</InSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<InSendIndInfo InNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<InSendInd>{{ sub.Delivery_code.Delivery_name_2char }}</InSendInd>
+{% endfor %}
+</InSendIndInfo>
+{% endif %}
+{% endfor %}
+</InSendControl>
+{% endif %}
 </InSubHeader>
 <InEditInfo>
 <InEditLines InNc="1">
@@ -165,9 +231,10 @@
 <InData>
 <SportsData Version="1.1">
 <Head>
+{% for meta in newsmlmeta %}
 <Meta>
 <Competition>
-<Formal>初場所</Formal>
+<Formal>{{ meta.CurrentBasho }}</Formal>
 </Competition>
 <CompetitionDay>場所前</CompetitionDay>
 <Discipline>
@@ -182,7 +249,77 @@
 <Title>東</Title>
 <Class>幕内</Class>
 </Meta>
+{% endfor %}
 <Standing BlockId="S001">
+<!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ======= -->
+{% if Banzuke_east %}
+<!-- ================= 力士を繰り返す ======================-->
+{% for player in Banzuke_east %}
+<Player PlayerId="{{ player.Rikishi.Rikishi_code|zeropadding6 }}">
+<PlayerName>
+<Writing>{{ player.Rikishi.Rikishi_name_Kanji_4char }}</Writing>
+<Formal>{{ player.Rikishi.Rikishi_name_kanji_official }}</Formal>
+<Formal Display="4字">{{ player.Rikishi.Rikishi_name_Kanji_4char }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Rikishi_name_Kanji_3char }}</Formal>
+<Formal Display="2字">{{ player.Rikishi.Rikishi_name_Kanji_2char }}</Formal>
+<Formal Display="よみがな">{{ player.Rikishi.Rikishi_name_kanji_kana }}</Formal>
+</PlayerName>
+<Belong>
+<Writing>{{ player.Rikishi.Heya_code.Heya_kanji_3char }}</Writing>
+<Formal>{{ player.Rikishi.Heya_code.Heya_official_kanji }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Heya_code.Heya_kanji_3char }}</Formal>
+<Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana }}</Formal>
+</Belong>
+<!-- システム状態マスタの年齢算出基準日と力士マスタの生年月日から算出 -->
+<Age>●
+{% for meta in newsmlmeta  %}
+{{ meta.Age_calcu_reference_date }}
+{% endfor %}
+-{{ player.Rikishi.Date_of_birth }}●</Age>
+<Height Unit="センチメートル">{{ player.Rikishi.Height | intToZen }}</Height>
+<Weight Unit="キログラム">{{ player.Rikishi.Weight | intToZen }}</Weight>
+<Result Period="先場所">
+<ResultForSumo>
+<SumoOutcomeTotal>
+<Writing>０勝５敗休</Writing>
+<WinCount>０</WinCount>
+<LossCount>５</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１０</AbsenceCount>
+</SumoOutcomeTotal>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="新位置">
+<Writing>横　綱</Writing>
+<Direction>東</Direction>
+<SumoRank>横綱</SumoRank>
+</SumoGrade>
+<SumoGrade Kind="旧位置">
+<Writing>東横綱</Writing>
+<Direction>東</Direction>
+<SumoRank>横綱</SumoRank>
+</SumoGrade>
+<RankShift>
+<Writing>―</Writing>
+<ShiftCount>０</ShiftCount>
+</RankShift>
+<Debut>
+<Writing>年春</Writing>
+<DebutYear>２００２</DebutYear>
+<DebutBasho>春場所</DebutBasho>
+</Debut>
+<NativeArea>
+<Writing>{{ player.Rikishi.Hometown_code_1.Country_prefecture_3char }}</Writing>
+<Formal>{{ player.Rikishi.Hometown_code_1.Country_prefecture_kanji }}</Formal>
+<Formal Display="3字">{{ player.Rikishi.Hometown_code_1.Country_prefecture_3char }}</Formal>
+</NativeArea>
+<WeightDefference>０</WeightDefference>
+</PlayerForSumo>
+</Player>
+{% endfor %}
+{% endif %}
+<!-- ===========  以下は開発後に削除 ======================== -->
 <Player PlayerId="009620">
 <PlayerName>
 <Writing>稀勢の里</Writing>

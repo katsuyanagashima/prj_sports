@@ -59,6 +59,14 @@ class Mst_DeliveryAdmin(admin.ModelAdmin):
     ]
     list_display = ('Delivery_name', 'Individual_address')
 
+#生涯地位情報
+class Mst_Lifetime_statusinfoAdmin(admin.ModelAdmin):
+    fieldssets = [
+        ('力士', {'fields':['Rikishi_code'] }),
+	    ('最高位', {'fields':['Chii_code'] }),
+    ]
+    list_display = ('Rikishi_code', 'Chii_code')
+
 #生涯受賞回数マスタ
 class Mst_Lifetime_awardAdmin(admin.ModelAdmin):
     fieldssets = [
@@ -98,7 +106,7 @@ admin.site.register(Mst_Chii, Mst_ChiiAdmin)
 admin.site.register(Mst_Event)
 admin.site.register(Mst_Nichime)
 admin.site.register(Mst_Eastwest)
-admin.site.register(Mst_Lifetime_statusinfo)
+admin.site.register(Mst_Lifetime_statusinfo, Mst_Lifetime_statusinfoAdmin)
 admin.site.register(Mst_Lifetime_result, Mst_Lifetime_resultAdmin)
 admin.site.register(Mst_Lifetime_award, Mst_Lifetime_awardAdmin)
 admin.site.register(Mst_Gameinfo)

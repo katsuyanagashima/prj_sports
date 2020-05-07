@@ -33,6 +33,7 @@
 <IhMainRank>角</IhMainRank>
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
+<!--
 <IhSubHeader>
 <IhSendBlkInfo IhNb="1">
 <IhSendBlk>フル番Ｃ</IhSendBlk>
@@ -41,6 +42,36 @@
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
 </IhSubHeader>
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<IhSubHeader>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<IhSendBlkInfo IhNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}</IhSendBlk>
+{% endfor %}
+</IhSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<IhSendIndInfo IhNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<IhSendInd>{{ sub.Delivery_code.Delivery_name }}</IhSendInd>
+{% endfor %}
+</IhSendIndInfo>
+{% endif %}
+{% endfor %}
+<!-- 否定宛先を固定値で設定  -->
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
+{% endif %}
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
@@ -127,11 +158,39 @@
 </InMainHeader>
 <InSubHeader>
 <InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<!--
 <InSendControl>
 <InSendBlkInfo InNb="1">
 <InSendBlk>番Ｃ</InSendBlk>
 </InSendBlkInfo>
 </InSendControl>
+</InSubHeader>
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<InSendControl>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<InSendBlkInfo InNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<InSendBlk>{{ sub.Delivery_code.Delivery_name_2char }}</InSendBlk>
+{% endfor %}
+</InSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<InSendIndInfo InNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<InSendInd>{{ sub.Delivery_code.Delivery_name_2char }}</InSendInd>
+{% endfor %}
+</InSendIndInfo>
+{% endif %}
+{% endfor %}
+</InSendControl>
+{% endif %}
 </InSubHeader>
 <InEndInfo>
 <InEndLines InNc="2">

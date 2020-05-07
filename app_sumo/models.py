@@ -216,14 +216,6 @@ class Mst_Hometown(Model):
         return self.Country_prefecture_kanji
 
 
-#生涯受賞回数マスタ
-# class Mst_Lifetime_award(Model):
-#    BAward_code = CharField(verbose_name='受賞コード', max_length=2)
-#    Rikishi_code = ForeignKey(Mst_Rikishi, on_delete=CASCADE) #力士マスタ
-#    Class_code = ForeignKey(Mst_Class, on_delete=CASCADE) #階級マスタ
-#    Award_count = IntegerField(verbose_name='受賞回数')
-
-
 #開催マスタ
 class Mst_Event(Model):
     Event_date = IntegerField(verbose_name='開催年月')
@@ -290,7 +282,7 @@ class Mst_Lifetime_result(Model):
     Touzai_division = ForeignKey(Mst_Eastwest, on_delete=CASCADE, blank=True, null=True) #東西マスタ
     Maxsticking = IntegerField(verbose_name='最高張付', blank=True, null=True)
     Overallwinrate = FloatField(verbose_name='通算勝率')
-    Overallwinrate_yasumimake = FloatField(verbose_name='通算勝率（休を負）')
+    Overallwinrate_yasumimake = FloatField(verbose_name='通算勝率（休を負）', blank=True, null=True)
     Maxcontinuousplayed = IntegerField(verbose_name='最高連続出場回数', blank=True, null=True)
     Currentcontinuosplayed = IntegerField(verbose_name='現連続出場回数', blank=True, null=True)
     Numberofreignedbasho = IntegerField(verbose_name='在位場所数', blank=True, null=True)
@@ -422,4 +414,3 @@ class Mst_Tag_annotation(Model):
     
         def __str__(self):
             return str(self.content_id)
-

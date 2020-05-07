@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-16"?>
 {% load static %}
+{% load fix_tags %}
 <!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
 	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
 	%InContent;
@@ -33,6 +34,7 @@
 <IhMainRank>角</IhMainRank>
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
+<!--
 <IhSubHeader>
 <IhSendBlkInfo IhNb="1">
 <IhSendBlk>フル相全</IhSendBlk>
@@ -44,6 +46,36 @@
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
 </IhSubHeader>
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<IhSubHeader>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<IhSendBlkInfo IhNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}</IhSendBlk>
+{% endfor %}
+</IhSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<IhSendIndInfo IhNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<IhSendInd>{{ sub.Delivery_code.Delivery_name }}</IhSendInd>
+{% endfor %}
+</IhSendIndInfo>
+{% endif %}
+{% endfor %}
+<!-- 否定宛先を固定値で設定  -->
+<IhSendNIndInfo IhNi="1">
+<IhSendNInd>校閲</IhSendNInd>
+</IhSendNIndInfo>
+</IhSubHeader>
+{% endif %}
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
@@ -108,7 +140,7 @@
 <InMetadata>
 <InAdminInfo>
 <InProductId>２０１８１２２６ＯＳＦ０２＿＿＿＿＿＿＿＿＿＿０１</InProductId>
-<InDateTime>（プレビューでは空欄）</InDateTime>
+<InDateTime>２０１８年１２月１８日１４時０２分５０秒</InDateTime>
 <InFormat>
 <InFormatType>フルタグ書式</InFormatType>
 <InFormatComment>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormatComment>
@@ -136,6 +168,7 @@
 </InMainHeader>
 <InSubHeader>
 <InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<!--
 <InSendControl>
 <InSendBlkInfo InNb="1">
 <InSendBlk>相全</InSendBlk>
@@ -144,6 +177,33 @@
 <InSendInd>ガミ</InSendInd>
 </InSendIndInfo>
 </InSendControl>
+</InSubHeader>
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<InSendControl>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<InSendBlkInfo InNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<InSendBlk>{{ sub.Delivery_code.Delivery_name_2char }}</InSendBlk>
+{% endfor %}
+</InSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<InSendIndInfo InNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<InSendInd>{{ sub.Delivery_code.Delivery_name_2char }}</InSendInd>
+{% endfor %}
+</InSendIndInfo>
+{% endif %}
+{% endfor %}
+</InSendControl>
+{% endif %}
 </InSubHeader>
 <InEditInfo>
 <InEditLines InNc="1">
@@ -163,10 +223,13 @@
 <InData>
 <SportsData Version="1.0">
 <Head>
+{% for meta in newsmlmeta %}
 <Meta>
-<Title>◎大相撲初場所新番付資料（月日現在）</Title>
+<!-- <Title>◎大相撲初場所新番付資料（月日現在）</Title> -->
+<Title>◎{{ meta.Event_date|get_first4char|hanyear2ren }}大相撲{{ meta.CurrentBasho }}新番付資料（{{ meta.Banzuke_date|date:"m" |remove_0 |hanren }}月{{ meta.Banzuke_date|date:"d" |remove_0 |hanren }}日現在）</Title>
 <Competition>
-<Formal>初場所</Formal>
+<!-- <Formal>初場所</Formal>  -->
+<Formal>{{ meta.CurrentBasho }}</Formal>
 </Competition>
 <CompetitionDay>場所前</CompetitionDay>
 <Discipline>
@@ -180,6 +243,7 @@
 <DataType>新番付資料（補正）</DataType>
 <Title>東</Title>
 </Meta>
+{% endfor %}
 <Standing BlockId="S001">
 <Player PlayerId="009620">
 <PlayerName>

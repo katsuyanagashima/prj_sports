@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import *
 
-#出走表Ａ
+#出走表_SUA
 class Trn_Running_list_A_SUAAdmin(admin.ModelAdmin):
     fieldssets = [
         ('競走年月日', {'fields':['Race_date'] }),
@@ -14,6 +14,109 @@ class Trn_Running_list_A_SUAAdmin(admin.ModelAdmin):
     ]
     list_display = ('Race_date', 'Held_day', 'Track_name', 'Race_No', 'Start_time', 'Race_Distance', 'Turf_Dart_name')
 
+#着タイムデータ_SU6
+class Trn_Result_SU6Admin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('競馬場', {'fields':['Track_code'] }),
+	    ('レース番号', {'fields':['Race_No'] }),
+        ('馬名', {'fields':['Horse_name'] }),
+        ('年齢', {'fields':['Horse_age'] }),
+	    ('枠番', {'fields':['Bracket_No'] }),
+        ('馬番', {'fields':['Horse_No'] }),
+        ('騎手略名', {'fields':['Jockey_shortened'] }),
+        ('着', {'fields':['Result'] }),
+        ('タイム', {'fields':['Finish_time'] }), 
+    ]
+    list_display = ('Race_date', 'Track_code', 'Race_No', 'Horse_name', 'Horse_age', 'Bracket_No', 'Horse_No', 'Jockey_shortened', 'Result', 'Finish_time')
+
+#単勝複勝払戻データ_WI2
+class Trn_Win_place_dividend_WI2Admin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('競馬場', {'fields':['Track_code'] }),
+	    ('レース番号', {'fields':['Race_No'] }),
+        ('単勝払戻馬番１', {'fields':['Win_No_1'] }),
+        ('単勝払戻金額１', {'fields':['Win_1'] }),
+	    ('単勝払戻人気順１', {'fields':['Win_pick_1'] }),
+        ('複勝着順１', {'fields':['Place_Resutl_1'] }),
+        ('複勝払戻馬番１', {'fields':['Place_No_1'] }),
+        ('複勝払戻金額１', {'fields':['Place_1'] }),
+        ('複勝着順２', {'fields':['Place_Resutl_2'] }),
+        ('複勝払戻馬番２', {'fields':['Place_No_2'] }),
+        ('複勝払戻金額２', {'fields':['Place_2'] }),
+        ('複勝着順３', {'fields':['Place_Resutl_3'] }),
+        ('複勝払戻馬番３', {'fields':['Place_No_3'] }),
+        ('複勝払戻金額３', {'fields':['Place_3'] }),
+    ]
+    list_display = ('Race_date', 'Track_code', 'Race_No', 'Win_No_1', 'Win_1', 'Win_pick_1', 'Place_Resutl_1', 'Place_No_1', 'Place_1', 'Place_Resutl_2', 'Place_No_2', 'Place_2', 'Place_Resutl_3', 'Place_No_3', 'Place_3')
+
+#枠複枠単払戻データ_BL2
+class Trn_Bracket_quinella_exacta_dividend_BL2Admin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('競馬場', {'fields':['Track_code'] }),
+	    ('レース番号', {'fields':['Race_No'] }),
+        ('レコード区分', {'fields':['Data_Classification'] }),
+        ('枠連枠番１１', {'fields':['Bracket_No_1_1'] }),
+        ('枠連枠番１２', {'fields':['Bracket_No_1_2'] }),
+	    ('枠連払戻金額１', {'fields':['Bracket_quinella_exacta_1'] }),
+        ('枠連払戻人気順１', {'fields':['Bracket_quinella_exacta_pic_1'] }),
+    ]
+    list_display = ('Race_date', 'Track_code', 'Race_No', 'Data_Classification', 'Bracket_No_1_1', 'Bracket_No_1_2', 'Bracket_quinella_exacta_1', 'Bracket_quinella_exacta_pic_1')
+
+#馬連馬単ワイド払戻データ_QU2
+class Trn_Quinella_exacta_wide_dividend_QU2Admin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('競馬場', {'fields':['Track_code'] }),
+	    ('レース番号', {'fields':['Race_No'] }),
+        ('レコード区分', {'fields':['Data_Classification'] }),
+        ('馬連馬番１１', {'fields':['Horce_No_1_1'] }),
+        ('馬連馬番１２', {'fields':['Horce_No_1_2'] }),
+	    ('馬連払戻金額１', {'fields':['Quinella_exacta_wide_1'] }),
+        ('馬連払戻人気順１', {'fields':['Quinella_exacta_wide_pic_1'] }),
+    ]
+    list_display = ('Race_date', 'Track_code', 'Race_No', 'Data_Classification', 'Horce_No_1_1', 'Horce_No_1_2', 'Quinella_exacta_wide_1', 'Quinella_exacta_wide_pic_1')
+
+#三連複払戻データ_TB3
+class Trn_Trio_dividend_TB3Admin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('競馬場', {'fields':['Track_code'] }),
+	    ('レース番号', {'fields':['Race_No'] }),
+        ('三連複馬番１１', {'fields':['Horce_No_1_1'] }),
+        ('三連複馬番１２', {'fields':['Horce_No_1_2'] }),
+        ('三連複馬番１３', {'fields':['Horce_No_1_3'] }),
+	    ('三連複払戻金額１', {'fields':['Trio_1'] }),
+        ('三連複払戻人気順１', {'fields':['Trio_pic_1'] }),
+    ]
+    list_display = ('Race_date', 'Track_code', 'Race_No', 'Horce_No_1_1', 'Horce_No_1_2', 'Horce_No_1_3', 'Trio_1', 'Trio_pic_1')
+
+#三連単払戻データ_TB4
+class Trn_Trifecta_dividend_TB4Admin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('競馬場', {'fields':['Track_code'] }),
+	    ('レース番号', {'fields':['Race_No'] }),
+        ('三連単馬番１１', {'fields':['Horce_No_1_1'] }),
+        ('三連単馬番１２', {'fields':['Horce_No_1_2'] }),
+        ('三連単馬番１３', {'fields':['Horce_No_1_3'] }),
+	    ('三連単払戻金額１', {'fields':['Trifecta_1'] }),
+        ('三連単払戻人気順１', {'fields':['Trifecta_pic_1'] }),
+    ]
+    list_display = ('Race_date', 'Track_code', 'Race_No', 'Horce_No_1_1', 'Horce_No_1_2', 'Horce_No_1_3', 'Trifecta_1', 'Trifecta_pic_1')
+
+#付加文書_BU1
+class Trn_Attached_document_BU1Admin(admin.ModelAdmin):
+    fieldssets = [
+        ('競走年月日', {'fields':['Race_date'] }),
+        ('競馬場', {'fields':['Track_code'] }),
+	    ('レース番号', {'fields':['Race_No'] }),
+        ('事象名', {'fields':['Event_name'] }),
+        ('レース付加文書１', {'fields':['Attached_document_1'] }),
+    ]
+    list_display = ('Race_date', 'Track_code', 'Race_No', 'Event_name', 'Attached_document_1')
 
 admin.site.register(Tran_Systemstatus)
 admin.site.register(Mst_Operationmode)
@@ -90,10 +193,10 @@ admin.site.register(Trn_Corner_passing_order_BA2)
 admin.site.register(Trn_Fallon_time_BA3)
 admin.site.register(Last_3_Fallon_BA4)
 admin.site.register(Trn_Visitors_BA5)
-admin.site.register(Trn_Attached_document_BU1)
-admin.site.register(Trn_Result_SU6)
-admin.site.register(Trn_Win_place_dividend_WI2)
-admin.site.register(Trn_Bracket_quinella_exacta_dividend_BL2)
-admin.site.register(Trn_Quinella_exacta_wide_dividend_QU2)
-admin.site.register(Trn_Trio_dividend_TB3)
-admin.site.register(Trn_Trifecta_dividend_TB4)
+admin.site.register(Trn_Attached_document_BU1, Trn_Attached_document_BU1Admin)
+admin.site.register(Trn_Result_SU6, Trn_Result_SU6Admin)
+admin.site.register(Trn_Win_place_dividend_WI2, Trn_Win_place_dividend_WI2Admin)
+admin.site.register(Trn_Bracket_quinella_exacta_dividend_BL2, Trn_Bracket_quinella_exacta_dividend_BL2Admin)
+admin.site.register(Trn_Quinella_exacta_wide_dividend_QU2, Trn_Quinella_exacta_wide_dividend_QU2Admin)
+admin.site.register(Trn_Trio_dividend_TB3, Trn_Trio_dividend_TB3Admin)
+admin.site.register(Trn_Trifecta_dividend_TB4, Trn_Trifecta_dividend_TB4Admin)
