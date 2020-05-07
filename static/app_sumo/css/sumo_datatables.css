@@ -1,10 +1,10 @@
-/* 優勝・三賞入力画面　テーブルのヘッダー */
+/* 優勝・三賞入力画面（番付）テーブルのヘッダー */
 #tbl_SUMYUS01_banzuke_header * {
     padding-top: 1px;
     padding-bottom: 1px;
 }
 
-/* 優勝・三賞入力画面　テーブルのボディ */
+/* 優勝・三賞入力画面（番付、優勝三賞）テーブルのボディ */
 #tbl_SUMYUS01_banzuke tbody td,
 #tbl_SUMYUS01_yusho tbody td,
 #tbl_SUMYUS01_3sho tbody td {
@@ -12,7 +12,7 @@
     padding-bottom: 1px;
 }
 
-/* 優勝・三賞入力画面　階級プルダウンメニュー */
+/* 優勝・三賞入力画面（番付）階級プルダウンメニュー */
 #class_code_menu {
     height: 27px;
     padding-top: 0;
@@ -20,16 +20,21 @@
     background-color: lightyellow;
 }
 
-/* 優勝・三賞入力画面　キーワード検索 */
+/* 優勝・三賞入力画面（番付）キーワード検索 */
 #tbl_SUMYUS01_banzuke_filter input {
     background-color: lightyellow;
 }
 
-/* 優勝・三賞入力画面　優勝・三賞の追加ボタン */
+/* 優勝・三賞入力画面（番付）ボタン */
 .button-area {
     text-align: center;
 }
 
 button[disabled] {
     cursor: not-allowed;
+}
+
+/* 優勝・三賞入力画面（番付、優勝三賞）選択中の行 */
+tr.selected td {
+    background-color: lightsteelblue;
 }

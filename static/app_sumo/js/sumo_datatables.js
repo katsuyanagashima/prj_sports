@@ -54,17 +54,20 @@ $(function () {
         },
         dom: '<<t>f>\'', // 検索ボックスの位置
     });
-    // 選択した行の背景色を変更、ラジオボタンにチェック、優勝・三賞の指定ボタンの切り替え
+    // 選択した行の背景色を変更、ラジオボタンにチェック、優勝・三賞の指定ボタンの有効／無効
     $('#tbl_SUMYUS01_banzuke tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
-            $(this).children('.selectedRikishi').children('input').prop('checked', false);
+            //$(this).children('.selectedRikishi').children('input').prop('checked', false);
+            $(this).find('input').prop('checked', false);
         } else {
-            myTable.$('tr.selected').removeClass('selected');
+            //myTable.$('tr.selected').removeClass('selected');
+            $('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            $(this).children('.selectedRikishi').children('input').prop('checked', true);
+            //$(this).children('.selectedRikishi').children('input').prop('checked', true);
+            $(this).find('input').prop('checked', true);
         }
-        // 優勝・三賞の指定ボタンの切り替え
+        // ボタンの有効／無効
         var my_class_code = myTable.$('tr.selected').children('td.class_code').text();
         if (my_class_code == '幕内') {
             $('.btn-yusho').prop("disabled", false);
@@ -86,5 +89,20 @@ $(document).on('init.dt', function (e, settings) {
     if (state) {
         var val_init = state['columns'][3]['search']['search'].replace(/\^|\$/g, '');
         $('#class_code_menu').val(val_init);
+    }
+});
+
+// 優勝・三賞画面の指定済みテーブル
+// 　選択した行の背景色を変更、ラジオボタンにチェック、取消ボタンの有効／無効
+$('#tbl_SUMYUS01_yusho tbody, #tbl_SUMYUS01_3sho tbody').on('click', 'tr', function () {
+    if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+        $(this).find('input').prop('checked', false);
+        $('.btn-torikeshi').prop("disabled", true);
+    } else {
+        $('tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+        $(this).find('input').prop('checked', true);
+        $('.btn-torikeshi').prop("disabled", false);
     }
 });
