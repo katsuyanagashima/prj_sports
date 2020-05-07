@@ -94,23 +94,15 @@ TsuushimbunFormset = forms.modelformset_factory(
     Md_Tsuushimbun, form=Md_TsuushimbunForm, extra=0
 )
 
-# 入場人員フォームセット
-class Md_NyujoForm(forms.ModelForm):
-    class Meta:
-        model = Md_Nyujo
-        fields = '__all__'
-NyujoFormset = forms.modelformset_factory(
-    Md_Nyujo, form=Md_NyujoForm, extra=0
-)
+# 場当日情報フォームセット
+# class Md_Jou_ToujitsuForm(forms.ModelForm):
+#     class Meta:
+#         model = Md_Jou_Toujitsu
+#         fields = '__all__'
+# Jou_ToujitsuForm = forms.modelformset_factory(
+#     Md_Jou_Toujitsu, form=Md_Jou_ToujitsuForm, extra=0
+# )
 
-# 売上金フォームセット
-class Md_UriagekinForm(forms.ModelForm):
-    class Meta:
-        model = Md_Uriagekin
-        fields = '__all__'
-UriagekinFormset = forms.modelformset_factory(
-    Md_Uriagekin, form=Md_UriagekinForm, extra=0
-)
 
 
 #出走表用フォームセット

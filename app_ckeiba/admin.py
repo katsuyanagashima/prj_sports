@@ -160,8 +160,8 @@ admin.site.register(Md_Shussouhyou)
 admin.site.register(Md_Shussouhyou_shussouba)
 admin.site.register(Md_Shussouhyou_shussouba_ruikei)
 admin.site.register(Md_Shussouhyou_shussouba_5seiseki)
-admin.site.register(Md_Nyujo)
-admin.site.register(Md_Uriagekin)
+
+admin.site.register(Md_Jou_Toujitsu)
 
 admin.site.register(Md_Seiseki_Haraimodoshi)
 admin.site.register(Md_Seiseki_Haraimodoshi_tan)

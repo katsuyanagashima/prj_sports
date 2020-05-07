@@ -1,0 +1,464 @@
+<?xml version = '1.0' encoding = 'UTF-16'?>
+<!DOCTYPE NewsML PUBLIC "urn:newsml:iptc.org:20001006:NewsMLv1.0.dtd:1" "../DTD/NewsMLv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
+	%InContent;
+	<!ENTITY % Kddata SYSTEM "../CKDTD/KdCKUSZv1.0.dtd">
+	%Kddata;
+]>
+<NewsML>
+   <Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
+   <NewsEnvelope>
+      <TransmissionId>20110524CKFU00090</TransmissionId>
+      <DateAndTime>20110525T171407+0900</DateAndTime>
+      <NewsProduct FormalName="NskNewsML:1"/>
+   </NewsEnvelope>
+   <NewsItem Duid="NI_CK01" xml:lang="ja-JP">
+      <Identification>
+         <NewsIdentifier>
+            <ProviderId>kyodonews.jp</ProviderId>
+            <DateId>20110524</DateId>
+            <NewsItemId>20110524CKFSUSZ20040212</NewsItemId>
+            <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+            <PublicIdentifier>urn:newsml:kyodonews.jp:20110524:20110524CKFSUSZ20040212:1</PublicIdentifier>
+         </NewsIdentifier>
+      </Identification>
+      <NewsManagement>
+         <NewsItemType FormalName="News"/>
+         <FirstCreated>20110525T171407+0900</FirstCreated>
+         <ThisRevisionCreated>20110525T171407+0900</ThisRevisionCreated>
+         <Status FormalName="Usable"/>
+      </NewsManagement>
+      <NewsComponent Duid="NC_CK01" xml:lang="ja-JP" Essential="no" EquivalentsList="no">
+         <NewsLines>
+            <HeadLine>４回大井競馬２日目１２Ｒ全着成績</HeadLine>
+            <SubHeadLine>こじし座特別競走</SubHeadLine>
+         </NewsLines>
+         <AdministrativeMetadata>
+            <Provider>
+               <Party FormalName="KYODONEWS"/>
+            </Provider>
+         </AdministrativeMetadata>
+         <DescriptiveMetadata>
+            <Language FormalName="ja"/>
+            <SubjectCode>
+               <Subject FormalName="15000000"/>
+               <SubjectMatter FormalName="15030000"/>
+            </SubjectCode>
+         </DescriptiveMetadata>
+         <ContentItem>
+            <MediaType FormalName="Text"/>
+            <Format FormalName="KdCKUSZv1.0"/>
+            <MimeType FormalName="text/xml"/>
+            <DataContent>
+               <InContent version="1.0">
+                  <InMetadata>
+                     <InAdminInfo>
+                        <InProductId>２０１１０５２４ＣＫＦＳＵＳＺ２００４０２１２０１</InProductId>
+                        <InDateTime>２０１１年０５月２４日４１時１４分０７秒</InDateTime>
+                        <InFormat>
+                           <InFormatType>フルタグ書式</InFormatType>
+                           <InFormatComment>ＫｄＣＫＵＳＺｖ１．０</InFormatComment>
+                        </InFormat>
+                     </InAdminInfo>
+                     <InCategoryInfo>
+                        <InClasses>
+                           <InClass>
+                              <InBClass>地方競馬</InBClass>
+                              <InMClass1>レース電文</InMClass1>
+                              <InMClass2>大井競馬２日目１２Ｒ</InMClass2>
+                              <InSClass>全着成績</InSClass>
+                           </InClass>
+                        </InClasses>
+                        <InNewsCategory>
+                           <InNewsGenre>走大</InNewsGenre>
+                        </InNewsCategory>
+                        <InNewsLine>
+                           <InHeadLine>４回大井競馬２日目１２Ｒ全着成績</InHeadLine>
+                           <InSubHeadLines>
+                              <InSubHeadLine>こじし座特別競走</InSubHeadLine>
+                           </InSubHeadLines>
+                        </InNewsLine>
+                     </InCategoryInfo>
+                     <InNewsInfo>
+                        <InSubHeader>
+                           <InFormType>ＫｄＣＫＵＳＺｖ１．０</InFormType>
+                           <InSendControl>
+                              <InSendBlkInfo InNb="1">
+                                 <InSendBlk>フル走社</InSendBlk>
+                              </InSendBlkInfo>
+                              <InSendIndInfo InNi="16">
+                                 <InSendInd>道新</InSendInd>
+                                 <InSendInd>産経</InSendInd>
+                                 <InSendInd>東京</InSendInd>
+                                 <InSendInd>内外</InSendInd>
+                                 <InSendInd>中日</InSendInd>
+                                 <InSendInd>佐賀</InSendInd>
+                                 <InSendInd>ＨＳ</InSendInd>
+                                 <InSendInd>ＮＳ</InSendInd>
+                                 <InSendInd>ＳＮ</InSendInd>
+                                 <InSendInd>ＴＳ</InSendInd>
+                                 <InSendInd>ＴＣ</InSendInd>
+                                 <InSendInd>大報</InSendInd>
+                                 <InSendInd>日ス</InSendInd>
+                                 <InSendInd>ス日</InSendInd>
+                                 <InSendInd>デス</InSendInd>
+                                 <InSendInd>九ス</InSendInd>
+                              </InSendIndInfo>
+                           </InSendControl>
+                        </InSubHeader>
+                     </InNewsInfo>
+                  </InMetadata>
+                  <InData xml:space="preserve">
+                     <seisekihyouC meishou="成績表Ｃ">
+                        <joumei hyouki="3字">{{joumei_3char}}</joumei>
+                        <joumei hyouki="正式名">{{joumei_seishiki}}</joumei>
+                        <kaisuu>{{kaisuu}}</kaisuu>
+                        <kainichime>{{kainichime}}</kainichime>
+                        {% if kanhyouki %}
+                        <kanhyouki>{{kanhyouki}}</kanhyouki>
+                        {% endif %}
+                        <ck_kyounichi>
+                           <ck_kyounen>{{ck_kyounen}}</ck_kyounen>
+                           <ck_kyoutuki>{{ck_kyoutuki}}</ck_kyoutuki>
+                           <ck_kyouhi>{{ck_kyouhi}}</ck_kyouhi>
+                        </ck_kyounichi>
+                        <joujouhou>
+                           <touresuu>{{touresuu}}</touresuu>
+                           <shoribi>{{shoribi}}</shoribi>
+                           <tenkou>{{tenkou}}</tenkou>
+                           {% if bajousiba %}
+                           <bajousiba>{{bajousiba}}</bajousiba>
+                           {% endif %}
+                           {% if bajouda %}
+                           <bajouda>{{bajouda}}</bajouda>
+                           {% endif %}
+                           {% if ck_babamizu %}
+                           <ck_babamizu>{{ck_babamizu}}</ck_babamizu>
+                           {% endif %}
+                        </joujouhou>
+                        <rejouhou>
+                           <rebangou>{{rebangou}}</rebangou>
+                           <shubetsu>{{shubetsu}}</shubetsu>
+                           <tokusouhonsuu >{{tokusouhonsuu}}</tokusouhonsuu>
+                           <tokusoumeihon>{{tokusoumeihon}}</tokusoumeihon>
+                           <tokusoumeifuku>{{tokusoumeifuku}}</tokusoumeifuku>
+                           {% if ck_fukusyoumei_list %}
+                           {% for ck_fukusyoumei in ck_fukusyoumei_list %}
+                           <ck_fukusyoumei>{{ck_fukusyoumei}}</ck_fukusyoumei>
+                           {% endfor %}
+                           {% endif %}
+                           {% if guredo %}
+                           <guredo>{{guredo}}</guredo>
+                           {% endif %}
+                           <ck_chuokouryu>{{ck_chuokouryu}}</ck_chuokouryu>
+                           <kyori>{{kyori}}</kyori>
+                           <torakku>{{torakku}}</torakku>
+                           {% if ck_naita %}
+                           <ck_naita>{{ck_naita}}</ck_naita>
+                           {% endif %}
+                           <ck_shokin ck_chaku="1着">{{ck_shokin1}}</ck_shokin>
+                           <ck_shokin ck_chaku="2着">{{ck_shokin2}}</ck_shokin>
+                           <ck_shokin ck_chaku="3着">{{ck_shokin3}}</ck_shokin>
+                           <ck_shokin ck_chaku="4着">{{ck_shokin4}}</ck_shokin>
+                           <ck_shokin ck_chaku="5着">{{ck_shokin5}}</ck_shokin>
+                           <shusuu>{{shusuu}}</shusuu>
+                           <jyoukenjouhou1>{{jyoukenjouhou1}}</jyoukenjouhou1>
+                           <jyoukenjouhou>
+                              <bareijouken>{{bareijouken}}</bareijouken>
+                              <jouken/>
+                              {% for ck_shikaku in ck_shikaku_list %}
+                              <ck_shikaku>{{ck_shikaku}}</ck_shikaku>
+                              {% endfor %}
+                              {% for ck_rkaku in ck_rkaku_list %}
+                              <ck_rkaku>{{ck_rkaku}}</ck_rkaku>
+                              {% endfor %}
+                              {% for ck_rkumi in ck_rkumi_list %}
+                              <ck_rkumi>{{ck_rkumi}}</ck_rkumi>
+                              {% endfor %}
+                           </jyoukenjouhou>
+                           <rekekka>{{rekekka}}</rekekka>
+                        </rejouhou>
+                        <seisekijouhou>
+                           {% for umabetsu in seiseiki_umabetsu_params_list%}
+                           <chakujunjouhou>
+                              <juni>{{umabetsu.juni}}</juni>
+                              <nyuusenjuni>{{umabetsu.nyuusenjuni}}</nyuusenjuni>
+                              <waku>{{umabetsu.waku}}</waku>
+                              <uma>{{umabetsu.uma}}</uma>
+                              <ck_boiro>{{umabetsu.ck_boiro}}</ck_boiro>
+                              <bamei hyouki="9字">{{umabetsu.bamei_9char}}</bamei>
+                              <bamei hyouki="正式名">{{umabetsu.bamei_seishiki}}</bamei>
+                              <ck_umasyozoku hyouki="正式名">{{umabetsu.ck_umasyozoku}}</ck_umasyozoku>
+                              <ck_umasyozoku hyouki="1字">{{umabetsu.ck_umasyozoku_1char}}</ck_umasyozoku>
+                              <seibetsu>{{umabetsu.seibetsu}}</seibetsu>
+                              <barei>{{umabetsu.barei}}</barei>
+                              <fujuu>{{umabetsu.fujuu}}</fujuu>
+                              {% if umabetsu.ck_sekijuu %}
+                              <ck_sekijuu>{{umabetsu.ck_sekijuu}}</ck_sekijuu>
+                              {% endif %}
+                              <kimei hyouki="3字">{{umabetsu.kimei}}</kimei>
+                              <kimei hyouki="姓">{{umabetsu.kimei_sei}}</kimei>
+                              <kimei hyouki="名">{{umabetsu.kimei_mei}}</kimei>
+                              <kiko/>
+                              <ck_kimnbangou>{{umabetsu.ck_kimnbangou}}</ck_kimnbangou>
+                              {% if umabetsu.mikubun %}
+                              <mikubun>{{umabetsu.mikubun}}</mikubun>
+                              {% endif %}
+                              {% if umabetsu.ck_maekimei %}
+                              <ck_maekimei hyouki = "3字" >{{umabetsu.ck_maekimei}}</ck_maekimei>
+                              <ck_maekimei hyouki = "姓" >{{umabetsu.ck_maekimei_sei}}</ck_maekimei>
+                              <ck_maekimei hyouki = "名" >{{umabetsu.ck_maekimei_mei}}</ck_maekimei>
+                              {% endif %}
+                              {% if umabetsu.ck_maekimnbangou %}
+                              <ck_maekimnbangou>{{umabetsu.ck_maekimnbangou}}</ck_maekimnbangou>
+                              {% endif %}
+                              {% if umabetsu.ck_maemikubun %}
+                              <ck_maemikubun>{{umabetsu.ck_maemikubun}}</ck_maemikubun>
+                              {% endif %}
+                              {% if umabetsu.ck_henriyuu %}
+                              <ck_henriyuu>{{umabetsu.ck_henriyuu}}</ck_henriyuu>
+                              {% endif %}
+                              <ta>
+                                 <fun>{{umabetsu.fun}}</fun>
+                                 <byo>{{umabetsu.byo}}</byo>
+                                 <miri>{{umabetsu.miri}}</miri>
+                              </ta>
+                              {% if umabetsu.reko %}
+                              <reko>{{umabetsu.reko}}</reko>
+                              {% endif %}
+
+                              {% if umabetsu.salist %}
+                              {% for sa in umabetsu.salist %}
+                                 <ck_fukusyoumei>{{sa}}</ck_fukusyoumei>
+                              {% endfor %}
+                              {% endif %}
+                              {% if umabetsu.sareigai %}
+                              <sareigai>{{umabetsu.sareigai}}</sareigai>
+                              {% endif %}
+                              {% if umabetsu.ck_jikosyu %}
+                              <ck_jikosyu>{{umabetsu.ck_jikosyu}}</ck_jikosyu>
+                              {% endif %}
+                              {% if umabetsu.ck_jikoriyuu %}
+                              <ck_jikoriyuu>{{umabetsu.ck_jikoriyuu}}</ck_jikoriyuu>
+                              {% endif %}
+                              <bajuu>{{umabetsu.bajuu}}</bajuu>
+                              <bajuuzougen>{{umabetsu.bajuuzougen}}</bajuuzougen>
+                              <tannin>{{umabetsu.tannin}}</tannin>
+                              <choumei hyouki="3字">{{umabetsu.choumei}}</choumei>
+                              <choumei hyouki="姓">{{umabetsu.choumei_sei}}</choumei>
+                              <choumei hyouki="名">{{umabetsu.choumei_mei}}</choumei>
+                              {% if umabetsu.ikubunnai %}
+                              <ikubunnai>{{umabetsu.ikubunnai}}</ikubunnai>
+                              {% endif %}
+                           </chakujunjouhou>
+                           {% endfor %}
+                           
+                           <harajouhou>
+                              <tanharajouhou>
+                                    {% if tanharajyoukyou %}
+                                    <tanharajyoukyou> {{tanharajyoukyou}}</tanharajyoukyou>
+                                    {% endif %}
+                                    {% for tan in seiseiki_tan_params_list%}
+                                    <tankumijouhou>
+                                       {% if tan.tankumijoukyou %}
+                                       <tankumijoukyou>{{tan.tankumijoukyou}}</tankumijoukyou>
+                                       {% endif %}
+                                       {% if tan.tansaki %}
+                                       <tankumi>
+                                       <tansaki>{{tan.tansaki}}</tansaki>
+                                       </tankumi>
+                                       {% endif %}
+                                       {% if tan.tanharakin %}
+                                       <tanharakin>{{tan.tanharakin}}</tanharakin>
+                                       {% endif %}
+                                       <tantounin>{{tan.tantounin}}</tantounin>
+                                    </tankumijouhou>
+                                    {% endfor %}
+                              </tanharajouhou>
+                              <fukuharajouhou>
+                                    {% if fukuharajyoukyou %}
+                                    <fukuharajyoukyou> {{fukuharajyoukyou}}</fukuharajyoukyou>
+                                    {% endif %}
+                                    {% for fuku in seiseiki_fuku_params_list%}
+                                    <fukukumijouhou>
+                                       {% if fuku.fukukumijoukyou %}
+                                       <fukukumijoukyou>{{fuku.fukukumijoukyou}}</fukukumijoukyou>
+                                       {% endif %}
+                                       {% if fuku.fukusaki %}
+                                       <fukukumi>
+                                       <fukusaki>{{fuku.fukusaki}}</fukusaki>
+                                       </fukukumi>
+                                       {% endif %}
+                                       {% if fuku.fukuharakin %}
+                                       <fukuharakin>{{fuku.fukuharakin}}</fukuharakin>
+                                       {% endif %}
+                                       <ck_fukutounin>{{fuku.ck_fukutounin}}</ck_fukutounin>
+                                    </fukukumijouhou>
+                                    {% endfor %}
+                              </fukuharajouhou>
+                              <wakupukuharajouhou>
+                                    {% if wakupukuharajoukyou %}
+                                    <wakupukuharajoukyou> {{wakupukuharajoukyou}}</wakupukuharajoukyou>
+                                    {% endif %}
+                                    {% for wakupuku in seiseiki_wakupuku_params_list%}
+                                    <wakupukukumijouhou>
+                                       {% if wakupuku.wakupukukumijoukyou %}
+                                       <wakupukukumijoukyou>{{wakupuku.wakupukukumijoukyou}}</wakupukukumijoukyou>
+                                       {% endif %}
+                                       {% if wakupuku.wakupukusaki %}
+                                       <wakupukukumi>
+                                       <wakupukusaki>{{wakupuku.wakupukusaki}}</wakupukusaki>
+                                       <wakupukuato>{{wakupuku.wakupukuato}}</wakupukuato>
+                                       </wakupukukumi>
+                                       {% endif %}
+                                       {% if wakupuku.wakupukuharakin %}
+                                       <wakupukuharakin>{{wakupuku.wakupukuharakin}}</wakupukuharakin>
+                                       {% endif %}
+                                       <wakupukutounin>{{wakupuku.wakupukutounin}}</wakupukutounin>
+                                    </wakupukukumijouhou>
+                                    {% endfor %}
+                              </wakupukuharajouhou>
+                              <ck_wakutanharajouhou>
+                                    {% if ck_wakutanharajoukyou %}
+                                    <ck_wakutanharajoukyou> {{ck_wakutanharajoukyou}}</ck_wakutanharajoukyou>
+                                    {% endif %}
+                                    {% for wakutan in seiseiki_wakutan_params_list%}
+                                    <ck_wakutankumijouhou>
+                                       {% if wakutan.ck_wakutankumijoukyou %}
+                                       <ck_wakutankumijoukyou>{{wakutan.ck_wakutankumijoukyou}}</ck_wakutankumijoukyou>
+                                       {% endif %}
+                                       {% if wakutan.ck_wakutansaki %}
+                                     <ck_wakutankumi>
+                                       <ck_wakutansaki>{{wakutan.ck_wakutansaki}}</ck_wakutansaki>
+                                       <ck_wakutanato>{{wakutan.ck_wakutanato}}</ck_wakutanato>
+                                       </ck_wakutankumi>
+                                       {% endif %}
+                                       {% if wakutan.ck_wakutanharakin %}
+                                       <ck_wakutanharakin>{{wakutan.ck_wakutanharakin}}</ck_wakutanharakin>
+                                       {% endif %}
+                                       <ck_wakutantounin>{{wakutan.ck_wakutantounin}}</ck_wakutantounin>
+                                    </ck_wakutankumijouhou>
+                                    {% endfor %}
+                              </ck_wakutanharajouhou>
+                              <umapukuharajouhou>
+                                    {% if umapukuharajoukyou %}
+                                    <umapukuharajoukyou> {{umapukuharajoukyou}}</umapukuharajoukyou>
+                                    {% endif %}
+                                    {% for umapuku in seiseiki_umapuku_params_list%}
+                                    <umapukukumijouhou>
+                                       {% if umapuku.umapukukumijoukyou %}
+                                       <umapukukumijoukyou>{{umapuku.umapukukumijoukyou}}</umapukukumijoukyou>
+                                       {% endif %}
+                                       {% if umapuku.umapukusaki %}
+                                       <umapukukumi>
+                                       <umapukusaki>{{umapuku.umapukusaki}}</umapukusaki>
+                                       <umapukuato>{{umapuku.umapukuato}}</umapukuato>
+                                       </umapukukumi>
+                                       {% endif %}
+                                       {% if umapuku.umapukuharakin %}
+                                       <umapukuharakin>{{umapuku.umapukuharakin}}</umapukuharakin>
+                                       {% endif %}
+                                       <umapukutounin>{{umapuku.umapukutounin}}</umapukutounin>
+                                    </umapukukumijouhou>
+                                    {% endfor %}
+                              </umapukuharajouhou>
+                              <umatanharajouhou>
+                                    {% if umatanharajoukyou %}
+                                    <umatanharajoukyou> {{umatanharajoukyou}}</umatanharajoukyou>
+                                    {% endif %}
+                                    {% for umatan in seiseiki_umatan_params_list%}
+                                    <umatankumijouhou>
+                                       {% if umatan.umatankumijoukyou %}
+                                       <umatankumijoukyou>{{umatan.umatankumijoukyou}}</umatankumijoukyou>
+                                       {% endif %}
+                                       {% if umatan.umatansaki %}
+                                       <umatankumi>
+                                       <umatansaki>{{umatan.umatansaki}}</umatansaki>
+                                       <umatanato>{{umatan.umatanato}}</umatanato>
+                                       </umatankumi>
+                                       {% endif %}
+                                       {% if umatan.umatanharakin %}
+                                       <umatanharakin>{{umatan.umatanharakin}}</umatanharakin>
+                                       {% endif %}
+                                       <umatantounin>{{umatan.umatantounin}}</umatantounin>
+                                    </umatankumijouhou>
+                                    {% endfor %}
+                              </umatanharajouhou>
+                              <sanpukuharajouhou>
+                                    {% if sanpukuharajoukyou %}
+                                    <sanpukuharajoukyou> {{sanpukuharajoukyou}}</sanpukuharajoukyou>
+                                    {% endif %}
+                                    {% for sanpuku in seiseiki_sanpuku_params_list%}
+                                    <sanpukukumijouhou>
+                                       {% if sanpuku.sanpukukumijoukyou %}
+                                       <sanpukukumijoukyou>{{sanpuku.sanpukukumijoukyou}}</sanpukukumijoukyou>
+                                       {% endif %}
+                                       {% if sanpuku.sanpukusaki %}
+                                       <sanpukukumi>
+                                       <sanpukusaki>{{sanpuku.sanpukusaki}}</sanpukusaki>
+                                       <sanpukunaka>{{sanpuku.sanpukunaka}}</sanpukunaka>
+                                       <sanpukuato>{{sanpuku.sanpukuato}}</sanpukuato>
+                                       </sanpukukumi>
+                                       {% endif %}
+                                       {% if sanpuku.sanpukuharakin %}
+                                       <sanpukuharakin>{{sanpuku.sanpukuharakin}}</sanpukuharakin>
+                                       {% endif %}
+                                       <sanpukutounin>{{sanpuku.sanpukutounin}}</sanpukutounin>
+                                    </sanpukukumijouhou>
+                                    {% endfor %}
+                              </sanpukuharajouhou>
+                              <santanharajouhou>
+                                    {% if santanharajoukyou %}
+                                    <santanharajoukyou> {{santanharajoukyou}}</santanharajoukyou>
+                                    {% endif %}
+                                    {% for santan in seiseiki_santan_params_list%}
+                                    <santankumijouhou>
+                                       {% if santan.santankumijoukyou %}
+                                       <santankumijoukyou>{{santan.santankumijoukyou}}</santankumijoukyou>
+                                       {% endif %}
+                                       {% if santan.santansaki %}
+                                       <santankumi>
+                                       <santansaki>{{santan.santansaki}}</santansaki>
+                                       <santannaka>{{santan.santannaka}}</santannaka>
+                                       <santanato>{{santan.santanato}}</santanato>
+                                       </santankumi>
+                                       {% endif %}
+                                       {% if santan.santanharakin %}
+                                       <santanharakin>{{santan.santanharakin}}</santanharakin>
+                                       {% endif %}
+                                       <santantounin>{{santan.santantounin}}</santantounin>
+                                    </santankumijouhou>
+                                    {% endfor %}
+                              </santanharajouhou>
+                              <waharajouhou>
+                                    {% if waharajoukyou %}
+                                    <waharajoukyou> {{waharajoukyou}}</waharajoukyou>
+                                    {% endif %}
+                                    {% for wa in seiseiki_wa_params_list%}
+                                    <wakumijouhou>
+                                       {% if wa.wakumijoukyou %}
+                                       <wakumijoukyou>{{wa.wakumijoukyou}}</wakumijoukyou>
+                                       {% endif %}
+                                       {% if wa.wasaki %}
+                                       <wakumi>
+                                       <wasaki>{{wa.wasaki}}</wasaki>
+                                       <waato>{{wa.waato}}</waato>
+                                       </wakumi>
+                                       {% endif %}
+                                       {% if wa.waharakin %}
+                                       <waharakin>{{wa.waharakin}}</waharakin>
+                                       {% endif %}
+                                       <watounin>{{wa.watounin}}</watounin>
+                                    </wakumijouhou>
+                                    {% endfor %}
+                              </waharajouhou>
+                           </harajouhou>
+                        </seisekijouhou>
+                     </seisekihyouC>
+                  </InData>
+               </InContent>
+            </DataContent>
+         </ContentItem>
+      </NewsComponent>
+   </NewsItem>
+</NewsML>
