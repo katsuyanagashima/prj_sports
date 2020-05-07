@@ -164,38 +164,55 @@ class Output_NewsML():
         if self.newsno == "01":
             fix_context = {
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01") ,  #副ヘッダマスタ
+                'subheader_0':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01").filter(Delivery_code__Individual_address="0") ,  #副ヘッダマスタ・ブロック宛先
+                'subheader_1':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="01").filter(Delivery_code__Individual_address="1") ,  #副ヘッダマスタ・個別宛先
                 'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
-            #    'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
                 'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
-            #    'Lifechii': Mst_Lifetime_statusinfo.objects.all(),  # 生涯地位マスタ
+                'Lifeaward_01': Mst_Lifetime_award.objects.filter(Award_category_code__Award_category_code="1"),  # 生涯受賞マスタ（優勝）
+                'Lifeaward_02': Mst_Lifetime_award.objects.filter(Award_category_code__Award_category_code="2"),  # 生涯受賞マスタ（殊勲賞）
+                'Lifeaward_03': Mst_Lifetime_award.objects.filter(Award_category_code__Award_category_code="3"),  # 生涯受賞マスタ（敢闘賞）
+                'Lifeaward_04': Mst_Lifetime_award.objects.filter(Award_category_code__Award_category_code="4"),  # 生涯受賞マスタ（技能賞）
+              #  'Lifeaward_01_player': Mst_Lifetime_award.objects.filter(Award_category_code__Award_category_code="1").filter(Rikishi_code__Rikishi_code),  # 生涯受賞マスタ（優勝）
+                'Lifechii': Mst_Lifetime_statusinfo.objects.all(),  # 生涯地位マスタ
             }
         #02新番付資料・補正
         elif self.newsno == "02":
             fix_context = {
                 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="02") ,  #副ヘッダマスタ
-                'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'subheader_0':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="02").filter(Delivery_code__Individual_address="0") ,  #副ヘッダマスタ・ブロック宛先
+                'subheader_1':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="02").filter(Delivery_code__Individual_address="1") ,  #副ヘッダマスタ・個別宛先
+                'Banzuke_forecast': Tran_Banzuke_forecast.objects.all(),  # 予想番付マスタ
+                'Liferesult': Mst_Lifetime_result.objects.all(),  # 生涯成績マスタ
+                'Lifeaward': Mst_Lifetime_award.objects.all(),  # 生涯受賞マスタ
+                'Lifeaward_01': Mst_Lifetime_award.objects.filter(Award_category_code__Award_category_code="1"),  # 生涯受賞マスタ（優勝）
+              #  'Lifeaward_01_player': Mst_Lifetime_award.objects.filter(Award_category_code__Award_category_code="1").filter(Rikishi_code__Rikishi_code),  # 生涯受賞マスタ（優勝）
+                'Lifechii': Mst_Lifetime_statusinfo.objects.all(),  # 生涯地位マスタ
             }
         #03新番付
         elif self.newsno == "03":
             fix_context = {
-                # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03") ,  #副ヘッダマスタ
+                'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
+                'subheader_0':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03").filter(Delivery_code__Individual_address="0") ,  #副ヘッダマスタ・ブロック宛先
+                'subheader_1':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="03").filter(Delivery_code__Individual_address="1") ,  #副ヘッダマスタ・個別宛先
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
+                'Banzuke_east': Tran_Banzuke.objects.filter(Eastwest_code__Eastwest_code="1"),  # 番付明細マスタ・東
+                'Banzuke_west': Tran_Banzuke.objects.filter(Eastwest_code__Eastwest_code="2"),  # 番付明細マスタ・東
             }
         #04郷土力士新番付
         elif self.newsno == "04":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="04") ,  #副ヘッダマスタ
+                'subheader_0':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="04").filter(Delivery_code__Individual_address="0") ,  #副ヘッダマスタ・ブロック宛先
+                'subheader_1':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="04").filter(Delivery_code__Individual_address="1") ,  #副ヘッダマスタ・個別宛先
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
             }
         #05幕下以下新番付
         elif self.newsno == "05":
             fix_context = {
                 # 'newsmlmeta': Tran_Systemstatus.objects.all(),  # システム状態マスタ
-                'subheader':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="05") ,  #副ヘッダマスタ
+                'subheader_0':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="05").filter(Delivery_code__Individual_address="0") ,  #副ヘッダマスタ・ブロック宛先
+                'subheader_1':Mst_SubHeader.objects.filter(Content_code__NewsMLNo="05").filter(Delivery_code__Individual_address="1") ,  #副ヘッダマスタ・個別宛先
                 'Banzuke': Tran_Banzuke.objects.all(),  # 番付明細マスタ
             }
         #06郷土力士取組
