@@ -47,6 +47,7 @@ class Common():
                 shutil.move(filepath, TOEVENTSCHEDULEDATDATA)
         else:
             if os.path.exists(os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath))):
+                logger.info('ファイル移動先ファイル有り')
                 shutil.move(filepath, os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath) + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
             else:
                 shutil.move(filepath, TOPROCESSEDDATDATA)
@@ -57,9 +58,9 @@ class Common():
 
         # 開催日割データ
         if EVENTDATEDATA == csvDataFileFlg:
-            filename_schedule_record = os.path.basename(filepath)
+            filename_eventdatedata_record = os.path.basename(filepath)
             # 監視元のフォルダパスを生成
-            fileName = os.path.normpath(os.path.join(base_trn, CSVDATA, filename_schedule_record))
+            fileName = os.path.normpath(os.path.join(base_trn, CSVDATA, filename_eventdatedata_record))
 
             logger.info( f'created Start :{fileName}')
             # ファイル読み込み
@@ -69,9 +70,9 @@ class Common():
 
         # 簡易競走成績データ
         if SIMPLERACERESULTSDATA == csvDataFileFlg:
-            filename_schedule_record = os.path.basename(filepath)
+            filename_simpleraceresultsdata_record = os.path.basename(filepath)
             # 監視元のフォルダパスを生成
-            fileName = os.path.normpath(os.path.join(base_trn, CSVDATA, filename_schedule_record))
+            fileName = os.path.normpath(os.path.join(base_trn, CSVDATA, filename_simpleraceresultsdata_record))
 
             logger.info( f'created Start :{fileName}')
             # ファイル読み込み
