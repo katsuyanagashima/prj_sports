@@ -4,7 +4,6 @@ import glob
 import os
 import pathlib
 import shutil
-import subprocess as sp
 import sys
 import threading
 import time
@@ -45,7 +44,6 @@ class AppAutoraceConfig(AppConfig):
         processed_dat_dir = pathlib.Path(base) / pathlib.Path(PROCESSEDDATDATA)
         if not processed_dat_dir.exists():
             os.makedirs(str(processed_dat_dir))
-
 
     def make_lock_file(self):
         baseDatData = os.path.normpath(os.path.join(base, DATDATA))
@@ -98,6 +96,21 @@ class AppAutoraceConfig(AppConfig):
         except Exception as e:
             logger.error(e)
 
+
+    def call_db_conn(self):
+
+        conn = False
+        while not conn:
+            time.sleep(10)
+            try:
+                from app_autorace.models import Tran_Systemstatus
+                Tran_Systemstatus.objects.count()
+                logger.info('DB接続可:')
+                conn = True
+            except Exception as e:
+                logger.info(f'DB接続不可 prj_sports.dbコンテナを起動する必要があります。: {e}')
+
+
     # docker-compose up -d docker-compose stop 呼ばれる？
     def ready(self):
         try:
@@ -107,6 +120,11 @@ class AppAutoraceConfig(AppConfig):
             if AppAutoraceConfig.run_already:
                 return
             AppAutoraceConfig.run_already = True
+
+            # DB接続確認
+            logger.info('DB接続確認 Start:')
+            self.call_db_conn()
+            logger.info('DB接続確認 End:')
 
             # 固定長フォルダフォルダ作成
             self.make_dat_folder()

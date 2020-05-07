@@ -56,6 +56,7 @@ class Common():
                 shutil.move(filepath, TOSCHEDULEDATDATA)
         else:
             if os.path.exists(os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath))):
+                logger.info('ファイル移動先ファイル有り')
                 shutil.move(filepath, os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath) + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
             else:
                 shutil.move(filepath, TOPROCESSEDDATDATA)
