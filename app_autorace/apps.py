@@ -2,6 +2,7 @@
 import glob
 import os
 import pathlib
+import shutil
 import subprocess as sp
 import sys
 import threading
@@ -14,12 +15,12 @@ from django.apps import AppConfig
 from app_autorace import dat_start_manage as dm
 from app_autorace.consts import *
 
-try:
-    import codecs
-except ImportError:
-    codecs = None
-
 logger = getLogger('app_autorace')
+try:
+    from app_autorace import commons
+except Exception as e:
+    logger.error(f'commonsファイル読み込み失敗 : {e}')
+
 base =  os.path.dirname(os.path.abspath(__file__)) # app_autorace
 
 class AppAutoraceConfig(AppConfig):
@@ -29,12 +30,21 @@ class AppAutoraceConfig(AppConfig):
 
     def make_dat_folder(self):
         """
-        起動時に固定長フォルダフォルダが無ければ作成
+        起動時に固定長フォルダフォルダ,スケジュールフォルダ,処理済みフォルダが無ければ作成
         :return:
         """
         datdir = pathlib.Path(base) / pathlib.Path(DATDATA)
         if not datdir.exists():
             os.makedirs(str(datdir))
+
+        schedule_dir = pathlib.Path(base) / pathlib.Path(SCHEDULEDATDATA)
+        if not schedule_dir.exists():
+            os.makedirs(str(schedule_dir))
+
+        processed_dat_dir = pathlib.Path(base) / pathlib.Path(PROCESSEDDATDATA)
+        if not processed_dat_dir.exists():
+            os.makedirs(str(processed_dat_dir))
+
 
     def make_lock_file(self):
         baseDatData = os.path.normpath(os.path.join(base, DATDATA))
@@ -53,26 +63,31 @@ class AppAutoraceConfig(AppConfig):
         return True
 
     def call_watch_doc(self):
-        datManage = dm.DatManage()
 
         try:
-            # 受信　/code
-            #path = os.getcwd()
-            #cmd = "ls"
-            #proc= sp.Popen(cmd, shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
-            #std_out, std_err = proc.communicate()
-            # byte文字列で返るのでstrに
-            #ls_file_name = std_out.decode('utf-8').rstrip().split('\n')
-            #logger.info(ls_file_name)
-
-            # 受信順に取り込み処理
-            datFileNameList = sorted(glob.glob('./app_autorace/固定長フォルダ/*.dat'), key=lambda f: os.stat(f).st_mtime, reverse=False)
+            datManage = dm.DatManage()
+            cmn = commons.Common()
+            # 受信順に取り込む機能 次の登録処理で後ろからするため、更新日時の新しいものから取り込み。
+            datFileNameList = sorted(glob.glob('./app_autorace/固定長フォルダ/*.dat'), key=lambda f: os.stat(f).st_mtime, reverse=True)
 
             logger.info(f'{DATDATA}にある受信順{datFileNameList}')
 
-            for file in datFileNameList:
-                logger.info(file)
+            for filepath in reversed(datFileNameList):
+                logger.info(filepath)
+                # ①～⑤　どれを呼び出すか判断する。
+                datDataFileFlg=cmn.checkDatData(filepath)
+                logger.info(f'datDataFileFlg:  {datDataFileFlg}')
 
+                cmn.call_insert_or_update_Trn(datDataFileFlg, filepath)
+
+                # 処理済みフォルダへ移動し、受信フォルダからは削除する機能
+                try:
+                    logger.info('ファイル移動処理開始')
+                    shutil.move(filepath, './app_autorace/スケジュールフォルダ/') if SCHEDULE == datDataFileFlg else shutil.move(filepath, './app_autorace/処理済みフォルダ/')
+                    logger.info('ファイル移動処理終了')
+                except Exception as e:
+                    logger.error(e)
+                    continue
 
             # watchdoc
             # 並列処理

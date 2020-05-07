@@ -5,6 +5,8 @@ GO_RECURSIVELY = False # 再帰的
 DAD_LOCK_FILE = '.dat_lockfile'
 
 DATDATA         = "固定長フォルダ"
+SCHEDULEDATDATA = "スケジュールフォルダ"
+PROCESSEDDATDATA= "処理済みフォルダ"
 SCHEDULEDATA    = "scheduleData"
 PROGRAMDATA     = "programData"
 RESULTDATA      = "resultData"
