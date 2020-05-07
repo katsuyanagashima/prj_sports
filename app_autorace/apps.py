@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import glob
 import os
 import pathlib
@@ -82,9 +83,7 @@ class AppAutoraceConfig(AppConfig):
 
                 # 処理済みフォルダへ移動し、受信フォルダからは削除する機能
                 try:
-                    logger.info('ファイル移動処理開始')
-                    shutil.move(filepath, './app_autorace/スケジュールフォルダ/') if SCHEDULE == datDataFileFlg else shutil.move(filepath, './app_autorace/処理済みフォルダ/')
-                    logger.info('ファイル移動処理終了')
+                    cmn.call_check_isfile_move(datDataFileFlg, filepath)
                 except Exception as e:
                     logger.error(e)
                     continue
