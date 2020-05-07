@@ -15,7 +15,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers.polling import PollingObserver
 
 from app_autorace.consts import *
-from app_autorace.commons import Common
+from app_autorace import commons
 
 logger = getLogger('app_autorace')
 
@@ -72,7 +72,7 @@ class Top_30_prize():
         try:
             # モデル読み込みがここでしか読み込みできない
             from app_autorace.models import Trn_Top_30_Prize
-            cmn = Common()
+            cmn = commons.Common()
 
             # ファイル読み込み　データセット
             logger.info('文字コード確認')

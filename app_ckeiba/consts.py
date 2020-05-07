@@ -5,6 +5,8 @@ GO_RECURSIVELY = False # 再帰的
 CSV_LOCK_FILE = '.csv_lockfile'
 
 CSVDATA         = "CSVフォルダ"
+EVENTSCHEDULEDATDATA = "開催日割フォルダ"
+PROCESSEDDATDATA= "処理済みフォルダ"
 
 NORMAL   = True
 ABNORMAL = False
