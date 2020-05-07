@@ -17,8 +17,11 @@ from django.db.models import Q
 # （参考） https://qiita.com/YuukiMiyoshi/items/6ce77bf402a29a99f1bf
 def intToZen(i):
     HAN2ZEN = str.maketrans({"0": "０", "1": "１", "2": "２", "3": "３", "4": "４",
-                             "5": "５", "6": "６", "7": "７", "8": "８", "9": "９", ".": "．", "+": "＋", "-": "－", "G": "Ｇ"})
-    return str(i).translate(HAN2ZEN)
+                             "5": "５", "6": "６", "7": "７", "8": "８", "9": "９", ".": "．", "G": "Ｇ"})
+    if i:
+        return str(i).translate(HAN2ZEN)
+    else:
+        return
 
 # ２．,(カンマ)で区切られた文字列をリスト化して返す関数。余分な空白は削除する。
 # 文字列がない場合、空白で返す
@@ -747,49 +750,108 @@ def NewsML_seisekiA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 # 【通信文A】(InData内部)
 def NewsML_tsusinA(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
-    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
-    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
-    #                                    joumei=joucode,
-    #                                    ck_kyounen=kyounen,
-    #                                    ck_kyoutuki=kyoutuki,
-    #                                    ck_kyouhi=kyouhi,
-    #                                    rebangou=rebangou
-    #                                    )
+    # 年月日と場から通信文オブジェクトのリストを取得。無かったら404
+    #  →★通信文が無い場合の処理が必要
+    tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+                                       joumei=joucode,
+                                       ck_kyounen=kyounen,
+                                       ck_kyoutuki=kyoutuki,
+                                       ck_kyouhi=kyouhi
+                                       )
 
-    # # 場マスタから場のデータを取得
-    # jou_data = Mst_Jou.getJoudata(joucode)
+    # 場マスタから場のデータを取得
+    jou_data = Mst_Jou.getJoudata(joucode)
 
-    # # 数値の全角化処理(馬番)
-    # for tb in tsuushimbun_list:
-    #     tb.uma = intToZen(tb.uma)
+    # 数値の全角化処理(馬番、レース番号)
+    for tb in tsuushimbun_list:
+        tb.uma = intToZen(tb.uma)
+        tb.rebangou = intToZen(tb.rebangou) + 'Ｒ'
+    
 
-    # # レース情報を一件目のデータからとる。
-    # tsuushinbun = tsuushimbun_list[0]
+    # レース情報を一件目のデータからとる。
+    tsuushinbun = tsuushimbun_list[0]
 
-    # # パラメータに追加(数値の項目は全角化する)
-    # params = {
-    #     'joumei_seishiki': jou_data[0],
-    #     'joumei_3': jou_data[1],
+    # パラメータに追加(数値の項目は全角化する)
+    params = {
+        'joumei_seishiki': jou_data[0],
+        'joumei_3': jou_data[1],
 
-    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
-    #     'kainichime': intToZen(tsuushinbun.kainichime),
+        'kaisuu': intToZen(tsuushinbun.kaisuu) + '回',
+        'kainichime': intToZen(tsuushinbun.kainichime) + '日目',
 
-    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
-    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
-    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
-    #     'rebangou': intToZen(tsuushinbun.rebangou),
+        'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
+        'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
+        'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
 
-    #     'tsuushimbun_list': tsuushimbun_list
-    # }
+        'tsuushimbun_list': tsuushimbun_list
+    }
 
-    # # xml形式で出力
-    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
-    # res['Content-Type'] = 'application/xml'
-    # return res
+    # xml形式で出力
+    res = render(request, 'NewsML_temp/tsuushimbun_A.xml', params)
+    res['Content-Type'] = 'application/xml'
+    return res
 
-    return render(request, 'NewsML_temp/NewsML.html', {'title': '【通信文A】NewsMLプレビュー画面作成中(4/30)'})
 # ========================================================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ========================================================================
+
+# 【通信文C】(InData内部)
+def NewsML_tsuushimbunC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
+
+    # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
+    tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
+                                       joumei=joucode,
+                                       ck_kyounen=kyounen,
+                                       ck_kyoutuki=kyoutuki,
+                                       ck_kyouhi=kyouhi,
+                                       rebangou=rebangou
+                                       )
+
+    # 場マスタから場のデータを取得
+    jou_data = Mst_Jou.getJoudata(joucode)
+
+    # 数値の全角化処理(馬番)
+    for tb in tsuushimbun_list:
+        tb.uma = intToZen(tb.uma)
+
+    # レース情報を一件目のデータからとる。
+    tsuushinbun = tsuushimbun_list[0]
+
+    # パラメータに追加(数値の項目は全角化する)
+    params = {
+        'joumei_seishiki': jou_data[0],
+        'joumei_3': jou_data[1],
+
+        'kaisuu': intToZen(tsuushinbun.kaisuu),
+        'kainichime': intToZen(tsuushinbun.kainichime),
+
+        'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
+        'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
+        'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
+        'rebangou': intToZen(tsuushinbun.rebangou),
+
+        'tsuushimbun_list': tsuushimbun_list
+    }
+
+    # xml形式で出力
+    res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
+    res['Content-Type'] = 'application/xml'
+    return res
+# ========================================================================
 
 
 
@@ -1677,47 +1739,91 @@ def NewsML_seisekiC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 # 【ラップ】(InData内部)
 def NewsML_rap(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
-    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
-    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
-    #                                    joumei=joucode,
-    #                                    ck_kyounen=kyounen,
-    #                                    ck_kyoutuki=kyoutuki,
-    #                                    ck_kyouhi=kyouhi,
-    #                                    rebangou=rebangou
-    #                                    )
+    # # 年月日と場とレース番号からコーナー・ラップオブジェクトのリストを取得。無かったら404
+    corner_rap_list = get_list_or_404(Md_Corner_Rap.objects,
+                                       joumei=joucode,
+                                       ck_kyounen=kyounen,
+                                       ck_kyoutuki=kyoutuki,
+                                       ck_kyouhi=kyouhi,
+                                       rebangou=rebangou
+                                       )
 
-    # # 場マスタから場のデータを取得
-    # jou_data = Mst_Jou.getJoudata(joucode)
+    # 場マスタから場のデータを取得
+    jou_data = Mst_Jou.getJoudata(joucode)
 
-    # # 数値の全角化処理(馬番)
-    # for tb in tsuushimbun_list:
-    #     tb.uma = intToZen(tb.uma)
+    # レース情報を一件目のデータからとる。
+    corner_rap = corner_rap_list[0]
 
-    # # レース情報を一件目のデータからとる。
-    # tsuushinbun = tsuushimbun_list[0]
+    # コーナ通過順を編集する関数
+    def edit_corner_juni(corner_juni):
+        if corner_juni:  # (4,5)-2,9,7=(1,8),3=6
+            corner_juni = corner_juni.replace("-(", "(-") # 整形する
+            corner_juni = corner_juni.replace("=(", "(=") # 整形する (4,5)-2,9,7(=1,8),3=6
+            corner_juni = corner_juni.replace(',', '') # 整形する (45)-297(=18)3=6
 
-    # # パラメータに追加(数値の項目は全角化する)
-    # params = {
-    #     'joumei_seishiki': jou_data[0],
-    #     'joumei_3': jou_data[1],
+            shuudan_list = []
+            iskakko = False
+            before_cj = ""
+            for cj in corner_juni: # [['４', '５'], ['-２'], ['９'], ['=１', '８'], ['３'], ['=６']]
+                if cj == '(':
+                    iskakko = True
+                    if shuudan_list:
+                        shuudan_list[-1] = []
+                    else:
+                        shuudan_list.append([])
+                elif  cj == ')' and iskakko:
+                    iskakko = False
+                elif  cj == '-' or cj == '=':
+                    before_cj = cj
+                else:
+                    if iskakko: #括弧()内の時
+                        shuudan_list[-1].append(intToZen(before_cj + cj))
+                        before_cj = ""
+                    else:
+                        shuudan_list.append([intToZen(before_cj + cj)])
+                        before_cj = ""
+            return shuudan_list
+        else:
+            return
 
-    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
-    #     'kainichime': intToZen(tsuushinbun.kainichime),
+    # コーナー順位情報をリストに格納する
+    corner_list = []
+    for i in range(8):
+        j = i + 1
+        corner_mei = 'corner_mei' + str(j)
+        corner_juni = 'corner_juni' + str(j)
+        
+        if getattr(corner_rap, corner_mei):
+            corner_list.append([])
+            corner_list[i].append(intToZen(getattr(corner_rap, corner_mei)))
+            corner_list[i].append(edit_corner_juni(getattr(corner_rap, corner_juni)))
+    
 
-    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
-    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
-    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
-    #     'rebangou': intToZen(tsuushinbun.rebangou),
+    # パラメータに追加(数値の項目は全角化する)
+    params = {
+        'joumei_seishiki': jou_data[0],
+        'joumei_3': jou_data[1],
+        'kaisuu': intToZen(corner_rap.kaisuu) + '回',
+        'kainichime': intToZen(corner_rap.kainichime) + '日目',
+        'ck_kyounen': intToZen(corner_rap.ck_kyounen),
+        'ck_kyoutuki': intToZen(corner_rap.ck_kyoutuki),
+        'ck_kyouhi': intToZen(corner_rap.ck_kyouhi),
+        'rebangou': intToZen(corner_rap.rebangou) + 'Ｒ',
+        'chaku1uma_1': intToZen(corner_rap.chaku1uma_1),
+        'chaku1uma_2': intToZen(corner_rap.chaku1uma_2),
+        'chaku1uma_3': intToZen(corner_rap.chaku1uma_3),
+        'a4ha': intToZen(corner_rap.a4ha),
+        'a3ha': intToZen(corner_rap.a3ha),
+        'ta_list': makelist(corner_rap.ta_list),
+        'corner_list': corner_list
+    }
 
-    #     'tsuushimbun_list': tsuushimbun_list
-    # }
+    # xml形式で出力
+    res = render(request, 'NewsML_temp/corner_rap.xml', params)
+    res['Content-Type'] = 'application/xml'
+    return res
 
-    # # xml形式で出力
-    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
-    # res['Content-Type'] = 'application/xml'
-    # return res
-
-    return render(request, 'NewsML_temp/NewsML.html', {'title': '【ラップ】NewsMLプレビュー画面作成中(4/30)'})
+    # return render(request, 'NewsML_temp/NewsML.html', {'title': '【ラップ】NewsMLプレビュー画面作成中(4/30)'})
 # ========================================================================
 
 
@@ -1781,65 +1887,6 @@ def NewsML_agari(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
     return render(request, 'NewsML_temp/NewsML.html', {'title': '【上がり】NewsMLプレビュー画面作成中(4/30)'})
 # ========================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ========================================================================
-
-# 【通信文C】(InData内部)
-def NewsML_tsuushimbunC(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
-
-    # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
-    tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
-                                       joumei=joucode,
-                                       ck_kyounen=kyounen,
-                                       ck_kyoutuki=kyoutuki,
-                                       ck_kyouhi=kyouhi,
-                                       rebangou=rebangou
-                                       )
-
-    # 場マスタから場のデータを取得
-    jou_data = Mst_Jou.getJoudata(joucode)
-
-    # 数値の全角化処理(馬番)
-    for tb in tsuushimbun_list:
-        tb.uma = intToZen(tb.uma)
-
-    # レース情報を一件目のデータからとる。
-    tsuushinbun = tsuushimbun_list[0]
-
-    # パラメータに追加(数値の項目は全角化する)
-    params = {
-        'joumei_seishiki': jou_data[0],
-        'joumei_3': jou_data[1],
-
-        'kaisuu': intToZen(tsuushinbun.kaisuu),
-        'kainichime': intToZen(tsuushinbun.kainichime),
-
-        'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
-        'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
-        'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
-        'rebangou': intToZen(tsuushinbun.rebangou),
-
-        'tsuushimbun_list': tsuushimbun_list
-    }
-
-    # xml形式で出力
-    res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
-    res['Content-Type'] = 'application/xml'
-    return res
-# ========================================================================
 
 
 

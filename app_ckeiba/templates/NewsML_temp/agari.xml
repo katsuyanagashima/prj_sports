@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-16'?>
+<!DOCTYPE NewsML PUBLIC "urn:newsml:iptc.org:20001006:NewsMLv1.0.dtd:1" "../DTD/NewsMLv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
+	%InContent;
+	<!ENTITY % Kddata SYSTEM "../CKDTD/KdCKUATv1.0.dtd">
+	%Kddata;
+]>
+   <NewsML>
+      <Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
+      <NewsEnvelope>
+         <TransmissionId>20110524CKFU00114</TransmissionId>
+         <DateAndTime>20110525T171410+0900</DateAndTime>
+         <NewsProduct FormalName="NskNewsML:1"/>
+      </NewsEnvelope>
+      <NewsItem Duid="NI_CK01" xml:lang="ja-JP">
+         <Identification>
+            <NewsIdentifier>
+               <ProviderId>kyodonews.jp</ProviderId>
+               <DateId>20110524</DateId>
+               <NewsItemId>20110524CKFSUAT20040212</NewsItemId>
+               <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+               <PublicIdentifier>urn:newsml:kyodonews.jp:20110524:20110524CKFSUAT20040212:1</PublicIdentifier>
+            </NewsIdentifier>
+         </Identification>
+         <NewsManagement>
+            <NewsItemType FormalName="News"/>
+            <FirstCreated>20110525T171410+0900</FirstCreated>
+            <ThisRevisionCreated>20110525T171410+0900</ThisRevisionCreated>
+            <Status FormalName="Usable"/>
+         </NewsManagement>
+         <NewsComponent Duid="NC_CK01" xml:lang="ja-JP" Essential="no" EquivalentsList="no">
+            <NewsLines>
+               <HeadLine>４回大井競馬２日目１２Ｒ馬別上がりタイム</HeadLine>
+            </NewsLines>
+            <AdministrativeMetadata>
+               <Provider>
+                  <Party FormalName="KYODONEWS"/>
+               </Provider>
+            </AdministrativeMetadata>
+            <DescriptiveMetadata>
+               <Language FormalName="ja"/>
+               <SubjectCode>
+                  <Subject FormalName="15000000"/>
+                  <SubjectMatter FormalName="15030000"/>
+               </SubjectCode>
+            </DescriptiveMetadata>
+            <ContentItem>
+               <MediaType FormalName="Text"/>
+               <Format FormalName="KdCKUATv1.0"/>
+               <MimeType FormalName="text/xml"/>
+               <DataContent><InContent version="1.0"><InMetadata><InAdminInfo><InProductId>２０１１０５２４ＣＫＦＳＵＡＴ２００４０２１２０１</InProductId><InDateTime>２０１１年０５月２４日４１時１４分１０秒</InDateTime><InFormat><InFormatType>フルタグ書式</InFormatType><InFormatComment>ＫｄＣＫＵＡＴｖ１．０</InFormatComment></InFormat></InAdminInfo><InCategoryInfo><InClasses><InClass><InBClass>地方競馬</InBClass><InMClass1>レース電文</InMClass1><InMClass2>大井競馬２日目１２Ｒ</InMClass2><InSClass>馬別上がりタイム</InSClass></InClass></InClasses><InNewsCategory><InNewsGenre>走大</InNewsGenre></InNewsCategory><InNewsLine><InHeadLine>４回大井競馬２日目１２Ｒ馬別上がりタイム</InHeadLine></InNewsLine></InCategoryInfo><InNewsInfo><InSubHeader><InFormType>ＫｄＣＫＵＡＴｖ１．０</InFormType><InSendControl><InSendBlkInfo InNb="1"><InSendBlk>フル走社</InSendBlk></InSendBlkInfo><InSendIndInfo InNi="12"><InSendInd>東京</InSendInd><InSendInd>内外</InSendInd><InSendInd>中日</InSendInd><InSendInd>ＨＳ</InSendInd><InSendInd>ＮＳ</InSendInd><InSendInd>ＳＮ</InSendInd><InSendInd>ＴＳ</InSendInd><InSendInd>ＴＣ</InSendInd><InSendInd>日ス</InSendInd><InSendInd>ス日</InSendInd><InSendInd>デス</InSendInd><InSendInd>九ス</InSendInd></InSendIndInfo></InSendControl></InSubHeader></InNewsInfo></InMetadata><InData xml:space="preserve"><umabetsuata meishou="馬別上がりタイム"><joumei hyouki="3字">大井　</joumei><joumei hyouki="正式名">大井競馬</joumei><kaisuu>４回</kaisuu><kainichime>２日目</kainichime><ck_kyounichi><ck_kyounen>２０１１</ck_kyounen><ck_kyoutuki>０５</ck_kyoutuki><ck_kyouhi>２４</ck_kyouhi></ck_kyounichi><rebangou>１２Ｒ</rebangou><shougaikubun/><umajouhou><uma>１</uma><bamei hyouki="9字">テンシノデジタル　</bamei><bamei hyouki="正式名">テンシノデジタル</bamei><a3hakei>３７．８</a3hakei></umajouhou><umajouhou><uma>２</uma><bamei hyouki="9字">ビスカスライン　　</bamei><bamei hyouki="正式名">ビスカスライン</bamei><a3hakei>３９．０</a3hakei></umajouhou><umajouhou><uma>３</uma><bamei hyouki="9字">ナリショーキング　</bamei><bamei hyouki="正式名">ナリショーキング</bamei><a3hakei>３７．９</a3hakei></umajouhou><umajouhou><uma>４</uma><bamei hyouki="9字">コスモソルスティス</bamei><bamei hyouki="正式名">コスモソルスティス</bamei><a3hakei>３９．８</a3hakei></umajouhou><umajouhou><uma>５</uma><bamei hyouki="9字">ブライティアモア　</bamei><bamei hyouki="正式名">ブライティアモア</bamei><a3hakei>４２．１</a3hakei></umajouhou><umajouhou><uma>６</uma><bamei hyouki="9字">ライトレジーナ　　</bamei><bamei hyouki="正式名">ライトレジーナ</bamei><a3hakei>３８．５</a3hakei></umajouhou><umajouhou><uma>７</uma><bamei hyouki="9字">ブラックタイフーン</bamei><bamei hyouki="正式名">ブラックタイフーン</bamei><a3hakei>３９．５</a3hakei></umajouhou><umajouhou><uma>８</uma><bamei hyouki="9字">ロケットマティ　　</bamei><bamei hyouki="正式名">ロケットマティ</bamei><a3hakei>３６．８</a3hakei></umajouhou><umajouhou><uma>９</uma><bamei hyouki="9字">ポロメリア　　　　</bamei><bamei hyouki="正式名">ポロメリア</bamei><a3hakei>３８．２</a3hakei></umajouhou><umajouhou><uma>１０</uma><bamei hyouki="9字">キーンブレイド　　</bamei><bamei hyouki="正式名">キーンブレイド</bamei><a3hakei>３９．８</a3hakei></umajouhou><umajouhou><uma>１１</uma><bamei hyouki="9字">セレクトシューズ　</bamei><bamei hyouki="正式名">セレクトシューズ</bamei><a3hakei>３８．５</a3hakei></umajouhou><umajouhou><uma>１２</uma><bamei hyouki="9字">ファウンテンジョイ</bamei><bamei hyouki="正式名">ファウンテンジョイ</bamei><a3hakei>３９．６</a3hakei></umajouhou><umajouhou><uma>１３</uma><bamei hyouki="9字">ケンプトンパーク　</bamei><bamei hyouki="正式名">ケンプトンパーク</bamei><a3hakei>３７．５</a3hakei></umajouhou><umajouhou><uma>１４</uma><bamei hyouki="9字">コスモジブリル　　</bamei><bamei hyouki="正式名">コスモジブリル</bamei><a3hakei>３７．９</a3hakei></umajouhou><umajouhou><uma>１５</uma><bamei hyouki="9字">ティーンチャーチ　</bamei><bamei hyouki="正式名">ティーンチャーチ</bamei><a3hakei>３８．１</a3hakei></umajouhou></umabetsuata></InData></InContent></DataContent>
+            </ContentItem>
+         </NewsComponent>
+      </NewsItem>
+   </NewsML>

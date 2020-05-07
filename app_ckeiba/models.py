@@ -96,7 +96,7 @@ class Mst_Jou(Model):
             return
 
         jou_3char = jou_data.Jou_3char
-        # ３字略称は、△を全角スペースに変換する
+        # △を全角スペースに変換する
         jou_3char_trans = jou_3char.translate(str.maketrans({"△": "　"}))
         return jou_data.Jou_name, jou_3char_trans, jou_data.Jou_banei
 
@@ -624,13 +624,13 @@ class Md_Shussouhyou(Model):
 
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_shikaku = CharField(verbose_name='競争資格',
-                           max_length=10, blank=True, null=True)
+                           max_length=100, blank=True, null=True)
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_rkaku = CharField(verbose_name='レース格',
-                         max_length=10, blank=True, null=True)
+                         max_length=100, blank=True, null=True)
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_rkumi = CharField(verbose_name='レース組',
-                         max_length=10, blank=True, null=True)
+                         max_length=100, blank=True, null=True)
 
     jyuuryoushubetsu = ForeignKey(
         'Mst_Handicap', verbose_name='負担重量区分', on_delete=CASCADE, blank=True, null=True)  # 負担重量区分マスタ
@@ -834,13 +834,13 @@ class Md_Shussouhyou_shussouba_5seiseki(Model):
 
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_kkshikaku = CharField(verbose_name='競争資格条件',
-                             max_length=30, blank=True, null=True)
+                             max_length=100, blank=True, null=True)
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_kkrkaku = CharField(verbose_name='レース格',
-                           max_length=20, blank=True, null=True)
+                           max_length=100, blank=True, null=True)
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_kkrkumi = CharField(verbose_name='レース組',
-                           max_length=20, blank=True, null=True)
+                           max_length=100, blank=True, null=True)
 
     ck_kkguredo = ForeignKey(
         'Mst_Grade', verbose_name='グレードマスタ', on_delete=CASCADE)  # グレードマスタ
@@ -1003,7 +1003,7 @@ class Md_Seiseki_Haraimodoshi(Model):
 
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_fukusyoumei = CharField(
-        verbose_name='副賞名', max_length=100, blank=True, null=True)
+        verbose_name='副賞名', max_length=400, blank=True, null=True)
 
     guredo = ForeignKey('Mst_Grade', verbose_name='グレード',
                         on_delete=CASCADE, blank=True, null=True)  # グレードマスタ
@@ -1040,13 +1040,13 @@ class Md_Seiseki_Haraimodoshi(Model):
 
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_shikaku = CharField(verbose_name='競争資格条件',
-                           max_length=30, blank=True, null=True)
+                           max_length=100, blank=True, null=True)
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_rkaku = CharField(verbose_name='レース格',
-                         max_length=20, blank=True, null=True)
+                         max_length=100, blank=True, null=True)
     # ★★★　 複数ある場合は、','(カンマ)で区切って格納する。
     ck_rkumi = CharField(verbose_name='レース組',
-                         max_length=20, blank=True, null=True)
+                         max_length=100, blank=True, null=True)
 
     jyuuryoushubetsu = ForeignKey(
         'Mst_Handicap', verbose_name='負担重量区分', on_delete=CASCADE)  # 負担重量区分マスタ
@@ -1150,7 +1150,7 @@ class Md_Seiseki_Haraimodoshi_seiseki(Model):
     reko = CharField(verbose_name='レコード', max_length=5, blank=True, null=True)
 
     # 着差情報
-    # ★★★　 降着時に複数ある場合は、','(カンマ)で区切って格納する。
+    # ★★★　 降着時に複数ある場合があるので、ManyToManyField
     # sa = ForeignKey('Mst_Margin', verbose_name='着差',on_delete=CASCADE)  # 着差マスタ
     sa = ManyToManyField('Mst_Margin', verbose_name='着差', blank=True)  # 着差マスタ
 
@@ -1387,20 +1387,61 @@ class Md_Corner_Rap(Model):
     rebangou = IntegerField(verbose_name='レース番号')
     # １着馬情報 最大３頭（同着を考慮）
     chaku1uma_1 = IntegerField(verbose_name='１着馬番')
-    chaku1uma_2 = IntegerField(verbose_name='１着馬番(同着)')
-    chaku1uma_3 = IntegerField(verbose_name='１着馬番(同着)(同着)')
+    chaku1uma_2 = IntegerField(verbose_name='１着馬番(同着)', blank=True, null=True)
+    chaku1uma_3 = IntegerField(verbose_name='１着馬番(同着)(同着)', blank=True, null=True)
 
-    a4ha = IntegerField(verbose_name='上がり４ハロン')
-    a3ha = IntegerField(verbose_name='上がり３ハロン')
-    # ハロンラップタイム ハロン数分、繰り返す(,でつなげて格納？)
-    ta = IntegerField(verbose_name='タイム')
+    a4ha = DecimalField(verbose_name='上がり４ハロン',max_digits=5,decimal_places=1, blank=True, null=True)
+    a3ha = DecimalField(verbose_name='上がり３ハロン',max_digits=5,decimal_places=1, blank=True, null=True)
+    # ハロンラップタイム ハロン数分、繰り返す
+    # ★★★　 複数あるので、','(カンマ)で区切って格納する。
+    ta_list = CharField(verbose_name='タイム(,[カンマ]で区切って格納)', max_length=300, blank=True, null=True)
 
-    # コーナー順位情報　※先頭馬番がグループの場合は、馬番が若い番号を設定。
-    kosentouuma = IntegerField(verbose_name='コーナー先頭馬番')
     # コーナー詳細
-    koshousai_sa = IntegerField(verbose_name='差')
-    # 集団
-    shuudan_sa = IntegerField(verbose_name='馬番')
+
+    # BA2での受信データ（コーナ通過順）格納例
+        # <CSVCol>１コーナー　　　</CSVCol>
+        # <CSVCol>4,5,2,(7,9),1,(3,8),6</CSVCol>
+        # <CSVCol>２コーナー　　　</CSVCol>
+        # <CSVCol>(4,5)-2,9,7,(1,8),3,6</CSVCol>
+        # <CSVCol>３コーナー　　　</CSVCol>
+        # <CSVCol>4,5=(7,2),9,8,1,3,6</CSVCol>
+        # <CSVCol>４コーナー　　　</CSVCol>
+        # <CSVCol>(4,5),2,8,9,(1,3),7-6</CSVCol>
+
+    # コーナー順位情報
+    corner_mei1 = CharField(verbose_name='コーナー名称1', max_length=10, blank=True, null=True)
+    corner_juni1 = CharField(verbose_name='コーナー順位情報1　　 　【凡例】　　　　　　 　 　,[区切り] / ()[集団] / -[小差] / =[大差]　　　　　　 【入力例】　　　　　　 　(4,5)-2,9,7,(1,8)=3,6　', max_length=100, blank=True, null=True)
+
+    corner_mei2 = CharField(verbose_name='コーナー名称2', max_length=10, blank=True, null=True)
+    corner_juni2 = CharField(verbose_name='コーナー順位情報2', max_length=100, blank=True, null=True)
+
+    corner_mei3 = CharField(verbose_name='コーナー名称3', max_length=10, blank=True, null=True)
+    corner_juni3 = CharField(verbose_name='コーナー順位情報3', max_length=100, blank=True, null=True)
+
+    corner_mei4 = CharField(verbose_name='コーナー名称4', max_length=10, blank=True, null=True)
+    corner_juni4 = CharField(verbose_name='コーナー順位情報4', max_length=100, blank=True, null=True)
+
+    corner_mei5 = CharField(verbose_name='コーナー名称5', max_length=10, blank=True, null=True)
+    corner_juni5 = CharField(verbose_name='コーナー順位情報5', max_length=100, blank=True, null=True)
+
+    corner_mei6 = CharField(verbose_name='コーナー名称6', max_length=10, blank=True, null=True)
+    corner_juni6 = CharField(verbose_name='コーナー順位情報6', max_length=100, blank=True, null=True)
+
+    corner_mei7 = CharField(verbose_name='コーナー名称7', max_length=10, blank=True, null=True)
+    corner_juni7 = CharField(verbose_name='コーナー順位情報7', max_length=100, blank=True, null=True)
+
+    corner_mei8 = CharField(verbose_name='コーナー名称8', max_length=10, blank=True, null=True)
+    corner_juni8 = CharField(verbose_name='コーナー順位情報8', max_length=100, blank=True, null=True)
+
+
+    # # コーナー順位情報　※先頭馬番がグループの場合は、馬番が若い番号を設定。
+    # kosentouuma = IntegerField(verbose_name='コーナー先頭馬番')
+
+    # # コーナー詳細 （例）「-」:小差  「=」:大差
+    # koshousai_sa = IntegerField(verbose_name='差')
+
+    # # 集団
+    # shuudan_sa = IntegerField(verbose_name='馬番')
 
     class Meta:
         verbose_name_plural = '【中間DB】コーナー・ラップ'
