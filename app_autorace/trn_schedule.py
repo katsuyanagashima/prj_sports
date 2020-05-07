@@ -15,7 +15,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers.polling import PollingObserver
 
 from app_autorace.consts import *
-from app_autorace.commons import Common
+from app_autorace import commons
 
 logger = getLogger('app_autorace')
 
@@ -179,7 +179,7 @@ class Schedule():
         try:
             # モデル読み込みがここでしか読み込みできない
             from app_autorace.models import Trn_Schedule
-            cmn = Common()
+            cmn = commons.Common()
 
             # ファイル読み込み　データセット
             logger.info('文字コード確認')
@@ -189,7 +189,7 @@ class Schedule():
             file = open(fileName, 'r', encoding='shift_jis')
             for line in file: # 1行しかない
                 # ファイル文字サイズ
-                logger.info(f'{fileName}はファイルサイズ ' + f'{len(line)}')
+                logger.info(f'{fileName}はファイルサイズ {len(line)}')
 
                 # DB　ファイル登録
                 with transaction.atomic():

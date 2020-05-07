@@ -35,20 +35,29 @@
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
 <!-- ==== 副ヘッダマスタから取得 =========== -->
-{% if subheader %}
+{% if subheader_0 or subheader_1 %}
 <IhSubHeader>
-{% for sub in subheader %}
-{% if sub.Delivery_code.Individual_address == 0 %}
-<IhSendBlkInfo IhNb="1">
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<IhSendBlkInfo IhNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}</IhSendBlk>
+{% endfor %}
 </IhSendBlkInfo>
 {% endif %}
-{% if sub.Delivery_code.Individual_address == 1 %}
-<IhSendIndInfo IhNi="1">
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<IhSendIndInfo IhNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<IhSendInd>{{ sub.Delivery_code.Delivery_name }}</IhSendInd>
+{% endfor %}
 </IhSendIndInfo>
 {% endif %}
 {% endfor %}
+<!-- 否定宛先を固定値で設定  -->
 <IhSendNIndInfo IhNi="1">
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
@@ -128,12 +137,15 @@
 </InAdminInfo>
 <InCategoryInfo>
 <InClasses>
+<!-- システム状態マスタから取得 -->
+{% for meta in newsmlmeta %}
 <InClass>
 <InBClass>相撲</InBClass>
-<InMClass1>初場所場所前</InMClass1>
+<InMClass1>{{ meta.CurrentBasho }}場所前</InMClass1>
 <InMClass2>新番付資料</InMClass2>
 <InSClass>全県</InSClass>
 </InClass>
+{% endfor %}
 </InClasses>
 <InNewsCategory>
 <InNewsGenre>相撲</InNewsGenre>
@@ -148,7 +160,7 @@
 </InMainHeader>
 <InSubHeader>
 <InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
-<!-- ==== 副ヘッダマスタから取得 =========== -->
+<!--
 <InSendControl>
 <InSendBlkInfo InNb="1">
 <InSendBlk>相全</InSendBlk>
@@ -157,7 +169,32 @@
 <InSendInd>ガミ</InSendInd>
 </InSendIndInfo>
 </InSendControl>
-<!-- ===================================== -->
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<InSendControl>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<InSendBlkInfo InNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<InSendBlk>{{ sub.Delivery_code.Delivery_name_2char }}</InSendBlk>
+{% endfor %}
+</InSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<InSendIndInfo InNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<InSendInd>{{ sub.Delivery_code.Delivery_name_2char }}</InSendInd>
+{% endfor %}
+</InSendIndInfo>
+{% endif %}
+{% endfor %}
+</InSendControl>
+{% endif %}
 </InSubHeader>
 <!-- 画面からの入力値 -->
 <InEditInfo>
@@ -181,13 +218,13 @@
 <Head>
 {% for meta in newsmlmeta %}
 <Meta>
+<!-- システム状態マスタから取得 -->
 <!-- 以下の想定は、◎2020大相撲初場所新番付資料（12月24日現在）-->
 <!-- 2020は開催年月の年を取得して連数字x2、12月24日の数字も連数 -->
-<Title>◎{{ meta.Event_date|get_first4char|intToZen|split2char }}大相撲{{ meta.CurrentBasho }}新番付資料（{{ meta.Banzuke_date|intToZen }}現在）</Title>
+<Title>◎{{ meta.Event_date|get_first4char|hanyear2ren }}大相撲{{ meta.CurrentBasho }}新番付資料（{{ meta.Banzuke_date|date:"m" |remove_0 |hanren }}月{{ meta.Banzuke_date|date:"d" |remove_0 |hanren }}日現在）</Title>
 <Competition>
 <Formal>{{ meta.CurrentBasho }}</Formal>
 </Competition>
-<!-- 場所前の固定値で良い？　-->
 <CompetitionDay>場所前</CompetitionDay>
 <Discipline>
 <Formal>相撲</Formal>
@@ -200,12 +237,12 @@
 <DataType>{{ meta.CurrentBasho }}</DataType>
 </Meta>
 {% endfor %}
-<!-- ======================================= -->
 <Standing BlockId="S001">
-<!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ================== -->
+<!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ======= -->
 {% if Banzuke_forecast %}
 {% for player in Banzuke_forecast %}
-<Player PlayerId="009620">
+<!-- ================= 力士を繰り返す ======================-->
+<Player PlayerId="{{ player.Rikishi.Rikishi_code|zeropadding6 }}">
 <PlayerName>
 <Writing>{{ player.Rikishi.Rikishi_name_Kanji_4char }}</Writing>
 <Formal>{{ player.Rikishi.Rikishi_name_kanji_official }}</Formal>
@@ -215,68 +252,119 @@
 <Formal Display="よみがな">{{ player.Rikishi.Rikishi_name_kanji_kana }}</Formal>
 </PlayerName>
 <Belong>
-<Writing>{{ player.Rikishi.Heya_code.Heya_official_kanji }}</Writing>
+<Writing>{{ player.Rikishi.Heya_code.Heya_kanji_3char }}</Writing>
 <Formal>{{ player.Rikishi.Heya_code.Heya_official_kanji }}</Formal>
 <Formal Display="3字">{{ player.Rikishi.Heya_code.Heya_kanji_3char }}</Formal>
 <Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana }}</Formal>
 </Belong>
-<Age>●●</Age>
+<!-- システム状態マスタの年齢算出基準日と力士マスタの生年月日から算出 -->
+<Age>●
+{% for meta in newsmlmeta  %}
+{{ meta.Age_calcu_reference_date }}
+{% endfor %}
+-{{ player.Rikishi.Date_of_birth }}●</Age>
 <Height Unit="センチメートル">{{ player.Rikishi.Height | intToZen }}</Height>
 <Weight Unit="キログラム">{{ player.Rikishi.Weight | intToZen }}</Weight>
 <Result Period="幕内通算">
+<!--=============== 生涯成績マスタから取得 ================== -->
+<!-- 預金星、奪金星は発生した時だけRcordタグを編集。与金星のWritingは白抜き数字（1～30、31以上は連数字）、奪金星のWritingは丸数字　-->
+{% for result in Liferesult %}
+{% if result.Rikishi_code.Rikishi_code == player.Rikishi.Rikishi_code %}
+{% if result.Totalgivekinboshi != 0  %}
 <Record Kind="与金星" Unit="回">
-<Writing>{{ player.Lifetime_result.Totalgivekinboshi }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi | intToZen }}</IntegerPart>
+<Writing>{{ result.Totalgivekinboshi | hanshiromaru }}</Writing>
+<IntegerPart>{{ result.Totalgivekinboshi | intToZen }}</IntegerPart>
 </Record>
+{% endif %}
+{% if result.Totalgetkinboshi != 0  %}
 <Record Kind="奪金星" Unit="回">
-<Writing>{{ player.Lifetime_result.Totalgetkinboshi }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi | intToZen }}</IntegerPart>
+<Writing>{{ result.Totalgetkinboshi | hanmaru }}</Writing>
+<IntegerPart>{{ result.Totalgetkinboshi | intToZen }}</IntegerPart>
 </Record>
-<!--生涯受賞回数マスタから取得  -->
-{% for award in Lifeaward %}
+{% endif %}
+{% endif %}
+{% endfor %}
+<!-- ============= 生涯受賞回数マスタから取得 =============== -->
+<!-- CountValueは全角。Writingタグは149まで連数字、ゼロは横棒-->
 <Award Kind="優勝">
+{% for award in Lifeaward_01 %}
+{% if  player.Rikishi.Rikishi_code == award.Rikishi_code.Rikishi_code %}
 <Count>
-<Writing>43</Writing>
-<CountValue>{{ award.Numberofaward }}</CountValue>
+<Writing>{{ award.Numberofaward | hanren }}</Writing>
+<CountValue>{{ award.Numberofaward | intToZen }}</CountValue>
 </Count>
+{% endif %}
+{% endfor %}
 </Award>
+
+<!-- =================================================== -->
+{% for award in Lifeaward_01 %}
+{% if  player.Rikishi.Rikishi_code == award.Rikishi_code.Rikishi_code %}
+{{ award.Numberofaward |nullcheck }}
+{% endif %}
+{% endfor %}
+
+
+<!-- =================================================== -->
+
 <Award Kind="殊勲賞">
+{% for award in Lifeaward %}
+{% if award.Award_category_code.Award_category_kanji == '殊勲' and award.Rikishi_code.Rikishi_code == player.Rikishi.Rikishi_code %}
 <Count>
-<Writing>３</Writing>
-<CountValue>{{ award.Numberofaward }}</CountValue>
+<Writing>{{ award.Numberofaward | hanren | intZeroToyokobou }}</Writing>
+<CountValue>{{ award.Numberofaward | intToZen }}</CountValue>
 </Count>
+{% endif %}
+{% endfor %}
 </Award>
 <Award Kind="敢闘賞">
+{% for award in Lifeaward %}
+{% if award.Award_category_code.Award_category_kanji == '敢闘' and award.Rikishi_code.Rikishi_code == player.Rikishi.Rikishi_code %}
 <Count>
-<Writing>１</Writing>
-<CountValue>{{ award.Numberofaward }}</CountValue>
+<Writing>{{ award.Numberofaward | hanren | intZeroToyokobou }}</Writing>
+<CountValue>{{ award.Numberofaward | intToZen }}</CountValue>
 </Count>
+{% endif %}
+{% endfor %}
 </Award>
 <Award Kind="技能賞">
+{% for award in Lifeaward %}
+{% if award.Award_category_code.Award_category_kanji == '技能' and award.Rikishi_code.Rikishi_code == player.Rikishi.Rikishi_code %}
 <Count>
-<Writing>２</Writing>
-<CountValue>{{ award.Numberofaward }}</CountValue>
+<Writing>{{ award.Numberofaward | hanren | intZeroToyokobou }}</Writing>
+<CountValue>{{ award.Numberofaward | intToZen }}</CountValue>
 </Count>
-</Award>
+{% endif %}
 {% endfor %}
-<!-- ======================== -->
+</Award>
+<!--=============== 生涯成績マスタから取得 ================== -->
+{% for result in Liferesult %}
+{% if result.Rikishi_code.Rikishi_code == player.Rikishi.Rikishi_code %}
 <ResultForSumo>
 <SumoOutcomeTotal>
-<BashoCount>{{ player.Lifetime_result.Totalbasho | intToZen }}</BashoCount>
-<WinCount>{{ player.Lifetime_result.Totalwins | intToZen }}</WinCount>
-<LossCount>{{ player.Lifetime_result.Totalloss | intToZen }}</LossCount>
-<DrawCount>{{ player.Lifetime_result.Totalties | intToZen }}</DrawCount>
-<AbsenceCount>{{ player.Lifetime_result.Totalkyuujou | intToZen }}</AbsenceCount>
+<BashoCount>{{ result.Totalbasho | intToZen }}</BashoCount>
+<WinCount>{{ result.Totalwins | intToZen }}</WinCount>
+<LossCount>{{ result.Totalloss | intToZen }}</LossCount>
+<DrawCount>{{ result.Totalties | intToZen }}</DrawCount>
+<AbsenceCount>{{ result.Totalkyuujou | intToZen }}</AbsenceCount>
 </SumoOutcomeTotal>
-<WinningPercentage>{{ player.Lifetime_result.Overallwinrate | remmove_integer0 | intToZen }}</WinningPercentage>
-<WinningPercentage Kind="休みを負とした">{{ player.Lifetime_result.Overallwinrate_yasumimake | intToZen }}</WinningPercentage>
+<WinningPercentage>{{ result.Overallwinrate | remmove_integer0 | intToZen }}</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">{{ result.Overallwinrate_yasumimake | remmove_integer0 | intToZen }}</WinningPercentage>
 </ResultForSumo>
 </Result>
 <PlayerForSumo>
+{% endif %}
+{% endfor %}
+<!-- ============== 生涯地位マスタから取得 ============== -->
 <SumoGrade Kind="最高位">
-<Writing>{{ player.Lifetime_chii.Chii_code }}</Writing>
-<SumoRank>{{ player.Lifetime_chii.Chii_code }}</SumoRank>
+{% for chii in Lifechii %}
+{% if chii.Rikishi_code.Rikishi_code == player.Rikishi.Rikishi_code %}
+<Writing>{{ chii.Chii_code.Chii_kanji }}</Writing>
+<SumoRank>{{ chii.Chii_code.Chii_kanji }}</SumoRank>
+{% endif %}
+{% endfor %}
 </SumoGrade>
+<!-- ============== 生涯地位マスタ　ここまで =========== -->
 <NativeArea>
 <Writing>{{ player.Rikishi.Hometown_code_1.Country_prefecture_3char }}</Writing>
 <Formal>{{ player.Rikishi.Hometown_code_1.Country_prefecture_kanji }}</Formal>

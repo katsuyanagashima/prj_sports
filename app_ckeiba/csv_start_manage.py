@@ -1,6 +1,7 @@
 # pwd : /code
 import os
 import re
+import shutil
 import sys
 import time
 from logging import getLogger
@@ -14,10 +15,11 @@ from app_ckeiba.consts import *
 
 logger = getLogger('app_ckeiba')
 base_trn = os.path.dirname(os.path.abspath(__file__))
+
 try:
-    from app_ckeiba import trn_BA7, trn_SEI
+    from app_ckeiba import commons
 except Exception as e:
-    logger.error(f'トランファイル読み込み失敗  {e}')
+    logger.error(f'commonsファイル読み込み失敗: {e}')
 
 class CsvManage():
     # コンストラクターの定義
@@ -62,44 +64,22 @@ class WatchDocHandler(PatternMatchingEventHandler):
     def __init__(self, patterns):
         super(WatchDocHandler, self).__init__(patterns=patterns)
 
-    def checkCsvData(self, filepath):
-        if re.search(EVENTDATEDATA, filepath):
-            return EVENTDATEDATA
-
-        if re.search(SIMPLERACERESULTSDATA, filepath):
-            return SIMPLERACERESULTSDATA
-
-        return None
-
     # ファイル作成時のイベント
     def on_created(self, event):
 
+        cmn = commons.Common()
         filepath = event.src_path
         logger.info(filepath)
         # ①～⑤　どれを呼び出すか判断する。
-        csvDataFileFlg=self.checkCsvData(filepath)
+        csvDataFileFlg=cmn.checkCsvData(filepath)
         logger.info(f'csvDataFileFlg :{csvDataFileFlg}')
 
-        # 開催日割データ
-        if EVENTDATEDATA == csvDataFileFlg:
-            filename_schedule_record = os.path.basename(filepath)
-            # 監視元のフォルダパスを生成
-            fileName = os.path.normpath(os.path.join(base_trn, CSVDATA, filename_schedule_record))
+        cmn.call_insert_or_update_Trn(csvDataFileFlg, filepath)
 
-            logger.info( f'created Start :{fileName}')
-            # ファイル読み込み
-            trn_Ba7 = trn_BA7.Ba7()
-
-            logger.error(f'DB insert_or_update_Trn_XXXXXXX: 失敗：ファイル名  {fileName}') if not trn_Ba7.insert_or_update_Trn_Ba7(fileName) else logger.info( "created End:")
-
-        # 簡易競走成績データ
-        if SIMPLERACERESULTSDATA == csvDataFileFlg:
-            filename_schedule_record = os.path.basename(filepath)
-            # 監視元のフォルダパスを生成
-            fileName = os.path.normpath(os.path.join(base_trn, CSVDATA, filename_schedule_record))
-
-            logger.info( f'created Start :{fileName}')
-            # ファイル読み込み
-            trn_sei = trn_SEI.Sei()
-
-            logger.error(f'DB insert_or_update_Trn_XXXXXXX: 失敗：ファイル名  {fileName}') if not trn_sei.insert_or_update_Trn_Sei(fileName) else logger.info( "created End:")
+        # 処理済みフォルダへ移動し、受信フォルダからは削除する機能
+        try:
+            logger.info(f'ファイル移動処理開始　{filepath}')
+            shutil.move(filepath, './app_ckeiba/開催日割フォルダ/') if EVENTDATEDATA == csvDataFileFlg else shutil.move(filepath, './app_ckeiba/処理済みフォルダ/')
+            logger.info('ファイル移動処理終了')
+        except Exception as e:
+            logger.error(e)

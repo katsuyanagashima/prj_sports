@@ -15,7 +15,7 @@ from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers.polling import PollingObserver
 
 from app_autorace.consts import *
-from app_autorace.commons import Common
+from app_autorace import commons
 
 logger = getLogger('app_autorace')
 
@@ -169,7 +169,7 @@ class Outside_track():
             trn_Update.race_12_2=outsidetrackLine[outsidetrack+111:outsidetrack+112]
             updateFields.append('race_12_2')
 
-           # 場外売場情報 繰り返し 3×20
+        # 場外売場情報 繰り返し 3×20
         if outsidetrackLine[outsidetrack+112:outsidetrack+113]:
             trn_Update.OTB_code_3=outsidetrackLine[outsidetrack+112:outsidetrack+113]
             updateFields.append('OTB_code_3')
@@ -699,7 +699,7 @@ class Outside_track():
             trn_Update.race_12_12=outsidetrackLine[outsidetrack+311:outsidetrack+312]
             updateFields.append('race_12_12')
 
-           # 場外売場情報 繰り返し 13×20
+        # 場外売場情報 繰り返し 13×20
         if outsidetrackLine[outsidetrack+312:outsidetrack+313]:
             trn_Update.OTB_code_13=outsidetrackLine[outsidetrack+312:outsidetrack+313]
             updateFields.append('OTB_code_13')
@@ -1131,7 +1131,7 @@ class Outside_track():
         try:
             # モデル読み込みがここでしか読み込みできない
             from app_autorace.models import Trn_Outside_track
-            cmn = Common()
+            cmn = commons.Common()
 
             # ファイル読み込み　データセット
             logger.info('文字コード確認')

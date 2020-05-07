@@ -315,15 +315,10 @@ def md_update_forms(request, year, month, day, joucode, race):
         formset = TsuushimbunFormset(
             request.POST or None, queryset=Md_Tsuushimbun.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race))
 
-    elif "nyujo" in path:
-        title = "【中間DB】入場人員"
-        formset = NyujoFormset(
-            request.POST or None, queryset=Md_Nyujo.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode))
-
-    elif "uriage" in path:
-        title = "【中間DB】売上金"
-        formset = UriagekinFormset(
-            request.POST or None, queryset=Md_Uriagekin.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode))
+    elif "joutoujitsu" in path:
+        title = "【中間DB】場当日情報"
+        formset = Jou_ToujitsuForm(
+            request.POST or None, queryset=Md_Jou_Toujitsu.objects.filter(ck_kyounen=year, ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode))
 
     else:
         pass

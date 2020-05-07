@@ -22,8 +22,7 @@ urlpatterns = [
     path('agari/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='agari'),  #中間DB_上がり編集画面
     path('tushinbun/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='tushinbun'),  #中間DB_通信文編集画面
     
-    path('nyujo/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='nyujo'),  #中間DB_入場人員編集画面
-    path('uriage/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='uriage'),  #中間DB_売上金編集画面
+    path('joutoujitsu/<int:year>/<int:month>/<int:day>/<int:joucode>/<int:race>/', views.md_update_forms, name='joutoujitsu'),  #中間DB_場当日情報編集画面
 
 
     path('seisekiA_NewsML/<int:kyounen>/<int:kyoutuki>/<int:kyouhi>/<int:joucode>/<int:rebangou>/',

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-16"?>
-{% load static %}
-{% load text_tags %}
-<!DOCTYPE ITalk SYSTEM "{% static 'app_sumo/DTD/ITalkv1.0.dtd' %}" [
-	<!ENTITY % InContent SYSTEM "{% static 'app_sumo/DTD/InContentv1.0.dtd' %}">
+
+
+<!DOCTYPE ITalk SYSTEM "/static/app_sumo/DTD/ITalkv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "/static/app_sumo/DTD/InContentv1.0.dtd">
 	%InContent;
-	<!ENTITY % Kddata SYSTEM "{% static 'app_sumo/OSDTD/KdXBSContentv1.1.dtd' %}">
+	<!ENTITY % Kddata SYSTEM "/static/app_sumo/OSDTD/KdXBSContentv1.1.dtd">
 	%Kddata;
 ]>
 <!--  ●●　デバックのため、スタイルシート宣言を外す　●●-->
 <!--
-<?xml-stylesheet type="text/xsl"  href="{% static 'app_sumo/OSStylesheets/OSKdXBSContent01.xsl' %}"?>
+<?xml-stylesheet type="text/xsl"  href="/static/app_sumo/OSStylesheets/OSKdXBSContent01.xsl"?>
 -->
 <ITalk version="1.0">
 <IManage>
@@ -35,25 +35,28 @@
 <IhNewsGenre>相撲</IhNewsGenre>
 </IhMainHeader>
 <!-- ==== 副ヘッダマスタから取得 =========== -->
-{% if subheader %}
+
 <IhSubHeader>
-{% for sub in subheader %}
-{% if sub.Delivery_code.Individual_address == 0 %}
+
+
 <IhSendBlkInfo IhNb="1">
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
+<IhSendBlk>フル相全0</IhSendBlk>
 </IhSendBlkInfo>
-{% endif %}
-{% if sub.Delivery_code.Individual_address == 1 %}
+
+
+
+
+
 <IhSendIndInfo IhNi="1">
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
+<IhSendBlk>アサガミ1</IhSendBlk>
 </IhSendIndInfo>
-{% endif %}
-{% endfor %}
+
+
 <IhSendNIndInfo IhNi="1">
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
 </IhSubHeader>
-{% endif %}
+
 <!-- ===================================== -->
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
@@ -179,13 +182,13 @@
 <InData>
 <SportsData Version="1.1">
 <Head>
-{% for meta in newsmlmeta %}
+
 <Meta>
 <!-- 以下の想定は、◎2020大相撲初場所新番付資料（12月24日現在）-->
 <!-- 2020は開催年月の年を取得して連数字x2、12月24日の数字も連数 -->
-<Title>{% text_length 'abcdef' %}{% text_replace '123' 'b' %}◎{{ meta.Event_date }}大相撲{{ meta.CurrentBasho }}新番付資料（月日現在）</Title>
+<Title>◎[&#39;２０&#39;, &#39;２０&#39;]大相撲春場所新番付資料（２０２０-０２-１２現在）</Title>
 <Competition>
-<Formal>{{ meta.CurrentBasho }}</Formal>
+<Formal>春場所</Formal>
 </Competition>
 <!-- 場所前の固定値で良い？　-->
 <CompetitionDay>場所前</CompetitionDay>
@@ -197,92 +200,1735 @@
 <Body BlockId="OS01MU____">
 <Meta>
 <FormatType>Ｓ－Ｐ－Ｒ</FormatType>
-<DataType>{{ meta.CurrentBasho }}</DataType>
+<DataType>春場所</DataType>
 </Meta>
-{% endfor %}
+
 <!-- ======================================= -->
 <Standing BlockId="S001">
 <!-- ==== 予想番付（Tran_Banzuke_forecast）から取得 ================== -->
-{% if Banzuke_forecast %}
-{% for player in Banzuke_forecast %}
-<Player PlayerId="{{ player.Rikishi.Rikishi_code  }}">
-<!-- <Player PlayerId="0096620">  -->
+
+
+<Player PlayerId="009620">
 <PlayerName>
-<Writing>{{ player.Rikishi.Rikishi_name_Kanji_4char  }}</Writing>
-<Formal>{{ player.Rikishi.Rikishi_name_kanji_official  }}</Formal>
-<Formal Display="4字">{{ player.Rikishi.Rikishi_name_Kanji_4char  }}</Formal>
-<Formal Display="3字">{{ player.Rikishi.Rikishi_name_Kanji_3char  }}</Formal>
-<Formal Display="2字">{{ player.Rikishi.Rikishi_name_Kanji_2char  }}</Formal>
-<Formal Display="よみがな">{{ player.Rikishi.Rikishi_name_kanji_kana  }}</Formal>
+<Writing>白　鵬　</Writing>
+<Formal>白鵬</Formal>
+<Formal Display="4字">白　鵬　</Formal>
+<Formal Display="3字">白　鵬</Formal>
+<Formal Display="2字">白鵬</Formal>
+<Formal Display="よみがな">はくほう</Formal>
 </PlayerName>
 <Belong>
-<Writing>{{ player.Rikishi.Heya_code.Heya_official_kanji  }}</Writing>
-<Formal>{{ player.Rikishi.Heya_code.Heya_official_kanji  }}</Formal>
-<Formal Display="3字">{{ player.Rikishi.Heya_code.Heya_kanji_3char  }}</Formal>
-<Formal Display="よみがな">{{ player.Rikishi.Heya_code.Heya_official_kana  }}</Formal>
+<Writing>宮城野</Writing>
+<Formal>宮城野</Formal>
+<Formal Display="3字">宮城野</Formal>
+<Formal Display="よみがな">みやぎの</Formal>
 </Belong>
 <Age>●●</Age>
-<Height Unit="センチメートル">{{ player.Rikishi.Height  }}</Height>
-<Weight Unit="キログラム">{{ player.Rikishi.Weight  }}</Weight>
+<Height Unit="センチメートル">１９２</Height>
+<Weight Unit="キログラム">１５８</Weight>
 <Result Period="幕内通算">
 <Record Kind="与金星" Unit="回">
-<Writing>{{ player.Lifetime_result.Totalgivekinboshi  }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgivekinboshi  }}</IntegerPart>
+<Writing>25</Writing>
+<IntegerPart>２５</IntegerPart>
 </Record>
 <Record Kind="奪金星" Unit="回">
-<Writing>{{ player.Lifetime_result.Totalgetkinboshi  }}</Writing>
-<IntegerPart>{{ player.Lifetime_result.Totalgetkinboshi  }}</IntegerPart>
+<Writing>1</Writing>
+<IntegerPart>１</IntegerPart>
 </Record>
+<!--生涯受賞回数マスタから取得  -->
+
 <Award Kind="優勝">
 <Count>
-<Writing>２</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
+<Writing>43</Writing>
+<CountValue>43</CountValue>
 </Count>
 </Award>
 <Award Kind="殊勲賞">
 <Count>
-<Writing>５</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
+<Writing>３</Writing>
+<CountValue>43</CountValue>
 </Count>
 </Award>
 <Award Kind="敢闘賞">
 <Count>
-<Writing>３</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
+<Writing>１</Writing>
+<CountValue>43</CountValue>
 </Count>
 </Award>
 <Award Kind="技能賞">
 <Count>
-<Writing>１</Writing>
-<CountValue>{{ player.Lifetime_award.Numberofaward  }}</CountValue>
+<Writing>２</Writing>
+<CountValue>43</CountValue>
 </Count>
 </Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<!-- ======================== -->
 <ResultForSumo>
 <SumoOutcomeTotal>
-<BashoCount>{{ player.Lifetime_result.Totalbasho  }}</BashoCount>
-<WinCount>{{ player.Lifetime_result.Totalwins  }}</WinCount>
-<LossCount>{{ player.Lifetime_result.Totalloss  }}</LossCount>
-<DrawCount>{{ player.Lifetime_result.Totalties  }}</DrawCount>
-<AbsenceCount>{{ player.Lifetime_result.Totalkyuujou  }}</AbsenceCount>
+<BashoCount>９４</BashoCount>
+<WinCount>１０５３</WinCount>
+<LossCount>１９３</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１６４</AbsenceCount>
 </SumoOutcomeTotal>
-<WinningPercentage>{{ player.Lifetime_result.Overallwinrate  }}</WinningPercentage>
-<WinningPercentage Kind="休みを負とした">{{ player.Lifetime_result.Overallwinrate_yasumimake  }}</WinningPercentage>
+<WinningPercentage>．８４５</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">０．７４７</WinningPercentage>
 </ResultForSumo>
 </Result>
 <PlayerForSumo>
 <SumoGrade Kind="最高位">
 <Writing>横綱</Writing>
-<SumoRank>{{ player.Lifetime_chii.Chii_code  }}</SumoRank>
+<SumoRank>横綱</SumoRank>
 </SumoGrade>
 <NativeArea>
-<Writing>茨　城</Writing>
-<Formal>茨城</Formal>
-<Formal Display="3字">茨　城</Formal>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
 </NativeArea>
 </PlayerForSumo>
 </Player>
-{% endfor %}
-{% endif %}
+
+<Player PlayerId="009620">
+<PlayerName>
+<Writing>鶴　竜　</Writing>
+<Formal>鶴竜</Formal>
+<Formal Display="4字">鶴　竜　</Formal>
+<Formal Display="3字">鶴　竜</Formal>
+<Formal Display="2字">鶴竜</Formal>
+<Formal Display="よみがな"></Formal>
+</PlayerName>
+<Belong>
+<Writing>陸　奥</Writing>
+<Formal>陸　奥</Formal>
+<Formal Display="3字">陸　奥</Formal>
+<Formal Display="よみがな">みちのく</Formal>
+</Belong>
+<Age>●●</Age>
+<Height Unit="センチメートル">１８６</Height>
+<Weight Unit="キログラム">１５６</Weight>
+<Result Period="幕内通算">
+<Record Kind="与金星" Unit="回">
+<Writing>31</Writing>
+<IntegerPart>３１</IntegerPart>
+</Record>
+<Record Kind="奪金星" Unit="回">
+<Writing>0</Writing>
+<IntegerPart>０</IntegerPart>
+</Record>
+<!--生涯受賞回数マスタから取得  -->
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<!-- ======================== -->
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>７９</BashoCount>
+<WinCount>６３３</WinCount>
+<LossCount>３８９</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>１６３</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．６１９</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">０．５３４</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>横綱</Writing>
+<SumoRank>横綱</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>モンゴ</Writing>
+<Formal>モンゴル</Formal>
+<Formal Display="3字">モンゴ</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+
+<Player PlayerId="009620">
+<PlayerName>
+<Writing>貴景勝　</Writing>
+<Formal>貴景勝</Formal>
+<Formal Display="4字">貴景勝　</Formal>
+<Formal Display="3字">貴景勝</Formal>
+<Formal Display="2字">貴景</Formal>
+<Formal Display="よみがな">たかけいしょう</Formal>
+</PlayerName>
+<Belong>
+<Writing>千賀ノ浦</Writing>
+<Formal>千賀ノ浦</Formal>
+<Formal Display="3字">千賀浦</Formal>
+<Formal Display="よみがな">ちがのうら</Formal>
+</Belong>
+<Age>●●</Age>
+<Height Unit="センチメートル">１７５</Height>
+<Weight Unit="キログラム">１６９</Weight>
+<Result Period="幕内通算">
+<Record Kind="与金星" Unit="回">
+<Writing>0</Writing>
+<IntegerPart>０</IntegerPart>
+</Record>
+<Record Kind="奪金星" Unit="回">
+<Writing>3</Writing>
+<IntegerPart>３</IntegerPart>
+</Record>
+<!--生涯受賞回数マスタから取得  -->
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<!-- ======================== -->
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１９</BashoCount>
+<WinCount>１６０</WinCount>
+<LossCount>９８</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>２７</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．６２</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">０．５６１</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>大関</Writing>
+<SumoRank>大関</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>兵　庫</Writing>
+<Formal>兵　庫</Formal>
+<Formal Display="3字">兵　庫</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+
+<Player PlayerId="009620">
+<PlayerName>
+<Writing>朝乃山　</Writing>
+<Formal>朝乃山</Formal>
+<Formal Display="4字">朝乃山　</Formal>
+<Formal Display="3字">朝乃山</Formal>
+<Formal Display="2字">朝山</Formal>
+<Formal Display="よみがな">あさのやま</Formal>
+</PlayerName>
+<Belong>
+<Writing>高　砂</Writing>
+<Formal>高　砂</Formal>
+<Formal Display="3字">高　砂</Formal>
+<Formal Display="よみがな">たかさご</Formal>
+</Belong>
+<Age>●●</Age>
+<Height Unit="センチメートル">１８８</Height>
+<Weight Unit="キログラム">１７７</Weight>
+<Result Period="幕内通算">
+<Record Kind="与金星" Unit="回">
+<Writing>0</Writing>
+<IntegerPart>０</IntegerPart>
+</Record>
+<Record Kind="奪金星" Unit="回">
+<Writing>1</Writing>
+<IntegerPart>１</IntegerPart>
+</Record>
+<!--生涯受賞回数マスタから取得  -->
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>43</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>6</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>7</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>2</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>3</CountValue>
+</Count>
+</Award>
+
+<Award Kind="優勝">
+<Count>
+<Writing>43</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="殊勲賞">
+<Count>
+<Writing>３</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="敢闘賞">
+<Count>
+<Writing>１</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+<Award Kind="技能賞">
+<Count>
+<Writing>２</Writing>
+<CountValue>1</CountValue>
+</Count>
+</Award>
+
+<!-- ======================== -->
+<ResultForSumo>
+<SumoOutcomeTotal>
+<BashoCount>１５</BashoCount>
+<WinCount>１２８</WinCount>
+<LossCount>９７</LossCount>
+<DrawCount>０</DrawCount>
+<AbsenceCount>０</AbsenceCount>
+</SumoOutcomeTotal>
+<WinningPercentage>．５６９</WinningPercentage>
+<WinningPercentage Kind="休みを負とした">０．０</WinningPercentage>
+</ResultForSumo>
+</Result>
+<PlayerForSumo>
+<SumoGrade Kind="最高位">
+<Writing>関脇</Writing>
+<SumoRank>関脇</SumoRank>
+</SumoGrade>
+<NativeArea>
+<Writing>富　山</Writing>
+<Formal>富　山</Formal>
+<Formal Display="3字">富　山</Formal>
+</NativeArea>
+</PlayerForSumo>
+</Player>
+
+
 <!-- =================================================== ここまで ================================================================== -->
 <!-- ========================================== ここから下は完成後に削除 ==============================================================-->
 <Player PlayerId="009620">

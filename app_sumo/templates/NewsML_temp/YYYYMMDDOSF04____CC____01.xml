@@ -55,37 +55,36 @@
 </IhSubHeader>
 -->
 
-<!-- 副ヘッダを設定 -->
-<!-- 副ヘッダマスタにブロック宛先もしくは個別宛先が存在したらIhSubHearタグを編集する-->
-{% if subheader %}
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
 <IhSubHeader>
-<!-- ブロック宛先を設定-->
-<!-- ●ブロック宛先が存在したIhSndBlkInfoタグを編集するように修正が必要●  -->
-<!-- ●IhNbの値はIhSndBlkの発生数（＝ブロック宛先の個数）を編集する必要がある● -->
-<!-- ●変数を持たせて処理した方が良いが、これはテンプレート側ではなく、vierwsで処理してから渡して貰った方が良い？●-->
-<!-- ●そもそも個々のテンプレートに記述するのは非効率？●-->
-{% for sub in subheader %}
-{% if sub.Delivery_code.Individual_address == 0 %}
-<IhSendBlkInfo IhNb="1">
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<IhSendBlkInfo IhNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}</IhSendBlk>
+{% endfor %}
 </IhSendBlkInfo>
 {% endif %}
 {% endfor %}
-<!-- 個別宛先を設定 -->
-<!-- ●ブロック宛先と同様の処理が必要●　-->
-<IhSendIndInfo IhNi="1">
-{% for sub in subheader %}
-{% if sub.Delivery_code.Individual_address == 1 %}
-<IhSendBlk>{{ sub.Delivery_code.Delivery_name }}{{ sub.Delivery_code.Individual_address }}</IhSendBlk>
-{% endif %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<IhSendIndInfo IhNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<IhSendInd>{{ sub.Delivery_code.Delivery_name }}</IhSendInd>
 {% endfor %}
 </IhSendIndInfo>
-<!-- 否定個別宛先を設定 -->
+{% endif %}
+{% endfor %}
+<!-- 否定宛先を固定値で設定  -->
 <IhSendNIndInfo IhNi="1">
 <IhSendNInd>校閲</IhSendNInd>
 </IhSendNIndInfo>
 </IhSubHeader>
 {% endif %}
+<!-- ===================================== -->
 <IhSendFormSelect>ＯＳ相撲フルタグ</IhSendFormSelect>
 </IhAddrInfo>
 <IhDataForm>フルタグ書式</IhDataForm>
@@ -171,6 +170,7 @@
 </InMainHeader>
 <InSubHeader>
 <InFormType>ＫｄＸＢＳＣｏｎｔｅｎｔｖ１．１</InFormType>
+<!--
 <InSendControl>
 <InSendBlkInfo InNb="1">
 <InSendBlk>Ｎデ</InSendBlk>
@@ -187,6 +187,33 @@
 <InSendInd>札幌</InSendInd>
 </InSendIndInfo>
 </InSendControl>
+</InSubHeader>
+-->
+<!-- ==== 副ヘッダマスタから取得 =========== -->
+{% if subheader_0 or subheader_1 %}
+<InSendControl>
+<!-- ブロック宛先 -->
+{% for sub in subheader_0 %}
+{% if forloop.last %}
+<InSendBlkInfo InNb="{{ forloop.counter }}">
+{% for sub in subheader_0 %}
+<InSendBlk>{{ sub.Delivery_code.Delivery_name_2char }}</InSendBlk>
+{% endfor %}
+</InSendBlkInfo>
+{% endif %}
+{% endfor %}
+<!-- 個別宛先 -->
+{% for sub in subheader_1 %}
+{% if forloop.last %}
+<InSendIndInfo InNi="{{ forloop.counter }}">
+{% for sub in subheader_1 %}
+<InSendInd>{{ sub.Delivery_code.Delivery_name_2char }}</InSendInd>
+{% endfor %}
+</InSendIndInfo>
+{% endif %}
+{% endfor %}
+</InSendControl>
+{% endif %}
 </InSubHeader>
 </InNewsInfo>
 </InMetadata>
