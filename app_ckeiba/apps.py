@@ -2,6 +2,7 @@
 import glob
 import os
 import pathlib
+import shutil
 import subprocess as sp
 import sys
 import threading
@@ -10,10 +11,16 @@ from logging import getLogger
 from pathlib import Path
 
 from django.apps import AppConfig
+
 from app_ckeiba import csv_start_manage as cm
 from app_ckeiba.consts import *
 
 logger = getLogger('app_ckeiba')
+try:
+    from app_ckeiba import commons
+except Exception as e:
+    logger.error(f'commonsファイル読み込み失敗 : {e}')
+
 base =  os.path.dirname(os.path.abspath(__file__)) # app_ckeiba
 
 class AppCkeibaConfig(AppConfig):
@@ -26,10 +33,17 @@ class AppCkeibaConfig(AppConfig):
         起動時にcsvフォルダが無ければ作成
         :return:
         """
-        datdir = pathlib.Path(base) / pathlib.Path(CSVDATA)
-        if not datdir.exists():
-            os.makedirs(str(datdir))
+        csv_dir = pathlib.Path(base) / pathlib.Path(CSVDATA)
+        if not csv_dir.exists():
+            os.makedirs(str(csv_dir))
 
+        event_schedule_dir = pathlib.Path(base) / pathlib.Path(EVENTSCHEDULEDATDATA)
+        if not event_schedule_dir.exists():
+            os.makedirs(str(event_schedule_dir))
+
+        processed_csv_dir = pathlib.Path(base) / pathlib.Path(PROCESSEDDATDATA)
+        if not processed_csv_dir.exists():
+            os.makedirs(str(processed_csv_dir))
 
     def make_lock_file(self):
         baseCsvData = os.path.normpath(os.path.join(base, CSVDATA))
@@ -48,21 +62,31 @@ class AppCkeibaConfig(AppConfig):
         return True
 
     def call_watch_doc(self):
-        csvManage = cm.CsvManage()
 
         try:
-            # 受信　/code
-            #path = os.getcwd()
-            #cmd = "ls"
-            #proc= sp.Popen(cmd, shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
-            #std_out, std_err = proc.communicate()
-            # byte文字列で返るのでstrに
-            #ls_file_name = std_out.decode('utf-8').rstrip().split('\n')
-            #logger.info(ls_file_name)
+            csvManage = cm.CsvManage()
+            cmn = commons.Common()
+            # 受信順に取り込む機能 次の登録処理で後ろからするため、更新日時の新しいものから取り込み。
+            csvFileNameList = sorted(glob.glob('./app_ckeiba/CSVフォルダ/*'), key=lambda f: os.stat(f).st_mtime, reverse=True)
 
-            csvFileNameList = sorted(glob.glob('./app_ckeiba/CSVフォルダ/*'), key=lambda f: os.stat(f).st_mtime, reverse=False)
+            logger.info(f'{CSVDATA}にある受信順{csvFileNameList}')
 
-            logger.info(f'CSVDATA  {csvFileNameList}')
+            for filepath in reversed(csvFileNameList):
+                logger.info(filepath)
+                # ①～⑤　どれを呼び出すか判断する。
+                csvDataFileFlg=cmn.checkCsvData(filepath)
+                logger.info(f'csvDataFileFlg:  {csvDataFileFlg}')
+
+                cmn.call_insert_or_update_Trn(csvDataFileFlg, filepath)
+
+                # 処理済みフォルダへ移動し、受信フォルダからは削除する機能
+                try:
+                    logger.info('ファイル移動処理開始')
+                    shutil.move(filepath, './app_ckeiba/開催日割フォルダ/') if EVENTDATEDATA == csvDataFileFlg else shutil.move(filepath, './app_ckeiba/処理済みフォルダ/')
+                    logger.info('ファイル移動処理終了')
+                except Exception as e:
+                    logger.error(e)
+                    continue
 
             # watchdoc
             # 並列処理
