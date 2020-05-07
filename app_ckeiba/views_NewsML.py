@@ -1844,47 +1844,50 @@ def NewsML_rap(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 # 【上がり】(InData内部)
 def NewsML_agari(request, kyounen, kyoutuki, kyouhi, joucode, rebangou):
 
-    # # 年月日と場とレース番号から通信文オブジェクトのリストを取得。無かったら404
-    # tsuushimbun_list = get_list_or_404(Md_Tsuushimbun.objects,
-    #                                    joumei=joucode,
-    #                                    ck_kyounen=kyounen,
-    #                                    ck_kyoutuki=kyoutuki,
-    #                                    ck_kyouhi=kyouhi,
-    #                                    rebangou=rebangou
-    #                                    )
+    # 年月日と場とレース番号から上がりオブジェクトのリストを取得。無かったら404
+    agari_list = get_list_or_404(Md_Agari.objects,
+                                       joumei=joucode,
+                                       ck_kyounen=kyounen,
+                                       ck_kyoutuki=kyoutuki,
+                                       ck_kyouhi=kyouhi,
+                                       rebangou=rebangou
+                                       )
 
-    # # 場マスタから場のデータを取得
-    # jou_data = Mst_Jou.getJoudata(joucode)
+    # 場マスタから場のデータを取得
+    jou_data = Mst_Jou.getJoudata(joucode)
 
-    # # 数値の全角化処理(馬番)
-    # for tb in tsuushimbun_list:
-    #     tb.uma = intToZen(tb.uma)
+    # 数値の全角化、馬名の編集処理
+    for al in agari_list:
+        al.uma = intToZen(al.uma)
+        al.a3hakei = intToZen(al.a3hakei)
+        al.bamei_seishiki = al.bamei
+        al.bamei_9char = bamei9char(al.bamei)
 
-    # # レース情報を一件目のデータからとる。
-    # tsuushinbun = tsuushimbun_list[0]
 
-    # # パラメータに追加(数値の項目は全角化する)
-    # params = {
-    #     'joumei_seishiki': jou_data[0],
-    #     'joumei_3': jou_data[1],
+    # レース情報を一件目のデータからとる。
+    agari = agari_list[0]
 
-    #     'kaisuu': intToZen(tsuushinbun.kaisuu),
-    #     'kainichime': intToZen(tsuushinbun.kainichime),
+    # パラメータに追加(数値の項目は全角化する)
+    params = {
+        'joumei_seishiki': jou_data[0],
+        'joumei_3': jou_data[1],
 
-    #     'ck_kyounen': intToZen(tsuushinbun.ck_kyounen),
-    #     'ck_kyoutuki': intToZen(tsuushinbun.ck_kyoutuki),
-    #     'ck_kyouhi': intToZen(tsuushinbun.ck_kyouhi),
-    #     'rebangou': intToZen(tsuushinbun.rebangou),
+        'kaisuu': intToZen(agari.kaisuu) + '回',
+        'kainichime': intToZen(agari.kainichime) + '日目',
 
-    #     'tsuushimbun_list': tsuushimbun_list
-    # }
+        'ck_kyounen': intToZen(agari.ck_kyounen),
+        'ck_kyoutuki': intToZen(agari.ck_kyoutuki),
+        'ck_kyouhi': intToZen(agari.ck_kyouhi),
+        'rebangou': intToZen(agari.rebangou) + 'Ｒ',
 
-    # # xml形式で出力
-    # res = render(request, 'NewsML_temp/tsuushimbun_C.xml', params)
-    # res['Content-Type'] = 'application/xml'
-    # return res
+        'agari_list': agari_list
+    }
 
-    return render(request, 'NewsML_temp/NewsML.html', {'title': '【上がり】NewsMLプレビュー画面作成中(4/30)'})
+    # xml形式で出力
+    res = render(request, 'NewsML_temp/agari.xml', params)
+    res['Content-Type'] = 'application/xml'
+    return res
+
 # ========================================================================
 
 

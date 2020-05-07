@@ -1469,7 +1469,8 @@ class Md_Agari(Model):
     # 馬情報
     uma = IntegerField(verbose_name='馬番')
     bamei = CharField(verbose_name='馬名', max_length=10)
-    a3hakei = IntegerField(verbose_name='上がり３ハロン計')
+    a3hakei = DecimalField(verbose_name='上がり３ハロン計',max_digits=5,
+                         decimal_places=1, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = '【中間DB】上がり'
