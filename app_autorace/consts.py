@@ -13,6 +13,9 @@ RESULTDATA      = "resultData"
 TOP30PRIZEDATA  = "top30prizeData"
 OUTSIDETRACKDATA= "outsidetrackData"
 
+TOSCHEDULEDATDATA = './app_autorace/スケジュールフォルダ/'
+TOPROCESSEDDATDATA = './app_autorace/処理済みフォルダ/'
+
 NORMAL   = True
 ABNORMAL = False
 
