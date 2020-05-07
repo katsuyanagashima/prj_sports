@@ -423,8 +423,13 @@ def md_update_seiseki_haraimodoshi_forms(request, year, month, day, joucode, rac
 
     tran_system = Tran_Systemstatus.objects.all().first()  # ★ システム状態
 
-    mst_instance = get_object_or_404(Md_Seiseki_Haraimodoshi.objects, ck_kyounen=year,
-                                     ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode, rebangou=race)
+    # 場当日情報のインスタンスを取得
+    jou_toujitsu_instance = get_object_or_404(Md_Jou_Toujitsu.objects, ck_kyounen=year,
+                                     ck_kyoutuki=month, ck_kyouhi=day, joumei=joucode)
+                                     
+
+    mst_instance = get_object_or_404(Md_Seiseki_Haraimodoshi.objects, jou_toujitsu=jou_toujitsu_instance,
+                                     rebangou=race)
     title = "【中間DB】成績・払戻"
 
     # 成績・払戻のフォームセットを取得

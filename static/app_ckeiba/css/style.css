@@ -9,11 +9,6 @@
 ８．マスタ編集画面の表示設定 */
 
 
-/* ＜スタイルの追加・編集の場合の鉄則三カ条＞
-　その壱：基本的にclass指定で行うべし
-　その弐：htmlやbootstrapで事前に用意されているクラスは基本いじらず、編集したい場合は新たにclassを作って上書きするべし
-　その参：classを新規に作る場合、場所-詳細(nav-ttile とか)という名称規則に則り、どの部分を指しているかのわかりやすさを心がけるべし */
-
 
 /* １．ナビゲーションバー */
 /* 上書き */
@@ -201,7 +196,7 @@ h6 {
 .edit_push{
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: transparent;
     opacity: 50%;
     border: outset 1px #b1b1b1;
     border-radius: 3px;
@@ -213,6 +208,11 @@ h6 {
     width: 100%;
     height: 100%;
     background-color: transparent;
+    opacity: 50%;
+    border: outset 1px #b1b1b1;
+    border-radius: 3px;
+    border-top: 0px;
+    border-left: 0px;
 }
 /* ５．メイン画面の切替タブ部分 */
 .menu-tab{

@@ -9,11 +9,11 @@
                 </div>
                 <div class="col-5 reset_padding">
                     <div class="container-fluid row reset_padding reset_margin">
-                        <div class="col-6 jou-newsml">
+                        <div class="jou-newsml">
                             <table class="table table-sm table-bordered jou-newsml_table">
                                 <tbody>
                                     <tr>
-                                        <td class="table-dark nyujo-jinin">入場人員</td>
+                                        <td class="table-dark nyujo-jinin">場当日情報</td>
 
                                         {% if edit_data.nyujo == '○' %}
                                         <td class="maru-img td_value">
@@ -53,53 +53,6 @@
                                         </td>
                                         {% endif %}
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-6 jou-newsml">
-                            <table class="table table-sm table-bordered jou-newsml_table">
-                                <tbody>
-                                    <tr>
-                                        <td class="table-dark">売上金</td>
-
-                                        {% if edit_data.nyujo == '○' %}
-                                        <td class="maru-img td_value">
-                                            <a
-                                                href="{% url 'app_ckeiba:joutoujitsu' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=0 %}">
-                                                <div class="edit_push"></div>
-                                            </a>
-                                        </td>
-                                        {% elif edit_data.uriage == '△' %}
-                                        <td class="sankaku-img td_value"></td>
-                                        {% elif edit_data.uriage == '◎' %}
-                                        <td class="niju-maru-img td_value">
-                                            <a
-                                                href="{% url 'app_ckeiba:joutoujitsu' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=0 %}">
-                                                <div class="edit_push"></div>
-                                            </a>
-                                        </td>
-                                        {% elif edit_data.uriage == '●' %}
-                                        <td class="kuromaru-img td_value">
-                                            <a
-                                                href="{% url 'app_ckeiba:joutoujitsu' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=0 %}">
-                                                <div class="edit_push"></div>
-                                            </a>
-                                        </td>
-                                        {% elif edit_data.uriage == '◉' %}
-                                        <td class="nakaguro-maru-img td_value">
-                                            <a
-                                                href="{% url 'app_ckeiba:joutoujitsu' year=data.meta.year month=data.meta.month day=data.meta.day joucode=edit_data.jou_code race=0 %}">
-                                                <div class="edit_push"></div>
-                                            </a>
-                                        </td>
-                                        {% elif edit_data.uriage == '-' %}
-                                        <td class="uma-img td_value"></td>
-                                        {% else %}
-                                        <td class="td_value">
-                                            <div class="non_push">{{ edit_data.uriage }}</div>
-                                        </td>
-                                        {% endif %}
                                     </tr>
                                 </tbody>
                             </table>
