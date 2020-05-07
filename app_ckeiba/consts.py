@@ -8,6 +8,9 @@ CSVDATA         = "CSVフォルダ"
 EVENTSCHEDULEDATDATA = "開催日割フォルダ"
 PROCESSEDDATDATA= "処理済みフォルダ"
 
+TOEVENTSCHEDULEDATDATA = './app_ckeiba/開催日割フォルダ/'
+TOPROCESSEDDATDATA = './app_ckeiba/処理済みフォルダ/'
+
 NORMAL   = True
 ABNORMAL = False
 

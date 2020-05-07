@@ -78,8 +78,6 @@ class WatchDocHandler(PatternMatchingEventHandler):
 
         # 処理済みフォルダへ移動し、受信フォルダからは削除する機能
         try:
-            logger.info(f'ファイル移動処理開始　{filepath}')
-            shutil.move(filepath, './app_ckeiba/開催日割フォルダ/') if EVENTDATEDATA == csvDataFileFlg else shutil.move(filepath, './app_ckeiba/処理済みフォルダ/')
-            logger.info('ファイル移動処理終了')
+            cmn.call_check_isfile_move(csvDataFileFlg, filepath)
         except Exception as e:
             logger.error(e)

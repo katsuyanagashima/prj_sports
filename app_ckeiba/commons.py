@@ -1,6 +1,8 @@
 # pwd : /code
+import datetime
 import os
 import re
+import shutil
 import sys
 import time
 from logging import getLogger
@@ -34,6 +36,21 @@ class Common():
 
         logger.warning(f'該当しないファイル{filepath}')
         return None
+
+    def call_check_isfile_move(self, csvDataFileFlg, filepath):
+        logger.info('ファイル移動処理開始')
+        if EVENTDATEDATA == csvDataFileFlg:
+            if os.path.exists(os.path.join(TOEVENTSCHEDULEDATDATA, os.path.basename(filepath))):
+                logger.info('ファイル移動先ファイル有り')
+                shutil.move(filepath, os.path.join(TOEVENTSCHEDULEDATDATA, os.path.basename(filepath) + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+            else:
+                shutil.move(filepath, TOEVENTSCHEDULEDATDATA)
+        else:
+            if os.path.exists(os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath))):
+                shutil.move(filepath, os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath) + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+            else:
+                shutil.move(filepath, TOPROCESSEDDATDATA)
+        logger.info('ファイル移動処理終了')
 
     # 他からもcallできるようにする。
     def call_insert_or_update_Trn(self, csvDataFileFlg, filepath):
