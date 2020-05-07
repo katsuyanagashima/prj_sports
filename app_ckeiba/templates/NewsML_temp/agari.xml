@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="UTF-16"?>
-<!DOCTYPE NewsML PUBLIC "urn:newsml:iptc.org:20001006:NewsMLv1.0.dtd:1" "../DTD/NewsMLv1.0.dtd"[
-   <!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
-   %InContent;
-   <!ENTITY % Kddata SYSTEM "../CKDTD/KdCKUTAv1.0.dtd">
-   %Kddata;
+<?xml version = '1.0' encoding = 'UTF-16'?>
+<!DOCTYPE NewsML PUBLIC "urn:newsml:iptc.org:20001006:NewsMLv1.0.dtd:1" "../DTD/NewsMLv1.0.dtd" [
+	<!ENTITY % InContent SYSTEM "../DTD/InContentv1.0.dtd">
+	%InContent;
+	<!ENTITY % Kddata SYSTEM "../CKDTD/KdCKUATv1.0.dtd">
+	%Kddata;
 ]>
 <NewsML>
    <Catalog Href="../Catalog/catalog.KyodoMasterCatalogv1.0.xml"/>
    <NewsEnvelope>
-      <TransmissionId>20151016CKFU00378</TransmissionId>
-      <DateAndTime>20151016T185031+0900</DateAndTime>
+      <TransmissionId>20110524CKFU00114</TransmissionId>
+      <DateAndTime>20110525T171410+0900</DateAndTime>
       <NewsProduct FormalName="NskNewsML:1"/>
    </NewsEnvelope>
    <NewsItem Duid="NI_CK01" xml:lang="ja-JP">
       <Identification>
          <NewsIdentifier>
             <ProviderId>kyodonews.jp</ProviderId>
-            <DateId>20151016</DateId>
-            <NewsItemId>20151016CKFSUTC20120502</NewsItemId>
+            <DateId>20110524</DateId>
+            <NewsItemId>20110524CKFSUAT20040212</NewsItemId>
             <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
-            <PublicIdentifier>urn:newsml:kyodonews.jp:20151016:20151016CKFSUTC20120502:1</PublicIdentifier>
+            <PublicIdentifier>urn:newsml:kyodonews.jp:20110524:20110524CKFSUAT20040212:1</PublicIdentifier>
          </NewsIdentifier>
       </Identification>
       <NewsManagement>
          <NewsItemType FormalName="News"/>
-         <FirstCreated>20151016T185031+0900</FirstCreated>
-         <ThisRevisionCreated>20151016T185031+0900</ThisRevisionCreated>
+         <FirstCreated>20110525T171410+0900</FirstCreated>
+         <ThisRevisionCreated>20110525T171410+0900</ThisRevisionCreated>
          <Status FormalName="Usable"/>
       </NewsManagement>
       <NewsComponent Duid="NC_CK01" xml:lang="ja-JP" Essential="no" EquivalentsList="no">
          <NewsLines>
-            <HeadLine>１２回大井競馬５日目２Ｒ全着通信文</HeadLine>
+            <HeadLine>４回大井競馬２日目１２Ｒ馬別上がりタイム</HeadLine>
          </NewsLines>
          <AdministrativeMetadata>
             <Provider>
@@ -46,54 +46,51 @@
          </DescriptiveMetadata>
          <ContentItem>
             <MediaType FormalName="Text"/>
-            <Format FormalName="KdCKUTAv1.0"/>
+            <Format FormalName="KdCKUATv1.0"/>
             <MimeType FormalName="text/xml"/>
             <DataContent>
                <InContent version="1.0">
                   <InMetadata>
                      <InAdminInfo>
-                        <InProductId>２０１５１０１６ＣＫＦＳＵＴＣ２０１２０５０２０１</InProductId>
-                        <InDateTime>２０１５年１０月１６日１８時５０分３１秒</InDateTime>
+                        <InProductId>２０１１０５２４ＣＫＦＳＵＡＴ２００４０２１２０１</InProductId>
+                        <InDateTime>２０１１年０５月２４日４１時１４分１０秒</InDateTime>
                         <InFormat>
                            <InFormatType>フルタグ書式</InFormatType>
-                           <InFormatComment>ＫｄＣＫＵＴＡｖ１．０</InFormatComment>
+                           <InFormatComment>ＫｄＣＫＵＡＴｖ１．０</InFormatComment>
                         </InFormat>
                      </InAdminInfo>
                      <InCategoryInfo>
                         <InClasses>
                            <InClass>
                               <InBClass>地方競馬</InBClass>
-                              <InMClass1>通信文</InMClass1>
-                              <InMClass2>大井競馬５日目２Ｒ</InMClass2>
-                              <InSClass>全着通信文</InSClass>
+                              <InMClass1>レース電文</InMClass1>
+                              <InMClass2>大井競馬２日目１２Ｒ</InMClass2>
+                              <InSClass>馬別上がりタイム</InSClass>
                            </InClass>
                         </InClasses>
                         <InNewsCategory>
                            <InNewsGenre>走大</InNewsGenre>
                         </InNewsCategory>
                         <InNewsLine>
-                           <InHeadLine>１２回大井競馬５日目２Ｒ全着通信文</InHeadLine>
+                           <InHeadLine>４回大井競馬２日目１２Ｒ馬別上がりタイム</InHeadLine>
                         </InNewsLine>
                      </InCategoryInfo>
                      <InNewsInfo>
                         <InSubHeader>
-                           <InFormType>ＫｄＣＫＵＴＡｖ１．０</InFormType>
+                           <InFormType>ＫｄＣＫＵＡＴｖ１．０</InFormType>
                            <InSendControl>
                               <InSendBlkInfo InNb="1">
                                  <InSendBlk>フル走社</InSendBlk>
                               </InSendBlkInfo>
-                              <InSendIndInfo InNi="15">
-                                 <InSendInd>道新</InSendInd>
-                                 <InSendInd>産経</InSendInd>
+                              <InSendIndInfo InNi="12">
                                  <InSendInd>東京</InSendInd>
+                                 <InSendInd>内外</InSendInd>
                                  <InSendInd>中日</InSendInd>
-                                 <InSendInd>佐賀</InSendInd>
-                                 <InSendInd>東８</InSendInd>
                                  <InSendInd>ＨＳ</InSendInd>
                                  <InSendInd>ＮＳ</InSendInd>
                                  <InSendInd>ＳＮ</InSendInd>
                                  <InSendInd>ＴＳ</InSendInd>
-                                 <InSendInd>大報</InSendInd>
+                                 <InSendInd>ＴＣ</InSendInd>
                                  <InSendInd>日ス</InSendInd>
                                  <InSendInd>ス日</InSendInd>
                                  <InSendInd>デス</InSendInd>
@@ -104,31 +101,27 @@
                      </InNewsInfo>
                   </InMetadata>
                   <InData xml:space="preserve">
-                     <tsuusimbun meishou="通信文Ｃ">
+                     <umabetsuata meishou="馬別上がりタイム">
                         <joumei hyouki="3字">{{joumei_3}}</joumei>
                         <joumei hyouki="正式名">{{joumei_seishiki}}</joumei>
-                        <kaisuu>{{kaisuu}}回</kaisuu>
-                        <kainichime>{{kainichime}}日目</kainichime>
+                        <kaisuu>{{kaisuu}}</kaisuu>
+                        <kainichime>{{kainichime}}</kainichime>
                         <ck_kyounichi>
                            <ck_kyounen>{{ck_kyounen}}</ck_kyounen>
                            <ck_kyoutuki>{{ck_kyoutuki}}</ck_kyoutuki>
                            <ck_kyouhi>{{ck_kyouhi}}</ck_kyouhi>
                         </ck_kyounichi>
-                        <ck_resumei>
-                           <rebangou>{{rebangou}}Ｒ</rebangou>
-                           {% for tsuushinbun in tsuushimbun_list reversed %}
-                           <ck_fukabunnsyo>
-                              <ck_jishou>{{ tsuushinbun.ck_jishou }}</ck_jishou>
-                              {% if tsuushinbun.ck_taishousya %}
-                              <ck_taishousya>{{ tsuushinbun.ck_taishousya }}</ck_taishousya>
-                              {% endif %}
-                              <uma>{{ tsuushinbun.uma }}</uma>
-                              <ck_jisyoumei>{{ tsuushinbun.ck_jisyoumei }}</ck_jisyoumei>
-                              <kijinai>{{ tsuushinbun.kijinai }}</kijinai>
-                           </ck_fukabunnsyo>
-                           {% endfor %}
-                        </ck_resumei>
-                     </tsuusimbun>
+                        <rebangou>{{rebangou}}</rebangou>
+                        <shougaikubun/>
+                        {% for agari in agari_list %}
+                        <umajouhou>
+                           <uma>{{agari.uma}}</uma>
+                           <bamei hyouki="9字">{{agari.bamei_9char}}</bamei>
+                           <bamei hyouki="正式名">{{agari.bamei_seishiki}}</bamei>
+                           <a3hakei>{{agari.a3hakei}}</a3hakei>
+                        </umajouhou>
+                        {% endfor %}
+                     </umabetsuata>
                   </InData>
                </InContent>
             </DataContent>
