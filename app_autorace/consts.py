@@ -3,6 +3,7 @@
 ########################
 GO_RECURSIVELY = False # 再帰的
 DAD_LOCK_FILE = '.dat_lockfile'
+DADFILE = '.dat'
 
 DATDATA         = "固定長フォルダ"
 SCHEDULEDATDATA = "スケジュールフォルダ"

@@ -51,13 +51,13 @@ class Common():
         if SCHEDULE == datDataFileFlg:
             if os.path.exists(os.path.join(TOSCHEDULEDATDATA, os.path.basename(filepath))):
                 logger.info('ファイル移動先ファイル有り')
-                shutil.move(filepath, os.path.join(TOSCHEDULEDATDATA, os.path.basename(filepath) + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+                shutil.move(filepath, os.path.join(TOSCHEDULEDATDATA, (os.path.basename(filepath)).replace(DADFILE, '') + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + DADFILE))
             else:
                 shutil.move(filepath, TOSCHEDULEDATDATA)
         else:
             if os.path.exists(os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath))):
                 logger.info('ファイル移動先ファイル有り')
-                shutil.move(filepath, os.path.join(TOPROCESSEDDATDATA, os.path.basename(filepath) + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+                shutil.move(filepath, os.path.join(TOPROCESSEDDATDATA, (os.path.basename(filepath)).replace(DADFILE, '') + '_' + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + DADFILE))
             else:
                 shutil.move(filepath, TOPROCESSEDDATDATA)
         logger.info('ファイル移動処理終了')
