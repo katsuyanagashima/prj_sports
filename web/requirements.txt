@@ -1,4 +1,4 @@
-Django==2.1.4
+Django==2.2.10
 uwsgi==2.0.17
 pymysql==0.8.0
 bootstrap4==0.1.0
