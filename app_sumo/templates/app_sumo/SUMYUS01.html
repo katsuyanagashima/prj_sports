@@ -1,34 +1,42 @@
 {% extends 'app_sumo/base.html' %}
 {% block content %}
     <h1 class="caption">優勝・三賞入力画面</h1>
+    <p>※開催年月と日目が一致するデータのみ表示。千秋楽以前に優勝が確定した場合は、翌日以降は自動でセットする？<br/>
+        ※左の番付表は（現行と同様に）東西を分ける必要があるか？<br/>
+        ※緑色の追加ボタンと青色のリンクからも追加・修正・削除ができるが、不要と思われる（現行画面にも無い）ので廃止する予定 </p>
+    </p>
     <div class="container-fluid row gyomu-menu caption_box">
-        <div class="col-7">
+        <div class="col-8">
             <form method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-9 gyomu-menu caption_box">
-                        <table id="tbl_SUMYUS01_banzuke" class="table table-hover table-sm">
-                            <thead class="thead-dark">
+                        <table id="tbl_SUMYUS01_banzuke" class="table table-hover table-sm nowrap">
+                            <thead class="thead-light">
                             <tr id="tbl_SUMYUS01_banzuke_header">
-                                <th/> <!-- [0]東西コード -->
-                                <th/> <!-- [1]東西 -->
-                                <th/> <!-- [2]階級コード -->
-                                <th/> <!-- [3]階級 -->
-                                <th/> <!-- [4]番付順位 -->
-                                <th/> <!-- [5]力士名 -->
-                                <th/> <!-- [6] -->
+                                <th/><!-- [0]東西 -->
+                                <th/><!-- [1]階級 -->
+                                <th/><!-- [2]地位 -->
+                                <th/><!-- [3]番付順位 -->
+                                <th/><!-- [4]力士名 -->
+                                <th/><!-- [5]ラジオボタン -->
+                                <th/><!-- [6]東西コード -->
+                                <th/><!-- [7]階級コード -->
+                                <th/><!-- [8]番付順位 -->
                             </tr>
                             </thead>
                             <tbody>
                             {% for rikishi in rikishis %}
                                 <tr id="{{ rikishi.Rikishi }}">
-                                    <td>{{ rikishi.Eastwest_code_id }}</td>
                                     <td>{{ rikishi.Eastwest_code }}</td>
-                                    <td>{{ rikishi.Class_code_id }}</td>
                                     <td class="class_code">{{ rikishi.Class_code }}</td>
+                                    <td>{{ rikishi.New_chii | default_if_none:'' }}</td>
                                     <td>{{ rikishi.Banzuke_rank }}</td>
                                     <td>{{ rikishi.Rikishi }}</td>
                                     <td><input type="radio" name="rikishi_id" value="{{ rikishi.Rikishi_id }}"></td>
+                                    <td>{{ rikishi.Eastwest_code_id }}</td>
+                                    <td>{{ rikishi.Class_code_id }}</td>
+                                    <td>{{ rikishi.Banzuke_rank }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -54,17 +62,15 @@
                     </div>
                 </div>
             </form>
-            <p> ※番付テーブルを表示。「横綱」「大関」などの地位を取得する項目は？<br/>
-            </p>
         </div>
-        <div class="col-5">
+        <div class="col-4">
             <div class="gyomu-menu caption_box">
                 <form method="POST">
                     {% csrf_token %}
                     <table id="tbl_SUMYUS01_yusho" class="table table-hover table-sm">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                         <tr>
-                            <th>優勝</th>
+                            <th colspan="3">優勝</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -84,9 +90,9 @@
                         </tbody>
                     </table>
                     <table id="tbl_SUMYUS01_3sho" class="table table-hover table-sm">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                         <tr>
-                            <th>三賞</th>
+                            <th colspan="3">三賞</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -127,8 +133,6 @@
                     </button>
                 </form>
             </div>
-            <p><br/>※開催年月と日目が一致するデータのみ表示<br/>
-                ※千秋楽以前に優勝が確定した場合は、翌日以降は自動でセットする？
         </div>
         </p>
     </div>
