@@ -23,11 +23,11 @@ class Ba5():
 
     def chk_master(self, line, Mst_Jou):
 
-        if not Mst_Jou.objects.filter(Jou_code=line[5]):
-            logger.info(f'競馬場マスタ にJou_code :{line[5]} ないので登録します。')
-            jou = Mst_Jou(Jou_code=line[5],Jou_name=JOU_NAME,Jou_seisekiA=JOU_SEISEKIA,Jou_3char=JOU_3CHAR,Jou_banei=JOU_BANEI)
+        if not Mst_Jou.objects.filter(Jou_code=line[2]):
+            logger.info(f'競馬場マスタ にJou_code :{line[2]} ないので登録します。')
+            jou = Mst_Jou(Jou_code=line[2],Jou_name=JOU_NAME,Jou_seisekiA=JOU_SEISEKIA,Jou_3char=JOU_3CHAR,Jou_banei=JOU_BANEI)
             jou.save()
-            logger.warning(f'競馬場マスタ にJou_code {line[5]}：Jou_name {JOU_NAME}:Jou_seisekiA {JOU_SEISEKIA}:Jou_3char {JOU_3CHAR}:Jou_banei :{JOU_BANEI}を登録しました。')
+            logger.warning(f'競馬場マスタ にJou_code {line[2]}：Jou_name {JOU_NAME}:Jou_seisekiA {JOU_SEISEKIA}:Jou_3char {JOU_3CHAR}:Jou_banei :{JOU_BANEI}を登録しました。')
 
     #入場人員_BA5
     def CSV_Trn_Visitors_BA5(self, fileName, Trn_Visitors_BA5, Mst_Jou):
