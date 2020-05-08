@@ -4,7 +4,6 @@ import glob
 import os
 import pathlib
 import shutil
-import subprocess as sp
 import sys
 import threading
 import time
@@ -97,6 +96,19 @@ class AppCkeibaConfig(AppConfig):
         except Exception as e:
             logger.error(e)
 
+    def call_db_conn(self):
+
+        conn = False
+        while not conn:
+            time.sleep(10)
+            try:
+                from app_ckeiba.models import Tran_Systemstatus
+                Tran_Systemstatus.objects.count()
+                logger.info('DB接続可:')
+                conn = True
+            except Exception as e:
+                logger.info(f'DB接続不可 prj_sports.dbコンテナを起動する必要があります。: {e}')
+
     # docker-compose up -d docker-compose stop 呼ばれる？
     def ready(self):
         try:
@@ -106,6 +118,11 @@ class AppCkeibaConfig(AppConfig):
             if AppCkeibaConfig.run_already:
                 return
             AppCkeibaConfig.run_already = True
+
+            # DB接続確認
+            logger.info('DB接続確認 Start:')
+            self.call_db_conn()
+            logger.info('DB接続確認 End:')
 
             # 固定長フォルダフォルダ作成
             self.make_csv_folder()
