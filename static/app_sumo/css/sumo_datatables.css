@@ -1,0 +1,50 @@
+/* ------------------------------
+優勝・三賞入力画面
+------------------------------ */
+/* 優勝・三賞入力画面（番付）テーブルのヘッダー */
+#tbl_SUMYUS01_banzuke_header * {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* 優勝・三賞入力画面（番付、優勝三賞）テーブルのボディ */
+#tbl_SUMYUS01_banzuke tbody td,
+#tbl_SUMYUS01_yusho tbody td,
+#tbl_SUMYUS01_3sho tbody td {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    white-space: nowrap; /* 折り返し禁止 */
+}
+
+/* 優勝・三賞入力画面（番付、優勝三賞）選択中の行 */
+#tbl_SUMYUS01_banzuke tr.selected td,
+#tbl_SUMYUS01_yusho tr.selected td,
+#tbl_SUMYUS01_3sho tr.selected td {
+    /*background-color: lightsteelblue; */
+    background-color: yellow;
+}
+
+/* 優勝・三賞入力画面（番付）階級プルダウンメニュー */
+#class_code_menu {
+    height: 27px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 50px;
+    background-color: lightyellow;
+    font-weight: bold;
+}
+
+/* 優勝・三賞入力画面（番付）キーワード検索 */
+#tbl_SUMYUS01_banzuke_filter input {
+    background-color: lightyellow;
+}
+
+/* 優勝・三賞入力画面（番付）ボタン */
+.button-area {
+    text-align: center;
+}
+
+button[disabled] {
+    cursor: not-allowed; /* 無効化 */
+}
+

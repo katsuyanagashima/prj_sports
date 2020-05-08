@@ -18,6 +18,10 @@
     {% block extrastyle %}{% endblock %}
 
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <!-- DataTables -->
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'app_sumo/css/sumo_datatables.css' %}">
 </head>
 
 <body>
@@ -42,6 +46,11 @@
 
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="{% static '/app_sumo/js/sumo_datatables.js' %}"></script>
 </body>
 
 </html>

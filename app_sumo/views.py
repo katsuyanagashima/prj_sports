@@ -147,7 +147,54 @@ def SUMYUS01(request):
     return render(request, 'app_sumo/SUMYUS01.html', {**dict, **nav})
 
 
-# 優勝・三賞入力画面（追加）
+# 優勝・三賞入力画面（更新・作成）
+@require_POST
+def SUMYUS01_update_or_create(request, str_award):
+    req_rikishi_id = request.POST.get('rikishi_id')
+    # 画面で力士が選択されている場合
+    if req_rikishi_id:
+        awards = {}
+        if str_award in {'Yusho', 'Shukunsho', 'Kantosho', 'Ginosho'}:
+            awards[str_award+'_flg'] = True
+        # 対象力士のレコードを更新または作成
+        Tran_YushoSansho.objects.update_or_create(
+            Rikishi_id = req_rikishi_id,
+            Yearmonth = Tran_Systemstatus.objects.first().Event_date,
+            Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
+            Class_code_id = Tran_Banzuke.objects.get(Rikishi_id=req_rikishi_id).Class_code_id,
+            defaults = awards,
+        )
+    return redirect('app_sumo:SUMYUS01')
+
+
+# 優勝・三賞入力画面（更新・削除）
+@require_POST
+def SUMYUS01_update_or_delete(request):
+    req_award_and_rikishi_id = request.POST.get('award_and_rikishi_id')
+    # 画面で力士が選択されている場合
+    if req_award_and_rikishi_id:
+        arr_award_and_rikishi_id = req_award_and_rikishi_id.split(':')
+        award = arr_award_and_rikishi_id[0]
+        rikishi_id = arr_award_and_rikishi_id[1]
+        tbl_yushosansho = Tran_YushoSansho.objects.get(
+            Rikishi_id = rikishi_id,
+            Yearmonth = Tran_Systemstatus.objects.first().Event_date,
+            Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
+        )
+        # 対象力士のレコードを更新
+        if award in {'Yusho', 'Shukunsho', 'Kantosho', 'Ginosho'}:
+            setattr(tbl_yushosansho, award+'_flg', False)
+            tbl_yushosansho.save()
+        # 優勝・三賞から外れた場合は、レコードを削除
+        if not (tbl_yushosansho.Yusho_flg
+                or tbl_yushosansho.Shukunsho_flg
+                or tbl_yushosansho.Kantosho_flg
+                or tbl_yushosansho.Ginosho_flg):
+            tbl_yushosansho.delete()
+    return redirect('app_sumo:SUMYUS01')
+
+
+# 優勝・三賞入力画面（作成）●廃止予定●
 def SUMYUS01_create(request):
     nav= nav_info(request)
     initial_dict = {
@@ -161,39 +208,11 @@ def SUMYUS01_create(request):
             post.save()
             return redirect('app_sumo:SUMYUS01')
     else:
-        #form = Tran_YushoSanshoForm()
         form = Tran_YushoSanshoForm(initial=initial_dict)
     return render(request, 'app_sumo/SUMYUS01_create.html', {'form': form, **nav})
 
 
-# 優勝・三賞入力画面（追加２）
-def SUMYUS01_create2(request, str_award):
-    row = request.POST.get('rikishi_id')
-    # 画面で力士が選択されている場合
-    if row:
-        reqlist_rikishi_id = request.POST.get('rikishi_id')
-        ccid = Tran_Banzuke.objects.get(Rikishi_id=reqlist_rikishi_id).Class_code_id
-        awards = {}
-        if str_award == 'Yusho':
-            awards['Yusho_flg'] = 1
-        if str_award == 'Shukunsho':
-            awards['Shukunsho_flg'] = 1
-        if str_award == 'Kantosho':
-            awards['Kantosho_flg'] = 1
-        if str_award == 'Ginosho':
-            awards['Ginosho_flg'] = 1
-        # DBのデータを更新または新規登録
-        Tran_YushoSansho.objects.update_or_create(
-            Rikishi_id = reqlist_rikishi_id,
-            Yearmonth = Tran_Systemstatus.objects.first().Event_date,
-            Nichime_code = Tran_Systemstatus.objects.first().MatchDate,
-            Class_code_id = ccid,
-            defaults = awards,
-        )
-    return redirect('app_sumo:SUMYUS01')
-
-
-# 優勝・三賞入力画面（参照）●本画面は廃止●
+# 優勝・三賞入力画面（参照）●廃止●
 '''def SUMYUS01_view(request, pk):
     nav= nav_info(request)
     post = Tran_YushoSansho.objects.get(pk=pk)
@@ -201,7 +220,7 @@ def SUMYUS01_create2(request, str_award):
     '''
 
 
-# 優勝・三賞入力画面（更新）
+# 優勝・三賞入力画面（更新）●廃止予定●
 def SUMYUS01_update(request, pk):
     nav= nav_info(request)
     post = get_object_or_404(Tran_YushoSansho, pk=pk)
@@ -215,7 +234,7 @@ def SUMYUS01_update(request, pk):
     return render(request, 'app_sumo/SUMYUS01_update.html', {'form': form, 'post': post, **nav})
 
 
-# 優勝・三賞入力画面（削除）
+# 優勝・三賞入力画面（削除）●廃止予定●
 @require_POST
 def SUMYUS01_delete(request, pk):
     post = get_object_or_404(Tran_YushoSansho, pk=pk)
